@@ -1,0 +1,36 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="TMEconomyEvaluator.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="BarLabel" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Fast Food / Bar Level</Value>
+    </Setting>
+    <Setting Name="StructuresLabel" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Structures Level</Value>
+    </Setting>
+    <Setting Name="OptionsLabel" Type="System.String" Scope="User">
+      <Value Profile="(Default)">optionsToolStripMenuItem</Value>
+    </Setting>
+    <Setting Name="SausageLabel" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Sausages Level</Value>
+    </Setting>
+    <Setting Name="RestaurantLabel" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Restaurant Level</Value>
+    </Setting>
+    <Setting Name="VipLabel" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Vip Level</Value>
+    </Setting>
+    <Setting Name="DivisionLabel" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Division</Value>
+    </Setting>
+    <Setting Name="LeaguePosLabel" Type="System.String" Scope="User">
+      <Value Profile="(Default)">League Position</Value>
+    </Setting>
+    <Setting Name="LeaguePos1Label" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Avoid Relegation</Value>
+    </Setting>
+    <Setting Name="LeaguePos2Label" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Top 12</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

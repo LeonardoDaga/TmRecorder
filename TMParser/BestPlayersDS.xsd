@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="BestPlayersDS" targetNamespace="http://tempuri.org/BestPlayersDS.xsd" xmlns:mstns="http://tempuri.org/BestPlayersDS.xsd" xmlns="http://tempuri.org/BestPlayersDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+        </Connections>
+        <Tables>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="BestPlayersDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="BestPlayersDS" msprop:Generator_DataSetName="BestPlayersDS">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="GK" msprop:Generator_UserTableName="GK" msprop:Generator_RowDeletedName="GKRowDeleted" msprop:Generator_TableClassName="GKDataTable" msprop:Generator_RowChangedName="GKRowChanged" msprop:Generator_RowClassName="GKRow" msprop:Generator_RowChangingName="GKRowChanging" msprop:Generator_RowEvArgName="GKRowChangeEvent" msprop:Generator_RowEvHandlerName="GKRowChangeEventHandler" msprop:Generator_TablePropName="GK" msprop:Generator_TableVarName="tableGK" msprop:Generator_RowDeletingName="GKRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PlayerID" msprop:Generator_UserColumnName="PlayerID" msprop:Generator_ColumnPropNameInRow="PlayerID" msprop:Generator_ColumnVarNameInTable="columnPlayerID" msprop:Generator_ColumnPropNameInTable="PlayerIDColumn" type="xs:int" default="0" />
+              <xs:element name="Numero" msprop:Generator_UserColumnName="Numero" msprop:Generator_ColumnPropNameInRow="Numero" msprop:Generator_ColumnVarNameInTable="columnNumero" msprop:Generator_ColumnPropNameInTable="NumeroColumn" type="xs:int" />
+              <xs:element name="Nationality" msprop:Generator_UserColumnName="Nationality" msprop:Generator_ColumnPropNameInRow="Nationality" msprop:Generator_ColumnVarNameInTable="columnNationality" msprop:Generator_ColumnPropNameInTable="NationalityColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Nome" msprop:Generator_UserColumnName="Nome" msprop:Generator_ColumnPropNameInRow="Nome" msprop:Generator_ColumnVarNameInTable="columnNome" msprop:Generator_ColumnPropNameInTable="NomeColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ASI" msprop:Generator_UserColumnName="ASI" msprop:Generator_ColumnPropNameInRow="ASI" msprop:Generator_ColumnVarNameInTable="columnASI" msprop:Generator_ColumnPropNameInTable="ASIColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Età" msprop:Generator_UserColumnName="Età" msprop:Generator_ColumnPropNameInRow="Età" msprop:Generator_ColumnVarNameInTable="columnEtà" msprop:Generator_ColumnPropNameInTable="EtàColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Val" msdata:Caption="For" msprop:Generator_UserColumnName="Val" msprop:Generator_ColumnPropNameInRow="Val" msprop:Generator_ColumnVarNameInTable="columnVal" msprop:Generator_ColumnPropNameInTable="ValColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DC" msprop:Generator_UserTableName="DC" msprop:Generator_RowDeletedName="DCRowDeleted" msprop:Generator_TableClassName="DCDataTable" msprop:Generator_RowChangedName="DCRowChanged" msprop:Generator_RowClassName="DCRow" msprop:Generator_RowChangingName="DCRowChanging" msprop:Generator_RowEvArgName="DCRowChangeEvent" msprop:Generator_RowEvHandlerName="DCRowChangeEventHandler" msprop:Generator_TablePropName="DC" msprop:Generator_TableVarName="tableDC" msprop:Generator_RowDeletingName="DCRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PlayerID" msprop:Generator_UserColumnName="PlayerID" msprop:Generator_ColumnPropNameInRow="PlayerID" msprop:Generator_ColumnVarNameInTable="columnPlayerID" msprop:Generator_ColumnPropNameInTable="PlayerIDColumn" type="xs:int" default="0" />
+              <xs:element name="Numero" msprop:Generator_UserColumnName="Numero" msprop:Generator_ColumnPropNameInRow="Numero" msprop:Generator_ColumnVarNameInTable="columnNumero" msprop:Generator_ColumnPropNameInTable="NumeroColumn" type="xs:int" />
+              <xs:element name="Nationality" msprop:Generator_UserColumnName="Nationality" msprop:Generator_ColumnPropNameInRow="Nationality" msprop:Generator_ColumnVarNameInTable="columnNationality" msprop:Generator_ColumnPropNameInTable="NationalityColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Nome" msprop:Generator_UserColumnName="Nome" msprop:Generator_ColumnPropNameInRow="Nome" msprop:Generator_ColumnVarNameInTable="columnNome" msprop:Generator_ColumnPropNameInTable="NomeColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ASI" msprop:Generator_UserColumnName="ASI" msprop:Generator_ColumnPropNameInRow="ASI" msprop:Generator_ColumnVarNameInTable="columnASI" msprop:Generator_ColumnPropNameInTable="ASIColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Età" msprop:Generator_UserColumnName="Età" msprop:Generator_ColumnPropNameInRow="Età" msprop:Generator_ColumnVarNameInTable="columnEtà" msprop:Generator_ColumnPropNameInTable="EtàColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Val" msdata:Caption="For" msprop:Generator_UserColumnName="Val" msprop:Generator_ColumnPropNameInRow="Val" msprop:Generator_ColumnVarNameInTable="columnVal" msprop:Generator_ColumnPropNameInTable="ValColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DL" msprop:Generator_UserTableName="DL" msprop:Generator_RowDeletedName="DLRowDeleted" msprop:Generator_TableClassName="DLDataTable" msprop:Generator_RowChangedName="DLRowChanged" msprop:Generator_RowClassName="DLRow" msprop:Generator_RowChangingName="DLRowChanging" msprop:Generator_RowEvArgName="DLRowChangeEvent" msprop:Generator_RowEvHandlerName="DLRowChangeEventHandler" msprop:Generator_TablePropName="DL" msprop:Generator_TableVarName="tableDL" msprop:Generator_RowDeletingName="DLRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PlayerID" msprop:Generator_UserColumnName="PlayerID" msprop:Generator_ColumnPropNameInRow="PlayerID" msprop:Generator_ColumnVarNameInTable="columnPlayerID" msprop:Generator_ColumnPropNameInTable="PlayerIDColumn" type="xs:int" default="0" />
+              <xs:element name="Numero" msprop:Generator_UserColumnName="Numero" msprop:Generator_ColumnPropNameInRow="Numero" msprop:Generator_ColumnVarNameInTable="columnNumero" msprop:Generator_ColumnPropNameInTable="NumeroColumn" type="xs:int" />
+              <xs:element name="Nationality" msprop:Generator_UserColumnName="Nationality" msprop:Generator_ColumnPropNameInRow="Nationality" msprop:Generator_ColumnVarNameInTable="columnNationality" msprop:Generator_ColumnPropNameInTable="NationalityColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Nome" msprop:Generator_UserColumnName="Nome" msprop:Generator_ColumnPropNameInRow="Nome" msprop:Generator_ColumnVarNameInTable="columnNome" msprop:Generator_ColumnPropNameInTable="NomeColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ASI" msprop:Generator_UserColumnName="ASI" msprop:Generator_ColumnPropNameInRow="ASI" msprop:Generator_ColumnVarNameInTable="columnASI" msprop:Generator_ColumnPropNameInTable="ASIColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Età" msprop:Generator_UserColumnName="Età" msprop:Generator_ColumnPropNameInRow="Età" msprop:Generator_ColumnVarNameInTable="columnEtà" msprop:Generator_ColumnPropNameInTable="EtàColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Val" msdata:Caption="For" msprop:Generator_UserColumnName="Val" msprop:Generator_ColumnPropNameInRow="Val" msprop:Generator_ColumnVarNameInTable="columnVal" msprop:Generator_ColumnPropNameInTable="ValColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DR" msprop:Generator_UserTableName="DR" msprop:Generator_RowDeletedName="DRRowDeleted" msprop:Generator_TableClassName="DRDataTable" msprop:Generator_RowChangedName="DRRowChanged" msprop:Generator_RowClassName="DRRow" msprop:Generator_RowChangingName="DRRowChanging" msprop:Generator_RowEvArgName="DRRowChangeEvent" msprop:Generator_RowEvHandlerName="DRRowChangeEventHandler" msprop:Generator_TablePropName="DR" msprop:Generator_TableVarName="tableDR" msprop:Generator_RowDeletingName="DRRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PlayerID" msprop:Generator_UserColumnName="PlayerID" msprop:Generator_ColumnPropNameInRow="PlayerID" msprop:Generator_ColumnVarNameInTable="columnPlayerID" msprop:Generator_ColumnPropNameInTable="PlayerIDColumn" type="xs:int" default="0" />
+              <xs:element name="Numero" msprop:Generator_UserColumnName="Numero" msprop:Generator_ColumnPropNameInRow="Numero" msprop:Generator_ColumnVarNameInTable="columnNumero" msprop:Generator_ColumnPropNameInTable="NumeroColumn" type="xs:int" />
+              <xs:element name="Nationality" msprop:Generator_UserColumnName="Nationality" msprop:Generator_ColumnPropNameInRow="Nationality" msprop:Generator_ColumnVarNameInTable="columnNationality" msprop:Generator_ColumnPropNameInTable="NationalityColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Nome" msprop:Generator_UserColumnName="Nome" msprop:Generator_ColumnPropNameInRow="Nome" msprop:Generator_ColumnVarNameInTable="columnNome" msprop:Generator_ColumnPropNameInTable="NomeColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ASI" msprop:Generator_UserColumnName="ASI" msprop:Generator_ColumnPropNameInRow="ASI" msprop:Generator_ColumnVarNameInTable="columnASI" msprop:Generator_ColumnPropNameInTable="ASIColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Età" msprop:Generator_UserColumnName="Età" msprop:Generator_ColumnPropNameInRow="Età" msprop:Generator_ColumnVarNameInTable="columnEtà" msprop:Generator_ColumnPropNameInTable="EtàColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Val" msdata:Caption="For" msprop:Generator_UserColumnName="Val" msprop:Generator_ColumnPropNameInRow="Val" msprop:Generator_ColumnVarNameInTable="columnVal" msprop:Generator_ColumnPropNameInTable="ValColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DMC" msprop:Generator_UserTableName="DMC" msprop:Generator_RowDeletedName="DMCRowDeleted" msprop:Generator_TableClassName="DMCDataTable" msprop:Generator_RowChangedName="DMCRowChanged" msprop:Generator_RowClassName="DMCRow" msprop:Generator_RowChangingName="DMCRowChanging" msprop:Generator_RowEvArgName="DMCRowChangeEvent" msprop:Generator_RowEvHandlerName="DMCRowChangeEventHandler" msprop:Generator_TablePropName="DMC" msprop:Generator_TableVarName="tableDMC" msprop:Generator_RowDeletingName="DMCRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PlayerID" msprop:Generator_UserColumnName="PlayerID" msprop:Generator_ColumnPropNameInRow="PlayerID" msprop:Generator_ColumnVarNameInTable="columnPlayerID" msprop:Generator_ColumnPropNameInTable="PlayerIDColumn" type="xs:int" default="0" />
+              <xs:element name="Numero" msprop:Generator_UserColumnName="Numero" msprop:Generator_ColumnPropNameInRow="Numero" msprop:Generator_ColumnVarNameInTable="columnNumero" msprop:Generator_ColumnPropNameInTable="NumeroColumn" type="xs:int" />
+              <xs:element name="Nationality" msprop:Generator_UserColumnName="Nationality" msprop:Generator_ColumnPropNameInRow="Nationality" msprop:Generator_ColumnVarNameInTable="columnNationality" msprop:Generator_ColumnPropNameInTable="NationalityColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Nome" msprop:Generator_UserColumnName="Nome" msprop:Generator_ColumnPropNameInRow="Nome" msprop:Generator_ColumnVarNameInTable="columnNome" msprop:Generator_ColumnPropNameInTable="NomeColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ASI" msprop:Generator_UserColumnName="ASI" msprop:Generator_ColumnPropNameInRow="ASI" msprop:Generator_ColumnVarNameInTable="columnASI" msprop:Generator_ColumnPropNameInTable="ASIColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Età" msprop:Generator_UserColumnName="Età" msprop:Generator_ColumnPropNameInRow="Età" msprop:Generator_ColumnVarNameInTable="columnEtà" msprop:Generator_ColumnPropNameInTable="EtàColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Val" msdata:Caption="For" msprop:Generator_UserColumnName="Val" msprop:Generator_ColumnPropNameInRow="Val" msprop:Generator_ColumnVarNameInTable="columnVal" msprop:Generator_ColumnPropNameInTable="ValColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DML" msprop:Generator_UserTableName="DML" msprop:Generator_RowDeletedName="DMLRowDeleted" msprop:Generator_TableClassName="DMLDataTable" msprop:Generator_RowChangedName="DMLRowChanged" msprop:Generator_RowClassName="DMLRow" msprop:Generator_RowChangingName="DMLRowChanging" msprop:Generator_RowEvArgName="DMLRowChangeEvent" msprop:Generator_RowEvHandlerName="DMLRowChangeEventHandler" msprop:Generator_TablePropName="DML" msprop:Generator_TableVarName="tableDML" msprop:Generator_RowDeletingName="DMLRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PlayerID" msprop:Generator_UserColumnName="PlayerID" msprop:Generator_ColumnPropNameInRow="PlayerID" msprop:Generator_ColumnVarNameInTable="columnPlayerID" msprop:Generator_ColumnPropNameInTable="PlayerIDColumn" type="xs:int" default="0" />
+              <xs:element name="Numero" msprop:Generator_UserColumnName="Numero" msprop:Generator_ColumnPropNameInRow="Numero" msprop:Generator_ColumnVarNameInTable="columnNumero" msprop:Generator_ColumnPropNameInTable="NumeroColumn" type="xs:int" />
+              <xs:element name="Nationality" msprop:Generator_UserColumnName="Nationality" msprop:Generator_ColumnPropNameInRow="Nationality" msprop:Generator_ColumnVarNameInTable="columnNationality" msprop:Generator_ColumnPropNameInTable="NationalityColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Nome" msprop:Generator_UserColumnName="Nome" msprop:Generator_ColumnPropNameInRow="Nome" msprop:Generator_ColumnVarNameInTable="columnNome" msprop:Generator_ColumnPropNameInTable="NomeColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ASI" msprop:Generator_UserColumnName="ASI" msprop:Generator_ColumnPropNameInRow="ASI" msprop:Generator_ColumnVarNameInTable="columnASI" msprop:Generator_ColumnPropNameInTable="ASIColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Età" msprop:Generator_UserColumnName="Età" msprop:Generator_ColumnPropNameInRow="Età" msprop:Generator_ColumnVarNameInTable="columnEtà" msprop:Generator_ColumnPropNameInTable="EtàColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Val" msdata:Caption="For" msprop:Generator_UserColumnName="Val" msprop:Generator_ColumnPropNameInRow="Val" msprop:Generator_ColumnVarNameInTable="columnVal" msprop:Generator_ColumnPropNameInTable="ValColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DMR" msprop:Generator_UserTableName="DMR" msprop:Generator_RowDeletedName="DMRRowDeleted" msprop:Generator_TableClassName="DMRDataTable" msprop:Generator_RowChangedName="DMRRowChanged" msprop:Generator_RowClassName="DMRRow" msprop:Generator_RowChangingName="DMRRowChanging" msprop:Generator_RowEvArgName="DMRRowChangeEvent" msprop:Generator_RowEvHandlerName="DMRRowChangeEventHandler" msprop:Generator_TablePropName="DMR" msprop:Generator_TableVarName="tableDMR" msprop:Generator_RowDeletingName="DMRRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PlayerID" msprop:Generator_UserColumnName="PlayerID" msprop:Generator_ColumnPropNameInRow="PlayerID" msprop:Generator_ColumnVarNameInTable="columnPlayerID" msprop:Generator_ColumnPropNameInTable="PlayerIDColumn" type="xs:int" default="0" />
+              <xs:element name="Numero" msprop:Generator_UserColumnName="Numero" msprop:Generator_ColumnPropNameInRow="Numero" msprop:Generator_ColumnVarNameInTable="columnNumero" msprop:Generator_ColumnPropNameInTable="NumeroColumn" type="xs:int" />
+              <xs:element name="Nationality" msprop:Generator_UserColumnName="Nationality" msprop:Generator_ColumnPropNameInRow="Nationality" msprop:Generator_ColumnVarNameInTable="columnNationality" msprop:Generator_ColumnPropNameInTable="NationalityColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Nome" msprop:Generator_UserColumnName="Nome" msprop:Generator_ColumnPropNameInRow="Nome" msprop:Generator_ColumnVarNameInTable="columnNome" msprop:Generator_ColumnPropNameInTable="NomeColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ASI" msprop:Generator_UserColumnName="ASI" msprop:Generator_ColumnPropNameInRow="ASI" msprop:Generator_ColumnVarNameInTable="columnASI" msprop:Generator_ColumnPropNameInTable="ASIColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Età" msprop:Generator_UserColumnName="Età" msprop:Generator_ColumnPropNameInRow="Età" msprop:Generator_ColumnVarNameInTable="columnEtà" msprop:Generator_ColumnPropNameInTable="EtàColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Val" msdata:Caption="For" msprop:Generator_UserColumnName="Val" msprop:Generator_ColumnPropNameInRow="Val" msprop:Generator_ColumnVarNameInTable="columnVal" msprop:Generator_ColumnPropNameInTable="ValColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="MC" msprop:Generator_UserTableName="MC" msprop:Generator_RowDeletedName="MCRowDeleted" msprop:Generator_TableClassName="MCDataTable" msprop:Generator_RowChangedName="MCRowChanged" msprop:Generator_RowClassName="MCRow" msprop:Generator_RowChangingName="MCRowChanging" msprop:Generator_RowEvArgName="MCRowChangeEvent" msprop:Generator_RowEvHandlerName="MCRowChangeEventHandler" msprop:Generator_TablePropName="MC" msprop:Generator_TableVarName="tableMC" msprop:Generator_RowDeletingName="MCRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PlayerID" msprop:Generator_UserColumnName="PlayerID" msprop:Generator_ColumnPropNameInRow="PlayerID" msprop:Generator_ColumnVarNameInTable="columnPlayerID" msprop:Generator_ColumnPropNameInTable="PlayerIDColumn" type="xs:int" default="0" />
+              <xs:element name="Numero" msprop:Generator_UserColumnName="Numero" msprop:Generator_ColumnPropNameInRow="Numero" msprop:Generator_ColumnVarNameInTable="columnNumero" msprop:Generator_ColumnPropNameInTable="NumeroColumn" type="xs:int" />
+              <xs:element name="Nationality" msprop:Generator_UserColumnName="Nationality" msprop:Generator_ColumnPropNameInRow="Nationality" msprop:Generator_ColumnVarNameInTable="columnNationality" msprop:Generator_ColumnPropNameInTable="NationalityColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Nome" msprop:Generator_UserColumnName="Nome" msprop:Generator_ColumnPropNameInRow="Nome" msprop:Generator_ColumnVarNameInTable="columnNome" msprop:Generator_ColumnPropNameInTable="NomeColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ASI" msprop:Generator_UserColumnName="ASI" msprop:Generator_ColumnPropNameInRow="ASI" msprop:Generator_ColumnVarNameInTable="columnASI" msprop:Generator_ColumnPropNameInTable="ASIColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Età" msprop:Generator_UserColumnName="Età" msprop:Generator_ColumnPropNameInRow="Età" msprop:Generator_ColumnVarNameInTable="columnEtà" msprop:Generator_ColumnPropNameInTable="EtàColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Val" msdata:Caption="For" msprop:Generator_UserColumnName="Val" msprop:Generator_ColumnPropNameInRow="Val" msprop:Generator_ColumnVarNameInTable="columnVal" msprop:Generator_ColumnPropNameInTable="ValColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="MR" msprop:Generator_UserTableName="MR" msprop:Generator_RowDeletedName="MRRowDeleted" msprop:Generator_TableClassName="MRDataTable" msprop:Generator_RowChangedName="MRRowChanged" msprop:Generator_RowClassName="MRRow" msprop:Generator_RowChangingName="MRRowChanging" msprop:Generator_RowEvArgName="MRRowChangeEvent" msprop:Generator_RowEvHandlerName="MRRowChangeEventHandler" msprop:Generator_TablePropName="MR" msprop:Generator_TableVarName="tableMR" msprop:Generator_RowDeletingName="MRRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PlayerID" msprop:Generator_UserColumnName="PlayerID" msprop:Generator_ColumnPropNameInRow="PlayerID" msprop:Generator_ColumnVarNameInTable="columnPlayerID" msprop:Generator_ColumnPropNameInTable="PlayerIDColumn" type="xs:int" default="0" />
+              <xs:element name="Numero" msprop:Generator_UserColumnName="Numero" msprop:Generator_ColumnPropNameInRow="Numero" msprop:Generator_ColumnVarNameInTable="columnNumero" msprop:Generator_ColumnPropNameInTable="NumeroColumn" type="xs:int" />
+              <xs:element name="Nationality" msprop:Generator_UserColumnName="Nationality" msprop:Generator_ColumnPropNameInRow="Nationality" msprop:Generator_ColumnVarNameInTable="columnNationality" msprop:Generator_ColumnPropNameInTable="NationalityColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Nome" msprop:Generator_UserColumnName="Nome" msprop:Generator_ColumnPropNameInRow="Nome" msprop:Generator_ColumnVarNameInTable="columnNome" msprop:Generator_ColumnPropNameInTable="NomeColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ASI" msprop:Generator_UserColumnName="ASI" msprop:Generator_ColumnPropNameInRow="ASI" msprop:Generator_ColumnVarNameInTable="columnASI" msprop:Generator_ColumnPropNameInTable="ASIColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Età" msprop:Generator_UserColumnName="Età" msprop:Generator_ColumnPropNameInRow="Età" msprop:Generator_ColumnVarNameInTable="columnEtà" msprop:Generator_ColumnPropNameInTable="EtàColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Val" msdata:Caption="For" msprop:Generator_UserColumnName="Val" msprop:Generator_ColumnPropNameInRow="Val" msprop:Generator_ColumnVarNameInTable="columnVal" msprop:Generator_ColumnPropNameInTable="ValColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ML" msprop:Generator_UserTableName="ML" msprop:Generator_RowDeletedName="MLRowDeleted" msprop:Generator_TableClassName="MLDataTable" msprop:Generator_RowChangedName="MLRowChanged" msprop:Generator_RowClassName="MLRow" msprop:Generator_RowChangingName="MLRowChanging" msprop:Generator_RowEvArgName="MLRowChangeEvent" msprop:Generator_RowEvHandlerName="MLRowChangeEventHandler" msprop:Generator_TablePropName="ML" msprop:Generator_TableVarName="tableML" msprop:Generator_RowDeletingName="MLRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PlayerID" msprop:Generator_UserColumnName="PlayerID" msprop:Generator_ColumnPropNameInRow="PlayerID" msprop:Generator_ColumnVarNameInTable="columnPlayerID" msprop:Generator_ColumnPropNameInTable="PlayerIDColumn" type="xs:int" default="0" />
+              <xs:element name="Numero" msprop:Generator_UserColumnName="Numero" msprop:Generator_ColumnPropNameInRow="Numero" msprop:Generator_ColumnVarNameInTable="columnNumero" msprop:Generator_ColumnPropNameInTable="NumeroColumn" type="xs:int" />
+              <xs:element name="Nationality" msprop:Generator_UserColumnName="Nationality" msprop:Generator_ColumnPropNameInRow="Nationality" msprop:Generator_ColumnVarNameInTable="columnNationality" msprop:Generator_ColumnPropNameInTable="NationalityColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Nome" msprop:Generator_UserColumnName="Nome" msprop:Generator_ColumnPropNameInRow="Nome" msprop:Generator_ColumnVarNameInTable="columnNome" msprop:Generator_ColumnPropNameInTable="NomeColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ASI" msprop:Generator_UserColumnName="ASI" msprop:Generator_ColumnPropNameInRow="ASI" msprop:Generator_ColumnVarNameInTable="columnASI" msprop:Generator_ColumnPropNameInTable="ASIColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Età" msprop:Generator_UserColumnName="Età" msprop:Generator_ColumnPropNameInRow="Età" msprop:Generator_ColumnVarNameInTable="columnEtà" msprop:Generator_ColumnPropNameInTable="EtàColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Val" msdata:Caption="For" msprop:Generator_UserColumnName="Val" msprop:Generator_ColumnPropNameInRow="Val" msprop:Generator_ColumnVarNameInTable="columnVal" msprop:Generator_ColumnPropNameInTable="ValColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="OMR" msprop:Generator_UserTableName="OMR" msprop:Generator_RowDeletedName="OMRRowDeleted" msprop:Generator_TableClassName="OMRDataTable" msprop:Generator_RowChangedName="OMRRowChanged" msprop:Generator_RowClassName="OMRRow" msprop:Generator_RowChangingName="OMRRowChanging" msprop:Generator_RowEvArgName="OMRRowChangeEvent" msprop:Generator_RowEvHandlerName="OMRRowChangeEventHandler" msprop:Generator_TablePropName="OMR" msprop:Generator_TableVarName="tableOMR" msprop:Generator_RowDeletingName="OMRRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PlayerID" msprop:Generator_UserColumnName="PlayerID" msprop:Generator_ColumnPropNameInRow="PlayerID" msprop:Generator_ColumnVarNameInTable="columnPlayerID" msprop:Generator_ColumnPropNameInTable="PlayerIDColumn" type="xs:int" default="0" />
+              <xs:element name="Numero" msprop:Generator_UserColumnName="Numero" msprop:Generator_ColumnPropNameInRow="Numero" msprop:Generator_ColumnVarNameInTable="columnNumero" msprop:Generator_ColumnPropNameInTable="NumeroColumn" type="xs:int" />
+              <xs:element name="Nationality" msprop:Generator_UserColumnName="Nationality" msprop:Generator_ColumnPropNameInRow="Nationality" msprop:Generator_ColumnVarNameInTable="columnNationality" msprop:Generator_ColumnPropNameInTable="NationalityColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Nome" msprop:Generator_UserColumnName="Nome" msprop:Generator_ColumnPropNameInRow="Nome" msprop:Generator_ColumnVarNameInTable="columnNome" msprop:Generator_ColumnPropNameInTable="NomeColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ASI" msprop:Generator_UserColumnName="ASI" msprop:Generator_ColumnPropNameInRow="ASI" msprop:Generator_ColumnVarNameInTable="columnASI" msprop:Generator_ColumnPropNameInTable="ASIColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Età" msprop:Generator_UserColumnName="Età" msprop:Generator_ColumnPropNameInRow="Età" msprop:Generator_ColumnVarNameInTable="columnEtà" msprop:Generator_ColumnPropNameInTable="EtàColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Val" msdata:Caption="For" msprop:Generator_UserColumnName="Val" msprop:Generator_ColumnPropNameInRow="Val" msprop:Generator_ColumnVarNameInTable="columnVal" msprop:Generator_ColumnPropNameInTable="ValColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="OMC" msprop:Generator_UserTableName="OMC" msprop:Generator_RowDeletedName="OMCRowDeleted" msprop:Generator_TableClassName="OMCDataTable" msprop:Generator_RowChangedName="OMCRowChanged" msprop:Generator_RowClassName="OMCRow" msprop:Generator_RowChangingName="OMCRowChanging" msprop:Generator_RowEvArgName="OMCRowChangeEvent" msprop:Generator_RowEvHandlerName="OMCRowChangeEventHandler" msprop:Generator_TablePropName="OMC" msprop:Generator_TableVarName="tableOMC" msprop:Generator_RowDeletingName="OMCRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PlayerID" msprop:Generator_UserColumnName="PlayerID" msprop:Generator_ColumnPropNameInRow="PlayerID" msprop:Generator_ColumnVarNameInTable="columnPlayerID" msprop:Generator_ColumnPropNameInTable="PlayerIDColumn" type="xs:int" default="0" />
+              <xs:element name="Numero" msprop:Generator_UserColumnName="Numero" msprop:Generator_ColumnPropNameInRow="Numero" msprop:Generator_ColumnVarNameInTable="columnNumero" msprop:Generator_ColumnPropNameInTable="NumeroColumn" type="xs:int" />
+              <xs:element name="Nationality" msprop:Generator_UserColumnName="Nationality" msprop:Generator_ColumnPropNameInRow="Nationality" msprop:Generator_ColumnVarNameInTable="columnNationality" msprop:Generator_ColumnPropNameInTable="NationalityColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Nome" msprop:Generator_UserColumnName="Nome" msprop:Generator_ColumnPropNameInRow="Nome" msprop:Generator_ColumnVarNameInTable="columnNome" msprop:Generator_ColumnPropNameInTable="NomeColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ASI" msprop:Generator_UserColumnName="ASI" msprop:Generator_ColumnPropNameInRow="ASI" msprop:Generator_ColumnVarNameInTable="columnASI" msprop:Generator_ColumnPropNameInTable="ASIColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Età" msprop:Generator_UserColumnName="Età" msprop:Generator_ColumnPropNameInRow="Età" msprop:Generator_ColumnVarNameInTable="columnEtà" msprop:Generator_ColumnPropNameInTable="EtàColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Val" msdata:Caption="For" msprop:Generator_UserColumnName="Val" msprop:Generator_ColumnPropNameInRow="Val" msprop:Generator_ColumnVarNameInTable="columnVal" msprop:Generator_ColumnPropNameInTable="ValColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="OML" msprop:Generator_UserTableName="OML" msprop:Generator_RowDeletedName="OMLRowDeleted" msprop:Generator_TableClassName="OMLDataTable" msprop:Generator_RowChangedName="OMLRowChanged" msprop:Generator_RowClassName="OMLRow" msprop:Generator_RowChangingName="OMLRowChanging" msprop:Generator_RowEvArgName="OMLRowChangeEvent" msprop:Generator_RowEvHandlerName="OMLRowChangeEventHandler" msprop:Generator_TablePropName="OML" msprop:Generator_TableVarName="tableOML" msprop:Generator_RowDeletingName="OMLRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PlayerID" msprop:Generator_UserColumnName="PlayerID" msprop:Generator_ColumnPropNameInRow="PlayerID" msprop:Generator_ColumnVarNameInTable="columnPlayerID" msprop:Generator_ColumnPropNameInTable="PlayerIDColumn" type="xs:int" default="0" />
+              <xs:element name="Numero" msprop:Generator_UserColumnName="Numero" msprop:Generator_ColumnPropNameInRow="Numero" msprop:Generator_ColumnVarNameInTable="columnNumero" msprop:Generator_ColumnPropNameInTable="NumeroColumn" type="xs:int" />
+              <xs:element name="Nationality" msprop:Generator_UserColumnName="Nationality" msprop:Generator_ColumnPropNameInRow="Nationality" msprop:Generator_ColumnVarNameInTable="columnNationality" msprop:Generator_ColumnPropNameInTable="NationalityColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Nome" msprop:Generator_UserColumnName="Nome" msprop:Generator_ColumnPropNameInRow="Nome" msprop:Generator_ColumnVarNameInTable="columnNome" msprop:Generator_ColumnPropNameInTable="NomeColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ASI" msprop:Generator_UserColumnName="ASI" msprop:Generator_ColumnPropNameInRow="ASI" msprop:Generator_ColumnVarNameInTable="columnASI" msprop:Generator_ColumnPropNameInTable="ASIColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Età" msprop:Generator_UserColumnName="Età" msprop:Generator_ColumnPropNameInRow="Età" msprop:Generator_ColumnVarNameInTable="columnEtà" msprop:Generator_ColumnPropNameInTable="EtàColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Val" msdata:Caption="For" msprop:Generator_UserColumnName="Val" msprop:Generator_ColumnPropNameInRow="Val" msprop:Generator_ColumnVarNameInTable="columnVal" msprop:Generator_ColumnPropNameInTable="ValColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="FC" msprop:Generator_UserTableName="FC" msprop:Generator_RowDeletedName="FCRowDeleted" msprop:Generator_TableClassName="FCDataTable" msprop:Generator_RowChangedName="FCRowChanged" msprop:Generator_RowClassName="FCRow" msprop:Generator_RowChangingName="FCRowChanging" msprop:Generator_RowEvArgName="FCRowChangeEvent" msprop:Generator_RowEvHandlerName="FCRowChangeEventHandler" msprop:Generator_TablePropName="FC" msprop:Generator_TableVarName="tableFC" msprop:Generator_RowDeletingName="FCRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PlayerID" msprop:Generator_UserColumnName="PlayerID" msprop:Generator_ColumnPropNameInRow="PlayerID" msprop:Generator_ColumnVarNameInTable="columnPlayerID" msprop:Generator_ColumnPropNameInTable="PlayerIDColumn" type="xs:int" default="0" />
+              <xs:element name="Numero" msprop:Generator_UserColumnName="Numero" msprop:Generator_ColumnPropNameInRow="Numero" msprop:Generator_ColumnVarNameInTable="columnNumero" msprop:Generator_ColumnPropNameInTable="NumeroColumn" type="xs:int" />
+              <xs:element name="Nationality" msprop:Generator_UserColumnName="Nationality" msprop:Generator_ColumnPropNameInRow="Nationality" msprop:Generator_ColumnVarNameInTable="columnNationality" msprop:Generator_ColumnPropNameInTable="NationalityColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Nome" msprop:Generator_UserColumnName="Nome" msprop:Generator_ColumnPropNameInRow="Nome" msprop:Generator_ColumnVarNameInTable="columnNome" msprop:Generator_ColumnPropNameInTable="NomeColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ASI" msprop:Generator_UserColumnName="ASI" msprop:Generator_ColumnPropNameInRow="ASI" msprop:Generator_ColumnVarNameInTable="columnASI" msprop:Generator_ColumnPropNameInTable="ASIColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Età" msprop:Generator_UserColumnName="Età" msprop:Generator_ColumnPropNameInRow="Età" msprop:Generator_ColumnVarNameInTable="columnEtà" msprop:Generator_ColumnPropNameInTable="EtàColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Val" msdata:Caption="For" msprop:Generator_UserColumnName="Val" msprop:Generator_ColumnPropNameInRow="Val" msprop:Generator_ColumnVarNameInTable="columnVal" msprop:Generator_ColumnPropNameInTable="ValColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint2" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:GK" />
+      <xs:field xpath="mstns:PlayerID" />
+    </xs:unique>
+    <xs:unique name="DC_Constraint2" msdata:ConstraintName="Constraint2" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:DC" />
+      <xs:field xpath="mstns:PlayerID" />
+    </xs:unique>
+    <xs:unique name="DL_Constraint2" msdata:ConstraintName="Constraint2" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:DL" />
+      <xs:field xpath="mstns:PlayerID" />
+    </xs:unique>
+    <xs:unique name="DR_Constraint2" msdata:ConstraintName="Constraint2" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:DR" />
+      <xs:field xpath="mstns:PlayerID" />
+    </xs:unique>
+    <xs:unique name="DMC_Constraint2" msdata:ConstraintName="Constraint2" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:DMC" />
+      <xs:field xpath="mstns:PlayerID" />
+    </xs:unique>
+    <xs:unique name="DML_Constraint2" msdata:ConstraintName="Constraint2" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:DML" />
+      <xs:field xpath="mstns:PlayerID" />
+    </xs:unique>
+    <xs:unique name="DMR_Constraint2" msdata:ConstraintName="Constraint2" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:DMR" />
+      <xs:field xpath="mstns:PlayerID" />
+    </xs:unique>
+    <xs:unique name="MC_Constraint2" msdata:ConstraintName="Constraint2" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:MC" />
+      <xs:field xpath="mstns:PlayerID" />
+    </xs:unique>
+    <xs:unique name="MR_Constraint2" msdata:ConstraintName="Constraint2" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:MR" />
+      <xs:field xpath="mstns:PlayerID" />
+    </xs:unique>
+    <xs:unique name="ML_Constraint2" msdata:ConstraintName="Constraint2" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:ML" />
+      <xs:field xpath="mstns:PlayerID" />
+    </xs:unique>
+    <xs:unique name="OMR_Constraint2" msdata:ConstraintName="Constraint2" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:OMR" />
+      <xs:field xpath="mstns:PlayerID" />
+    </xs:unique>
+    <xs:unique name="OMC_Constraint2" msdata:ConstraintName="Constraint2" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:OMC" />
+      <xs:field xpath="mstns:PlayerID" />
+    </xs:unique>
+    <xs:unique name="OML_Constraint2" msdata:ConstraintName="Constraint2" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:OML" />
+      <xs:field xpath="mstns:PlayerID" />
+    </xs:unique>
+    <xs:unique name="FC_Constraint2" msdata:ConstraintName="Constraint2" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:FC" />
+      <xs:field xpath="mstns:PlayerID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

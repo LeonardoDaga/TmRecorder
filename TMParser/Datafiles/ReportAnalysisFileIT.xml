@@ -1,0 +1,163 @@
+<?xml version="1.0" standalone="yes"?>
+<ReportAnalysis xmlns="http://tempuri.org/ReportAnalysis.xsd">
+  <Tactics>
+    <Vote>5</Vote>
+    <Review>limitata comprensione degli aspetti tattici del gioco (1/4)</Review>
+  </Tactics>
+  <Tactics>
+    <Vote>10</Vote>
+    <Review>discreta comprensione degli aspetti tattici del gioco (2/4)</Review>
+  </Tactics>
+  <Tactics>
+    <Vote>15</Vote>
+    <Review>buona comprensione degli aspetti tattici del gioco (3/4)</Review>
+  </Tactics>
+  <Tactics>
+    <Vote>20</Vote>
+    <Review>splendida comprensione degli aspetti tattici del gioco (4/4)</Review>
+  </Tactics>
+  <Leadership>
+    <Vote>2</Vote>
+    <Review>scarse (1/6) abilità di leadership</Review>
+  </Leadership>
+  <Leadership>
+    <Vote>4</Vote>
+    <Review>non speciali (2/6) abilità di leadership</Review>
+  </Leadership>
+  <Leadership>
+    <Vote>6</Vote>
+    <Review>discrete (3/6) abilità di leadership</Review>
+  </Leadership>
+  <Leadership>
+    <Vote>8</Vote>
+    <Review>buone (4/6) abilità di leadership</Review>
+  </Leadership>
+  <Leadership>
+    <Vote>10</Vote>
+    <Review>superbe (6/6) abilità di leadership</Review>
+  </Leadership>
+  <Blooming>
+    <Vote>0</Vote>
+    <Review>precoce eplosione</Review>
+  </Blooming>
+  <Blooming>
+    <Vote>1</Vote>
+    <Review>normale esplosione</Review>
+  </Blooming>
+  <Blooming>
+    <Vote>2</Vote>
+    <Review>tardiva eplosione</Review>
+  </Blooming>
+  <Aggressivity>
+    <Vote>2</Vote>
+    <Review>carattere per nulla aggressivo (1/5)</Review>
+  </Aggressivity>
+  <Aggressivity>
+    <Vote>4</Vote>
+    <Review>sembra possedere un carattere non molto aggressivo (2/5)</Review>
+  </Aggressivity>
+  <Aggressivity>
+    <Vote>6</Vote>
+    <Review>carattere leggermente aggressivo (3/5)</Review>
+  </Aggressivity>
+  <Aggressivity>
+    <Vote>8</Vote>
+    <Review>carattere piuttosto aggressivo (4/5)</Review>
+  </Aggressivity>
+  <Aggressivity>
+    <Vote>10</Vote>
+    <Review>carattere pericolosamente aggressivo (5/5)</Review>
+  </Aggressivity>
+  <Physique>
+    <Vote>5</Vote>
+    <Review>fisico un pò debole (1/4)</Review>
+  </Physique>
+  <Physique>
+    <Vote>10</Vote>
+    <Review>fisico discreto (2/4)</Review>
+  </Physique>
+  <Physique>
+    <Vote>15</Vote>
+    <Review>buon fisico (3/4)</Review>
+  </Physique>
+  <Physique>
+    <Vote>20</Vote>
+    <Review>splendido fisico (4/4)</Review>
+  </Physique>
+  <Professionality>
+    <Vote>2</Vote>
+    <Review>Insignificante doti di professionalità</Review>
+  </Professionality>
+  <Professionality>
+    <Vote>4</Vote>
+    <Review>normali (2/6) doti di professionalità</Review>
+  </Professionality>
+  <Professionality>
+    <Vote>6</Vote>
+    <Review>buone (3/5) doti di professionalità</Review>
+  </Professionality>
+  <Professionality>
+    <Vote>8</Vote>
+    <Review>dimostra molto buone (5/6) doti di professionalità</Review>
+  </Professionality>
+  <Professionality>
+    <Vote>10</Vote>
+    <Review>dimostra superbe (5/5) doti di professionalità</Review>
+  </Professionality>
+  <Ability>
+    <Vote>15</Vote>
+    <Review>molto buono abilità</Review>
+  </Ability>
+  <Ability>
+    <Vote>11</Vote>
+    <Review>molto valido abilità</Review>
+  </Ability>
+  <Ability>
+    <Vote>8</Vote>
+    <Review>accettabile abilità</Review>
+  </Ability>
+  <Ability>
+    <Vote>13</Vote>
+    <Review>molto promettente abilità</Review>
+  </Ability>
+  <Ability>
+    <Vote>12</Vote>
+    <Review>con promettente abilità</Review>
+  </Ability>
+  <Ability>
+    <Vote>14</Vote>
+    <Review>con  buono abilità</Review>
+  </Ability>
+  <Ability>
+    <Vote>10</Vote>
+    <Review>con valido abilità</Review>
+  </Ability>
+  <Ability>
+    <Vote>7</Vote>
+    <Review>con  OK abilità</Review>
+  </Ability>
+  <Ability>
+    <Vote>6</Vote>
+    <Review>quasi OK abilità</Review>
+  </Ability>
+  <Technics>
+    <Vote>5</Vote>
+    <Review>limitato potenziale di miglioramento (1/4)</Review>
+  </Technics>
+  <Technics>
+    <Vote>10</Vote>
+    <Review>un po di potenziale di miglioramento (2/4)</Review>
+  </Technics>
+  <Technics>
+    <Vote>15</Vote>
+    <Review>sostanziale potenziale di miglioramento (3/4)</Review>
+  </Technics>
+  <Technics>
+    <Vote>20</Vote>
+    <Review>molto potenziale di miglioramento (4/4)</Review>
+  </Technics>
+  <Technics>
+    <Vote>0</Vote>
+    <Review>Dal punto di vista tecnico, il tuo scout giudica che</Review>
+  </Technics>
+</ReportAnalysis>

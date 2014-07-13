@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="GainDS" targetNamespace="http://tempuri.org/Gain.xsd" xmlns:mstns="http://tempuri.org/Gain.xsd" xmlns="http://tempuri.org/Gain.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+        </Connections>
+        <Tables>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="GainDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="GainDS" msprop:Generator_DataSetName="GainDS">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="SkillFPGain" msprop:Generator_UserTableName="SkillFPGain" msprop:Generator_RowDeletedName="SkillFPGainRowDeleted" msprop:Generator_TableClassName="SkillFPGainDataTable" msprop:Generator_RowChangedName="SkillFPGainRowChanged" msprop:Generator_RowClassName="SkillFPGainRow" msprop:Generator_RowChangingName="SkillFPGainRowChanging" msprop:Generator_RowEvArgName="SkillFPGainRowChangeEvent" msprop:Generator_RowEvHandlerName="SkillFPGainRowChangeEventHandler" msprop:Generator_TablePropName="SkillFPGain" msprop:Generator_TableVarName="tableSkillFPGain" msprop:Generator_RowDeletingName="SkillFPGainRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Skill" msdata:ReadOnly="true" msdata:Caption="Date" msprop:Generator_UserColumnName="Skill" msprop:Generator_ColumnPropNameInRow="Skill" msprop:Generator_ColumnVarNameInTable="columnSkill" msprop:Generator_ColumnPropNameInTable="SkillColumn" type="xs:string" />
+              <xs:element name="DC" msprop:Generator_UserColumnName="DC" msprop:Generator_ColumnPropNameInRow="DC" msprop:Generator_ColumnVarNameInTable="columnDC" msprop:Generator_ColumnPropNameInTable="DCColumn" type="xs:float" default="0" minOccurs="0" />
+              <xs:element name="DR" msprop:Generator_UserColumnName="DR" msprop:Generator_ColumnPropNameInRow="DR" msprop:Generator_ColumnVarNameInTable="columnDR" msprop:Generator_ColumnPropNameInTable="DRColumn" type="xs:float" default="0" minOccurs="0" />
+              <xs:element name="DL" msprop:Generator_UserColumnName="DL" msprop:Generator_ColumnPropNameInRow="DL" msprop:Generator_ColumnVarNameInTable="columnDL" msprop:Generator_ColumnPropNameInTable="DLColumn" type="xs:float" default="0" minOccurs="0" />
+              <xs:element name="DMC" msdata:Caption="DC" msprop:Generator_UserColumnName="DMC" msprop:Generator_ColumnPropNameInRow="DMC" msprop:Generator_ColumnVarNameInTable="columnDMC" msprop:Generator_ColumnPropNameInTable="DMCColumn" type="xs:float" default="0" minOccurs="0" />
+              <xs:element name="DMR" msdata:Caption="DL" msprop:Generator_UserColumnName="DMR" msprop:Generator_ColumnPropNameInRow="DMR" msprop:Generator_ColumnVarNameInTable="columnDMR" msprop:Generator_ColumnPropNameInTable="DMRColumn" type="xs:float" default="0" minOccurs="0" />
+              <xs:element name="DML" msdata:Caption="DR" msprop:Generator_UserColumnName="DML" msprop:Generator_ColumnPropNameInRow="DML" msprop:Generator_ColumnVarNameInTable="columnDML" msprop:Generator_ColumnPropNameInTable="DMLColumn" type="xs:float" default="0" minOccurs="0" />
+              <xs:element name="MC" msdata:Caption="DL" msprop:Generator_UserColumnName="MC" msprop:Generator_ColumnPropNameInRow="MC" msprop:Generator_ColumnVarNameInTable="columnMC" msprop:Generator_ColumnPropNameInTable="MCColumn" type="xs:float" default="0" minOccurs="0" />
+              <xs:element name="MR" msdata:Caption="DL" msprop:Generator_UserColumnName="MR" msprop:Generator_ColumnPropNameInRow="MR" msprop:Generator_ColumnVarNameInTable="columnMR" msprop:Generator_ColumnPropNameInTable="MRColumn" type="xs:float" default="0" minOccurs="0" />
+              <xs:element name="ML" msdata:Caption="DL" msprop:Generator_UserColumnName="ML" msprop:Generator_ColumnPropNameInRow="ML" msprop:Generator_ColumnVarNameInTable="columnML" msprop:Generator_ColumnPropNameInTable="MLColumn" type="xs:float" default="0" minOccurs="0" />
+              <xs:element name="OMC" msdata:Caption="DL" msprop:Generator_UserColumnName="OMC" msprop:Generator_ColumnPropNameInRow="OMC" msprop:Generator_ColumnVarNameInTable="columnOMC" msprop:Generator_ColumnPropNameInTable="OMCColumn" type="xs:float" default="0" minOccurs="0" />
+              <xs:element name="OMR" msdata:Caption="DL" msprop:Generator_UserColumnName="OMR" msprop:Generator_ColumnPropNameInRow="OMR" msprop:Generator_ColumnVarNameInTable="columnOMR" msprop:Generator_ColumnPropNameInTable="OMRColumn" type="xs:float" default="0" minOccurs="0" />
+              <xs:element name="OML" msdata:Caption="DL" msprop:Generator_UserColumnName="OML" msprop:Generator_ColumnPropNameInRow="OML" msprop:Generator_ColumnVarNameInTable="columnOML" msprop:Generator_ColumnPropNameInTable="OMLColumn" type="xs:float" default="0" minOccurs="0" />
+              <xs:element name="FC" msdata:Caption="DL" msprop:Generator_UserColumnName="FC" msprop:Generator_ColumnPropNameInRow="FC" msprop:Generator_ColumnVarNameInTable="columnFC" msprop:Generator_ColumnPropNameInTable="FCColumn" type="xs:float" default="0" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SpecFPAmpl" msprop:Generator_UserTableName="SpecFPAmpl" msprop:Generator_RowDeletedName="SpecFPAmplRowDeleted" msprop:Generator_TableClassName="SpecFPAmplDataTable" msprop:Generator_RowChangedName="SpecFPAmplRowChanged" msprop:Generator_RowClassName="SpecFPAmplRow" msprop:Generator_RowChangingName="SpecFPAmplRowChanging" msprop:Generator_RowEvArgName="SpecFPAmplRowChangeEvent" msprop:Generator_RowEvHandlerName="SpecFPAmplRowChangeEventHandler" msprop:Generator_TablePropName="SpecFPAmpl" msprop:Generator_TableVarName="tableSpecFPAmpl" msprop:Generator_RowDeletingName="SpecFPAmplRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Spec" msdata:ReadOnly="true" msdata:Caption="Date" msprop:Generator_UserColumnName="Spec" msprop:Generator_ColumnPropNameInRow="Spec" msprop:Generator_ColumnVarNameInTable="columnSpec" msprop:Generator_ColumnPropNameInTable="SpecColumn" type="xs:string" />
+              <xs:element name="DC" msprop:Generator_UserColumnName="DC" msprop:Generator_ColumnPropNameInRow="DC" msprop:Generator_ColumnVarNameInTable="columnDC" msprop:Generator_ColumnPropNameInTable="DCColumn" type="xs:float" default="0" minOccurs="0" />
+              <xs:element name="DR" msprop:Generator_UserColumnName="DR" msprop:Generator_ColumnPropNameInRow="DR" msprop:Generator_ColumnVarNameInTable="columnDR" msprop:Generator_ColumnPropNameInTable="DRColumn" type="xs:float" default="0" minOccurs="0" />
+              <xs:element name="DL" msprop:Generator_UserColumnName="DL" msprop:Generator_ColumnPropNameInRow="DL" msprop:Generator_ColumnVarNameInTable="columnDL" msprop:Generator_ColumnPropNameInTable="DLColumn" type="xs:float" default="0" minOccurs="0" />
+              <xs:element name="DMC" msdata:Caption="DC" msprop:Generator_UserColumnName="DMC" msprop:Generator_ColumnPropNameInRow="DMC" msprop:Generator_ColumnVarNameInTable="columnDMC" msprop:Generator_ColumnPropNameInTable="DMCColumn" type="xs:float" default="0" minOccurs="0" />
+              <xs:element name="DMR" msdata:Caption="DL" msprop:Generator_UserColumnName="DMR" msprop:Generator_ColumnPropNameInRow="DMR" msprop:Generator_ColumnVarNameInTable="columnDMR" msprop:Generator_ColumnPropNameInTable="DMRColumn" type="xs:float" default="0" minOccurs="0" />
+              <xs:element name="DML" msdata:Caption="DR" msprop:Generator_UserColumnName="DML" msprop:Generator_ColumnPropNameInRow="DML" msprop:Generator_ColumnVarNameInTable="columnDML" msprop:Generator_ColumnPropNameInTable="DMLColumn" type="xs:float" default="0" minOccurs="0" />
+              <xs:element name="MC" msdata:Caption="DL" msprop:Generator_UserColumnName="MC" msprop:Generator_ColumnPropNameInRow="MC" msprop:Generator_ColumnVarNameInTable="columnMC" msprop:Generator_ColumnPropNameInTable="MCColumn" type="xs:float" default="0" minOccurs="0" />
+              <xs:element name="MR" msdata:Caption="DL" msprop:Generator_UserColumnName="MR" msprop:Generator_ColumnPropNameInRow="MR" msprop:Generator_ColumnVarNameInTable="columnMR" msprop:Generator_ColumnPropNameInTable="MRColumn" type="xs:float" default="0" minOccurs="0" />
+              <xs:element name="ML" msdata:Caption="DL" msprop:Generator_UserColumnName="ML" msprop:Generator_ColumnPropNameInRow="ML" msprop:Generator_ColumnVarNameInTable="columnML" msprop:Generator_ColumnPropNameInTable="MLColumn" type="xs:float" default="0" minOccurs="0" />
+              <xs:element name="OMC" msdata:Caption="DL" msprop:Generator_UserColumnName="OMC" msprop:Generator_ColumnPropNameInRow="OMC" msprop:Generator_ColumnVarNameInTable="columnOMC" msprop:Generator_ColumnPropNameInTable="OMCColumn" type="xs:float" default="0" minOccurs="0" />
+              <xs:element name="OMR" msdata:Caption="DL" msprop:Generator_UserColumnName="OMR" msprop:Generator_ColumnPropNameInRow="OMR" msprop:Generator_ColumnVarNameInTable="columnOMR" msprop:Generator_ColumnPropNameInTable="OMRColumn" type="xs:float" default="0" minOccurs="0" />
+              <xs:element name="OML" msdata:Caption="DL" msprop:Generator_UserColumnName="OML" msprop:Generator_ColumnPropNameInRow="OML" msprop:Generator_ColumnVarNameInTable="columnOML" msprop:Generator_ColumnPropNameInTable="OMLColumn" type="xs:float" default="0" minOccurs="0" />
+              <xs:element name="FC" msdata:Caption="DL" msprop:Generator_UserColumnName="FC" msprop:Generator_ColumnPropNameInRow="FC" msprop:Generator_ColumnVarNameInTable="columnFC" msprop:Generator_ColumnPropNameInTable="FCColumn" type="xs:float" default="0" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SkillGKGain" msprop:Generator_UserTableName="SkillGKGain" msprop:Generator_RowDeletedName="SkillGKGainRowDeleted" msprop:Generator_TableClassName="SkillGKGainDataTable" msprop:Generator_RowChangedName="SkillGKGainRowChanged" msprop:Generator_RowClassName="SkillGKGainRow" msprop:Generator_RowChangingName="SkillGKGainRowChanging" msprop:Generator_RowEvArgName="SkillGKGainRowChangeEvent" msprop:Generator_RowEvHandlerName="SkillGKGainRowChangeEventHandler" msprop:Generator_TablePropName="SkillGKGain" msprop:Generator_TableVarName="tableSkillGKGain" msprop:Generator_RowDeletingName="SkillGKGainRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Skill" msdata:ReadOnly="true" msdata:Caption="Date" msprop:Generator_UserColumnName="Skill" msprop:Generator_ColumnPropNameInRow="Skill" msprop:Generator_ColumnVarNameInTable="columnSkill" msprop:Generator_ColumnPropNameInTable="SkillColumn" type="xs:string" />
+              <xs:element name="GK" msdata:Caption="DC" msprop:Generator_UserColumnName="GK" msprop:Generator_ColumnPropNameInRow="GK" msprop:Generator_ColumnVarNameInTable="columnGK" msprop:Generator_ColumnPropNameInTable="GKColumn" type="xs:float" default="0" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SetName" msprop:Generator_UserTableName="SetName" msprop:Generator_RowDeletedName="SetNameRowDeleted" msprop:Generator_TableClassName="SetNameDataTable" msprop:Generator_RowChangedName="SetNameRowChanged" msprop:Generator_RowClassName="SetNameRow" msprop:Generator_RowChangingName="SetNameRowChanging" msprop:Generator_RowEvArgName="SetNameRowChangeEvent" msprop:Generator_RowEvHandlerName="SetNameRowChangeEventHandler" msprop:Generator_TablePropName="SetName" msprop:Generator_TableVarName="tableSetName" msprop:Generator_RowDeletingName="SetNameRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Name" msdata:Caption="Date" msprop:Generator_UserColumnName="Name" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInTable="NameColumn" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:SkillFPGain" />
+      <xs:field xpath="mstns:Skill" />
+    </xs:unique>
+    <xs:unique name="SpecFPAmpl_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:SpecFPAmpl" />
+      <xs:field xpath="mstns:Spec" />
+    </xs:unique>
+    <xs:unique name="SkillGKGain_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:SkillGKGain" />
+      <xs:field xpath="mstns:Skill" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

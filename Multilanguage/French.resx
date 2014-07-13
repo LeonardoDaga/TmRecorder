@@ -1,0 +1,1063 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="TestString" xml:space="preserve">
+    <value>òàèéìçù</value>
+  </data>
+  <data name="TrophyManagerReportLightGreenArrows" xml:space="preserve">
+    <value>Rapport Trophy Manager :
+Flèches vert clair = </value>
+  </data>
+  <data name="DarkGreenArrows" xml:space="preserve">
+    <value>Flèches vert foncé = </value>
+  </data>
+  <data name="LightRedArrows" xml:space="preserve">
+    <value>Flèches rouge clair = </value>
+  </data>
+  <data name="DarkRedArrows" xml:space="preserve">
+    <value>Flèches rouge foncé = </value>
+  </data>
+  <data name="DeltaDecimals" xml:space="preserve">
+    <value>Delta Décimal = +</value>
+  </data>
+  <data name="TotalMean" xml:space="preserve">
+    <value>(Total Mean) = +</value>
+  </data>
+  <data name="Mean" xml:space="preserve">
+    <value>(Mean) = +</value>
+  </data>
+  <data name="TotalTeamTI" xml:space="preserve">
+    <value>Total du TI de l'équipe = </value>
+  </data>
+  <data name="TrophyManagerStatisticsDeltaSkills" xml:space="preserve">
+    <value>Statistiques Trophy Manager : différence de compétences = +</value>
+  </data>
+  <data name="TrophyManagerReportStillNotAvailableForThisWeek" xml:space="preserve">
+    <value>Rapport Trophy Manager toujours indisponible pour cette semaine.</value>
+  </data>
+  <data name="TMRecorderStatisticsDeltaSkills" xml:space="preserve">
+    <value>
+Statistiques TM Recorder :
+Différence de comptétences = +</value>
+  </data>
+  <data name="RealDeltaSkills" xml:space="preserve">
+    <value>
+Différence réelle de compétences = +</value>
+  </data>
+  <data name="RealMean" xml:space="preserve">
+    <value>(Real Mean) = +</value>
+  </data>
+  <data name="WarningTEMPORARY" xml:space="preserve">
+    <value>
+Attention: TEMPORAIRE!!</value>
+  </data>
+  <data name="LoadASquadFileFirst" xml:space="preserve">
+    <value>Chargez une équipe au préalable</value>
+  </data>
+  <data name="ThereMustBeAtLeastASquadDataSetAfterOrInTheSameDateOfATrainingSession" xml:space="preserve">
+    <value>Vous devez avoir au moins une base de données d'équipe après ou dans la même session d'entraînement.</value>
+  </data>
+  <data name="TrainingLoad" xml:space="preserve">
+    <value>Chargement de l'entraînement</value>
+  </data>
+  <data name="ThereIsAlreadyATrainingDataSetInTheSameWeekOfTheOneYouAreAdding" xml:space="preserve">
+    <value>Il y a déjà une base de données d'entraînement dans la semaine que vous tentez d'ajouter!</value>
+  </data>
+  <data name="DoYouWantToReplaceTheDataSetThatIsInTheSameWeek" xml:space="preserve">
+    <value>Voulez-vous remplacer la base de données d'entraînement de cette semaine?</value>
+  </data>
+  <data name="TheFile" xml:space="preserve">
+    <value>Le fichier </value>
+  </data>
+  <data name="IsNotAValidFile" xml:space="preserve">
+    <value> N'est pas un fichier valide.</value>
+  </data>
+  <data name="ErrorLoadingAFile" xml:space="preserve">
+    <value>Erreur dans le chargement du fichier</value>
+  </data>
+  <data name="IsNotAValidFileExceptionLoadingTheFile" xml:space="preserve">
+    <value> Ce n'est pas un fichier valide. Exception pendant le chargement du fichier: </value>
+  </data>
+  <data name="YouHaveToPasteTheTrainersOptionsTrainersPageBeforeToEnterANewTrainingSession" xml:space="preserve">
+    <value>Vous devez coller les entraineurs(Options-&gt;Trainers) avant d'entrer une nouvelle session d'entraînement</value>
+  </data>
+  <data name="TheContentOfWhatYouPastedIsNotTheOneExpected" xml:space="preserve">
+    <value>Le contenu de ce que vous avez collé n'est pas celui attendu</value>
+  </data>
+  <data name="YouCannotPasteARunningTrainingYouMustWaitTheEndOfTheTraining" xml:space="preserve">
+    <value>Vous ne pouvez pas coller un entraînement en cours d'exécution. Vous devez attendre qu'il soit terminé!</value>
+  </data>
+  <data name="TrainingPasteError" xml:space="preserve">
+    <value>Ploblème pour coller l'entraînement</value>
+  </data>
+  <data name="SorryTheImportingProcessHasFailedIfYouClickedOkTheInfoOfTheErrorHave" xml:space="preserve">
+    <value>Désolé. Le processus d'importation a échoué. Si vous avez cliqué sur OK, l'information de l'erreur a </value>
+  </data>
+  <data name="BeenSentToLedLennonThatWillRemoveThisBugAsSoonAsPossible" xml:space="preserve">
+    <value>été envoyée à Lennon Led qui va supprimer ce bogue dans les meilleurs délais.</value>
+  </data>
+  <data name="SelectAGainSetReplyYesOrUseADefaultSetReplyNo" xml:space="preserve">
+    <value>Sélectionnez un ensemble de gain (réponse oui) ou l'utilisation d'un ensemble par défaut (réponse non)?</value>
+  </data>
+  <data name="TMRecorderLoadGainSet" xml:space="preserve">
+    <value>TM Recorder - chargement de l'ensemble de gain</value>
+  </data>
+  <data name="SelectTheLocationWhereToSaveTheGainFile" xml:space="preserve">
+    <value>Sélectionnez l'emplacement où enregistrer le fichier gain</value>
+  </data>
+  <data name="YouHaveToImportALeastOneSquadHtmFileBeforeImportingYourPlayers" xml:space="preserve">
+    <value>Vous devez importer au moins un fichier Squad.htm avant d'importer vos joueurs</value>
+  </data>
+  <data name="YouMustSelectADateInWhichYouPastedATrainingPage" xml:space="preserve">
+    <value>Vous devez sélectionner une date à laquelle vous avez collé une page d'entraînement</value>
+  </data>
+  <data name="ExportTrainingToClipboard" xml:space="preserve">
+    <value>Exportez l'entraînement au presse-papier</value>
+  </data>
+  <data name="PleaseSelectADirectoryWhereToStoreTeamData" xml:space="preserve">
+    <value>Veuillez sélectionner un répertoire où stocker les données d'équipe</value>
+  </data>
+  <data name="AreYouAPROUserYouCanChangeYourStatusInTheOptionForm" xml:space="preserve">
+    <value>Êtes-vous un utilisateur PRO? (Vous pouvez changer votre statut, dans les options)</value>
+  </data>
+  <data name="PROTypeSelection" xml:space="preserve">
+    <value>sélection du type de PRO</value>
+  </data>
+  <data name="TheClipboardDoesnTContainSquadTrainingOrMatchData" xml:space="preserve">
+    <value>Le presse-papiers ne contient pas d'équipe, d'entraînement ou de données de match</value>
+  </data>
+  <data name="PasteFromClipboard" xml:space="preserve">
+    <value>Coller à partir du Presse-papiers</value>
+  </data>
+  <data name="IsThisFileRelativeToToday" xml:space="preserve">
+    <value>Est-ce le fichier en rapport avec aujourd'hui?</value>
+  </data>
+  <data name="LoadHTMData" xml:space="preserve">
+    <value>Charger données HTM</value>
+  </data>
+  <data name="NonPROUsersMustPasteTheTrainingRegimesAllenamentoPage" xml:space="preserve">
+    <value>Les non-utilisateurs PRO doivent coller la page des régimes d'entraînement (Allenamento)</value>
+  </data>
+  <data name="ToUseThisMenuItemYouMustCopyTheContentOfThePageThatOpensWhenYou" xml:space="preserve">
+    <value>Pour utiliser cette option de menu, vous devez copier le contenu de la page qui s'ouvre lorsque vous</value>
+  </data>
+  <data name="SaveMatchesDataBeforeExit" xml:space="preserve">
+    <value>Sauvegarder les données de match avant de sortir?</value>
+  </data>
+  <data name="SaveDataBeforeExit" xml:space="preserve">
+    <value>Sauvegarder les données avant de sortir?</value>
+  </data>
+  <data name="ReloadSquadDataFromTheSelectedDirectory" xml:space="preserve">
+    <value>Recharger les données d'équipe à partir du répertoire sélectionné?</value>
+  </data>
+  <data name="ChangedDefaultDirectory" xml:space="preserve">
+    <value>Changer le répertoire par défaut?</value>
+  </data>
+  <data name="DataItemRelativeToWeek" xml:space="preserve">
+    <value>Élément de données relatif à la semaine</value>
+  </data>
+  <data name="WillBeDefinivelyRemovedContinue" xml:space="preserve">
+    <value> sera définitivement supprimé. Continuer?</value>
+  </data>
+  <data name="RemoveDataItem" xml:space="preserve">
+    <value>Supprimer l'élément de données</value>
+  </data>
+  <data name="PressingYESAllDataOfPlayersThatAreNoMoreInYourTeamWillBeDeleted" xml:space="preserve">
+    <value>En appuyant sur OUI, toutes les données des joueurs qui ne sont plus dans votre équipe sera supprimé</value>
+  </data>
+  <data name="DeletingOldPlayersFromDatabase" xml:space="preserve">
+    <value>Suppression d'anciens joueurs de la base de données</value>
+  </data>
+  <data name="TheTeamFileEditorTeamFileEditorExeDoesnTExistAtTheGivenPath" xml:space="preserve">
+    <value>The Team File Editor (TeamFileEditor.exe) doesn't exist at the given path (</value>
+  </data>
+  <data name="ThePlayerFileEditorPlayerFileEditorExeDoesnTExistAtTheGivenPath" xml:space="preserve">
+    <value>The Player File Editor (PlayerFileEditor.exe) doesn't exist at the given path (</value>
+  </data>
+  <data name="TheTransferManagerTransferManagerExeDoesnTExistAtTheGivenPath" xml:space="preserve">
+    <value>The Transfer Manager (TransferManager.exe) doesn't exist at the given path (</value>
+  </data>
+  <data name="TheClipboardDoesnTContainsExcelSquadFormData" xml:space="preserve">
+    <value>The clipboard doesn't contains Excel Squad Form data</value>
+  </data>
+  <data name="DateFormatNotValid" xml:space="preserve">
+    <value>Date Format not valid: </value>
+  </data>
+  <data name="LoadFromExcelForm" xml:space="preserve">
+    <value>Load from Excel Form</value>
+  </data>
+  <data name="TheTMRBrowserTMRBrowserExeDoesnTExistAtTheGivenPath" xml:space="preserve">
+    <value>The TMR Browser (TMRBrowser.exe) doesn't exist at the given path (</value>
+  </data>
+  <data name="AdaptabilityValuesAreContainedIntoRange020" xml:space="preserve">
+    <value>Adaptability values are contained into range 0-20</value>
+  </data>
+  <data name="LoadTrainingDataInExcelFormat" xml:space="preserve">
+    <value>Load Training Data in Excel Format</value>
+  </data>
+  <data name="PleaseSelectInTheTableTheMatchRowYouArePasting" xml:space="preserve">
+    <value>Please select in the table the match row you are pasting</value>
+  </data>
+  <data name="FirstOfAllOpenTheCalendarPageOfYourTeamUsingTheRelativeButtonOnTheMatchMenu" xml:space="preserve">
+    <value>First of all, open the Calendar Page of your team using the relative button on the match menu
+</value>
+  </data>
+  <data name="AreYouSureThatYouWantToRemoveTheMatch" xml:space="preserve">
+    <value>Are you sure that you want to remove the match </value>
+  </data>
+  <data name="DeleteMatch" xml:space="preserve">
+    <value>Delete match</value>
+  </data>
+  <data name="TheASIToTIApplicationASI2TIExeDoesnTExistAtTheGivenPath" xml:space="preserve">
+    <value>The ASI to TI application (ASI2TI.exe) doesn't exist at the given path (</value>
+  </data>
+  <data name="TheActionAnalysisEditorActionAnalysisEditorExeDoesnTExistAtTheGivenPath" xml:space="preserve">
+    <value>The Action Analysis Editor (ActionAnalysisEditor.exe) doesn't exist at the given path (</value>
+  </data>
+  <data name="ThisOperationHasNotBeenImplemented" xml:space="preserve">
+    <value>This operation has not been implemented</value>
+  </data>
+  <data name="TheActionAnalysisFileDoesNotExists" xml:space="preserve">
+    <value>The Action analysis file does not exists. 
+</value>
+  </data>
+  <data name="PleaseDownloadItFromTheTmrecorderWebSiteAndThenSelectItFromTheToolsOptionsPanel" xml:space="preserve">
+    <value>Please download it from the tmrecorder web site and then select it from the Tools-&gt;Options panel.</value>
+  </data>
+  <data name="TheMatchHasNotBeenDownloadedFromTrophymanager" xml:space="preserve">
+    <value>The match has not been downloaded from Trophymanager</value>
+  </data>
+  <data name="TheInformationForThisMatchAreNotCompleteTheNickOfYourAndOppositeTeamHaveNotBeenSavedDoYouWantToSetYourselfTheNick" xml:space="preserve">
+    <value>The information for this match are not complete: the nick of your and opposite team have not been saved. Do you want to set yourself the nick?</value>
+  </data>
+  <data name="ATeamPlayers" xml:space="preserve">
+    <value>A-Team Players</value>
+  </data>
+  <data name="MovePlayerToATeam" xml:space="preserve">
+    <value>Move Player To A Team</value>
+  </data>
+  <data name="MovePlayerToBTeam" xml:space="preserve">
+    <value>Move Player To B Team</value>
+  </data>
+  <data name="EvidenceSkillsForGains" xml:space="preserve">
+    <value>Evidence Skills for Gains</value>
+  </data>
+  <data name="BTeamPlayers" xml:space="preserve">
+    <value>B-Team Players</value>
+  </data>
+  <data name="GoalKeepers" xml:space="preserve">
+    <value>GoalKeepers</value>
+  </data>
+  <data name="PlayersInfo" xml:space="preserve">
+    <value>Players Info</value>
+  </data>
+  <data name="OpenPlayersProfilePages" xml:space="preserve">
+    <value>Open Players Profile Pages</value>
+  </data>
+  <data name="OpenPlayersScoutPages" xml:space="preserve">
+    <value>Open Players Scout Pages</value>
+  </data>
+  <data name="ChangePlayerProperties" xml:space="preserve">
+    <value>Change Player Properties</value>
+  </data>
+  <data name="TeamInfo" xml:space="preserve">
+    <value>Team Info</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="Away" xml:space="preserve">
+    <value>Away</value>
+  </data>
+  <data name="Squad" xml:space="preserve">
+    <value>Squad</value>
+  </data>
+  <data name="Main" xml:space="preserve">
+    <value>Main</value>
+  </data>
+  <data name="Reserves" xml:space="preserve">
+    <value>Reserves</value>
+  </data>
+  <data name="Season" xml:space="preserve">
+    <value>Season</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="MatchStart" xml:space="preserve">
+    <value>Match Start</value>
+  </data>
+  <data name="GotoMatchReportPage" xml:space="preserve">
+    <value>Goto Match Report Page</value>
+  </data>
+  <data name="PasteSelectedMatchHTML" xml:space="preserve">
+    <value>Paste Selected Match HTML</value>
+  </data>
+  <data name="DeleteSelectedMatch" xml:space="preserve">
+    <value>Delete Selected Match</value>
+  </data>
+  <data name="ShowMatchActionsList" xml:space="preserve">
+    <value>Show Match Actions List</value>
+  </data>
+  <data name="AnalyzeMatch" xml:space="preserve">
+    <value>Analyze Match</value>
+  </data>
+  <data name="PasteSelectedMatchFromFile" xml:space="preserve">
+    <value>Paste Selected Match from File</value>
+  </data>
+  <data name="Matches" xml:space="preserve">
+    <value>Matches</value>
+  </data>
+  <data name="YourTeam" xml:space="preserve">
+    <value>Your Team</value>
+  </data>
+  <data name="OppositeTeam" xml:space="preserve">
+    <value>Opposite Team</value>
+  </data>
+  <data name="MatchStats" xml:space="preserve">
+    <value>Match Stats</value>
+  </data>
+  <data name="ToolStripContainer1" xml:space="preserve">
+    <value>toolStripContainer1</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="LoadTeamFileAsHTMLFile" xml:space="preserve">
+    <value>Load Team File as HTML file</value>
+  </data>
+  <data name="LoadTrainingAsHTMLFile" xml:space="preserve">
+    <value>Load Training as HTML file</value>
+  </data>
+  <data name="LoadCalendarAsHTMLFile" xml:space="preserve">
+    <value>Load Calendar as HTML file</value>
+  </data>
+  <data name="SaveTeamData" xml:space="preserve">
+    <value>Save Team Data</value>
+  </data>
+  <data name="Exit" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="PasteSquadPageFromClipboard" xml:space="preserve">
+    <value>Paste Squad Page from Clipboard</value>
+  </data>
+  <data name="PasteTrainingPageFromClipboard" xml:space="preserve">
+    <value>Paste Training Page from Clipboard</value>
+  </data>
+  <data name="LoadTeamFileFromXML" xml:space="preserve">
+    <value>Load Team File from XML</value>
+  </data>
+  <data name="PasteSquadDataFromExcelForm" xml:space="preserve">
+    <value>Paste Squad data from Excel Form</value>
+  </data>
+  <data name="ExportTeamToClipboardInExcelFormat" xml:space="preserve">
+    <value>Export Team to Clipboard in Excel Format</value>
+  </data>
+  <data name="Tools" xml:space="preserve">
+    <value>Tools</value>
+  </data>
+  <data name="Options" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="EditGainSet" xml:space="preserve">
+    <value>Edit Gain Set</value>
+  </data>
+  <data name="ExternalEditors" xml:space="preserve">
+    <value>External Editors</value>
+  </data>
+  <data name="TeamFileEditor" xml:space="preserve">
+    <value>Team File Editor</value>
+  </data>
+  <data name="PlayersFileEditor" xml:space="preserve">
+    <value>Players File Editor</value>
+  </data>
+  <data name="ActionAnalysisEditor" xml:space="preserve">
+    <value>Action Analysis Editor</value>
+  </data>
+  <data name="TransferManager" xml:space="preserve">
+    <value>Transfer Manager</value>
+  </data>
+  <data name="ImportPrivatePlayersData" xml:space="preserve">
+    <value>Import Private Players Data</value>
+  </data>
+  <data name="YouthDevelopment" xml:space="preserve">
+    <value>Youth Development</value>
+  </data>
+  <data name="RecalculatePlayersScoutsMeanVote" xml:space="preserve">
+    <value>Recalculate Players' Scouts Mean Vote</value>
+  </data>
+  <data name="ParseScoutReviewForHiddenData" xml:space="preserve">
+    <value>Parse Scout Review for Hidden Data</value>
+  </data>
+  <data name="RecalculatePlayersStatistics" xml:space="preserve">
+    <value>Recalculate Players' Statistics</value>
+  </data>
+  <data name="Training" xml:space="preserve">
+    <value>Training</value>
+  </data>
+  <data name="ClearDecimals" xml:space="preserve">
+    <value>Clear Decimals</value>
+  </data>
+  <data name="ReapplyTrainings" xml:space="preserve">
+    <value>Reapply Trainings</value>
+  </data>
+  <data name="ExportTrainingWeekToClipboardInExcelFormat" xml:space="preserve">
+    <value>Export Training Week to Clipboard in Excel Format</value>
+  </data>
+  <data name="ImportTrainingWeekFromClipboardInExcelFormat" xml:space="preserve">
+    <value>Import Training Week From Clipboard in Excel Format</value>
+  </data>
+  <data name="DisplayStatisticsForTheTrainingOfThisWeek" xml:space="preserve">
+    <value>Display Statistics For The Training of This Week</value>
+  </data>
+  <data name="TrainersEvaluationForm" xml:space="preserve">
+    <value>Trainers Evaluation Form</value>
+  </data>
+  <data name="TeamGraphicalStatistics" xml:space="preserve">
+    <value>Team Graphical Statistics</value>
+  </data>
+  <data name="PlayersStatistics" xml:space="preserve">
+    <value>Players Statistics</value>
+  </data>
+  <data name="TradingInfo" xml:space="preserve">
+    <value>Trading Info</value>
+  </data>
+  <data name="OpenTeamCalendarPage" xml:space="preserve">
+    <value>Open Team Calendar Page</value>
+  </data>
+  <data name="PasteCalendar" xml:space="preserve">
+    <value>Paste Calendar</value>
+  </data>
+  <data name="ReloadPlayersMatchStats" xml:space="preserve">
+    <value>Reload Players Match Stats</value>
+  </data>
+  <data name="ShowMatchesPerformarcesOnTheField" xml:space="preserve">
+    <value>Show Matches Performarces on the Field</value>
+  </data>
+  <data name="WeeksData" xml:space="preserve">
+    <value>Weeks Data</value>
+  </data>
+  <data name="DataEdit" xml:space="preserve">
+    <value>Data Edit</value>
+  </data>
+  <data name="DeleteDataSet" xml:space="preserve">
+    <value>Delete Data Set</value>
+  </data>
+  <data name="ASIToTICalculator" xml:space="preserve">
+    <value>ASI to TI Calculator</value>
+  </data>
+  <data name="TradingForm" xml:space="preserve">
+    <value>Trading Form</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Age" xml:space="preserve">
+    <value>Age</value>
+  </data>
+  <data name="Nat" xml:space="preserve">
+    <value>Nat</value>
+  </data>
+  <data name="Ada" xml:space="preserve">
+    <value>Ada</value>
+  </data>
+  <data name="Str" xml:space="preserve">
+    <value>Pui</value>
+  </data>
+  <data name="Sta" xml:space="preserve">
+    <value>End</value>
+  </data>
+  <data name="Pac" xml:space="preserve">
+    <value>Vit</value>
+  </data>
+  <data name="Mar" xml:space="preserve">
+    <value>Mar</value>
+  </data>
+  <data name="Tac" xml:space="preserve">
+    <value>Tac</value>
+  </data>
+  <data name="Wor" xml:space="preserve">
+    <value>Act</value>
+  </data>
+  <data name="Pos" xml:space="preserve">
+    <value>Pla</value>
+  </data>
+  <data name="Pas" xml:space="preserve">
+    <value>Pas</value>
+  </data>
+  <data name="Cro" xml:space="preserve">
+    <value>Cen</value>
+  </data>
+  <data name="Tec" xml:space="preserve">
+    <value>Tec</value>
+  </data>
+  <data name="Hea" xml:space="preserve">
+    <value>Têt</value>
+  </data>
+  <data name="Fin" xml:space="preserve">
+    <value>Tir</value>
+  </data>
+  <data name="Lon" xml:space="preserve">
+    <value>TdL</value>
+  </data>
+  <data name="Set" xml:space="preserve">
+    <value>Cpa</value>
+  </data>
+  <data name="Ply" xml:space="preserve">
+    <value>Ply</value>
+  </data>
+  <data name="Han" xml:space="preserve">
+    <value>Pdb</value>
+  </data>
+  <data name="One" xml:space="preserve">
+    <value>1vs1</value>
+  </data>
+  <data name="Ref" xml:space="preserve">
+    <value>Ref</value>
+  </data>
+  <data name="Tak" xml:space="preserve">
+    <value>Tac</value>
+  </data>
+  <data name="Res" xml:space="preserve">
+    <value>Res</value>
+  </data>
+  <data name="Week" xml:space="preserve">
+    <value>Week</value>
+  </data>
+  <data name="Tir" xml:space="preserve">
+    <value>Dég</value>
+  </data>
+  <data name="CP" xml:space="preserve">
+    <value>Cpa</value>
+  </data>
+  <data name="Trainer" xml:space="preserve">
+    <value>Trainer</value>
+  </data>
+  <data name="Mot" xml:space="preserve">
+    <value>Mot</value>
+  </data>
+  <data name="TrainingProgram" xml:space="preserve">
+    <value>Training Program</value>
+  </data>
+  <data name="Program" xml:space="preserve">
+    <value>Program</value>
+  </data>
+  <data name="Wage" xml:space="preserve">
+    <value>Salaire</value>
+  </data>
+  <data name="Votes" xml:space="preserve">
+    <value>Votes</value>
+  </data>
+  <data name="Rou" xml:space="preserve">
+    <value>Rou</value>
+  </data>
+  <data name="Pro" xml:space="preserve">
+    <value>Pro</value>
+  </data>
+  <data name="Lea" xml:space="preserve">
+    <value>Lea</value>
+  </data>
+  <data name="Agg" xml:space="preserve">
+    <value>Agg</value>
+  </data>
+  <data name="AdaptabilityOfThePlayer" xml:space="preserve">
+    <value>Adaptability of the player</value>
+  </data>
+  <data name="AllVotesFromScouts" xml:space="preserve">
+    <value>All votes from scouts</value>
+  </data>
+  <data name="Routine" xml:space="preserve">
+    <value>Routine</value>
+  </data>
+  <data name="Nationality" xml:space="preserve">
+    <value>Nationality</value>
+  </data>
+  <data name="AverageRatingInThisSeason" xml:space="preserve">
+    <value>Average Rating in this season</value>
+  </data>
+  <data name="AverageValueOfTIInTheLastWeeks" xml:space="preserve">
+    <value>Average value of TI, in the last weeks</value>
+  </data>
+  <data name="TheWeightedVoteOfTheScoutsAndYouthDevelopmentBasedOnTheAbilityOfSc" xml:space="preserve">
+    <value>The weighted vote of the scouts and youth development, based on the ability of scouts on measuring youth and senior and their development</value>
+  </data>
+  <data name="PreferredPosition" xml:space="preserve">
+    <value>Preferred Position</value>
+  </data>
+  <data name="Potential" xml:space="preserve">
+    <value>Potential</value>
+  </data>
+  <data name="Professionalism" xml:space="preserve">
+    <value>Professionalism</value>
+  </data>
+  <data name="Leadership" xml:space="preserve">
+    <value>Leadership</value>
+  </data>
+  <data name="Aggressivity" xml:space="preserve">
+    <value>Aggressivity</value>
+  </data>
+  <data name="NotesFromThePlayerSPage" xml:space="preserve">
+    <value>Notes from the Player's page</value>
+  </data>
+  <data name="DateOfTheMatch" xml:space="preserve">
+    <value>Date of the Match</value>
+  </data>
+  <data name="IfTheBoxIsCheckedTheMatchHaveBeenAlreadyDownloaded" xml:space="preserve">
+    <value>If the box is checked, the match have been already downloaded</value>
+  </data>
+  <data name="AnalyzedActionsInPercentage" xml:space="preserve">
+    <value>Analyzed actions, in percentage</value>
+  </data>
+  <data name="Vote" xml:space="preserve">
+    <value>Vote</value>
+  </data>
+  <data name="PositionOfThePlayerIntoTheMatchField" xml:space="preserve">
+    <value>Position of the player into the match field</value>
+  </data>
+  <data name="GoalsScored" xml:space="preserve">
+    <value>Goals scored</value>
+  </data>
+  <data name="ShowPosition" xml:space="preserve">
+    <value>Show Position</value>
+  </data>
+  <data name="TrainingPotential" xml:space="preserve">
+    <value>Training &amp; Potential</value>
+  </data>
+  <data name="Normalized" xml:space="preserve">
+    <value>Normalized</value>
+  </data>
+  <data name="Performances" xml:space="preserve">
+    <value>Performances</value>
+  </data>
+  <data name="Injuries" xml:space="preserve">
+    <value>Injuries</value>
+  </data>
+  <data name="TechnicalSkillsPotential" xml:space="preserve">
+    <value>Technical skills potential</value>
+  </data>
+  <data name="GetAutomatically" xml:space="preserve">
+    <value>Get Automatically</value>
+  </data>
+  <data name="Finishing" xml:space="preserve">
+    <value>Tir</value>
+  </data>
+  <data name="SetPieces" xml:space="preserve">
+    <value>Coups de pied arrêtés</value>
+  </data>
+  <data name="Longshots" xml:space="preserve">
+    <value>Tir de Loin</value>
+  </data>
+  <data name="Technique" xml:space="preserve">
+    <value>Technique</value>
+  </data>
+  <data name="Cross" xml:space="preserve">
+    <value>Centre</value>
+  </data>
+  <data name="Passing" xml:space="preserve">
+    <value>Passe</value>
+  </data>
+  <data name="TacticalSkillsPotential" xml:space="preserve">
+    <value>Tactical skills potential</value>
+  </data>
+  <data name="Positioning" xml:space="preserve">
+    <value>Placement</value>
+  </data>
+  <data name="WorkRate" xml:space="preserve">
+    <value>Activité</value>
+  </data>
+  <data name="Takling" xml:space="preserve">
+    <value>Tacle</value>
+  </data>
+  <data name="Marking" xml:space="preserve">
+    <value>Marquage</value>
+  </data>
+  <data name="PhysicsSkillsPotential" xml:space="preserve">
+    <value>Physics skills potential</value>
+  </data>
+  <data name="Heading" xml:space="preserve">
+    <value>Tête</value>
+  </data>
+  <data name="Pace" xml:space="preserve">
+    <value>Vitesse</value>
+  </data>
+  <data name="Stamina" xml:space="preserve">
+    <value>Endurance</value>
+  </data>
+  <data name="Strength" xml:space="preserve">
+    <value>Strength</value>
+  </data>
+  <data name="BloomingAndPsycologyVotes" xml:space="preserve">
+    <value>Blooming and Psycology votes</value>
+  </data>
+  <data name="Professionality" xml:space="preserve">
+    <value>Professionality</value>
+  </data>
+  <data name="Blooming" xml:space="preserve">
+    <value>Blooming</value>
+  </data>
+  <data name="PlayerTraining" xml:space="preserve">
+    <value>Player Training</value>
+  </data>
+  <data name="Notes" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="PlayerSkills" xml:space="preserve">
+    <value>Player Skills</value>
+  </data>
+  <data name="PlayerInfo" xml:space="preserve">
+    <value>Player Info</value>
+  </data>
+  <data name="Browse" xml:space="preserve">
+    <value>Browse</value>
+  </data>
+  <data name="PrevPlayer" xml:space="preserve">
+    <value>Prev. Player</value>
+  </data>
+  <data name="NextPlayer" xml:space="preserve">
+    <value>Next Player</value>
+  </data>
+  <data name="PasteHTML" xml:space="preserve">
+    <value>Paste HTML</value>
+  </data>
+  <data name="ExplorePlayer" xml:space="preserve">
+    <value>Explore Player</value>
+  </data>
+  <data name="ExportHistoryToExcel" xml:space="preserve">
+    <value>Export History To Excel</value>
+  </data>
+  <data name="ComputeGrowth" xml:space="preserve">
+    <value>Compute Growth</value>
+  </data>
+  <data name="PlayerHistory" xml:space="preserve">
+    <value>Player History</value>
+  </data>
+  <data name="Skills" xml:space="preserve">
+    <value>Skills</value>
+  </data>
+  <data name="GKSkill" xml:space="preserve">
+    <value>GK Skill</value>
+  </data>
+  <data name="PlayerInfos" xml:space="preserve">
+    <value>Player Infos</value>
+  </data>
+  <data name="GoalKeeperHistory" xml:space="preserve">
+    <value>GoalKeeper History</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ActionsAnalysisFile" xml:space="preserve">
+    <value>Actions Analysis File</value>
+  </data>
+  <data name="MatchTypes" xml:space="preserve">
+    <value>Match Types</value>
+  </data>
+  <data name="ConfiguredMatchTypes" xml:space="preserve">
+    <value>Configured Match Types</value>
+  </data>
+  <data name="UseTMRBrowserInsteadOfTheDefaultBrowser" xml:space="preserve">
+    <value>Use TMR Browser instead of the default browser</value>
+  </data>
+  <data name="InstallationDirectory" xml:space="preserve">
+    <value>Installation Directory</value>
+  </data>
+  <data name="DefaultPlayerNation" xml:space="preserve">
+    <value>Default Player Nation</value>
+  </data>
+  <data name="SquadDataDirectory" xml:space="preserve">
+    <value>Squad Data Directory</value>
+  </data>
+  <data name="YourTeamsData" xml:space="preserve">
+    <value>Your Teams Data</value>
+  </data>
+  <data name="UserType" xml:space="preserve">
+    <value>User Type</value>
+  </data>
+  <data name="ReserveSquad" xml:space="preserve">
+    <value>Reserve Squad</value>
+  </data>
+  <data name="MainSquad" xml:space="preserve">
+    <value>Main Squad</value>
+  </data>
+  <data name="GainSet" xml:space="preserve">
+    <value>Gain Set</value>
+  </data>
+  <data name="Function" xml:space="preserve">
+    <value>Function</value>
+  </data>
+  <data name="Parameters" xml:space="preserve">
+    <value>Parameters</value>
+  </data>
+  <data name="EvidenceGainOnThePlayersTable" xml:space="preserve">
+    <value>Evidence Gain on the players table</value>
+  </data>
+  <data name="NormalizeGains" xml:space="preserve">
+    <value>Normalize Gains</value>
+  </data>
+  <data name="Trainers" xml:space="preserve">
+    <value>Trainers</value>
+  </data>
+  <data name="PasteScoutList" xml:space="preserve">
+    <value>Paste Scout List</value>
+  </data>
+  <data name="PasteTrainersList" xml:space="preserve">
+    <value>Paste Trainers List</value>
+  </data>
+  <data name="GotoTrainersPage" xml:space="preserve">
+    <value>Goto Trainers Page</value>
+  </data>
+  <data name="Result" xml:space="preserve">
+    <value>Result</value>
+  </data>
+  <data name="BestSkills" xml:space="preserve">
+    <value>BestSkills</value>
+  </data>
+  <data name="Best_Skills" xml:space="preserve">
+    <value>Best Skills</value>
+  </data>
+  <data name="GK" xml:space="preserve">
+    <value>GK</value>
+  </data>
+  <data name="Phy" xml:space="preserve">
+    <value>Phy</value>
+  </data>
+  <data name="Def" xml:space="preserve">
+    <value>Def</value>
+  </data>
+  <data name="Win" xml:space="preserve">
+    <value>Win</value>
+  </data>
+  <data name="Att" xml:space="preserve">
+    <value>Att</value>
+  </data>
+  <data name="Dev" xml:space="preserve">
+    <value>Dev</value>
+  </data>
+  <data name="Senr" xml:space="preserve">
+    <value>Senr</value>
+  </data>
+  <data name="Youth" xml:space="preserve">
+    <value>Youth</value>
+  </data>
+  <data name="Phys" xml:space="preserve">
+    <value>Phys</value>
+  </data>
+  <data name="Tact" xml:space="preserve">
+    <value>Tact</value>
+  </data>
+  <data name="Tech" xml:space="preserve">
+    <value>Tech</value>
+  </data>
+  <data name="Psyc" xml:space="preserve">
+    <value>Psyc</value>
+  </data>
+  <data name="ReportAnalysis" xml:space="preserve">
+    <value>Report Analysis</value>
+  </data>
+  <data name="Load" xml:space="preserve">
+    <value>Load</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="SaveAs" xml:space="preserve">
+    <value>Save As...</value>
+  </data>
+  <data name="WhatToDoHere" xml:space="preserve">
+    <value>What to do here?</value>
+  </data>
+  <data name="ReportAnalysisFile" xml:space="preserve">
+    <value>Report Analysis File:</value>
+  </data>
+  <data name="Ability" xml:space="preserve">
+    <value>Ability</value>
+  </data>
+  <data name="Review" xml:space="preserve">
+    <value>Review</value>
+  </data>
+  <data name="Tactics" xml:space="preserve">
+    <value>Tactics</value>
+  </data>
+  <data name="Physique" xml:space="preserve">
+    <value>Physique</value>
+  </data>
+  <data name="Technics" xml:space="preserve">
+    <value>Technics</value>
+  </data>
+  <data name="OtherOptions" xml:space="preserve">
+    <value>Other Options</value>
+  </data>
+  <data name="ThisOptionIsUsefulWhenYouMountTmRecorderInAMovableDiskWhoseLetterMa" xml:space="preserve">
+    <value>This option is useful when you mount TmRecorder in a movable disk whose letter ma</value>
+  </data>
+  <data name="UseTheStartupDiskForAllPaths" xml:space="preserve">
+    <value>Use the startup disk for all paths</value>
+  </data>
+  <data name="Generics" xml:space="preserve">
+    <value>Generics</value>
+  </data>
+  <data name="ReportAnalysisFilename" xml:space="preserve">
+    <value>Report Analysis Filename</value>
+  </data>
+  <data name="DataDirectory" xml:space="preserve">
+    <value>Data Directory</value>
+  </data>
+  <data name="TypeHereTheMatchTypesForYourNationSeparated" xml:space="preserve">
+    <value>Type here the match types for your nation separated by comma and no space, in the following order: League match, Cup match, Friendly match, Friendly League Match, International Cup matches. Examples:
+England: L,C,F,FL,CC
+Italy: Ca,Co,Am,LA,UC
+Note: Modification of this field is necessary only if it is required from this application when you paste the match list.</value>
+  </data>
+  <data name="InsertHereTheInformationRelativeToYourScouts" xml:space="preserve">
+    <value>Insert here the information relative to your scouts</value>
+  </data>
+  <data name="FillThisCellsWithThePhrasesThatScoutsUsesToReviewYourPlayers" xml:space="preserve">
+    <value>Fill this cells with the phrases that scouts uses to review your players</value>
+  </data>
+  <data name="Ari" xml:space="preserve">
+    <value>Aér</value>
+  </data>
+  <data name="Com" xml:space="preserve">
+    <value>Com</value>
+  </data>
+  <data name="Crowd" xml:space="preserve">
+    <value>Crowd</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Jum" xml:space="preserve">
+    <value>Dét</value>
+  </data>
+  <data name="Kic" xml:space="preserve">
+    <value>Dég</value>
+  </data>
+  <data name="Thr" xml:space="preserve">
+    <value>Rel</value>
+  </data>
+</root>

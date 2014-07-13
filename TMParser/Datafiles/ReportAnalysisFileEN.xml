@@ -1,0 +1,127 @@
+<?xml version="1.0" standalone="yes"?>
+<ReportAnalysis xmlns="http://tempuri.org/ReportAnalysis.xsd">
+  <Tactics>
+    <Vote>5</Vote>
+    <Review>limited understanding of the tactical aspects of the game (1/4)</Review>
+  </Tactics>
+  <Tactics>
+    <Vote>10</Vote>
+    <Review>ok understanding of the tactical aspects of the game (2/4)</Review>
+  </Tactics>
+  <Tactics>
+    <Vote>15</Vote>
+    <Review>good understanding of the tactical aspects of the game (3/4)</Review>
+  </Tactics>
+  <Tactics>
+    <Vote>20</Vote>
+    <Review>splendid understanding of the tactical aspects of the game (4/4)</Review>
+  </Tactics>
+  <Leadership>
+    <Vote>2</Vote>
+    <Review>bad (1/5) leadership</Review>
+  </Leadership>
+  <Leadership>
+    <Vote>4</Vote>
+    <Review>no special (2/5) leadership</Review>
+  </Leadership>
+  <Leadership>
+    <Vote>6</Vote>
+    <Review>OK (3/5) leadership</Review>
+  </Leadership>
+  <Leadership>
+    <Vote>8</Vote>
+    <Review>good (4/5) leadership</Review>
+  </Leadership>
+  <Leadership>
+    <Vote>10</Vote>
+    <Review>superb (5/5) leadership</Review>
+  </Leadership>
+  <Blooming>
+    <Vote>0</Vote>
+    <Review>early bloomer</Review>
+  </Blooming>
+  <Blooming>
+    <Vote>1</Vote>
+    <Review>normal bloomer</Review>
+  </Blooming>
+  <Blooming>
+    <Vote>2</Vote>
+    <Review>late bloom</Review>
+  </Blooming>
+  <Aggressivity>
+    <Vote>2</Vote>
+    <Review>almost non-aggressive (1/5)</Review>
+  </Aggressivity>
+  <Aggressivity>
+    <Vote>4</Vote>
+    <Review>not particularly aggressive (2/5)</Review>
+  </Aggressivity>
+  <Aggressivity>
+    <Vote>6</Vote>
+    <Review>slightly aggressive (3/5)</Review>
+  </Aggressivity>
+  <Aggressivity>
+    <Vote>8</Vote>
+    <Review>somewhat aggressive (4/5)</Review>
+  </Aggressivity>
+  <Aggressivity>
+    <Vote>10</Vote>
+    <Review>alarmingly aggressive (5/5)</Review>
+  </Aggressivity>
+  <Physique>
+    <Vote>5</Vote>
+    <Review>weak physique (1/4)</Review>
+  </Physique>
+  <Physique>
+    <Vote>10</Vote>
+    <Review>ok physique (2/4)</Review>
+  </Physique>
+  <Physique>
+    <Vote>15</Vote>
+    <Review>good physique (3/4)</Review>
+  </Physique>
+  <Physique>
+    <Vote>20</Vote>
+    <Review>splendid physique (4/4)</Review>
+  </Physique>
+  <Professionality>
+    <Vote>2</Vote>
+    <Review>no significant (1/5) professionalism</Review>
+  </Professionality>
+  <Professionality>
+    <Vote>4</Vote>
+    <Review>normal (2/5) professionalism</Review>
+  </Professionality>
+  <Professionality>
+    <Vote>6</Vote>
+    <Review>good (3/5) professionalism</Review>
+  </Professionality>
+  <Professionality>
+    <Vote>8</Vote>
+    <Review>very good (4/5) professionalism</Review>
+  </Professionality>
+  <Professionality>
+    <Vote>10</Vote>
+    <Review>superb (5/5) professionalism</Review>
+  </Professionality>
+  <Technics>
+    <Vote>5</Vote>
+    <Review>limited potential for improvement (1/4)</Review>
+  </Technics>
+  <Technics>
+    <Vote>10</Vote>
+    <Review>some potential for improvement (2/4)</Review>
+  </Technics>
+  <Technics>
+    <Vote>15</Vote>
+    <Review>substantial potential for improvement (3/4)</Review>
+  </Technics>
+  <Technics>
+    <Vote>20</Vote>
+    <Review>lots of potential for improvement (4/4)</Review>
+  </Technics>
+  <Technics>
+    <Vote>0</Vote>
+    <Review>Technically</Review>
+  </Technics>
+</ReportAnalysis>

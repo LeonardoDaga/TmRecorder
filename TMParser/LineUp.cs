@@ -1,0 +1,453 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Text;
+using System.Windows.Forms;
+using TMRecorder.Properties;
+using System.IO;
+using Common;
+using FieldFormationControl;
+
+namespace TMRecorder
+{
+    public partial class LineUp : Form
+    {
+        /* Players defending against shortpassing attacks require (mar), (pos) and (wor)
+         * to keep tight spacing on the attacker, and (tac) and (pac) to steer clear of 
+         * trouble when organization fails. 
+         * 
+         * To dominate your opponent's wingers, you need to deploy full backs with good (pac), 
+         * (tac) and (mar). Tactical skills like (pos) and (wor) may also come in 
+         * handy, as wingers often represent a mobile and flimsy threat. Finally a 
+         * teaspoon of (str) and (sta) may also give your full backs the edge needed. 
+         * 
+         * Long bombs hurled upfield present a deadly threat to most teams and the only way to 
+         * counter these attacks is by employing a tactically sound defence and sturdy 
+         * defenders. (Marking), (pac), (pos) and (wor) are all important factors to make 
+         * the defensive machinery grind any long balls before they become dangerous. 
+         * (Strength), (hea) and (tac) are necessary attributes if your team is to win 
+         * the ball one-on-one. (Stamina) is, as always, a factor.
+         */
+
+        public ChampDS champDS = null;
+        public MatchDS matchDS = null;
+        public ExtraDS extraDS = null;
+        public TeamHistory History = null;
+        string isReservesFilter = "";
+        string playerTypeFilter = "";
+        bool browseLineup = false;
+
+        private FieldPlayer[] fps = new FieldPlayer[6];
+
+        public class MatchItem
+        {
+            public ChampDS.MatchRow mr = null;
+
+            public override string ToString()
+            {
+                return "[" + mr.Date.ToShortDateString() + "] " + mr.Home + " " + mr.Score + " " + mr.Away;
+            }
+
+            public int matchID
+            {
+                get
+                {
+                    return mr.MatchID;
+                }
+            }
+        }
+
+        public LineUp(ChampDS champds, ExtraDS extrads, TeamHistory hist)
+        {
+            InitializeComponent();
+
+            champDS = champds;
+            extraDS = extrads;
+            History = hist;
+
+            FileInfo fi2 = new FileInfo(Program.Setts.TacticsDBFilename);
+            if (!fi2.Exists)
+            {
+                MessageBox.Show("Due to a change in the LineUp tool, you need the TacticsFile.xml file that contains " +
+                    "some new settings needed by the tool. Goto to the http://tmrecorder.insyde.it/tmrecorder/download/usefulfiles page " +
+                    "and download the file, then put it in the following path: " +
+                    Program.Setts.TacticsDBFilename, "Error loading the TacticsDBFilename", MessageBoxButtons.OK);
+                return;
+            }
+
+            tacticsDS.ReadXml(Program.Setts.TacticsDBFilename);
+
+            SetMenuFilter();
+
+            FillComboList();
+
+            FileInfo fi = new FileInfo(Path.Combine(Program.Setts.TeamDataFolder, "Lineups.txt"));
+            if (fi.Exists)
+            {
+                lineupList.Load(fi.FullName);
+
+                Formation form = lineupList.GetCurrentFormation();
+                formationControl.ShowFormationPlayers(form);
+                FillTactics(form);
+            }
+
+            playerTypeFilter = "FPn=0";
+            playersList.SetPlayers((ExtraDS.GiocatoriRow[])extraDS.Giocatori.Select("FPn=0", "ASI DESC"),
+                History.actualDts);
+
+            formationControl.UpdateLPWithData(extraDS, History.actualDts);
+
+            // FillTactics(null);
+
+            formationControl.FormationChanged += new EventHandler(formationControl_FormationChanged);
+
+            lineupList.SelectedFormationChanged += new LineupList.SelectedFormationChangedHandler(lineupList_SelectedFormationChanged);
+        }
+
+        void lineupList_SelectedFormationChanged(Formation newForm, Formation oldForm)
+        {
+            // lineupList.SetCurrentFormation(formationControl.GetFormationPlayers());
+
+            if (browseLineup)
+            {
+                formationControl.ShowFormationPlayers(newForm);
+
+                FillTactics(newForm);
+            }
+        }
+
+        void formationControl_FormationChanged(object sender, EventArgs e)
+        {
+            Formation formation = (Formation)sender;
+
+            FillTactics(formation);
+        }
+
+        private void FillTactics(MatchItem mi)
+        {
+            // throw new Exception("The method or operation is not implemented.");
+            // FillTactics();
+        }
+
+        private void FillTactics(Formation formation)
+        {
+            float vBallKeeping = 0.0f, vBallGaining = 0.0f;
+            float[] vAtC = new float[(int)TacticsDS.Tactics.Tot];
+            float[] vAtF = new float[(int)TacticsDS.Tactics.Tot];
+            float[] vDef = new float[(int)TacticsDS.Tactics.Tot];
+            float vSquad = 0.0f;
+
+            foreach (Player pl in formation.players)
+            {
+                if (pl.visible == false) continue;
+
+                ExtraDS.GiocatoriRow gr = extraDS.Giocatori.FindByPlayerID(pl.playerID);
+
+                if (gr == null) continue;
+
+                if (gr.FPn == 0) // This is a GK
+                {
+                    ExtTMDataSet.PortieriNSkillRow gnsr = History.actualDts.PortieriNSkill.FindByPlayerID(pl.playerID);
+
+                    vSquad += gnsr.PO;
+                }
+                else
+                {
+                    ExtTMDataSet.GiocatoriNSkillRow gnsr = History.actualDts.GiocatoriNSkill.FindByPlayerID(pl.playerID);
+
+                    string pos = formation.GetPlayerPosition(pl);
+                    vSquad += gnsr.GetSkVal(pos);
+
+                    float[] fKB = tacticsDS.BallKeepingAndGaining(gnsr);
+
+                    float[,] fTct = tacticsDS.TacticsScore(gnsr, (int)pl.bitPosition);
+
+                    vBallKeeping += fKB[0];
+                    vBallGaining += fKB[1];
+
+                    for (int i = 0; i < (int)TacticsDS.Tactics.Tot; i++)
+                    {
+                        vAtC[i] += fTct[i, 0];
+                        vAtF[i] += fTct[i, 1];
+                        vDef[i] += fTct[i, 2];
+                    }
+                }
+            }
+
+            vSquad /= 11.0f;
+            vBallKeeping /= 10.0f; // GK are not involved
+            vBallGaining /= 10.0f; // GK are not involved
+            for (int i = 0; i < (int)TacticsDS.Tactics.Tot; i++)
+            {
+                vAtC[i] /= 11.0f;
+                vAtF[i] /= 11.0f;
+                vDef[i] /= 11.0f;
+            }
+
+            lblFullTeamVal.Text = vSquad.ToString("N1") + "%";
+            pbFullTeamVal.Value = (int)vSquad;
+
+            lblBallKeeping.Text = vBallKeeping.ToString("N1");
+            lblBallGaining.Text = vBallGaining.ToString("N1");
+
+            lblBalAtt.Text = (vAtC[(int)TacticsDS.Tactics.Std] + vAtF[(int)TacticsDS.Tactics.Std]).ToString();
+            lblDirAtt.Text = (vAtC[(int)TacticsDS.Tactics.Dir] + vAtF[(int)TacticsDS.Tactics.Dir]).ToString();
+            lblShpAtt.Text = (vAtC[(int)TacticsDS.Tactics.ShP] + vAtF[(int)TacticsDS.Tactics.ShP]).ToString();
+            lblThrAtt.Text = (vAtC[(int)TacticsDS.Tactics.ThP] + vAtF[(int)TacticsDS.Tactics.ThP]).ToString();
+            lblWinAtt.Text = (vAtC[(int)TacticsDS.Tactics.Win] + vAtF[(int)TacticsDS.Tactics.Win]).ToString();
+            lblLonAtt.Text = (vAtC[(int)TacticsDS.Tactics.Lon] + vAtF[(int)TacticsDS.Tactics.Lon]).ToString();
+
+            lblBalDef.Text = (vDef[(int)TacticsDS.Tactics.Std]).ToString();
+            lblDirDef.Text = (vDef[(int)TacticsDS.Tactics.Dir]).ToString();
+            lblShpDef.Text = (vDef[(int)TacticsDS.Tactics.ShP]).ToString();
+            lblThrDef.Text = (vDef[(int)TacticsDS.Tactics.ThP]).ToString();
+            lblWinDef.Text = (vDef[(int)TacticsDS.Tactics.Win]).ToString();
+            lblLonDef.Text = (vDef[(int)TacticsDS.Tactics.Lon]).ToString();
+        }
+
+        private void FillField(MatchItem mi)
+        {
+            Formation f = new Formation(eFormationTypes.Type_Empty);
+
+            foreach (MatchDS.YourTeamPerfRow row in matchDS.YourTeamPerf)
+            {
+                Player pl = f.SetPlayer(row);
+                ExtraDS.GiocatoriRow gr = extraDS.Giocatori.FindByPlayerID(row.PlayerID);
+
+                if (pl == null)
+                {
+                    continue;
+                }
+
+                if (gr != null)
+                {
+                    if (gr.FPn != 0)
+                    {
+                        ExtTMDataSet.GiocatoriNSkillRow gnsr = History.actualDts.GiocatoriNSkill.FindByPlayerID(row.PlayerID);
+                        pl.value = gnsr.GetSkVal(f.GetPlayerPosition(pl));
+                    }
+                    else
+                    {
+                        ExtTMDataSet.PortieriNSkillRow gnsr = History.actualDts.PortieriNSkill.FindByPlayerID(row.PlayerID);
+                        pl.value = gnsr.PO;
+                    }
+                }
+
+                if (gr != null)
+                {
+                    pl.number = gr.Numero;
+                    pl.name = gr.Nome;
+                    pl.pf = gr.FP;
+                }
+            }
+
+            formationControl.ShowFormationPlayers(f);
+
+            /*
+            lblMatchStartInfo.Text = mi.mr.InitDesciption;
+            */
+        }
+
+        private void tsAllMatches_Click(object sender, EventArgs e)
+        {
+            Program.Setts.MatchOnFieldFilter = 0;
+            SetMenuFilter();
+            FillComboList();
+        }
+
+        private void tsMainSquadMatches_Click(object sender, EventArgs e)
+        {
+            Program.Setts.MatchOnFieldFilter = 1;
+            SetMenuFilter();
+            FillComboList();
+        }
+
+        private void tsReservesMatches_Click(object sender, EventArgs e)
+        {
+            Program.Setts.MatchOnFieldFilter = 2;
+            SetMenuFilter();
+            FillComboList();
+        }
+
+        private void SetMenuFilter()
+        {
+            switch (Program.Setts.MatchOnFieldFilter)
+            {
+                case 0: // All Matches
+                    tsMatchesType.Text = "Matches Type (All Matches)";
+                    break;
+                case 1: // Main Team Matches
+                    tsMatchesType.Text = "Matches Type (Main Team Matches)";
+                    break;
+                case 2: // Reserves Team Matches
+                    tsMatchesType.Text = "Matches Type (Reserves Team Matches)";
+                    break;
+            }
+            Program.Setts.Save();
+        }
+
+        private void FillComboList()
+        {
+            if (champDS == null) return;
+
+            tcmbMatchList.SelectedIndexChanged -= tcmbMatchList_SelectedIndexChanged;
+
+            tcmbMatchList.Items.Clear();
+
+            MatchItem mi = null;
+            MatchItem lastmi = null;
+
+            BindingSource bs = new BindingSource(champDS, "Match");
+            bs.Sort = "Date ASC";
+
+            foreach (DataRowView dr in bs)
+            {
+                ChampDS.MatchRow mr = (ChampDS.MatchRow)dr.Row;
+                if (!mr.Report) continue;
+
+                mi = new MatchItem();
+                mi.mr = mr;
+
+                if ((mi.mr.isReserves == 1) && (Program.Setts.MatchOnFieldFilter != 1))
+                {
+                    tcmbMatchList.Items.Add(mi);
+                    lastmi = mi;
+                }
+                else if ((mi.mr.isReserves == 0) && (Program.Setts.MatchOnFieldFilter != 2))
+                {
+                    tcmbMatchList.Items.Add(mi);
+                    lastmi = mi;
+                }
+            }
+
+            if (lastmi != null)
+                tcmbMatchList.SelectedItem = lastmi;
+
+            tcmbMatchList.SelectedIndexChanged += tcmbMatchList_SelectedIndexChanged;
+        }
+
+        private void tsGoalKeepers_Click(object sender, EventArgs e)
+        {
+            tsddPlayerTypeMenu.Text = tsGoalKeepers.Text;
+            tsddPlayerTypeMenu.ForeColor = tsGoalKeepers.ForeColor;
+            playerTypeFilter = "FPn=0";
+            UpdatePlayerList();
+        }
+
+        private void tsDefenders_Click(object sender, EventArgs e)
+        {
+            tsddPlayerTypeMenu.Text = tsDefenders.Text;
+            tsddPlayerTypeMenu.ForeColor = tsDefenders.ForeColor;
+            playerTypeFilter = "FPn>=10 AND FPn<30";
+            UpdatePlayerList();
+        }
+
+        private void tsDefMid_Click(object sender, EventArgs e)
+        {
+            tsddPlayerTypeMenu.Text = tsDefMid.Text;
+            tsddPlayerTypeMenu.ForeColor = tsDefMid.ForeColor;
+            playerTypeFilter = "FPn>=20 AND FPn<50";
+            UpdatePlayerList();
+        }
+
+        private void tsMidfielders_Click(object sender, EventArgs e)
+        {
+            tsddPlayerTypeMenu.Text = tsMidfielders.Text;
+            tsddPlayerTypeMenu.ForeColor = tsMidfielders.ForeColor;
+            playerTypeFilter = "FPn>=40 AND FPn<70";
+            UpdatePlayerList();
+        }
+
+        private void tsOddMid_Click(object sender, EventArgs e)
+        {
+            tsddPlayerTypeMenu.Text = tsOddMid.Text;
+            tsddPlayerTypeMenu.ForeColor = tsOddMid.ForeColor;
+            playerTypeFilter = "FPn>=60 AND FPn<90";
+            UpdatePlayerList();
+        }
+
+        private void tsForwards_Click(object sender, EventArgs e)
+        {
+            tsddPlayerTypeMenu.Text = tsForwards.Text;
+            tsddPlayerTypeMenu.ForeColor = tsForwards.ForeColor;
+            playerTypeFilter = "FPn>=80";
+            UpdatePlayerList();
+        }
+
+        private void LineUp_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            FileInfo fi = new FileInfo(Path.Combine(Program.Setts.TeamDataFolder, "Lineups.txt"));
+            lineupList.Save(fi.FullName);
+        }
+
+        private void allPlayersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tsddPlayersSquadSelection.Text = allPlayersToolStripMenuItem.Text;
+            isReservesFilter = " AND (isYoungTeam >= 0)";
+            UpdatePlayerList();
+        }
+
+        private void mainSquadPlayersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tsddPlayersSquadSelection.Text = mainSquadPlayersToolStripMenuItem.Text;
+            isReservesFilter = " AND (isYoungTeam = 0)";
+            UpdatePlayerList();
+        }
+
+        private void reserveSquadPlayersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tsddPlayersSquadSelection.Text = reserveSquadPlayersToolStripMenuItem.Text;
+            isReservesFilter = " AND (isYoungTeam = 1)";
+            UpdatePlayerList();
+        }
+
+        private void UpdatePlayerList()
+        {
+            playersList.SetPlayers((ExtraDS.GiocatoriRow[])extraDS.Giocatori.Select(playerTypeFilter + isReservesFilter, "ASI DESC"),
+                History.actualDts);
+        }
+
+        private void tsbGetLineup_Click(object sender, EventArgs e)
+        {
+            Formation form = lineupList.GetCurrentFormation();
+            formationControl.ShowFormationPlayers(form);
+            FillTactics(form);
+        }
+
+        private void tsbInsertLineup_Click(object sender, EventArgs e)
+        {
+            lineupList.SetCurrentFormation(formationControl.GetFormationPlayers());
+        }
+
+        private void tsbBrowseLineup_Click(object sender, EventArgs e)
+        {
+            browseLineup = tsbBrowseLineup.Checked;
+        }
+
+        private void tcmbMatchList_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void tcmbMatchList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            MatchItem mi = (MatchItem)tcmbMatchList.SelectedItem;
+
+            matchDS = new Common.MatchDS();
+
+            string namefile = Path.Combine(Program.Setts.DefaultDirectory, "Match_" + mi.matchID + ".xml");
+            FileInfo fi = new FileInfo(namefile);
+
+            if (!fi.Exists) return;
+
+            matchDS.ReadXml(Path.Combine(Program.Setts.DefaultDirectory, "Match_" + mi.matchID + ".xml"));
+
+            FillField(mi);
+
+            formationControl.UpdateLPWithData(extraDS, History.actualDts);
+
+            FillTactics(formationControl.GetFormationPlayers());
+        }
+    }
+}

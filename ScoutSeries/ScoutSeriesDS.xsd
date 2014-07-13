@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ScoutSeriesDS" targetNamespace="http://tempuri.org/ScoutSeriesDS.xsd" xmlns:mstns="http://tempuri.org/ScoutSeriesDS.xsd" xmlns="http://tempuri.org/ScoutSeriesDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ScoutSeriesDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="ScoutSeriesDS" msprop:Generator_UserDSName="ScoutSeriesDS" msprop:EnableTableAdapterManager="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Squad" msprop:Generator_UserTableName="Squad" msprop:Generator_RowDeletedName="SquadRowDeleted" msprop:Generator_TableClassName="SquadDataTable" msprop:Generator_RowChangedName="SquadRowChanged" msprop:Generator_RowClassName="SquadRow" msprop:Generator_RowChangingName="SquadRowChanging" msprop:Generator_RowEvArgName="SquadRowChangeEvent" msprop:Generator_RowEvHandlerName="SquadRowChangeEventHandler" msprop:Generator_TablePropName="Squad" msprop:Generator_TableVarName="tableSquad" msprop:Generator_RowDeletingName="SquadRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TeamID" msprop:Generator_UserColumnName="TeamID" msprop:Generator_ColumnPropNameInRow="TeamID" msprop:Generator_ColumnVarNameInTable="columnTeamID" msprop:Generator_ColumnPropNameInTable="TeamIDColumn" type="xs:int" />
+              <xs:element name="League" msprop:Generator_UserColumnName="League" msprop:Generator_ColumnPropNameInRow="League" msprop:Generator_ColumnVarNameInTable="columnLeague" msprop:Generator_ColumnPropNameInTable="LeagueColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Name" msprop:Generator_UserColumnName="Name" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInTable="NameColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Matches" msprop:Generator_UserColumnName="Matches" msprop:Generator_ColumnPropNameInRow="Matches" msprop:Generator_ColumnVarNameInTable="columnMatches" msprop:Generator_ColumnPropNameInTable="MatchesColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="TotalInjuriesWeeks" msprop:Generator_UserColumnName="TotalInjuriesWeeks" msprop:Generator_ColumnPropNameInRow="TotalInjuriesWeeks" msprop:Generator_ColumnVarNameInTable="columnTotalInjuriesWeeks" msprop:Generator_ColumnPropNameInTable="TotalInjuriesWeeksColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="MedCenter" msprop:Generator_UserColumnName="MedCenter" msprop:Generator_ColumnPropNameInRow="MedCenter" msprop:Generator_ColumnVarNameInTable="columnMedCenter" msprop:Generator_ColumnPropNameInTable="MedCenterColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="PhysioRoom" msprop:Generator_UserColumnName="PhysioRoom" msprop:Generator_ColumnPropNameInRow="PhysioRoom" msprop:Generator_ColumnVarNameInTable="columnPhysioRoom" msprop:Generator_ColumnPropNameInTable="PhysioRoomColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Dreinage" msprop:Generator_UserColumnName="Dreinage" msprop:Generator_ColumnPropNameInRow="Dreinage" msprop:Generator_ColumnVarNameInTable="columnDreinage" msprop:Generator_ColumnPropNameInTable="DreinageColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="PitchCovers" msprop:Generator_UserColumnName="PitchCovers" msprop:Generator_ColumnPropNameInRow="PitchCovers" msprop:Generator_ColumnVarNameInTable="columnPitchCovers" msprop:Generator_ColumnPropNameInTable="PitchCoversColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Sprinklers" msprop:Generator_UserColumnName="Sprinklers" msprop:Generator_ColumnPropNameInRow="Sprinklers" msprop:Generator_ColumnVarNameInTable="columnSprinklers" msprop:Generator_ColumnPropNameInTable="SprinklersColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Heating" msprop:Generator_UserColumnName="Heating" msprop:Generator_ColumnPropNameInRow="Heating" msprop:Generator_ColumnVarNameInTable="columnHeating" msprop:Generator_ColumnPropNameInTable="HeatingColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="HomeInjuriesWeeks" msprop:Generator_UserColumnName="HomeInjuriesWeeks" msprop:Generator_ColumnPropNameInRow="HomeInjuriesWeeks" msprop:Generator_ColumnVarNameInTable="columnHomeInjuriesWeeks" msprop:Generator_ColumnPropNameInTable="HomeInjuriesWeeksColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="HomeInjuries" msprop:Generator_UserColumnName="HomeInjuries" msprop:Generator_ColumnPropNameInRow="HomeInjuries" msprop:Generator_ColumnVarNameInTable="columnHomeInjuries" msprop:Generator_ColumnPropNameInTable="HomeInjuriesColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="TotalInjuries" msprop:Generator_UserColumnName="TotalInjuries" msprop:Generator_ColumnPropNameInRow="TotalInjuries" msprop:Generator_ColumnVarNameInTable="columnTotalInjuries" msprop:Generator_ColumnPropNameInTable="TotalInjuriesColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Player" msprop:Generator_UserTableName="Player" msprop:Generator_RowDeletedName="PlayerRowDeleted" msprop:Generator_TableClassName="PlayerDataTable" msprop:Generator_RowChangedName="PlayerRowChanged" msprop:Generator_RowClassName="PlayerRow" msprop:Generator_RowChangingName="PlayerRowChanging" msprop:Generator_RowEvArgName="PlayerRowChangeEvent" msprop:Generator_RowEvHandlerName="PlayerRowChangeEventHandler" msprop:Generator_TablePropName="Player" msprop:Generator_TableVarName="tablePlayer" msprop:Generator_RowDeletingName="PlayerRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TeamID" msprop:Generator_UserColumnName="TeamID" msprop:Generator_ColumnPropNameInRow="TeamID" msprop:Generator_ColumnVarNameInTable="columnTeamID" msprop:Generator_ColumnPropNameInTable="TeamIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="PlayerID" msprop:Generator_UserColumnName="PlayerID" msprop:Generator_ColumnPropNameInRow="PlayerID" msprop:Generator_ColumnVarNameInTable="columnPlayerID" msprop:Generator_ColumnPropNameInTable="PlayerIDColumn" type="xs:int" />
+              <xs:element name="Age" msprop:Generator_UserColumnName="Age" msprop:Generator_ColumnPropNameInRow="Age" msprop:Generator_ColumnVarNameInTable="columnAge" msprop:Generator_ColumnPropNameInTable="AgeColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="ASI" msdata:Caption="Name" msprop:Generator_UserColumnName="ASI" msprop:Generator_ColumnPropNameInRow="ASI" msprop:Generator_ColumnVarNameInTable="columnASI" msprop:Generator_ColumnPropNameInTable="ASIColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Name" msprop:Generator_UserColumnName="Name" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInTable="NameColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="NoInjuries" msprop:Generator_UserColumnName="NoInjuries" msprop:Generator_ColumnPropNameInRow="NoInjuries" msprop:Generator_ColumnVarNameInTable="columnNoInjuries" msprop:Generator_ColumnPropNameInTable="NoInjuriesColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="TotalInjuriesWeek" msprop:Generator_UserColumnName="TotalInjuriesWeek" msprop:Generator_ColumnPropNameInRow="TotalInjuriesWeek" msprop:Generator_ColumnVarNameInTable="columnTotalInjuriesWeek" msprop:Generator_ColumnPropNameInTable="TotalInjuriesWeekColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="NoMatches" msprop:Generator_UserColumnName="NoMatches" msprop:Generator_ColumnPropNameInRow="NoMatches" msprop:Generator_ColumnVarNameInTable="columnNoMatches" msprop:Generator_ColumnPropNameInTable="NoMatchesColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="MeanVote" msprop:Generator_UserColumnName="MeanVote" msprop:Generator_ColumnPropNameInRow="MeanVote" msprop:Generator_ColumnVarNameInTable="columnMeanVote" msprop:Generator_ColumnPropNameInTable="MeanVoteColumn" type="xs:float" minOccurs="0" />
+              <xs:element name="FP" msprop:Generator_UserColumnName="FP" msprop:Generator_ColumnPropNameInRow="FP" msprop:Generator_ColumnVarNameInTable="columnFP" msprop:Generator_ColumnPropNameInTable="FPColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Countries" msprop:Generator_UserTableName="Countries" msprop:Generator_RowDeletedName="CountriesRowDeleted" msprop:Generator_TableClassName="CountriesDataTable" msprop:Generator_RowChangedName="CountriesRowChanged" msprop:Generator_RowClassName="CountriesRow" msprop:Generator_RowChangingName="CountriesRowChanging" msprop:Generator_RowEvArgName="CountriesRowChangeEvent" msprop:Generator_RowEvHandlerName="CountriesRowChangeEventHandler" msprop:Generator_TablePropName="Countries" msprop:Generator_TableVarName="tableCountries" msprop:Generator_RowDeletingName="CountriesRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Name" msprop:Generator_UserColumnName="Name" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInTable="NameColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Abbreviation" msprop:Generator_UserColumnName="Abbreviation" msprop:Generator_ColumnPropNameInRow="Abbreviation" msprop:Generator_ColumnVarNameInTable="columnAbbreviation" msprop:Generator_ColumnPropNameInTable="AbbreviationColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Squad" />
+      <xs:field xpath="mstns:TeamID" />
+    </xs:unique>
+    <xs:unique name="Player_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Player" />
+      <xs:field xpath="mstns:PlayerID" />
+    </xs:unique>
+  </xs:element>
+  <xs:annotation>
+    <xs:appinfo>
+      <msdata:Relationship name="Squad_Player" msdata:parent="Squad" msdata:child="Player" msdata:parentkey="TeamID" msdata:childkey="TeamID" msprop:Generator_UserRelationName="Squad_Player" msprop:Generator_RelationVarName="relationSquad_Player" msprop:Generator_UserChildTable="Player" msprop:Generator_UserParentTable="Squad" msprop:Generator_ParentPropName="SquadRow" msprop:Generator_ChildPropName="GetPlayerRows" />
+    </xs:appinfo>
+  </xs:annotation>
+</xs:schema>

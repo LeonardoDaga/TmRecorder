@@ -1,0 +1,28 @@
+Latest/Ultima Release: 
+http://tmrecorder.insyde.it/TmRecorder.2.4.5.2.x86.zip
+
+English: New releases:
+Notes: 
+- Release 2.4.5.2: Added Greek, Polish, Portuguese (Brazil) and Romana for the translation of the scout report. Change the selected language in Options->Scout Report. Corrected some bugs about the Player info page and the import of the scouts.
+- Release 2.4.5.0: Added the possibility to load the Training page. The player training history is now updated with the type of training performed;
+- Release 2.4.4.0: Added a lot of features about the import of players scout report. The Players info page has been improved and some information are now managed automatically;
+The report analysis files are at this moment available only in English and Italian. The other language will come soon.
+A dedicated page about the report import will be available in few days in the TmRecorder web page (http://tmrecorder.insyde.it/).
+Remember to: 
+1) Import first your latest squad
+2) Import the scouts
+3) Select the correct language for the import of the reports
+4) Select the Led2 gainset if you are Pro and you are using the CStr feature
+
+Italiano: Nuove release
+Nota: 
+- Release 2.4.5.2: Sono state aggiunte altre lingue per l'importazione dello scout report. Sono stati anche corretti dei bug nella pagina di informazioni del giocatore e per l'importazione degli scouts.
+- Release 2.4.5.0: E' stata aggiunta la possibilità di caricare la pagina degli allenamenti. La pagina della storia deglia allenamenti del singolo giocatore è aggiornata con l'allenamento eseguito;
+- Release -2.4.4.0: Sono state aggiunte molte funzionalità a riguardo dell'importo dei report degli scout. La pagina delle informazioni del giocatore è stata migliorata e alcune informazioni sono gestite automaticamente;
+I files per l'analisi dei report sono disponibili solo in Inglese e Italiano. Per le altre lingue, arriveranno a breve i nuovi files.
+Un pagina dedicata all'importazione dei report sarà disponibile a breve nel sito web di TmRecorder (http://tmrecorder.insyde.it/).Il manuale qui:http://tmrecorder.insyde.it/tmrecorder/manuale-in-italiano
+Ricorda di:
+1) Importare come prima cosa la tua ultima squadra
+2) Importare gli scouts
+3) Selezionare il linguaggio corretto per l'importazione dei report (dovrebbe essere l'italiano)
+4) Selezionare Led2 come gainset se sei un Pro di TMR e stai usando le funzionalità CStr

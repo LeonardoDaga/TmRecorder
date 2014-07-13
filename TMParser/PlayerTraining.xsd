@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="PlayerTraining" targetNamespace="http://tempuri.org/PlayerTraining.xsd" xmlns:mstns="http://tempuri.org/PlayerTraining.xsd" xmlns="http://tempuri.org/PlayerTraining.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+        </Connections>
+        <Tables>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="PlayerTraining" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="PlayerTraining" msprop:Generator_DataSetName="PlayerTraining">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Training" msprop:Generator_UserTableName="Training" msprop:Generator_RowDeletedName="TrainingRowDeleted" msprop:Generator_RowChangedName="TrainingRowChanged" msprop:Generator_RowClassName="TrainingRow" msprop:Generator_RowChangingName="TrainingRowChanging" msprop:Generator_RowEvArgName="TrainingRowChangeEvent" msprop:Generator_RowEvHandlerName="TrainingRowChangeEventHandler" msprop:Generator_TableClassName="TrainingDataTable" msprop:Generator_TableVarName="tableTraining" msprop:Generator_RowDeletingName="TrainingRowDeleting" msprop:Generator_TablePropName="Training">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Age" msprop:Generator_UserColumnName="Age" msprop:Generator_ColumnVarNameInTable="columnAge" msprop:Generator_ColumnPropNameInRow="Age" msprop:Generator_ColumnPropNameInTable="AgeColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="absWeek" msdata:Caption="PlayerID" msprop:Generator_UserColumnName="absWeek" msprop:Generator_ColumnVarNameInTable="columnabsWeek" msprop:Generator_ColumnPropNameInRow="absWeek" msprop:Generator_ColumnPropNameInTable="absWeekColumn" type="xs:int" default="0" />
+              <xs:element name="For" msprop:Generator_UserColumnName="For" msprop:Generator_ColumnVarNameInTable="columnFor" msprop:Generator_ColumnPropNameInRow="For" msprop:Generator_ColumnPropNameInTable="ForColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Res" msprop:Generator_UserColumnName="Res" msprop:Generator_ColumnVarNameInTable="columnRes" msprop:Generator_ColumnPropNameInRow="Res" msprop:Generator_ColumnPropNameInTable="ResColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Vel" msprop:Generator_UserColumnName="Vel" msprop:Generator_ColumnVarNameInTable="columnVel" msprop:Generator_ColumnPropNameInRow="Vel" msprop:Generator_ColumnPropNameInTable="VelColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Mar" msprop:Generator_UserColumnName="Mar" msprop:Generator_ColumnVarNameInTable="columnMar" msprop:Generator_ColumnPropNameInRow="Mar" msprop:Generator_ColumnPropNameInTable="MarColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Con" msprop:Generator_UserColumnName="Con" msprop:Generator_ColumnVarNameInTable="columnCon" msprop:Generator_ColumnPropNameInRow="Con" msprop:Generator_ColumnPropNameInTable="ConColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Wor" msprop:Generator_UserColumnName="Wor" msprop:Generator_ColumnVarNameInTable="columnWor" msprop:Generator_ColumnPropNameInRow="Wor" msprop:Generator_ColumnPropNameInTable="WorColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Pos" msprop:Generator_UserColumnName="Pos" msprop:Generator_ColumnVarNameInTable="columnPos" msprop:Generator_ColumnPropNameInRow="Pos" msprop:Generator_ColumnPropNameInTable="PosColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Pas" msprop:Generator_UserColumnName="Pas" msprop:Generator_ColumnVarNameInTable="columnPas" msprop:Generator_ColumnPropNameInRow="Pas" msprop:Generator_ColumnPropNameInTable="PasColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Cro" msprop:Generator_UserColumnName="Cro" msprop:Generator_ColumnVarNameInTable="columnCro" msprop:Generator_ColumnPropNameInRow="Cro" msprop:Generator_ColumnPropNameInTable="CroColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Tec" msprop:Generator_UserColumnName="Tec" msprop:Generator_ColumnVarNameInTable="columnTec" msprop:Generator_ColumnPropNameInRow="Tec" msprop:Generator_ColumnPropNameInTable="TecColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Tes" msprop:Generator_UserColumnName="Tes" msprop:Generator_ColumnVarNameInTable="columnTes" msprop:Generator_ColumnPropNameInRow="Tes" msprop:Generator_ColumnPropNameInTable="TesColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Fin" msprop:Generator_UserColumnName="Fin" msprop:Generator_ColumnVarNameInTable="columnFin" msprop:Generator_ColumnPropNameInRow="Fin" msprop:Generator_ColumnPropNameInTable="FinColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Tir" msprop:Generator_UserColumnName="Tir" msprop:Generator_ColumnVarNameInTable="columnTir" msprop:Generator_ColumnPropNameInRow="Tir" msprop:Generator_ColumnPropNameInTable="TirColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Cal" msprop:Generator_UserColumnName="Cal" msprop:Generator_ColumnVarNameInTable="columnCal" msprop:Generator_ColumnPropNameInRow="Cal" msprop:Generator_ColumnPropNameInTable="CalColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TI" msprop:Generator_UserColumnName="TI" msprop:Generator_ColumnVarNameInTable="columnTI" msprop:Generator_ColumnPropNameInRow="TI" msprop:Generator_ColumnPropNameInTable="TIColumn" type="xs:float" minOccurs="0" />
+              <xs:element name="TrainerID" msprop:Generator_UserColumnName="TrainerID" msprop:Generator_ColumnVarNameInTable="columnTrainerID" msprop:Generator_ColumnPropNameInRow="TrainerID" msprop:Generator_ColumnPropNameInTable="TrainerIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="TrainerMot" msprop:Generator_UserColumnName="TrainerMot" msprop:Generator_ColumnVarNameInTable="columnTrainerMot" msprop:Generator_ColumnPropNameInRow="TrainerMot" msprop:Generator_ColumnPropNameInTable="TrainerMotColumn" type="xs:int" default="0" minOccurs="0" />
+              <xs:element name="TrainerName" msprop:Generator_UserColumnName="TrainerName" msprop:Generator_ColumnVarNameInTable="columnTrainerName" msprop:Generator_ColumnPropNameInRow="TrainerName" msprop:Generator_ColumnPropNameInTable="TrainerNameColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Program" msprop:Generator_UserColumnName="Program" msprop:Generator_ColumnVarNameInTable="columnProgram" msprop:Generator_ColumnPropNameInRow="Program" msprop:Generator_ColumnPropNameInTable="ProgramColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Percentage" msprop:Generator_UserColumnName="Percentage" msprop:Generator_ColumnVarNameInTable="columnPercentage" msprop:Generator_ColumnPropNameInRow="Percentage" msprop:Generator_ColumnPropNameInTable="PercentageColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint2" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Training" />
+      <xs:field xpath="mstns:absWeek" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

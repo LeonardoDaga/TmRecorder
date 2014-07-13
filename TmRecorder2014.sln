@@ -63,6 +63,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ULMatchGenerator", "ULMatch
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActionsAnalysisTool", "WindowsFormsApplication1\ActionsAnalysisTool.csproj", "{A26FB953-8161-4B40-B009-66CF392F52D1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Other Files", "Other Files\Other Files.csproj", "{B111BF5D-905A-4AC0-B679-03C2CC387AC7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -763,6 +765,22 @@ Global
 		{A26FB953-8161-4B40-B009-66CF392F52D1}.ReleaseX64|x64.ActiveCfg = Release|Any CPU
 		{A26FB953-8161-4B40-B009-66CF392F52D1}.ReleaseX64|x86.ActiveCfg = Release|x86
 		{A26FB953-8161-4B40-B009-66CF392F52D1}.ReleaseX64|x86.Build.0 = Release|x86
+		{B111BF5D-905A-4AC0-B679-03C2CC387AC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B111BF5D-905A-4AC0-B679-03C2CC387AC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B111BF5D-905A-4AC0-B679-03C2CC387AC7}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B111BF5D-905A-4AC0-B679-03C2CC387AC7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B111BF5D-905A-4AC0-B679-03C2CC387AC7}.Debug32|Any CPU.ActiveCfg = Debug|Any CPU
+		{B111BF5D-905A-4AC0-B679-03C2CC387AC7}.Debug32|Any CPU.Build.0 = Debug|Any CPU
+		{B111BF5D-905A-4AC0-B679-03C2CC387AC7}.Debug32|x64.ActiveCfg = Debug|Any CPU
+		{B111BF5D-905A-4AC0-B679-03C2CC387AC7}.Debug32|x86.ActiveCfg = Debug|Any CPU
+		{B111BF5D-905A-4AC0-B679-03C2CC387AC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B111BF5D-905A-4AC0-B679-03C2CC387AC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B111BF5D-905A-4AC0-B679-03C2CC387AC7}.Release|x64.ActiveCfg = Release|Any CPU
+		{B111BF5D-905A-4AC0-B679-03C2CC387AC7}.Release|x86.ActiveCfg = Release|Any CPU
+		{B111BF5D-905A-4AC0-B679-03C2CC387AC7}.ReleaseX64|Any CPU.ActiveCfg = Release|Any CPU
+		{B111BF5D-905A-4AC0-B679-03C2CC387AC7}.ReleaseX64|Any CPU.Build.0 = Release|Any CPU
+		{B111BF5D-905A-4AC0-B679-03C2CC387AC7}.ReleaseX64|x64.ActiveCfg = Release|Any CPU
+		{B111BF5D-905A-4AC0-B679-03C2CC387AC7}.ReleaseX64|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

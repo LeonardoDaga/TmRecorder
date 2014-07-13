@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ActionAnalysis" targetNamespace="http://tempuri.org/ActionAnalysis.xsd" xmlns:mstns="http://tempuri.org/ActionAnalysis.xsd" xmlns="http://tempuri.org/ActionAnalysis.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ActionAnalysis" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="ActionAnalysis" msprop:Generator_DataSetName="ActionAnalysis">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Types" msprop:Generator_UserTableName="Types" msprop:Generator_RowDeletedName="TypesRowDeleted" msprop:Generator_RowChangedName="TypesRowChanged" msprop:Generator_RowClassName="TypesRow" msprop:Generator_RowChangingName="TypesRowChanging" msprop:Generator_RowEvArgName="TypesRowChangeEvent" msprop:Generator_RowEvHandlerName="TypesRowChangeEventHandler" msprop:Generator_TableClassName="TypesDataTable" msprop:Generator_TableVarName="tableTypes" msprop:Generator_RowDeletingName="TypesRowDeleting" msprop:Generator_TablePropName="Types">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ActionCode" msprop:Generator_UserColumnName="ActionCode" msprop:Generator_ColumnPropNameInRow="ActionCode" msprop:Generator_ColumnVarNameInTable="columnActionCode" msprop:Generator_ColumnPropNameInTable="ActionCodeColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Description" msprop:Generator_UserColumnName="Description" msprop:Generator_ColumnPropNameInRow="Description" msprop:Generator_ColumnVarNameInTable="columnDescription" msprop:Generator_ColumnPropNameInTable="DescriptionColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TranslatedActions" msprop:Generator_UserTableName="TranslatedActions" msprop:Generator_RowDeletedName="TranslatedActionsRowDeleted" msprop:Generator_RowChangedName="TranslatedActionsRowChanged" msprop:Generator_RowClassName="TranslatedActionsRow" msprop:Generator_RowChangingName="TranslatedActionsRowChanging" msprop:Generator_RowEvArgName="TranslatedActionsRowChangeEvent" msprop:Generator_RowEvHandlerName="TranslatedActionsRowChangeEventHandler" msprop:Generator_TableClassName="TranslatedActionsDataTable" msprop:Generator_TableVarName="tableTranslatedActions" msprop:Generator_RowDeletingName="TranslatedActionsRowDeleting" msprop:Generator_TablePropName="TranslatedActions">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" type="xs:int" />
+              <xs:element name="LanguageID" msprop:Generator_UserColumnName="LanguageID" msprop:Generator_ColumnVarNameInTable="columnLanguageID" msprop:Generator_ColumnPropNameInRow="LanguageID" msprop:Generator_ColumnPropNameInTable="LanguageIDColumn" type="xs:string" />
+              <xs:element name="MatchID" msprop:Generator_UserColumnName="MatchID" msprop:Generator_ColumnVarNameInTable="columnMatchID" msprop:Generator_ColumnPropNameInRow="MatchID" msprop:Generator_ColumnPropNameInTable="MatchIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Description" msprop:Generator_UserColumnName="Description" msprop:Generator_ColumnVarNameInTable="columnDescription" msprop:Generator_ColumnPropNameInRow="Description" msprop:Generator_ColumnPropNameInTable="DescriptionColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Date" msprop:Generator_UserColumnName="Date" msprop:Generator_ColumnVarNameInTable="columnDate" msprop:Generator_ColumnPropNameInRow="Date" msprop:Generator_ColumnPropNameInTable="DateColumn" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="LanguageActions" msprop:Generator_UserTableName="LanguageActions" msprop:Generator_RowDeletedName="LanguageActionsRowDeleted" msprop:Generator_RowChangedName="LanguageActionsRowChanged" msprop:Generator_RowClassName="LanguageActionsRow" msprop:Generator_RowChangingName="LanguageActionsRowChanging" msprop:Generator_RowEvArgName="LanguageActionsRowChangeEvent" msprop:Generator_RowEvHandlerName="LanguageActionsRowChangeEventHandler" msprop:Generator_TableClassName="LanguageActionsDataTable" msprop:Generator_TableVarName="tableLanguageActions" msprop:Generator_RowDeletingName="LanguageActionsRowDeleting" msprop:Generator_TablePropName="LanguageActions">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" type="xs:int" />
+              <xs:element name="EN" msprop:Generator_UserColumnName="EN" msprop:Generator_ColumnVarNameInTable="columnEN" msprop:Generator_ColumnPropNameInRow="EN" msprop:Generator_ColumnPropNameInTable="ENColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="FR" msprop:Generator_UserColumnName="FR" msprop:Generator_ColumnVarNameInTable="columnFR" msprop:Generator_ColumnPropNameInRow="FR" msprop:Generator_ColumnPropNameInTable="FRColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="ES" msprop:Generator_UserColumnName="ES" msprop:Generator_ColumnVarNameInTable="columnES" msprop:Generator_ColumnPropNameInRow="ES" msprop:Generator_ColumnPropNameInTable="ESColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="PT" msprop:Generator_UserColumnName="PT" msprop:Generator_ColumnVarNameInTable="columnPT" msprop:Generator_ColumnPropNameInRow="PT" msprop:Generator_ColumnPropNameInTable="PTColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Actions" msprop:Generator_UserTableName="Actions" msprop:Generator_RowDeletedName="ActionsRowDeleted" msprop:Generator_RowChangedName="ActionsRowChanged" msprop:Generator_RowClassName="ActionsRow" msprop:Generator_RowChangingName="ActionsRowChanging" msprop:Generator_RowEvArgName="ActionsRowChangeEvent" msprop:Generator_RowEvHandlerName="ActionsRowChangeEventHandler" msprop:Generator_TableClassName="ActionsDataTable" msprop:Generator_TableVarName="tableActions" msprop:Generator_RowDeletingName="ActionsRowDeleting" msprop:Generator_TablePropName="Actions">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" type="xs:int" />
+              <xs:element name="Description" msprop:Generator_UserColumnName="Description" msprop:Generator_ColumnVarNameInTable="columnDescription" msprop:Generator_ColumnPropNameInRow="Description" msprop:Generator_ColumnPropNameInTable="DescriptionColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="ActionType" msprop:Generator_UserColumnName="ActionType" msprop:Generator_ColumnVarNameInTable="columnActionType" msprop:Generator_ColumnPropNameInRow="ActionType" msprop:Generator_ColumnPropNameInTable="ActionTypeColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="CodeD1" msprop:Generator_UserColumnName="CodeD1" msprop:Generator_ColumnVarNameInTable="columnCodeD1" msprop:Generator_ColumnPropNameInRow="CodeD1" msprop:Generator_ColumnPropNameInTable="CodeD1Column" type="xs:string" minOccurs="0" />
+              <xs:element name="CodeD2" msprop:Generator_UserColumnName="CodeD2" msprop:Generator_ColumnVarNameInTable="columnCodeD2" msprop:Generator_ColumnPropNameInRow="CodeD2" msprop:Generator_ColumnPropNameInTable="CodeD2Column" type="xs:string" minOccurs="0" />
+              <xs:element name="CodeA1" msprop:Generator_UserColumnName="CodeA1" msprop:Generator_ColumnVarNameInTable="columnCodeA1" msprop:Generator_ColumnPropNameInRow="CodeA1" msprop:Generator_ColumnPropNameInTable="CodeA1Column" type="xs:string" minOccurs="0" />
+              <xs:element name="CodeA2" msprop:Generator_UserColumnName="CodeA2" msprop:Generator_ColumnVarNameInTable="columnCodeA2" msprop:Generator_ColumnPropNameInRow="CodeA2" msprop:Generator_ColumnPropNameInTable="CodeA2Column" type="xs:string" minOccurs="0" />
+              <xs:element name="AttackType" msprop:Generator_UserColumnName="AttackType" msprop:Generator_ColumnVarNameInTable="columnAttackType" msprop:Generator_ColumnPropNameInRow="AttackType" msprop:Generator_ColumnPropNameInTable="AttackTypeColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="ShotType" msprop:Generator_UserColumnName="ShotType" msprop:Generator_ColumnPropNameInRow="ShotType" msprop:Generator_ColumnVarNameInTable="columnShotType" msprop:Generator_ColumnPropNameInTable="ShotTypeColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TranslatedMatches" msprop:Generator_UserTableName="TranslatedMatches" msprop:Generator_RowDeletedName="TranslatedMatchesRowDeleted" msprop:Generator_RowChangedName="TranslatedMatchesRowChanged" msprop:Generator_RowClassName="TranslatedMatchesRow" msprop:Generator_RowChangingName="TranslatedMatchesRowChanging" msprop:Generator_RowEvArgName="TranslatedMatchesRowChangeEvent" msprop:Generator_RowEvHandlerName="TranslatedMatchesRowChangeEventHandler" msprop:Generator_TableClassName="TranslatedMatchesDataTable" msprop:Generator_TableVarName="tableTranslatedMatches" msprop:Generator_RowDeletingName="TranslatedMatchesRowDeleting" msprop:Generator_TablePropName="TranslatedMatches">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="MatchID" msprop:Generator_UserColumnName="MatchID" msprop:Generator_ColumnVarNameInTable="columnMatchID" msprop:Generator_ColumnPropNameInRow="MatchID" msprop:Generator_ColumnPropNameInTable="MatchIDColumn" type="xs:int" />
+              <xs:element name="Languages" msprop:Generator_UserColumnName="Languages" msprop:Generator_ColumnVarNameInTable="columnLanguages" msprop:Generator_ColumnPropNameInRow="Languages" msprop:Generator_ColumnPropNameInTable="LanguagesColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ActionsIDs" msprop:Generator_UserTableName="ActionsIDs" msprop:Generator_RowDeletedName="ActionsIDsRowDeleted" msprop:Generator_RowChangedName="ActionsIDsRowChanged" msprop:Generator_RowClassName="ActionsIDsRow" msprop:Generator_RowChangingName="ActionsIDsRowChanging" msprop:Generator_RowEvArgName="ActionsIDsRowChangeEvent" msprop:Generator_RowEvHandlerName="ActionsIDsRowChangeEventHandler" msprop:Generator_TableClassName="ActionsIDsDataTable" msprop:Generator_TableVarName="tableActionsIDs" msprop:Generator_RowDeletingName="ActionsIDsRowDeleting" msprop:Generator_TablePropName="ActionsIDs">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" type="xs:int" />
+              <xs:element name="MatchID" msprop:Generator_UserColumnName="MatchID" msprop:Generator_ColumnVarNameInTable="columnMatchID" msprop:Generator_ColumnPropNameInRow="MatchID" msprop:Generator_ColumnPropNameInTable="MatchIDColumn" type="xs:int" />
+              <xs:element name="D1" msdata:Caption="ID1" msprop:Generator_UserColumnName="D1" msprop:Generator_ColumnVarNameInTable="columnD1" msprop:Generator_ColumnPropNameInRow="D1" msprop:Generator_ColumnPropNameInTable="D1Column" type="xs:int" minOccurs="0" />
+              <xs:element name="D2" msdata:Caption="ID2" msprop:Generator_UserColumnName="D2" msprop:Generator_ColumnVarNameInTable="columnD2" msprop:Generator_ColumnPropNameInRow="D2" msprop:Generator_ColumnPropNameInTable="D2Column" type="xs:int" minOccurs="0" />
+              <xs:element name="A1" msdata:Caption="ID3" msprop:Generator_UserColumnName="A1" msprop:Generator_ColumnVarNameInTable="columnA1" msprop:Generator_ColumnPropNameInRow="A1" msprop:Generator_ColumnPropNameInTable="A1Column" type="xs:int" minOccurs="0" />
+              <xs:element name="A2" msdata:Caption="ID4" msprop:Generator_UserColumnName="A2" msprop:Generator_ColumnVarNameInTable="columnA2" msprop:Generator_ColumnPropNameInRow="A2" msprop:Generator_ColumnPropNameInTable="A2Column" type="xs:int" minOccurs="0" />
+              <xs:element name="numAction" msprop:Generator_UserColumnName="numAction" msprop:Generator_ColumnVarNameInTable="columnnumAction" msprop:Generator_ColumnPropNameInRow="numAction" msprop:Generator_ColumnPropNameInTable="numActionColumn" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="CodeTable" msprop:Generator_UserTableName="CodeTable" msprop:Generator_RowDeletedName="CodeTableRowDeleted" msprop:Generator_RowChangedName="CodeTableRowChanged" msprop:Generator_RowClassName="CodeTableRow" msprop:Generator_RowChangingName="CodeTableRowChanging" msprop:Generator_RowEvArgName="CodeTableRowChangeEvent" msprop:Generator_RowEvHandlerName="CodeTableRowChangeEventHandler" msprop:Generator_TableClassName="CodeTableDataTable" msprop:Generator_TableVarName="tableCodeTable" msprop:Generator_RowDeletingName="CodeTableRowDeleting" msprop:Generator_TablePropName="CodeTable">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Code" msprop:Generator_UserColumnName="Code" msprop:Generator_ColumnPropNameInRow="Code" msprop:Generator_ColumnVarNameInTable="columnCode" msprop:Generator_ColumnPropNameInTable="CodeColumn" type="xs:string" />
+              <xs:element name="Meaning" msprop:Generator_UserColumnName="Meaning" msprop:Generator_ColumnPropNameInRow="Meaning" msprop:Generator_ColumnVarNameInTable="columnMeaning" msprop:Generator_ColumnPropNameInTable="MeaningColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Rule" msprop:Generator_UserColumnName="Rule" msprop:Generator_ColumnPropNameInRow="Rule" msprop:Generator_ColumnVarNameInTable="columnRule" msprop:Generator_ColumnPropNameInTable="RuleColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Assist" msdata:Caption="Gol" msprop:Generator_UserColumnName="Assist" msprop:Generator_ColumnPropNameInRow="Assist" msprop:Generator_ColumnVarNameInTable="columnAssist" msprop:Generator_ColumnPropNameInTable="AssistColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Gol" msprop:Generator_UserColumnName="Gol" msprop:Generator_ColumnPropNameInRow="Gol" msprop:Generator_ColumnVarNameInTable="columnGol" msprop:Generator_ColumnPropNameInTable="GolColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint11">
+      <xs:selector xpath=".//mstns:TranslatedActions" />
+      <xs:field xpath="mstns:LanguageID" />
+    </xs:unique>
+    <xs:unique name="TranslatedMatchesKey" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:TranslatedActions" />
+      <xs:field xpath="mstns:ID" />
+      <xs:field xpath="mstns:LanguageID" />
+    </xs:unique>
+    <xs:unique name="Constraint2">
+      <xs:selector xpath=".//mstns:LanguageActions" />
+      <xs:field xpath="mstns:PT" />
+    </xs:unique>
+    <xs:unique name="Constraint3">
+      <xs:selector xpath=".//mstns:LanguageActions" />
+      <xs:field xpath="mstns:ES" />
+    </xs:unique>
+    <xs:unique name="Constraint4">
+      <xs:selector xpath=".//mstns:LanguageActions" />
+      <xs:field xpath="mstns:FR" />
+    </xs:unique>
+    <xs:unique name="Constraint5">
+      <xs:selector xpath=".//mstns:LanguageActions" />
+      <xs:field xpath="mstns:EN" />
+    </xs:unique>
+    <xs:unique name="Constraint111" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:LanguageActions" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="Actions_Constraint11" msdata:ConstraintName="Constraint11" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Actions" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:TranslatedMatches" />
+      <xs:field xpath="mstns:MatchID" />
+    </xs:unique>
+    <xs:unique name="MatchIdAndNumAction" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:ActionsIDs" />
+      <xs:field xpath="mstns:MatchID" />
+      <xs:field xpath="mstns:numAction" />
+    </xs:unique>
+    <xs:unique name="CodeTable_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:CodeTable" />
+      <xs:field xpath="mstns:Code" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

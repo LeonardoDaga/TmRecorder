@@ -1,0 +1,484 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A61C4450-11B5-4AB8-B6C1-C07AC448FF23}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DataGridViewCustomColumns</RootNamespace>
+    <AssemblyName>DataGridViewCustomColumns</AssemblyName>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>DataGridViewCustomColumns_TmRecorder.pfx</AssemblyOriginatorKeyFile>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'ReleaseX64|AnyCPU' ">
+    <OutputPath>bin\ReleaseX64\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'ReleaseX64|x64' ">
+    <OutputPath>bin\x64\ReleaseX64\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug32|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug32\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug32|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug32\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseX64|x86'">
+    <OutputPath>bin\x86\ReleaseX64\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug32|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug32\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="TMR_ReportColumn.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TMR_ReportColumn.Designer.cs">
+      <DependentUpon>TMR_ReportColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TMR_VariableDRColumn.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TMR_VariableDRColumn.Designer.cs">
+      <DependentUpon>TMR_VariableDRColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TMR_PlayerDSColumn.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TMR_PlayerDSColumn.Designer.cs">
+      <DependentUpon>TMR_PlayerDSColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TMR_BloomColumn.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TMR_BloomColumn.Designer.cs">
+      <DependentUpon>TMR_BloomColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TMR_TrainSkillColumn.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TMR_TrainSkillColumn.Designer.cs">
+      <DependentUpon>TMR_TrainSkillColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TMR_ArrowColumn.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TMR_ArrowColumn.Designer.cs">
+      <DependentUpon>TMR_ArrowColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TMR_DateColumn.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TMR_DateColumn.Designer.cs">
+      <DependentUpon>TMR_DateColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TMR_FpColumn.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TMR_FpColumn.Designer.cs">
+      <DependentUpon>TMR_FpColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TMR_NoTagColumn.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TMR_NoTagColumn.Designer.cs">
+      <DependentUpon>TMR_NoTagColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TMR_ActionsColumn.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TMR_ActionsColumn.Designer.cs">
+      <DependentUpon>TMR_ActionsColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TMR_MatchTypeColumn.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TMR_MatchTypeColumn.Designer.cs">
+      <DependentUpon>TMR_MatchTypeColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TMR_AgeColumn.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TMR_AgeColumn.Designer.cs">
+      <DependentUpon>TMR_AgeColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TMR_DataGridView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TMR_DataGridView.Designer.cs">
+      <DependentUpon>TMR_DataGridView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TMR_NameInjurySqColumn.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TMR_NameInjurySqColumn.Designer.cs">
+      <DependentUpon>TMR_NameInjurySqColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TMR_NationColumn.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TMR_NationColumn.Designer.cs">
+      <DependentUpon>TMR_NationColumn.cs</DependentUpon>
+    </Compile>
+    <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Actions\me_chance2.gif" />
+    <Content Include="Actions\me_goal2.gif" />
+    <Content Include="Actions\me_red.gif" />
+    <Content Include="Actions\me_shot.gif" />
+    <Content Include="Actions\me_shotoff.gif" />
+    <Content Include="Actions\me_skade.gif" />
+    <Content Include="Actions\me_sub.gif" />
+    <Content Include="Actions\me_yellow.gif" />
+    <Content Include="Actions\me_yellow2.gif" />
+    <Content Include="Flags\ad.png" />
+    <Content Include="Flags\ae.png" />
+    <Content Include="Flags\af.png" />
+    <Content Include="Flags\al.png" />
+    <Content Include="Flags\am.png" />
+    <Content Include="Flags\ao.png" />
+    <Content Include="Flags\aq.png" />
+    <Content Include="Flags\ar.png" />
+    <Content Include="Flags\at.png" />
+    <Content Include="Flags\au.png" />
+    <Content Include="Flags\az.png" />
+    <Content Include="Flags\ba.png" />
+    <Content Include="Flags\bd.png" />
+    <Content Include="Flags\be.png" />
+    <Content Include="Flags\bg.png" />
+    <Content Include="Flags\bh.png" />
+    <Content Include="Flags\bn.png" />
+    <Content Include="Flags\bo.png" />
+    <Content Include="Flags\br.png" />
+    <Content Include="Flags\bw.png" />
+    <Content Include="Flags\by.png" />
+    <Content Include="Flags\bz.png" />
+    <Content Include="Flags\ca.png" />
+    <Content Include="Flags\ci.png" />
+    <Content Include="Flags\cl.png" />
+    <Content Include="Flags\cm.png" />
+    <Content Include="Flags\cn.png" />
+    <Content Include="Flags\co.png" />
+    <Content Include="Flags\cr.png" />
+    <Content Include="Flags\cs.png" />
+    <Content Include="Flags\ct.png" />
+    <Content Include="Flags\cu.png" />
+    <Content Include="Flags\cy.png" />
+    <Content Include="Flags\cz.png" />
+    <Content Include="Flags\de.png" />
+    <Content Include="Flags\dk.png" />
+    <Content Include="Flags\do.png" />
+    <Content Include="Flags\dz.png" />
+    <Content Include="Flags\ec.png" />
+    <Content Include="Flags\ee.png" />
+    <Content Include="Flags\eg.png" />
+    <Content Include="Flags\en.png" />
+    <Content Include="Flags\es.png" />
+    <Content Include="Flags\fi.png" />
+    <Content Include="Flags\fj.png" />
+    <Content Include="Flags\fo.png" />
+    <Content Include="Flags\fr.png" />
+    <Content Include="Flags\ge.png" />
+    <Content Include="Flags\gh.png" />
+    <Content Include="Flags\gr.png" />
+    <Content Include="Flags\gt.png" />
+    <Content Include="Flags\he.png" />
+    <Content Include="Flags\hk.png" />
+    <Content Include="Flags\hn.png" />
+    <Content Include="Flags\hr.png" />
+    <Content Include="Flags\hu.png" />
+    <Content Include="Flags\id.png" />
+    <Content Include="Flags\ie.png" />
+    <Content Include="Flags\il.png" />
+    <Content Include="Flags\in.png" />
+    <Content Include="Flags\iq.png" />
+    <Content Include="Flags\ir.png" />
+    <Content Include="Flags\is.png" />
+    <Content Include="Flags\it.png" />
+    <Content Include="Flags\jm.png" />
+    <Content Include="Flags\jo.png" />
+    <Content Include="Flags\jp.png" />
+    <Content Include="Flags\kr.png" />
+    <Content Include="Flags\kw.png" />
+    <Content Include="Flags\kz.png" />
+    <Content Include="Flags\lb.png" />
+    <Content Include="Flags\lt.png" />
+    <Content Include="Flags\lu.png" />
+    <Content Include="Flags\lv.png" />
+    <Content Include="Flags\ly.png" />
+    <Content Include="Flags\ma.png" />
+    <Content Include="Flags\md.png" />
+    <Content Include="Flags\me.png" />
+    <Content Include="Flags\mk.png" />
+    <Content Include="Flags\mt.png" />
+    <Content Include="Flags\mx.png" />
+    <Content Include="Flags\my.png" />
+    <Content Include="Flags\ng.png" />
+    <Content Include="Flags\nl.png" />
+    <Content Include="Flags\no.png" />
+    <Content Include="Flags\np.png" />
+    <Content Include="Flags\nz.png" />
+    <Content Include="Flags\oc.png" />
+    <Content Include="Flags\om.png" />
+    <Content Include="Flags\pa.png" />
+    <Content Include="Flags\pe.png" />
+    <Content Include="Flags\ph.png" />
+    <Content Include="Flags\pk.png" />
+    <Content Include="Flags\pl.png" />
+    <Content Include="Flags\pr.png" />
+    <Content Include="Flags\pt.png" />
+    <Content Include="Flags\py.png" />
+    <Content Include="Flags\qa.png" />
+    <Content Include="Flags\ro.png" />
+    <Content Include="Flags\rt.png" />
+    <Content Include="Flags\ru.png" />
+    <Content Include="Flags\sa.png" />
+    <Content Include="Flags\se.png" />
+    <Content Include="Flags\sg.png" />
+    <Content Include="Flags\si.png" />
+    <Content Include="Flags\sk.png" />
+    <Content Include="Flags\sm.png" />
+    <Content Include="Flags\sn.png" />
+    <Content Include="Flags\so.png" />
+    <Content Include="Flags\sv.png" />
+    <Content Include="Flags\sy.png" />
+    <Content Include="Flags\td.png" />
+    <Content Include="Flags\th.png" />
+    <Content Include="Flags\tn.png" />
+    <Content Include="Flags\tr.png" />
+    <Content Include="Flags\tt.png" />
+    <Content Include="Flags\tw.png" />
+    <Content Include="Flags\ua.png" />
+    <Content Include="Flags\us.png" />
+    <Content Include="Flags\uy.png" />
+    <Content Include="Flags\vc.png" />
+    <Content Include="Flags\ve.png" />
+    <Content Include="Flags\vn.png" />
+    <Content Include="Flags\wa.png" />
+    <Content Include="Flags\za.png" />
+    <Content Include="Icons\BigStepUp.ico" />
+    <Content Include="Icons\BigStepDown.ico" />
+    <Content Include="Icons\NoStep.ico" />
+    <Content Include="Icons\SilverStar.ico" />
+    <Content Include="PosImages\DC.gif" />
+    <Content Include="PosImages\DL.gif" />
+    <Content Include="PosImages\DMC.gif" />
+    <Content Include="PosImages\DML.gif" />
+    <Content Include="PosImages\DMR.gif" />
+    <Content Include="PosImages\DR.gif" />
+    <Content Include="PosImages\FC.gif" />
+    <Content Include="PosImages\MC.gif" />
+    <Content Include="PosImages\ML.gif" />
+    <Content Include="PosImages\MR.gif" />
+    <Content Include="PosImages\OMC.gif" />
+    <Content Include="PosImages\OML.gif" />
+    <Content Include="PosImages\OMR.gif" />
+    <Content Include="Symbols\C.png" />
+    <Content Include="Symbols\F.png" />
+    <Content Include="Symbols\FL.png" />
+    <Content Include="Icons\Injuried.ico" />
+    <Content Include="Symbols\L.png" />
+    <Content Include="Icons\RedCard.ico" />
+    <Content Include="Icons\SmallStepDown.ico" />
+    <Content Include="Icons\SmallStepUp.ico" />
+    <Content Include="Icons\Star.ico" />
+    <Content Include="Icons\YellowCard.ico" />
+    <Content Include="Symbols\LL.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TMR_ReportColumn.resx">
+      <DependentUpon>TMR_ReportColumn.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TMR_VariableDRColumn.resx">
+      <DependentUpon>TMR_VariableDRColumn.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TMR_PlayerDSColumn.resx">
+      <DependentUpon>TMR_PlayerDSColumn.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TMR_BloomColumn.resx">
+      <DependentUpon>TMR_BloomColumn.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TMR_TrainSkillColumn.resx">
+      <DependentUpon>TMR_TrainSkillColumn.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TMR_ArrowColumn.resx">
+      <DependentUpon>TMR_ArrowColumn.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TMR_DateColumn.resx">
+      <DependentUpon>TMR_DateColumn.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TMR_FpColumn.resx">
+      <DependentUpon>TMR_FpColumn.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TMR_NoTagColumn.resx">
+      <DependentUpon>TMR_NoTagColumn.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TMR_ActionsColumn.resx">
+      <DependentUpon>TMR_ActionsColumn.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TMR_MatchTypeColumn.resx">
+      <DependentUpon>TMR_MatchTypeColumn.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TMR_AgeColumn.resx">
+      <DependentUpon>TMR_AgeColumn.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TMR_DataGridView.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>TMR_DataGridView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TMR_NameInjurySqColumn.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>TMR_NameInjurySqColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TMR_NationColumn.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>TMR_NationColumn.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{DFEE4C9B-F9FC-4186-945F-27518E4FCEB7}</Project>
+      <Name>Common</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Multilanguage\Languages.csproj">
+      <Project>{E0E469C1-BFB5-4EC0-93F1-F019C9101110}</Project>
+      <Name>Languages</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NTR_Common\NTR_Common.csproj">
+      <Project>{D32F5344-D291-42FC-8B6E-4183864E2D77}</Project>
+      <Name>NTR_Common</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DataGridViewCustomColumns_TmRecorder.pfx" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

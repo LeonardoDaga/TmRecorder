@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="TrainersSkills" targetNamespace="http://tempuri.org/TrainersSkills.xsd" xmlns:mstns="http://tempuri.org/TrainersSkills.xsd" xmlns="http://tempuri.org/TrainersSkills.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+        </Connections>
+        <Tables>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="TrainersSkills" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="TrainersSkills" msprop:Generator_DataSetName="TrainersSkills">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Trainers" msprop:Generator_UserTableName="Trainers" msprop:Generator_RowDeletedName="TrainersRowDeleted" msprop:Generator_RowChangedName="TrainersRowChanged" msprop:Generator_RowClassName="TrainersRow" msprop:Generator_RowChangingName="TrainersRowChanging" msprop:Generator_RowEvArgName="TrainersRowChangeEvent" msprop:Generator_RowEvHandlerName="TrainersRowChangeEventHandler" msprop:Generator_TableClassName="TrainersDataTable" msprop:Generator_TableVarName="tableTrainers" msprop:Generator_RowDeletingName="TrainersRowDeleting" msprop:Generator_TablePropName="Trainers">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Name" msprop:Generator_UserColumnName="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Mot" msprop:Generator_UserColumnName="Mot" msprop:Generator_ColumnVarNameInTable="columnMot" msprop:Generator_ColumnPropNameInRow="Mot" msprop:Generator_ColumnPropNameInTable="MotColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Por" msprop:Generator_UserColumnName="Por" msprop:Generator_ColumnPropNameInRow="Por" msprop:Generator_ColumnVarNameInTable="columnPor" msprop:Generator_ColumnPropNameInTable="PorColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Fis" msprop:Generator_UserColumnName="Fis" msprop:Generator_ColumnVarNameInTable="columnFis" msprop:Generator_ColumnPropNameInRow="Fis" msprop:Generator_ColumnPropNameInTable="FisColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Dif" msprop:Generator_UserColumnName="Dif" msprop:Generator_ColumnVarNameInTable="columnDif" msprop:Generator_ColumnPropNameInRow="Dif" msprop:Generator_ColumnPropNameInTable="DifColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Tec" msprop:Generator_UserColumnName="Tec" msprop:Generator_ColumnVarNameInTable="columnTec" msprop:Generator_ColumnPropNameInRow="Tec" msprop:Generator_ColumnPropNameInTable="TecColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Hea" msprop:Generator_UserColumnName="Hea" msprop:Generator_ColumnVarNameInTable="columnHea" msprop:Generator_ColumnPropNameInRow="Hea" msprop:Generator_ColumnPropNameInTable="HeaColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Win" msprop:Generator_UserColumnName="Win" msprop:Generator_ColumnVarNameInTable="columnWin" msprop:Generator_ColumnPropNameInRow="Win" msprop:Generator_ColumnPropNameInTable="WinColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Att" msprop:Generator_UserColumnName="Att" msprop:Generator_ColumnVarNameInTable="columnAtt" msprop:Generator_ColumnPropNameInRow="Att" msprop:Generator_ColumnPropNameInTable="AttColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ID" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" type="xs:int" />
+              <xs:element name="inTeam" msprop:Generator_UserColumnName="inTeam" msprop:Generator_ColumnPropNameInRow="inTeam" msprop:Generator_ColumnVarNameInTable="columninTeam" msprop:Generator_ColumnPropNameInTable="inTeamColumn" type="xs:boolean" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Skills" msprop:Generator_UserTableName="Skills" msprop:Generator_RowDeletedName="SkillsRowDeleted" msprop:Generator_RowChangedName="SkillsRowChanged" msprop:Generator_RowClassName="SkillsRow" msprop:Generator_RowChangingName="SkillsRowChanging" msprop:Generator_RowEvArgName="SkillsRowChangeEvent" msprop:Generator_RowEvHandlerName="SkillsRowChangeEventHandler" msprop:Generator_TableClassName="SkillsDataTable" msprop:Generator_TableVarName="tableSkills" msprop:Generator_RowDeletingName="SkillsRowDeleting" msprop:Generator_TablePropName="Skills">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Result" msprop:Generator_UserColumnName="Result" msprop:Generator_ColumnVarNameInTable="columnResult" msprop:Generator_ColumnPropNameInRow="Result" msprop:Generator_ColumnPropNameInTable="ResultColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="BestSkills" msprop:Generator_UserColumnName="BestSkills" msprop:Generator_ColumnVarNameInTable="columnBestSkills" msprop:Generator_ColumnPropNameInRow="BestSkills" msprop:Generator_ColumnPropNameInTable="BestSkillsColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="TrainersID" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Trainers" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,715 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DFEE4C9B-F9FC-4186-945F-27518E4FCEB7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Common</RootNamespace>
+    <AssemblyName>Common</AssemblyName>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>Common_TmRecorder.pfx</AssemblyOriginatorKeyFile>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'ReleaseX64|AnyCPU' ">
+    <OutputPath>bin\ReleaseX64\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'ReleaseX64|x64' ">
+    <OutputPath>bin\x64\ReleaseX64\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug32|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug32\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug32|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug32\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseX64|x86'">
+    <OutputPath>bin\x86\ReleaseX64\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug32|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug32\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActionAnalysis.cs">
+      <DependentUpon>ActionAnalysis.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ActionAnalysis.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ActionAnalysis.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Actions.cs" />
+    <Compile Include="AskForString.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AskForString.Designer.cs">
+      <DependentUpon>AskForString.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChampDS.cs">
+      <DependentUpon>ChampDS.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ChampDS.Designer.cs">
+      <DependentUpon>ChampDS.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="DebugGenMessageBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DebugGenMessageBox.Designer.cs">
+      <DependentUpon>DebugGenMessageBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Db_TrophyDataSet.cs">
+      <DependentUpon>Db_TrophyDataSet.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Db_TrophyDataSet.Designer.cs">
+      <DependentUpon>Db_TrophyDataSet.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="DB_TrophyDataSet2.cs">
+      <DependentUpon>DB_TrophyDataSet2.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DB_TrophyDataSet2.Designer.cs">
+      <DependentUpon>DB_TrophyDataSet2.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="ExtraDS.cs">
+      <DependentUpon>ExtraDS.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ExtraDS.Designer.cs">
+      <DependentUpon>ExtraDS.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="ExtTMDataSet.cs">
+      <DependentUpon>ExtTMDataSet.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ExtTMDataSet.Designer.cs">
+      <DependentUpon>ExtTMDataSet.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="FillInfoMessageBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FillInfoMessageBox.Designer.cs">
+      <DependentUpon>FillInfoMessageBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formation.cs" />
+    <Compile Include="FormationDS.cs">
+      <DependentUpon>FormationDS.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormationDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FormationDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Functions.cs" />
+    <Compile Include="GainDS.cs">
+      <DependentUpon>GainDS.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GainDS.Designer.cs">
+      <DependentUpon>GainDS.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="GainGraphicalFeatures.cs" />
+    <Compile Include="GainSetEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GainSetEditor.Designer.cs">
+      <DependentUpon>GainSetEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GameTable.cs">
+      <DependentUpon>GameTable.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GameTable.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GameTable.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Historical.cs" />
+    <Compile Include="HTML_Parser.cs" />
+    <Compile Include="MatchAnalysis.cs">
+      <DependentUpon>MatchAnalysis.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MatchAnalysis.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MatchAnalysis.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="MatchDS.cs">
+      <DependentUpon>MatchDS.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MatchDS.Designer.cs">
+      <DependentUpon>MatchDS.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="MatchList.cs">
+      <DependentUpon>MatchList.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MatchList.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MatchList.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="MySettings.cs" />
+    <Compile Include="NationsDS.cs">
+      <DependentUpon>NationsDS.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="NationsDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NationsDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="News.cs" />
+    <Compile Include="Pop3MailClient.cs" />
+    <Compile Include="ProgressForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProgressForm.designer.cs">
+      <DependentUpon>ProgressForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PropertyBag.cs" />
+    <Compile Include="PropertyEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PropertyEditor.Designer.cs">
+      <DependentUpon>PropertyEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportAnalysis.cs">
+      <DependentUpon>ReportAnalysis.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportAnalysis.Designer.cs">
+      <DependentUpon>ReportAnalysis.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="ReportParser.cs" />
+    <Compile Include="ScoutReview.cs" />
+    <Compile Include="ScoutsNReviews.cs">
+      <DependentUpon>ScoutsNReviews.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ScoutsNReviews.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ScoutsNReviews.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="SelectDataDate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectDataDate.Designer.cs">
+      <DependentUpon>SelectDataDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SelectMatchType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectMatchType.Designer.cs">
+      <DependentUpon>SelectMatchType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SendFileTo.cs" />
+    <Compile Include="SplashForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SplashForm.Designer.cs">
+      <DependentUpon>SplashForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StdSettings.cs" />
+    <Compile Include="Tactics.cs" />
+    <Compile Include="TacticsDS.cs">
+      <DependentUpon>TacticsDS.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TacticsDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TacticsDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="TagsBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TagsBar.Designer.cs">
+      <DependentUpon>TagsBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TrainersSkills.cs">
+      <DependentUpon>TrainersSkills.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TrainersSkills.Designer.cs">
+      <DependentUpon>TrainersSkills.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="TrainingDataSet.cs">
+      <DependentUpon>TrainingDataSet.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TrainingDataSet.Designer.cs">
+      <DependentUpon>TrainingDataSet.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Userdata.cs">
+      <DependentUpon>Userdata.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Userdata.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Userdata.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Utility.cs" />
+    <Compile Include="YouthDev.cs">
+      <DependentUpon>YouthDev.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="YouthDev.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>YouthDev.xsd</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ActionAnalysis.xsc">
+      <DependentUpon>ActionAnalysis.xsd</DependentUpon>
+    </None>
+    <None Include="ActionAnalysis.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ActionAnalysis.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ActionAnalysis.xss">
+      <DependentUpon>ActionAnalysis.xsd</DependentUpon>
+    </None>
+    <None Include="ChampDS.xsc">
+      <DependentUpon>ChampDS.xsd</DependentUpon>
+    </None>
+    <None Include="ChampDS.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ChampDS.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ChampDS.xss">
+      <DependentUpon>ChampDS.xsd</DependentUpon>
+    </None>
+    <None Include="Common_TmRecorder.pfx" />
+    <None Include="Db_TrophyDataSet.xsc">
+      <DependentUpon>Db_TrophyDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Db_TrophyDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Db_TrophyDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Db_TrophyDataSet.xss">
+      <DependentUpon>Db_TrophyDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DB_TrophyDataSet2.xsc">
+      <DependentUpon>DB_TrophyDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="DB_TrophyDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DB_TrophyDataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DB_TrophyDataSet2.xss">
+      <DependentUpon>DB_TrophyDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="ExtraDS.xsc">
+      <DependentUpon>ExtraDS.xsd</DependentUpon>
+    </None>
+    <None Include="ExtraDS.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ExtraDS.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ExtraDS.xss">
+      <DependentUpon>ExtraDS.xsd</DependentUpon>
+    </None>
+    <None Include="ExtTMDataSet.xsc">
+      <DependentUpon>ExtTMDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ExtTMDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ExtTMDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ExtTMDataSet.xss">
+      <DependentUpon>ExtTMDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="FormationDS.xsc">
+      <DependentUpon>FormationDS.xsd</DependentUpon>
+    </None>
+    <None Include="FormationDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FormationDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="FormationDS.xss">
+      <DependentUpon>FormationDS.xsd</DependentUpon>
+    </None>
+    <None Include="GainDS.xsc">
+      <DependentUpon>GainDS.xsd</DependentUpon>
+    </None>
+    <None Include="GainDS.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GainDS.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="GainDS.xss">
+      <DependentUpon>GainDS.xsd</DependentUpon>
+    </None>
+    <None Include="GameTable.xsc">
+      <DependentUpon>GameTable.xsd</DependentUpon>
+    </None>
+    <None Include="GameTable.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GameTable.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="GameTable.xss">
+      <DependentUpon>GameTable.xsd</DependentUpon>
+    </None>
+    <None Include="MatchAnalysis.xsc">
+      <DependentUpon>MatchAnalysis.xsd</DependentUpon>
+    </None>
+    <None Include="MatchAnalysis.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MatchAnalysis.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="MatchAnalysis.xss">
+      <DependentUpon>MatchAnalysis.xsd</DependentUpon>
+    </None>
+    <None Include="MatchDS.xsc">
+      <DependentUpon>MatchDS.xsd</DependentUpon>
+    </None>
+    <None Include="MatchDS.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MatchDS.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="MatchDS.xss">
+      <DependentUpon>MatchDS.xsd</DependentUpon>
+    </None>
+    <None Include="MatchList.xsc">
+      <DependentUpon>MatchList.xsd</DependentUpon>
+    </None>
+    <None Include="MatchList.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MatchList.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="MatchList.xss">
+      <DependentUpon>MatchList.xsd</DependentUpon>
+    </None>
+    <None Include="NationsDS.xsc">
+      <DependentUpon>NationsDS.xsd</DependentUpon>
+    </None>
+    <None Include="NationsDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>NationsDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="NationsDS.xss">
+      <DependentUpon>NationsDS.xsd</DependentUpon>
+    </None>
+    <None Include="ReportAnalysis.xsc">
+      <DependentUpon>ReportAnalysis.xsd</DependentUpon>
+    </None>
+    <None Include="ReportAnalysis.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ReportAnalysis.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ReportAnalysis.xss">
+      <DependentUpon>ReportAnalysis.xsd</DependentUpon>
+    </None>
+    <None Include="ScoutsNReviews.xsc">
+      <DependentUpon>ScoutsNReviews.xsd</DependentUpon>
+    </None>
+    <None Include="ScoutsNReviews.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ScoutsNReviews.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ScoutsNReviews.xss">
+      <DependentUpon>ScoutsNReviews.xsd</DependentUpon>
+    </None>
+    <None Include="TacticsDS.xsc">
+      <DependentUpon>TacticsDS.xsd</DependentUpon>
+    </None>
+    <None Include="TacticsDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TacticsDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="TacticsDS.xss">
+      <DependentUpon>TacticsDS.xsd</DependentUpon>
+    </None>
+    <None Include="TrainersSkills.xsc">
+      <DependentUpon>TrainersSkills.xsd</DependentUpon>
+    </None>
+    <None Include="TrainersSkills.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TrainersSkills.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TrainersSkills.xss">
+      <DependentUpon>TrainersSkills.xsd</DependentUpon>
+    </None>
+    <None Include="TrainingDataSet.xsc">
+      <DependentUpon>TrainingDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="TrainingDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TrainingDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TrainingDataSet.xss">
+      <DependentUpon>TrainingDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Userdata.xsc">
+      <DependentUpon>Userdata.xsd</DependentUpon>
+    </None>
+    <None Include="Userdata.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Userdata.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Userdata.xss">
+      <DependentUpon>Userdata.xsd</DependentUpon>
+    </None>
+    <None Include="YouthDev.xsc">
+      <DependentUpon>YouthDev.xsd</DependentUpon>
+    </None>
+    <None Include="YouthDev.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>YouthDev.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="YouthDev.xss">
+      <DependentUpon>YouthDev.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AskForString.resx">
+      <DependentUpon>AskForString.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DebugGenMessageBox.resx">
+      <DependentUpon>DebugGenMessageBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FillInfoMessageBox.resx">
+      <DependentUpon>FillInfoMessageBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GainSetEditor.resx">
+      <DependentUpon>GainSetEditor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProgressForm.resx">
+      <DependentUpon>ProgressForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertyEditor.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>PropertyEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectDataDate.resx">
+      <DependentUpon>SelectDataDate.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectMatchType.resx">
+      <DependentUpon>SelectMatchType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SplashForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SplashForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Multilanguage\Languages.csproj">
+      <Project>{E0E469C1-BFB5-4EC0-93F1-F019C9101110}</Project>
+      <Name>Languages</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

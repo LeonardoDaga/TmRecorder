@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="MatchAnalysis" targetNamespace="http://tempuri.org/MatchAnalysis.xsd" xmlns:mstns="http://tempuri.org/MatchAnalysis.xsd" xmlns="http://tempuri.org/MatchAnalysis.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="MatchAnalysis" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="MatchAnalysis" msprop:Generator_UserDSName="MatchAnalysis" msprop:EnableTableAdapterManager="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="MatchMentality" msprop:Generator_UserTableName="MatchMentality" msprop:Generator_RowDeletedName="MatchMentalityRowDeleted" msprop:Generator_TableClassName="MatchMentalityDataTable" msprop:Generator_RowChangedName="MatchMentalityRowChanged" msprop:Generator_RowClassName="MatchMentalityRow" msprop:Generator_RowChangingName="MatchMentalityRowChanging" msprop:Generator_RowEvArgName="MatchMentalityRowChangeEvent" msprop:Generator_RowEvHandlerName="MatchMentalityRowChangeEventHandler" msprop:Generator_TablePropName="MatchMentality" msprop:Generator_TableVarName="tableMatchMentality" msprop:Generator_RowDeletingName="MatchMentalityRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_UserColumnName="Id" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInTable="IdColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="IdentificationString" msprop:Generator_UserColumnName="IdentificationString" msprop:Generator_ColumnPropNameInRow="IdentificationString" msprop:Generator_ColumnVarNameInTable="columnIdentificationString" msprop:Generator_ColumnPropNameInTable="IdentificationStringColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Brief" msprop:Generator_UserColumnName="Brief" msprop:Generator_ColumnPropNameInRow="Brief" msprop:Generator_ColumnVarNameInTable="columnBrief" msprop:Generator_ColumnPropNameInTable="BriefColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="MatchAttackingStyle" msprop:Generator_UserTableName="MatchAttackingStyle" msprop:Generator_RowDeletedName="MatchAttackingStyleRowDeleted" msprop:Generator_TableClassName="MatchAttackingStyleDataTable" msprop:Generator_RowChangedName="MatchAttackingStyleRowChanged" msprop:Generator_RowClassName="MatchAttackingStyleRow" msprop:Generator_RowChangingName="MatchAttackingStyleRowChanging" msprop:Generator_RowEvArgName="MatchAttackingStyleRowChangeEvent" msprop:Generator_RowEvHandlerName="MatchAttackingStyleRowChangeEventHandler" msprop:Generator_TablePropName="MatchAttackingStyle" msprop:Generator_TableVarName="tableMatchAttackingStyle" msprop:Generator_RowDeletingName="MatchAttackingStyleRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_UserColumnName="Id" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInTable="IdColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="IdentificationString" msprop:Generator_UserColumnName="IdentificationString" msprop:Generator_ColumnPropNameInRow="IdentificationString" msprop:Generator_ColumnVarNameInTable="columnIdentificationString" msprop:Generator_ColumnPropNameInTable="IdentificationStringColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Brief" msprop:Generator_UserColumnName="Brief" msprop:Generator_ColumnPropNameInRow="Brief" msprop:Generator_ColumnVarNameInTable="columnBrief" msprop:Generator_ColumnPropNameInTable="BriefColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

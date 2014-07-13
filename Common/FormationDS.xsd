@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="FormationDS" targetNamespace="http://tempuri.org/FormationDS.xsd" xmlns:mstns="http://tempuri.org/FormationDS.xsd" xmlns="http://tempuri.org/FormationDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="FormationDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="FormationDS" msprop:Generator_DataSetName="FormationDS">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Player" msprop:Generator_UserTableName="Player" msprop:Generator_RowDeletedName="PlayerRowDeleted" msprop:Generator_RowChangedName="PlayerRowChanged" msprop:Generator_RowClassName="PlayerRow" msprop:Generator_RowChangingName="PlayerRowChanging" msprop:Generator_RowEvArgName="PlayerRowChangeEvent" msprop:Generator_RowEvHandlerName="PlayerRowChangeEventHandler" msprop:Generator_TableClassName="PlayerDataTable" msprop:Generator_TableVarName="tablePlayer" msprop:Generator_RowDeletingName="PlayerRowDeleting" msprop:Generator_TablePropName="Player">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PlayerID" msprop:Generator_UserColumnName="PlayerID" msprop:Generator_ColumnPropNameInRow="PlayerID" msprop:Generator_ColumnVarNameInTable="columnPlayerID" msprop:Generator_ColumnPropNameInTable="PlayerIDColumn" type="xs:int" />
+              <xs:element name="visible" msprop:Generator_UserColumnName="visible" msprop:Generator_ColumnPropNameInRow="visible" msprop:Generator_ColumnVarNameInTable="columnvisible" msprop:Generator_ColumnPropNameInTable="visibleColumn" type="xs:boolean" minOccurs="0" />
+              <xs:element name="Name" msprop:Generator_UserColumnName="Name" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInTable="NameColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="PF" msprop:Generator_UserColumnName="PF" msprop:Generator_ColumnPropNameInRow="PF" msprop:Generator_ColumnVarNameInTable="columnPF" msprop:Generator_ColumnPropNameInTable="PFColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Skills" msprop:Generator_UserColumnName="Skills" msprop:Generator_ColumnPropNameInRow="Skills" msprop:Generator_ColumnVarNameInTable="columnSkills" msprop:Generator_ColumnPropNameInTable="SkillsColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="No" msprop:Generator_UserColumnName="No" msprop:Generator_ColumnPropNameInRow="No" msprop:Generator_ColumnVarNameInTable="columnNo" msprop:Generator_ColumnPropNameInTable="NoColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Vote" msprop:Generator_UserColumnName="Vote" msprop:Generator_ColumnPropNameInRow="Vote" msprop:Generator_ColumnVarNameInTable="columnVote" msprop:Generator_ColumnPropNameInTable="VoteColumn" type="xs:float" minOccurs="0" />
+              <xs:element name="Value" msprop:Generator_UserColumnName="Value" msprop:Generator_ColumnPropNameInRow="Value" msprop:Generator_ColumnVarNameInTable="columnValue" msprop:Generator_ColumnPropNameInTable="ValueColumn" type="xs:float" minOccurs="0" />
+              <xs:element name="Card" msprop:Generator_UserColumnName="Card" msprop:Generator_ColumnPropNameInRow="Card" msprop:Generator_ColumnVarNameInTable="columnCard" msprop:Generator_ColumnPropNameInTable="CardColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Tip" msprop:Generator_UserColumnName="Tip" msprop:Generator_ColumnPropNameInRow="Tip" msprop:Generator_ColumnVarNameInTable="columnTip" msprop:Generator_ColumnPropNameInTable="TipColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="ShirtColor" msprop:Generator_UserColumnName="ShirtColor" msprop:Generator_ColumnPropNameInRow="ShirtColor" msprop:Generator_ColumnVarNameInTable="columnShirtColor" msprop:Generator_ColumnPropNameInTable="ShirtColorColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="BitPosition" msprop:Generator_UserColumnName="BitPosition" msprop:Generator_ColumnPropNameInRow="BitPosition" msprop:Generator_ColumnVarNameInTable="columnBitPosition" msprop:Generator_ColumnPropNameInTable="BitPositionColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="PosID" msprop:Generator_UserColumnName="PosID" msprop:Generator_ColumnPropNameInRow="PosID" msprop:Generator_ColumnVarNameInTable="columnPosID" msprop:Generator_ColumnPropNameInTable="PosIDColumn" type="xs:int" />
+              <xs:element name="formID" msprop:Generator_UserColumnName="formID" msprop:Generator_ColumnVarNameInTable="columnformID" msprop:Generator_ColumnPropNameInRow="formID" msprop:Generator_ColumnPropNameInTable="formIDColumn" type="xs:int" />
+              <xs:element name="sSkills" msprop:Generator_UserColumnName="sSkills" msprop:Generator_ColumnPropNameInRow="sSkills" msprop:Generator_ColumnVarNameInTable="columnsSkills" msprop:Generator_ColumnPropNameInTable="sSkillsColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Formation" msprop:Generator_UserTableName="Formation" msprop:Generator_RowDeletedName="FormationRowDeleted" msprop:Generator_RowChangedName="FormationRowChanged" msprop:Generator_RowClassName="FormationRow" msprop:Generator_RowChangingName="FormationRowChanging" msprop:Generator_RowEvArgName="FormationRowChangeEvent" msprop:Generator_RowEvHandlerName="FormationRowChangeEventHandler" msprop:Generator_TableClassName="FormationDataTable" msprop:Generator_TableVarName="tableFormation" msprop:Generator_RowDeletingName="FormationRowDeleting" msprop:Generator_TablePropName="Formation">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SelectedForm" msprop:Generator_UserColumnName="SelectedForm" msprop:Generator_ColumnVarNameInTable="columnSelectedForm" msprop:Generator_ColumnPropNameInRow="SelectedForm" msprop:Generator_ColumnPropNameInTable="SelectedFormColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Player" />
+      <xs:field xpath="mstns:PosID" />
+      <xs:field xpath="mstns:formID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ReportAnalysis" targetNamespace="http://tempuri.org/ReportAnalysis.xsd" xmlns:mstns="http://tempuri.org/ReportAnalysis.xsd" xmlns="http://tempuri.org/ReportAnalysis.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+        </Connections>
+        <Tables>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ReportAnalysis" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="ReportAnalysis" msprop:Generator_DataSetName="ReportAnalysis">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Tactics" msprop:Generator_UserTableName="Tactics" msprop:Generator_RowDeletedName="TacticsRowDeleted" msprop:Generator_RowChangedName="TacticsRowChanged" msprop:Generator_RowClassName="TacticsRow" msprop:Generator_RowChangingName="TacticsRowChanging" msprop:Generator_RowEvArgName="TacticsRowChangeEvent" msprop:Generator_RowEvHandlerName="TacticsRowChangeEventHandler" msprop:Generator_TableClassName="TacticsDataTable" msprop:Generator_TableVarName="tableTactics" msprop:Generator_RowDeletingName="TacticsRowDeleting" msprop:Generator_TablePropName="Tactics">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Vote" msprop:Generator_UserColumnName="Vote" msprop:Generator_ColumnPropNameInRow="Vote" msprop:Generator_ColumnVarNameInTable="columnVote" msprop:Generator_ColumnPropNameInTable="VoteColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Review" msprop:Generator_UserColumnName="Review" msprop:Generator_ColumnPropNameInRow="Review" msprop:Generator_ColumnVarNameInTable="columnReview" msprop:Generator_ColumnPropNameInTable="ReviewColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Leadership" msprop:Generator_UserTableName="Leadership" msprop:Generator_RowDeletedName="LeadershipRowDeleted" msprop:Generator_RowChangedName="LeadershipRowChanged" msprop:Generator_RowClassName="LeadershipRow" msprop:Generator_RowChangingName="LeadershipRowChanging" msprop:Generator_RowEvArgName="LeadershipRowChangeEvent" msprop:Generator_RowEvHandlerName="LeadershipRowChangeEventHandler" msprop:Generator_TableClassName="LeadershipDataTable" msprop:Generator_TableVarName="tableLeadership" msprop:Generator_RowDeletingName="LeadershipRowDeleting" msprop:Generator_TablePropName="Leadership">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Vote" msprop:Generator_UserColumnName="Vote" msprop:Generator_ColumnPropNameInRow="Vote" msprop:Generator_ColumnVarNameInTable="columnVote" msprop:Generator_ColumnPropNameInTable="VoteColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Review" msprop:Generator_UserColumnName="Review" msprop:Generator_ColumnPropNameInRow="Review" msprop:Generator_ColumnVarNameInTable="columnReview" msprop:Generator_ColumnPropNameInTable="ReviewColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Stamina" msprop:Generator_UserTableName="Stamina" msprop:Generator_RowDeletedName="StaminaRowDeleted" msprop:Generator_RowChangedName="StaminaRowChanged" msprop:Generator_RowClassName="StaminaRow" msprop:Generator_RowChangingName="StaminaRowChanging" msprop:Generator_RowEvArgName="StaminaRowChangeEvent" msprop:Generator_RowEvHandlerName="StaminaRowChangeEventHandler" msprop:Generator_TableClassName="StaminaDataTable" msprop:Generator_TableVarName="tableStamina" msprop:Generator_RowDeletingName="StaminaRowDeleting" msprop:Generator_TablePropName="Stamina">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Vote" msprop:Generator_UserColumnName="Vote" msprop:Generator_ColumnPropNameInRow="Vote" msprop:Generator_ColumnVarNameInTable="columnVote" msprop:Generator_ColumnPropNameInTable="VoteColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Review" msprop:Generator_UserColumnName="Review" msprop:Generator_ColumnPropNameInRow="Review" msprop:Generator_ColumnVarNameInTable="columnReview" msprop:Generator_ColumnPropNameInTable="ReviewColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Blooming" msprop:Generator_UserTableName="Blooming" msprop:Generator_RowDeletedName="BloomingRowDeleted" msprop:Generator_RowChangedName="BloomingRowChanged" msprop:Generator_RowClassName="BloomingRow" msprop:Generator_RowChangingName="BloomingRowChanging" msprop:Generator_RowEvArgName="BloomingRowChangeEvent" msprop:Generator_RowEvHandlerName="BloomingRowChangeEventHandler" msprop:Generator_TableClassName="BloomingDataTable" msprop:Generator_TableVarName="tableBlooming" msprop:Generator_RowDeletingName="BloomingRowDeleting" msprop:Generator_TablePropName="Blooming">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Vote" msprop:Generator_UserColumnName="Vote" msprop:Generator_ColumnPropNameInRow="Vote" msprop:Generator_ColumnVarNameInTable="columnVote" msprop:Generator_ColumnPropNameInTable="VoteColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Review" msprop:Generator_UserColumnName="Review" msprop:Generator_ColumnPropNameInRow="Review" msprop:Generator_ColumnVarNameInTable="columnReview" msprop:Generator_ColumnPropNameInTable="ReviewColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Aggressivity" msprop:Generator_UserTableName="Aggressivity" msprop:Generator_RowDeletedName="AggressivityRowDeleted" msprop:Generator_RowChangedName="AggressivityRowChanged" msprop:Generator_RowClassName="AggressivityRow" msprop:Generator_RowChangingName="AggressivityRowChanging" msprop:Generator_RowEvArgName="AggressivityRowChangeEvent" msprop:Generator_RowEvHandlerName="AggressivityRowChangeEventHandler" msprop:Generator_TableClassName="AggressivityDataTable" msprop:Generator_TableVarName="tableAggressivity" msprop:Generator_RowDeletingName="AggressivityRowDeleting" msprop:Generator_TablePropName="Aggressivity">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Vote" msprop:Generator_UserColumnName="Vote" msprop:Generator_ColumnPropNameInRow="Vote" msprop:Generator_ColumnVarNameInTable="columnVote" msprop:Generator_ColumnPropNameInTable="VoteColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Review" msprop:Generator_UserColumnName="Review" msprop:Generator_ColumnPropNameInRow="Review" msprop:Generator_ColumnVarNameInTable="columnReview" msprop:Generator_ColumnPropNameInTable="ReviewColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Physique" msprop:Generator_UserTableName="Physique" msprop:Generator_RowDeletedName="PhysiqueRowDeleted" msprop:Generator_RowChangedName="PhysiqueRowChanged" msprop:Generator_RowClassName="PhysiqueRow" msprop:Generator_RowChangingName="PhysiqueRowChanging" msprop:Generator_RowEvArgName="PhysiqueRowChangeEvent" msprop:Generator_RowEvHandlerName="PhysiqueRowChangeEventHandler" msprop:Generator_TableClassName="PhysiqueDataTable" msprop:Generator_TableVarName="tablePhysique" msprop:Generator_RowDeletingName="PhysiqueRowDeleting" msprop:Generator_TablePropName="Physique">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Vote" msprop:Generator_UserColumnName="Vote" msprop:Generator_ColumnPropNameInRow="Vote" msprop:Generator_ColumnVarNameInTable="columnVote" msprop:Generator_ColumnPropNameInTable="VoteColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Review" msprop:Generator_UserColumnName="Review" msprop:Generator_ColumnPropNameInRow="Review" msprop:Generator_ColumnVarNameInTable="columnReview" msprop:Generator_ColumnPropNameInTable="ReviewColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Professionality" msprop:Generator_UserTableName="Professionality" msprop:Generator_RowDeletedName="ProfessionalityRowDeleted" msprop:Generator_RowChangedName="ProfessionalityRowChanged" msprop:Generator_RowClassName="ProfessionalityRow" msprop:Generator_RowChangingName="ProfessionalityRowChanging" msprop:Generator_RowEvArgName="ProfessionalityRowChangeEvent" msprop:Generator_RowEvHandlerName="ProfessionalityRowChangeEventHandler" msprop:Generator_TableClassName="ProfessionalityDataTable" msprop:Generator_TableVarName="tableProfessionality" msprop:Generator_RowDeletingName="ProfessionalityRowDeleting" msprop:Generator_TablePropName="Professionality">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Vote" msprop:Generator_UserColumnName="Vote" msprop:Generator_ColumnVarNameInTable="columnVote" msprop:Generator_ColumnPropNameInRow="Vote" msprop:Generator_ColumnPropNameInTable="VoteColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Review" msprop:Generator_UserColumnName="Review" msprop:Generator_ColumnVarNameInTable="columnReview" msprop:Generator_ColumnPropNameInRow="Review" msprop:Generator_ColumnPropNameInTable="ReviewColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Ability" msprop:Generator_UserTableName="Ability" msprop:Generator_RowDeletedName="AbilityRowDeleted" msprop:Generator_RowChangedName="AbilityRowChanged" msprop:Generator_RowClassName="AbilityRow" msprop:Generator_RowChangingName="AbilityRowChanging" msprop:Generator_RowEvArgName="AbilityRowChangeEvent" msprop:Generator_RowEvHandlerName="AbilityRowChangeEventHandler" msprop:Generator_TableClassName="AbilityDataTable" msprop:Generator_TableVarName="tableAbility" msprop:Generator_RowDeletingName="AbilityRowDeleting" msprop:Generator_TablePropName="Ability">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Vote" msprop:Generator_UserColumnName="Vote" msprop:Generator_ColumnVarNameInTable="columnVote" msprop:Generator_ColumnPropNameInRow="Vote" msprop:Generator_ColumnPropNameInTable="VoteColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Review" msprop:Generator_UserColumnName="Review" msprop:Generator_ColumnVarNameInTable="columnReview" msprop:Generator_ColumnPropNameInRow="Review" msprop:Generator_ColumnPropNameInTable="ReviewColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Technics" msprop:Generator_UserTableName="Technics" msprop:Generator_RowDeletedName="TechnicsRowDeleted" msprop:Generator_TableClassName="TechnicsDataTable" msprop:Generator_RowChangedName="TechnicsRowChanged" msprop:Generator_RowClassName="TechnicsRow" msprop:Generator_RowChangingName="TechnicsRowChanging" msprop:Generator_RowEvArgName="TechnicsRowChangeEvent" msprop:Generator_RowEvHandlerName="TechnicsRowChangeEventHandler" msprop:Generator_TablePropName="Technics" msprop:Generator_TableVarName="tableTechnics" msprop:Generator_RowDeletingName="TechnicsRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Vote" msprop:Generator_UserColumnName="Vote" msprop:Generator_ColumnPropNameInRow="Vote" msprop:Generator_ColumnVarNameInTable="columnVote" msprop:Generator_ColumnPropNameInTable="VoteColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Review" msprop:Generator_UserColumnName="Review" msprop:Generator_ColumnPropNameInRow="Review" msprop:Generator_ColumnVarNameInTable="columnReview" msprop:Generator_ColumnPropNameInTable="ReviewColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="TacticsKey1">
+      <xs:selector xpath=".//mstns:Tactics" />
+      <xs:field xpath="mstns:Vote" />
+    </xs:unique>
+    <xs:unique name="LeadershipKey1">
+      <xs:selector xpath=".//mstns:Leadership" />
+      <xs:field xpath="mstns:Vote" />
+    </xs:unique>
+    <xs:unique name="StaminaKey1">
+      <xs:selector xpath=".//mstns:Stamina" />
+      <xs:field xpath="mstns:Vote" />
+    </xs:unique>
+    <xs:unique name="BloomingKey1">
+      <xs:selector xpath=".//mstns:Blooming" />
+      <xs:field xpath="mstns:Vote" />
+    </xs:unique>
+    <xs:unique name="AggressivityKey1">
+      <xs:selector xpath=".//mstns:Aggressivity" />
+      <xs:field xpath="mstns:Vote" />
+    </xs:unique>
+    <xs:unique name="PhysiqueKey1">
+      <xs:selector xpath=".//mstns:Physique" />
+      <xs:field xpath="mstns:Vote" />
+    </xs:unique>
+    <xs:unique name="ProfessionalityKey1">
+      <xs:selector xpath=".//mstns:Professionality" />
+      <xs:field xpath="mstns:Vote" />
+    </xs:unique>
+    <xs:unique name="Ability_BloomingKey1" msdata:ConstraintName="BloomingKey1">
+      <xs:selector xpath=".//mstns:Ability" />
+      <xs:field xpath="mstns:Vote" />
+    </xs:unique>
+    <xs:unique name="Technics_TacticsKey1" msdata:ConstraintName="TacticsKey1">
+      <xs:selector xpath=".//mstns:Technics" />
+      <xs:field xpath="mstns:Vote" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

@@ -553,7 +553,7 @@ namespace TMRecorder
             TeamHistory History = new TeamHistory();
 
             History.PlayersDS = new ExtraDS();
-            History.PlayersDS.ReadXml(@"C:\Temp\Players.xml");
+            History.PlayersDS.ReadXml(@"C:\Temp\PlayersDS.xml");
 
             DB_TrophyDataSet2 tds = new DB_TrophyDataSet2();
             tds.ReadXml(@"C:\Temp\TDS.xml");

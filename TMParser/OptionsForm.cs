@@ -185,6 +185,13 @@ namespace TMRecorder
                 FileInfo fiSelected = new FileInfo(value);
                 diReportFile = new DirectoryInfo(fiSelected.DirectoryName);
 
+                if (!diReportFile.Exists)
+                {
+                    MessageBox.Show("Error accessing the folder " + fiSelected.DirectoryName + ". I suggest you to reinstall the application");
+                    value = "NoReportParsingFile";
+                    return;
+                }
+
                 lbReportFileLanguage.Items.Clear();
 
                 FileInfo[] fis = diReportFile.GetFiles("ReportParsingFile.*.txt");

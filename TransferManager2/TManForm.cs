@@ -89,6 +89,17 @@ namespace TransferManager
                 Program.Setts.GainDSfilename = teamDS.GD.GainDSfilename;
                 Program.Setts.Save();
             }
+            else
+            {
+                DirectoryInfo di = new DirectoryInfo(Program.Setts.DatafilePath);
+
+                FileInfo fi = new FileInfo(Path.Combine(di.FullName, "Default.tmgain.xml"));
+                if (fi.Exists)
+                {
+                    Program.Setts.GainDSfilename = fi.FullName;
+                    Program.Setts.Save();
+                }
+            }
 
             teamDS.GD.NormalizeGains = Program.Setts.NormalizeGains;
         }

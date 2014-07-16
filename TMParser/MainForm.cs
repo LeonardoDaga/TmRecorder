@@ -922,7 +922,7 @@ namespace TMRecorder
 
                 if (Program.Setts.ReportParsingFile != of.ReportParsingFile)
                 {
-                    History.reportParser = new ReportParser(Program.Setts.ReportParsingFile);
+                    History.reportParser = new ReportParser(of.ReportParsingFile);
                     Program.Setts.ReportParsingFile = of.ReportParsingFile;
                 }
 
@@ -1030,6 +1030,17 @@ namespace TMRecorder
             {
                 Program.Setts.GainSet = History.GD.GainDSfilename;
                 Program.Setts.Save();
+            }
+            else
+            {
+                DirectoryInfo di = new DirectoryInfo(Program.Setts.DatafilePath);
+
+                FileInfo fi = new FileInfo(Path.Combine(di.FullName, "Default.tmgain.xml"));
+                if (fi.Exists)
+                {
+                    Program.Setts.GainSet = fi.FullName;
+                    Program.Setts.Save();
+                }
             }
         }
 

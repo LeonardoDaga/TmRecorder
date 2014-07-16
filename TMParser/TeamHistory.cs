@@ -6,13 +6,13 @@ using System.Windows.Forms;
 using TMRecorder.Properties;
 using System.Globalization;
 using Common;
-using SendFileTo;
+using SendFileTo;   
 using Languages;
 using System.Diagnostics;
 using NTR_Common;
 
 namespace TMRecorder
-{
+{ 
     public class TDSComparer : IComparer<ExtTMDataSet>
     {
         public int Compare(ExtTMDataSet x, ExtTMDataSet y)
@@ -2035,44 +2035,46 @@ namespace TMRecorder
             }
             else
             {
-                if (false) // (MessageBox.Show(Current.Language.SelectAGainSetReplyYesOrUseADefaultSetReplyNo,
-                    // Current.Language.TMRecorderLoadGainSet, MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    OpenFileDialog ofd = new OpenFileDialog();
-                    ofd.FileName = GD.GainDSfilename;
-                    ofd.Filter = "TMGain File (*.tmgain;*.tmgain.xml)|*.tmgain;*.tmgain.xml|All Files|*.*";
-                    ofd.DefaultExt = "*.tmgain*";
+                return false;
 
-                    if (ofd.ShowDialog() == DialogResult.OK)
-                    {
-                        GD.GainDSfilename = ofd.FileName;
-                        return LoadGains(GD.GainDSfilename);
-                    }
-                    else
-                    {
-                        GD.SetDefaultValues();
-                        return false;
-                    }
-                }
-                else
-                {
-                    GD.SetDefaultValues();
+                //if (false) // (MessageBox.Show(Current.Language.SelectAGainSetReplyYesOrUseADefaultSetReplyNo,
+                //    // Current.Language.TMRecorderLoadGainSet, MessageBoxButtons.YesNo) == DialogResult.Yes)
+                //{
+                //    OpenFileDialog ofd = new OpenFileDialog();
+                //    ofd.FileName = GD.GainDSfilename;
+                //    ofd.Filter = "TMGain File (*.tmgain;*.tmgain.xml)|*.tmgain;*.tmgain.xml|All Files|*.*";
+                //    ofd.DefaultExt = "*.tmgain*";
 
-                    SaveFileDialog ofd = new SaveFileDialog();
-                    ofd.FileName = "Default.tmgain";
-                    ofd.Filter = "TMGain File (*.tmgain;*.tmgain.xml)|*.tmgain;*.tmgain.xml|All Files|*.*";
-                    ofd.DefaultExt = "*.tmgain*"; 
-                    ofd.Title = Current.Language.SelectTheLocationWhereToSaveTheGainFile;
+                //    if (ofd.ShowDialog() == DialogResult.OK)
+                //    {
+                //        GD.GainDSfilename = ofd.FileName;
+                //        return LoadGains(GD.GainDSfilename);
+                //    }
+                //    else
+                //    {
+                //        GD.SetDefaultValues();
+                //        return false;
+                //    }
+                //}
+                //else
+                //{
+                //    GD.SetDefaultValues();
 
-                    if (ofd.ShowDialog() == DialogResult.OK)
-                    {
-                        GD.GainDSfilename = ofd.FileName;
-                        GD.WriteXml(GD.GainDSfilename);
-                        return true;
-                    }
+                //    SaveFileDialog ofd = new SaveFileDialog();
+                //    ofd.FileName = "Default.tmgain";
+                //    ofd.Filter = "TMGain File (*.tmgain;*.tmgain.xml)|*.tmgain;*.tmgain.xml|All Files|*.*";
+                //    ofd.DefaultExt = "*.tmgain*"; 
+                //    ofd.Title = Current.Language.SelectTheLocationWhereToSaveTheGainFile;
 
-                    return false;
-                }
+                //    if (ofd.ShowDialog() == DialogResult.OK)
+                //    {
+                //        GD.GainDSfilename = ofd.FileName;
+                //        GD.WriteXml(GD.GainDSfilename);
+                //        return true;
+                //    }
+
+                //    return false;
+                //}
             }
         }
 

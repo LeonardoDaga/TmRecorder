@@ -1333,7 +1333,11 @@ namespace TMRecorder
 
             row.Rec = int.Parse(data["rec"]);
             row.Squalificato = int.Parse(data["ban_points"]);
-            row.Retire = int.Parse(data["retire"]);
+
+            if (data["retire"] == "")
+                row.Retire = 0;
+            else
+                row.Retire = int.Parse(data["retire"]);
 
             if (data["inj"] != "null")
                 row.Infortunato = int.Parse(data["inj"]);

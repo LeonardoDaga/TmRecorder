@@ -113,54 +113,67 @@ namespace NTR_Common
             if (fi.Exists)
             {
                 GD.Clear();
-                GD.ReadXml(gainSetName);
+
+                try
+                {
+                    GD.ReadXml(gainSetName);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("The read of the Gain set has generated an error. The default gainset has been selected.\n Please change the gain set using the Options panel");
+                    GD.SetDefaultValues();
+                    return false;
+                }
+
                 GD.GainDSfilename = gainSetName;
                 return true;
             }
             else
             {
-                if (MessageBox.Show("Select a Gain Set (Reply Yes) or use a default set (Reply No)?" +
-                    "\n(A Gain set is an xml file that is used to weigth the skill of a player to evaluate his " +
-                    "\nperformance in the different position of the match field. You can use the default set" +
-                    "\nnow - you can change it once the tool is started. The default extension of a gain set file is 'tmgain'" +
-                    "\nand you can download it from the website http://tmrecorder.insyde.it/",
-                    "TM Recorder - Load Gain Set", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    OpenFileDialog ofd = new OpenFileDialog();
-                    ofd.FileName = gainSetName;
-                    ofd.Filter = "TMGain File (*.tmgain;*.tmgain.xml)|*.tmgain;*.tmgain.xml|All Files|*.*";
-                    ofd.DefaultExt = "*.tmgain*";
+                return false;
 
-                    if (ofd.ShowDialog() == DialogResult.OK)
-                    {
-                        GD.GainDSfilename = ofd.FileName;
-                        return LoadGains(GD.GainDSfilename);
-                    }
-                    else
-                    {
-                        GD.SetDefaultValues();
-                        return false;
-                    }
-                }
-                else
-                {
-                    GD.SetDefaultValues();
+                //if (MessageBox.Show("Select a Gain Set (Reply Yes) or use a default set (Reply No)?" +
+                //    "\n(A Gain set is an xml file that is used to weigth the skill of a player to evaluate his " +
+                //    "\nperformance in the different position of the match field. You can use the default set" +
+                //    "\nnow - you can change it once the tool is started. The default extension of a gain set file is 'tmgain'" +
+                //    "\nand you can download it from the website http://tmrecorder.insyde.it/",
+                //    "TM Recorder - Load Gain Set", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                //{
+                //    OpenFileDialog ofd = new OpenFileDialog();
+                //    ofd.FileName = gainSetName;
+                //    ofd.Filter = "TMGain File (*.tmgain;*.tmgain.xml)|*.tmgain;*.tmgain.xml|All Files|*.*";
+                //    ofd.DefaultExt = "*.tmgain*";
 
-                    SaveFileDialog ofd = new SaveFileDialog();
-                    ofd.FileName = "Default.tmgain";
-                    ofd.Filter = "TMGain File (*.tmgain;*.tmgain.xml)|*.tmgain;*.tmgain.xml|All Files|*.*";
-                    ofd.DefaultExt = "*.tmgain*";
-                    ofd.Title = "Select the location where to save the gain file";
+                //    if (ofd.ShowDialog() == DialogResult.OK)
+                //    {
+                //        GD.GainDSfilename = ofd.FileName;
+                //        return LoadGains(GD.GainDSfilename);
+                //    }
+                //    else
+                //    {
+                //        GD.SetDefaultValues();
+                //        return false;
+                //    }
+                //}
+                //else
+                //{
+                //    GD.SetDefaultValues();
 
-                    if (ofd.ShowDialog() == DialogResult.OK)
-                    {
-                        GD.GainDSfilename = ofd.FileName;
-                        GD.WriteXml(GD.GainDSfilename);
-                        return true;
-                    }
+                //    SaveFileDialog ofd = new SaveFileDialog();
+                //    ofd.FileName = "Default.tmgain";
+                //    ofd.Filter = "TMGain File (*.tmgain;*.tmgain.xml)|*.tmgain;*.tmgain.xml|All Files|*.*";
+                //    ofd.DefaultExt = "*.tmgain*";
+                //    ofd.Title = "Select the location where to save the gain file";
 
-                    return false;
-                }
+                //    if (ofd.ShowDialog() == DialogResult.OK)
+                //    {
+                //        GD.GainDSfilename = ofd.FileName;
+                //        GD.WriteXml(GD.GainDSfilename);
+                //        return true;
+                //    }
+
+                //    return false;
+                //}
             }
         }
         #endregion

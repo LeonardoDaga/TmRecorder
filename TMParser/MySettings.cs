@@ -197,6 +197,7 @@ namespace TMRecorder
             sb.Def("MainFormPosition", "0,0,0,0");
             sb.Def("GKFormPosition", "0,0,0,0");
             sb.Def("PlayerFormPosition", "0,0,0,0");
+            sb.Def("ComputeStructureSettings", "");
             sb.Def("TeamMatchesShowMatches", 0);
             sb.Def("MatchAnalysisFileSave", false);
             sb.Def("ExtraTeams", "");
@@ -249,6 +250,11 @@ namespace TMRecorder
         {
             get { return HTML_Parser.String2Dictionary((string)sb["ExtraTeams"]); }
             set { sb["ExtraTeams"] = HTML_Parser.Dictionary2String(value); }
+        }
+        public Dictionary<string, string> ComputeStructureSettings
+        {
+            get { return HTML_Parser.String2Dictionary((string)sb["ComputeStructureSettings"]); }
+            set { sb["ComputeStructureSettings"] = HTML_Parser.Dictionary2String(value); }
         }
         public bool MatchAnalysisFileSave
         {

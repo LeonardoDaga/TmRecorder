@@ -5011,5 +5011,14 @@ namespace TMRecorder
                 importWhenCompleted = true;
         }
 
+        private void structuresEconomyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ComputeStructures cs = new ComputeStructures();
+            cs.Settings = Program.Setts.ComputeStructureSettings;
+            cs.ShowDialog();
+            Program.Setts.ComputeStructureSettings = cs.Settings;
+            Program.Setts.Save();
+        }
+
     }
 }

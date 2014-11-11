@@ -1,0 +1,88 @@
+<?xml version="1.0" standalone="yes"?>
+<MatchAnalysis xmlns="http://tempuri.org/MatchAnalysis.xsd">
+  <MatchMentality>
+    <Id>0</Id>
+    <IdentificationString>estremamente difensivo</IdentificationString>
+    <Brief>ED</Brief>
+  </MatchMentality>
+  <MatchMentality>
+    <Id>1</Id>
+    <IdentificationString>molto difensivo</IdentificationString>
+    <Brief>VD</Brief>
+  </MatchMentality>
+  <MatchMentality>
+    <Id>2</Id>
+    <IdentificationString>Ha mantenuto un atteggiamento chiaramente difensivo</IdentificationString>
+    <Brief>DD</Brief>
+  </MatchMentality>
+  <MatchMentality>
+    <Id>3</Id>
+    <IdentificationString>Ha optato per una posizione in campo abbastanza arretrata</IdentificationString>
+    <Brief>SD</Brief>
+  </MatchMentality>
+  <MatchMentality>
+    <Id>4</Id>
+    <IdentificationString>Ha deciso di mantenere in campo una posizione leggermente più difensiva</IdentificationString>
+    <Brief>LD</Brief>
+  </MatchMentality>
+  <MatchMentality>
+    <Id>5</Id>
+    <IdentificationString>atteggiamento molto bilanciato</IdentificationString>
+    <Brief>NN</Brief>
+  </MatchMentality>
+  <MatchMentality>
+    <Id>6</Id>
+    <IdentificationString>mantenere in campo una posizione leggermente più offensiva</IdentificationString>
+    <Brief>LA</Brief>
+  </MatchMentality>
+  <MatchMentality>
+    <Id>7</Id>
+    <IdentificationString>optato per una posizione in campo abbastanza avanzata</IdentificationString>
+    <Brief>SA</Brief>
+  </MatchMentality>
+  <MatchMentality>
+    <Id>8</Id>
+    <IdentificationString>Ha mantenuto un atteggiamento chiaramente offensivo</IdentificationString>
+    <Brief>BA</Brief>
+  </MatchMentality>
+  <MatchMentality>
+    <Id>9</Id>
+    <IdentificationString>adottato una tattica molto offensiva</IdentificationString>
+    <Brief>VA</Brief>
+  </MatchMentality>
+  <MatchMentality>
+    <Id>10</Id>
+    <IdentificationString>Ha affrontato la partita portando tutti i giocatori in attacco</IdentificationString>
+    <Brief>AA</Brief>
+  </MatchMentality>
+  <MatchAttackingStyle>
+    <Id>1</Id>
+    <IdentificationString>cercando di sfruttare tutte le differenti vie per il goal</IdentificationString>
+    <Brief>B</Brief>
+  </MatchAttackingStyle>
+  <MatchAttackingStyle>
+    <Id>2</Id>
+    <IdentificationString>rapidi scambi di prima intenzione</IdentificationString>
+    <Brief>D</Brief>
+  </MatchAttackingStyle>
+  <MatchAttackingStyle>
+    <Id>3</Id>
+    <IdentificationString>concentrare gli attacchi sulle fasce laterali</IdentificationString>
+    <Brief>W</Brief>
+  </MatchAttackingStyle>
+  <MatchAttackingStyle>
+    <Id>4</Id>
+    <IdentificationString>gioco basato su passaggi corti</IdentificationString>
+    <Brief>S</Brief>
+  </MatchAttackingStyle>
+  <MatchAttackingStyle>
+    <Id>5</Id>
+    <IdentificationString>palle lunghe</IdentificationString>
+    <Brief>L</Brief>
+  </MatchAttackingStyle>
+  <MatchAttackingStyle>
+    <Id>6</Id>
+    <IdentificationString>cercando di creare occasioni con palloni filtranti</IdentificationString>
+    <Brief>T</Brief>
+  </MatchAttackingStyle>
+</MatchAnalysis>

@@ -40,10 +40,6 @@ namespace TMRecorder
 
             UpdateTables();
 
-            bool showCstr = CheckLicense("LoadData", false);
-            dgGiocatori.Columns["CStr"].Visible = showCstr;
-            dgPortieri.Columns["CStrGK"].Visible = showCstr;
-
             tsBrowsePlayers.Visible = false;
         }
 
@@ -626,7 +622,12 @@ namespace TMRecorder
                 }
                 return;
             }
-            int perc = (int)((e.CurrentProgress * 100) / e.MaximumProgress);
+            
+            int perc = 0;
+            if (e.MaximumProgress == 0)
+                perc = 0;
+            else
+                perc = (int)((e.CurrentProgress * 100) / e.MaximumProgress);
 
             if (perc < 0) perc = 0;
             if (perc > 100) perc = 100;

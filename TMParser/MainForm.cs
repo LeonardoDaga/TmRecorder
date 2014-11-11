@@ -17,6 +17,7 @@ using NTR_Common;
 
 using System.Reflection;
 using mshtml;
+using System.Threading;
 
 namespace TMRecorder
 {
@@ -3208,6 +3209,7 @@ namespace TMRecorder
             if (importWhenCompleted)
             {
                 importWhenCompleted = false;
+                Thread.Sleep(1000);
                 tsbImport_Click(null, EventArgs.Empty);
             }
         }
@@ -3488,20 +3490,45 @@ namespace TMRecorder
                 return;
             }
 
+            //if (doctext.Contains("Unable to get property 'lineup' of undefined or null reference"))
+            //{
+            //    string str = HTML_Parser.GetNumberAfter(startnavigationAddress, "matches/");
+            //    if (MessageBox.Show("Error importing the Match number " + str + ". Maybe this match is not available anymore. Tag this match as not available?\n" +
+            //        "Pressing OK, the match will not be scanned automatically anymore.",
+            //        "Import error", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            //    {
+                    
+            //        if (str != "-1")
+            //        {
+            //            int matchID = int.Parse(str);
+            //            ChampDS.MatchRow mr = champDS.Match.FindByMatchID(matchID);
+            //            if (mr == null)
+            //            {
+            //                MessageBox.Show("It seems that many errors occurs at the same time: please communicate the error id 29921 to led.lennon@gmail.com. Thanks.");
+            //                return;
+            //            }
+            //            mr.Report = true;
+            //        }
+            //        return;
+            //    }
+            //}
+
             if (doctext.StartsWith("Exception error") || doctext.StartsWith("GBC error") || doctext.Contains("Javascript error"))
             {
-                page = doctext;
+                return;
 
-                if (MessageBox.Show("There is an error importing the page.\n" +
-                    "Pressing OK, you send a report to Atletico Granata that will try to detect the reason of the error.",
-                    "Import error", MessageBoxButtons.OKCancel) == DialogResult.OK)
-                {
-                    string swRelease = "Sw Release:" + Application.ProductName + "("
-                       + Application.ProductVersion + ")";
-                    page = "Navigation Address: " + startnavigationAddress + "\n" + page;
-                    Exception ex = new Exception("Navigation error");
-                    SendFileTo.ErrorReport.Send(ex, page, Environment.StackTrace, swRelease);
-                }
+                //page = doctext;
+
+                //if (MessageBox.Show("There is an error importing the page.\n" +
+                //    "Pressing OK, you send a report to Atletico Granata that will try to detect the reason of the error.",
+                //    "Import error", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                //{
+                //    string swRelease = "Sw Release:" + Application.ProductName + "("
+                //       + Application.ProductVersion + ")";
+                //    page = "Navigation Address: " + startnavigationAddress + "\n" + page;
+                //    Exception ex = new Exception("Navigation error");
+                //    SendFileTo.ErrorReport.Send(ex, page, Environment.StackTrace, swRelease);
+                //}
             }
 
             page = startnavigationAddress + "\n" + doctext;
@@ -4807,8 +4834,8 @@ namespace TMRecorder
             navigationAddress = "http://trophymanager.com/matches/" + matchToUpdate.ToString() + "/";
             webBrowser.Navigate(navigationAddress);
             startnavigationAddress = navigationAddress;
-            if (tsbMatchSquadA.UnderColor != Color.DarkGreen)
-                importWhenCompleted = true;
+            //if (tsbMatchSquadA.UnderColor != Color.DarkGreen)
+            //    importWhenCompleted = true;
         }
 
         private void tsbMatchSquadB_Click(object sender, EventArgs e)
@@ -4823,8 +4850,8 @@ namespace TMRecorder
             navigationAddress = "http://trophymanager.com/matches/" + matchToUpdate.ToString() + "/";
             webBrowser.Navigate(navigationAddress);
             startnavigationAddress = navigationAddress;
-            if (tsbMatchSquadB.UnderColor != Color.DarkGreen)
-                importWhenCompleted = true;
+            //if (tsbMatchSquadB.UnderColor != Color.DarkGreen)
+            //    importWhenCompleted = true;
         }
 
         private void tsbMatchListA_Click(object sender, EventArgs e)

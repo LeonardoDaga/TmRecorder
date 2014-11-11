@@ -30,149 +30,149 @@ namespace TMRecorder
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle141 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle176 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle142 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle143 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle144 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle145 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle146 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle147 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle148 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle149 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle150 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle151 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle152 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle153 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle154 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle155 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle156 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle157 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle158 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle159 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle160 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle161 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle162 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle163 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle164 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle165 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle166 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle167 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle168 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle169 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle170 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle171 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle172 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle173 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle174 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle175 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle210 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle177 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle178 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle179 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle180 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle181 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle182 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle183 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle184 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle185 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle186 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle187 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle188 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle189 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle190 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle191 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle192 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle193 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle194 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle195 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle196 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle197 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle198 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle199 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle200 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle201 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle202 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle203 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle204 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle205 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle206 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle207 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle208 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle209 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle226 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle72 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle211 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle212 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle213 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle214 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle215 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle216 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle217 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle218 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle219 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle220 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle221 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle222 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle223 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle224 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle225 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle41 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle42 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle43 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle44 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle45 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle46 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle47 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle48 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle49 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle50 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle51 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle52 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle53 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle54 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle55 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle56 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle57 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle58 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle59 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle60 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle61 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle62 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle63 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle64 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle65 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle66 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle67 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle68 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle69 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle70 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle71 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle73 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle237 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle90 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle227 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle228 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle229 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle230 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle231 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle232 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle233 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle234 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle235 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle236 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle74 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle75 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle76 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle77 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle78 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle79 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle80 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle81 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle82 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle83 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle84 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle85 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle86 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle87 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle88 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle89 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle91 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle242 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle103 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle238 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle239 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle240 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle241 = new System.Windows.Forms.DataGridViewCellStyle();
-            Common.Formation formation3 = new Common.Formation();
-            Common.Formation formation4 = new Common.Formation();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle92 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle93 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle94 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle95 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle96 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle97 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle98 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle99 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle100 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle101 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle102 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle104 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle110 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle243 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle244 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle245 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle246 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle247 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle248 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle249 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle250 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle251 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle252 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle253 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle254 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle255 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle256 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle257 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle258 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle259 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle260 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle261 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle262 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle263 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle264 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle265 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle266 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle267 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle268 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle269 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle270 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle105 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle106 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle107 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle108 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle109 = new System.Windows.Forms.DataGridViewCellStyle();
+            Common.Formation formation1 = new Common.Formation();
+            Common.Formation formation2 = new Common.Formation();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle111 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle112 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle113 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle114 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle115 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle116 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle117 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle118 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle119 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle120 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle121 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle122 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle123 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle124 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle125 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle126 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle127 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle128 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle129 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle130 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle131 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle132 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle133 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle134 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle135 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle136 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle137 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle138 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle139 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle140 = new System.Windows.Forms.DataGridViewCellStyle();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabATeamPage = new System.Windows.Forms.TabPage();
@@ -414,7 +414,6 @@ namespace TMRecorder
             this.panel4 = new System.Windows.Forms.Panel();
             this.oppsTeamLineup = new FieldFormationControl.LineupListItem();
             this.yourTeamLineup = new FieldFormationControl.LineupListItem();
-            this.matchStats = new TMRecorder.MatchStats();
             this.label4 = new System.Windows.Forms.Label();
             this.tabBrowser = new System.Windows.Forms.TabPage();
             this.toolStripContainer3 = new System.Windows.Forms.ToolStripContainer();
@@ -612,6 +611,7 @@ namespace TMRecorder
             this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
             this.toolStripContainer2 = new System.Windows.Forms.ToolStripContainer();
+            this.matchStats = new TMRecorder.MatchStats();
             this.tabControl1.SuspendLayout();
             this.tabATeamPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridGiocatori)).BeginInit();
@@ -720,14 +720,14 @@ namespace TMRecorder
             this.dataGridGiocatori.AllowUserToOrderColumns = true;
             this.dataGridGiocatori.AllowUserToResizeRows = false;
             this.dataGridGiocatori.AutoGenerateColumns = false;
-            dataGridViewCellStyle141.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle141.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle141.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle141.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle141.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle141.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle141.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridGiocatori.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle141;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridGiocatori.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridGiocatori.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridGiocatori.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn56,
@@ -771,14 +771,14 @@ namespace TMRecorder
             this.TI});
             this.dataGridGiocatori.ContextMenuStrip = this.contextMenuStrip1;
             this.dataGridGiocatori.DataSource = this.giocatoriNSkillBindingSourceB;
-            dataGridViewCellStyle176.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle176.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle176.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle176.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle176.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle176.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle176.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridGiocatori.DefaultCellStyle = dataGridViewCellStyle176;
+            dataGridViewCellStyle36.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle36.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle36.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle36.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle36.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle36.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle36.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridGiocatori.DefaultCellStyle = dataGridViewCellStyle36;
             this.dataGridGiocatori.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridGiocatori.Location = new System.Drawing.Point(3, 4);
             this.dataGridGiocatori.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -795,8 +795,8 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn56
             // 
             this.dataGridViewTextBoxColumn56.DataPropertyName = "PlayerID";
-            dataGridViewCellStyle142.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.dataGridViewTextBoxColumn56.DefaultCellStyle = dataGridViewCellStyle142;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.dataGridViewTextBoxColumn56.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewTextBoxColumn56.FillWeight = 30F;
             this.dataGridViewTextBoxColumn56.Frozen = true;
             this.dataGridViewTextBoxColumn56.HeaderText = "ID";
@@ -829,8 +829,8 @@ namespace TMRecorder
             // 
             this.dataGridViewTextBoxColumn59.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.dataGridViewTextBoxColumn59.DataPropertyName = "Nome";
-            dataGridViewCellStyle143.ForeColor = System.Drawing.Color.Black;
-            this.dataGridViewTextBoxColumn59.DefaultCellStyle = dataGridViewCellStyle143;
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            this.dataGridViewTextBoxColumn59.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewTextBoxColumn59.Frozen = true;
             this.dataGridViewTextBoxColumn59.HeaderText = "Name";
             this.dataGridViewTextBoxColumn59.Name = "dataGridViewTextBoxColumn59";
@@ -867,8 +867,8 @@ namespace TMRecorder
             // 
             this.dataGridViewTextBoxColumn61.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.dataGridViewTextBoxColumn61.DataPropertyName = "ASI";
-            dataGridViewCellStyle144.BackColor = System.Drawing.Color.White;
-            this.dataGridViewTextBoxColumn61.DefaultCellStyle = dataGridViewCellStyle144;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            this.dataGridViewTextBoxColumn61.DefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridViewTextBoxColumn61.Frozen = true;
             this.dataGridViewTextBoxColumn61.HeaderText = "ASI";
             this.dataGridViewTextBoxColumn61.Name = "dataGridViewTextBoxColumn61";
@@ -890,8 +890,8 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn63
             // 
             this.dataGridViewTextBoxColumn63.DataPropertyName = "For";
-            dataGridViewCellStyle145.BackColor = System.Drawing.Color.LightYellow;
-            this.dataGridViewTextBoxColumn63.DefaultCellStyle = dataGridViewCellStyle145;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridViewTextBoxColumn63.DefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridViewTextBoxColumn63.HeaderText = "Str";
             this.dataGridViewTextBoxColumn63.Name = "dataGridViewTextBoxColumn63";
             this.dataGridViewTextBoxColumn63.ReadOnly = true;
@@ -902,8 +902,8 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn64
             // 
             this.dataGridViewTextBoxColumn64.DataPropertyName = "Res";
-            dataGridViewCellStyle146.BackColor = System.Drawing.Color.LightYellow;
-            this.dataGridViewTextBoxColumn64.DefaultCellStyle = dataGridViewCellStyle146;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridViewTextBoxColumn64.DefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridViewTextBoxColumn64.HeaderText = "Sta";
             this.dataGridViewTextBoxColumn64.Name = "dataGridViewTextBoxColumn64";
             this.dataGridViewTextBoxColumn64.ReadOnly = true;
@@ -914,8 +914,8 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn65
             // 
             this.dataGridViewTextBoxColumn65.DataPropertyName = "Vel";
-            dataGridViewCellStyle147.BackColor = System.Drawing.Color.LightYellow;
-            this.dataGridViewTextBoxColumn65.DefaultCellStyle = dataGridViewCellStyle147;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridViewTextBoxColumn65.DefaultCellStyle = dataGridViewCellStyle7;
             this.dataGridViewTextBoxColumn65.HeaderText = "Pac";
             this.dataGridViewTextBoxColumn65.Name = "dataGridViewTextBoxColumn65";
             this.dataGridViewTextBoxColumn65.ReadOnly = true;
@@ -926,8 +926,8 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn66
             // 
             this.dataGridViewTextBoxColumn66.DataPropertyName = "Mar";
-            dataGridViewCellStyle148.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(255)))), ((int)(((byte)(224)))));
-            this.dataGridViewTextBoxColumn66.DefaultCellStyle = dataGridViewCellStyle148;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(255)))), ((int)(((byte)(224)))));
+            this.dataGridViewTextBoxColumn66.DefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridViewTextBoxColumn66.HeaderText = "Mar";
             this.dataGridViewTextBoxColumn66.Name = "dataGridViewTextBoxColumn66";
             this.dataGridViewTextBoxColumn66.ReadOnly = true;
@@ -938,8 +938,8 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn67
             // 
             this.dataGridViewTextBoxColumn67.DataPropertyName = "Con";
-            dataGridViewCellStyle149.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(255)))), ((int)(((byte)(224)))));
-            this.dataGridViewTextBoxColumn67.DefaultCellStyle = dataGridViewCellStyle149;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(255)))), ((int)(((byte)(224)))));
+            this.dataGridViewTextBoxColumn67.DefaultCellStyle = dataGridViewCellStyle9;
             this.dataGridViewTextBoxColumn67.HeaderText = "Tac";
             this.dataGridViewTextBoxColumn67.Name = "dataGridViewTextBoxColumn67";
             this.dataGridViewTextBoxColumn67.ReadOnly = true;
@@ -950,8 +950,8 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn68
             // 
             this.dataGridViewTextBoxColumn68.DataPropertyName = "Wor";
-            dataGridViewCellStyle150.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(255)))), ((int)(((byte)(224)))));
-            this.dataGridViewTextBoxColumn68.DefaultCellStyle = dataGridViewCellStyle150;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(255)))), ((int)(((byte)(224)))));
+            this.dataGridViewTextBoxColumn68.DefaultCellStyle = dataGridViewCellStyle10;
             this.dataGridViewTextBoxColumn68.HeaderText = "Wor";
             this.dataGridViewTextBoxColumn68.Name = "dataGridViewTextBoxColumn68";
             this.dataGridViewTextBoxColumn68.ReadOnly = true;
@@ -962,8 +962,8 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn69
             // 
             this.dataGridViewTextBoxColumn69.DataPropertyName = "Pos";
-            dataGridViewCellStyle151.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridViewTextBoxColumn69.DefaultCellStyle = dataGridViewCellStyle151;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridViewTextBoxColumn69.DefaultCellStyle = dataGridViewCellStyle11;
             this.dataGridViewTextBoxColumn69.HeaderText = "Pos";
             this.dataGridViewTextBoxColumn69.Name = "dataGridViewTextBoxColumn69";
             this.dataGridViewTextBoxColumn69.ReadOnly = true;
@@ -974,8 +974,8 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn70
             // 
             this.dataGridViewTextBoxColumn70.DataPropertyName = "Pas";
-            dataGridViewCellStyle152.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridViewTextBoxColumn70.DefaultCellStyle = dataGridViewCellStyle152;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridViewTextBoxColumn70.DefaultCellStyle = dataGridViewCellStyle12;
             this.dataGridViewTextBoxColumn70.HeaderText = "Pas";
             this.dataGridViewTextBoxColumn70.Name = "dataGridViewTextBoxColumn70";
             this.dataGridViewTextBoxColumn70.ReadOnly = true;
@@ -986,8 +986,8 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn71
             // 
             this.dataGridViewTextBoxColumn71.DataPropertyName = "Cro";
-            dataGridViewCellStyle153.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridViewTextBoxColumn71.DefaultCellStyle = dataGridViewCellStyle153;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridViewTextBoxColumn71.DefaultCellStyle = dataGridViewCellStyle13;
             this.dataGridViewTextBoxColumn71.HeaderText = "Cro";
             this.dataGridViewTextBoxColumn71.Name = "dataGridViewTextBoxColumn71";
             this.dataGridViewTextBoxColumn71.ReadOnly = true;
@@ -998,8 +998,8 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn72
             // 
             this.dataGridViewTextBoxColumn72.DataPropertyName = "Tec";
-            dataGridViewCellStyle154.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridViewTextBoxColumn72.DefaultCellStyle = dataGridViewCellStyle154;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridViewTextBoxColumn72.DefaultCellStyle = dataGridViewCellStyle14;
             this.dataGridViewTextBoxColumn72.HeaderText = "Tec";
             this.dataGridViewTextBoxColumn72.Name = "dataGridViewTextBoxColumn72";
             this.dataGridViewTextBoxColumn72.ReadOnly = true;
@@ -1010,9 +1010,9 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn73
             // 
             this.dataGridViewTextBoxColumn73.DataPropertyName = "Tes";
-            dataGridViewCellStyle155.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle155.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
-            this.dataGridViewTextBoxColumn73.DefaultCellStyle = dataGridViewCellStyle155;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
+            this.dataGridViewTextBoxColumn73.DefaultCellStyle = dataGridViewCellStyle15;
             this.dataGridViewTextBoxColumn73.HeaderText = "Hea";
             this.dataGridViewTextBoxColumn73.Name = "dataGridViewTextBoxColumn73";
             this.dataGridViewTextBoxColumn73.ReadOnly = true;
@@ -1023,8 +1023,8 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn74
             // 
             this.dataGridViewTextBoxColumn74.DataPropertyName = "Fin";
-            dataGridViewCellStyle156.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
-            this.dataGridViewTextBoxColumn74.DefaultCellStyle = dataGridViewCellStyle156;
+            dataGridViewCellStyle16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
+            this.dataGridViewTextBoxColumn74.DefaultCellStyle = dataGridViewCellStyle16;
             this.dataGridViewTextBoxColumn74.HeaderText = "Fin";
             this.dataGridViewTextBoxColumn74.Name = "dataGridViewTextBoxColumn74";
             this.dataGridViewTextBoxColumn74.ReadOnly = true;
@@ -1035,8 +1035,8 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn75
             // 
             this.dataGridViewTextBoxColumn75.DataPropertyName = "Tir";
-            dataGridViewCellStyle157.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
-            this.dataGridViewTextBoxColumn75.DefaultCellStyle = dataGridViewCellStyle157;
+            dataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
+            this.dataGridViewTextBoxColumn75.DefaultCellStyle = dataGridViewCellStyle17;
             this.dataGridViewTextBoxColumn75.HeaderText = "Lon";
             this.dataGridViewTextBoxColumn75.Name = "dataGridViewTextBoxColumn75";
             this.dataGridViewTextBoxColumn75.ReadOnly = true;
@@ -1047,8 +1047,8 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn76
             // 
             this.dataGridViewTextBoxColumn76.DataPropertyName = "Cal";
-            dataGridViewCellStyle158.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
-            this.dataGridViewTextBoxColumn76.DefaultCellStyle = dataGridViewCellStyle158;
+            dataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
+            this.dataGridViewTextBoxColumn76.DefaultCellStyle = dataGridViewCellStyle18;
             this.dataGridViewTextBoxColumn76.HeaderText = "Set";
             this.dataGridViewTextBoxColumn76.Name = "dataGridViewTextBoxColumn76";
             this.dataGridViewTextBoxColumn76.ReadOnly = true;
@@ -1059,10 +1059,10 @@ namespace TMRecorder
             // Rou
             // 
             this.Rou.DataPropertyName = "Rou";
-            dataGridViewCellStyle159.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle159.Format = "N1";
-            dataGridViewCellStyle159.NullValue = "-";
-            this.Rou.DefaultCellStyle = dataGridViewCellStyle159;
+            dataGridViewCellStyle19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle19.Format = "N1";
+            dataGridViewCellStyle19.NullValue = "-";
+            this.Rou.DefaultCellStyle = dataGridViewCellStyle19;
             this.Rou.HeaderText = "Rou";
             this.Rou.Name = "Rou";
             this.Rou.ReadOnly = true;
@@ -1072,9 +1072,9 @@ namespace TMRecorder
             // CStrA
             // 
             this.CStrA.DataPropertyName = "CStr";
-            dataGridViewCellStyle160.Format = "N2";
-            dataGridViewCellStyle160.NullValue = "-";
-            this.CStrA.DefaultCellStyle = dataGridViewCellStyle160;
+            dataGridViewCellStyle20.Format = "N2";
+            dataGridViewCellStyle20.NullValue = "-";
+            this.CStrA.DefaultCellStyle = dataGridViewCellStyle20;
             this.CStrA.HeaderText = "CStr";
             this.CStrA.Name = "CStrA";
             this.CStrA.ReadOnly = true;
@@ -1084,10 +1084,10 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn77
             // 
             this.dataGridViewTextBoxColumn77.DataPropertyName = "DC";
-            dataGridViewCellStyle161.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle161.Format = "N1";
-            dataGridViewCellStyle161.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn77.DefaultCellStyle = dataGridViewCellStyle161;
+            dataGridViewCellStyle21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle21.Format = "N1";
+            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn77.DefaultCellStyle = dataGridViewCellStyle21;
             this.dataGridViewTextBoxColumn77.HeaderText = "DC";
             this.dataGridViewTextBoxColumn77.Name = "dataGridViewTextBoxColumn77";
             this.dataGridViewTextBoxColumn77.ReadOnly = true;
@@ -1096,10 +1096,10 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn78
             // 
             this.dataGridViewTextBoxColumn78.DataPropertyName = "DR";
-            dataGridViewCellStyle162.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle162.Format = "N1";
-            dataGridViewCellStyle162.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn78.DefaultCellStyle = dataGridViewCellStyle162;
+            dataGridViewCellStyle22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle22.Format = "N1";
+            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn78.DefaultCellStyle = dataGridViewCellStyle22;
             this.dataGridViewTextBoxColumn78.HeaderText = "DR";
             this.dataGridViewTextBoxColumn78.Name = "dataGridViewTextBoxColumn78";
             this.dataGridViewTextBoxColumn78.ReadOnly = true;
@@ -1108,11 +1108,11 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn79
             // 
             this.dataGridViewTextBoxColumn79.DataPropertyName = "DL";
-            dataGridViewCellStyle163.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle163.Format = "N1";
-            dataGridViewCellStyle163.NullValue = null;
-            dataGridViewCellStyle163.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn79.DefaultCellStyle = dataGridViewCellStyle163;
+            dataGridViewCellStyle23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle23.Format = "N1";
+            dataGridViewCellStyle23.NullValue = null;
+            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn79.DefaultCellStyle = dataGridViewCellStyle23;
             this.dataGridViewTextBoxColumn79.HeaderText = "DL";
             this.dataGridViewTextBoxColumn79.Name = "dataGridViewTextBoxColumn79";
             this.dataGridViewTextBoxColumn79.ReadOnly = true;
@@ -1121,10 +1121,10 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn80
             // 
             this.dataGridViewTextBoxColumn80.DataPropertyName = "DMC";
-            dataGridViewCellStyle164.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle164.Format = "N1";
-            dataGridViewCellStyle164.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn80.DefaultCellStyle = dataGridViewCellStyle164;
+            dataGridViewCellStyle24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle24.Format = "N1";
+            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn80.DefaultCellStyle = dataGridViewCellStyle24;
             this.dataGridViewTextBoxColumn80.HeaderText = "DMC";
             this.dataGridViewTextBoxColumn80.Name = "dataGridViewTextBoxColumn80";
             this.dataGridViewTextBoxColumn80.ReadOnly = true;
@@ -1133,10 +1133,10 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn81
             // 
             this.dataGridViewTextBoxColumn81.DataPropertyName = "DMR";
-            dataGridViewCellStyle165.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle165.Format = "N1";
-            dataGridViewCellStyle165.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn81.DefaultCellStyle = dataGridViewCellStyle165;
+            dataGridViewCellStyle25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle25.Format = "N1";
+            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn81.DefaultCellStyle = dataGridViewCellStyle25;
             this.dataGridViewTextBoxColumn81.HeaderText = "DMR";
             this.dataGridViewTextBoxColumn81.Name = "dataGridViewTextBoxColumn81";
             this.dataGridViewTextBoxColumn81.ReadOnly = true;
@@ -1145,10 +1145,10 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn82
             // 
             this.dataGridViewTextBoxColumn82.DataPropertyName = "DML";
-            dataGridViewCellStyle166.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle166.Format = "N1";
-            dataGridViewCellStyle166.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn82.DefaultCellStyle = dataGridViewCellStyle166;
+            dataGridViewCellStyle26.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle26.Format = "N1";
+            dataGridViewCellStyle26.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn82.DefaultCellStyle = dataGridViewCellStyle26;
             this.dataGridViewTextBoxColumn82.HeaderText = "DML";
             this.dataGridViewTextBoxColumn82.Name = "dataGridViewTextBoxColumn82";
             this.dataGridViewTextBoxColumn82.ReadOnly = true;
@@ -1157,10 +1157,10 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn83
             // 
             this.dataGridViewTextBoxColumn83.DataPropertyName = "MC";
-            dataGridViewCellStyle167.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle167.Format = "N1";
-            dataGridViewCellStyle167.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn83.DefaultCellStyle = dataGridViewCellStyle167;
+            dataGridViewCellStyle27.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle27.Format = "N1";
+            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn83.DefaultCellStyle = dataGridViewCellStyle27;
             this.dataGridViewTextBoxColumn83.HeaderText = "MC";
             this.dataGridViewTextBoxColumn83.Name = "dataGridViewTextBoxColumn83";
             this.dataGridViewTextBoxColumn83.ReadOnly = true;
@@ -1169,10 +1169,10 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn84
             // 
             this.dataGridViewTextBoxColumn84.DataPropertyName = "MR";
-            dataGridViewCellStyle168.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle168.Format = "N1";
-            dataGridViewCellStyle168.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn84.DefaultCellStyle = dataGridViewCellStyle168;
+            dataGridViewCellStyle28.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle28.Format = "N1";
+            dataGridViewCellStyle28.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn84.DefaultCellStyle = dataGridViewCellStyle28;
             this.dataGridViewTextBoxColumn84.HeaderText = "MR";
             this.dataGridViewTextBoxColumn84.Name = "dataGridViewTextBoxColumn84";
             this.dataGridViewTextBoxColumn84.ReadOnly = true;
@@ -1181,10 +1181,10 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn85
             // 
             this.dataGridViewTextBoxColumn85.DataPropertyName = "ML";
-            dataGridViewCellStyle169.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle169.Format = "N1";
-            dataGridViewCellStyle169.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn85.DefaultCellStyle = dataGridViewCellStyle169;
+            dataGridViewCellStyle29.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle29.Format = "N1";
+            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn85.DefaultCellStyle = dataGridViewCellStyle29;
             this.dataGridViewTextBoxColumn85.HeaderText = "ML";
             this.dataGridViewTextBoxColumn85.Name = "dataGridViewTextBoxColumn85";
             this.dataGridViewTextBoxColumn85.ReadOnly = true;
@@ -1193,10 +1193,10 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn86
             // 
             this.dataGridViewTextBoxColumn86.DataPropertyName = "OMC";
-            dataGridViewCellStyle170.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle170.Format = "N1";
-            dataGridViewCellStyle170.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn86.DefaultCellStyle = dataGridViewCellStyle170;
+            dataGridViewCellStyle30.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle30.Format = "N1";
+            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn86.DefaultCellStyle = dataGridViewCellStyle30;
             this.dataGridViewTextBoxColumn86.HeaderText = "OMC";
             this.dataGridViewTextBoxColumn86.Name = "dataGridViewTextBoxColumn86";
             this.dataGridViewTextBoxColumn86.ReadOnly = true;
@@ -1205,10 +1205,10 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn87
             // 
             this.dataGridViewTextBoxColumn87.DataPropertyName = "OMR";
-            dataGridViewCellStyle171.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle171.Format = "N1";
-            dataGridViewCellStyle171.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn87.DefaultCellStyle = dataGridViewCellStyle171;
+            dataGridViewCellStyle31.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle31.Format = "N1";
+            dataGridViewCellStyle31.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn87.DefaultCellStyle = dataGridViewCellStyle31;
             this.dataGridViewTextBoxColumn87.HeaderText = "OMR";
             this.dataGridViewTextBoxColumn87.Name = "dataGridViewTextBoxColumn87";
             this.dataGridViewTextBoxColumn87.ReadOnly = true;
@@ -1217,10 +1217,10 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn88
             // 
             this.dataGridViewTextBoxColumn88.DataPropertyName = "OML";
-            dataGridViewCellStyle172.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle172.Format = "N1";
-            dataGridViewCellStyle172.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn88.DefaultCellStyle = dataGridViewCellStyle172;
+            dataGridViewCellStyle32.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle32.Format = "N1";
+            dataGridViewCellStyle32.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn88.DefaultCellStyle = dataGridViewCellStyle32;
             this.dataGridViewTextBoxColumn88.HeaderText = "OML";
             this.dataGridViewTextBoxColumn88.Name = "dataGridViewTextBoxColumn88";
             this.dataGridViewTextBoxColumn88.ReadOnly = true;
@@ -1229,10 +1229,10 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn89
             // 
             this.dataGridViewTextBoxColumn89.DataPropertyName = "FC";
-            dataGridViewCellStyle173.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle173.Format = "N1";
-            dataGridViewCellStyle173.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn89.DefaultCellStyle = dataGridViewCellStyle173;
+            dataGridViewCellStyle33.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle33.Format = "N1";
+            dataGridViewCellStyle33.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn89.DefaultCellStyle = dataGridViewCellStyle33;
             this.dataGridViewTextBoxColumn89.HeaderText = "FC";
             this.dataGridViewTextBoxColumn89.Name = "dataGridViewTextBoxColumn89";
             this.dataGridViewTextBoxColumn89.ReadOnly = true;
@@ -1241,11 +1241,11 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn90
             // 
             this.dataGridViewTextBoxColumn90.DataPropertyName = "PSP";
-            dataGridViewCellStyle174.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle174.Format = "N2";
-            dataGridViewCellStyle174.NullValue = null;
-            dataGridViewCellStyle174.SelectionBackColor = System.Drawing.Color.Teal;
-            this.dataGridViewTextBoxColumn90.DefaultCellStyle = dataGridViewCellStyle174;
+            dataGridViewCellStyle34.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle34.Format = "N2";
+            dataGridViewCellStyle34.NullValue = null;
+            dataGridViewCellStyle34.SelectionBackColor = System.Drawing.Color.Teal;
+            this.dataGridViewTextBoxColumn90.DefaultCellStyle = dataGridViewCellStyle34;
             this.dataGridViewTextBoxColumn90.HeaderText = "Psp";
             this.dataGridViewTextBoxColumn90.Name = "dataGridViewTextBoxColumn90";
             this.dataGridViewTextBoxColumn90.ReadOnly = true;
@@ -1254,10 +1254,10 @@ namespace TMRecorder
             // TI
             // 
             this.TI.DataPropertyName = "TI";
-            dataGridViewCellStyle175.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle175.Format = "N1";
-            dataGridViewCellStyle175.NullValue = "-";
-            this.TI.DefaultCellStyle = dataGridViewCellStyle175;
+            dataGridViewCellStyle35.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle35.Format = "N1";
+            dataGridViewCellStyle35.NullValue = "-";
+            this.TI.DefaultCellStyle = dataGridViewCellStyle35;
             this.TI.HeaderText = "TI";
             this.TI.Name = "TI";
             this.TI.ReadOnly = true;
@@ -1273,41 +1273,41 @@ namespace TMRecorder
             this.openPlayersWebPagesToolStripMenuItem2,
             this.openPlayersScoutWebPagesToolStripMenuItem2});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 114);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(215, 114);
             this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
             // movePlayerToATeamToolStripMenuItem
             // 
             this.movePlayerToATeamToolStripMenuItem.Name = "movePlayerToATeamToolStripMenuItem";
-            this.movePlayerToATeamToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.movePlayerToATeamToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.movePlayerToATeamToolStripMenuItem.Text = "Move Player To A Team";
             this.movePlayerToATeamToolStripMenuItem.Click += new System.EventHandler(this.movePlayerToATeamToolStripMenuItem_Click);
             // 
             // movePlayerToBTeamToolStripMenuItem
             // 
             this.movePlayerToBTeamToolStripMenuItem.Name = "movePlayerToBTeamToolStripMenuItem";
-            this.movePlayerToBTeamToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.movePlayerToBTeamToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.movePlayerToBTeamToolStripMenuItem.Text = "Move Player To B Team";
             this.movePlayerToBTeamToolStripMenuItem.Click += new System.EventHandler(this.movePlayerToBTeamToolStripMenuItem_Click);
             // 
             // evidenceSkillsForGainsMenuItem2
             // 
             this.evidenceSkillsForGainsMenuItem2.Name = "evidenceSkillsForGainsMenuItem2";
-            this.evidenceSkillsForGainsMenuItem2.Size = new System.Drawing.Size(210, 22);
+            this.evidenceSkillsForGainsMenuItem2.Size = new System.Drawing.Size(214, 22);
             this.evidenceSkillsForGainsMenuItem2.Text = "Evidence Skills for Gains";
             this.evidenceSkillsForGainsMenuItem2.Click += new System.EventHandler(this.evidenceSkillsForGainsToolStripMenuItem_Click);
             // 
             // openPlayersWebPagesToolStripMenuItem2
             // 
             this.openPlayersWebPagesToolStripMenuItem2.Name = "openPlayersWebPagesToolStripMenuItem2";
-            this.openPlayersWebPagesToolStripMenuItem2.Size = new System.Drawing.Size(210, 22);
+            this.openPlayersWebPagesToolStripMenuItem2.Size = new System.Drawing.Size(214, 22);
             this.openPlayersWebPagesToolStripMenuItem2.Text = "Open Players Profile Pages";
             this.openPlayersWebPagesToolStripMenuItem2.Click += new System.EventHandler(this.openPlayersWebPagesToolStripMenuItem_Click);
             // 
             // openPlayersScoutWebPagesToolStripMenuItem2
             // 
             this.openPlayersScoutWebPagesToolStripMenuItem2.Name = "openPlayersScoutWebPagesToolStripMenuItem2";
-            this.openPlayersScoutWebPagesToolStripMenuItem2.Size = new System.Drawing.Size(210, 22);
+            this.openPlayersScoutWebPagesToolStripMenuItem2.Size = new System.Drawing.Size(214, 22);
             this.openPlayersScoutWebPagesToolStripMenuItem2.Text = "Open Players Scout Pages";
             this.openPlayersScoutWebPagesToolStripMenuItem2.Click += new System.EventHandler(this.openPlayersToolStripMenuItem_Click);
             // 
@@ -1341,14 +1341,14 @@ namespace TMRecorder
             this.dataGridGiocatoriB.AllowUserToOrderColumns = true;
             this.dataGridGiocatoriB.AllowUserToResizeRows = false;
             this.dataGridGiocatoriB.AutoGenerateColumns = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridGiocatoriB.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle37.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle37.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle37.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle37.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle37.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle37.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle37.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridGiocatoriB.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle37;
             this.dataGridGiocatoriB.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridGiocatoriB.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn3,
@@ -1392,14 +1392,14 @@ namespace TMRecorder
             this.TIcol});
             this.dataGridGiocatoriB.ContextMenuStrip = this.contextMenuStrip1;
             this.dataGridGiocatoriB.DataSource = this.giocatoriNSkillBindingSourceB;
-            dataGridViewCellStyle210.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle210.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle210.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle210.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle210.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle210.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle210.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridGiocatoriB.DefaultCellStyle = dataGridViewCellStyle210;
+            dataGridViewCellStyle72.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle72.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle72.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle72.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle72.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle72.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle72.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridGiocatoriB.DefaultCellStyle = dataGridViewCellStyle72;
             this.dataGridGiocatoriB.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridGiocatoriB.Location = new System.Drawing.Point(3, 4);
             this.dataGridGiocatoriB.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -1416,8 +1416,8 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn3
             // 
             this.dataGridViewTextBoxColumn3.DataPropertyName = "PlayerID";
-            dataGridViewCellStyle36.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle36;
+            dataGridViewCellStyle38.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle38;
             this.dataGridViewTextBoxColumn3.FillWeight = 30F;
             this.dataGridViewTextBoxColumn3.Frozen = true;
             this.dataGridViewTextBoxColumn3.HeaderText = "ID";
@@ -1450,8 +1450,8 @@ namespace TMRecorder
             // 
             this.dataGridViewTextBoxColumn24.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.dataGridViewTextBoxColumn24.DataPropertyName = "Nome";
-            dataGridViewCellStyle177.ForeColor = System.Drawing.Color.Black;
-            this.dataGridViewTextBoxColumn24.DefaultCellStyle = dataGridViewCellStyle177;
+            dataGridViewCellStyle39.ForeColor = System.Drawing.Color.Black;
+            this.dataGridViewTextBoxColumn24.DefaultCellStyle = dataGridViewCellStyle39;
             this.dataGridViewTextBoxColumn24.Frozen = true;
             this.dataGridViewTextBoxColumn24.HeaderText = "Name";
             this.dataGridViewTextBoxColumn24.Name = "dataGridViewTextBoxColumn24";
@@ -1486,8 +1486,8 @@ namespace TMRecorder
             // 
             this.dataGridViewTextBoxColumn26.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.dataGridViewTextBoxColumn26.DataPropertyName = "ASI";
-            dataGridViewCellStyle178.BackColor = System.Drawing.Color.White;
-            this.dataGridViewTextBoxColumn26.DefaultCellStyle = dataGridViewCellStyle178;
+            dataGridViewCellStyle40.BackColor = System.Drawing.Color.White;
+            this.dataGridViewTextBoxColumn26.DefaultCellStyle = dataGridViewCellStyle40;
             this.dataGridViewTextBoxColumn26.Frozen = true;
             this.dataGridViewTextBoxColumn26.HeaderText = "ASI";
             this.dataGridViewTextBoxColumn26.Name = "dataGridViewTextBoxColumn26";
@@ -1508,8 +1508,8 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn28
             // 
             this.dataGridViewTextBoxColumn28.DataPropertyName = "For";
-            dataGridViewCellStyle179.BackColor = System.Drawing.Color.LightYellow;
-            this.dataGridViewTextBoxColumn28.DefaultCellStyle = dataGridViewCellStyle179;
+            dataGridViewCellStyle41.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridViewTextBoxColumn28.DefaultCellStyle = dataGridViewCellStyle41;
             this.dataGridViewTextBoxColumn28.HeaderText = "Str";
             this.dataGridViewTextBoxColumn28.Name = "dataGridViewTextBoxColumn28";
             this.dataGridViewTextBoxColumn28.ReadOnly = true;
@@ -1520,8 +1520,8 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn29
             // 
             this.dataGridViewTextBoxColumn29.DataPropertyName = "Res";
-            dataGridViewCellStyle180.BackColor = System.Drawing.Color.LightYellow;
-            this.dataGridViewTextBoxColumn29.DefaultCellStyle = dataGridViewCellStyle180;
+            dataGridViewCellStyle42.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridViewTextBoxColumn29.DefaultCellStyle = dataGridViewCellStyle42;
             this.dataGridViewTextBoxColumn29.HeaderText = "Sta";
             this.dataGridViewTextBoxColumn29.Name = "dataGridViewTextBoxColumn29";
             this.dataGridViewTextBoxColumn29.ReadOnly = true;
@@ -1532,8 +1532,8 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn30
             // 
             this.dataGridViewTextBoxColumn30.DataPropertyName = "Vel";
-            dataGridViewCellStyle181.BackColor = System.Drawing.Color.LightYellow;
-            this.dataGridViewTextBoxColumn30.DefaultCellStyle = dataGridViewCellStyle181;
+            dataGridViewCellStyle43.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridViewTextBoxColumn30.DefaultCellStyle = dataGridViewCellStyle43;
             this.dataGridViewTextBoxColumn30.HeaderText = "Pac";
             this.dataGridViewTextBoxColumn30.Name = "dataGridViewTextBoxColumn30";
             this.dataGridViewTextBoxColumn30.ReadOnly = true;
@@ -1544,8 +1544,8 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn31
             // 
             this.dataGridViewTextBoxColumn31.DataPropertyName = "Mar";
-            dataGridViewCellStyle182.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(255)))), ((int)(((byte)(224)))));
-            this.dataGridViewTextBoxColumn31.DefaultCellStyle = dataGridViewCellStyle182;
+            dataGridViewCellStyle44.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(255)))), ((int)(((byte)(224)))));
+            this.dataGridViewTextBoxColumn31.DefaultCellStyle = dataGridViewCellStyle44;
             this.dataGridViewTextBoxColumn31.HeaderText = "Mar";
             this.dataGridViewTextBoxColumn31.Name = "dataGridViewTextBoxColumn31";
             this.dataGridViewTextBoxColumn31.ReadOnly = true;
@@ -1556,8 +1556,8 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn32
             // 
             this.dataGridViewTextBoxColumn32.DataPropertyName = "Con";
-            dataGridViewCellStyle183.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(255)))), ((int)(((byte)(224)))));
-            this.dataGridViewTextBoxColumn32.DefaultCellStyle = dataGridViewCellStyle183;
+            dataGridViewCellStyle45.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(255)))), ((int)(((byte)(224)))));
+            this.dataGridViewTextBoxColumn32.DefaultCellStyle = dataGridViewCellStyle45;
             this.dataGridViewTextBoxColumn32.HeaderText = "Tac";
             this.dataGridViewTextBoxColumn32.Name = "dataGridViewTextBoxColumn32";
             this.dataGridViewTextBoxColumn32.ReadOnly = true;
@@ -1568,8 +1568,8 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn33
             // 
             this.dataGridViewTextBoxColumn33.DataPropertyName = "Wor";
-            dataGridViewCellStyle184.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(255)))), ((int)(((byte)(224)))));
-            this.dataGridViewTextBoxColumn33.DefaultCellStyle = dataGridViewCellStyle184;
+            dataGridViewCellStyle46.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(255)))), ((int)(((byte)(224)))));
+            this.dataGridViewTextBoxColumn33.DefaultCellStyle = dataGridViewCellStyle46;
             this.dataGridViewTextBoxColumn33.HeaderText = "Wor";
             this.dataGridViewTextBoxColumn33.Name = "dataGridViewTextBoxColumn33";
             this.dataGridViewTextBoxColumn33.ReadOnly = true;
@@ -1580,8 +1580,8 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn34
             // 
             this.dataGridViewTextBoxColumn34.DataPropertyName = "Pos";
-            dataGridViewCellStyle185.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridViewTextBoxColumn34.DefaultCellStyle = dataGridViewCellStyle185;
+            dataGridViewCellStyle47.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridViewTextBoxColumn34.DefaultCellStyle = dataGridViewCellStyle47;
             this.dataGridViewTextBoxColumn34.HeaderText = "Pos";
             this.dataGridViewTextBoxColumn34.Name = "dataGridViewTextBoxColumn34";
             this.dataGridViewTextBoxColumn34.ReadOnly = true;
@@ -1592,8 +1592,8 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn35
             // 
             this.dataGridViewTextBoxColumn35.DataPropertyName = "Pas";
-            dataGridViewCellStyle186.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridViewTextBoxColumn35.DefaultCellStyle = dataGridViewCellStyle186;
+            dataGridViewCellStyle48.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridViewTextBoxColumn35.DefaultCellStyle = dataGridViewCellStyle48;
             this.dataGridViewTextBoxColumn35.HeaderText = "Pas";
             this.dataGridViewTextBoxColumn35.Name = "dataGridViewTextBoxColumn35";
             this.dataGridViewTextBoxColumn35.ReadOnly = true;
@@ -1604,8 +1604,8 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn36
             // 
             this.dataGridViewTextBoxColumn36.DataPropertyName = "Cro";
-            dataGridViewCellStyle187.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridViewTextBoxColumn36.DefaultCellStyle = dataGridViewCellStyle187;
+            dataGridViewCellStyle49.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridViewTextBoxColumn36.DefaultCellStyle = dataGridViewCellStyle49;
             this.dataGridViewTextBoxColumn36.HeaderText = "Cro";
             this.dataGridViewTextBoxColumn36.Name = "dataGridViewTextBoxColumn36";
             this.dataGridViewTextBoxColumn36.ReadOnly = true;
@@ -1616,8 +1616,8 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn37
             // 
             this.dataGridViewTextBoxColumn37.DataPropertyName = "Tec";
-            dataGridViewCellStyle188.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridViewTextBoxColumn37.DefaultCellStyle = dataGridViewCellStyle188;
+            dataGridViewCellStyle50.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridViewTextBoxColumn37.DefaultCellStyle = dataGridViewCellStyle50;
             this.dataGridViewTextBoxColumn37.HeaderText = "Tec";
             this.dataGridViewTextBoxColumn37.Name = "dataGridViewTextBoxColumn37";
             this.dataGridViewTextBoxColumn37.ReadOnly = true;
@@ -1628,9 +1628,9 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn38
             // 
             this.dataGridViewTextBoxColumn38.DataPropertyName = "Tes";
-            dataGridViewCellStyle189.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle189.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
-            this.dataGridViewTextBoxColumn38.DefaultCellStyle = dataGridViewCellStyle189;
+            dataGridViewCellStyle51.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle51.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
+            this.dataGridViewTextBoxColumn38.DefaultCellStyle = dataGridViewCellStyle51;
             this.dataGridViewTextBoxColumn38.HeaderText = "Hea";
             this.dataGridViewTextBoxColumn38.Name = "dataGridViewTextBoxColumn38";
             this.dataGridViewTextBoxColumn38.ReadOnly = true;
@@ -1641,8 +1641,8 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn39
             // 
             this.dataGridViewTextBoxColumn39.DataPropertyName = "Fin";
-            dataGridViewCellStyle190.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
-            this.dataGridViewTextBoxColumn39.DefaultCellStyle = dataGridViewCellStyle190;
+            dataGridViewCellStyle52.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
+            this.dataGridViewTextBoxColumn39.DefaultCellStyle = dataGridViewCellStyle52;
             this.dataGridViewTextBoxColumn39.HeaderText = "Fin";
             this.dataGridViewTextBoxColumn39.Name = "dataGridViewTextBoxColumn39";
             this.dataGridViewTextBoxColumn39.ReadOnly = true;
@@ -1653,8 +1653,8 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn40
             // 
             this.dataGridViewTextBoxColumn40.DataPropertyName = "Tir";
-            dataGridViewCellStyle191.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
-            this.dataGridViewTextBoxColumn40.DefaultCellStyle = dataGridViewCellStyle191;
+            dataGridViewCellStyle53.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
+            this.dataGridViewTextBoxColumn40.DefaultCellStyle = dataGridViewCellStyle53;
             this.dataGridViewTextBoxColumn40.HeaderText = "Lon";
             this.dataGridViewTextBoxColumn40.Name = "dataGridViewTextBoxColumn40";
             this.dataGridViewTextBoxColumn40.ReadOnly = true;
@@ -1665,8 +1665,8 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn41
             // 
             this.dataGridViewTextBoxColumn41.DataPropertyName = "Cal";
-            dataGridViewCellStyle192.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
-            this.dataGridViewTextBoxColumn41.DefaultCellStyle = dataGridViewCellStyle192;
+            dataGridViewCellStyle54.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
+            this.dataGridViewTextBoxColumn41.DefaultCellStyle = dataGridViewCellStyle54;
             this.dataGridViewTextBoxColumn41.HeaderText = "Set";
             this.dataGridViewTextBoxColumn41.Name = "dataGridViewTextBoxColumn41";
             this.dataGridViewTextBoxColumn41.ReadOnly = true;
@@ -1677,10 +1677,10 @@ namespace TMRecorder
             // dataGridViewCheckBoxColumn6
             // 
             this.dataGridViewCheckBoxColumn6.DataPropertyName = "Rou";
-            dataGridViewCellStyle193.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle193.Format = "N1";
-            dataGridViewCellStyle193.NullValue = "-";
-            this.dataGridViewCheckBoxColumn6.DefaultCellStyle = dataGridViewCellStyle193;
+            dataGridViewCellStyle55.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle55.Format = "N1";
+            dataGridViewCellStyle55.NullValue = "-";
+            this.dataGridViewCheckBoxColumn6.DefaultCellStyle = dataGridViewCellStyle55;
             this.dataGridViewCheckBoxColumn6.HeaderText = "Rou";
             this.dataGridViewCheckBoxColumn6.Name = "dataGridViewCheckBoxColumn6";
             this.dataGridViewCheckBoxColumn6.ReadOnly = true;
@@ -1692,9 +1692,9 @@ namespace TMRecorder
             // CStrB
             // 
             this.CStrB.DataPropertyName = "CStr";
-            dataGridViewCellStyle194.Format = "N2";
-            dataGridViewCellStyle194.NullValue = "-";
-            this.CStrB.DefaultCellStyle = dataGridViewCellStyle194;
+            dataGridViewCellStyle56.Format = "N2";
+            dataGridViewCellStyle56.NullValue = "-";
+            this.CStrB.DefaultCellStyle = dataGridViewCellStyle56;
             this.CStrB.HeaderText = "CStr";
             this.CStrB.Name = "CStrB";
             this.CStrB.ReadOnly = true;
@@ -1704,10 +1704,10 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn42
             // 
             this.dataGridViewTextBoxColumn42.DataPropertyName = "DC";
-            dataGridViewCellStyle195.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle195.Format = "N1";
-            dataGridViewCellStyle195.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn42.DefaultCellStyle = dataGridViewCellStyle195;
+            dataGridViewCellStyle57.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle57.Format = "N1";
+            dataGridViewCellStyle57.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn42.DefaultCellStyle = dataGridViewCellStyle57;
             this.dataGridViewTextBoxColumn42.HeaderText = "DC";
             this.dataGridViewTextBoxColumn42.Name = "dataGridViewTextBoxColumn42";
             this.dataGridViewTextBoxColumn42.ReadOnly = true;
@@ -1716,10 +1716,10 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn43
             // 
             this.dataGridViewTextBoxColumn43.DataPropertyName = "DR";
-            dataGridViewCellStyle196.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle196.Format = "N1";
-            dataGridViewCellStyle196.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn43.DefaultCellStyle = dataGridViewCellStyle196;
+            dataGridViewCellStyle58.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle58.Format = "N1";
+            dataGridViewCellStyle58.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn43.DefaultCellStyle = dataGridViewCellStyle58;
             this.dataGridViewTextBoxColumn43.HeaderText = "DR";
             this.dataGridViewTextBoxColumn43.Name = "dataGridViewTextBoxColumn43";
             this.dataGridViewTextBoxColumn43.ReadOnly = true;
@@ -1728,11 +1728,11 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn44
             // 
             this.dataGridViewTextBoxColumn44.DataPropertyName = "DL";
-            dataGridViewCellStyle197.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle197.Format = "N1";
-            dataGridViewCellStyle197.NullValue = null;
-            dataGridViewCellStyle197.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn44.DefaultCellStyle = dataGridViewCellStyle197;
+            dataGridViewCellStyle59.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle59.Format = "N1";
+            dataGridViewCellStyle59.NullValue = null;
+            dataGridViewCellStyle59.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn44.DefaultCellStyle = dataGridViewCellStyle59;
             this.dataGridViewTextBoxColumn44.HeaderText = "DL";
             this.dataGridViewTextBoxColumn44.Name = "dataGridViewTextBoxColumn44";
             this.dataGridViewTextBoxColumn44.ReadOnly = true;
@@ -1741,10 +1741,10 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn45
             // 
             this.dataGridViewTextBoxColumn45.DataPropertyName = "DMC";
-            dataGridViewCellStyle198.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle198.Format = "N1";
-            dataGridViewCellStyle198.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn45.DefaultCellStyle = dataGridViewCellStyle198;
+            dataGridViewCellStyle60.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle60.Format = "N1";
+            dataGridViewCellStyle60.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn45.DefaultCellStyle = dataGridViewCellStyle60;
             this.dataGridViewTextBoxColumn45.HeaderText = "DMC";
             this.dataGridViewTextBoxColumn45.Name = "dataGridViewTextBoxColumn45";
             this.dataGridViewTextBoxColumn45.ReadOnly = true;
@@ -1753,10 +1753,10 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn46
             // 
             this.dataGridViewTextBoxColumn46.DataPropertyName = "DMR";
-            dataGridViewCellStyle199.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle199.Format = "N1";
-            dataGridViewCellStyle199.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn46.DefaultCellStyle = dataGridViewCellStyle199;
+            dataGridViewCellStyle61.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle61.Format = "N1";
+            dataGridViewCellStyle61.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn46.DefaultCellStyle = dataGridViewCellStyle61;
             this.dataGridViewTextBoxColumn46.HeaderText = "DMR";
             this.dataGridViewTextBoxColumn46.Name = "dataGridViewTextBoxColumn46";
             this.dataGridViewTextBoxColumn46.ReadOnly = true;
@@ -1765,10 +1765,10 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn47
             // 
             this.dataGridViewTextBoxColumn47.DataPropertyName = "DML";
-            dataGridViewCellStyle200.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle200.Format = "N1";
-            dataGridViewCellStyle200.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn47.DefaultCellStyle = dataGridViewCellStyle200;
+            dataGridViewCellStyle62.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle62.Format = "N1";
+            dataGridViewCellStyle62.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn47.DefaultCellStyle = dataGridViewCellStyle62;
             this.dataGridViewTextBoxColumn47.HeaderText = "DML";
             this.dataGridViewTextBoxColumn47.Name = "dataGridViewTextBoxColumn47";
             this.dataGridViewTextBoxColumn47.ReadOnly = true;
@@ -1777,10 +1777,10 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn48
             // 
             this.dataGridViewTextBoxColumn48.DataPropertyName = "MC";
-            dataGridViewCellStyle201.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle201.Format = "N1";
-            dataGridViewCellStyle201.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn48.DefaultCellStyle = dataGridViewCellStyle201;
+            dataGridViewCellStyle63.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle63.Format = "N1";
+            dataGridViewCellStyle63.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn48.DefaultCellStyle = dataGridViewCellStyle63;
             this.dataGridViewTextBoxColumn48.HeaderText = "MC";
             this.dataGridViewTextBoxColumn48.Name = "dataGridViewTextBoxColumn48";
             this.dataGridViewTextBoxColumn48.ReadOnly = true;
@@ -1789,10 +1789,10 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn49
             // 
             this.dataGridViewTextBoxColumn49.DataPropertyName = "MR";
-            dataGridViewCellStyle202.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle202.Format = "N1";
-            dataGridViewCellStyle202.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn49.DefaultCellStyle = dataGridViewCellStyle202;
+            dataGridViewCellStyle64.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle64.Format = "N1";
+            dataGridViewCellStyle64.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn49.DefaultCellStyle = dataGridViewCellStyle64;
             this.dataGridViewTextBoxColumn49.HeaderText = "MR";
             this.dataGridViewTextBoxColumn49.Name = "dataGridViewTextBoxColumn49";
             this.dataGridViewTextBoxColumn49.ReadOnly = true;
@@ -1801,10 +1801,10 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn50
             // 
             this.dataGridViewTextBoxColumn50.DataPropertyName = "ML";
-            dataGridViewCellStyle203.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle203.Format = "N1";
-            dataGridViewCellStyle203.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn50.DefaultCellStyle = dataGridViewCellStyle203;
+            dataGridViewCellStyle65.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle65.Format = "N1";
+            dataGridViewCellStyle65.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn50.DefaultCellStyle = dataGridViewCellStyle65;
             this.dataGridViewTextBoxColumn50.HeaderText = "ML";
             this.dataGridViewTextBoxColumn50.Name = "dataGridViewTextBoxColumn50";
             this.dataGridViewTextBoxColumn50.ReadOnly = true;
@@ -1813,10 +1813,10 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn51
             // 
             this.dataGridViewTextBoxColumn51.DataPropertyName = "OMC";
-            dataGridViewCellStyle204.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle204.Format = "N1";
-            dataGridViewCellStyle204.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn51.DefaultCellStyle = dataGridViewCellStyle204;
+            dataGridViewCellStyle66.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle66.Format = "N1";
+            dataGridViewCellStyle66.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn51.DefaultCellStyle = dataGridViewCellStyle66;
             this.dataGridViewTextBoxColumn51.HeaderText = "OMC";
             this.dataGridViewTextBoxColumn51.Name = "dataGridViewTextBoxColumn51";
             this.dataGridViewTextBoxColumn51.ReadOnly = true;
@@ -1825,10 +1825,10 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn52
             // 
             this.dataGridViewTextBoxColumn52.DataPropertyName = "OMR";
-            dataGridViewCellStyle205.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle205.Format = "N1";
-            dataGridViewCellStyle205.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn52.DefaultCellStyle = dataGridViewCellStyle205;
+            dataGridViewCellStyle67.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle67.Format = "N1";
+            dataGridViewCellStyle67.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn52.DefaultCellStyle = dataGridViewCellStyle67;
             this.dataGridViewTextBoxColumn52.HeaderText = "OMR";
             this.dataGridViewTextBoxColumn52.Name = "dataGridViewTextBoxColumn52";
             this.dataGridViewTextBoxColumn52.ReadOnly = true;
@@ -1837,10 +1837,10 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn53
             // 
             this.dataGridViewTextBoxColumn53.DataPropertyName = "OML";
-            dataGridViewCellStyle206.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle206.Format = "N1";
-            dataGridViewCellStyle206.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn53.DefaultCellStyle = dataGridViewCellStyle206;
+            dataGridViewCellStyle68.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle68.Format = "N1";
+            dataGridViewCellStyle68.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn53.DefaultCellStyle = dataGridViewCellStyle68;
             this.dataGridViewTextBoxColumn53.HeaderText = "OML";
             this.dataGridViewTextBoxColumn53.Name = "dataGridViewTextBoxColumn53";
             this.dataGridViewTextBoxColumn53.ReadOnly = true;
@@ -1849,10 +1849,10 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn54
             // 
             this.dataGridViewTextBoxColumn54.DataPropertyName = "FC";
-            dataGridViewCellStyle207.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle207.Format = "N1";
-            dataGridViewCellStyle207.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn54.DefaultCellStyle = dataGridViewCellStyle207;
+            dataGridViewCellStyle69.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle69.Format = "N1";
+            dataGridViewCellStyle69.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn54.DefaultCellStyle = dataGridViewCellStyle69;
             this.dataGridViewTextBoxColumn54.HeaderText = "FC";
             this.dataGridViewTextBoxColumn54.Name = "dataGridViewTextBoxColumn54";
             this.dataGridViewTextBoxColumn54.ReadOnly = true;
@@ -1861,11 +1861,11 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn55
             // 
             this.dataGridViewTextBoxColumn55.DataPropertyName = "PSP";
-            dataGridViewCellStyle208.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle208.Format = "N2";
-            dataGridViewCellStyle208.NullValue = null;
-            dataGridViewCellStyle208.SelectionBackColor = System.Drawing.Color.Teal;
-            this.dataGridViewTextBoxColumn55.DefaultCellStyle = dataGridViewCellStyle208;
+            dataGridViewCellStyle70.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle70.Format = "N2";
+            dataGridViewCellStyle70.NullValue = null;
+            dataGridViewCellStyle70.SelectionBackColor = System.Drawing.Color.Teal;
+            this.dataGridViewTextBoxColumn55.DefaultCellStyle = dataGridViewCellStyle70;
             this.dataGridViewTextBoxColumn55.HeaderText = "Psp";
             this.dataGridViewTextBoxColumn55.Name = "dataGridViewTextBoxColumn55";
             this.dataGridViewTextBoxColumn55.ReadOnly = true;
@@ -1874,9 +1874,9 @@ namespace TMRecorder
             // TIcol
             // 
             this.TIcol.DataPropertyName = "TI";
-            dataGridViewCellStyle209.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle209.Format = "N1";
-            this.TIcol.DefaultCellStyle = dataGridViewCellStyle209;
+            dataGridViewCellStyle71.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle71.Format = "N1";
+            this.TIcol.DefaultCellStyle = dataGridViewCellStyle71;
             this.TIcol.HeaderText = "TI";
             this.TIcol.Name = "TIcol";
             this.TIcol.ReadOnly = true;
@@ -1902,14 +1902,14 @@ namespace TMRecorder
             this.dataGridPortieri.AllowUserToOrderColumns = true;
             this.dataGridPortieri.AllowUserToResizeRows = false;
             this.dataGridPortieri.AutoGenerateColumns = false;
-            dataGridViewCellStyle37.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle37.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle37.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle37.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle37.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle37.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle37.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridPortieri.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle37;
+            dataGridViewCellStyle73.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle73.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle73.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle73.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle73.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle73.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle73.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridPortieri.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle73;
             this.dataGridPortieri.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridPortieri.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
@@ -1936,14 +1936,14 @@ namespace TMRecorder
             this.dataGridViewTextBoxColumn11});
             this.dataGridPortieri.ContextMenuStrip = this.contextMenuStripGK;
             this.dataGridPortieri.DataSource = this.portieriNSkillBindingSource;
-            dataGridViewCellStyle226.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle226.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle226.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle226.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle226.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle226.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle226.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridPortieri.DefaultCellStyle = dataGridViewCellStyle226;
+            dataGridViewCellStyle90.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle90.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle90.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle90.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle90.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle90.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle90.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridPortieri.DefaultCellStyle = dataGridViewCellStyle90;
             this.dataGridPortieri.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridPortieri.Location = new System.Drawing.Point(3, 4);
             this.dataGridPortieri.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -2023,8 +2023,8 @@ namespace TMRecorder
             // forDataGridViewTextBoxColumn1
             // 
             this.forDataGridViewTextBoxColumn1.DataPropertyName = "For";
-            dataGridViewCellStyle72.BackColor = System.Drawing.Color.LightYellow;
-            this.forDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle72;
+            dataGridViewCellStyle74.BackColor = System.Drawing.Color.LightYellow;
+            this.forDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle74;
             this.forDataGridViewTextBoxColumn1.HeaderText = "Str";
             this.forDataGridViewTextBoxColumn1.Name = "forDataGridViewTextBoxColumn1";
             this.forDataGridViewTextBoxColumn1.ReadOnly = true;
@@ -2035,8 +2035,8 @@ namespace TMRecorder
             // resDataGridViewTextBoxColumn1
             // 
             this.resDataGridViewTextBoxColumn1.DataPropertyName = "Res";
-            dataGridViewCellStyle211.BackColor = System.Drawing.Color.LightYellow;
-            this.resDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle211;
+            dataGridViewCellStyle75.BackColor = System.Drawing.Color.LightYellow;
+            this.resDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle75;
             this.resDataGridViewTextBoxColumn1.HeaderText = "Sta";
             this.resDataGridViewTextBoxColumn1.Name = "resDataGridViewTextBoxColumn1";
             this.resDataGridViewTextBoxColumn1.ReadOnly = true;
@@ -2047,8 +2047,8 @@ namespace TMRecorder
             // velDataGridViewTextBoxColumn1
             // 
             this.velDataGridViewTextBoxColumn1.DataPropertyName = "Vel";
-            dataGridViewCellStyle212.BackColor = System.Drawing.Color.LightYellow;
-            this.velDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle212;
+            dataGridViewCellStyle76.BackColor = System.Drawing.Color.LightYellow;
+            this.velDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle76;
             this.velDataGridViewTextBoxColumn1.HeaderText = "Pac";
             this.velDataGridViewTextBoxColumn1.Name = "velDataGridViewTextBoxColumn1";
             this.velDataGridViewTextBoxColumn1.ReadOnly = true;
@@ -2059,8 +2059,8 @@ namespace TMRecorder
             // preDataGridViewTextBoxColumn
             // 
             this.preDataGridViewTextBoxColumn.DataPropertyName = "Pre";
-            dataGridViewCellStyle213.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(255)))), ((int)(((byte)(224)))));
-            this.preDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle213;
+            dataGridViewCellStyle77.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(255)))), ((int)(((byte)(224)))));
+            this.preDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle77;
             this.preDataGridViewTextBoxColumn.HeaderText = "Han";
             this.preDataGridViewTextBoxColumn.Name = "preDataGridViewTextBoxColumn";
             this.preDataGridViewTextBoxColumn.ReadOnly = true;
@@ -2071,8 +2071,8 @@ namespace TMRecorder
             // unoDataGridViewTextBoxColumn
             // 
             this.unoDataGridViewTextBoxColumn.DataPropertyName = "Uno";
-            dataGridViewCellStyle214.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(255)))), ((int)(((byte)(224)))));
-            this.unoDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle214;
+            dataGridViewCellStyle78.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(255)))), ((int)(((byte)(224)))));
+            this.unoDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle78;
             this.unoDataGridViewTextBoxColumn.HeaderText = "One";
             this.unoDataGridViewTextBoxColumn.Name = "unoDataGridViewTextBoxColumn";
             this.unoDataGridViewTextBoxColumn.ReadOnly = true;
@@ -2083,8 +2083,8 @@ namespace TMRecorder
             // rifDataGridViewTextBoxColumn
             // 
             this.rifDataGridViewTextBoxColumn.DataPropertyName = "Rif";
-            dataGridViewCellStyle215.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(255)))), ((int)(((byte)(224)))));
-            this.rifDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle215;
+            dataGridViewCellStyle79.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(255)))), ((int)(((byte)(224)))));
+            this.rifDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle79;
             this.rifDataGridViewTextBoxColumn.HeaderText = "Ref";
             this.rifDataGridViewTextBoxColumn.Name = "rifDataGridViewTextBoxColumn";
             this.rifDataGridViewTextBoxColumn.ReadOnly = true;
@@ -2095,8 +2095,8 @@ namespace TMRecorder
             // aerDataGridViewTextBoxColumn
             // 
             this.aerDataGridViewTextBoxColumn.DataPropertyName = "Aer";
-            dataGridViewCellStyle216.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(255)))), ((int)(((byte)(224)))));
-            this.aerDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle216;
+            dataGridViewCellStyle80.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(255)))), ((int)(((byte)(224)))));
+            this.aerDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle80;
             this.aerDataGridViewTextBoxColumn.HeaderText = "Ari";
             this.aerDataGridViewTextBoxColumn.Name = "aerDataGridViewTextBoxColumn";
             this.aerDataGridViewTextBoxColumn.ReadOnly = true;
@@ -2107,8 +2107,8 @@ namespace TMRecorder
             // eleDataGridViewTextBoxColumn
             // 
             this.eleDataGridViewTextBoxColumn.DataPropertyName = "Ele";
-            dataGridViewCellStyle217.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(255)))), ((int)(((byte)(224)))));
-            this.eleDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle217;
+            dataGridViewCellStyle81.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(255)))), ((int)(((byte)(224)))));
+            this.eleDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle81;
             this.eleDataGridViewTextBoxColumn.HeaderText = "Jum";
             this.eleDataGridViewTextBoxColumn.Name = "eleDataGridViewTextBoxColumn";
             this.eleDataGridViewTextBoxColumn.ReadOnly = true;
@@ -2119,8 +2119,8 @@ namespace TMRecorder
             // comDataGridViewTextBoxColumn
             // 
             this.comDataGridViewTextBoxColumn.DataPropertyName = "Com";
-            dataGridViewCellStyle218.BackColor = System.Drawing.Color.LightCyan;
-            this.comDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle218;
+            dataGridViewCellStyle82.BackColor = System.Drawing.Color.LightCyan;
+            this.comDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle82;
             this.comDataGridViewTextBoxColumn.HeaderText = "Com";
             this.comDataGridViewTextBoxColumn.Name = "comDataGridViewTextBoxColumn";
             this.comDataGridViewTextBoxColumn.ReadOnly = true;
@@ -2131,8 +2131,8 @@ namespace TMRecorder
             // tirDataGridViewTextBoxColumn1
             // 
             this.tirDataGridViewTextBoxColumn1.DataPropertyName = "Tir";
-            dataGridViewCellStyle219.BackColor = System.Drawing.Color.LightCyan;
-            this.tirDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle219;
+            dataGridViewCellStyle83.BackColor = System.Drawing.Color.LightCyan;
+            this.tirDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle83;
             this.tirDataGridViewTextBoxColumn1.HeaderText = "Kic";
             this.tirDataGridViewTextBoxColumn1.Name = "tirDataGridViewTextBoxColumn1";
             this.tirDataGridViewTextBoxColumn1.ReadOnly = true;
@@ -2143,8 +2143,8 @@ namespace TMRecorder
             // lanDataGridViewTextBoxColumn
             // 
             this.lanDataGridViewTextBoxColumn.DataPropertyName = "Lan";
-            dataGridViewCellStyle220.BackColor = System.Drawing.Color.LightCyan;
-            this.lanDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle220;
+            dataGridViewCellStyle84.BackColor = System.Drawing.Color.LightCyan;
+            this.lanDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle84;
             this.lanDataGridViewTextBoxColumn.HeaderText = "Thr";
             this.lanDataGridViewTextBoxColumn.Name = "lanDataGridViewTextBoxColumn";
             this.lanDataGridViewTextBoxColumn.ReadOnly = true;
@@ -2155,10 +2155,10 @@ namespace TMRecorder
             // inFormazioneDataGridViewCheckBoxColumn1
             // 
             this.inFormazioneDataGridViewCheckBoxColumn1.DataPropertyName = "Rou";
-            dataGridViewCellStyle221.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle221.Format = "N1";
-            dataGridViewCellStyle221.NullValue = "-";
-            this.inFormazioneDataGridViewCheckBoxColumn1.DefaultCellStyle = dataGridViewCellStyle221;
+            dataGridViewCellStyle85.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle85.Format = "N1";
+            dataGridViewCellStyle85.NullValue = "-";
+            this.inFormazioneDataGridViewCheckBoxColumn1.DefaultCellStyle = dataGridViewCellStyle85;
             this.inFormazioneDataGridViewCheckBoxColumn1.HeaderText = "Rou";
             this.inFormazioneDataGridViewCheckBoxColumn1.Name = "inFormazioneDataGridViewCheckBoxColumn1";
             this.inFormazioneDataGridViewCheckBoxColumn1.ReadOnly = true;
@@ -2170,9 +2170,9 @@ namespace TMRecorder
             // CStrGK
             // 
             this.CStrGK.DataPropertyName = "CStr";
-            dataGridViewCellStyle222.Format = "N2";
-            dataGridViewCellStyle222.NullValue = "-";
-            this.CStrGK.DefaultCellStyle = dataGridViewCellStyle222;
+            dataGridViewCellStyle86.Format = "N2";
+            dataGridViewCellStyle86.NullValue = "-";
+            this.CStrGK.DefaultCellStyle = dataGridViewCellStyle86;
             this.CStrGK.HeaderText = "CStr";
             this.CStrGK.Name = "CStrGK";
             this.CStrGK.ReadOnly = true;
@@ -2183,11 +2183,11 @@ namespace TMRecorder
             // 
             this.PO.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.PO.DataPropertyName = "PO";
-            dataGridViewCellStyle223.BackColor = System.Drawing.Color.Green;
-            dataGridViewCellStyle223.Format = "N2";
-            dataGridViewCellStyle223.NullValue = null;
-            dataGridViewCellStyle223.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.PO.DefaultCellStyle = dataGridViewCellStyle223;
+            dataGridViewCellStyle87.BackColor = System.Drawing.Color.Green;
+            dataGridViewCellStyle87.Format = "N2";
+            dataGridViewCellStyle87.NullValue = null;
+            dataGridViewCellStyle87.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.PO.DefaultCellStyle = dataGridViewCellStyle87;
             this.PO.HeaderText = "GK";
             this.PO.Name = "PO";
             this.PO.ReadOnly = true;
@@ -2197,11 +2197,11 @@ namespace TMRecorder
             // 
             this.dataGridViewTextBoxColumn7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.dataGridViewTextBoxColumn7.DataPropertyName = "PSP";
-            dataGridViewCellStyle224.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle224.Format = "N2";
-            dataGridViewCellStyle224.NullValue = null;
-            dataGridViewCellStyle224.SelectionBackColor = System.Drawing.Color.Teal;
-            this.dataGridViewTextBoxColumn7.DefaultCellStyle = dataGridViewCellStyle224;
+            dataGridViewCellStyle88.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle88.Format = "N2";
+            dataGridViewCellStyle88.NullValue = null;
+            dataGridViewCellStyle88.SelectionBackColor = System.Drawing.Color.Teal;
+            this.dataGridViewTextBoxColumn7.DefaultCellStyle = dataGridViewCellStyle88;
             this.dataGridViewTextBoxColumn7.HeaderText = "Psp";
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
             this.dataGridViewTextBoxColumn7.ReadOnly = true;
@@ -2210,9 +2210,9 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn11
             // 
             this.dataGridViewTextBoxColumn11.DataPropertyName = "TI";
-            dataGridViewCellStyle225.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle225.Format = "N1";
-            this.dataGridViewTextBoxColumn11.DefaultCellStyle = dataGridViewCellStyle225;
+            dataGridViewCellStyle89.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle89.Format = "N1";
+            this.dataGridViewTextBoxColumn11.DefaultCellStyle = dataGridViewCellStyle89;
             this.dataGridViewTextBoxColumn11.HeaderText = "TI";
             this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
             this.dataGridViewTextBoxColumn11.ReadOnly = true;
@@ -2226,26 +2226,26 @@ namespace TMRecorder
             this.toolStripMenuItem17,
             this.toolStripMenuItem18});
             this.contextMenuStripGK.Name = "contextMenuStrip1";
-            this.contextMenuStripGK.Size = new System.Drawing.Size(211, 70);
+            this.contextMenuStripGK.Size = new System.Drawing.Size(215, 70);
             // 
             // evidenceSkillsForGainsMenuItemGK
             // 
             this.evidenceSkillsForGainsMenuItemGK.Name = "evidenceSkillsForGainsMenuItemGK";
-            this.evidenceSkillsForGainsMenuItemGK.Size = new System.Drawing.Size(210, 22);
+            this.evidenceSkillsForGainsMenuItemGK.Size = new System.Drawing.Size(214, 22);
             this.evidenceSkillsForGainsMenuItemGK.Text = "Evidence Skills for Gains";
             this.evidenceSkillsForGainsMenuItemGK.Click += new System.EventHandler(this.evidenceSkillsForGainsToolStripMenuItem_Click);
             // 
             // toolStripMenuItem17
             // 
             this.toolStripMenuItem17.Name = "toolStripMenuItem17";
-            this.toolStripMenuItem17.Size = new System.Drawing.Size(210, 22);
+            this.toolStripMenuItem17.Size = new System.Drawing.Size(214, 22);
             this.toolStripMenuItem17.Text = "Open Players Profile Pages";
             this.toolStripMenuItem17.Click += new System.EventHandler(this.openPlayersWebPagesToolStripMenuItem_Click);
             // 
             // toolStripMenuItem18
             // 
             this.toolStripMenuItem18.Name = "toolStripMenuItem18";
-            this.toolStripMenuItem18.Size = new System.Drawing.Size(210, 22);
+            this.toolStripMenuItem18.Size = new System.Drawing.Size(214, 22);
             this.toolStripMenuItem18.Text = "Open Players Scout Pages";
             this.toolStripMenuItem18.Click += new System.EventHandler(this.openPlayersToolStripMenuItem_Click);
             // 
@@ -2272,14 +2272,14 @@ namespace TMRecorder
             this.dataGridPlayersInfo.AllowUserToDeleteRows = false;
             this.dataGridPlayersInfo.AllowUserToOrderColumns = true;
             this.dataGridPlayersInfo.AutoGenerateColumns = false;
-            dataGridViewCellStyle73.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle73.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle73.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle73.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle73.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle73.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle73.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridPlayersInfo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle73;
+            dataGridViewCellStyle91.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle91.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle91.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle91.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle91.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle91.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle91.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridPlayersInfo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle91;
             this.dataGridPlayersInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridPlayersInfo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.playerIDDataGridViewTextBoxColumn,
@@ -2306,14 +2306,14 @@ namespace TMRecorder
             this.noteDataGridViewTextBoxColumn});
             this.dataGridPlayersInfo.ContextMenuStrip = this.contextMenuPlInfo;
             this.dataGridPlayersInfo.DataSource = this.giocatoriBindingSource1;
-            dataGridViewCellStyle237.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle237.BackColor = System.Drawing.Color.LightGoldenrodYellow;
-            dataGridViewCellStyle237.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle237.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle237.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle237.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle237.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridPlayersInfo.DefaultCellStyle = dataGridViewCellStyle237;
+            dataGridViewCellStyle103.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle103.BackColor = System.Drawing.Color.LightGoldenrodYellow;
+            dataGridViewCellStyle103.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle103.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle103.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle103.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle103.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridPlayersInfo.DefaultCellStyle = dataGridViewCellStyle103;
             this.dataGridPlayersInfo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridPlayersInfo.Location = new System.Drawing.Point(3, 4);
             this.dataGridPlayersInfo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -2334,6 +2334,7 @@ namespace TMRecorder
             this.playerIDDataGridViewTextBoxColumn.Name = "playerIDDataGridViewTextBoxColumn";
             this.playerIDDataGridViewTextBoxColumn.ReadOnly = true;
             this.playerIDDataGridViewTextBoxColumn.Visible = false;
+            this.playerIDDataGridViewTextBoxColumn.Width = 45;
             // 
             // dataGridViewTextBoxColumn2
             // 
@@ -2384,8 +2385,8 @@ namespace TMRecorder
             // 
             this.Wage.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
             this.Wage.DataPropertyName = "Wage";
-            dataGridViewCellStyle90.NullValue = "-";
-            this.Wage.DefaultCellStyle = dataGridViewCellStyle90;
+            dataGridViewCellStyle92.NullValue = "-";
+            this.Wage.DefaultCellStyle = dataGridViewCellStyle92;
             this.Wage.HeaderText = "Wage";
             this.Wage.MinimumWidth = 40;
             this.Wage.Name = "Wage";
@@ -2445,10 +2446,10 @@ namespace TMRecorder
             // 
             this.AvRating.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
             this.AvRating.DataPropertyName = "AvRating";
-            dataGridViewCellStyle227.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(255)))), ((int)(((byte)(212)))));
-            dataGridViewCellStyle227.Format = "N1";
-            dataGridViewCellStyle227.NullValue = null;
-            this.AvRating.DefaultCellStyle = dataGridViewCellStyle227;
+            dataGridViewCellStyle93.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(255)))), ((int)(((byte)(212)))));
+            dataGridViewCellStyle93.Format = "N1";
+            dataGridViewCellStyle93.NullValue = null;
+            this.AvRating.DefaultCellStyle = dataGridViewCellStyle93;
             this.AvRating.HeaderText = "AvR";
             this.AvRating.MinimumWidth = 30;
             this.AvRating.Name = "AvRating";
@@ -2460,10 +2461,10 @@ namespace TMRecorder
             // 
             this.AvTI.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
             this.AvTI.DataPropertyName = "AvTSI";
-            dataGridViewCellStyle228.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(255)))), ((int)(((byte)(212)))));
-            dataGridViewCellStyle228.Format = "N2";
-            dataGridViewCellStyle228.NullValue = null;
-            this.AvTI.DefaultCellStyle = dataGridViewCellStyle228;
+            dataGridViewCellStyle94.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(255)))), ((int)(((byte)(212)))));
+            dataGridViewCellStyle94.Format = "N2";
+            dataGridViewCellStyle94.NullValue = null;
+            this.AvTI.DefaultCellStyle = dataGridViewCellStyle94;
             this.AvTI.HeaderText = "AvTI";
             this.AvTI.MinimumWidth = 40;
             this.AvTI.Name = "AvTI";
@@ -2475,10 +2476,10 @@ namespace TMRecorder
             // 
             this.MediaVoto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
             this.MediaVoto.DataPropertyName = "MediaVoto";
-            dataGridViewCellStyle229.BackColor = System.Drawing.Color.PaleTurquoise;
-            dataGridViewCellStyle229.Format = "N1";
-            dataGridViewCellStyle229.NullValue = null;
-            this.MediaVoto.DefaultCellStyle = dataGridViewCellStyle229;
+            dataGridViewCellStyle95.BackColor = System.Drawing.Color.PaleTurquoise;
+            dataGridViewCellStyle95.Format = "N1";
+            dataGridViewCellStyle95.NullValue = null;
+            this.MediaVoto.DefaultCellStyle = dataGridViewCellStyle95;
             this.MediaVoto.HeaderText = "Av.Vote";
             this.MediaVoto.MinimumWidth = 43;
             this.MediaVoto.Name = "MediaVoto";
@@ -2502,8 +2503,8 @@ namespace TMRecorder
             // 
             this.adaDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
             this.adaDataGridViewTextBoxColumn1.DataPropertyName = "Ada";
-            dataGridViewCellStyle230.BackColor = System.Drawing.Color.Moccasin;
-            this.adaDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle230;
+            dataGridViewCellStyle96.BackColor = System.Drawing.Color.Moccasin;
+            this.adaDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle96;
             this.adaDataGridViewTextBoxColumn1.HeaderText = "Ada";
             this.adaDataGridViewTextBoxColumn1.MinimumWidth = 30;
             this.adaDataGridViewTextBoxColumn1.Name = "adaDataGridViewTextBoxColumn1";
@@ -2515,8 +2516,8 @@ namespace TMRecorder
             // 
             this.scoutVotoDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.scoutVotoDataGridViewTextBoxColumn.DataPropertyName = "ScoutVoto";
-            dataGridViewCellStyle231.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(255)))), ((int)(((byte)(224)))));
-            this.scoutVotoDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle231;
+            dataGridViewCellStyle97.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(255)))), ((int)(((byte)(224)))));
+            this.scoutVotoDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle97;
             this.scoutVotoDataGridViewTextBoxColumn.HeaderText = "Votes";
             this.scoutVotoDataGridViewTextBoxColumn.Name = "scoutVotoDataGridViewTextBoxColumn";
             this.scoutVotoDataGridViewTextBoxColumn.ReadOnly = true;
@@ -2527,10 +2528,10 @@ namespace TMRecorder
             // 
             this.Routine.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
             this.Routine.DataPropertyName = "Routine";
-            dataGridViewCellStyle232.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle232.Format = "N1";
-            dataGridViewCellStyle232.NullValue = "-";
-            this.Routine.DefaultCellStyle = dataGridViewCellStyle232;
+            dataGridViewCellStyle98.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle98.Format = "N1";
+            dataGridViewCellStyle98.NullValue = "-";
+            this.Routine.DefaultCellStyle = dataGridViewCellStyle98;
             this.Routine.HeaderText = "Rou";
             this.Routine.MinimumWidth = 30;
             this.Routine.Name = "Routine";
@@ -2542,9 +2543,9 @@ namespace TMRecorder
             // 
             this.Speciality.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
             this.Speciality.DataPropertyName = "Speciality";
-            dataGridViewCellStyle233.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle233.NullValue = "-";
-            this.Speciality.DefaultCellStyle = dataGridViewCellStyle233;
+            dataGridViewCellStyle99.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle99.NullValue = "-";
+            this.Speciality.DefaultCellStyle = dataGridViewCellStyle99;
             this.Speciality.HeaderText = "Spe";
             this.Speciality.MinimumWidth = 30;
             this.Speciality.Name = "Speciality";
@@ -2556,10 +2557,10 @@ namespace TMRecorder
             // 
             this.Professionalism.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
             this.Professionalism.DataPropertyName = "Professionalism";
-            dataGridViewCellStyle234.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle234.Format = "N1";
-            dataGridViewCellStyle234.NullValue = "-";
-            this.Professionalism.DefaultCellStyle = dataGridViewCellStyle234;
+            dataGridViewCellStyle100.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle100.Format = "N1";
+            dataGridViewCellStyle100.NullValue = "-";
+            this.Professionalism.DefaultCellStyle = dataGridViewCellStyle100;
             this.Professionalism.HeaderText = "Pro";
             this.Professionalism.MinimumWidth = 30;
             this.Professionalism.Name = "Professionalism";
@@ -2571,10 +2572,10 @@ namespace TMRecorder
             // 
             this.Leadership.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
             this.Leadership.DataPropertyName = "Leadership";
-            dataGridViewCellStyle235.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle235.Format = "N1";
-            dataGridViewCellStyle235.NullValue = "-";
-            this.Leadership.DefaultCellStyle = dataGridViewCellStyle235;
+            dataGridViewCellStyle101.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle101.Format = "N1";
+            dataGridViewCellStyle101.NullValue = "-";
+            this.Leadership.DefaultCellStyle = dataGridViewCellStyle101;
             this.Leadership.HeaderText = "Lea";
             this.Leadership.MinimumWidth = 30;
             this.Leadership.Name = "Leadership";
@@ -2586,10 +2587,10 @@ namespace TMRecorder
             // 
             this.Aggressivity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
             this.Aggressivity.DataPropertyName = "Aggressivity";
-            dataGridViewCellStyle236.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle236.Format = "N1";
-            dataGridViewCellStyle236.NullValue = "-";
-            this.Aggressivity.DefaultCellStyle = dataGridViewCellStyle236;
+            dataGridViewCellStyle102.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle102.Format = "N1";
+            dataGridViewCellStyle102.NullValue = "-";
+            this.Aggressivity.DefaultCellStyle = dataGridViewCellStyle102;
             this.Aggressivity.HeaderText = "Agg";
             this.Aggressivity.MinimumWidth = 30;
             this.Aggressivity.Name = "Aggressivity";
@@ -2615,27 +2616,27 @@ namespace TMRecorder
             this.changePlayerPropertiesToolStripMenuItem,
             this.setPlayerBloominAgeToolStripMenuItem});
             this.contextMenuPlInfo.Name = "contextMenuPlInfo";
-            this.contextMenuPlInfo.Size = new System.Drawing.Size(211, 92);
+            this.contextMenuPlInfo.Size = new System.Drawing.Size(215, 92);
             this.contextMenuPlInfo.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuPlInfo_Opening);
             // 
             // openPlayersWebPagesToolStripMenuItem
             // 
             this.openPlayersWebPagesToolStripMenuItem.Name = "openPlayersWebPagesToolStripMenuItem";
-            this.openPlayersWebPagesToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.openPlayersWebPagesToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.openPlayersWebPagesToolStripMenuItem.Text = "Open Players Profile Pages";
             this.openPlayersWebPagesToolStripMenuItem.Click += new System.EventHandler(this.openPlayersWebPagesToolStripMenuItem_Click);
             // 
             // openPlayersToolStripMenuItem
             // 
             this.openPlayersToolStripMenuItem.Name = "openPlayersToolStripMenuItem";
-            this.openPlayersToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.openPlayersToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.openPlayersToolStripMenuItem.Text = "Open Players Scout Pages";
             this.openPlayersToolStripMenuItem.Click += new System.EventHandler(this.openPlayersToolStripMenuItem_Click);
             // 
             // changePlayerPropertiesToolStripMenuItem
             // 
             this.changePlayerPropertiesToolStripMenuItem.Name = "changePlayerPropertiesToolStripMenuItem";
-            this.changePlayerPropertiesToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.changePlayerPropertiesToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.changePlayerPropertiesToolStripMenuItem.Text = "Change Player Properties";
             this.changePlayerPropertiesToolStripMenuItem.Click += new System.EventHandler(this.changePlayerPropertiesToolStripMenuItem_Click);
             // 
@@ -2645,7 +2646,7 @@ namespace TMRecorder
             this.setAgeToolStripMenuItem,
             this.setPhaseToolStripMenuItem});
             this.setPlayerBloominAgeToolStripMenuItem.Name = "setPlayerBloominAgeToolStripMenuItem";
-            this.setPlayerBloominAgeToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.setPlayerBloominAgeToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.setPlayerBloominAgeToolStripMenuItem.Text = "Set Player\'s Bloomin\'";
             // 
             // setAgeToolStripMenuItem
@@ -2663,7 +2664,7 @@ namespace TMRecorder
             this.toolStripMenuItem26,
             this.toolStripMenuItem27});
             this.setAgeToolStripMenuItem.Name = "setAgeToolStripMenuItem";
-            this.setAgeToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.setAgeToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.setAgeToolStripMenuItem.Text = "Set Age";
             // 
             // toolStripMenuItem15
@@ -2752,41 +2753,41 @@ namespace TMRecorder
             this.mi3rdYearToolStripMenuItem,
             this.miCompletelyBloomedEToolStripMenuItem});
             this.setPhaseToolStripMenuItem.Name = "setPhaseToolStripMenuItem";
-            this.setPhaseToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.setPhaseToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.setPhaseToolStripMenuItem.Text = "Set Phase";
             // 
             // miNotBloomedUToolStripMenuItem
             // 
             this.miNotBloomedUToolStripMenuItem.Name = "miNotBloomedUToolStripMenuItem";
-            this.miNotBloomedUToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.miNotBloomedUToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
             this.miNotBloomedUToolStripMenuItem.Text = "Not Bloomed (U)";
             this.miNotBloomedUToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenu_SetBloomingPhase_Click);
             // 
             // mi1stYearToolStripMenuItem
             // 
             this.mi1stYearToolStripMenuItem.Name = "mi1stYearToolStripMenuItem";
-            this.mi1stYearToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.mi1stYearToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
             this.mi1stYearToolStripMenuItem.Text = "1st Year (1)";
             this.mi1stYearToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenu_SetBloomingPhase_Click);
             // 
             // mi2ndYearToolStripMenuItem
             // 
             this.mi2ndYearToolStripMenuItem.Name = "mi2ndYearToolStripMenuItem";
-            this.mi2ndYearToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.mi2ndYearToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
             this.mi2ndYearToolStripMenuItem.Text = "2nd Year (2)";
             this.mi2ndYearToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenu_SetBloomingPhase_Click);
             // 
             // mi3rdYearToolStripMenuItem
             // 
             this.mi3rdYearToolStripMenuItem.Name = "mi3rdYearToolStripMenuItem";
-            this.mi3rdYearToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.mi3rdYearToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
             this.mi3rdYearToolStripMenuItem.Text = "3rd Year (3)";
             this.mi3rdYearToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenu_SetBloomingPhase_Click);
             // 
             // miCompletelyBloomedEToolStripMenuItem
             // 
             this.miCompletelyBloomedEToolStripMenuItem.Name = "miCompletelyBloomedEToolStripMenuItem";
-            this.miCompletelyBloomedEToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.miCompletelyBloomedEToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
             this.miCompletelyBloomedEToolStripMenuItem.Text = "Completely Bloomed (E)";
             this.miCompletelyBloomedEToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenu_SetBloomingPhase_Click);
             // 
@@ -3036,13 +3037,13 @@ namespace TMRecorder
             // 
             this.txtMatchStart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMatchStart.Location = new System.Drawing.Point(3, 379);
+            this.txtMatchStart.Location = new System.Drawing.Point(3, 425);
             this.txtMatchStart.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtMatchStart.Multiline = true;
             this.txtMatchStart.Name = "txtMatchStart";
             this.txtMatchStart.ReadOnly = true;
             this.txtMatchStart.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtMatchStart.Size = new System.Drawing.Size(475, 107);
+            this.txtMatchStart.Size = new System.Drawing.Size(475, 61);
             this.txtMatchStart.TabIndex = 4;
             // 
             // btnHelp
@@ -3061,7 +3062,7 @@ namespace TMRecorder
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(3, 360);
+            this.label5.Location = new System.Drawing.Point(3, 406);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(73, 13);
             this.label5.TabIndex = 0;
@@ -3076,14 +3077,14 @@ namespace TMRecorder
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgMatches.AutoGenerateColumns = false;
-            dataGridViewCellStyle91.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle91.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle91.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle91.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle91.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle91.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle91.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgMatches.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle91;
+            dataGridViewCellStyle104.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle104.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle104.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle104.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle104.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle104.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle104.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgMatches.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle104;
             this.dgMatches.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgMatches.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dateDataGridViewTextBoxColumn,
@@ -3099,14 +3100,14 @@ namespace TMRecorder
             this.OppsAttackingStyle});
             this.dgMatches.ContextMenuStrip = this.matchesMenuStrip;
             this.dgMatches.DataSource = this.matchBindingSource;
-            dataGridViewCellStyle242.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle242.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle242.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle242.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle242.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle242.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle242.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgMatches.DefaultCellStyle = dataGridViewCellStyle242;
+            dataGridViewCellStyle110.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle110.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle110.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle110.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle110.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle110.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle110.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgMatches.DefaultCellStyle = dataGridViewCellStyle110;
             this.dgMatches.Location = new System.Drawing.Point(0, 68);
             this.dgMatches.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgMatches.MultiSelect = false;
@@ -3114,7 +3115,7 @@ namespace TMRecorder
             this.dgMatches.ReadOnly = true;
             this.dgMatches.RowHeadersWidth = 20;
             this.dgMatches.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgMatches.Size = new System.Drawing.Size(480, 433);
+            this.dgMatches.Size = new System.Drawing.Size(480, 334);
             this.dgMatches.TabIndex = 1;
             this.dgMatches.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgMatches_CellMouseDoubleClick);
             this.dgMatches.SelectionChanged += new System.EventHandler(this.dgMatches_SelectionChanged);
@@ -3171,8 +3172,8 @@ namespace TMRecorder
             // 
             this.Crowd.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.Crowd.DataPropertyName = "Crowd";
-            dataGridViewCellStyle103.NullValue = "-";
-            this.Crowd.DefaultCellStyle = dataGridViewCellStyle103;
+            dataGridViewCellStyle105.NullValue = "-";
+            this.Crowd.DefaultCellStyle = dataGridViewCellStyle105;
             this.Crowd.HeaderText = "Crowd";
             this.Crowd.Name = "Crowd";
             this.Crowd.ReadOnly = true;
@@ -3192,8 +3193,8 @@ namespace TMRecorder
             // 
             this.YourMentality.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
             this.YourMentality.DataPropertyName = "YourMentality";
-            dataGridViewCellStyle238.NullValue = "-";
-            this.YourMentality.DefaultCellStyle = dataGridViewCellStyle238;
+            dataGridViewCellStyle106.NullValue = "-";
+            this.YourMentality.DefaultCellStyle = dataGridViewCellStyle106;
             this.YourMentality.HeaderText = "YM";
             this.YourMentality.MinimumWidth = 10;
             this.YourMentality.Name = "YourMentality";
@@ -3205,8 +3206,8 @@ namespace TMRecorder
             // 
             this.YourAttackingStyle.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
             this.YourAttackingStyle.DataPropertyName = "YourAttackingStyle";
-            dataGridViewCellStyle239.NullValue = "-";
-            this.YourAttackingStyle.DefaultCellStyle = dataGridViewCellStyle239;
+            dataGridViewCellStyle107.NullValue = "-";
+            this.YourAttackingStyle.DefaultCellStyle = dataGridViewCellStyle107;
             this.YourAttackingStyle.HeaderText = "YA";
             this.YourAttackingStyle.MinimumWidth = 10;
             this.YourAttackingStyle.Name = "YourAttackingStyle";
@@ -3218,8 +3219,8 @@ namespace TMRecorder
             // 
             this.OppsMentality.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
             this.OppsMentality.DataPropertyName = "OppsMentality";
-            dataGridViewCellStyle240.NullValue = "-";
-            this.OppsMentality.DefaultCellStyle = dataGridViewCellStyle240;
+            dataGridViewCellStyle108.NullValue = "-";
+            this.OppsMentality.DefaultCellStyle = dataGridViewCellStyle108;
             this.OppsMentality.HeaderText = "OM";
             this.OppsMentality.MinimumWidth = 10;
             this.OppsMentality.Name = "OppsMentality";
@@ -3231,8 +3232,8 @@ namespace TMRecorder
             // 
             this.OppsAttackingStyle.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
             this.OppsAttackingStyle.DataPropertyName = "OppsAttackingStyle";
-            dataGridViewCellStyle241.NullValue = "-";
-            this.OppsAttackingStyle.DefaultCellStyle = dataGridViewCellStyle241;
+            dataGridViewCellStyle109.NullValue = "-";
+            this.OppsAttackingStyle.DefaultCellStyle = dataGridViewCellStyle109;
             this.OppsAttackingStyle.HeaderText = "OA";
             this.OppsAttackingStyle.MinimumWidth = 10;
             this.OppsAttackingStyle.Name = "OppsAttackingStyle";
@@ -3251,12 +3252,12 @@ namespace TMRecorder
             this.toolStripSeparator4,
             this.pasteSelectedMatchFromFileToolStripMenuItem});
             this.matchesMenuStrip.Name = "matchesMenuStrip";
-            this.matchesMenuStrip.Size = new System.Drawing.Size(322, 142);
+            this.matchesMenuStrip.Size = new System.Drawing.Size(327, 142);
             // 
             // gotoMatchReportPageToolStripMenuItem
             // 
             this.gotoMatchReportPageToolStripMenuItem.Name = "gotoMatchReportPageToolStripMenuItem";
-            this.gotoMatchReportPageToolStripMenuItem.Size = new System.Drawing.Size(321, 22);
+            this.gotoMatchReportPageToolStripMenuItem.Size = new System.Drawing.Size(326, 22);
             this.gotoMatchReportPageToolStripMenuItem.Text = "Open Match Report page in the Trophy Browser";
             this.gotoMatchReportPageToolStripMenuItem.Click += new System.EventHandler(this.gotoMatchReportPageToolStripMenuItem_Click);
             // 
@@ -3264,40 +3265,40 @@ namespace TMRecorder
             // 
             this.deleteSelectedMatchToolStripMenuItem.Name = "deleteSelectedMatchToolStripMenuItem";
             this.deleteSelectedMatchToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.deleteSelectedMatchToolStripMenuItem.Size = new System.Drawing.Size(321, 22);
+            this.deleteSelectedMatchToolStripMenuItem.Size = new System.Drawing.Size(326, 22);
             this.deleteSelectedMatchToolStripMenuItem.Text = "Delete Selected Match";
             this.deleteSelectedMatchToolStripMenuItem.Click += new System.EventHandler(this.deleteSelectedMatchToolStripMenuItem_Click);
             // 
             // showMatchActionsListToolStripMenuItem
             // 
             this.showMatchActionsListToolStripMenuItem.Name = "showMatchActionsListToolStripMenuItem";
-            this.showMatchActionsListToolStripMenuItem.Size = new System.Drawing.Size(321, 22);
+            this.showMatchActionsListToolStripMenuItem.Size = new System.Drawing.Size(326, 22);
             this.showMatchActionsListToolStripMenuItem.Text = "Show Match Actions List";
             this.showMatchActionsListToolStripMenuItem.Click += new System.EventHandler(this.showMatchActionsListToolStripMenuItem_Click);
             // 
             // parseMatchForMentalityAndAttackingStylesToolStripMenuItem
             // 
             this.parseMatchForMentalityAndAttackingStylesToolStripMenuItem.Name = "parseMatchForMentalityAndAttackingStylesToolStripMenuItem";
-            this.parseMatchForMentalityAndAttackingStylesToolStripMenuItem.Size = new System.Drawing.Size(321, 22);
+            this.parseMatchForMentalityAndAttackingStylesToolStripMenuItem.Size = new System.Drawing.Size(326, 22);
             this.parseMatchForMentalityAndAttackingStylesToolStripMenuItem.Text = "Parse match for Mentality and Attacking styles";
             this.parseMatchForMentalityAndAttackingStylesToolStripMenuItem.Click += new System.EventHandler(this.parseMatchForMentalityAndAttackingStylesToolStripMenuItem_Click);
             // 
             // analyzeMatchToolStripMenuItem
             // 
             this.analyzeMatchToolStripMenuItem.Name = "analyzeMatchToolStripMenuItem";
-            this.analyzeMatchToolStripMenuItem.Size = new System.Drawing.Size(321, 22);
+            this.analyzeMatchToolStripMenuItem.Size = new System.Drawing.Size(326, 22);
             this.analyzeMatchToolStripMenuItem.Text = "Analyze Match";
             this.analyzeMatchToolStripMenuItem.Click += new System.EventHandler(this.analyzeMatchToolStripMenuItem_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(318, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(323, 6);
             // 
             // pasteSelectedMatchFromFileToolStripMenuItem
             // 
             this.pasteSelectedMatchFromFileToolStripMenuItem.Name = "pasteSelectedMatchFromFileToolStripMenuItem";
-            this.pasteSelectedMatchFromFileToolStripMenuItem.Size = new System.Drawing.Size(321, 22);
+            this.pasteSelectedMatchFromFileToolStripMenuItem.Size = new System.Drawing.Size(326, 22);
             this.pasteSelectedMatchFromFileToolStripMenuItem.Text = "Paste Selected Match from File";
             this.pasteSelectedMatchFromFileToolStripMenuItem.Click += new System.EventHandler(this.caricaFileSquadraToolStripMenuItem_Click);
             // 
@@ -3473,6 +3474,7 @@ namespace TMRecorder
             this.Analysis.Name = "Analysis";
             this.Analysis.ReadOnly = true;
             this.Analysis.Visible = false;
+            this.Analysis.Width = 50;
             // 
             // yourTeamPerfBindingSource
             // 
@@ -3631,16 +3633,16 @@ namespace TMRecorder
             this.oppsTeamLineup.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.oppsTeamLineup.DrawMode = FieldFormationControl.LineupListItem.eDrawMode.ColorByPosition;
             this.oppsTeamLineup.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            formation3.ShowValue = false;
-            formation3.TeamColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            formation3.Type = Common.eFormationTypes.Type_4_4_2;
-            this.oppsTeamLineup.formation = formation3;
+            formation1.ShowValue = false;
+            formation1.TeamColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            formation1.Type = Common.eFormationTypes.Type_4_4_2;
+            this.oppsTeamLineup.formation = formation1;
             this.oppsTeamLineup.IsSelected = false;
-            this.oppsTeamLineup.Location = new System.Drawing.Point(451, 43);
+            this.oppsTeamLineup.Location = new System.Drawing.Point(482, 43);
             this.oppsTeamLineup.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.oppsTeamLineup.Name = "oppsTeamLineup";
             this.oppsTeamLineup.SelectedColor = System.Drawing.Color.DarkOliveGreen;
-            this.oppsTeamLineup.Size = new System.Drawing.Size(72, 77);
+            this.oppsTeamLineup.Size = new System.Drawing.Size(62, 77);
             this.oppsTeamLineup.TabIndex = 2;
             // 
             // yourTeamLineup
@@ -3649,28 +3651,17 @@ namespace TMRecorder
             this.yourTeamLineup.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.yourTeamLineup.DrawMode = FieldFormationControl.LineupListItem.eDrawMode.ColorByPosition;
             this.yourTeamLineup.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            formation4.ShowValue = false;
-            formation4.TeamColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            formation4.Type = Common.eFormationTypes.Type_4_4_2;
-            this.yourTeamLineup.formation = formation4;
+            formation2.ShowValue = false;
+            formation2.TeamColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            formation2.Type = Common.eFormationTypes.Type_4_4_2;
+            this.yourTeamLineup.formation = formation2;
             this.yourTeamLineup.IsSelected = false;
-            this.yourTeamLineup.Location = new System.Drawing.Point(222, 43);
+            this.yourTeamLineup.Location = new System.Drawing.Point(201, 43);
             this.yourTeamLineup.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.yourTeamLineup.Name = "yourTeamLineup";
             this.yourTeamLineup.SelectedColor = System.Drawing.Color.DarkOliveGreen;
-            this.yourTeamLineup.Size = new System.Drawing.Size(72, 77);
+            this.yourTeamLineup.Size = new System.Drawing.Size(61, 77);
             this.yourTeamLineup.TabIndex = 2;
-            // 
-            // matchStats
-            // 
-            this.matchStats.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.matchStats.Location = new System.Drawing.Point(0, 32);
-            this.matchStats.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.matchStats.Name = "matchStats";
-            this.matchStats.Size = new System.Drawing.Size(546, 165);
-            this.matchStats.TabIndex = 1;
             // 
             // label4
             // 
@@ -3716,9 +3707,9 @@ namespace TMRecorder
             // 
             // toolStripContainer3.TopToolStripPanel
             // 
+            this.toolStripContainer3.TopToolStripPanel.Controls.Add(this.tsBrowserMain);
             this.toolStripContainer3.TopToolStripPanel.Controls.Add(this.tsBrowseMatches);
             this.toolStripContainer3.TopToolStripPanel.Controls.Add(this.tsBrowsePlayers);
-            this.toolStripContainer3.TopToolStripPanel.Controls.Add(this.tsBrowserMain);
             // 
             // webBrowser
             // 
@@ -3756,7 +3747,7 @@ namespace TMRecorder
             this.tsbImport});
             this.tsBrowserImport.Location = new System.Drawing.Point(0, 3);
             this.tsBrowserImport.Name = "tsBrowserImport";
-            this.tsBrowserImport.Size = new System.Drawing.Size(93, 382);
+            this.tsBrowserImport.Size = new System.Drawing.Size(93, 367);
             this.tsBrowserImport.TabIndex = 1;
             this.tsBrowserImport.Text = "toolStrip4";
             // 
@@ -3774,20 +3765,20 @@ namespace TMRecorder
             this.toolStripLabel2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripLabel2.ForeColor = System.Drawing.Color.Navy;
             this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(81, 30);
+            this.toolStripLabel2.Size = new System.Drawing.Size(91, 13);
             this.toolStripLabel2.Text = "Import Panel";
             // 
             // toolStripSeparator8
             // 
             this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 33);
+            this.toolStripSeparator8.Size = new System.Drawing.Size(91, 6);
             // 
             // toolStripLabel5
             // 
             this.toolStripLabel5.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripLabel5.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.toolStripLabel5.Name = "toolStripLabel5";
-            this.toolStripLabel5.Size = new System.Drawing.Size(63, 30);
+            this.toolStripLabel5.Size = new System.Drawing.Size(91, 13);
             this.toolStripLabel5.Text = "Squad Data";
             // 
             // tsbImportSquad
@@ -3812,7 +3803,7 @@ namespace TMRecorder
             this.toolStripLabel14.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripLabel14.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.toolStripLabel14.Name = "toolStripLabel14";
-            this.toolStripLabel14.Size = new System.Drawing.Size(45, 30);
+            this.toolStripLabel14.Size = new System.Drawing.Size(91, 13);
             this.toolStripLabel14.Text = "Training";
             // 
             // tsbScouts
@@ -3854,7 +3845,7 @@ namespace TMRecorder
             this.toolStripLabel15.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripLabel15.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.toolStripLabel15.Name = "toolStripLabel15";
-            this.toolStripLabel15.Size = new System.Drawing.Size(66, 30);
+            this.toolStripLabel15.Size = new System.Drawing.Size(91, 13);
             this.toolStripLabel15.Text = "Matches List";
             // 
             // tsbMatchListA
@@ -3896,7 +3887,7 @@ namespace TMRecorder
             this.toolStripLabel4.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripLabel4.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.toolStripLabel4.Name = "toolStripLabel4";
-            this.toolStripLabel4.Size = new System.Drawing.Size(47, 30);
+            this.toolStripLabel4.Size = new System.Drawing.Size(91, 13);
             this.toolStripLabel4.Text = "Matches";
             // 
             // tsbMatchSquadA
@@ -3938,24 +3929,25 @@ namespace TMRecorder
             // toolStripSeparator11
             // 
             this.toolStripSeparator11.Name = "toolStripSeparator11";
-            this.toolStripSeparator11.Size = new System.Drawing.Size(6, 33);
+            this.toolStripSeparator11.Size = new System.Drawing.Size(91, 6);
             // 
             // tsbImport
             // 
             this.tsbImport.AutoSize = false;
             this.tsbImport.BackColor = System.Drawing.SystemColors.Control;
+            this.tsbImport.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsbImport.Image = ((System.Drawing.Image)(resources.GetObject("tsbImport.Image")));
             this.tsbImport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsbImport.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbImport.Name = "tsbImport";
             this.tsbImport.Size = new System.Drawing.Size(91, 30);
-            this.tsbImport.Text = "Force";
+            this.tsbImport.Text = "Import";
             this.tsbImport.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.tsbImport.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
             this.tsbImport.UnderAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.tsbImport.UnderColor = System.Drawing.Color.Black;
-            this.tsbImport.UnderFont = new System.Drawing.Font("Segoe UI", 9F);
-            this.tsbImport.UnderText = "Import";
+            this.tsbImport.UnderFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsbImport.UnderText = "Page";
             this.tsbImport.Click += new System.EventHandler(this.tsbImport_Click);
             // 
             // tsBrowserMain
@@ -3975,7 +3967,7 @@ namespace TMRecorder
             this.tsbProgressText});
             this.tsBrowserMain.Location = new System.Drawing.Point(3, 0);
             this.tsBrowserMain.Name = "tsBrowserMain";
-            this.tsBrowserMain.Size = new System.Drawing.Size(585, 25);
+            this.tsBrowserMain.Size = new System.Drawing.Size(592, 25);
             this.tsBrowserMain.TabIndex = 3;
             this.tsBrowserMain.Text = "toolStrip4";
             // 
@@ -3984,7 +3976,7 @@ namespace TMRecorder
             this.toolStripLabel10.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripLabel10.ForeColor = System.Drawing.SystemColors.Desktop;
             this.toolStripLabel10.Name = "toolStripLabel10";
-            this.toolStripLabel10.Size = new System.Drawing.Size(67, 13);
+            this.toolStripLabel10.Size = new System.Drawing.Size(67, 22);
             this.toolStripLabel10.Text = "Navigation";
             // 
             // tsbPrev
@@ -3992,7 +3984,7 @@ namespace TMRecorder
             this.tsbPrev.Image = ((System.Drawing.Image)(resources.GetObject("tsbPrev.Image")));
             this.tsbPrev.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbPrev.Name = "tsbPrev";
-            this.tsbPrev.Size = new System.Drawing.Size(48, 20);
+            this.tsbPrev.Size = new System.Drawing.Size(50, 22);
             this.tsbPrev.Text = "Prev";
             this.tsbPrev.Click += new System.EventHandler(this.tsbPrev_Click);
             // 
@@ -4001,7 +3993,7 @@ namespace TMRecorder
             this.tsbNext.Image = ((System.Drawing.Image)(resources.GetObject("tsbNext.Image")));
             this.tsbNext.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbNext.Name = "tsbNext";
-            this.tsbNext.Size = new System.Drawing.Size(50, 20);
+            this.tsbNext.Size = new System.Drawing.Size(51, 22);
             this.tsbNext.Text = "Next";
             this.tsbNext.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.tsbNext.Click += new System.EventHandler(this.tsbNext_Click);
@@ -4016,7 +4008,7 @@ namespace TMRecorder
             this.toolStripLabel11.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripLabel11.ForeColor = System.Drawing.SystemColors.Desktop;
             this.toolStripLabel11.Name = "toolStripLabel11";
-            this.toolStripLabel11.Size = new System.Drawing.Size(61, 13);
+            this.toolStripLabel11.Size = new System.Drawing.Size(61, 22);
             this.toolStripLabel11.Text = "TM Pages";
             // 
             // tsbExtraTeam
@@ -4027,20 +4019,20 @@ namespace TMRecorder
             this.tsbExtraTeam.Image = ((System.Drawing.Image)(resources.GetObject("tsbExtraTeam.Image")));
             this.tsbExtraTeam.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbExtraTeam.Name = "tsbExtraTeam";
-            this.tsbExtraTeam.Size = new System.Drawing.Size(90, 20);
+            this.tsbExtraTeam.Size = new System.Drawing.Size(94, 22);
             this.tsbExtraTeam.Text = "Extra Team";
             // 
             // addExtraTeamToolStripMenuItem
             // 
             this.addExtraTeamToolStripMenuItem.Name = "addExtraTeamToolStripMenuItem";
-            this.addExtraTeamToolStripMenuItem.Size = new System.Drawing.Size(256, 22);
+            this.addExtraTeamToolStripMenuItem.Size = new System.Drawing.Size(262, 22);
             this.addExtraTeamToolStripMenuItem.Text = "Add Extra Team";
             this.addExtraTeamToolStripMenuItem.Click += new System.EventHandler(this.addExtraTeamToolStripMenuItem_Click_1);
             // 
             // tsbChangeToConfiguredExtraTeam
             // 
             this.tsbChangeToConfiguredExtraTeam.Name = "tsbChangeToConfiguredExtraTeam";
-            this.tsbChangeToConfiguredExtraTeam.Size = new System.Drawing.Size(256, 22);
+            this.tsbChangeToConfiguredExtraTeam.Size = new System.Drawing.Size(262, 22);
             this.tsbChangeToConfiguredExtraTeam.Text = "Change Browser to the actual Team";
             this.tsbChangeToConfiguredExtraTeam.Click += new System.EventHandler(this.tsbChangeToConfiguredExtraTeam_Click);
             // 
@@ -4055,39 +4047,39 @@ namespace TMRecorder
             this.toolStripDropDownButton16.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton16.Image")));
             this.toolStripDropDownButton16.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton16.Name = "toolStripDropDownButton16";
-            this.toolStripDropDownButton16.Size = new System.Drawing.Size(54, 20);
+            this.toolStripDropDownButton16.Size = new System.Drawing.Size(54, 22);
             this.toolStripDropDownButton16.Text = "File";
             // 
             // tsbGotoMainTrophyPage
             // 
             this.tsbGotoMainTrophyPage.Name = "tsbGotoMainTrophyPage";
-            this.tsbGotoMainTrophyPage.Size = new System.Drawing.Size(323, 22);
+            this.tsbGotoMainTrophyPage.Size = new System.Drawing.Size(336, 22);
             this.tsbGotoMainTrophyPage.Text = "Goto Main TrophyManager page";
             this.tsbGotoMainTrophyPage.Click += new System.EventHandler(this.gotoMToolStripMenuItem_Click);
             // 
             // tsbGotoAdobePage
             // 
             this.tsbGotoAdobePage.Name = "tsbGotoAdobePage";
-            this.tsbGotoAdobePage.Size = new System.Drawing.Size(323, 22);
+            this.tsbGotoAdobePage.Size = new System.Drawing.Size(336, 22);
             this.tsbGotoAdobePage.Text = "Goto Adobe Flashplayer page";
             this.tsbGotoAdobePage.Click += new System.EventHandler(this.gotoAdobeFlashplayerPageToolStripMenuItem_Click);
             // 
             // tsbLoadHTMLPage
             // 
             this.tsbLoadHTMLPage.Name = "tsbLoadHTMLPage";
-            this.tsbLoadHTMLPage.Size = new System.Drawing.Size(323, 22);
+            this.tsbLoadHTMLPage.Size = new System.Drawing.Size(336, 22);
             this.tsbLoadHTMLPage.Text = "Load HTML file (Squad,Training,Calendar,Players)";
             this.tsbLoadHTMLPage.Click += new System.EventHandler(this.loadFromBackupFilesToolStripMenuItem_Click);
             // 
             // toolStripSeparator17
             // 
             this.toolStripSeparator17.Name = "toolStripSeparator17";
-            this.toolStripSeparator17.Size = new System.Drawing.Size(320, 6);
+            this.toolStripSeparator17.Size = new System.Drawing.Size(333, 6);
             // 
             // tsbSendThisPageForDebug
             // 
             this.tsbSendThisPageForDebug.Name = "tsbSendThisPageForDebug";
-            this.tsbSendThisPageForDebug.Size = new System.Drawing.Size(323, 22);
+            this.tsbSendThisPageForDebug.Size = new System.Drawing.Size(336, 22);
             this.tsbSendThisPageForDebug.Text = "Send this page to LedLennon for Debug";
             this.tsbSendThisPageForDebug.Click += new System.EventHandler(this.sendThisPageToLedLennonForDebugToolStripMenuItem_Click);
             // 
@@ -4101,7 +4093,7 @@ namespace TMRecorder
             this.toolStripLabel12.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripLabel12.ForeColor = System.Drawing.SystemColors.Desktop;
             this.toolStripLabel12.Name = "toolStripLabel12";
-            this.toolStripLabel12.Size = new System.Drawing.Size(87, 13);
+            this.toolStripLabel12.Size = new System.Drawing.Size(87, 22);
             this.toolStripLabel12.Text = "Load progress";
             // 
             // tsbProgressBar
@@ -4113,7 +4105,7 @@ namespace TMRecorder
             // tsbProgressText
             // 
             this.tsbProgressText.Name = "tsbProgressText";
-            this.tsbProgressText.Size = new System.Drawing.Size(10, 13);
+            this.tsbProgressText.Size = new System.Drawing.Size(10, 22);
             this.tsbProgressText.Text = " ";
             // 
             // tsBrowsePlayers
@@ -4131,7 +4123,7 @@ namespace TMRecorder
             this.tsbNavigationType});
             this.tsBrowsePlayers.Location = new System.Drawing.Point(3, 0);
             this.tsBrowsePlayers.Name = "tsBrowsePlayers";
-            this.tsBrowsePlayers.Size = new System.Drawing.Size(780, 25);
+            this.tsBrowsePlayers.Size = new System.Drawing.Size(788, 25);
             this.tsBrowsePlayers.TabIndex = 2;
             this.tsBrowsePlayers.Text = "toolStrip2";
             this.tsBrowsePlayers.Visible = false;
@@ -4149,7 +4141,7 @@ namespace TMRecorder
             this.tsbPrevPlayer.Image = ((System.Drawing.Image)(resources.GetObject("tsbPrevPlayer.Image")));
             this.tsbPrevPlayer.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbPrevPlayer.Name = "tsbPrevPlayer";
-            this.tsbPrevPlayer.Size = new System.Drawing.Size(48, 22);
+            this.tsbPrevPlayer.Size = new System.Drawing.Size(50, 22);
             this.tsbPrevPlayer.Text = "Prev";
             this.tsbPrevPlayer.Click += new System.EventHandler(this.tsbPrevPlayer_Click);
             // 
@@ -4159,7 +4151,7 @@ namespace TMRecorder
             this.tsbNextPlayer.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbNextPlayer.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbNextPlayer.Name = "tsbNextPlayer";
-            this.tsbNextPlayer.Size = new System.Drawing.Size(50, 22);
+            this.tsbNextPlayer.Size = new System.Drawing.Size(51, 22);
             this.tsbNextPlayer.Text = "Next";
             this.tsbNextPlayer.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.tsbNextPlayer.Click += new System.EventHandler(this.tsbNextPlayer_Click);
@@ -4246,7 +4238,7 @@ namespace TMRecorder
             this.tsbNumberOfReviews.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.tsbNumberOfReviews.Image = ((System.Drawing.Image)(resources.GetObject("tsbNumberOfReviews.Image")));
             this.tsbNumberOfReviews.Name = "tsbNumberOfReviews";
-            this.tsbNumberOfReviews.Size = new System.Drawing.Size(146, 22);
+            this.tsbNumberOfReviews.Size = new System.Drawing.Size(148, 22);
             this.tsbNumberOfReviews.Text = "2 Scouts Reviews stored";
             // 
             // tsbNavigationType
@@ -4257,14 +4249,14 @@ namespace TMRecorder
             this.tsbNavigationType.Image = ((System.Drawing.Image)(resources.GetObject("tsbNavigationType.Image")));
             this.tsbNavigationType.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbNavigationType.Name = "tsbNavigationType";
-            this.tsbNavigationType.Size = new System.Drawing.Size(122, 22);
+            this.tsbNavigationType.Size = new System.Drawing.Size(125, 22);
             this.tsbNavigationType.Text = "Navigate Profiles";
             // 
             // navigateProfilesToolStripMenuItem
             // 
             this.navigateProfilesToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("navigateProfilesToolStripMenuItem.Image")));
             this.navigateProfilesToolStripMenuItem.Name = "navigateProfilesToolStripMenuItem";
-            this.navigateProfilesToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.navigateProfilesToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.navigateProfilesToolStripMenuItem.Text = "Navigate Profiles";
             this.navigateProfilesToolStripMenuItem.Click += new System.EventHandler(this.navigateProfilesToolStripMenuItem_Click);
             // 
@@ -4272,7 +4264,7 @@ namespace TMRecorder
             // 
             this.navigateReportsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("navigateReportsToolStripMenuItem.Image")));
             this.navigateReportsToolStripMenuItem.Name = "navigateReportsToolStripMenuItem";
-            this.navigateReportsToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.navigateReportsToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.navigateReportsToolStripMenuItem.Text = "Navigate Reports";
             this.navigateReportsToolStripMenuItem.Click += new System.EventHandler(this.navigateReportsToolStripMenuItem_Click);
             // 
@@ -4291,7 +4283,7 @@ namespace TMRecorder
             this.tsbMatchNavigationType});
             this.tsBrowseMatches.Location = new System.Drawing.Point(3, 0);
             this.tsBrowseMatches.Name = "tsBrowseMatches";
-            this.tsBrowseMatches.Size = new System.Drawing.Size(777, 25);
+            this.tsBrowseMatches.Size = new System.Drawing.Size(791, 25);
             this.tsBrowseMatches.TabIndex = 2;
             this.tsBrowseMatches.Text = "toolStrip2";
             this.tsBrowseMatches.Visible = false;
@@ -4309,7 +4301,7 @@ namespace TMRecorder
             this.btnPrevMatch.Image = ((System.Drawing.Image)(resources.GetObject("btnPrevMatch.Image")));
             this.btnPrevMatch.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnPrevMatch.Name = "btnPrevMatch";
-            this.btnPrevMatch.Size = new System.Drawing.Size(48, 22);
+            this.btnPrevMatch.Size = new System.Drawing.Size(50, 22);
             this.btnPrevMatch.Text = "Prev";
             this.btnPrevMatch.Click += new System.EventHandler(this.btnPrevMatch_Click);
             // 
@@ -4319,7 +4311,7 @@ namespace TMRecorder
             this.btnNextMatch.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.btnNextMatch.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnNextMatch.Name = "btnNextMatch";
-            this.btnNextMatch.Size = new System.Drawing.Size(50, 22);
+            this.btnNextMatch.Size = new System.Drawing.Size(51, 22);
             this.btnNextMatch.Text = "Next";
             this.btnNextMatch.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnNextMatch.Click += new System.EventHandler(this.btnNextMatch_Click);
@@ -4406,7 +4398,7 @@ namespace TMRecorder
             this.lblMatchStored.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.lblMatchStored.Image = ((System.Drawing.Image)(resources.GetObject("lblMatchStored.Image")));
             this.lblMatchStored.Name = "lblMatchStored";
-            this.lblMatchStored.Size = new System.Drawing.Size(92, 22);
+            this.lblMatchStored.Size = new System.Drawing.Size(94, 22);
             this.lblMatchStored.Text = "Match Stored";
             // 
             // tsbMatchNavigationType
@@ -4417,14 +4409,14 @@ namespace TMRecorder
             this.tsbMatchNavigationType.Image = ((System.Drawing.Image)(resources.GetObject("tsbMatchNavigationType.Image")));
             this.tsbMatchNavigationType.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbMatchNavigationType.Name = "tsbMatchNavigationType";
-            this.tsbMatchNavigationType.Size = new System.Drawing.Size(185, 22);
+            this.tsbMatchNavigationType.Size = new System.Drawing.Size(194, 22);
             this.tsbMatchNavigationType.Text = "Navigate Main Team Matches";
             // 
             // tsbNavigateMainTeamMatches
             // 
             this.tsbNavigateMainTeamMatches.Image = ((System.Drawing.Image)(resources.GetObject("tsbNavigateMainTeamMatches.Image")));
             this.tsbNavigateMainTeamMatches.Name = "tsbNavigateMainTeamMatches";
-            this.tsbNavigateMainTeamMatches.Size = new System.Drawing.Size(223, 22);
+            this.tsbNavigateMainTeamMatches.Size = new System.Drawing.Size(232, 22);
             this.tsbNavigateMainTeamMatches.Text = "Navigate Main Team Matches";
             this.tsbNavigateMainTeamMatches.Click += new System.EventHandler(this.tsbNavigateMainTeamMatches_Click);
             // 
@@ -4432,7 +4424,7 @@ namespace TMRecorder
             // 
             this.tsbNavigateReservesMatches.Image = ((System.Drawing.Image)(resources.GetObject("tsbNavigateReservesMatches.Image")));
             this.tsbNavigateReservesMatches.Name = "tsbNavigateReservesMatches";
-            this.tsbNavigateReservesMatches.Size = new System.Drawing.Size(223, 22);
+            this.tsbNavigateReservesMatches.Size = new System.Drawing.Size(232, 22);
             this.tsbNavigateReservesMatches.Text = "Navigate Reserves Matches";
             this.tsbNavigateReservesMatches.Click += new System.EventHandler(this.tsbNavigateReservesMatches_Click);
             // 
@@ -4444,8 +4436,8 @@ namespace TMRecorder
             // PlayerID
             // 
             this.PlayerID.DataPropertyName = "PlayerID";
-            dataGridViewCellStyle104.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.PlayerID.DefaultCellStyle = dataGridViewCellStyle104;
+            dataGridViewCellStyle111.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.PlayerID.DefaultCellStyle = dataGridViewCellStyle111;
             this.PlayerID.FillWeight = 30F;
             this.PlayerID.Frozen = true;
             this.PlayerID.HeaderText = "ID";
@@ -4472,10 +4464,10 @@ namespace TMRecorder
             // DC
             // 
             this.DC.DataPropertyName = "DC";
-            dataGridViewCellStyle110.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle110.Format = "N1";
-            dataGridViewCellStyle110.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.DC.DefaultCellStyle = dataGridViewCellStyle110;
+            dataGridViewCellStyle112.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle112.Format = "N1";
+            dataGridViewCellStyle112.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.DC.DefaultCellStyle = dataGridViewCellStyle112;
             this.DC.HeaderText = "DC";
             this.DC.Name = "DC";
             this.DC.Width = 30;
@@ -4483,10 +4475,10 @@ namespace TMRecorder
             // DR
             // 
             this.DR.DataPropertyName = "DR";
-            dataGridViewCellStyle243.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle243.Format = "N1";
-            dataGridViewCellStyle243.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.DR.DefaultCellStyle = dataGridViewCellStyle243;
+            dataGridViewCellStyle113.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle113.Format = "N1";
+            dataGridViewCellStyle113.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.DR.DefaultCellStyle = dataGridViewCellStyle113;
             this.DR.HeaderText = "DR";
             this.DR.Name = "DR";
             this.DR.Width = 30;
@@ -4494,11 +4486,11 @@ namespace TMRecorder
             // DL
             // 
             this.DL.DataPropertyName = "DL";
-            dataGridViewCellStyle244.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle244.Format = "N1";
-            dataGridViewCellStyle244.NullValue = null;
-            dataGridViewCellStyle244.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.DL.DefaultCellStyle = dataGridViewCellStyle244;
+            dataGridViewCellStyle114.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle114.Format = "N1";
+            dataGridViewCellStyle114.NullValue = null;
+            dataGridViewCellStyle114.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.DL.DefaultCellStyle = dataGridViewCellStyle114;
             this.DL.HeaderText = "DL";
             this.DL.Name = "DL";
             this.DL.Width = 30;
@@ -4506,10 +4498,10 @@ namespace TMRecorder
             // DMC
             // 
             this.DMC.DataPropertyName = "DMC";
-            dataGridViewCellStyle245.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle245.Format = "N1";
-            dataGridViewCellStyle245.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.DMC.DefaultCellStyle = dataGridViewCellStyle245;
+            dataGridViewCellStyle115.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle115.Format = "N1";
+            dataGridViewCellStyle115.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.DMC.DefaultCellStyle = dataGridViewCellStyle115;
             this.DMC.HeaderText = "DMC";
             this.DMC.Name = "DMC";
             this.DMC.Width = 30;
@@ -4517,10 +4509,10 @@ namespace TMRecorder
             // DMR
             // 
             this.DMR.DataPropertyName = "DMR";
-            dataGridViewCellStyle246.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle246.Format = "N1";
-            dataGridViewCellStyle246.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.DMR.DefaultCellStyle = dataGridViewCellStyle246;
+            dataGridViewCellStyle116.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle116.Format = "N1";
+            dataGridViewCellStyle116.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.DMR.DefaultCellStyle = dataGridViewCellStyle116;
             this.DMR.HeaderText = "DMR";
             this.DMR.Name = "DMR";
             this.DMR.Width = 30;
@@ -4528,10 +4520,10 @@ namespace TMRecorder
             // DML
             // 
             this.DML.DataPropertyName = "DML";
-            dataGridViewCellStyle247.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle247.Format = "N1";
-            dataGridViewCellStyle247.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.DML.DefaultCellStyle = dataGridViewCellStyle247;
+            dataGridViewCellStyle117.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle117.Format = "N1";
+            dataGridViewCellStyle117.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.DML.DefaultCellStyle = dataGridViewCellStyle117;
             this.DML.HeaderText = "DML";
             this.DML.Name = "DML";
             this.DML.Width = 30;
@@ -4539,10 +4531,10 @@ namespace TMRecorder
             // MC
             // 
             this.MC.DataPropertyName = "MC";
-            dataGridViewCellStyle248.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle248.Format = "N1";
-            dataGridViewCellStyle248.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.MC.DefaultCellStyle = dataGridViewCellStyle248;
+            dataGridViewCellStyle118.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle118.Format = "N1";
+            dataGridViewCellStyle118.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.MC.DefaultCellStyle = dataGridViewCellStyle118;
             this.MC.HeaderText = "MC";
             this.MC.Name = "MC";
             this.MC.Width = 30;
@@ -4550,10 +4542,10 @@ namespace TMRecorder
             // MR
             // 
             this.MR.DataPropertyName = "MR";
-            dataGridViewCellStyle249.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle249.Format = "N1";
-            dataGridViewCellStyle249.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.MR.DefaultCellStyle = dataGridViewCellStyle249;
+            dataGridViewCellStyle119.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle119.Format = "N1";
+            dataGridViewCellStyle119.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.MR.DefaultCellStyle = dataGridViewCellStyle119;
             this.MR.HeaderText = "MR";
             this.MR.Name = "MR";
             this.MR.Width = 30;
@@ -4561,10 +4553,10 @@ namespace TMRecorder
             // ML
             // 
             this.ML.DataPropertyName = "ML";
-            dataGridViewCellStyle250.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle250.Format = "N1";
-            dataGridViewCellStyle250.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.ML.DefaultCellStyle = dataGridViewCellStyle250;
+            dataGridViewCellStyle120.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle120.Format = "N1";
+            dataGridViewCellStyle120.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.ML.DefaultCellStyle = dataGridViewCellStyle120;
             this.ML.HeaderText = "ML";
             this.ML.Name = "ML";
             this.ML.Width = 30;
@@ -4572,10 +4564,10 @@ namespace TMRecorder
             // OMC
             // 
             this.OMC.DataPropertyName = "OMC";
-            dataGridViewCellStyle251.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle251.Format = "N1";
-            dataGridViewCellStyle251.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.OMC.DefaultCellStyle = dataGridViewCellStyle251;
+            dataGridViewCellStyle121.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle121.Format = "N1";
+            dataGridViewCellStyle121.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.OMC.DefaultCellStyle = dataGridViewCellStyle121;
             this.OMC.HeaderText = "OMC";
             this.OMC.Name = "OMC";
             this.OMC.Width = 30;
@@ -4583,10 +4575,10 @@ namespace TMRecorder
             // OMR
             // 
             this.OMR.DataPropertyName = "OMR";
-            dataGridViewCellStyle252.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle252.Format = "N1";
-            dataGridViewCellStyle252.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.OMR.DefaultCellStyle = dataGridViewCellStyle252;
+            dataGridViewCellStyle122.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle122.Format = "N1";
+            dataGridViewCellStyle122.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.OMR.DefaultCellStyle = dataGridViewCellStyle122;
             this.OMR.HeaderText = "OMR";
             this.OMR.Name = "OMR";
             this.OMR.Width = 30;
@@ -4594,10 +4586,10 @@ namespace TMRecorder
             // OML
             // 
             this.OML.DataPropertyName = "OML";
-            dataGridViewCellStyle253.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle253.Format = "N1";
-            dataGridViewCellStyle253.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.OML.DefaultCellStyle = dataGridViewCellStyle253;
+            dataGridViewCellStyle123.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle123.Format = "N1";
+            dataGridViewCellStyle123.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.OML.DefaultCellStyle = dataGridViewCellStyle123;
             this.OML.HeaderText = "OML";
             this.OML.Name = "OML";
             this.OML.Width = 30;
@@ -4605,10 +4597,10 @@ namespace TMRecorder
             // FC
             // 
             this.FC.DataPropertyName = "FC";
-            dataGridViewCellStyle254.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle254.Format = "N1";
-            dataGridViewCellStyle254.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.FC.DefaultCellStyle = dataGridViewCellStyle254;
+            dataGridViewCellStyle124.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle124.Format = "N1";
+            dataGridViewCellStyle124.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.FC.DefaultCellStyle = dataGridViewCellStyle124;
             this.FC.HeaderText = "FC";
             this.FC.Name = "FC";
             this.FC.Width = 30;
@@ -4616,11 +4608,11 @@ namespace TMRecorder
             // PSP
             // 
             this.PSP.DataPropertyName = "PSP";
-            dataGridViewCellStyle255.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle255.Format = "N2";
-            dataGridViewCellStyle255.NullValue = null;
-            dataGridViewCellStyle255.SelectionBackColor = System.Drawing.Color.Teal;
-            this.PSP.DefaultCellStyle = dataGridViewCellStyle255;
+            dataGridViewCellStyle125.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle125.Format = "N2";
+            dataGridViewCellStyle125.NullValue = null;
+            dataGridViewCellStyle125.SelectionBackColor = System.Drawing.Color.Teal;
+            this.PSP.DefaultCellStyle = dataGridViewCellStyle125;
             this.PSP.HeaderText = "Psp";
             this.PSP.Name = "PSP";
             this.PSP.Width = 35;
@@ -4671,7 +4663,7 @@ namespace TMRecorder
             this.tsbFacebook});
             this.toolStrip1.Location = new System.Drawing.Point(3, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(780, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(790, 25);
             this.toolStrip1.TabIndex = 3;
             // 
             // toolStripDropDownButton1
@@ -4692,7 +4684,7 @@ namespace TMRecorder
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(246, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(256, 22);
             this.toolStripMenuItem1.Text = "Load HTML file (Only Squad Page)";
             this.toolStripMenuItem1.Visible = false;
             this.toolStripMenuItem1.Click += new System.EventHandler(this.caricaFileSquadraToolStripMenuItem_Click);
@@ -4700,26 +4692,26 @@ namespace TMRecorder
             // loadFromBackupFilesToolStripMenuItem
             // 
             this.loadFromBackupFilesToolStripMenuItem.Name = "loadFromBackupFilesToolStripMenuItem";
-            this.loadFromBackupFilesToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
+            this.loadFromBackupFilesToolStripMenuItem.Size = new System.Drawing.Size(256, 22);
             this.loadFromBackupFilesToolStripMenuItem.Text = "Load From Backup files";
             this.loadFromBackupFilesToolStripMenuItem.Click += new System.EventHandler(this.loadFromBackupFilesToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(246, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(256, 22);
             this.toolStripMenuItem2.Text = "Save Team Data";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.salvaComeXMLToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(243, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(253, 6);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(246, 22);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(256, 22);
             this.toolStripMenuItem4.Text = "Exit";
             this.toolStripMenuItem4.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -4741,7 +4733,7 @@ namespace TMRecorder
             // 
             this.toolStripMenuItem11.Name = "toolStripMenuItem11";
             this.toolStripMenuItem11.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.toolStripMenuItem11.Size = new System.Drawing.Size(301, 22);
+            this.toolStripMenuItem11.Size = new System.Drawing.Size(303, 22);
             this.toolStripMenuItem11.Text = "Paste Squad Page from Clipboard";
             this.toolStripMenuItem11.Visible = false;
             // 
@@ -4749,14 +4741,14 @@ namespace TMRecorder
             // 
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
             this.toolStripMenuItem7.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(301, 22);
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(303, 22);
             this.toolStripMenuItem7.Text = "Paste Training Page from Clipboard";
             this.toolStripMenuItem7.Visible = false;
             // 
             // toolStripMenuItem9
             // 
             this.toolStripMenuItem9.Name = "toolStripMenuItem9";
-            this.toolStripMenuItem9.Size = new System.Drawing.Size(301, 22);
+            this.toolStripMenuItem9.Size = new System.Drawing.Size(303, 22);
             this.toolStripMenuItem9.Text = "Load Team File from XML";
             this.toolStripMenuItem9.Visible = false;
             this.toolStripMenuItem9.Click += new System.EventHandler(this.caricaFileSquadraDaXMLToolStripMenuItem_Click);
@@ -4764,7 +4756,7 @@ namespace TMRecorder
             // evidenceSkillsForGainsToolStripMenuItem
             // 
             this.evidenceSkillsForGainsToolStripMenuItem.Name = "evidenceSkillsForGainsToolStripMenuItem";
-            this.evidenceSkillsForGainsToolStripMenuItem.Size = new System.Drawing.Size(301, 22);
+            this.evidenceSkillsForGainsToolStripMenuItem.Size = new System.Drawing.Size(303, 22);
             this.evidenceSkillsForGainsToolStripMenuItem.Text = "Evidence Skills for Gains";
             this.evidenceSkillsForGainsToolStripMenuItem.Click += new System.EventHandler(this.evidenceSkillsForGainsToolStripMenuItem_Click);
             // 
@@ -4786,21 +4778,21 @@ namespace TMRecorder
             this.toolStripDropDownButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton2.Image")));
             this.toolStripDropDownButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton2.Name = "toolStripDropDownButton2";
-            this.toolStripDropDownButton2.Size = new System.Drawing.Size(47, 22);
+            this.toolStripDropDownButton2.Size = new System.Drawing.Size(49, 22);
             this.toolStripDropDownButton2.Text = "Tools";
             this.toolStripDropDownButton2.Click += new System.EventHandler(this.toolStripDropDownButton2_Click);
             // 
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(210, 22);
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(216, 22);
             this.toolStripMenuItem6.Text = "Options";
             this.toolStripMenuItem6.Click += new System.EventHandler(this.opzioniToolStripMenuItem1_Click);
             // 
             // editGainSetToolStripMenuItem
             // 
             this.editGainSetToolStripMenuItem.Name = "editGainSetToolStripMenuItem";
-            this.editGainSetToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.editGainSetToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this.editGainSetToolStripMenuItem.Text = "Edit Gain Set";
             this.editGainSetToolStripMenuItem.Click += new System.EventHandler(this.editGainSetToolStripMenuItem_Click);
             // 
@@ -4808,7 +4800,7 @@ namespace TMRecorder
             // 
             this.transferManagerToolStripMenuItem.Image = global::TMRecorder.Properties.Resources.TransferManager;
             this.transferManagerToolStripMenuItem.Name = "transferManagerToolStripMenuItem";
-            this.transferManagerToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.transferManagerToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this.transferManagerToolStripMenuItem.Text = "Transfer Manager";
             this.transferManagerToolStripMenuItem.Visible = false;
             this.transferManagerToolStripMenuItem.Click += new System.EventHandler(this.transferManagerToolStripMenuItem_Click);
@@ -4816,7 +4808,7 @@ namespace TMRecorder
             // importPlayersDataToolStripMenuItem
             // 
             this.importPlayersDataToolStripMenuItem.Name = "importPlayersDataToolStripMenuItem";
-            this.importPlayersDataToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.importPlayersDataToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this.importPlayersDataToolStripMenuItem.Text = "Import Private Players Data";
             this.importPlayersDataToolStripMenuItem.Visible = false;
             this.importPlayersDataToolStripMenuItem.Click += new System.EventHandler(this.importPlayersDataToolStripMenuItem_Click);
@@ -4824,7 +4816,7 @@ namespace TMRecorder
             // structuresEconomyToolStripMenuItem
             // 
             this.structuresEconomyToolStripMenuItem.Name = "structuresEconomyToolStripMenuItem";
-            this.structuresEconomyToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.structuresEconomyToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this.structuresEconomyToolStripMenuItem.Text = "Structures Economy";
             this.structuresEconomyToolStripMenuItem.Click += new System.EventHandler(this.structuresEconomyToolStripMenuItem_Click);
             // 
@@ -4832,7 +4824,7 @@ namespace TMRecorder
             // 
             this.tMRBrowserToolStripMenuItem.Image = global::TMRecorder.Properties.Resources.TMRBrowser;
             this.tMRBrowserToolStripMenuItem.Name = "tMRBrowserToolStripMenuItem";
-            this.tMRBrowserToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.tMRBrowserToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this.tMRBrowserToolStripMenuItem.Text = "TMR Browser";
             this.tMRBrowserToolStripMenuItem.Visible = false;
             this.tMRBrowserToolStripMenuItem.Click += new System.EventHandler(this.tmrBrowserToolStripMenuItem_Click);
@@ -4840,7 +4832,7 @@ namespace TMRecorder
             // tMFinanceCalculatorToolStripMenuItem
             // 
             this.tMFinanceCalculatorToolStripMenuItem.Name = "tMFinanceCalculatorToolStripMenuItem";
-            this.tMFinanceCalculatorToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.tMFinanceCalculatorToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this.tMFinanceCalculatorToolStripMenuItem.Text = "TM Finance Calculator";
             this.tMFinanceCalculatorToolStripMenuItem.Visible = false;
             this.tMFinanceCalculatorToolStripMenuItem.Click += new System.EventHandler(this.tMFinanceCalculatorToolStripMenuItem_Click);
@@ -4849,7 +4841,7 @@ namespace TMRecorder
             // 
             this.aSIToTICalculatorToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("aSIToTICalculatorToolStripMenuItem.Image")));
             this.aSIToTICalculatorToolStripMenuItem.Name = "aSIToTICalculatorToolStripMenuItem";
-            this.aSIToTICalculatorToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.aSIToTICalculatorToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this.aSIToTICalculatorToolStripMenuItem.Text = "ASI to TI Calculator";
             this.aSIToTICalculatorToolStripMenuItem.Visible = false;
             this.aSIToTICalculatorToolStripMenuItem.Click += new System.EventHandler(this.aSIToTICalculatorToolStripMenuItem_Click);
@@ -4857,7 +4849,7 @@ namespace TMRecorder
             // youthDevelopmentToolStripMenuItem
             // 
             this.youthDevelopmentToolStripMenuItem.Name = "youthDevelopmentToolStripMenuItem";
-            this.youthDevelopmentToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.youthDevelopmentToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this.youthDevelopmentToolStripMenuItem.Text = "Youth Development";
             this.youthDevelopmentToolStripMenuItem.Click += new System.EventHandler(this.youthDevelopmentToolStripMenuItem_Click);
             // 
@@ -4865,7 +4857,7 @@ namespace TMRecorder
             // 
             this.lineupToolToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("lineupToolToolStripMenuItem.Image")));
             this.lineupToolToolStripMenuItem.Name = "lineupToolToolStripMenuItem";
-            this.lineupToolToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.lineupToolToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this.lineupToolToolStripMenuItem.Text = "Lineup Tool";
             this.lineupToolToolStripMenuItem.Click += new System.EventHandler(this.lineupToolToolStripMenuItem_Click);
             // 
@@ -4873,7 +4865,7 @@ namespace TMRecorder
             // 
             this.shortlistToolToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("shortlistToolToolStripMenuItem.Image")));
             this.shortlistToolToolStripMenuItem.Name = "shortlistToolToolStripMenuItem";
-            this.shortlistToolToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.shortlistToolToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this.shortlistToolToolStripMenuItem.Text = "Shortlist Tool";
             this.shortlistToolToolStripMenuItem.Click += new System.EventHandler(this.shortlistToolToolStripMenuItem_Click);
             // 
@@ -4887,27 +4879,27 @@ namespace TMRecorder
             this.toolStripDropDownButton6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton6.Image")));
             this.toolStripDropDownButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton6.Name = "toolStripDropDownButton6";
-            this.toolStripDropDownButton6.Size = new System.Drawing.Size(41, 22);
+            this.toolStripDropDownButton6.Size = new System.Drawing.Size(43, 22);
             this.toolStripDropDownButton6.Text = "Calc";
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(269, 22);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(275, 22);
             this.toolStripMenuItem3.Text = "Recalculate Players\' Scouts Mean Vote";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.recalculatePlayersScoutVoteMeanToolStripMenuItem_Click);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(269, 22);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(275, 22);
             this.toolStripMenuItem5.Text = "Parse Scout Review for Hidden Data";
             this.toolStripMenuItem5.Click += new System.EventHandler(this.parseScoutReviewForHiddenDataToolStripMenuItem_Click);
             // 
             // recalculatePlayersStatisticsToolStripMenuItem
             // 
             this.recalculatePlayersStatisticsToolStripMenuItem.Name = "recalculatePlayersStatisticsToolStripMenuItem";
-            this.recalculatePlayersStatisticsToolStripMenuItem.Size = new System.Drawing.Size(269, 22);
+            this.recalculatePlayersStatisticsToolStripMenuItem.Size = new System.Drawing.Size(275, 22);
             this.recalculatePlayersStatisticsToolStripMenuItem.Text = "Recalculate Players\' Statistics";
             this.recalculatePlayersStatisticsToolStripMenuItem.Click += new System.EventHandler(this.recalculatePlayersStatisticsToolStripMenuItem_Click);
             // 
@@ -4926,53 +4918,53 @@ namespace TMRecorder
             this.toolStripDropDownButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton5.Image")));
             this.toolStripDropDownButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton5.Name = "toolStripDropDownButton5";
-            this.toolStripDropDownButton5.Size = new System.Drawing.Size(91, 22);
+            this.toolStripDropDownButton5.Size = new System.Drawing.Size(94, 22);
             this.toolStripDropDownButton5.Text = "Import/Export";
             // 
             // clearDecimalsToolStripMenuItem
             // 
             this.clearDecimalsToolStripMenuItem.Name = "clearDecimalsToolStripMenuItem";
-            this.clearDecimalsToolStripMenuItem.Size = new System.Drawing.Size(348, 22);
+            this.clearDecimalsToolStripMenuItem.Size = new System.Drawing.Size(358, 22);
             this.clearDecimalsToolStripMenuItem.Text = "Clear Decimals";
             this.clearDecimalsToolStripMenuItem.Click += new System.EventHandler(this.clearDecimalsToolStripMenuItem_Click_1);
             // 
             // reapplyTrainingsToolStripMenuItem
             // 
             this.reapplyTrainingsToolStripMenuItem.Name = "reapplyTrainingsToolStripMenuItem";
-            this.reapplyTrainingsToolStripMenuItem.Size = new System.Drawing.Size(348, 22);
+            this.reapplyTrainingsToolStripMenuItem.Size = new System.Drawing.Size(358, 22);
             this.reapplyTrainingsToolStripMenuItem.Text = "Reapply Trainings";
             this.reapplyTrainingsToolStripMenuItem.Click += new System.EventHandler(this.reapplyTrainingsToolStripMenuItem_Click);
             // 
             // exportTrainingWeekInTheClipboardInExcelFormatToolStripMenuItem
             // 
             this.exportTrainingWeekInTheClipboardInExcelFormatToolStripMenuItem.Name = "exportTrainingWeekInTheClipboardInExcelFormatToolStripMenuItem";
-            this.exportTrainingWeekInTheClipboardInExcelFormatToolStripMenuItem.Size = new System.Drawing.Size(348, 22);
+            this.exportTrainingWeekInTheClipboardInExcelFormatToolStripMenuItem.Size = new System.Drawing.Size(358, 22);
             this.exportTrainingWeekInTheClipboardInExcelFormatToolStripMenuItem.Text = "Export Training Week to Clipboard in Excel Format";
             this.exportTrainingWeekInTheClipboardInExcelFormatToolStripMenuItem.Click += new System.EventHandler(this.exportTrainingWeekInTheClipboardInExcelFormatToolStripMenuItem_Click);
             // 
             // importTrainingWeekFromClipboardInExcelFormatToolStripMenuItem
             // 
             this.importTrainingWeekFromClipboardInExcelFormatToolStripMenuItem.Name = "importTrainingWeekFromClipboardInExcelFormatToolStripMenuItem";
-            this.importTrainingWeekFromClipboardInExcelFormatToolStripMenuItem.Size = new System.Drawing.Size(348, 22);
+            this.importTrainingWeekFromClipboardInExcelFormatToolStripMenuItem.Size = new System.Drawing.Size(358, 22);
             this.importTrainingWeekFromClipboardInExcelFormatToolStripMenuItem.Text = "Import Training Week From Clipboard in Excel Format";
             this.importTrainingWeekFromClipboardInExcelFormatToolStripMenuItem.Click += new System.EventHandler(this.importTrainingWeekFromClipboardInExcelFormatToolStripMenuItem_Click);
             // 
             // displayStatisticsForThisWeekToolStripMenuItem
             // 
             this.displayStatisticsForThisWeekToolStripMenuItem.Name = "displayStatisticsForThisWeekToolStripMenuItem";
-            this.displayStatisticsForThisWeekToolStripMenuItem.Size = new System.Drawing.Size(348, 22);
+            this.displayStatisticsForThisWeekToolStripMenuItem.Size = new System.Drawing.Size(358, 22);
             this.displayStatisticsForThisWeekToolStripMenuItem.Text = "Display Statistics For The Training of This Week";
             this.displayStatisticsForThisWeekToolStripMenuItem.Click += new System.EventHandler(this.displayStatisticsForThisWeekToolStripMenuItem_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(345, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(355, 6);
             // 
             // exportTeamInToolStripMenuItem
             // 
             this.exportTeamInToolStripMenuItem.Name = "exportTeamInToolStripMenuItem";
-            this.exportTeamInToolStripMenuItem.Size = new System.Drawing.Size(348, 22);
+            this.exportTeamInToolStripMenuItem.Size = new System.Drawing.Size(358, 22);
             this.exportTeamInToolStripMenuItem.Text = "Export Team to Clipboard in Excel Format";
             this.exportTeamInToolStripMenuItem.Click += new System.EventHandler(this.exportTeamInToolStripMenuItem_Click);
             // 
@@ -4980,7 +4972,7 @@ namespace TMRecorder
             // 
             this.toolStripMenuItem10.Name = "toolStripMenuItem10";
             this.toolStripMenuItem10.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
-            this.toolStripMenuItem10.Size = new System.Drawing.Size(348, 22);
+            this.toolStripMenuItem10.Size = new System.Drawing.Size(358, 22);
             this.toolStripMenuItem10.Text = "Paste Squad data from Excel Form";
             this.toolStripMenuItem10.Click += new System.EventHandler(this.toolStripMenuItem10_Click);
             // 
@@ -5001,27 +4993,27 @@ namespace TMRecorder
             // toolStripMenuItem12
             // 
             this.toolStripMenuItem12.Name = "toolStripMenuItem12";
-            this.toolStripMenuItem12.Size = new System.Drawing.Size(200, 22);
+            this.toolStripMenuItem12.Size = new System.Drawing.Size(206, 22);
             this.toolStripMenuItem12.Text = "Team Graphical Statistics";
             this.toolStripMenuItem12.Click += new System.EventHandler(this.teamStatistiToolStripMenuItem_Click);
             // 
             // playersStatisticsToolStripMenuItem
             // 
             this.playersStatisticsToolStripMenuItem.Name = "playersStatisticsToolStripMenuItem";
-            this.playersStatisticsToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.playersStatisticsToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
             this.playersStatisticsToolStripMenuItem.Text = "Players Statistics";
             this.playersStatisticsToolStripMenuItem.Click += new System.EventHandler(this.playersStatisticsToolStripMenuItem_Click);
             // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(197, 6);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(203, 6);
             // 
             // tradToolStripMenuItem
             // 
             this.tradToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("tradToolStripMenuItem.Image")));
             this.tradToolStripMenuItem.Name = "tradToolStripMenuItem";
-            this.tradToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.tradToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
             this.tradToolStripMenuItem.Text = "Trading Info";
             this.tradToolStripMenuItem.Click += new System.EventHandler(this.tradToolStripMenuItem_Click);
             // 
@@ -5035,20 +5027,20 @@ namespace TMRecorder
             this.toolStripDropDownButton9.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton9.Image")));
             this.toolStripDropDownButton9.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton9.Name = "toolStripDropDownButton9";
-            this.toolStripDropDownButton9.Size = new System.Drawing.Size(63, 22);
+            this.toolStripDropDownButton9.Size = new System.Drawing.Size(65, 22);
             this.toolStripDropDownButton9.Text = "Matches";
             // 
             // gotoCalendarToolStripMenuItem
             // 
             this.gotoCalendarToolStripMenuItem.Name = "gotoCalendarToolStripMenuItem";
-            this.gotoCalendarToolStripMenuItem.Size = new System.Drawing.Size(283, 22);
+            this.gotoCalendarToolStripMenuItem.Size = new System.Drawing.Size(289, 22);
             this.gotoCalendarToolStripMenuItem.Text = "Open Team Calendar Page";
             this.gotoCalendarToolStripMenuItem.Click += new System.EventHandler(this.gotoCalendarToolStripMenuItem_Click);
             // 
             // reloadPlayersMatchStatsToolStripMenuItem
             // 
             this.reloadPlayersMatchStatsToolStripMenuItem.Name = "reloadPlayersMatchStatsToolStripMenuItem";
-            this.reloadPlayersMatchStatsToolStripMenuItem.Size = new System.Drawing.Size(283, 22);
+            this.reloadPlayersMatchStatsToolStripMenuItem.Size = new System.Drawing.Size(289, 22);
             this.reloadPlayersMatchStatsToolStripMenuItem.Text = "Reload Players Match Stats";
             this.reloadPlayersMatchStatsToolStripMenuItem.Visible = false;
             this.reloadPlayersMatchStatsToolStripMenuItem.Click += new System.EventHandler(this.reloadPlayersMatchStatsToolStripMenuItem_Click);
@@ -5056,7 +5048,7 @@ namespace TMRecorder
             // showMatchesPerformarcesOnTheFieldToolStripMenuItem
             // 
             this.showMatchesPerformarcesOnTheFieldToolStripMenuItem.Name = "showMatchesPerformarcesOnTheFieldToolStripMenuItem";
-            this.showMatchesPerformarcesOnTheFieldToolStripMenuItem.Size = new System.Drawing.Size(283, 22);
+            this.showMatchesPerformarcesOnTheFieldToolStripMenuItem.Size = new System.Drawing.Size(289, 22);
             this.showMatchesPerformarcesOnTheFieldToolStripMenuItem.Text = "Show Matches Performarces on the Field";
             this.showMatchesPerformarcesOnTheFieldToolStripMenuItem.Click += new System.EventHandler(this.showMatchesPerformarcesOnTheFieldToolStripMenuItem_Click);
             // 
@@ -5071,34 +5063,34 @@ namespace TMRecorder
             this.toolStripDropDownButton7.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton7.Image")));
             this.toolStripDropDownButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton7.Name = "toolStripDropDownButton7";
-            this.toolStripDropDownButton7.Size = new System.Drawing.Size(44, 22);
+            this.toolStripDropDownButton7.Size = new System.Drawing.Size(45, 22);
             this.toolStripDropDownButton7.Text = "Help";
             // 
             // gotoTheTmRecorderWebsiteToolStripMenuItem
             // 
             this.gotoTheTmRecorderWebsiteToolStripMenuItem.Name = "gotoTheTmRecorderWebsiteToolStripMenuItem";
-            this.gotoTheTmRecorderWebsiteToolStripMenuItem.Size = new System.Drawing.Size(339, 22);
+            this.gotoTheTmRecorderWebsiteToolStripMenuItem.Size = new System.Drawing.Size(348, 22);
             this.gotoTheTmRecorderWebsiteToolStripMenuItem.Text = "Goto the TmRecorder Facebook Page";
             this.gotoTheTmRecorderWebsiteToolStripMenuItem.Click += new System.EventHandler(this.gotoTheTmRecorderWebsiteToolStripMenuItem_Click);
             // 
             // gotoTheTmRecorderFederationInTrophyManagerToolStripMenuItem
             // 
             this.gotoTheTmRecorderFederationInTrophyManagerToolStripMenuItem.Name = "gotoTheTmRecorderFederationInTrophyManagerToolStripMenuItem";
-            this.gotoTheTmRecorderFederationInTrophyManagerToolStripMenuItem.Size = new System.Drawing.Size(339, 22);
+            this.gotoTheTmRecorderFederationInTrophyManagerToolStripMenuItem.Size = new System.Drawing.Size(348, 22);
             this.gotoTheTmRecorderFederationInTrophyManagerToolStripMenuItem.Text = "Goto the TmRecorder Federation in TrophyManager";
             this.gotoTheTmRecorderFederationInTrophyManagerToolStripMenuItem.Click += new System.EventHandler(this.gotoTheTmRecorderFederationInTrophyManagerToolStripMenuItem_Click);
             // 
             // frequentlyAskedQuestionsToolStripMenuItem
             // 
             this.frequentlyAskedQuestionsToolStripMenuItem.Name = "frequentlyAskedQuestionsToolStripMenuItem";
-            this.frequentlyAskedQuestionsToolStripMenuItem.Size = new System.Drawing.Size(339, 22);
+            this.frequentlyAskedQuestionsToolStripMenuItem.Size = new System.Drawing.Size(348, 22);
             this.frequentlyAskedQuestionsToolStripMenuItem.Text = "[EN] Frequently asked questions";
             this.frequentlyAskedQuestionsToolStripMenuItem.Click += new System.EventHandler(this.frequentlyAskedQuestionsToolStripMenuItem_Click);
             // 
             // iTDomandeFrequentiToolStripMenuItem
             // 
             this.iTDomandeFrequentiToolStripMenuItem.Name = "iTDomandeFrequentiToolStripMenuItem";
-            this.iTDomandeFrequentiToolStripMenuItem.Size = new System.Drawing.Size(339, 22);
+            this.iTDomandeFrequentiToolStripMenuItem.Size = new System.Drawing.Size(348, 22);
             this.iTDomandeFrequentiToolStripMenuItem.Text = "[IT] Domande frequenti";
             this.iTDomandeFrequentiToolStripMenuItem.Click += new System.EventHandler(this.iTDomandeFrequentiToolStripMenuItem_Click);
             // 
@@ -5125,7 +5117,7 @@ namespace TMRecorder
             this.toolDataList.DropDownWidth = 130;
             this.toolDataList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.toolDataList.Name = "toolDataList";
-            this.toolDataList.Size = new System.Drawing.Size(130, 21);
+            this.toolDataList.Size = new System.Drawing.Size(130, 23);
             this.toolDataList.SelectedIndexChanged += new System.EventHandler(this.toolDataList_SelectedIndexChanged);
             // 
             // toolStripDropDownButton3
@@ -5240,8 +5232,8 @@ namespace TMRecorder
             // calDataGridViewTextBoxColumn
             // 
             this.calDataGridViewTextBoxColumn.DataPropertyName = "Cal";
-            dataGridViewCellStyle256.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
-            this.calDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle256;
+            dataGridViewCellStyle126.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
+            this.calDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle126;
             this.calDataGridViewTextBoxColumn.HeaderText = "Set";
             this.calDataGridViewTextBoxColumn.Name = "calDataGridViewTextBoxColumn";
             this.calDataGridViewTextBoxColumn.Width = 23;
@@ -5249,8 +5241,8 @@ namespace TMRecorder
             // tirDataGridViewTextBoxColumn
             // 
             this.tirDataGridViewTextBoxColumn.DataPropertyName = "Tir";
-            dataGridViewCellStyle257.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
-            this.tirDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle257;
+            dataGridViewCellStyle127.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
+            this.tirDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle127;
             this.tirDataGridViewTextBoxColumn.HeaderText = "Lon";
             this.tirDataGridViewTextBoxColumn.Name = "tirDataGridViewTextBoxColumn";
             this.tirDataGridViewTextBoxColumn.Width = 23;
@@ -5258,8 +5250,8 @@ namespace TMRecorder
             // finDataGridViewTextBoxColumn
             // 
             this.finDataGridViewTextBoxColumn.DataPropertyName = "Fin";
-            dataGridViewCellStyle258.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
-            this.finDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle258;
+            dataGridViewCellStyle128.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
+            this.finDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle128;
             this.finDataGridViewTextBoxColumn.HeaderText = "Fin";
             this.finDataGridViewTextBoxColumn.Name = "finDataGridViewTextBoxColumn";
             this.finDataGridViewTextBoxColumn.Width = 23;
@@ -5267,9 +5259,9 @@ namespace TMRecorder
             // tesDataGridViewTextBoxColumn
             // 
             this.tesDataGridViewTextBoxColumn.DataPropertyName = "Tes";
-            dataGridViewCellStyle259.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle259.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
-            this.tesDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle259;
+            dataGridViewCellStyle129.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle129.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
+            this.tesDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle129;
             this.tesDataGridViewTextBoxColumn.HeaderText = "Hea";
             this.tesDataGridViewTextBoxColumn.Name = "tesDataGridViewTextBoxColumn";
             this.tesDataGridViewTextBoxColumn.Width = 23;
@@ -5277,8 +5269,8 @@ namespace TMRecorder
             // tecDataGridViewTextBoxColumn
             // 
             this.tecDataGridViewTextBoxColumn.DataPropertyName = "Tec";
-            dataGridViewCellStyle260.BackColor = System.Drawing.Color.LightCyan;
-            this.tecDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle260;
+            dataGridViewCellStyle130.BackColor = System.Drawing.Color.LightCyan;
+            this.tecDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle130;
             this.tecDataGridViewTextBoxColumn.HeaderText = "Tec";
             this.tecDataGridViewTextBoxColumn.Name = "tecDataGridViewTextBoxColumn";
             this.tecDataGridViewTextBoxColumn.Width = 23;
@@ -5286,8 +5278,8 @@ namespace TMRecorder
             // croDataGridViewTextBoxColumn
             // 
             this.croDataGridViewTextBoxColumn.DataPropertyName = "Cro";
-            dataGridViewCellStyle261.BackColor = System.Drawing.Color.LightCyan;
-            this.croDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle261;
+            dataGridViewCellStyle131.BackColor = System.Drawing.Color.LightCyan;
+            this.croDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle131;
             this.croDataGridViewTextBoxColumn.HeaderText = "Cro";
             this.croDataGridViewTextBoxColumn.Name = "croDataGridViewTextBoxColumn";
             this.croDataGridViewTextBoxColumn.Width = 23;
@@ -5295,8 +5287,8 @@ namespace TMRecorder
             // pasDataGridViewTextBoxColumn
             // 
             this.pasDataGridViewTextBoxColumn.DataPropertyName = "Pas";
-            dataGridViewCellStyle262.BackColor = System.Drawing.Color.LightCyan;
-            this.pasDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle262;
+            dataGridViewCellStyle132.BackColor = System.Drawing.Color.LightCyan;
+            this.pasDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle132;
             this.pasDataGridViewTextBoxColumn.HeaderText = "Pas";
             this.pasDataGridViewTextBoxColumn.Name = "pasDataGridViewTextBoxColumn";
             this.pasDataGridViewTextBoxColumn.Width = 23;
@@ -5304,8 +5296,8 @@ namespace TMRecorder
             // posDataGridViewTextBoxColumn
             // 
             this.posDataGridViewTextBoxColumn.DataPropertyName = "Pos";
-            dataGridViewCellStyle263.BackColor = System.Drawing.Color.LightCyan;
-            this.posDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle263;
+            dataGridViewCellStyle133.BackColor = System.Drawing.Color.LightCyan;
+            this.posDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle133;
             this.posDataGridViewTextBoxColumn.HeaderText = "Pos";
             this.posDataGridViewTextBoxColumn.Name = "posDataGridViewTextBoxColumn";
             this.posDataGridViewTextBoxColumn.Width = 23;
@@ -5313,8 +5305,8 @@ namespace TMRecorder
             // worDataGridViewTextBoxColumn
             // 
             this.worDataGridViewTextBoxColumn.DataPropertyName = "Wor";
-            dataGridViewCellStyle264.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(255)))), ((int)(((byte)(224)))));
-            this.worDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle264;
+            dataGridViewCellStyle134.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(255)))), ((int)(((byte)(224)))));
+            this.worDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle134;
             this.worDataGridViewTextBoxColumn.HeaderText = "Wor";
             this.worDataGridViewTextBoxColumn.Name = "worDataGridViewTextBoxColumn";
             this.worDataGridViewTextBoxColumn.Width = 23;
@@ -5322,8 +5314,8 @@ namespace TMRecorder
             // conDataGridViewTextBoxColumn
             // 
             this.conDataGridViewTextBoxColumn.DataPropertyName = "Con";
-            dataGridViewCellStyle265.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(255)))), ((int)(((byte)(224)))));
-            this.conDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle265;
+            dataGridViewCellStyle135.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(255)))), ((int)(((byte)(224)))));
+            this.conDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle135;
             this.conDataGridViewTextBoxColumn.HeaderText = "Tac";
             this.conDataGridViewTextBoxColumn.Name = "conDataGridViewTextBoxColumn";
             this.conDataGridViewTextBoxColumn.Width = 23;
@@ -5331,8 +5323,8 @@ namespace TMRecorder
             // marDataGridViewTextBoxColumn
             // 
             this.marDataGridViewTextBoxColumn.DataPropertyName = "Mar";
-            dataGridViewCellStyle266.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(255)))), ((int)(((byte)(224)))));
-            this.marDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle266;
+            dataGridViewCellStyle136.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(255)))), ((int)(((byte)(224)))));
+            this.marDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle136;
             this.marDataGridViewTextBoxColumn.HeaderText = "Mar";
             this.marDataGridViewTextBoxColumn.Name = "marDataGridViewTextBoxColumn";
             this.marDataGridViewTextBoxColumn.Width = 23;
@@ -5340,8 +5332,8 @@ namespace TMRecorder
             // velDataGridViewTextBoxColumn
             // 
             this.velDataGridViewTextBoxColumn.DataPropertyName = "Vel";
-            dataGridViewCellStyle267.BackColor = System.Drawing.Color.LightYellow;
-            this.velDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle267;
+            dataGridViewCellStyle137.BackColor = System.Drawing.Color.LightYellow;
+            this.velDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle137;
             this.velDataGridViewTextBoxColumn.HeaderText = "Pac";
             this.velDataGridViewTextBoxColumn.Name = "velDataGridViewTextBoxColumn";
             this.velDataGridViewTextBoxColumn.Width = 23;
@@ -5349,8 +5341,8 @@ namespace TMRecorder
             // resDataGridViewTextBoxColumn
             // 
             this.resDataGridViewTextBoxColumn.DataPropertyName = "Res";
-            dataGridViewCellStyle268.BackColor = System.Drawing.Color.LightYellow;
-            this.resDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle268;
+            dataGridViewCellStyle138.BackColor = System.Drawing.Color.LightYellow;
+            this.resDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle138;
             this.resDataGridViewTextBoxColumn.HeaderText = "Sta";
             this.resDataGridViewTextBoxColumn.Name = "resDataGridViewTextBoxColumn";
             this.resDataGridViewTextBoxColumn.Width = 23;
@@ -5358,8 +5350,8 @@ namespace TMRecorder
             // forDataGridViewTextBoxColumn
             // 
             this.forDataGridViewTextBoxColumn.DataPropertyName = "For";
-            dataGridViewCellStyle269.BackColor = System.Drawing.Color.LightYellow;
-            this.forDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle269;
+            dataGridViewCellStyle139.BackColor = System.Drawing.Color.LightYellow;
+            this.forDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle139;
             this.forDataGridViewTextBoxColumn.HeaderText = "Str";
             this.forDataGridViewTextBoxColumn.Name = "forDataGridViewTextBoxColumn";
             this.forDataGridViewTextBoxColumn.Width = 23;
@@ -5384,8 +5376,8 @@ namespace TMRecorder
             // 
             this.nomeDataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.nomeDataGridViewTextBoxColumn3.DataPropertyName = "Nome";
-            dataGridViewCellStyle270.ForeColor = System.Drawing.Color.Black;
-            this.nomeDataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle270;
+            dataGridViewCellStyle140.ForeColor = System.Drawing.Color.Black;
+            this.nomeDataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle140;
             this.nomeDataGridViewTextBoxColumn3.Frozen = true;
             this.nomeDataGridViewTextBoxColumn3.HeaderText = "Name";
             this.nomeDataGridViewTextBoxColumn3.Name = "nomeDataGridViewTextBoxColumn3";
@@ -5555,7 +5547,7 @@ namespace TMRecorder
             // toolStripLabel3
             // 
             this.toolStripLabel3.Name = "toolStripLabel3";
-            this.toolStripLabel3.Size = new System.Drawing.Size(107, 22);
+            this.toolStripLabel3.Size = new System.Drawing.Size(112, 22);
             this.toolStripLabel3.Text = "TM Pages Shortcuts";
             // 
             // toolStripButton6
@@ -5565,7 +5557,7 @@ namespace TMRecorder
             this.toolStripButton6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton6.Image")));
             this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton6.Name = "toolStripButton6";
-            this.toolStripButton6.Size = new System.Drawing.Size(54, 22);
+            this.toolStripButton6.Size = new System.Drawing.Size(55, 22);
             this.toolStripButton6.Text = "Squad A";
             // 
             // toolStripButton7
@@ -5592,6 +5584,17 @@ namespace TMRecorder
             this.toolStripContainer2.Size = new System.Drawing.Size(1059, 556);
             this.toolStripContainer2.TabIndex = 0;
             this.toolStripContainer2.Text = "toolStripContainer2";
+            // 
+            // matchStats
+            // 
+            this.matchStats.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.matchStats.Location = new System.Drawing.Point(0, 32);
+            this.matchStats.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.matchStats.Name = "matchStats";
+            this.matchStats.Size = new System.Drawing.Size(546, 165);
+            this.matchStats.TabIndex = 1;
             // 
             // MainForm
             // 

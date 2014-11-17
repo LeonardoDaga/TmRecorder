@@ -32,7 +32,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -48,18 +47,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabSquadA = new System.Windows.Forms.TabPage();
-            this.dgGiocatori = new System.Windows.Forms.DataGridView();
-            this.tsMainBar = new System.Windows.Forms.ToolStrip();
-            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.importDataFromTmR1xFormatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripDropDownButton3 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.tsOptions = new System.Windows.Forms.ToolStripMenuItem();
-            this.bindPL = new System.Windows.Forms.BindingSource(this.components);
-            this.teamDS = new NTR_Common.TeamDS();
-            this.bindGK = new System.Windows.Forms.BindingSource(this.components);
-            this.DB = new NTR_Common.Data(this.components);
+            this.dgGiocatori = new NTR_Common.AeroDataGrid();
             this.nomeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ageDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_AgeColumn(this.components);
             this.nationalityDataGridViewTextBoxColumn1 = new DataGridViewCustomColumns.TMR_NationColumn(this.components);
@@ -95,25 +86,34 @@
             this.oMLDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fCDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LastWeek = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bindPL = new System.Windows.Forms.BindingSource(this.components);
+            this.teamDS = new NTR_Common.TeamDS();
+            this.tsMainBar = new System.Windows.Forms.ToolStrip();
+            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.importDataFromTmR1xFormatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripDropDownButton3 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.tsOptions = new System.Windows.Forms.ToolStripMenuItem();
+            this.bindGK = new System.Windows.Forms.BindingSource(this.components);
+            this.DB = new NTR_Common.Data(this.components);
             this.tabControl1.SuspendLayout();
             this.tabSquadA.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgGiocatori)).BeginInit();
-            this.tsMainBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindPL)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teamDS)).BeginInit();
+            this.tsMainBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindGK)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabSquadA);
             this.tabControl1.Location = new System.Drawing.Point(0, 38);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(868, 353);
+            this.tabControl1.Size = new System.Drawing.Size(869, 353);
             this.tabControl1.TabIndex = 1;
             // 
             // tabSquadA
@@ -122,7 +122,7 @@
             this.tabSquadA.Location = new System.Drawing.Point(4, 22);
             this.tabSquadA.Name = "tabSquadA";
             this.tabSquadA.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSquadA.Size = new System.Drawing.Size(860, 327);
+            this.tabSquadA.Size = new System.Drawing.Size(861, 327);
             this.tabSquadA.TabIndex = 0;
             this.tabSquadA.Text = "Squad A";
             this.tabSquadA.UseVisualStyleBackColor = true;
@@ -201,73 +201,8 @@
             this.dgGiocatori.RowHeadersDefaultCellStyle = dataGridViewCellStyle18;
             this.dgGiocatori.RowHeadersWidth = 20;
             this.dgGiocatori.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgGiocatori.Size = new System.Drawing.Size(854, 321);
+            this.dgGiocatori.Size = new System.Drawing.Size(855, 321);
             this.dgGiocatori.TabIndex = 1;
-            // 
-            // tsMainBar
-            // 
-            this.tsMainBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripDropDownButton1,
-            this.toolStripDropDownButton3});
-            this.tsMainBar.Location = new System.Drawing.Point(0, 0);
-            this.tsMainBar.Name = "tsMainBar";
-            this.tsMainBar.Size = new System.Drawing.Size(869, 38);
-            this.tsMainBar.TabIndex = 1;
-            this.tsMainBar.Text = "toolStrip1";
-            // 
-            // toolStripDropDownButton1
-            // 
-            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.importDataFromTmR1xFormatToolStripMenuItem});
-            this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
-            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(38, 35);
-            this.toolStripDropDownButton1.Text = "File";
-            this.toolStripDropDownButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
-            // importDataFromTmR1xFormatToolStripMenuItem
-            // 
-            this.importDataFromTmR1xFormatToolStripMenuItem.Name = "importDataFromTmR1xFormatToolStripMenuItem";
-            this.importDataFromTmR1xFormatToolStripMenuItem.Size = new System.Drawing.Size(250, 22);
-            this.importDataFromTmR1xFormatToolStripMenuItem.Text = "Import Data from TmR 1.x format";
-            this.importDataFromTmR1xFormatToolStripMenuItem.Click += new System.EventHandler(this.importDataFromTmR1xFormatToolStripMenuItem_Click);
-            // 
-            // toolStripDropDownButton3
-            // 
-            this.toolStripDropDownButton3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsOptions});
-            this.toolStripDropDownButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton3.Image")));
-            this.toolStripDropDownButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton3.Name = "toolStripDropDownButton3";
-            this.toolStripDropDownButton3.Size = new System.Drawing.Size(49, 35);
-            this.toolStripDropDownButton3.Text = "Tools";
-            this.toolStripDropDownButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
-            // tsOptions
-            // 
-            this.tsOptions.Name = "tsOptions";
-            this.tsOptions.Size = new System.Drawing.Size(116, 22);
-            this.tsOptions.Text = "Options";
-            this.tsOptions.Click += new System.EventHandler(this.tsOptions_Click);
-            // 
-            // bindPL
-            // 
-            this.bindPL.DataMember = "GiocatoriNSkill";
-            this.bindPL.DataSource = this.teamDS;
-            this.bindPL.Filter = "FPn>0";
-            // 
-            // teamDS
-            // 
-            this.teamDS.DataSetName = "TeamDS";
-            this.teamDS.last_week_loaded = -1;
-            this.teamDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // bindGK
-            // 
-            this.bindGK.DataMember = "GiocatoriNSkill";
-            this.bindGK.DataSource = this.teamDS;
-            this.bindGK.Filter = "FPn=0";
             // 
             // nomeDataGridViewTextBoxColumn1
             // 
@@ -641,6 +576,71 @@
             this.LastWeek.Name = "LastWeek";
             this.LastWeek.ReadOnly = true;
             // 
+            // bindPL
+            // 
+            this.bindPL.DataMember = "GiocatoriNSkill";
+            this.bindPL.DataSource = this.teamDS;
+            this.bindPL.Filter = "FPn>0";
+            // 
+            // teamDS
+            // 
+            this.teamDS.DataSetName = "TeamDS";
+            this.teamDS.last_week_loaded = -1;
+            this.teamDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // tsMainBar
+            // 
+            this.tsMainBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripDropDownButton1,
+            this.toolStripDropDownButton3});
+            this.tsMainBar.Location = new System.Drawing.Point(0, 0);
+            this.tsMainBar.Name = "tsMainBar";
+            this.tsMainBar.Size = new System.Drawing.Size(869, 36);
+            this.tsMainBar.TabIndex = 1;
+            this.tsMainBar.Text = "toolStrip1";
+            // 
+            // toolStripDropDownButton1
+            // 
+            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.importDataFromTmR1xFormatToolStripMenuItem});
+            this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
+            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(38, 33);
+            this.toolStripDropDownButton1.Text = "File";
+            this.toolStripDropDownButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
+            // importDataFromTmR1xFormatToolStripMenuItem
+            // 
+            this.importDataFromTmR1xFormatToolStripMenuItem.Name = "importDataFromTmR1xFormatToolStripMenuItem";
+            this.importDataFromTmR1xFormatToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
+            this.importDataFromTmR1xFormatToolStripMenuItem.Text = "Import Data from TmR 1.x format";
+            this.importDataFromTmR1xFormatToolStripMenuItem.Click += new System.EventHandler(this.importDataFromTmR1xFormatToolStripMenuItem_Click);
+            // 
+            // toolStripDropDownButton3
+            // 
+            this.toolStripDropDownButton3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsOptions});
+            this.toolStripDropDownButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton3.Image")));
+            this.toolStripDropDownButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton3.Name = "toolStripDropDownButton3";
+            this.toolStripDropDownButton3.Size = new System.Drawing.Size(47, 33);
+            this.toolStripDropDownButton3.Text = "Tools";
+            this.toolStripDropDownButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
+            // tsOptions
+            // 
+            this.tsOptions.Name = "tsOptions";
+            this.tsOptions.Size = new System.Drawing.Size(152, 22);
+            this.tsOptions.Text = "Options";
+            this.tsOptions.Click += new System.EventHandler(this.tsOptions_Click);
+            // 
+            // bindGK
+            // 
+            this.bindGK.DataMember = "GiocatoriNSkill";
+            this.bindGK.DataSource = this.teamDS;
+            this.bindGK.Filter = "FPn=0";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -654,10 +654,10 @@
             this.tabControl1.ResumeLayout(false);
             this.tabSquadA.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgGiocatori)).EndInit();
-            this.tsMainBar.ResumeLayout(false);
-            this.tsMainBar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindPL)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.teamDS)).EndInit();
+            this.tsMainBar.ResumeLayout(false);
+            this.tsMainBar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindGK)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -673,7 +673,7 @@
         private System.Windows.Forms.BindingSource bindPL;
         public NTR_Common.TeamDS teamDS;
         private System.Windows.Forms.BindingSource bindGK;
-        private System.Windows.Forms.DataGridView dgGiocatori;
+        private NTR_Common.AeroDataGrid dgGiocatori;
         private System.Windows.Forms.ToolStripMenuItem importDataFromTmR1xFormatToolStripMenuItem;
         private NTR_Common.Data DB;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton3;

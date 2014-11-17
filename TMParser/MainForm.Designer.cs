@@ -176,7 +176,7 @@ namespace TMRecorder
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabATeamPage = new System.Windows.Forms.TabPage();
-            this.dataGridGiocatori = new System.Windows.Forms.DataGridView();
+            this.dataGridGiocatori = new NTR_Common.AeroDataGrid();
             this.dataGridViewTextBoxColumn56 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn57 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn58 = new DataGridViewCustomColumns.TMR_FpColumn(this.components);
@@ -225,7 +225,7 @@ namespace TMRecorder
             this.giocatoriNSkillBindingSourceB = new System.Windows.Forms.BindingSource(this.components);
             this.extTMDataSet = new Common.ExtTMDataSet();
             this.tabBTeamPage = new System.Windows.Forms.TabPage();
-            this.dataGridGiocatoriB = new System.Windows.Forms.DataGridView();
+            this.dataGridGiocatoriB = new NTR_Common.AeroDataGrid();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new DataGridViewCustomColumns.TMR_FpColumn(this.components);
@@ -266,7 +266,7 @@ namespace TMRecorder
             this.dataGridViewTextBoxColumn55 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TIcol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabGK = new System.Windows.Forms.TabPage();
-            this.dataGridPortieri = new System.Windows.Forms.DataGridView();
+            this.dataGridPortieri = new NTR_Common.AeroDataGrid();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.numeroDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nomeDataGridViewTextBoxColumn1 = new DataGridViewCustomColumns.TMR_NameInjurySqColumn(this.components);
@@ -295,7 +295,7 @@ namespace TMRecorder
             this.toolStripMenuItem18 = new System.Windows.Forms.ToolStripMenuItem();
             this.portieriNSkillBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabInfo = new System.Windows.Forms.TabPage();
-            this.dataGridPlayersInfo = new System.Windows.Forms.DataGridView();
+            this.dataGridPlayersInfo = new NTR_Common.AeroDataGrid();
             this.playerIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nomeDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -363,7 +363,7 @@ namespace TMRecorder
             this.txtMatchStart = new System.Windows.Forms.TextBox();
             this.btnHelp = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.dgMatches = new System.Windows.Forms.DataGridView();
+            this.dgMatches = new NTR_Common.AeroDataGrid();
             this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.homeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.scoreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -390,7 +390,7 @@ namespace TMRecorder
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dataGridView2 = new NTR_Common.AeroDataGrid();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.voteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -403,7 +403,7 @@ namespace TMRecorder
             this.label2 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
-            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.dataGridView3 = new NTR_Common.AeroDataGrid();
             this.nameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.voteDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -414,6 +414,7 @@ namespace TMRecorder
             this.panel4 = new System.Windows.Forms.Panel();
             this.oppsTeamLineup = new FieldFormationControl.LineupListItem();
             this.yourTeamLineup = new FieldFormationControl.LineupListItem();
+            this.matchStats = new TMRecorder.MatchStats();
             this.label4 = new System.Windows.Forms.Label();
             this.tabBrowser = new System.Windows.Forms.TabPage();
             this.toolStripContainer3 = new System.Windows.Forms.ToolStripContainer();
@@ -435,25 +436,6 @@ namespace TMRecorder
             this.tsbMatchSquadB = new TMR_CostumControls.TMR_ToolStripButton();
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbImport = new TMR_CostumControls.TMR_ToolStripButton();
-            this.tsBrowserMain = new System.Windows.Forms.ToolStrip();
-            this.toolStripLabel10 = new System.Windows.Forms.ToolStripLabel();
-            this.tsbPrev = new System.Windows.Forms.ToolStripButton();
-            this.tsbNext = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator16 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabel11 = new System.Windows.Forms.ToolStripLabel();
-            this.tsbExtraTeam = new System.Windows.Forms.ToolStripDropDownButton();
-            this.addExtraTeamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsbChangeToConfiguredExtraTeam = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripDropDownButton16 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.tsbGotoMainTrophyPage = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsbGotoAdobePage = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsbLoadHTMLPage = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator17 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsbSendThisPageForDebug = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator18 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabel12 = new System.Windows.Forms.ToolStripLabel();
-            this.tsbProgressBar = new System.Windows.Forms.ToolStripProgressBar();
-            this.tsbProgressText = new System.Windows.Forms.ToolStripLabel();
             this.tsBrowsePlayers = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.tsbPrevPlayer = new System.Windows.Forms.ToolStripButton();
@@ -490,6 +472,25 @@ namespace TMRecorder
             this.tsbMatchNavigationType = new System.Windows.Forms.ToolStripDropDownButton();
             this.tsbNavigateMainTeamMatches = new System.Windows.Forms.ToolStripMenuItem();
             this.tsbNavigateReservesMatches = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsBrowserMain = new System.Windows.Forms.ToolStrip();
+            this.toolStripLabel10 = new System.Windows.Forms.ToolStripLabel();
+            this.tsbPrev = new System.Windows.Forms.ToolStripButton();
+            this.tsbNext = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator16 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel11 = new System.Windows.Forms.ToolStripLabel();
+            this.tsbExtraTeam = new System.Windows.Forms.ToolStripDropDownButton();
+            this.addExtraTeamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsbChangeToConfiguredExtraTeam = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripDropDownButton16 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.tsbGotoMainTrophyPage = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsbGotoAdobePage = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsbLoadHTMLPage = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator17 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbSendThisPageForDebug = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator18 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel12 = new System.Windows.Forms.ToolStripLabel();
+            this.tsbProgressBar = new System.Windows.Forms.ToolStripProgressBar();
+            this.tsbProgressText = new System.Windows.Forms.ToolStripLabel();
             this.plyStatsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.PlayerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Num = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -611,7 +612,6 @@ namespace TMRecorder
             this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
             this.toolStripContainer2 = new System.Windows.Forms.ToolStripContainer();
-            this.matchStats = new TMRecorder.MatchStats();
             this.tabControl1.SuspendLayout();
             this.tabATeamPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridGiocatori)).BeginInit();
@@ -660,9 +660,9 @@ namespace TMRecorder
             this.toolStripContainer3.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer3.SuspendLayout();
             this.tsBrowserImport.SuspendLayout();
-            this.tsBrowserMain.SuspendLayout();
             this.tsBrowsePlayers.SuspendLayout();
             this.tsBrowseMatches.SuspendLayout();
+            this.tsBrowserMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.plyStatsBindingSource1)).BeginInit();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
@@ -1273,41 +1273,41 @@ namespace TMRecorder
             this.openPlayersWebPagesToolStripMenuItem2,
             this.openPlayersScoutWebPagesToolStripMenuItem2});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(215, 114);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 114);
             this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
             // movePlayerToATeamToolStripMenuItem
             // 
             this.movePlayerToATeamToolStripMenuItem.Name = "movePlayerToATeamToolStripMenuItem";
-            this.movePlayerToATeamToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.movePlayerToATeamToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
             this.movePlayerToATeamToolStripMenuItem.Text = "Move Player To A Team";
             this.movePlayerToATeamToolStripMenuItem.Click += new System.EventHandler(this.movePlayerToATeamToolStripMenuItem_Click);
             // 
             // movePlayerToBTeamToolStripMenuItem
             // 
             this.movePlayerToBTeamToolStripMenuItem.Name = "movePlayerToBTeamToolStripMenuItem";
-            this.movePlayerToBTeamToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.movePlayerToBTeamToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
             this.movePlayerToBTeamToolStripMenuItem.Text = "Move Player To B Team";
             this.movePlayerToBTeamToolStripMenuItem.Click += new System.EventHandler(this.movePlayerToBTeamToolStripMenuItem_Click);
             // 
             // evidenceSkillsForGainsMenuItem2
             // 
             this.evidenceSkillsForGainsMenuItem2.Name = "evidenceSkillsForGainsMenuItem2";
-            this.evidenceSkillsForGainsMenuItem2.Size = new System.Drawing.Size(214, 22);
+            this.evidenceSkillsForGainsMenuItem2.Size = new System.Drawing.Size(210, 22);
             this.evidenceSkillsForGainsMenuItem2.Text = "Evidence Skills for Gains";
             this.evidenceSkillsForGainsMenuItem2.Click += new System.EventHandler(this.evidenceSkillsForGainsToolStripMenuItem_Click);
             // 
             // openPlayersWebPagesToolStripMenuItem2
             // 
             this.openPlayersWebPagesToolStripMenuItem2.Name = "openPlayersWebPagesToolStripMenuItem2";
-            this.openPlayersWebPagesToolStripMenuItem2.Size = new System.Drawing.Size(214, 22);
+            this.openPlayersWebPagesToolStripMenuItem2.Size = new System.Drawing.Size(210, 22);
             this.openPlayersWebPagesToolStripMenuItem2.Text = "Open Players Profile Pages";
             this.openPlayersWebPagesToolStripMenuItem2.Click += new System.EventHandler(this.openPlayersWebPagesToolStripMenuItem_Click);
             // 
             // openPlayersScoutWebPagesToolStripMenuItem2
             // 
             this.openPlayersScoutWebPagesToolStripMenuItem2.Name = "openPlayersScoutWebPagesToolStripMenuItem2";
-            this.openPlayersScoutWebPagesToolStripMenuItem2.Size = new System.Drawing.Size(214, 22);
+            this.openPlayersScoutWebPagesToolStripMenuItem2.Size = new System.Drawing.Size(210, 22);
             this.openPlayersScoutWebPagesToolStripMenuItem2.Text = "Open Players Scout Pages";
             this.openPlayersScoutWebPagesToolStripMenuItem2.Click += new System.EventHandler(this.openPlayersToolStripMenuItem_Click);
             // 
@@ -2226,26 +2226,26 @@ namespace TMRecorder
             this.toolStripMenuItem17,
             this.toolStripMenuItem18});
             this.contextMenuStripGK.Name = "contextMenuStrip1";
-            this.contextMenuStripGK.Size = new System.Drawing.Size(215, 70);
+            this.contextMenuStripGK.Size = new System.Drawing.Size(211, 70);
             // 
             // evidenceSkillsForGainsMenuItemGK
             // 
             this.evidenceSkillsForGainsMenuItemGK.Name = "evidenceSkillsForGainsMenuItemGK";
-            this.evidenceSkillsForGainsMenuItemGK.Size = new System.Drawing.Size(214, 22);
+            this.evidenceSkillsForGainsMenuItemGK.Size = new System.Drawing.Size(210, 22);
             this.evidenceSkillsForGainsMenuItemGK.Text = "Evidence Skills for Gains";
             this.evidenceSkillsForGainsMenuItemGK.Click += new System.EventHandler(this.evidenceSkillsForGainsToolStripMenuItem_Click);
             // 
             // toolStripMenuItem17
             // 
             this.toolStripMenuItem17.Name = "toolStripMenuItem17";
-            this.toolStripMenuItem17.Size = new System.Drawing.Size(214, 22);
+            this.toolStripMenuItem17.Size = new System.Drawing.Size(210, 22);
             this.toolStripMenuItem17.Text = "Open Players Profile Pages";
             this.toolStripMenuItem17.Click += new System.EventHandler(this.openPlayersWebPagesToolStripMenuItem_Click);
             // 
             // toolStripMenuItem18
             // 
             this.toolStripMenuItem18.Name = "toolStripMenuItem18";
-            this.toolStripMenuItem18.Size = new System.Drawing.Size(214, 22);
+            this.toolStripMenuItem18.Size = new System.Drawing.Size(210, 22);
             this.toolStripMenuItem18.Text = "Open Players Scout Pages";
             this.toolStripMenuItem18.Click += new System.EventHandler(this.openPlayersToolStripMenuItem_Click);
             // 
@@ -2334,7 +2334,6 @@ namespace TMRecorder
             this.playerIDDataGridViewTextBoxColumn.Name = "playerIDDataGridViewTextBoxColumn";
             this.playerIDDataGridViewTextBoxColumn.ReadOnly = true;
             this.playerIDDataGridViewTextBoxColumn.Visible = false;
-            this.playerIDDataGridViewTextBoxColumn.Width = 45;
             // 
             // dataGridViewTextBoxColumn2
             // 
@@ -2616,27 +2615,27 @@ namespace TMRecorder
             this.changePlayerPropertiesToolStripMenuItem,
             this.setPlayerBloominAgeToolStripMenuItem});
             this.contextMenuPlInfo.Name = "contextMenuPlInfo";
-            this.contextMenuPlInfo.Size = new System.Drawing.Size(215, 92);
+            this.contextMenuPlInfo.Size = new System.Drawing.Size(211, 92);
             this.contextMenuPlInfo.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuPlInfo_Opening);
             // 
             // openPlayersWebPagesToolStripMenuItem
             // 
             this.openPlayersWebPagesToolStripMenuItem.Name = "openPlayersWebPagesToolStripMenuItem";
-            this.openPlayersWebPagesToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.openPlayersWebPagesToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
             this.openPlayersWebPagesToolStripMenuItem.Text = "Open Players Profile Pages";
             this.openPlayersWebPagesToolStripMenuItem.Click += new System.EventHandler(this.openPlayersWebPagesToolStripMenuItem_Click);
             // 
             // openPlayersToolStripMenuItem
             // 
             this.openPlayersToolStripMenuItem.Name = "openPlayersToolStripMenuItem";
-            this.openPlayersToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.openPlayersToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
             this.openPlayersToolStripMenuItem.Text = "Open Players Scout Pages";
             this.openPlayersToolStripMenuItem.Click += new System.EventHandler(this.openPlayersToolStripMenuItem_Click);
             // 
             // changePlayerPropertiesToolStripMenuItem
             // 
             this.changePlayerPropertiesToolStripMenuItem.Name = "changePlayerPropertiesToolStripMenuItem";
-            this.changePlayerPropertiesToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.changePlayerPropertiesToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
             this.changePlayerPropertiesToolStripMenuItem.Text = "Change Player Properties";
             this.changePlayerPropertiesToolStripMenuItem.Click += new System.EventHandler(this.changePlayerPropertiesToolStripMenuItem_Click);
             // 
@@ -2646,7 +2645,7 @@ namespace TMRecorder
             this.setAgeToolStripMenuItem,
             this.setPhaseToolStripMenuItem});
             this.setPlayerBloominAgeToolStripMenuItem.Name = "setPlayerBloominAgeToolStripMenuItem";
-            this.setPlayerBloominAgeToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.setPlayerBloominAgeToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
             this.setPlayerBloominAgeToolStripMenuItem.Text = "Set Player\'s Bloomin\'";
             // 
             // setAgeToolStripMenuItem
@@ -2664,7 +2663,7 @@ namespace TMRecorder
             this.toolStripMenuItem26,
             this.toolStripMenuItem27});
             this.setAgeToolStripMenuItem.Name = "setAgeToolStripMenuItem";
-            this.setAgeToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.setAgeToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.setAgeToolStripMenuItem.Text = "Set Age";
             // 
             // toolStripMenuItem15
@@ -2753,41 +2752,41 @@ namespace TMRecorder
             this.mi3rdYearToolStripMenuItem,
             this.miCompletelyBloomedEToolStripMenuItem});
             this.setPhaseToolStripMenuItem.Name = "setPhaseToolStripMenuItem";
-            this.setPhaseToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.setPhaseToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.setPhaseToolStripMenuItem.Text = "Set Phase";
             // 
             // miNotBloomedUToolStripMenuItem
             // 
             this.miNotBloomedUToolStripMenuItem.Name = "miNotBloomedUToolStripMenuItem";
-            this.miNotBloomedUToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.miNotBloomedUToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.miNotBloomedUToolStripMenuItem.Text = "Not Bloomed (U)";
             this.miNotBloomedUToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenu_SetBloomingPhase_Click);
             // 
             // mi1stYearToolStripMenuItem
             // 
             this.mi1stYearToolStripMenuItem.Name = "mi1stYearToolStripMenuItem";
-            this.mi1stYearToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.mi1stYearToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.mi1stYearToolStripMenuItem.Text = "1st Year (1)";
             this.mi1stYearToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenu_SetBloomingPhase_Click);
             // 
             // mi2ndYearToolStripMenuItem
             // 
             this.mi2ndYearToolStripMenuItem.Name = "mi2ndYearToolStripMenuItem";
-            this.mi2ndYearToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.mi2ndYearToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.mi2ndYearToolStripMenuItem.Text = "2nd Year (2)";
             this.mi2ndYearToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenu_SetBloomingPhase_Click);
             // 
             // mi3rdYearToolStripMenuItem
             // 
             this.mi3rdYearToolStripMenuItem.Name = "mi3rdYearToolStripMenuItem";
-            this.mi3rdYearToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.mi3rdYearToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.mi3rdYearToolStripMenuItem.Text = "3rd Year (3)";
             this.mi3rdYearToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenu_SetBloomingPhase_Click);
             // 
             // miCompletelyBloomedEToolStripMenuItem
             // 
             this.miCompletelyBloomedEToolStripMenuItem.Name = "miCompletelyBloomedEToolStripMenuItem";
-            this.miCompletelyBloomedEToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.miCompletelyBloomedEToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.miCompletelyBloomedEToolStripMenuItem.Text = "Completely Bloomed (E)";
             this.miCompletelyBloomedEToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenu_SetBloomingPhase_Click);
             // 
@@ -3252,12 +3251,12 @@ namespace TMRecorder
             this.toolStripSeparator4,
             this.pasteSelectedMatchFromFileToolStripMenuItem});
             this.matchesMenuStrip.Name = "matchesMenuStrip";
-            this.matchesMenuStrip.Size = new System.Drawing.Size(327, 142);
+            this.matchesMenuStrip.Size = new System.Drawing.Size(322, 142);
             // 
             // gotoMatchReportPageToolStripMenuItem
             // 
             this.gotoMatchReportPageToolStripMenuItem.Name = "gotoMatchReportPageToolStripMenuItem";
-            this.gotoMatchReportPageToolStripMenuItem.Size = new System.Drawing.Size(326, 22);
+            this.gotoMatchReportPageToolStripMenuItem.Size = new System.Drawing.Size(321, 22);
             this.gotoMatchReportPageToolStripMenuItem.Text = "Open Match Report page in the Trophy Browser";
             this.gotoMatchReportPageToolStripMenuItem.Click += new System.EventHandler(this.gotoMatchReportPageToolStripMenuItem_Click);
             // 
@@ -3265,40 +3264,40 @@ namespace TMRecorder
             // 
             this.deleteSelectedMatchToolStripMenuItem.Name = "deleteSelectedMatchToolStripMenuItem";
             this.deleteSelectedMatchToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.deleteSelectedMatchToolStripMenuItem.Size = new System.Drawing.Size(326, 22);
+            this.deleteSelectedMatchToolStripMenuItem.Size = new System.Drawing.Size(321, 22);
             this.deleteSelectedMatchToolStripMenuItem.Text = "Delete Selected Match";
             this.deleteSelectedMatchToolStripMenuItem.Click += new System.EventHandler(this.deleteSelectedMatchToolStripMenuItem_Click);
             // 
             // showMatchActionsListToolStripMenuItem
             // 
             this.showMatchActionsListToolStripMenuItem.Name = "showMatchActionsListToolStripMenuItem";
-            this.showMatchActionsListToolStripMenuItem.Size = new System.Drawing.Size(326, 22);
+            this.showMatchActionsListToolStripMenuItem.Size = new System.Drawing.Size(321, 22);
             this.showMatchActionsListToolStripMenuItem.Text = "Show Match Actions List";
             this.showMatchActionsListToolStripMenuItem.Click += new System.EventHandler(this.showMatchActionsListToolStripMenuItem_Click);
             // 
             // parseMatchForMentalityAndAttackingStylesToolStripMenuItem
             // 
             this.parseMatchForMentalityAndAttackingStylesToolStripMenuItem.Name = "parseMatchForMentalityAndAttackingStylesToolStripMenuItem";
-            this.parseMatchForMentalityAndAttackingStylesToolStripMenuItem.Size = new System.Drawing.Size(326, 22);
+            this.parseMatchForMentalityAndAttackingStylesToolStripMenuItem.Size = new System.Drawing.Size(321, 22);
             this.parseMatchForMentalityAndAttackingStylesToolStripMenuItem.Text = "Parse match for Mentality and Attacking styles";
             this.parseMatchForMentalityAndAttackingStylesToolStripMenuItem.Click += new System.EventHandler(this.parseMatchForMentalityAndAttackingStylesToolStripMenuItem_Click);
             // 
             // analyzeMatchToolStripMenuItem
             // 
             this.analyzeMatchToolStripMenuItem.Name = "analyzeMatchToolStripMenuItem";
-            this.analyzeMatchToolStripMenuItem.Size = new System.Drawing.Size(326, 22);
+            this.analyzeMatchToolStripMenuItem.Size = new System.Drawing.Size(321, 22);
             this.analyzeMatchToolStripMenuItem.Text = "Analyze Match";
             this.analyzeMatchToolStripMenuItem.Click += new System.EventHandler(this.analyzeMatchToolStripMenuItem_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(323, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(318, 6);
             // 
             // pasteSelectedMatchFromFileToolStripMenuItem
             // 
             this.pasteSelectedMatchFromFileToolStripMenuItem.Name = "pasteSelectedMatchFromFileToolStripMenuItem";
-            this.pasteSelectedMatchFromFileToolStripMenuItem.Size = new System.Drawing.Size(326, 22);
+            this.pasteSelectedMatchFromFileToolStripMenuItem.Size = new System.Drawing.Size(321, 22);
             this.pasteSelectedMatchFromFileToolStripMenuItem.Text = "Paste Selected Match from File";
             this.pasteSelectedMatchFromFileToolStripMenuItem.Click += new System.EventHandler(this.caricaFileSquadraToolStripMenuItem_Click);
             // 
@@ -3474,7 +3473,6 @@ namespace TMRecorder
             this.Analysis.Name = "Analysis";
             this.Analysis.ReadOnly = true;
             this.Analysis.Visible = false;
-            this.Analysis.Width = 50;
             // 
             // yourTeamPerfBindingSource
             // 
@@ -3663,6 +3661,17 @@ namespace TMRecorder
             this.yourTeamLineup.Size = new System.Drawing.Size(61, 77);
             this.yourTeamLineup.TabIndex = 2;
             // 
+            // matchStats
+            // 
+            this.matchStats.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.matchStats.Location = new System.Drawing.Point(0, 32);
+            this.matchStats.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.matchStats.Name = "matchStats";
+            this.matchStats.Size = new System.Drawing.Size(546, 165);
+            this.matchStats.TabIndex = 1;
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -3747,7 +3756,7 @@ namespace TMRecorder
             this.tsbImport});
             this.tsBrowserImport.Location = new System.Drawing.Point(0, 3);
             this.tsBrowserImport.Name = "tsBrowserImport";
-            this.tsBrowserImport.Size = new System.Drawing.Size(93, 367);
+            this.tsBrowserImport.Size = new System.Drawing.Size(93, 348);
             this.tsBrowserImport.TabIndex = 1;
             this.tsBrowserImport.Text = "toolStrip4";
             // 
@@ -3950,164 +3959,6 @@ namespace TMRecorder
             this.tsbImport.UnderText = "Page";
             this.tsbImport.Click += new System.EventHandler(this.tsbImport_Click);
             // 
-            // tsBrowserMain
-            // 
-            this.tsBrowserMain.Dock = System.Windows.Forms.DockStyle.None;
-            this.tsBrowserMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripLabel10,
-            this.tsbPrev,
-            this.tsbNext,
-            this.toolStripSeparator16,
-            this.toolStripLabel11,
-            this.tsbExtraTeam,
-            this.toolStripDropDownButton16,
-            this.toolStripSeparator18,
-            this.toolStripLabel12,
-            this.tsbProgressBar,
-            this.tsbProgressText});
-            this.tsBrowserMain.Location = new System.Drawing.Point(3, 0);
-            this.tsBrowserMain.Name = "tsBrowserMain";
-            this.tsBrowserMain.Size = new System.Drawing.Size(592, 25);
-            this.tsBrowserMain.TabIndex = 3;
-            this.tsBrowserMain.Text = "toolStrip4";
-            // 
-            // toolStripLabel10
-            // 
-            this.toolStripLabel10.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripLabel10.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.toolStripLabel10.Name = "toolStripLabel10";
-            this.toolStripLabel10.Size = new System.Drawing.Size(67, 22);
-            this.toolStripLabel10.Text = "Navigation";
-            // 
-            // tsbPrev
-            // 
-            this.tsbPrev.Image = ((System.Drawing.Image)(resources.GetObject("tsbPrev.Image")));
-            this.tsbPrev.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbPrev.Name = "tsbPrev";
-            this.tsbPrev.Size = new System.Drawing.Size(50, 22);
-            this.tsbPrev.Text = "Prev";
-            this.tsbPrev.Click += new System.EventHandler(this.tsbPrev_Click);
-            // 
-            // tsbNext
-            // 
-            this.tsbNext.Image = ((System.Drawing.Image)(resources.GetObject("tsbNext.Image")));
-            this.tsbNext.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbNext.Name = "tsbNext";
-            this.tsbNext.Size = new System.Drawing.Size(51, 22);
-            this.tsbNext.Text = "Next";
-            this.tsbNext.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.tsbNext.Click += new System.EventHandler(this.tsbNext_Click);
-            // 
-            // toolStripSeparator16
-            // 
-            this.toolStripSeparator16.Name = "toolStripSeparator16";
-            this.toolStripSeparator16.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripLabel11
-            // 
-            this.toolStripLabel11.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripLabel11.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.toolStripLabel11.Name = "toolStripLabel11";
-            this.toolStripLabel11.Size = new System.Drawing.Size(61, 22);
-            this.toolStripLabel11.Text = "TM Pages";
-            // 
-            // tsbExtraTeam
-            // 
-            this.tsbExtraTeam.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addExtraTeamToolStripMenuItem,
-            this.tsbChangeToConfiguredExtraTeam});
-            this.tsbExtraTeam.Image = ((System.Drawing.Image)(resources.GetObject("tsbExtraTeam.Image")));
-            this.tsbExtraTeam.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbExtraTeam.Name = "tsbExtraTeam";
-            this.tsbExtraTeam.Size = new System.Drawing.Size(94, 22);
-            this.tsbExtraTeam.Text = "Extra Team";
-            // 
-            // addExtraTeamToolStripMenuItem
-            // 
-            this.addExtraTeamToolStripMenuItem.Name = "addExtraTeamToolStripMenuItem";
-            this.addExtraTeamToolStripMenuItem.Size = new System.Drawing.Size(262, 22);
-            this.addExtraTeamToolStripMenuItem.Text = "Add Extra Team";
-            this.addExtraTeamToolStripMenuItem.Click += new System.EventHandler(this.addExtraTeamToolStripMenuItem_Click_1);
-            // 
-            // tsbChangeToConfiguredExtraTeam
-            // 
-            this.tsbChangeToConfiguredExtraTeam.Name = "tsbChangeToConfiguredExtraTeam";
-            this.tsbChangeToConfiguredExtraTeam.Size = new System.Drawing.Size(262, 22);
-            this.tsbChangeToConfiguredExtraTeam.Text = "Change Browser to the actual Team";
-            this.tsbChangeToConfiguredExtraTeam.Click += new System.EventHandler(this.tsbChangeToConfiguredExtraTeam_Click);
-            // 
-            // toolStripDropDownButton16
-            // 
-            this.toolStripDropDownButton16.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbGotoMainTrophyPage,
-            this.tsbGotoAdobePage,
-            this.tsbLoadHTMLPage,
-            this.toolStripSeparator17,
-            this.tsbSendThisPageForDebug});
-            this.toolStripDropDownButton16.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton16.Image")));
-            this.toolStripDropDownButton16.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton16.Name = "toolStripDropDownButton16";
-            this.toolStripDropDownButton16.Size = new System.Drawing.Size(54, 22);
-            this.toolStripDropDownButton16.Text = "File";
-            // 
-            // tsbGotoMainTrophyPage
-            // 
-            this.tsbGotoMainTrophyPage.Name = "tsbGotoMainTrophyPage";
-            this.tsbGotoMainTrophyPage.Size = new System.Drawing.Size(336, 22);
-            this.tsbGotoMainTrophyPage.Text = "Goto Main TrophyManager page";
-            this.tsbGotoMainTrophyPage.Click += new System.EventHandler(this.gotoMToolStripMenuItem_Click);
-            // 
-            // tsbGotoAdobePage
-            // 
-            this.tsbGotoAdobePage.Name = "tsbGotoAdobePage";
-            this.tsbGotoAdobePage.Size = new System.Drawing.Size(336, 22);
-            this.tsbGotoAdobePage.Text = "Goto Adobe Flashplayer page";
-            this.tsbGotoAdobePage.Click += new System.EventHandler(this.gotoAdobeFlashplayerPageToolStripMenuItem_Click);
-            // 
-            // tsbLoadHTMLPage
-            // 
-            this.tsbLoadHTMLPage.Name = "tsbLoadHTMLPage";
-            this.tsbLoadHTMLPage.Size = new System.Drawing.Size(336, 22);
-            this.tsbLoadHTMLPage.Text = "Load HTML file (Squad,Training,Calendar,Players)";
-            this.tsbLoadHTMLPage.Click += new System.EventHandler(this.loadFromBackupFilesToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator17
-            // 
-            this.toolStripSeparator17.Name = "toolStripSeparator17";
-            this.toolStripSeparator17.Size = new System.Drawing.Size(333, 6);
-            // 
-            // tsbSendThisPageForDebug
-            // 
-            this.tsbSendThisPageForDebug.Name = "tsbSendThisPageForDebug";
-            this.tsbSendThisPageForDebug.Size = new System.Drawing.Size(336, 22);
-            this.tsbSendThisPageForDebug.Text = "Send this page to LedLennon for Debug";
-            this.tsbSendThisPageForDebug.Click += new System.EventHandler(this.sendThisPageToLedLennonForDebugToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator18
-            // 
-            this.toolStripSeparator18.Name = "toolStripSeparator18";
-            this.toolStripSeparator18.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripLabel12
-            // 
-            this.toolStripLabel12.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripLabel12.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.toolStripLabel12.Name = "toolStripLabel12";
-            this.toolStripLabel12.Size = new System.Drawing.Size(87, 22);
-            this.toolStripLabel12.Text = "Load progress";
-            // 
-            // tsbProgressBar
-            // 
-            this.tsbProgressBar.Name = "tsbProgressBar";
-            this.tsbProgressBar.Size = new System.Drawing.Size(92, 22);
-            this.tsbProgressBar.Step = 5;
-            // 
-            // tsbProgressText
-            // 
-            this.tsbProgressText.Name = "tsbProgressText";
-            this.tsbProgressText.Size = new System.Drawing.Size(10, 22);
-            this.tsbProgressText.Text = " ";
-            // 
             // tsBrowsePlayers
             // 
             this.tsBrowsePlayers.Dock = System.Windows.Forms.DockStyle.None;
@@ -4123,7 +3974,7 @@ namespace TMRecorder
             this.tsbNavigationType});
             this.tsBrowsePlayers.Location = new System.Drawing.Point(3, 0);
             this.tsBrowsePlayers.Name = "tsBrowsePlayers";
-            this.tsBrowsePlayers.Size = new System.Drawing.Size(788, 25);
+            this.tsBrowsePlayers.Size = new System.Drawing.Size(780, 25);
             this.tsBrowsePlayers.TabIndex = 2;
             this.tsBrowsePlayers.Text = "toolStrip2";
             this.tsBrowsePlayers.Visible = false;
@@ -4141,7 +3992,7 @@ namespace TMRecorder
             this.tsbPrevPlayer.Image = ((System.Drawing.Image)(resources.GetObject("tsbPrevPlayer.Image")));
             this.tsbPrevPlayer.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbPrevPlayer.Name = "tsbPrevPlayer";
-            this.tsbPrevPlayer.Size = new System.Drawing.Size(50, 22);
+            this.tsbPrevPlayer.Size = new System.Drawing.Size(48, 22);
             this.tsbPrevPlayer.Text = "Prev";
             this.tsbPrevPlayer.Click += new System.EventHandler(this.tsbPrevPlayer_Click);
             // 
@@ -4151,7 +4002,7 @@ namespace TMRecorder
             this.tsbNextPlayer.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbNextPlayer.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbNextPlayer.Name = "tsbNextPlayer";
-            this.tsbNextPlayer.Size = new System.Drawing.Size(51, 22);
+            this.tsbNextPlayer.Size = new System.Drawing.Size(50, 22);
             this.tsbNextPlayer.Text = "Next";
             this.tsbNextPlayer.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.tsbNextPlayer.Click += new System.EventHandler(this.tsbNextPlayer_Click);
@@ -4238,7 +4089,7 @@ namespace TMRecorder
             this.tsbNumberOfReviews.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.tsbNumberOfReviews.Image = ((System.Drawing.Image)(resources.GetObject("tsbNumberOfReviews.Image")));
             this.tsbNumberOfReviews.Name = "tsbNumberOfReviews";
-            this.tsbNumberOfReviews.Size = new System.Drawing.Size(148, 22);
+            this.tsbNumberOfReviews.Size = new System.Drawing.Size(146, 22);
             this.tsbNumberOfReviews.Text = "2 Scouts Reviews stored";
             // 
             // tsbNavigationType
@@ -4249,14 +4100,14 @@ namespace TMRecorder
             this.tsbNavigationType.Image = ((System.Drawing.Image)(resources.GetObject("tsbNavigationType.Image")));
             this.tsbNavigationType.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbNavigationType.Name = "tsbNavigationType";
-            this.tsbNavigationType.Size = new System.Drawing.Size(125, 22);
+            this.tsbNavigationType.Size = new System.Drawing.Size(122, 22);
             this.tsbNavigationType.Text = "Navigate Profiles";
             // 
             // navigateProfilesToolStripMenuItem
             // 
             this.navigateProfilesToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("navigateProfilesToolStripMenuItem.Image")));
             this.navigateProfilesToolStripMenuItem.Name = "navigateProfilesToolStripMenuItem";
-            this.navigateProfilesToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.navigateProfilesToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.navigateProfilesToolStripMenuItem.Text = "Navigate Profiles";
             this.navigateProfilesToolStripMenuItem.Click += new System.EventHandler(this.navigateProfilesToolStripMenuItem_Click);
             // 
@@ -4264,7 +4115,7 @@ namespace TMRecorder
             // 
             this.navigateReportsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("navigateReportsToolStripMenuItem.Image")));
             this.navigateReportsToolStripMenuItem.Name = "navigateReportsToolStripMenuItem";
-            this.navigateReportsToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.navigateReportsToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.navigateReportsToolStripMenuItem.Text = "Navigate Reports";
             this.navigateReportsToolStripMenuItem.Click += new System.EventHandler(this.navigateReportsToolStripMenuItem_Click);
             // 
@@ -4283,7 +4134,7 @@ namespace TMRecorder
             this.tsbMatchNavigationType});
             this.tsBrowseMatches.Location = new System.Drawing.Point(3, 0);
             this.tsBrowseMatches.Name = "tsBrowseMatches";
-            this.tsBrowseMatches.Size = new System.Drawing.Size(791, 25);
+            this.tsBrowseMatches.Size = new System.Drawing.Size(777, 25);
             this.tsBrowseMatches.TabIndex = 2;
             this.tsBrowseMatches.Text = "toolStrip2";
             this.tsBrowseMatches.Visible = false;
@@ -4301,7 +4152,7 @@ namespace TMRecorder
             this.btnPrevMatch.Image = ((System.Drawing.Image)(resources.GetObject("btnPrevMatch.Image")));
             this.btnPrevMatch.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnPrevMatch.Name = "btnPrevMatch";
-            this.btnPrevMatch.Size = new System.Drawing.Size(50, 22);
+            this.btnPrevMatch.Size = new System.Drawing.Size(48, 22);
             this.btnPrevMatch.Text = "Prev";
             this.btnPrevMatch.Click += new System.EventHandler(this.btnPrevMatch_Click);
             // 
@@ -4311,7 +4162,7 @@ namespace TMRecorder
             this.btnNextMatch.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.btnNextMatch.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnNextMatch.Name = "btnNextMatch";
-            this.btnNextMatch.Size = new System.Drawing.Size(51, 22);
+            this.btnNextMatch.Size = new System.Drawing.Size(50, 22);
             this.btnNextMatch.Text = "Next";
             this.btnNextMatch.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnNextMatch.Click += new System.EventHandler(this.btnNextMatch_Click);
@@ -4398,7 +4249,7 @@ namespace TMRecorder
             this.lblMatchStored.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.lblMatchStored.Image = ((System.Drawing.Image)(resources.GetObject("lblMatchStored.Image")));
             this.lblMatchStored.Name = "lblMatchStored";
-            this.lblMatchStored.Size = new System.Drawing.Size(94, 22);
+            this.lblMatchStored.Size = new System.Drawing.Size(92, 22);
             this.lblMatchStored.Text = "Match Stored";
             // 
             // tsbMatchNavigationType
@@ -4409,14 +4260,14 @@ namespace TMRecorder
             this.tsbMatchNavigationType.Image = ((System.Drawing.Image)(resources.GetObject("tsbMatchNavigationType.Image")));
             this.tsbMatchNavigationType.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbMatchNavigationType.Name = "tsbMatchNavigationType";
-            this.tsbMatchNavigationType.Size = new System.Drawing.Size(194, 22);
+            this.tsbMatchNavigationType.Size = new System.Drawing.Size(185, 22);
             this.tsbMatchNavigationType.Text = "Navigate Main Team Matches";
             // 
             // tsbNavigateMainTeamMatches
             // 
             this.tsbNavigateMainTeamMatches.Image = ((System.Drawing.Image)(resources.GetObject("tsbNavigateMainTeamMatches.Image")));
             this.tsbNavigateMainTeamMatches.Name = "tsbNavigateMainTeamMatches";
-            this.tsbNavigateMainTeamMatches.Size = new System.Drawing.Size(232, 22);
+            this.tsbNavigateMainTeamMatches.Size = new System.Drawing.Size(223, 22);
             this.tsbNavigateMainTeamMatches.Text = "Navigate Main Team Matches";
             this.tsbNavigateMainTeamMatches.Click += new System.EventHandler(this.tsbNavigateMainTeamMatches_Click);
             // 
@@ -4424,9 +4275,167 @@ namespace TMRecorder
             // 
             this.tsbNavigateReservesMatches.Image = ((System.Drawing.Image)(resources.GetObject("tsbNavigateReservesMatches.Image")));
             this.tsbNavigateReservesMatches.Name = "tsbNavigateReservesMatches";
-            this.tsbNavigateReservesMatches.Size = new System.Drawing.Size(232, 22);
+            this.tsbNavigateReservesMatches.Size = new System.Drawing.Size(223, 22);
             this.tsbNavigateReservesMatches.Text = "Navigate Reserves Matches";
             this.tsbNavigateReservesMatches.Click += new System.EventHandler(this.tsbNavigateReservesMatches_Click);
+            // 
+            // tsBrowserMain
+            // 
+            this.tsBrowserMain.Dock = System.Windows.Forms.DockStyle.None;
+            this.tsBrowserMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel10,
+            this.tsbPrev,
+            this.tsbNext,
+            this.toolStripSeparator16,
+            this.toolStripLabel11,
+            this.tsbExtraTeam,
+            this.toolStripDropDownButton16,
+            this.toolStripSeparator18,
+            this.toolStripLabel12,
+            this.tsbProgressBar,
+            this.tsbProgressText});
+            this.tsBrowserMain.Location = new System.Drawing.Point(3, 0);
+            this.tsBrowserMain.Name = "tsBrowserMain";
+            this.tsBrowserMain.Size = new System.Drawing.Size(585, 25);
+            this.tsBrowserMain.TabIndex = 3;
+            this.tsBrowserMain.Text = "toolStrip4";
+            // 
+            // toolStripLabel10
+            // 
+            this.toolStripLabel10.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripLabel10.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.toolStripLabel10.Name = "toolStripLabel10";
+            this.toolStripLabel10.Size = new System.Drawing.Size(67, 22);
+            this.toolStripLabel10.Text = "Navigation";
+            // 
+            // tsbPrev
+            // 
+            this.tsbPrev.Image = ((System.Drawing.Image)(resources.GetObject("tsbPrev.Image")));
+            this.tsbPrev.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbPrev.Name = "tsbPrev";
+            this.tsbPrev.Size = new System.Drawing.Size(48, 22);
+            this.tsbPrev.Text = "Prev";
+            this.tsbPrev.Click += new System.EventHandler(this.tsbPrev_Click);
+            // 
+            // tsbNext
+            // 
+            this.tsbNext.Image = ((System.Drawing.Image)(resources.GetObject("tsbNext.Image")));
+            this.tsbNext.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbNext.Name = "tsbNext";
+            this.tsbNext.Size = new System.Drawing.Size(50, 22);
+            this.tsbNext.Text = "Next";
+            this.tsbNext.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.tsbNext.Click += new System.EventHandler(this.tsbNext_Click);
+            // 
+            // toolStripSeparator16
+            // 
+            this.toolStripSeparator16.Name = "toolStripSeparator16";
+            this.toolStripSeparator16.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripLabel11
+            // 
+            this.toolStripLabel11.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripLabel11.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.toolStripLabel11.Name = "toolStripLabel11";
+            this.toolStripLabel11.Size = new System.Drawing.Size(61, 22);
+            this.toolStripLabel11.Text = "TM Pages";
+            // 
+            // tsbExtraTeam
+            // 
+            this.tsbExtraTeam.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addExtraTeamToolStripMenuItem,
+            this.tsbChangeToConfiguredExtraTeam});
+            this.tsbExtraTeam.Image = ((System.Drawing.Image)(resources.GetObject("tsbExtraTeam.Image")));
+            this.tsbExtraTeam.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbExtraTeam.Name = "tsbExtraTeam";
+            this.tsbExtraTeam.Size = new System.Drawing.Size(90, 22);
+            this.tsbExtraTeam.Text = "Extra Team";
+            // 
+            // addExtraTeamToolStripMenuItem
+            // 
+            this.addExtraTeamToolStripMenuItem.Name = "addExtraTeamToolStripMenuItem";
+            this.addExtraTeamToolStripMenuItem.Size = new System.Drawing.Size(256, 22);
+            this.addExtraTeamToolStripMenuItem.Text = "Add Extra Team";
+            this.addExtraTeamToolStripMenuItem.Click += new System.EventHandler(this.addExtraTeamToolStripMenuItem_Click_1);
+            // 
+            // tsbChangeToConfiguredExtraTeam
+            // 
+            this.tsbChangeToConfiguredExtraTeam.Name = "tsbChangeToConfiguredExtraTeam";
+            this.tsbChangeToConfiguredExtraTeam.Size = new System.Drawing.Size(256, 22);
+            this.tsbChangeToConfiguredExtraTeam.Text = "Change Browser to the actual Team";
+            this.tsbChangeToConfiguredExtraTeam.Click += new System.EventHandler(this.tsbChangeToConfiguredExtraTeam_Click);
+            // 
+            // toolStripDropDownButton16
+            // 
+            this.toolStripDropDownButton16.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbGotoMainTrophyPage,
+            this.tsbGotoAdobePage,
+            this.tsbLoadHTMLPage,
+            this.toolStripSeparator17,
+            this.tsbSendThisPageForDebug});
+            this.toolStripDropDownButton16.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton16.Image")));
+            this.toolStripDropDownButton16.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton16.Name = "toolStripDropDownButton16";
+            this.toolStripDropDownButton16.Size = new System.Drawing.Size(54, 22);
+            this.toolStripDropDownButton16.Text = "File";
+            // 
+            // tsbGotoMainTrophyPage
+            // 
+            this.tsbGotoMainTrophyPage.Name = "tsbGotoMainTrophyPage";
+            this.tsbGotoMainTrophyPage.Size = new System.Drawing.Size(323, 22);
+            this.tsbGotoMainTrophyPage.Text = "Goto Main TrophyManager page";
+            this.tsbGotoMainTrophyPage.Click += new System.EventHandler(this.gotoMToolStripMenuItem_Click);
+            // 
+            // tsbGotoAdobePage
+            // 
+            this.tsbGotoAdobePage.Name = "tsbGotoAdobePage";
+            this.tsbGotoAdobePage.Size = new System.Drawing.Size(323, 22);
+            this.tsbGotoAdobePage.Text = "Goto Adobe Flashplayer page";
+            this.tsbGotoAdobePage.Click += new System.EventHandler(this.gotoAdobeFlashplayerPageToolStripMenuItem_Click);
+            // 
+            // tsbLoadHTMLPage
+            // 
+            this.tsbLoadHTMLPage.Name = "tsbLoadHTMLPage";
+            this.tsbLoadHTMLPage.Size = new System.Drawing.Size(323, 22);
+            this.tsbLoadHTMLPage.Text = "Load HTML file (Squad,Training,Calendar,Players)";
+            this.tsbLoadHTMLPage.Click += new System.EventHandler(this.loadFromBackupFilesToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator17
+            // 
+            this.toolStripSeparator17.Name = "toolStripSeparator17";
+            this.toolStripSeparator17.Size = new System.Drawing.Size(320, 6);
+            // 
+            // tsbSendThisPageForDebug
+            // 
+            this.tsbSendThisPageForDebug.Name = "tsbSendThisPageForDebug";
+            this.tsbSendThisPageForDebug.Size = new System.Drawing.Size(323, 22);
+            this.tsbSendThisPageForDebug.Text = "Send this page to LedLennon for Debug";
+            this.tsbSendThisPageForDebug.Click += new System.EventHandler(this.sendThisPageToLedLennonForDebugToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator18
+            // 
+            this.toolStripSeparator18.Name = "toolStripSeparator18";
+            this.toolStripSeparator18.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripLabel12
+            // 
+            this.toolStripLabel12.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripLabel12.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.toolStripLabel12.Name = "toolStripLabel12";
+            this.toolStripLabel12.Size = new System.Drawing.Size(87, 22);
+            this.toolStripLabel12.Text = "Load progress";
+            // 
+            // tsbProgressBar
+            // 
+            this.tsbProgressBar.Name = "tsbProgressBar";
+            this.tsbProgressBar.Size = new System.Drawing.Size(92, 22);
+            this.tsbProgressBar.Step = 5;
+            // 
+            // tsbProgressText
+            // 
+            this.tsbProgressText.Name = "tsbProgressText";
+            this.tsbProgressText.Size = new System.Drawing.Size(10, 22);
+            this.tsbProgressText.Text = " ";
             // 
             // plyStatsBindingSource1
             // 
@@ -4663,7 +4672,7 @@ namespace TMRecorder
             this.tsbFacebook});
             this.toolStrip1.Location = new System.Drawing.Point(3, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(790, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(780, 25);
             this.toolStrip1.TabIndex = 3;
             // 
             // toolStripDropDownButton1
@@ -4684,7 +4693,7 @@ namespace TMRecorder
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(256, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(246, 22);
             this.toolStripMenuItem1.Text = "Load HTML file (Only Squad Page)";
             this.toolStripMenuItem1.Visible = false;
             this.toolStripMenuItem1.Click += new System.EventHandler(this.caricaFileSquadraToolStripMenuItem_Click);
@@ -4692,26 +4701,26 @@ namespace TMRecorder
             // loadFromBackupFilesToolStripMenuItem
             // 
             this.loadFromBackupFilesToolStripMenuItem.Name = "loadFromBackupFilesToolStripMenuItem";
-            this.loadFromBackupFilesToolStripMenuItem.Size = new System.Drawing.Size(256, 22);
+            this.loadFromBackupFilesToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
             this.loadFromBackupFilesToolStripMenuItem.Text = "Load From Backup files";
             this.loadFromBackupFilesToolStripMenuItem.Click += new System.EventHandler(this.loadFromBackupFilesToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(256, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(246, 22);
             this.toolStripMenuItem2.Text = "Save Team Data";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.salvaComeXMLToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(253, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(243, 6);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(256, 22);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(246, 22);
             this.toolStripMenuItem4.Text = "Exit";
             this.toolStripMenuItem4.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -4733,7 +4742,7 @@ namespace TMRecorder
             // 
             this.toolStripMenuItem11.Name = "toolStripMenuItem11";
             this.toolStripMenuItem11.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.toolStripMenuItem11.Size = new System.Drawing.Size(303, 22);
+            this.toolStripMenuItem11.Size = new System.Drawing.Size(301, 22);
             this.toolStripMenuItem11.Text = "Paste Squad Page from Clipboard";
             this.toolStripMenuItem11.Visible = false;
             // 
@@ -4741,14 +4750,14 @@ namespace TMRecorder
             // 
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
             this.toolStripMenuItem7.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(303, 22);
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(301, 22);
             this.toolStripMenuItem7.Text = "Paste Training Page from Clipboard";
             this.toolStripMenuItem7.Visible = false;
             // 
             // toolStripMenuItem9
             // 
             this.toolStripMenuItem9.Name = "toolStripMenuItem9";
-            this.toolStripMenuItem9.Size = new System.Drawing.Size(303, 22);
+            this.toolStripMenuItem9.Size = new System.Drawing.Size(301, 22);
             this.toolStripMenuItem9.Text = "Load Team File from XML";
             this.toolStripMenuItem9.Visible = false;
             this.toolStripMenuItem9.Click += new System.EventHandler(this.caricaFileSquadraDaXMLToolStripMenuItem_Click);
@@ -4756,7 +4765,7 @@ namespace TMRecorder
             // evidenceSkillsForGainsToolStripMenuItem
             // 
             this.evidenceSkillsForGainsToolStripMenuItem.Name = "evidenceSkillsForGainsToolStripMenuItem";
-            this.evidenceSkillsForGainsToolStripMenuItem.Size = new System.Drawing.Size(303, 22);
+            this.evidenceSkillsForGainsToolStripMenuItem.Size = new System.Drawing.Size(301, 22);
             this.evidenceSkillsForGainsToolStripMenuItem.Text = "Evidence Skills for Gains";
             this.evidenceSkillsForGainsToolStripMenuItem.Click += new System.EventHandler(this.evidenceSkillsForGainsToolStripMenuItem_Click);
             // 
@@ -4778,21 +4787,21 @@ namespace TMRecorder
             this.toolStripDropDownButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton2.Image")));
             this.toolStripDropDownButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton2.Name = "toolStripDropDownButton2";
-            this.toolStripDropDownButton2.Size = new System.Drawing.Size(49, 22);
+            this.toolStripDropDownButton2.Size = new System.Drawing.Size(47, 22);
             this.toolStripDropDownButton2.Text = "Tools";
             this.toolStripDropDownButton2.Click += new System.EventHandler(this.toolStripDropDownButton2_Click);
             // 
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(216, 22);
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(210, 22);
             this.toolStripMenuItem6.Text = "Options";
             this.toolStripMenuItem6.Click += new System.EventHandler(this.opzioniToolStripMenuItem1_Click);
             // 
             // editGainSetToolStripMenuItem
             // 
             this.editGainSetToolStripMenuItem.Name = "editGainSetToolStripMenuItem";
-            this.editGainSetToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.editGainSetToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
             this.editGainSetToolStripMenuItem.Text = "Edit Gain Set";
             this.editGainSetToolStripMenuItem.Click += new System.EventHandler(this.editGainSetToolStripMenuItem_Click);
             // 
@@ -4800,7 +4809,7 @@ namespace TMRecorder
             // 
             this.transferManagerToolStripMenuItem.Image = global::TMRecorder.Properties.Resources.TransferManager;
             this.transferManagerToolStripMenuItem.Name = "transferManagerToolStripMenuItem";
-            this.transferManagerToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.transferManagerToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
             this.transferManagerToolStripMenuItem.Text = "Transfer Manager";
             this.transferManagerToolStripMenuItem.Visible = false;
             this.transferManagerToolStripMenuItem.Click += new System.EventHandler(this.transferManagerToolStripMenuItem_Click);
@@ -4808,7 +4817,7 @@ namespace TMRecorder
             // importPlayersDataToolStripMenuItem
             // 
             this.importPlayersDataToolStripMenuItem.Name = "importPlayersDataToolStripMenuItem";
-            this.importPlayersDataToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.importPlayersDataToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
             this.importPlayersDataToolStripMenuItem.Text = "Import Private Players Data";
             this.importPlayersDataToolStripMenuItem.Visible = false;
             this.importPlayersDataToolStripMenuItem.Click += new System.EventHandler(this.importPlayersDataToolStripMenuItem_Click);
@@ -4816,7 +4825,7 @@ namespace TMRecorder
             // structuresEconomyToolStripMenuItem
             // 
             this.structuresEconomyToolStripMenuItem.Name = "structuresEconomyToolStripMenuItem";
-            this.structuresEconomyToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.structuresEconomyToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
             this.structuresEconomyToolStripMenuItem.Text = "Structures Economy";
             this.structuresEconomyToolStripMenuItem.Click += new System.EventHandler(this.structuresEconomyToolStripMenuItem_Click);
             // 
@@ -4824,7 +4833,7 @@ namespace TMRecorder
             // 
             this.tMRBrowserToolStripMenuItem.Image = global::TMRecorder.Properties.Resources.TMRBrowser;
             this.tMRBrowserToolStripMenuItem.Name = "tMRBrowserToolStripMenuItem";
-            this.tMRBrowserToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.tMRBrowserToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
             this.tMRBrowserToolStripMenuItem.Text = "TMR Browser";
             this.tMRBrowserToolStripMenuItem.Visible = false;
             this.tMRBrowserToolStripMenuItem.Click += new System.EventHandler(this.tmrBrowserToolStripMenuItem_Click);
@@ -4832,7 +4841,7 @@ namespace TMRecorder
             // tMFinanceCalculatorToolStripMenuItem
             // 
             this.tMFinanceCalculatorToolStripMenuItem.Name = "tMFinanceCalculatorToolStripMenuItem";
-            this.tMFinanceCalculatorToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.tMFinanceCalculatorToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
             this.tMFinanceCalculatorToolStripMenuItem.Text = "TM Finance Calculator";
             this.tMFinanceCalculatorToolStripMenuItem.Visible = false;
             this.tMFinanceCalculatorToolStripMenuItem.Click += new System.EventHandler(this.tMFinanceCalculatorToolStripMenuItem_Click);
@@ -4841,7 +4850,7 @@ namespace TMRecorder
             // 
             this.aSIToTICalculatorToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("aSIToTICalculatorToolStripMenuItem.Image")));
             this.aSIToTICalculatorToolStripMenuItem.Name = "aSIToTICalculatorToolStripMenuItem";
-            this.aSIToTICalculatorToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.aSIToTICalculatorToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
             this.aSIToTICalculatorToolStripMenuItem.Text = "ASI to TI Calculator";
             this.aSIToTICalculatorToolStripMenuItem.Visible = false;
             this.aSIToTICalculatorToolStripMenuItem.Click += new System.EventHandler(this.aSIToTICalculatorToolStripMenuItem_Click);
@@ -4849,7 +4858,7 @@ namespace TMRecorder
             // youthDevelopmentToolStripMenuItem
             // 
             this.youthDevelopmentToolStripMenuItem.Name = "youthDevelopmentToolStripMenuItem";
-            this.youthDevelopmentToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.youthDevelopmentToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
             this.youthDevelopmentToolStripMenuItem.Text = "Youth Development";
             this.youthDevelopmentToolStripMenuItem.Click += new System.EventHandler(this.youthDevelopmentToolStripMenuItem_Click);
             // 
@@ -4857,7 +4866,7 @@ namespace TMRecorder
             // 
             this.lineupToolToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("lineupToolToolStripMenuItem.Image")));
             this.lineupToolToolStripMenuItem.Name = "lineupToolToolStripMenuItem";
-            this.lineupToolToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.lineupToolToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
             this.lineupToolToolStripMenuItem.Text = "Lineup Tool";
             this.lineupToolToolStripMenuItem.Click += new System.EventHandler(this.lineupToolToolStripMenuItem_Click);
             // 
@@ -4865,7 +4874,7 @@ namespace TMRecorder
             // 
             this.shortlistToolToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("shortlistToolToolStripMenuItem.Image")));
             this.shortlistToolToolStripMenuItem.Name = "shortlistToolToolStripMenuItem";
-            this.shortlistToolToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.shortlistToolToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
             this.shortlistToolToolStripMenuItem.Text = "Shortlist Tool";
             this.shortlistToolToolStripMenuItem.Click += new System.EventHandler(this.shortlistToolToolStripMenuItem_Click);
             // 
@@ -4879,27 +4888,27 @@ namespace TMRecorder
             this.toolStripDropDownButton6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton6.Image")));
             this.toolStripDropDownButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton6.Name = "toolStripDropDownButton6";
-            this.toolStripDropDownButton6.Size = new System.Drawing.Size(43, 22);
+            this.toolStripDropDownButton6.Size = new System.Drawing.Size(41, 22);
             this.toolStripDropDownButton6.Text = "Calc";
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(275, 22);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(269, 22);
             this.toolStripMenuItem3.Text = "Recalculate Players\' Scouts Mean Vote";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.recalculatePlayersScoutVoteMeanToolStripMenuItem_Click);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(275, 22);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(269, 22);
             this.toolStripMenuItem5.Text = "Parse Scout Review for Hidden Data";
             this.toolStripMenuItem5.Click += new System.EventHandler(this.parseScoutReviewForHiddenDataToolStripMenuItem_Click);
             // 
             // recalculatePlayersStatisticsToolStripMenuItem
             // 
             this.recalculatePlayersStatisticsToolStripMenuItem.Name = "recalculatePlayersStatisticsToolStripMenuItem";
-            this.recalculatePlayersStatisticsToolStripMenuItem.Size = new System.Drawing.Size(275, 22);
+            this.recalculatePlayersStatisticsToolStripMenuItem.Size = new System.Drawing.Size(269, 22);
             this.recalculatePlayersStatisticsToolStripMenuItem.Text = "Recalculate Players\' Statistics";
             this.recalculatePlayersStatisticsToolStripMenuItem.Click += new System.EventHandler(this.recalculatePlayersStatisticsToolStripMenuItem_Click);
             // 
@@ -4918,53 +4927,53 @@ namespace TMRecorder
             this.toolStripDropDownButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton5.Image")));
             this.toolStripDropDownButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton5.Name = "toolStripDropDownButton5";
-            this.toolStripDropDownButton5.Size = new System.Drawing.Size(94, 22);
+            this.toolStripDropDownButton5.Size = new System.Drawing.Size(91, 22);
             this.toolStripDropDownButton5.Text = "Import/Export";
             // 
             // clearDecimalsToolStripMenuItem
             // 
             this.clearDecimalsToolStripMenuItem.Name = "clearDecimalsToolStripMenuItem";
-            this.clearDecimalsToolStripMenuItem.Size = new System.Drawing.Size(358, 22);
+            this.clearDecimalsToolStripMenuItem.Size = new System.Drawing.Size(348, 22);
             this.clearDecimalsToolStripMenuItem.Text = "Clear Decimals";
             this.clearDecimalsToolStripMenuItem.Click += new System.EventHandler(this.clearDecimalsToolStripMenuItem_Click_1);
             // 
             // reapplyTrainingsToolStripMenuItem
             // 
             this.reapplyTrainingsToolStripMenuItem.Name = "reapplyTrainingsToolStripMenuItem";
-            this.reapplyTrainingsToolStripMenuItem.Size = new System.Drawing.Size(358, 22);
+            this.reapplyTrainingsToolStripMenuItem.Size = new System.Drawing.Size(348, 22);
             this.reapplyTrainingsToolStripMenuItem.Text = "Reapply Trainings";
             this.reapplyTrainingsToolStripMenuItem.Click += new System.EventHandler(this.reapplyTrainingsToolStripMenuItem_Click);
             // 
             // exportTrainingWeekInTheClipboardInExcelFormatToolStripMenuItem
             // 
             this.exportTrainingWeekInTheClipboardInExcelFormatToolStripMenuItem.Name = "exportTrainingWeekInTheClipboardInExcelFormatToolStripMenuItem";
-            this.exportTrainingWeekInTheClipboardInExcelFormatToolStripMenuItem.Size = new System.Drawing.Size(358, 22);
+            this.exportTrainingWeekInTheClipboardInExcelFormatToolStripMenuItem.Size = new System.Drawing.Size(348, 22);
             this.exportTrainingWeekInTheClipboardInExcelFormatToolStripMenuItem.Text = "Export Training Week to Clipboard in Excel Format";
             this.exportTrainingWeekInTheClipboardInExcelFormatToolStripMenuItem.Click += new System.EventHandler(this.exportTrainingWeekInTheClipboardInExcelFormatToolStripMenuItem_Click);
             // 
             // importTrainingWeekFromClipboardInExcelFormatToolStripMenuItem
             // 
             this.importTrainingWeekFromClipboardInExcelFormatToolStripMenuItem.Name = "importTrainingWeekFromClipboardInExcelFormatToolStripMenuItem";
-            this.importTrainingWeekFromClipboardInExcelFormatToolStripMenuItem.Size = new System.Drawing.Size(358, 22);
+            this.importTrainingWeekFromClipboardInExcelFormatToolStripMenuItem.Size = new System.Drawing.Size(348, 22);
             this.importTrainingWeekFromClipboardInExcelFormatToolStripMenuItem.Text = "Import Training Week From Clipboard in Excel Format";
             this.importTrainingWeekFromClipboardInExcelFormatToolStripMenuItem.Click += new System.EventHandler(this.importTrainingWeekFromClipboardInExcelFormatToolStripMenuItem_Click);
             // 
             // displayStatisticsForThisWeekToolStripMenuItem
             // 
             this.displayStatisticsForThisWeekToolStripMenuItem.Name = "displayStatisticsForThisWeekToolStripMenuItem";
-            this.displayStatisticsForThisWeekToolStripMenuItem.Size = new System.Drawing.Size(358, 22);
+            this.displayStatisticsForThisWeekToolStripMenuItem.Size = new System.Drawing.Size(348, 22);
             this.displayStatisticsForThisWeekToolStripMenuItem.Text = "Display Statistics For The Training of This Week";
             this.displayStatisticsForThisWeekToolStripMenuItem.Click += new System.EventHandler(this.displayStatisticsForThisWeekToolStripMenuItem_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(355, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(345, 6);
             // 
             // exportTeamInToolStripMenuItem
             // 
             this.exportTeamInToolStripMenuItem.Name = "exportTeamInToolStripMenuItem";
-            this.exportTeamInToolStripMenuItem.Size = new System.Drawing.Size(358, 22);
+            this.exportTeamInToolStripMenuItem.Size = new System.Drawing.Size(348, 22);
             this.exportTeamInToolStripMenuItem.Text = "Export Team to Clipboard in Excel Format";
             this.exportTeamInToolStripMenuItem.Click += new System.EventHandler(this.exportTeamInToolStripMenuItem_Click);
             // 
@@ -4972,7 +4981,7 @@ namespace TMRecorder
             // 
             this.toolStripMenuItem10.Name = "toolStripMenuItem10";
             this.toolStripMenuItem10.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
-            this.toolStripMenuItem10.Size = new System.Drawing.Size(358, 22);
+            this.toolStripMenuItem10.Size = new System.Drawing.Size(348, 22);
             this.toolStripMenuItem10.Text = "Paste Squad data from Excel Form";
             this.toolStripMenuItem10.Click += new System.EventHandler(this.toolStripMenuItem10_Click);
             // 
@@ -4993,27 +5002,27 @@ namespace TMRecorder
             // toolStripMenuItem12
             // 
             this.toolStripMenuItem12.Name = "toolStripMenuItem12";
-            this.toolStripMenuItem12.Size = new System.Drawing.Size(206, 22);
+            this.toolStripMenuItem12.Size = new System.Drawing.Size(200, 22);
             this.toolStripMenuItem12.Text = "Team Graphical Statistics";
             this.toolStripMenuItem12.Click += new System.EventHandler(this.teamStatistiToolStripMenuItem_Click);
             // 
             // playersStatisticsToolStripMenuItem
             // 
             this.playersStatisticsToolStripMenuItem.Name = "playersStatisticsToolStripMenuItem";
-            this.playersStatisticsToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.playersStatisticsToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.playersStatisticsToolStripMenuItem.Text = "Players Statistics";
             this.playersStatisticsToolStripMenuItem.Click += new System.EventHandler(this.playersStatisticsToolStripMenuItem_Click);
             // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(203, 6);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(197, 6);
             // 
             // tradToolStripMenuItem
             // 
             this.tradToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("tradToolStripMenuItem.Image")));
             this.tradToolStripMenuItem.Name = "tradToolStripMenuItem";
-            this.tradToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.tradToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.tradToolStripMenuItem.Text = "Trading Info";
             this.tradToolStripMenuItem.Click += new System.EventHandler(this.tradToolStripMenuItem_Click);
             // 
@@ -5027,20 +5036,20 @@ namespace TMRecorder
             this.toolStripDropDownButton9.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton9.Image")));
             this.toolStripDropDownButton9.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton9.Name = "toolStripDropDownButton9";
-            this.toolStripDropDownButton9.Size = new System.Drawing.Size(65, 22);
+            this.toolStripDropDownButton9.Size = new System.Drawing.Size(63, 22);
             this.toolStripDropDownButton9.Text = "Matches";
             // 
             // gotoCalendarToolStripMenuItem
             // 
             this.gotoCalendarToolStripMenuItem.Name = "gotoCalendarToolStripMenuItem";
-            this.gotoCalendarToolStripMenuItem.Size = new System.Drawing.Size(289, 22);
+            this.gotoCalendarToolStripMenuItem.Size = new System.Drawing.Size(283, 22);
             this.gotoCalendarToolStripMenuItem.Text = "Open Team Calendar Page";
             this.gotoCalendarToolStripMenuItem.Click += new System.EventHandler(this.gotoCalendarToolStripMenuItem_Click);
             // 
             // reloadPlayersMatchStatsToolStripMenuItem
             // 
             this.reloadPlayersMatchStatsToolStripMenuItem.Name = "reloadPlayersMatchStatsToolStripMenuItem";
-            this.reloadPlayersMatchStatsToolStripMenuItem.Size = new System.Drawing.Size(289, 22);
+            this.reloadPlayersMatchStatsToolStripMenuItem.Size = new System.Drawing.Size(283, 22);
             this.reloadPlayersMatchStatsToolStripMenuItem.Text = "Reload Players Match Stats";
             this.reloadPlayersMatchStatsToolStripMenuItem.Visible = false;
             this.reloadPlayersMatchStatsToolStripMenuItem.Click += new System.EventHandler(this.reloadPlayersMatchStatsToolStripMenuItem_Click);
@@ -5048,7 +5057,7 @@ namespace TMRecorder
             // showMatchesPerformarcesOnTheFieldToolStripMenuItem
             // 
             this.showMatchesPerformarcesOnTheFieldToolStripMenuItem.Name = "showMatchesPerformarcesOnTheFieldToolStripMenuItem";
-            this.showMatchesPerformarcesOnTheFieldToolStripMenuItem.Size = new System.Drawing.Size(289, 22);
+            this.showMatchesPerformarcesOnTheFieldToolStripMenuItem.Size = new System.Drawing.Size(283, 22);
             this.showMatchesPerformarcesOnTheFieldToolStripMenuItem.Text = "Show Matches Performarces on the Field";
             this.showMatchesPerformarcesOnTheFieldToolStripMenuItem.Click += new System.EventHandler(this.showMatchesPerformarcesOnTheFieldToolStripMenuItem_Click);
             // 
@@ -5063,34 +5072,34 @@ namespace TMRecorder
             this.toolStripDropDownButton7.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton7.Image")));
             this.toolStripDropDownButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton7.Name = "toolStripDropDownButton7";
-            this.toolStripDropDownButton7.Size = new System.Drawing.Size(45, 22);
+            this.toolStripDropDownButton7.Size = new System.Drawing.Size(44, 22);
             this.toolStripDropDownButton7.Text = "Help";
             // 
             // gotoTheTmRecorderWebsiteToolStripMenuItem
             // 
             this.gotoTheTmRecorderWebsiteToolStripMenuItem.Name = "gotoTheTmRecorderWebsiteToolStripMenuItem";
-            this.gotoTheTmRecorderWebsiteToolStripMenuItem.Size = new System.Drawing.Size(348, 22);
+            this.gotoTheTmRecorderWebsiteToolStripMenuItem.Size = new System.Drawing.Size(339, 22);
             this.gotoTheTmRecorderWebsiteToolStripMenuItem.Text = "Goto the TmRecorder Facebook Page";
             this.gotoTheTmRecorderWebsiteToolStripMenuItem.Click += new System.EventHandler(this.gotoTheTmRecorderWebsiteToolStripMenuItem_Click);
             // 
             // gotoTheTmRecorderFederationInTrophyManagerToolStripMenuItem
             // 
             this.gotoTheTmRecorderFederationInTrophyManagerToolStripMenuItem.Name = "gotoTheTmRecorderFederationInTrophyManagerToolStripMenuItem";
-            this.gotoTheTmRecorderFederationInTrophyManagerToolStripMenuItem.Size = new System.Drawing.Size(348, 22);
+            this.gotoTheTmRecorderFederationInTrophyManagerToolStripMenuItem.Size = new System.Drawing.Size(339, 22);
             this.gotoTheTmRecorderFederationInTrophyManagerToolStripMenuItem.Text = "Goto the TmRecorder Federation in TrophyManager";
             this.gotoTheTmRecorderFederationInTrophyManagerToolStripMenuItem.Click += new System.EventHandler(this.gotoTheTmRecorderFederationInTrophyManagerToolStripMenuItem_Click);
             // 
             // frequentlyAskedQuestionsToolStripMenuItem
             // 
             this.frequentlyAskedQuestionsToolStripMenuItem.Name = "frequentlyAskedQuestionsToolStripMenuItem";
-            this.frequentlyAskedQuestionsToolStripMenuItem.Size = new System.Drawing.Size(348, 22);
+            this.frequentlyAskedQuestionsToolStripMenuItem.Size = new System.Drawing.Size(339, 22);
             this.frequentlyAskedQuestionsToolStripMenuItem.Text = "[EN] Frequently asked questions";
             this.frequentlyAskedQuestionsToolStripMenuItem.Click += new System.EventHandler(this.frequentlyAskedQuestionsToolStripMenuItem_Click);
             // 
             // iTDomandeFrequentiToolStripMenuItem
             // 
             this.iTDomandeFrequentiToolStripMenuItem.Name = "iTDomandeFrequentiToolStripMenuItem";
-            this.iTDomandeFrequentiToolStripMenuItem.Size = new System.Drawing.Size(348, 22);
+            this.iTDomandeFrequentiToolStripMenuItem.Size = new System.Drawing.Size(339, 22);
             this.iTDomandeFrequentiToolStripMenuItem.Text = "[IT] Domande frequenti";
             this.iTDomandeFrequentiToolStripMenuItem.Click += new System.EventHandler(this.iTDomandeFrequentiToolStripMenuItem_Click);
             // 
@@ -5117,7 +5126,7 @@ namespace TMRecorder
             this.toolDataList.DropDownWidth = 130;
             this.toolDataList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.toolDataList.Name = "toolDataList";
-            this.toolDataList.Size = new System.Drawing.Size(130, 23);
+            this.toolDataList.Size = new System.Drawing.Size(130, 21);
             this.toolDataList.SelectedIndexChanged += new System.EventHandler(this.toolDataList_SelectedIndexChanged);
             // 
             // toolStripDropDownButton3
@@ -5547,7 +5556,7 @@ namespace TMRecorder
             // toolStripLabel3
             // 
             this.toolStripLabel3.Name = "toolStripLabel3";
-            this.toolStripLabel3.Size = new System.Drawing.Size(112, 22);
+            this.toolStripLabel3.Size = new System.Drawing.Size(107, 22);
             this.toolStripLabel3.Text = "TM Pages Shortcuts";
             // 
             // toolStripButton6
@@ -5557,7 +5566,7 @@ namespace TMRecorder
             this.toolStripButton6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton6.Image")));
             this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton6.Name = "toolStripButton6";
-            this.toolStripButton6.Size = new System.Drawing.Size(55, 22);
+            this.toolStripButton6.Size = new System.Drawing.Size(54, 22);
             this.toolStripButton6.Text = "Squad A";
             // 
             // toolStripButton7
@@ -5584,17 +5593,6 @@ namespace TMRecorder
             this.toolStripContainer2.Size = new System.Drawing.Size(1059, 556);
             this.toolStripContainer2.TabIndex = 0;
             this.toolStripContainer2.Text = "toolStripContainer2";
-            // 
-            // matchStats
-            // 
-            this.matchStats.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.matchStats.Location = new System.Drawing.Point(0, 32);
-            this.matchStats.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.matchStats.Name = "matchStats";
-            this.matchStats.Size = new System.Drawing.Size(546, 165);
-            this.matchStats.TabIndex = 1;
             // 
             // MainForm
             // 
@@ -5671,12 +5669,12 @@ namespace TMRecorder
             this.toolStripContainer3.PerformLayout();
             this.tsBrowserImport.ResumeLayout(false);
             this.tsBrowserImport.PerformLayout();
-            this.tsBrowserMain.ResumeLayout(false);
-            this.tsBrowserMain.PerformLayout();
             this.tsBrowsePlayers.ResumeLayout(false);
             this.tsBrowsePlayers.PerformLayout();
             this.tsBrowseMatches.ResumeLayout(false);
             this.tsBrowseMatches.PerformLayout();
+            this.tsBrowserMain.ResumeLayout(false);
+            this.tsBrowserMain.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.plyStatsBindingSource1)).EndInit();
             this.toolStripContainer1.ContentPanel.ResumeLayout(false);
             this.toolStripContainer1.TopToolStripPanel.ResumeLayout(false);
@@ -5707,7 +5705,7 @@ namespace TMRecorder
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabATeamPage;
         private System.Windows.Forms.TabPage tabGK;
-        private System.Windows.Forms.DataGridView dataGridPortieri;
+        private NTR_Common.AeroDataGrid dataGridPortieri;
         private System.Windows.Forms.BindingSource portieriBindingSource;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
         private System.Windows.Forms.ToolStripContainer toolStripContainer1;
@@ -5741,7 +5739,7 @@ namespace TMRecorder
         private System.Windows.Forms.DataGridViewTextBoxColumn PSP;
         private System.Windows.Forms.ToolStripMenuItem editGainSetToolStripMenuItem;
         private System.Windows.Forms.TabPage tabInfo;
-        private System.Windows.Forms.DataGridView dataGridPlayersInfo;
+        private NTR_Common.AeroDataGrid dataGridPlayersInfo;
         private System.Windows.Forms.BindingSource giocatoriBindingSource1;
         private ExtraDS extraDS;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton4;
@@ -5752,9 +5750,9 @@ namespace TMRecorder
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem movePlayerToATeamToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem movePlayerToBTeamToolStripMenuItem;
-        private System.Windows.Forms.DataGridView dataGridGiocatoriB;
+        private NTR_Common.AeroDataGrid dataGridGiocatoriB;
         private System.Windows.Forms.BindingSource giocatoriNSkillBindingSourceB;
-        private System.Windows.Forms.DataGridView dataGridGiocatori;
+        private NTR_Common.AeroDataGrid dataGridGiocatori;
         private System.Windows.Forms.DataGridViewCheckBoxColumn inFormazioneDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn squalificatoDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn infortunatoDataGridViewCheckBoxColumn;
@@ -5799,13 +5797,13 @@ namespace TMRecorder
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton3;
         private System.Windows.Forms.ToolStripMenuItem deleteDataSetToolStripMenuItem;
         private System.Windows.Forms.TabPage tabInfoMain;
-        private System.Windows.Forms.DataGridView dgMatches;
+        private NTR_Common.AeroDataGrid dgMatches;
         private System.Windows.Forms.Label label1;
         private Common.MatchDS matchDS;
         private System.Windows.Forms.BindingSource matchBindingSource;
         private System.Windows.Forms.BindingSource champDSBindingSource;
-        private System.Windows.Forms.DataGridView dataGridView3;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private NTR_Common.AeroDataGrid dataGridView3;
+        private NTR_Common.AeroDataGrid dataGridView2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;

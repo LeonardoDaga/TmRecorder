@@ -118,6 +118,10 @@
       <Project>{D32F5344-D291-42FC-8B6E-4183864E2D77}</Project>
       <Name>NTR_Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NTR_Db\NTR_Db.csproj">
+      <Project>{df7d6401-1959-405f-8f35-65fd8ad320b7}</Project>
+      <Name>NTR_Db</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

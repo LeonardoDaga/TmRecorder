@@ -61,7 +61,7 @@
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPlayers = new System.Windows.Forms.TabPage();
-            this.dgGiocatori = new System.Windows.Forms.DataGridView();
+            this.dgGiocatori = new NTR_Common.AeroDataGrid();
             this.nomeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ageDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_AgeColumn(this.components);
             this.nationalityDataGridViewTextBoxColumn1 = new DataGridViewCustomColumns.TMR_NationColumn(this.components);
@@ -112,7 +112,7 @@
             this.bindPL = new System.Windows.Forms.BindingSource(this.components);
             this.teamDS = new NTR_Common.TeamDS();
             this.tabGK = new System.Windows.Forms.TabPage();
-            this.dgPortieri = new System.Windows.Forms.DataGridView();
+            this.dgPortieri = new NTR_Common.AeroDataGrid();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tmR_AgeColumn1 = new DataGridViewCustomColumns.TMR_AgeColumn(this.components);
             this.tmR_NationColumn1 = new DataGridViewCustomColumns.TMR_NationColumn(this.components);
@@ -1753,10 +1753,10 @@
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage tabPlayers;
-        private System.Windows.Forms.DataGridView dgGiocatori;
+        private NTR_Common.AeroDataGrid dgGiocatori;
         private System.Windows.Forms.BindingSource bindPL;
         private System.Windows.Forms.TabPage tabGK;
-        private System.Windows.Forms.DataGridView dgPortieri;
+        private NTR_Common.AeroDataGrid dgPortieri;
         private System.Windows.Forms.BindingSource bindGK;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem openPlayersPropertyPageToolStripMenuItem;

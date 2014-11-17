@@ -29,6 +29,7 @@ namespace TMRecorder
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ComputeStructures));
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -43,6 +44,10 @@ namespace TMRecorder
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.numLevMerchStand = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
+            this.numStadSizeIncrement = new System.Windows.Forms.NumericUpDown();
+            this.label7 = new System.Windows.Forms.Label();
+            this.numLevParking = new System.Windows.Forms.NumericUpDown();
+            this.label10 = new System.Windows.Forms.Label();
             this.numLevFastFood = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
             this.numLevRestaurants = new System.Windows.Forms.NumericUpDown();
@@ -51,10 +56,8 @@ namespace TMRecorder
             this.label5 = new System.Windows.Forms.Label();
             this.numLevMerchStore = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.numStadSizeIncrement = new System.Windows.Forms.NumericUpDown();
-            this.label10 = new System.Windows.Forms.Label();
-            this.numLevParking = new System.Windows.Forms.NumericUpDown();
+            this.label11 = new System.Windows.Forms.Label();
+            this.dataGridTableStyle1 = new System.Windows.Forms.DataGridTableStyle();
             ((System.ComponentModel.ISupportInitialize)(this.numAverageAttendance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numOfSupporters)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numStadiumSize)).BeginInit();
@@ -64,12 +67,12 @@ namespace TMRecorder
             this.splitContainer1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numLevMerchStand)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numStadSizeIncrement)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numLevParking)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numLevFastFood)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numLevRestaurants)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numLevSausageStand)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numLevMerchStore)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numStadSizeIncrement)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numLevParking)).BeginInit();
             this.SuspendLayout();
             // 
             // label8
@@ -133,7 +136,7 @@ namespace TMRecorder
             this.graphEconomy.ScrollMinX = 0D;
             this.graphEconomy.ScrollMinY = 0D;
             this.graphEconomy.ScrollMinY2 = 0D;
-            this.graphEconomy.Size = new System.Drawing.Size(312, 331);
+            this.graphEconomy.Size = new System.Drawing.Size(312, 375);
             this.graphEconomy.TabIndex = 5;
             this.graphEconomy.ZoomButtons = System.Windows.Forms.MouseButtons.Left;
             this.graphEconomy.ZoomButtons2 = System.Windows.Forms.MouseButtons.None;
@@ -266,7 +269,7 @@ namespace TMRecorder
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.graphDifferential);
-            this.splitContainer1.Size = new System.Drawing.Size(626, 331);
+            this.splitContainer1.Size = new System.Drawing.Size(626, 375);
             this.splitContainer1.SplitterDistance = 312;
             this.splitContainer1.TabIndex = 8;
             // 
@@ -311,7 +314,7 @@ namespace TMRecorder
             this.graphDifferential.ScrollMinX = 0D;
             this.graphDifferential.ScrollMinY = 0D;
             this.graphDifferential.ScrollMinY2 = 0D;
-            this.graphDifferential.Size = new System.Drawing.Size(310, 331);
+            this.graphDifferential.Size = new System.Drawing.Size(310, 375);
             this.graphDifferential.TabIndex = 6;
             this.graphDifferential.ZoomButtons = System.Windows.Forms.MouseButtons.Left;
             this.graphDifferential.ZoomButtons2 = System.Windows.Forms.MouseButtons.None;
@@ -368,6 +371,73 @@ namespace TMRecorder
             this.label4.Size = new System.Drawing.Size(80, 15);
             this.label4.TabIndex = 0;
             this.label4.Text = "Merch. Stand";
+            // 
+            // numStadSizeIncrement
+            // 
+            this.numStadSizeIncrement.Increment = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.numStadSizeIncrement.Location = new System.Drawing.Point(5, 148);
+            this.numStadSizeIncrement.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.numStadSizeIncrement.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.numStadSizeIncrement.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.numStadSizeIncrement.Name = "numStadSizeIncrement";
+            this.numStadSizeIncrement.Size = new System.Drawing.Size(72, 21);
+            this.numStadSizeIncrement.TabIndex = 6;
+            this.numStadSizeIncrement.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numStadSizeIncrement.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.numStadSizeIncrement.ValueChanged += new System.EventHandler(this.level_NumChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label7.Location = new System.Drawing.Point(7, 128);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(138, 15);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Stadium Size Increment";
+            // 
+            // numLevParking
+            // 
+            this.numLevParking.Location = new System.Drawing.Point(164, 99);
+            this.numLevParking.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.numLevParking.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numLevParking.Name = "numLevParking";
+            this.numLevParking.Size = new System.Drawing.Size(72, 21);
+            this.numLevParking.TabIndex = 6;
+            this.numLevParking.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numLevParking.ValueChanged += new System.EventHandler(this.level_NumChanged);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label10.Location = new System.Drawing.Point(164, 79);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(49, 15);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "Parking";
             // 
             // numLevFastFood
             // 
@@ -473,78 +543,30 @@ namespace TMRecorder
             this.label2.TabIndex = 0;
             this.label2.Text = "Merch. Store";
             // 
-            // label7
+            // label11
             // 
-            this.label7.AutoSize = true;
-            this.label7.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label7.Location = new System.Drawing.Point(7, 128);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(138, 15);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "Stadium Size Increment";
+            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.label11.AutoEllipsis = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label11.Location = new System.Drawing.Point(5, 333);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(240, 40);
+            this.label11.TabIndex = 10;
+            this.label11.Text = resources.GetString("label11.Text");
             // 
-            // numStadSizeIncrement
+            // dataGridTableStyle1
             // 
-            this.numStadSizeIncrement.Increment = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            this.numStadSizeIncrement.Location = new System.Drawing.Point(5, 148);
-            this.numStadSizeIncrement.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.numStadSizeIncrement.Maximum = new decimal(new int[] {
-            100000,
-            0,
-            0,
-            0});
-            this.numStadSizeIncrement.Minimum = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            this.numStadSizeIncrement.Name = "numStadSizeIncrement";
-            this.numStadSizeIncrement.Size = new System.Drawing.Size(72, 21);
-            this.numStadSizeIncrement.TabIndex = 6;
-            this.numStadSizeIncrement.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.numStadSizeIncrement.Value = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            this.numStadSizeIncrement.ValueChanged += new System.EventHandler(this.level_NumChanged);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label10.Location = new System.Drawing.Point(164, 79);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(49, 15);
-            this.label10.TabIndex = 0;
-            this.label10.Text = "Parking";
-            // 
-            // numLevParking
-            // 
-            this.numLevParking.Location = new System.Drawing.Point(164, 99);
-            this.numLevParking.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.numLevParking.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.numLevParking.Name = "numLevParking";
-            this.numLevParking.Size = new System.Drawing.Size(72, 21);
-            this.numLevParking.TabIndex = 6;
-            this.numLevParking.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.numLevParking.ValueChanged += new System.EventHandler(this.level_NumChanged);
+            this.dataGridTableStyle1.DataGrid = null;
+            this.dataGridTableStyle1.HeaderForeColor = System.Drawing.SystemColors.ControlText;
             // 
             // ComputeStructures
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(880, 338);
+            this.ClientSize = new System.Drawing.Size(880, 382);
+            this.Controls.Add(this.label11);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.chkShowStadiumIncomes);
@@ -570,12 +592,12 @@ namespace TMRecorder
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numLevMerchStand)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numStadSizeIncrement)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numLevParking)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numLevFastFood)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numLevRestaurants)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numLevSausageStand)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numLevMerchStore)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numStadSizeIncrement)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numLevParking)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -609,5 +631,7 @@ namespace TMRecorder
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.NumericUpDown numLevParking;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.DataGridTableStyle dataGridTableStyle1;
     }
 }

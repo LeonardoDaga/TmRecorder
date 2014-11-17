@@ -320,7 +320,10 @@ namespace TransferManager
                 }
                 return;
             }
-            int perc = (int)((e.CurrentProgress * 100) / e.MaximumProgress);
+            int maxProgress = (int)e.MaximumProgress;
+            if (e.MaximumProgress == 0)
+                maxProgress = 1;
+            int perc = (int)((e.CurrentProgress * 100) / maxProgress);
             if (perc < 0) perc = 0;
             if (perc > 100) perc = 100;
             tsbProgressBar.Value = perc;
@@ -496,12 +499,18 @@ namespace TransferManager
             PlayersDS.FixDataRow fdr = Squad[actPlayerID].FixDataVal;
             PlayersDS.VarDataRow vdr = Squad[actPlayerID].VarData.FindByWeek(TmWeek.thisWeek().absweek);
 
-            gsr.Nome = fdr.Nome;
-            gsr.Nationality = fdr.Nationality;
-            gsr.wBorn = fdr.wBorn;
+            try
+            {
+                gsr.Nome = fdr.Nome;
+                gsr.Nationality = fdr.Nationality;
+                gsr.wBorn = fdr.wBorn;
 
-            if (fdr.IsRouNull()) fdr.Rou = 0;
-            gsr.Rou = fdr.Rou;
+                if (fdr.IsRouNull()) fdr.Rou = 0;
+                gsr.Rou = fdr.Rou;
+            }
+            catch(Exception)
+            {
+            }
 
             if (vdr.Skills != null)
                 gsr.Skills = vdr.Skills;

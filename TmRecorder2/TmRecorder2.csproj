@@ -150,6 +150,10 @@
       <Project>{D32F5344-D291-42FC-8B6E-4183864E2D77}</Project>
       <Name>NTR_Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NTR_Db\NTR_Db.csproj">
+      <Project>{df7d6401-1959-405f-8f35-65fd8ad320b7}</Project>
+      <Name>NTR_Db</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NTR_Forms\NTR_Forms.csproj">
       <Project>{B2E3E5FE-5B00-4CD2-9421-928527670538}</Project>
       <Name>NTR_Forms</Name>

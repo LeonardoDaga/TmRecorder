@@ -120,7 +120,20 @@
   <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 4</value>
   </metadata>
+  <data name="label11.Text" xml:space="preserve">
+    <value>Select the actual level of structures, the number of supporters, the average crowd in the stadium and the stadium size. 
+The first graph will tell you how the incomes will increase with the structure level. 
+The second graph will tell you how much you gain increasing the level of a structure and how much of the structure you pay back with the incomes of a season due to the relative structure increment
+Legenda:
+Stad: Stadium
+MStr: Merchandising Store
+MStd: Merchandising Stand
+Saus: Sausage Stand
+Rest: Restaurants
+FastFd: Fast Food
+Park: Parking or Toilets</value>
+  </data>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>26</value>
+    <value>27</value>
   </metadata>
 </root>

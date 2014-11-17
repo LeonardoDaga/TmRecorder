@@ -30,5 +30,12 @@ namespace NTR_Forms
             cbDefaultNation.DisplayMember = "Name";
             cbDefaultNation.ValueMember = "Abbreviation";
         }
+
+        public void SetSource(NTR_Db.Data db)
+        {
+            cbDefaultNation.DataSource = db.nationsDS.Names;
+            cbDefaultNation.DisplayMember = "Name";
+            cbDefaultNation.ValueMember = "Abbreviation";
+        }
     }
 }

@@ -85,6 +85,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AeroDataGrid.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AeroDataGrid.Designer.cs">
+      <DependentUpon>AeroDataGrid.cs</DependentUpon>
+    </Compile>
     <Compile Include="AlarmForm.cs">
       <SubType>Form</SubType>
     </Compile>

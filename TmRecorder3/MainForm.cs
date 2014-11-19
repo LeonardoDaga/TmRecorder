@@ -13,6 +13,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using NTR_Forms;
 using NTR_Db;
+using NTR_Common;
+using NTR_Controls;
 
 namespace TmRecorder3
 {
@@ -45,21 +47,6 @@ namespace TmRecorder3
             else if (Program.Setts.Language == "pt")
                 Current.Language = new Portuguese();
         }
-
-        //public void FillTable()
-        //{
-        //    Players = from c in dataTemp.VarData
-        //                  select new Player(c.PlayerRow.Nome, c.Week, c.ASI);
-
-        //    varDataBindingSource.DataSource = Players;
-        //}
-
-        //private EnumerableRowCollection<Player> _Players;
-        //public EnumerableRowCollection<Player> Players
-        //{
-        //    get { return _Players; }
-        //    set { _Players = value; }
-        //}
 
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -145,46 +132,84 @@ namespace TmRecorder3
                         (rbso.Choice == 1) ? 2 : 0;
                     Program.Setts.FirstInstallation = false;
                     Program.Setts.Save();
-
-                    DB.Load(Program.Setts.DefaultDirectory, ref sf, (Program.Setts.Trace > 0));
-
-                    // DB.CleanOldData();
                 }
-                else
-                {
-                    // DB.Load(Program.Setts.DefaultDirectory);
-                }
-
-
-                /*
-                evidenceSkillsForGainsToolStripMenuItem.Checked = Program.Setts.EvidenceGain;
-                evidenceSkillsForGainsMenuItem2.Checked = Program.Setts.EvidenceGain;
-
-                if (Program.Setts.PlayerType == 2) // PRO player
-                {
-                }
-                else
-                {
-                    tsbSquadA.Text = "Squad";
-                    tsbOverview.Visible = false;
-                    tsbSquadB.Visible = false;
-                    reserveTeamToolStripMenuItem.Visible = false;
-                }
-
-                tsBrowsePlayers.Visible = false;
-                tsBrowseMatches.Visible = false;
-                */
             }
             catch (Exception ex)
             {
             }
 
-            Players = from c in DB.squadDB.HistData
-                      select new PlayerData(c.PlayerRow.Name, c.Week, c.ASI);
+            LoadPlayersDB();
+        }
 
-            varDataBindingSource.DataSource = Players;
+        private void LoadPlayersDB()
+        {
+            try
+            {
+                DB.Load(Program.Setts.DefaultDirectory, ref sf, (Program.Setts.Trace > 0));
+
+                var Dates = from c in DB.squadDB.HistData
+                            group c by c.Week into g
+                            select g;
+
+                TmSWD tmSwdSelected = null;
+                cbDataDay.Items.Clear();
+
+                foreach (var date in Dates)
+                {
+                    TmSWD tmSWD = TmWeek.TmWeekToSWD(date.Key);
+
+                    if (DB.latestDataWeek == (int)date.Key)
+                        tmSwdSelected = tmSWD;
+
+                    cbDataDay.Items.Add(tmSWD);
+                }
+
+                cbDataDay.SelectedItem = tmSwdSelected;
+                // dtDataDay.Value = DB.latestDataDay;
+                // DB.CleanOldData();
+            }
+            catch (Exception)
+            {
+            }
+
+            TmSWD selectedItem = (TmSWD)cbDataDay.SelectedItem;
+
+            // c is an HistDataRow
+            Players = from c in DB.squadDB.HistData
+                      where c.Week == selectedItem.AbsWeek
+                      select new PlayerData(c);
+
+            FormatPlayersGrid();
 
             sf.Close();
+        }
+
+        private void FormatPlayersGrid()
+        {
+            dgPlayers.AutoGenerateColumns = false;
+            varDataBindingSource.DataSource = Players;
+
+            dgPlayers.Columns.Clear();
+            dgPlayers.AddColumn("N", "Number", 20, AG_Style.Numeric | AG_Style.Frozen);
+            dgPlayers.AddColumn("Age", "wBorn", 32, AG_Style.Age | AG_Style.Frozen);
+            dgPlayers.AddColumn("Week", "SWeek", 50, AG_Style.String | AG_Style.Frozen);
+        }
+
+        private void reloadDataFromFilesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DB.Clear();
+            LoadPlayersDB();
+        }
+
+        private void cbDataDay_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            varDataBindingSource.DataSource = null;
+            TmSWD selectedItem = (TmSWD)cbDataDay.SelectedItem;
+            
+            Players = from c in DB.squadDB.HistData
+                      where c.Week == selectedItem.AbsWeek
+                      select new PlayerData(c);
+            varDataBindingSource.DataSource = Players;
         }
     }
 }

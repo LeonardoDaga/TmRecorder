@@ -1004,7 +1004,7 @@ namespace NTR_Db {
             
             private global::System.Data.DataColumn columnInj;
             
-            private global::System.Data.DataColumn columnTrainerID;
+            private global::System.Data.DataColumn columnTraining;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -1201,9 +1201,9 @@ namespace NTR_Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn TrainerIDColumn {
+            public global::System.Data.DataColumn TrainingColumn {
                 get {
-                    return this.columnTrainerID;
+                    return this.columnTraining;
                 }
             }
             
@@ -1265,7 +1265,7 @@ namespace NTR_Db {
                         decimal _Cal, 
                         short Ban, 
                         short Inj, 
-                        int TrainerID) {
+                        ulong Training) {
                 HistDataRow rowHistDataRow = ((HistDataRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -1288,7 +1288,7 @@ namespace NTR_Db {
                         _Cal,
                         Ban,
                         Inj,
-                        TrainerID};
+                        Training};
                 if ((parentPlayerRowByPlayer_VarData != null)) {
                     columnValuesArray[0] = parentPlayerRowByPlayer_VarData[0];
                 }
@@ -1342,7 +1342,7 @@ namespace NTR_Db {
                 this.column_Cal = base.Columns["_Cal"];
                 this.columnBan = base.Columns["Ban"];
                 this.columnInj = base.Columns["Inj"];
-                this.columnTrainerID = base.Columns["TrainerID"];
+                this.columnTraining = base.Columns["Training"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1388,8 +1388,8 @@ namespace NTR_Db {
                 base.Columns.Add(this.columnBan);
                 this.columnInj = new global::System.Data.DataColumn("Inj", typeof(short), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnInj);
-                this.columnTrainerID = new global::System.Data.DataColumn("TrainerID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTrainerID);
+                this.columnTraining = new global::System.Data.DataColumn("Training", typeof(ulong), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTraining);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnPlayerID,
                                 this.columnWeek}, true));
@@ -3340,17 +3340,17 @@ namespace NTR_Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int TrainerID {
+            public ulong Training {
                 get {
                     try {
-                        return ((int)(this[this.tableHistData.TrainerIDColumn]));
+                        return ((ulong)(this[this.tableHistData.TrainingColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("Il valore della colonna \'TrainerID\' nella tabella \'HistData\' è DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("Il valore della colonna \'Training\' nella tabella \'HistData\' è DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableHistData.TrainerIDColumn] = value;
+                    this[this.tableHistData.TrainingColumn] = value;
                 }
             }
             
@@ -3583,14 +3583,14 @@ namespace NTR_Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsTrainerIDNull() {
-                return this.IsNull(this.tableHistData.TrainerIDColumn);
+            public bool IsTrainingNull() {
+                return this.IsNull(this.tableHistData.TrainingColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetTrainerIDNull() {
-                this[this.tableHistData.TrainerIDColumn] = global::System.Convert.DBNull;
+            public void SetTrainingNull() {
+                this[this.tableHistData.TrainingColumn] = global::System.Convert.DBNull;
             }
         }
         

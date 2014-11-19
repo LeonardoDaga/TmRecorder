@@ -52,7 +52,7 @@ namespace TransferManager
             this.playerData = new TransferManager.NTR_PlayerData();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPlayerHistory = new System.Windows.Forms.TabPage();
-            this.dataGridHistory = new NTR_Common.AeroDataGrid();
+            this.dataGridHistory = new NTR_Controls.AeroDataGrid();
             this.weekDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_DateColumn(this.components);
             this.aSIDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.forDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_VariableDRColumn(this.components);
@@ -926,7 +926,7 @@ namespace TransferManager
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPlayerHistory;
         private System.Windows.Forms.Label label1;
-        private NTR_Common.AeroDataGrid dataGridHistory;
+        private NTR_Controls.AeroDataGrid dataGridHistory;
         private System.Windows.Forms.BindingSource bindingSource;
         private NTR_Common.PlayersDS playersData;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;

@@ -42,11 +42,11 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.dataGridGiocatori = new NTR_Common.AeroDataGrid();
+            this.dataGridGiocatori = new NTR_Controls.AeroDataGrid();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.dataGridView1 = new NTR_Common.AeroDataGrid();
+            this.dataGridView1 = new NTR_Controls.AeroDataGrid();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.dataGridView2 = new NTR_Common.AeroDataGrid();
+            this.dataGridView2 = new NTR_Controls.AeroDataGrid();
             this.tabBrowser = new System.Windows.Forms.TabPage();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.webBrowser = new System.Windows.Forms.WebBrowser();
@@ -739,7 +739,7 @@
 
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
-        private NTR_Common.AeroDataGrid dataGridGiocatori;
+        private NTR_Controls.AeroDataGrid dataGridGiocatori;
         private System.Windows.Forms.TabPage tabBrowser;
         private System.Windows.Forms.ToolStripContainer toolStripContainer1;
         private System.Windows.Forms.WebBrowser webBrowser;
@@ -754,7 +754,7 @@
         private System.Windows.Forms.BindingSource bindTeam;
         private LeagueScanner.InjuriesDS injuriesDS;
         private System.Windows.Forms.TabPage tabPage2;
-        private NTR_Common.AeroDataGrid dataGridView1;
+        private NTR_Controls.AeroDataGrid dataGridView1;
         private System.Windows.Forms.BindingSource bindMatches;
         private System.Windows.Forms.DataGridViewTextBoxColumn matchIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn homeDataGridViewTextBoxColumn;
@@ -766,7 +766,7 @@
         private System.Windows.Forms.ToolStripMenuItem saveDatabaseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadDatabaseToolStripMenuItem;
         private System.Windows.Forms.TabPage tabPage3;
-        private NTR_Common.AeroDataGrid dataGridView2;
+        private NTR_Controls.AeroDataGrid dataGridView2;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn aSIDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ageDataGridViewTextBoxColumn;

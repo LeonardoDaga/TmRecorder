@@ -1,4 +1,4 @@
-﻿namespace NTR_Common
+﻿namespace NTR_Controls
 {
     partial class AeroDataGrid
     {

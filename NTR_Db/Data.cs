@@ -15,9 +15,21 @@ namespace NTR_Db
     public partial class Data : Component
     {
         public int latestDataWeek = 0;
+        public DateTime latestDataDay { get; set; }
 
         public Data()
         {
+            InitializeComponent();
+
+            InitializeNationsDS();
+
+            latestDataDay = DateTime.MinValue;
+        }
+
+        public Data(IContainer container)
+        {
+            container.Add(this);
+
             InitializeComponent();
 
             InitializeNationsDS();
@@ -32,15 +44,6 @@ namespace NTR_Db
                 nr.Abbreviation = nationsDS.nations[i, 1];
                 nationsDS.Names.AddNamesRow(nr);
             }
-        }
-
-        public Data(IContainer container)
-        {
-            container.Add(this);
-
-            InitializeComponent();
-
-            InitializeNationsDS();
         }
 
         public bool LoadGains(string gainSetName)
@@ -138,8 +141,69 @@ namespace NTR_Db
 
         private void AddTrainingDataFromXML(FileInfo fi)
         {
- 	        throw new NotImplementedException();
+            try
+            {
+                TrainingDataSet tds = new TrainingDataSet();
+                tds.ReadXml(fi.FullName);
+                AddTrainingOld(tds);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Current.Language.TheFile + fi.Name + Current.Language.IsNotAValidFile + "Error:" + ex.Message, Current.Language.ErrorLoadingAFile);
+            }
         }
+
+        private void AddTrainingOld(TrainingDataSet tds)
+        {
+            DateTime dt = tds.Date;
+            if (latestDataDay < dt)
+                latestDataDay = dt;
+
+            int week = TmWeek.GetTmAbsWk(dt);
+            if (latestDataWeek < week)
+                latestDataWeek = week;
+
+            PlayersDS pds = new PlayersDS();
+            foreach (TrainingDataSet.GiocatoriRow gr in tds.Giocatori)
+            {
+                if (pds == null) continue;
+
+                UInt64 trCode = Tm_Training.OldTdsGiocatoriToTrCode2(gr);
+
+                NTR_SquadDb.HistDataRow hdr = squadDB.HistData.FindByPlayerIDWeek(gr.PlayerID, week);
+
+                if (hdr == null)
+                {
+                    hdr = squadDB.HistData.NewHistDataRow();
+                    hdr.Week = week;
+                    hdr.PlayerID = gr.PlayerID;
+                    squadDB.HistData.AddHistDataRow(hdr);
+                }
+
+                hdr.Training = trCode;
+
+                hdr._TI = (decimal)gr.TI;
+            }
+            foreach (TrainingDataSet.PortieriRow gr in tds.Portieri)
+            {
+                UInt64 trCode = Tm_Training.OldTdsPortieriToTrCode2(gr);
+
+                NTR_SquadDb.HistDataRow hdr = squadDB.HistData.FindByPlayerIDWeek(gr.PlayerID, week);
+
+                if (hdr == null)
+                {
+                    hdr = squadDB.HistData.NewHistDataRow();
+                    hdr.Week = week;
+                    hdr.PlayerID = gr.PlayerID;
+                    squadDB.HistData.AddHistDataRow(hdr);
+                }
+
+                hdr.Training = trCode;
+
+                hdr._TI = (decimal)gr.TI;
+            }
+        }
+
 
         private void AddHistDataFromXML(FileInfo fi)
         {
@@ -301,19 +365,36 @@ namespace NTR_Db
                 MessageBox.Show(ex.Message);
             }
         }
+
+        public void Clear()
+        {
+            gainDS.Clear();
+            trainersSkillsDS.Clear();
+            scoutSkillsDS.Clear();
+            squadDB.Clear();
+        }
     }
 
     public class PlayerData
     {
-        public string Nome { get; set; }
-        public int Week { get; set; }
-        public int ASI { get; set; }
+        private NTR_SquadDb.HistDataRow c;
 
-        public PlayerData(string nome, int week, int asi)
+        public int Number { get; set; }
+        public string Name { get; set; }
+        public int Week { get; set; }
+        public string SWeek { get { return (new TmSWD(Week)).ToString(); } }
+        public int ASI { get; set; }
+        public int wBorn { get; set; }
+
+        public PlayerData(NTR_SquadDb.HistDataRow c)
         {
-            Nome = nome;
-            Week = week;
-            ASI = asi;
+            // TODO: Complete member initialization
+            this.c = c;
+            Name = c.PlayerRow.Name;
+            Week = c.Week;
+            ASI = c.ASI;
+            Number = c.PlayerRow.No;
+            wBorn = c.PlayerRow.wBorn;
         }
     }
 }

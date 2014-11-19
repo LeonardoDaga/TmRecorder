@@ -352,6 +352,10 @@
       <Project>{D32F5344-D291-42FC-8B6E-4183864E2D77}</Project>
       <Name>NTR_Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NTR_Controls\NTR_Controls.csproj">
+      <Project>{a62ab280-42d0-4639-8391-4bfa73269625}</Project>
+      <Name>NTR_Controls</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">

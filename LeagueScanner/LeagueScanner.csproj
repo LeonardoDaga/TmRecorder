@@ -157,6 +157,10 @@
       <Project>{d32f5344-d291-42fc-8b6e-4183864e2d77}</Project>
       <Name>NTR_Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NTR_Controls\NTR_Controls.csproj">
+      <Project>{a62ab280-42d0-4639-8391-4bfa73269625}</Project>
+      <Name>NTR_Controls</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

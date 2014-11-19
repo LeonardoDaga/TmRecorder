@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using Common;
 using System.IO;
 using System.Threading;
+using NTR_Controls;
 
 namespace LeagueScanner
 {

@@ -147,6 +147,27 @@ namespace Common
             Lan = 11,
         }
 
+        public static UInt64 OldTdsGiocatoriToTrCode2(TrainingDataSet.GiocatoriRow gr)
+        {
+            UInt64 res = 0;
+
+            try
+            {
+                UInt64 fact = 1;
+                for (int i = 1; i <= 14; i++, fact <<= 3)
+                {
+                    decimal tr = (decimal)gr[i];
+                    UInt64 val = (UInt64)((int)tr + 2);
+                    res = res + val * fact;
+                }
+            }
+            catch (Exception)
+            {
+            }
+
+            return res;
+        }
+
         public static int[] OldTdsGiocatoriToTrCode(TrainingDataSet.GiocatoriRow gr)
         {
             int[] res = new int[2];
@@ -191,6 +212,37 @@ namespace Common
             }
 
             return res;
+        }
+
+        public static UInt64 OldTdsPortieriToTrCode2(TrainingDataSet.PortieriRow gr)
+        {
+            UInt64 res = 0;
+
+            try
+            {
+                UInt64 fact = 1;
+                for (int i = 1; i <= 11; i++, fact <<= 3)
+                {
+                    decimal tr = (decimal)gr[i];
+                    UInt64 val = (UInt64)((int)tr + 2);
+                    res = res + val * fact;
+                }
+            }
+            catch (Exception)
+            {
+            }
+
+            return res;
+        }
+
+
+        public static int TrCode2ToTrValue(UInt64 trCode, eTrainingType tType)
+        {
+            int i = (int)tType - 1;
+
+            trCode >>= (3 * i);
+            trCode &= 0x111;
+            return (int)trCode - 2;
         }
 
         public static int TrCodeToTrValue(int[] trCode, eTrainingType tType)
@@ -384,6 +436,33 @@ namespace Common
             }
 
             return oldfp;
+        }
+    }
+
+    public class TmSWD
+    {
+        public int Day {get; set;}
+        public int Week  {get; set;}
+        public int Season {get; set;}
+        public int AbsWeek { get { return (Season-1) * 12 + (Week-1); } }
+
+        public TmSWD(int absWeek)
+        {
+            Season = absWeek / 12 + 1;
+            Week = absWeek - (Season-1) * 12 + 1;
+            Day = 0;
+        }
+
+        public TmSWD(DateTime dateTime)
+        {
+            Season = TmWeek.GetSeason(dateTime);
+            Week = TmWeek.GetTmAbsWk(dateTime) - (Season - 1) * 12;
+            Day = TmWeek.GetTmAbsDay(dateTime) - (Season - 1) * 12 * 7 - (Week) * 7;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("S{0}-W{1}-D{2}", Season.ToString("00"), Week.ToString("00"), Day);
         }
     }
 
@@ -599,6 +678,12 @@ namespace Common
             {
                 return DateTime.MinValue;
             }
+        }
+
+        public static TmSWD TmWeekToSWD(int tmweek)
+        {
+            DateTime dt = tmDay0.AddDays(7 * tmweek);
+            return new TmSWD(dt);
         }
     }
 }

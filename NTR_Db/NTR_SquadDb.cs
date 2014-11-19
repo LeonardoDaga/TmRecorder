@@ -8,6 +8,10 @@ namespace NTR_Db {
 
     public partial class NTR_SquadDb 
     {
+        partial class HistDataDataTable
+        {
+        }
+    
         public partial class HistDataRow
         {
             public decimal For

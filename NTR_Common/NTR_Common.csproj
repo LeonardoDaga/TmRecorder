@@ -85,12 +85,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AeroDataGrid.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="AeroDataGrid.Designer.cs">
-      <DependentUpon>AeroDataGrid.cs</DependentUpon>
-    </Compile>
     <Compile Include="AlarmForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -194,7 +188,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
-      <Project>{DFEE4C9B-F9FC-4186-945F-27518E4FCEB7}</Project>
+      <Project>{dfee4c9b-f9fc-4186-945f-27518e4fceb7}</Project>
       <Name>Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Multilanguage\Languages.csproj">

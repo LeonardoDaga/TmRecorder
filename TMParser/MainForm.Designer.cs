@@ -176,7 +176,7 @@ namespace TMRecorder
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabATeamPage = new System.Windows.Forms.TabPage();
-            this.dataGridGiocatori = new NTR_Common.AeroDataGrid();
+            this.dataGridGiocatori = new NTR_Controls.AeroDataGrid();
             this.dataGridViewTextBoxColumn56 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn57 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn58 = new DataGridViewCustomColumns.TMR_FpColumn(this.components);
@@ -225,7 +225,7 @@ namespace TMRecorder
             this.giocatoriNSkillBindingSourceB = new System.Windows.Forms.BindingSource(this.components);
             this.extTMDataSet = new Common.ExtTMDataSet();
             this.tabBTeamPage = new System.Windows.Forms.TabPage();
-            this.dataGridGiocatoriB = new NTR_Common.AeroDataGrid();
+            this.dataGridGiocatoriB = new NTR_Controls.AeroDataGrid();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new DataGridViewCustomColumns.TMR_FpColumn(this.components);
@@ -266,7 +266,7 @@ namespace TMRecorder
             this.dataGridViewTextBoxColumn55 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TIcol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabGK = new System.Windows.Forms.TabPage();
-            this.dataGridPortieri = new NTR_Common.AeroDataGrid();
+            this.dataGridPortieri = new NTR_Controls.AeroDataGrid();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.numeroDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nomeDataGridViewTextBoxColumn1 = new DataGridViewCustomColumns.TMR_NameInjurySqColumn(this.components);
@@ -295,7 +295,7 @@ namespace TMRecorder
             this.toolStripMenuItem18 = new System.Windows.Forms.ToolStripMenuItem();
             this.portieriNSkillBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabInfo = new System.Windows.Forms.TabPage();
-            this.dataGridPlayersInfo = new NTR_Common.AeroDataGrid();
+            this.dataGridPlayersInfo = new NTR_Controls.AeroDataGrid();
             this.playerIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nomeDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -363,7 +363,7 @@ namespace TMRecorder
             this.txtMatchStart = new System.Windows.Forms.TextBox();
             this.btnHelp = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.dgMatches = new NTR_Common.AeroDataGrid();
+            this.dgMatches = new NTR_Controls.AeroDataGrid();
             this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.homeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.scoreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -390,7 +390,7 @@ namespace TMRecorder
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.dataGridView2 = new NTR_Common.AeroDataGrid();
+            this.dataGridView2 = new NTR_Controls.AeroDataGrid();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.voteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -403,7 +403,7 @@ namespace TMRecorder
             this.label2 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
-            this.dataGridView3 = new NTR_Common.AeroDataGrid();
+            this.dataGridView3 = new NTR_Controls.AeroDataGrid();
             this.nameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.voteDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -5705,7 +5705,7 @@ namespace TMRecorder
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabATeamPage;
         private System.Windows.Forms.TabPage tabGK;
-        private NTR_Common.AeroDataGrid dataGridPortieri;
+        private NTR_Controls.AeroDataGrid dataGridPortieri;
         private System.Windows.Forms.BindingSource portieriBindingSource;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
         private System.Windows.Forms.ToolStripContainer toolStripContainer1;
@@ -5739,7 +5739,7 @@ namespace TMRecorder
         private System.Windows.Forms.DataGridViewTextBoxColumn PSP;
         private System.Windows.Forms.ToolStripMenuItem editGainSetToolStripMenuItem;
         private System.Windows.Forms.TabPage tabInfo;
-        private NTR_Common.AeroDataGrid dataGridPlayersInfo;
+        private NTR_Controls.AeroDataGrid dataGridPlayersInfo;
         private System.Windows.Forms.BindingSource giocatoriBindingSource1;
         private ExtraDS extraDS;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton4;
@@ -5750,9 +5750,9 @@ namespace TMRecorder
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem movePlayerToATeamToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem movePlayerToBTeamToolStripMenuItem;
-        private NTR_Common.AeroDataGrid dataGridGiocatoriB;
+        private NTR_Controls.AeroDataGrid dataGridGiocatoriB;
         private System.Windows.Forms.BindingSource giocatoriNSkillBindingSourceB;
-        private NTR_Common.AeroDataGrid dataGridGiocatori;
+        private NTR_Controls.AeroDataGrid dataGridGiocatori;
         private System.Windows.Forms.DataGridViewCheckBoxColumn inFormazioneDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn squalificatoDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn infortunatoDataGridViewCheckBoxColumn;
@@ -5797,13 +5797,13 @@ namespace TMRecorder
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton3;
         private System.Windows.Forms.ToolStripMenuItem deleteDataSetToolStripMenuItem;
         private System.Windows.Forms.TabPage tabInfoMain;
-        private NTR_Common.AeroDataGrid dgMatches;
+        private NTR_Controls.AeroDataGrid dgMatches;
         private System.Windows.Forms.Label label1;
         private Common.MatchDS matchDS;
         private System.Windows.Forms.BindingSource matchBindingSource;
         private System.Windows.Forms.BindingSource champDSBindingSource;
-        private NTR_Common.AeroDataGrid dataGridView3;
-        private NTR_Common.AeroDataGrid dataGridView2;
+        private NTR_Controls.AeroDataGrid dataGridView3;
+        private NTR_Controls.AeroDataGrid dataGridView2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;

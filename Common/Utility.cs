@@ -444,7 +444,15 @@ namespace Common
         public int Day {get; set;}
         public int Week  {get; set;}
         public int Season {get; set;}
-        public int AbsWeek { get { return (Season-1) * 12 + (Week-1); } }
+        public int AbsWeek { get { return (Season - 1) * 12 + (Week - 1); } }
+        public DateTime Date
+        {
+            get
+            {
+                TmWeek tmw = new TmWeek(Season, Week);
+                return tmw.ToDate().AddDays(Day);
+            }
+        }
 
         public TmSWD(int absWeek)
         {
@@ -682,7 +690,7 @@ namespace Common
 
         public static TmSWD TmWeekToSWD(int tmweek)
         {
-            DateTime dt = tmDay0.AddDays(7 * tmweek);
+            DateTime dt = tmDay0.AddDays(7 * (tmweek + 1));
             return new TmSWD(dt);
         }
     }

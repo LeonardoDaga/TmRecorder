@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
+using Common;
 
 namespace DataGridViewCustomColumns
 {
@@ -48,6 +49,7 @@ namespace DataGridViewCustomColumns
     {
         public short status = 2;
         public bool filterASIvalue = false;
+        public string txtTooltip = "";
 
         public TMR_NumDecCell()
             : base()
@@ -78,6 +80,37 @@ namespace DataGridViewCustomColumns
             return clone;
         }
 
+        protected override object GetFormattedValue(object value, int rowIndex, ref DataGridViewCellStyle cellStyle, TypeConverter valueTypeConverter, TypeConverter formattedValueTypeConverter, DataGridViewDataErrorContexts context)
+        {
+            if (value is intvar)
+                return ((intvar)value).description;
+            else if (value is decvar)
+            {
+                decvar decval = (decvar)value;
+                string description = "";
+
+                if (decval != null)
+                {
+                    if (decimal.Floor(decval.prev) == decimal.MinValue)
+                        description = decval.actual.ToString() + " (New Value)";
+                    else if (decimal.Floor(decval.actual) > decimal.Floor(decval.prev))
+                        description = "Prev. Value = " + decval.prev.ToString() + "; Increment = +" + (decval.actual - decval.prev).ToString();
+                    else if (decval.actual > decval.prev)
+                        description = decval.actual.ToString() + ", Increment: +" + (decval.actual - decval.prev).ToString();
+                    else if (decimal.Floor(decval.actual) < decimal.Floor(decval.prev))
+                        description = "Prev. Value = " + decval.prev.ToString() + ", Decrement = " + (decval.actual - decval.prev).ToString();
+                    else if (decval.actual < decval.prev)
+                        description = decval.actual.ToString() + ", Decrement = " + (decval.actual - decval.prev).ToString();
+                    else
+                        description = decval.actual.ToString();
+                }
+                
+                return description;
+            }
+            else
+                return base.GetFormattedValue(value, rowIndex, ref cellStyle, valueTypeConverter, formattedValueTypeConverter, context);
+        }
+
         protected override void Paint(System.Drawing.Graphics graphics, 
             System.Drawing.Rectangle clipBounds, 
             System.Drawing.Rectangle cellBounds, 
@@ -92,6 +125,27 @@ namespace DataGridViewCustomColumns
         {
             try
             {
+                decimal dec;
+                intvar intval = null;
+                decvar decval = null;
+
+                if (value.GetType() == typeof(int))
+                    dec = Convert.ToDecimal(value);
+                else if (value.GetType() == typeof(int))
+                    dec = Convert.ToDecimal(value);
+                else if (value.GetType() == typeof(intvar))
+                {
+                    intval = (intvar)value;
+                    dec = Convert.ToDecimal(intval.actual);
+                }
+                else if (value.GetType() == typeof(decvar))
+                {
+                    decval = (decvar)value;
+                    dec = decval.actual;
+                }
+                else
+                    dec = 0;
+
                 StringFormat sf = new StringFormat();
                 sf.Alignment = StringAlignment.Near;
                 sf.LineAlignment = StringAlignment.Center;
@@ -108,20 +162,30 @@ namespace DataGridViewCustomColumns
                     fbr = new SolidBrush(cellStyle.SelectionForeColor);
                     bbr = new SolidBrush(cellStyle.SelectionBackColor);
                 }
+                else if (intval != null)
+                {
+                    if (intval.prev == int.MinValue)
+                        fbr = new SolidBrush(cellStyle.ForeColor);
+                    else if (intval.actual > intval.prev)
+                        fbr = new SolidBrush(Color.Green);
+                    else if (intval.actual < intval.prev)
+                        fbr = new SolidBrush(Color.Red);
+                    else 
+                        fbr = new SolidBrush(cellStyle.ForeColor);
+                    bbr = new SolidBrush(cellStyle.BackColor);
+                }
                 else
                 {
                     fbr = new SolidBrush(cellStyle.ForeColor);
                     bbr = new SolidBrush(cellStyle.BackColor);
                 }
+                
                 gbr = new Pen(this.DataGridView.GridColor);
 
                 Rectangle cellRect = cellBounds;
                 cellRect.Offset(-1, -1);
                 graphics.FillRectangle(bbr, cellRect);
                 graphics.DrawRectangle(gbr, cellRect);
-
-                decimal dec;
-                dec = Convert.ToDecimal(value);
 
                 string str;
                 
@@ -155,23 +219,62 @@ namespace DataGridViewCustomColumns
                 Point pt2 = cellRect.Location;
                 pt2.Offset((int)szf.Width, (cellRect.Height - dgc.iconList2.ImageSize.Height) / 2);
                 Rectangle rect = new Rectangle(pt2, new Size(9, 12));
-                
+
                 if (this.Tag != null)
-                switch ((int)this.Tag)
                 {
-                    case 2: graphics.DrawImage(dgc.iconList2.Images[0], pt2); break;
-                    case 1: graphics.DrawImage(dgc.iconList2.Images[1], pt2); break;
-                    case -1: graphics.DrawImage(dgc.iconList2.Images[2], pt2); break;
-                    case -2: graphics.DrawImage(dgc.iconList2.Images[3], pt2); break;
+                    switch ((int)this.Tag)
+                    {
+                        case 2: graphics.DrawImage(dgc.iconList2.Images[0], pt2); break;
+                        case 1: graphics.DrawImage(dgc.iconList2.Images[1], pt2); break;
+                        case -1: graphics.DrawImage(dgc.iconList2.Images[2], pt2); break;
+                        case -2: graphics.DrawImage(dgc.iconList2.Images[3], pt2); break;
+                    }
                 }
 
-                decimal decpart = (dec - (decimal)((int)dec));
+                if (intval != null)
+                {
+                    if (intval.prev == int.MinValue)
+                    {
+                        graphics.DrawImage(dgc.iconList2.Images[5], pt2);
+                        intval.description = "New value";
+                    }
+                    else if (intval.actual > intval.prev)
+                    {
+                        graphics.DrawImage(dgc.iconList2.Images[0], pt2);
+                        intval.description = "Prev. Value = " + intval.prev.ToString() + "; Increment = +" + (intval.actual - intval.prev).ToString();
+                    }
+                    else if (intval.actual < intval.prev)
+                    {
+                        graphics.DrawImage(dgc.iconList2.Images[3], pt2);
+                        intval.description = "Prev. Value = " + intval.prev.ToString() + "; Decrement = " + (intval.actual - intval.prev).ToString();
+                    }
+                    else if (intval.actual == intval.prev)
+                    {
+                        graphics.DrawImage(dgc.iconList2.Images[4], pt2);
+                        intval.description = "No value change";
+                    }
+                }
+
+                if (decval != null)
+                {
+                    if (decval.prev == decimal.MinValue)
+                        decval.description = "New value";
+                    else if (decimal.Floor(decval.actual) > decimal.Floor(decval.prev))
+                        graphics.DrawImage(dgc.iconList2.Images[0], pt2);
+                    else if (decval.actual > decval.prev)
+                        graphics.DrawImage(dgc.iconList2.Images[1], pt2);
+                    else if (decimal.Floor(decval.actual) < decimal.Floor(decval.prev))
+                        graphics.DrawImage(dgc.iconList2.Images[3], pt2);
+                    else if (decval.actual < decval.prev)
+                        graphics.DrawImage(dgc.iconList2.Images[2], pt2);
+                }
+
+                decimal decpart = (dec - decimal.Floor(dec));
 
                 int height = (int)((decpart * 100M * (cellRect.Height - 2)) / 100M);
 
                 Rectangle bar = new Rectangle(cellRect.Left + 1,
-                    cellRect.Bottom - 5, height, 3);
-                this.ToolTipText = dec.ToString();
+                    cellRect.Bottom - 5, height, 3);                
 
                 Brush hbr = null;
                 if (decpart <= 0.5M)

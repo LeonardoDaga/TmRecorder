@@ -48,6 +48,8 @@ namespace DataGridViewCustomColumns
             this.iconList2.Images.SetKeyName(1, "SmallStepUp.ico");
             this.iconList2.Images.SetKeyName(2, "SmallStepDown.ico");
             this.iconList2.Images.SetKeyName(3, "BigStepDown.ico");
+            this.iconList2.Images.SetKeyName(4, "Unchanged.ico");
+            this.iconList2.Images.SetKeyName(5, "New.ico");
 
         }
 

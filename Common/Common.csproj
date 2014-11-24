@@ -263,6 +263,8 @@
     </Compile>
     <Compile Include="Historical.cs" />
     <Compile Include="HTML_Parser.cs" />
+    <Compile Include="decvar.cs" />
+    <Compile Include="intvar.cs" />
     <Compile Include="MatchAnalysis.cs">
       <DependentUpon>MatchAnalysis.xsd</DependentUpon>
       <SubType>Component</SubType>

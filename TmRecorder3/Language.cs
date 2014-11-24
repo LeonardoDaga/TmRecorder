@@ -5,7 +5,7 @@ using Languages;
 
 namespace TmRecorder3
 {
-    partial class MainForm
+    partial class MainForm3
     {
         public void SetLanguage()
         {

@@ -15,15 +15,16 @@ using NTR_Forms;
 using NTR_Db;
 using NTR_Common;
 using NTR_Controls;
+using DataGridViewCustomColumns;
 
 namespace TmRecorder3
 {
-    public partial class MainForm : Form
+    public partial class MainForm3 : Form
     {
         SplashForm sf = null;
         public EnumerableRowCollection<PlayerData> Players;
 
-        public MainForm()
+        public MainForm3()
         {
             InitializeComponent();
 
@@ -147,9 +148,9 @@ namespace TmRecorder3
             {
                 DB.Load(Program.Setts.DefaultDirectory, ref sf, (Program.Setts.Trace > 0));
 
-                var Dates = from c in DB.squadDB.HistData
+                var Dates = (from c in DB.squadDB.HistData
                             group c by c.Week into g
-                            select g;
+                            select g).OrderByDescending(p=>p.Key);
 
                 TmSWD tmSwdSelected = null;
                 cbDataDay.Items.Clear();
@@ -174,10 +175,16 @@ namespace TmRecorder3
 
             TmSWD selectedItem = (TmSWD)cbDataDay.SelectedItem;
 
-            // c is an HistDataRow
+            int absPrevWeek = -1;
+            if (cbDataDay.SelectedIndex != cbDataDay.Items.Count)
+            {
+                TmSWD selectedItemPrev = (TmSWD)cbDataDay.Items[cbDataDay.SelectedIndex + 1];
+                absPrevWeek = selectedItemPrev.AbsWeek;
+            }
+
             Players = from c in DB.squadDB.HistData
-                      where c.Week == selectedItem.AbsWeek
-                      select new PlayerData(c);
+                      where (c.Week == selectedItem.AbsWeek) && (c.PlayerRow.FPn != 0)
+                      select new PlayerData(c, absPrevWeek);
 
             FormatPlayersGrid();
 
@@ -191,8 +198,30 @@ namespace TmRecorder3
 
             dgPlayers.Columns.Clear();
             dgPlayers.AddColumn("N", "Number", 20, AG_Style.Numeric | AG_Style.Frozen);
+            dgPlayers.AddColumn("FP", "FPn", 42, AG_Style.FavPosition | AG_Style.Frozen);
+            dgPlayers.AddColumn("Name", "Name", 60, AG_Style.NameInj | AG_Style.Frozen | AG_Style.ResizeAllCells);
             dgPlayers.AddColumn("Age", "wBorn", 32, AG_Style.Age | AG_Style.Frozen);
-            dgPlayers.AddColumn("Week", "SWeek", 50, AG_Style.String | AG_Style.Frozen);
+            dgPlayers.AddColumn("Nat", "Nationality", 28, AG_Style.Nationality | AG_Style.Frozen);
+            dgPlayers.AddColumn("ASI", "ASI", 49, AG_Style.NumDec | AG_Style.Frozen);
+            dgPlayers.AddColumn("Str", "Str", 25, AG_Style.NumDec);
+            dgPlayers.AddColumn("Pac", "Pac", 25, AG_Style.NumDec);
+            dgPlayers.AddColumn("Sta", "Sta", 25, AG_Style.NumDec);
+
+            dgPlayers.AddColumn("Mar", "Mar", 25, AG_Style.NumDec);
+            dgPlayers.AddColumn("Tac", "Tac", 25, AG_Style.NumDec);
+            dgPlayers.AddColumn("Wor", "Wor", 25, AG_Style.NumDec);
+            dgPlayers.AddColumn("Pos", "Pos", 25, AG_Style.NumDec);
+            dgPlayers.AddColumn("Pas", "Pas", 25, AG_Style.NumDec);
+            dgPlayers.AddColumn("Cro", "Cro", 25, AG_Style.NumDec);
+            dgPlayers.AddColumn("Tec", "Tec", 25, AG_Style.NumDec);
+            dgPlayers.AddColumn("Hea", "Hea", 25, AG_Style.NumDec);
+            dgPlayers.AddColumn("Fin", "Fin", 25, AG_Style.NumDec);
+            dgPlayers.AddColumn("Lon", "Lon", 25, AG_Style.NumDec);
+            dgPlayers.AddColumn("Set", "Set", 25, AG_Style.NumDec);
+
+            dgPlayers.AddColumn("Rou", "Rou", 30, AG_Style.Numeric | AG_Style.RightJustified);
+
+            dgPlayers.AddColumn("SSD", "SSD", 30, AG_Style.Numeric | AG_Style.RightJustified);
         }
 
         private void reloadDataFromFilesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -205,10 +234,18 @@ namespace TmRecorder3
         {
             varDataBindingSource.DataSource = null;
             TmSWD selectedItem = (TmSWD)cbDataDay.SelectedItem;
+            int absPrevWeek = -1;
+            if (cbDataDay.SelectedIndex != cbDataDay.Items.Count - 1)
+            {
+                TmSWD selectedItemPrev = (TmSWD)cbDataDay.Items[cbDataDay.SelectedIndex + 1];
+                absPrevWeek = selectedItemPrev.AbsWeek;
+            }
             
             Players = from c in DB.squadDB.HistData
-                      where c.Week == selectedItem.AbsWeek
-                      select new PlayerData(c);
+                      where (c.Week == selectedItem.AbsWeek) && (c.PlayerRow.FPn != 0)
+                      select new PlayerData(c, absPrevWeek);
+
+            dgPlayers.SetWhen(selectedItem.Date);
             varDataBindingSource.DataSource = Players;
         }
     }

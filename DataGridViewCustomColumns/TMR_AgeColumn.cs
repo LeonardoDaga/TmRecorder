@@ -12,16 +12,19 @@ namespace DataGridViewCustomColumns
     public partial class TMR_AgeColumn : DataGridViewColumn
     {
         public int minColumnSize = 0;
+        public DateTime When { get; set; }
 
         public TMR_AgeColumn()
             : base(new TMR_AgeCell())
         {
+            When = DateTime.Now;
             InitializeComponent();
         }
 
         public TMR_AgeColumn(IContainer container)
             : base(new TMR_AgeCell())
         {
+            When = DateTime.Now;
             container.Add(this);
 
             InitializeComponent();
@@ -110,7 +113,8 @@ namespace DataGridViewCustomColumns
                     tmw = new TmWeek(Convert.ToInt32(value));
                 }
 
-                string[] age = tmw.ToAge(DateTime.Now).Split("ym ".ToCharArray());
+                TMR_AgeColumn thisCol = (TMR_AgeColumn)this.OwningColumn;
+                string[] age = tmw.ToAge(thisCol.When).Split("ym ".ToCharArray());
 
                 string strYear = age[0];
                 string strMonth = age[2];
@@ -163,7 +167,7 @@ namespace DataGridViewCustomColumns
                 Font small = new Font(cellStyle.Font.FontFamily, (float)(cellStyle.Font.SizeInPoints-0.5f));
                 graphics.DrawString(strMonth.ToString(), small, hbr, rect, sf);
 
-                this.ToolTipText = tmw.ToAge(DateTime.Now);
+                this.ToolTipText = tmw.ToAge(thisCol.When);
 
                 fbr.Dispose();
                 bbr.Dispose();
@@ -210,7 +214,9 @@ namespace DataGridViewCustomColumns
             if (value == null) return "000";
             if (value == System.DBNull.Value) return "000";
             TmWeek tmw = new TmWeek((int)value);
-            string str = tmw.ToAge(DateTime.Now);
+
+            TMR_AgeColumn thisCol = (TMR_AgeColumn)this.OwningColumn;
+            string str = tmw.ToAge(thisCol.When);
 
             string[] toks = str.Split("ym".ToCharArray());
 

@@ -28,7 +28,7 @@ namespace NTR_Controls
         {
         }
 
-        public void AddColumn(string Title, string Property, int width, AG_Style styles)
+        public DataGridViewColumn AddColumn(string Title, string Property, int width, AG_Style styles)
         {
             DataGridViewColumn dgv = null;
 
@@ -44,11 +44,50 @@ namespace NTR_Controls
             {
                 dgv = new DataGridViewTextBoxColumn();
             }
+            else if ((int)(styles & AG_Style.FavPosition) > 0)
+            {
+                dgv = new TMR_FpColumn();
+            }
+            else if ((int)(styles & AG_Style.NameInj) > 0)
+            {
+                dgv = new TMR_NameInjurySqColumn();
+            }
+            else if ((int)(styles & AG_Style.Nationality) > 0)
+            {
+                dgv = new TMR_NationColumn();
+            }
+            else if ((int)(styles & AG_Style.NumDec) > 0)
+            {
+                dgv = new TMR_NumDecColumn();
+            }
 
             dgv.Name = Title;
             dgv.DataPropertyName = Property;
             dgv.Width = width;
+
             this.Columns.Add(dgv);
+
+            dgv.Frozen = ((int)(styles & AG_Style.Frozen) > 0);
+
+            if ((int)(styles & AG_Style.ResizeAllCells) > 0)
+                dgv.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+
+            if ((int)(styles & AG_Style.RightJustified) > 0)
+                dgv.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+            return dgv;
+        }
+
+        public void SetWhen(DateTime when)
+        {
+            foreach (DataGridViewColumn dgv in this.Columns)
+            {
+                if (dgv.GetType() == typeof(TMR_AgeColumn))
+                {
+                    TMR_AgeColumn ageCol = (TMR_AgeColumn)dgv;
+                    ageCol.When = when;
+                }
+            }
         }
     }
 
@@ -59,5 +98,11 @@ namespace NTR_Controls
         Frozen = 0x02,
         Age = 0x04,
         String = 0x08,
+        FavPosition = 0x10,
+        NameInj = 0x20,
+        ResizeAllCells = 0x40,
+        Nationality = 0x80,
+        NumDec = 0x100,
+        RightJustified = 0x200,
     }
 }

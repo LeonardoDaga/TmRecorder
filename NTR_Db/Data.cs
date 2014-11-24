@@ -272,6 +272,7 @@ namespace NTR_Db
                     hdr.Rif = gr.Rif;
                     hdr.Tir = gr.Tir;
                     hdr.Vel = gr.Vel;
+                    hdr.Uno = gr.Uno;
                     hdr.PlayerID = gr.PlayerID;
                     hdr.Inj = (short)gr.Infortunato;
                     hdr.Ban = (short)gr.Squalificato;
@@ -353,11 +354,12 @@ namespace NTR_Db
                     squadDB.Player.AddPlayerRow(pr);
 
                     NTR_SquadDb.TempDataRow tdr = squadDB.TempData.NewTempDataRow();
+                    tdr.PlayerID = gr.PlayerID;
                     if (!gr.IsRoutineNull())
                         tdr.Rou = gr.Routine;
                     else
-                        tdr.Rou = 0;                    
-
+                        tdr.Rou = 0;
+                    squadDB.TempData.AddTempDataRow(tdr);
                 }
             }
             catch (Exception ex)
@@ -377,24 +379,120 @@ namespace NTR_Db
 
     public class PlayerData
     {
-        private NTR_SquadDb.HistDataRow c;
+        private NTR_SquadDb.HistDataRow thisWeek;
+        private NTR_SquadDb.HistDataRow prevWeek;
 
         public int Number { get; set; }
         public string Name { get; set; }
         public int Week { get; set; }
         public string SWeek { get { return (new TmSWD(Week)).ToString(); } }
-        public int ASI { get; set; }
+        public intvar ASI { get; set; }
         public int wBorn { get; set; }
+        public int FPn { get; set; }
+        public string Nationality { get; set; }
 
-        public PlayerData(NTR_SquadDb.HistDataRow c)
+        public decvar[] Skills = new decvar[14];
+
+        public decvar Str { get { return Skills[0]; } set { Skills[0] = value; } }
+        public decvar Pac { get { return Skills[1]; } set { Skills[1] = value; } }
+        public decvar Sta { get { return Skills[2]; } set { Skills[2] = value; } }
+
+        public decvar Mar { get { return Skills[3]; } set { Skills[3] = value; } }
+        public decvar Tac { get { return Skills[4]; } set { Skills[4] = value; } }
+        public decvar Wor { get { return Skills[5]; } set { Skills[5] = value; } }
+        public decvar Pos { get { return Skills[6]; } set { Skills[6] = value; } }
+        public decvar Pas { get { return Skills[7]; } set { Skills[7] = value; } }
+        public decvar Cro { get { return Skills[8]; } set { Skills[8] = value; } }
+        public decvar Tec { get { return Skills[9]; } set { Skills[9] = value; } }
+        public decvar Hea { get { return Skills[10]; } set { Skills[10] = value; } }
+        public decvar Fin { get { return Skills[11]; } set { Skills[11] = value; } }
+        public decvar Lon { get { return Skills[12]; } set { Skills[12] = value; } }
+        public decvar Set { get { return Skills[13]; } set { Skills[13] = value; } }
+
+        public decvar SkillSum
+        {
+            get 
+            {
+                return Str + Pac + Sta + Mar + Tac + Wor + Pos + Pas + Cro + Tec + Hea + Fin + Lon + Set;
+            }
+        }
+
+        public decimal SSD
+        {
+            get
+            {
+                return Tm_Utility.ASItoSkSum((decimal)ASI.actual, false) - this.SkillSum.actual;
+            }
+        }
+        
+        public decimal Rou { get; set; }
+
+        public PlayerData(NTR_SquadDb.HistDataRow thisWeek, int absPrevWeek)
         {
             // TODO: Complete member initialization
-            this.c = c;
-            Name = c.PlayerRow.Name;
-            Week = c.Week;
-            ASI = c.ASI;
-            Number = c.PlayerRow.No;
-            wBorn = c.PlayerRow.wBorn;
+            this.thisWeek = thisWeek;
+
+            NTR_SquadDb DB = (NTR_SquadDb)thisWeek.Table.DataSet;
+
+            if (absPrevWeek != -1)
+            {
+                NTR_SquadDb.HistDataDataTable histTable = (NTR_SquadDb.HistDataDataTable)thisWeek.Table;
+                prevWeek = histTable.FindByPlayerIDWeek(thisWeek.PlayerID, absPrevWeek);
+            }
+            else
+                prevWeek = null;
+
+            Name = thisWeek.PlayerRow.Name;
+            Week = thisWeek.Week;
+
+            Number = thisWeek.PlayerRow.No;
+            FPn = thisWeek.PlayerRow.FPn;
+            wBorn = thisWeek.PlayerRow.wBorn;
+            Nationality = thisWeek.PlayerRow.Nationality;
+
+            NTR_SquadDb.TempDataRow tdr = DB.TempData.FindByPlayerID(thisWeek.PlayerID);
+            
+            if (tdr != null)
+                Rou = tdr.Rou;
+
+            if (prevWeek != null)
+            {
+                ASI = new intvar(thisWeek.ASI, prevWeek.ASI);
+                Str = new decvar(thisWeek.For, prevWeek.For);
+                Pac = new decvar(thisWeek.Vel, prevWeek.Vel);
+                Sta = new decvar(thisWeek.Res, prevWeek.Res);
+
+                Mar = new decvar(thisWeek.Mar, prevWeek.Mar);
+                Tac = new decvar(thisWeek.Con, prevWeek.Con);
+                Wor = new decvar(thisWeek.Wor, prevWeek.Wor);
+                Pos = new decvar(thisWeek.Pos, prevWeek.Pos);
+                Pas = new decvar(thisWeek.Pas, prevWeek.Pas);
+                Cro = new decvar(thisWeek.Cro, prevWeek.Cro);
+                Tec = new decvar(thisWeek.Tec, prevWeek.Tec);
+                Hea = new decvar(thisWeek.Tes, prevWeek.Tes);
+                Fin = new decvar(thisWeek.Fin, prevWeek.Fin);
+                Lon = new decvar(thisWeek.Tir, prevWeek.Tir);
+                Set = new decvar(thisWeek.Cal, prevWeek.Cal);
+            }
+            else
+            {
+                ASI = new intvar(thisWeek.ASI);
+                Str = new decvar(thisWeek.For);
+                Pac = new decvar(thisWeek.Vel);
+                Sta = new decvar(thisWeek.Res);
+
+                Mar = new decvar(thisWeek.Mar);
+                Tac = new decvar(thisWeek.Con);
+                Wor = new decvar(thisWeek.Wor);
+                Pos = new decvar(thisWeek.Pos);
+                Pas = new decvar(thisWeek.Pas);
+                Cro = new decvar(thisWeek.Cro);
+                Tec = new decvar(thisWeek.Tec);
+                Hea = new decvar(thisWeek.Tes);
+                Fin = new decvar(thisWeek.Fin);
+                Lon = new decvar(thisWeek.Tir);
+                Set = new decvar(thisWeek.Cal);
+            }
         }
     }
 }

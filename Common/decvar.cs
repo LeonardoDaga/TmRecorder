@@ -9,20 +9,31 @@ namespace Common
     {
         public decimal actual;
         public decimal prev = decimal.MinValue;
+        public decimal quality;
 
         public decvar()
         {
+            quality = -1;
         }
 
         public decvar(decimal actualVal, decimal prevVal)
         {
             actual = actualVal;
             prev = prevVal;
+            quality = -1;
+        }
+
+        public decvar(decimal actualVal, decimal prevVal, decimal qualityVal)
+        {
+            actual = actualVal;
+            prev = prevVal;
+            quality = qualityVal;
         }
 
         public decvar(decimal actualVal)
         {
             actual = actualVal;
+            quality = -1;
         }
 
         public static decvar operator +(decvar add1, decvar add2)

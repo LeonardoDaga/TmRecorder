@@ -489,6 +489,8 @@ namespace NTR_Db {
             
             private global::System.Data.DataColumn columnCalc;
             
+            private global::System.Data.DataColumn columnBTeam;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public PlayerDataTable() : 
@@ -653,6 +655,14 @@ namespace NTR_Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn BTeamColumn {
+                get {
+                    return this.columnBTeam;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -688,7 +698,23 @@ namespace NTR_Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public PlayerRow AddPlayerRow(int PlayerID, int No, string Nationality, string Name, string FP, decimal Ada, string Notes, float Blo, float Pro, float Agg, float Lea, int wBorn, string wBloomData, int FPn, int Calc) {
+            public PlayerRow AddPlayerRow(
+                        int PlayerID, 
+                        int No, 
+                        string Nationality, 
+                        string Name, 
+                        string FP, 
+                        decimal Ada, 
+                        string Notes, 
+                        float Blo, 
+                        float Pro, 
+                        float Agg, 
+                        float Lea, 
+                        int wBorn, 
+                        string wBloomData, 
+                        int FPn, 
+                        int Calc, 
+                        bool BTeam) {
                 PlayerRow rowPlayerRow = ((PlayerRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         PlayerID,
@@ -705,7 +731,8 @@ namespace NTR_Db {
                         wBorn,
                         wBloomData,
                         FPn,
-                        Calc};
+                        Calc,
+                        BTeam};
                 rowPlayerRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowPlayerRow);
                 return rowPlayerRow;
@@ -713,7 +740,7 @@ namespace NTR_Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public PlayerRow AddPlayerRow(int PlayerID, int No, string Nationality, string Name, string FP, decimal Ada, string Notes, float Blo, float Pro, float Agg, float Lea, int wBorn, string wBloomData, int FPn) {
+            public PlayerRow AddPlayerRow(int PlayerID, int No, string Nationality, string Name, string FP, decimal Ada, string Notes, float Blo, float Pro, float Agg, float Lea, int wBorn, string wBloomData, int FPn, bool BTeam) {
                 PlayerRow rowPlayerRow = ((PlayerRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         PlayerID,
@@ -730,7 +757,8 @@ namespace NTR_Db {
                         wBorn,
                         wBloomData,
                         FPn,
-                        null};
+                        null,
+                        BTeam};
                 rowPlayerRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowPlayerRow);
                 return rowPlayerRow;
@@ -775,6 +803,7 @@ namespace NTR_Db {
                 this.columnwBloomData = base.Columns["wBloomData"];
                 this.columnFPn = base.Columns["FPn"];
                 this.columnCalc = base.Columns["Calc"];
+                this.columnBTeam = base.Columns["BTeam"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -810,6 +839,8 @@ namespace NTR_Db {
                 base.Columns.Add(this.columnFPn);
                 this.columnCalc = new global::System.Data.DataColumn("Calc", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCalc);
+                this.columnBTeam = new global::System.Data.DataColumn("BTeam", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBTeam);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnPlayerID}, true));
                 this.columnPlayerID.AllowDBNull = false;
@@ -2814,6 +2845,22 @@ namespace NTR_Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool BTeam {
+                get {
+                    try {
+                        return ((bool)(this[this.tablePlayer.BTeamColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Il valore della colonna \'BTeam\' nella tabella \'Player\' è DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePlayer.BTeamColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsNoNull() {
                 return this.IsNull(this.tablePlayer.NoColumn);
             }
@@ -2978,6 +3025,18 @@ namespace NTR_Db {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetCalcNull() {
                 this[this.tablePlayer.CalcColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsBTeamNull() {
+                return this.IsNull(this.tablePlayer.BTeamColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetBTeamNull() {
+                this[this.tablePlayer.BTeamColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

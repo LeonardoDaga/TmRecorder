@@ -8,6 +8,8 @@ namespace NTR_Db {
 
     public partial class NTR_SquadDb 
     {
+        public NTR_Common.GainDS GDS { get; set; }
+
         partial class HistDataDataTable
         {
         }
@@ -132,15 +134,15 @@ namespace NTR_Db {
     
         public partial class PlayerRow: global::System.Data.DataRow
         {
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int DC
-            {
-                get
-                {
-                    return ((int)(this[this.tablePlayer.PlayerIDColumn]));
-                }
-            }
+            //[global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            //[global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            //public int DC
+            //{
+            //    get
+            //    {
+            //        return ((int)(this[this.tablePlayer.PlayerIDColumn]));
+            //    }
+            //}
 
         }
     }

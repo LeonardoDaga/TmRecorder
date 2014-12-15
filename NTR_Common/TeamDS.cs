@@ -637,19 +637,19 @@ namespace NTR_Common
                         Ada = Ada + 0;
 
 
-                    DC = DC * gds.A_Ada(n, 0, Ada) * kRou;
-                    DR = DR * gds.A_Ada(n, 1, Ada) * kRou;
-                    DL = DL * gds.A_Ada(n, 2, Ada) * kRou;
-                    DMC = DMC * gds.A_Ada(n, 3, Ada) * kRou;
-                    DMR = DMR * gds.A_Ada(n, 4, Ada) * kRou;
-                    DML = DML * gds.A_Ada(n, 5, Ada) * kRou;
-                    MC = MC * gds.A_Ada(n, 6, Ada) * kRou;
-                    MR = MR * gds.A_Ada(n, 7, Ada) * kRou;
-                    ML = ML * gds.A_Ada(n, 8, Ada) * kRou;
-                    OMC = OMC * gds.A_Ada(n, 9, Ada) * kRou;
-                    OMR = OMR * gds.A_Ada(n, 10, Ada) * kRou;
-                    OML = OML * gds.A_Ada(n, 11, Ada) * kRou;
-                    FC = FC * gds.A_Ada(n, 12, Ada) * kRou;
+                    DC = DC * (float)gds.A_Ada(n, 0, Ada) * kRou;
+                    DR = DR * (float)gds.A_Ada(n, 1, Ada) * kRou;
+                    DL = DL * (float)gds.A_Ada(n, 2, Ada) * kRou;
+                    DMC = DMC * (float)gds.A_Ada(n, 3, Ada) * kRou;
+                    DMR = DMR * (float)gds.A_Ada(n, 4, Ada) * kRou;
+                    DML = DML * (float)gds.A_Ada(n, 5, Ada) * kRou;
+                    MC = MC * (float)gds.A_Ada(n, 6, Ada) * kRou;
+                    MR = MR * (float)gds.A_Ada(n, 7, Ada) * kRou;
+                    ML = ML * (float)gds.A_Ada(n, 8, Ada) * kRou;
+                    OMC = OMC * (float)gds.A_Ada(n, 9, Ada) * kRou;
+                    OMR = OMR * (float)gds.A_Ada(n, 10, Ada) * kRou;
+                    OML = OML * (float)gds.A_Ada(n, 11, Ada) * kRou;
+                    FC = FC * (float)gds.A_Ada(n, 12, Ada) * kRou;
                 }
 
                 if (FPs.Length == 2)
@@ -665,19 +665,19 @@ namespace NTR_Common
                     else if (Ada > 0)
                         Ada = Ada + 0;
 
-                    DC = Math.Max(DC * gds.A_Ada(n1, 0, Ada), DC * gds.A_Ada(n2, 0, Ada)) * kRou;
-                    DR = Math.Max(DR * gds.A_Ada(n1, 1, Ada), DR * gds.A_Ada(n2, 1, Ada)) * kRou;
-                    DL = Math.Max(DL * gds.A_Ada(n1, 2, Ada), DL * gds.A_Ada(n2, 2, Ada)) * kRou;
-                    DMC = Math.Max(DMC * gds.A_Ada(n1, 3, Ada), DMC * gds.A_Ada(n2, 3, Ada)) * kRou;
-                    DMR = Math.Max(DMR * gds.A_Ada(n1, 4, Ada), DMR * gds.A_Ada(n2, 4, Ada)) * kRou;
-                    DML = Math.Max(DML * gds.A_Ada(n1, 5, Ada), DML * gds.A_Ada(n2, 5, Ada)) * kRou;
-                    MC = Math.Max(MC * gds.A_Ada(n1, 6, Ada), MC * gds.A_Ada(n2, 6, Ada)) * kRou;
-                    MR = Math.Max(MR * gds.A_Ada(n1, 7, Ada), MR * gds.A_Ada(n2, 7, Ada)) * kRou;
-                    ML = Math.Max(ML * gds.A_Ada(n1, 8, Ada), ML * gds.A_Ada(n2, 8, Ada)) * kRou;
-                    OMC = Math.Max(OMC * gds.A_Ada(n1, 9, Ada), OMC * gds.A_Ada(n2, 9, Ada)) * kRou;
-                    OMR = Math.Max(OMR * gds.A_Ada(n1, 10, Ada), OMR * gds.A_Ada(n2, 10, Ada)) * kRou;
-                    OML = Math.Max(OML * gds.A_Ada(n1, 11, Ada), OML * gds.A_Ada(n2, 11, Ada)) * kRou;
-                    FC = Math.Max(FC * gds.A_Ada(n1, 12, Ada), FC * gds.A_Ada(n2, 12, Ada)) * kRou;
+                    DC = Math.Max(DC * (float)gds.A_Ada(n1, 0, Ada), DC * (float)gds.A_Ada(n2, 0, Ada)) * kRou;
+                    DR = Math.Max(DR * (float)gds.A_Ada(n1, 1, Ada), DR * (float)gds.A_Ada(n2, 1, Ada)) * kRou;
+                    DL = Math.Max(DL * (float)gds.A_Ada(n1, 2, Ada), DL * (float)gds.A_Ada(n2, 2, Ada)) * kRou;
+                    DMC = Math.Max(DMC * (float)gds.A_Ada(n1, 3, Ada), DMC * (float)gds.A_Ada(n2, 3, Ada)) * kRou;
+                    DMR = Math.Max(DMR * (float)gds.A_Ada(n1, 4, Ada), DMR * (float)gds.A_Ada(n2, 4, Ada)) * kRou;
+                    DML = Math.Max(DML * (float)gds.A_Ada(n1, 5, Ada), DML * (float)gds.A_Ada(n2, 5, Ada)) * kRou;
+                    MC = Math.Max(MC * (float)gds.A_Ada(n1, 6, Ada), MC * (float)gds.A_Ada(n2, 6, Ada)) * kRou;
+                    MR = Math.Max(MR * (float)gds.A_Ada(n1, 7, Ada), MR * (float)gds.A_Ada(n2, 7, Ada)) * kRou;
+                    ML = Math.Max(ML * (float)gds.A_Ada(n1, 8, Ada), ML * (float)gds.A_Ada(n2, 8, Ada)) * kRou;
+                    OMC = Math.Max(OMC * (float)gds.A_Ada(n1, 9, Ada), OMC * (float)gds.A_Ada(n2, 9, Ada)) * kRou;
+                    OMR = Math.Max(OMR * (float)gds.A_Ada(n1, 10, Ada), OMR * (float)gds.A_Ada(n2, 10, Ada)) * kRou;
+                    OML = Math.Max(OML * (float)gds.A_Ada(n1, 11, Ada), OML * (float)gds.A_Ada(n2, 11, Ada)) * kRou;
+                    FC = Math.Max(FC * (float)gds.A_Ada(n1, 12, Ada), FC * (float)gds.A_Ada(n2, 12, Ada)) * kRou;
                 }
 
                 CStr = (decimal)MaxAttsToStar(MaxAtts() * (float)((SkillSum + SSD) / SkillSum));

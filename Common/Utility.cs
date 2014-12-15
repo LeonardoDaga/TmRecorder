@@ -306,6 +306,56 @@ namespace Common
             return (decimal)SkSumToASI((float)skSum, isGK);
         }
 
+        public static int[] FPnToFPvector(int FPn)
+        {
+            int[] fpVector = new int[2];
+            fpVector[1] = -1;
+
+            // DC = 0, DR = 1, DL = 2
+            switch (FPn)
+            {
+                case 10: return new int[] { 0, -1 };
+                case 11: return new int[] { 0, 2 };
+                case 12: return new int[] { 0, 1 };
+                case 13: return new int[] { 2, -1 };
+                case 14: return new int[] { 1, 2 };
+                case 15: return new int[] { 1, -1 };
+                case 20: return new int[] { 0, 3 };
+                case 21: return new int[] { 2, 5 };
+                case 22: return new int[] { 1, 4 };
+                case 30: return new int[] { 3, -1 };
+                case 31: return new int[] { 3, 5 };
+                case 32: return new int[] { 3, 4 };
+                case 33: return new int[] { 5, -1 };
+                case 34: return new int[] { 4, 5 };
+                case 35: return new int[] { 4, -1 };
+                case 40: return new int[] { 3, 6 };
+                case 41: return new int[] { 5, 8 };
+                case 42: return new int[] { 4, 7 };
+                case 50: return new int[] { 6, -1 };
+                case 51: return new int[] { 6, 8 };
+                case 52: return new int[] { 6, 7 };
+                case 53: return new int[] { 8, -1 };
+                case 54: return new int[] { 7, 8 };
+                case 55: return new int[] { 7, -1 };
+                case 60: return new int[] { 6, 9 };
+                case 61: return new int[] { 8, 11 };
+                case 62: return new int[] { 7, 10 };
+                case 70: return new int[] { 9, -1 };
+                case 71: return new int[] { 9, 11 };
+                case 72: return new int[] { 9, 10 };
+                case 73: return new int[] { 11, -1 };
+                case 74: return new int[] { 10, 11 };
+                case 75: return new int[] { 10, -1 };
+                case 80: return new int[] { 9, 12 };
+                case 81: return new int[] { 11, 12 };
+                case 82: return new int[] { 10, 12 };
+                case 90: return new int[] { 12, -1 };
+            }
+
+            return fpVector;
+        }
+
         public static int FPToNumber(string p)
         {
             p = TM_Compatible.ConvertNewFP(p);

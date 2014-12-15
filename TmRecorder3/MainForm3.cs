@@ -22,6 +22,7 @@ namespace TmRecorder3
     public partial class MainForm3 : Form
     {
         SplashForm sf = null;
+        public EnumerableRowCollection<PlayerData> ThisWeekPlayers;
         public EnumerableRowCollection<PlayerData> Players;
 
         public MainForm3()
@@ -149,8 +150,8 @@ namespace TmRecorder3
                 DB.Load(Program.Setts.DefaultDirectory, ref sf, (Program.Setts.Trace > 0));
 
                 var Dates = (from c in DB.squadDB.HistData
-                            group c by c.Week into g
-                            select g).OrderByDescending(p=>p.Key);
+                             group c by c.Week into g
+                             select g).OrderByDescending(p => p.Key);
 
                 TmSWD tmSwdSelected = null;
                 cbDataDay.Items.Clear();
@@ -182,9 +183,9 @@ namespace TmRecorder3
                 absPrevWeek = selectedItemPrev.AbsWeek;
             }
 
-            Players = from c in DB.squadDB.HistData
-                      where (c.Week == selectedItem.AbsWeek) && (c.PlayerRow.FPn != 0)
-                      select new PlayerData(c, absPrevWeek);
+            ThisWeekPlayers = from c in DB.squadDB.HistData
+                              where (c.Week == selectedItem.AbsWeek) && (c.PlayerRow.FPn != 0)
+                              select new PlayerData(c, absPrevWeek);
 
             FormatPlayersGrid();
 
@@ -194,7 +195,7 @@ namespace TmRecorder3
         private void FormatPlayersGrid()
         {
             dgPlayers.AutoGenerateColumns = false;
-            varDataBindingSource.DataSource = Players;
+            varDataBindingSource.DataSource = ThisWeekPlayers;
 
             dgPlayers.Columns.Clear();
             dgPlayers.AddColumn("N", "Number", 20, AG_Style.Numeric | AG_Style.Frozen);
@@ -203,25 +204,57 @@ namespace TmRecorder3
             dgPlayers.AddColumn("Age", "wBorn", 32, AG_Style.Age | AG_Style.Frozen);
             dgPlayers.AddColumn("Nat", "Nationality", 28, AG_Style.Nationality | AG_Style.Frozen);
             dgPlayers.AddColumn("ASI", "ASI", 49, AG_Style.NumDec | AG_Style.Frozen);
-            dgPlayers.AddColumn("Str", "Str", 25, AG_Style.NumDec);
-            dgPlayers.AddColumn("Pac", "Pac", 25, AG_Style.NumDec);
-            dgPlayers.AddColumn("Sta", "Sta", 25, AG_Style.NumDec);
 
-            dgPlayers.AddColumn("Mar", "Mar", 25, AG_Style.NumDec);
-            dgPlayers.AddColumn("Tac", "Tac", 25, AG_Style.NumDec);
-            dgPlayers.AddColumn("Wor", "Wor", 25, AG_Style.NumDec);
-            dgPlayers.AddColumn("Pos", "Pos", 25, AG_Style.NumDec);
-            dgPlayers.AddColumn("Pas", "Pas", 25, AG_Style.NumDec);
-            dgPlayers.AddColumn("Cro", "Cro", 25, AG_Style.NumDec);
-            dgPlayers.AddColumn("Tec", "Tec", 25, AG_Style.NumDec);
-            dgPlayers.AddColumn("Hea", "Hea", 25, AG_Style.NumDec);
-            dgPlayers.AddColumn("Fin", "Fin", 25, AG_Style.NumDec);
-            dgPlayers.AddColumn("Lon", "Lon", 25, AG_Style.NumDec);
-            dgPlayers.AddColumn("Set", "Set", 25, AG_Style.NumDec);
+            AddPlayersSkillColumn("Str");
+            AddPlayersSkillColumn("Pac");
+            AddPlayersSkillColumn("Sta");
+
+            AddPlayersSkillColumn("Mar");
+            AddPlayersSkillColumn("Tac");
+            AddPlayersSkillColumn("Wor");
+            AddPlayersSkillColumn("Pos");
+            AddPlayersSkillColumn("Pas");
+            AddPlayersSkillColumn("Cro");
+            AddPlayersSkillColumn("Tec");
+            AddPlayersSkillColumn("Hea");
+            AddPlayersSkillColumn("Fin");
+            AddPlayersSkillColumn("Lon");
+            AddPlayersSkillColumn("Set");
 
             dgPlayers.AddColumn("Rou", "Rou", 30, AG_Style.Numeric | AG_Style.RightJustified);
-
             dgPlayers.AddColumn("SSD", "SSD", 30, AG_Style.Numeric | AG_Style.RightJustified);
+            dgPlayers.AddColumn("CStr", "CStr", 30, AG_Style.Numeric | AG_Style.RightJustified);
+
+            DataGridViewCellStyle dgvcsPosCells = new DataGridViewCellStyle();
+            dgvcsPosCells.Format = "N1";
+
+            AddPlayersFpColumn("DC", dgvcsPosCells);
+            AddPlayersFpColumn("DL", dgvcsPosCells);
+            AddPlayersFpColumn("DR", dgvcsPosCells);
+            AddPlayersFpColumn("DMC", dgvcsPosCells);
+            AddPlayersFpColumn("DML", dgvcsPosCells);
+            AddPlayersFpColumn("DMR", dgvcsPosCells);
+
+            AddPlayersFpColumn("MC", dgvcsPosCells);
+            AddPlayersFpColumn("ML", dgvcsPosCells);
+            AddPlayersFpColumn("MR", dgvcsPosCells);
+            AddPlayersFpColumn("OMC", dgvcsPosCells);
+            AddPlayersFpColumn("OML", dgvcsPosCells);
+            AddPlayersFpColumn("OMR", dgvcsPosCells);
+
+            AddPlayersFpColumn("FC", dgvcsPosCells);
+        }
+
+        private void AddPlayersFpColumn(string skill, DataGridViewCellStyle dgvcsPosCells)
+        {
+            TMR_NumDecColumn dgvc = (TMR_NumDecColumn)dgPlayers.AddColumn(skill, skill, 30, AG_Style.NumDec, dgvcsPosCells);
+            dgvc.CellColorStyles = CellColorStyleList.DefaultFpColorStyle();
+        }
+
+        private void AddPlayersSkillColumn(string skill)
+        {
+            TMR_NumDecColumn dgvc = (TMR_NumDecColumn)dgPlayers.AddColumn(skill, skill, 25, AG_Style.NumDec);
+            dgvc.CellColorStyles = CellColorStyleList.DefaultGainColorStyle();
         }
 
         private void reloadDataFromFilesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -240,13 +273,109 @@ namespace TmRecorder3
                 TmSWD selectedItemPrev = (TmSWD)cbDataDay.Items[cbDataDay.SelectedIndex + 1];
                 absPrevWeek = selectedItemPrev.AbsWeek;
             }
-            
-            Players = from c in DB.squadDB.HistData
-                      where (c.Week == selectedItem.AbsWeek) && (c.PlayerRow.FPn != 0)
-                      select new PlayerData(c, absPrevWeek);
+
+            ThisWeekPlayers = from c in DB.squadDB.HistData
+                              where (c.Week == selectedItem.AbsWeek) && (c.PlayerRow.FPn != 0)
+                              select new PlayerData(c, absPrevWeek);
+
+            dgPlayers.SetWhen(selectedItem.Date);
+            varDataBindingSource.DataSource = ThisWeekPlayers;
+        }
+
+        private void chkShow_CheckedChanged(object sender, EventArgs e)
+        {
+            varDataBindingSource.DataSource = null;
+            int absPrevWeek = -1;
+            if (cbDataDay.SelectedIndex != cbDataDay.Items.Count - 1)
+            {
+                TmSWD selectedItemPrev = (TmSWD)cbDataDay.Items[cbDataDay.SelectedIndex + 1];
+                absPrevWeek = selectedItemPrev.AbsWeek;
+            }
+
+            UpdateTable();
+        }
+
+        private void UpdateTable()
+        {
+            TmSWD selectedItem = (TmSWD)cbDataDay.SelectedItem;
+
+            Players = from c in ThisWeekPlayers
+                      where (c.CStr > (decimal)qsMinRating.Value) &&
+                          (((showD) && (c.FPn > 0) && (c.FPn < 30)) ||
+                          ((showDM) && (c.FPn >= 20) && (c.FPn < 50)) ||
+                          ((showM) && (c.FPn >= 40) && (c.FPn < 70)) ||
+                          ((showOM) && (c.FPn >= 60) && (c.FPn < 90)) ||
+                          ((showF) && (c.FPn >= 80) && (c.FPn <= 90)))
+                      select c;
+
+            //if (chkU21.Checked && !chkO21.Checked)
+            //    TempPlayers = from c in TempPlayers
+            //              where (c.wBorn > selectedItem.AbsWeek - 21 * 12)
+            //              select c;
+            //else if (chkU21.Checked && !chkO21.Checked)
+            //    TempPlayers = from c in TempPlayers
+            //              where (c.wBorn < selectedItem.AbsWeek - 21 * 12)
+            //              select c;
+
+            //if (chkBTeam.Checked)
+            //    Players = from c in TempPlayers
+            //              where (c.BTeam == true)
+            //              select c;
+            //else
+            //    Players = from c in TempPlayers
+            //              where (c.BTeam == false)
+            //              select c;
 
             dgPlayers.SetWhen(selectedItem.Date);
             varDataBindingSource.DataSource = Players;
+
         }
+
+        public bool showD
+        {
+            get
+            {
+                return chkShowD.Checked ||
+                    (!chkShowD.Checked && !chkShowDM.Checked && !chkShowM.Checked && !chkShowOM.Checked && !chkShowF.Checked);
+            }
+        }
+        public bool showF
+        {
+            get
+            {
+                return chkShowF.Checked ||
+                    (!chkShowD.Checked && !chkShowDM.Checked && !chkShowM.Checked && !chkShowOM.Checked && !chkShowF.Checked);
+            }
+        }
+        public bool showM
+        {
+            get
+            {
+                return chkShowM.Checked ||
+                    (!chkShowD.Checked && !chkShowDM.Checked && !chkShowM.Checked && !chkShowOM.Checked && !chkShowF.Checked);
+            }
+        }
+        public bool showOM
+        {
+            get
+            {
+                return chkShowOM.Checked ||
+                    (!chkShowD.Checked && !chkShowDM.Checked && !chkShowM.Checked && !chkShowOM.Checked && !chkShowF.Checked);
+            }
+        }
+        public bool showDM
+        {
+            get
+            {
+                return chkShowDM.Checked ||
+                    (!chkShowD.Checked && !chkShowDM.Checked && !chkShowM.Checked && !chkShowOM.Checked && !chkShowF.Checked);
+            }
+        }
+
+        private void qsMinRating_ValueChanged(float NewValue)
+        {
+            UpdateTable();
+        }
+
     }
 }

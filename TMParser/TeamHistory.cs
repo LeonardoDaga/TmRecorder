@@ -118,7 +118,7 @@ namespace TMRecorder
 
             PFun.gds = new Common.GainDS();
 
-            GD.funRou = new Function(Program.Setts.RouFunction, Program.Setts.RouParams);
+            GD.funRou = new Common.Function(Program.Setts.RouFunction, Program.Setts.RouParams);
         }
 
         private void AddData(TrainingDataSet trainingDataSet)

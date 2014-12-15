@@ -28,6 +28,13 @@ namespace NTR_Controls
         {
         }
 
+        public DataGridViewColumn AddColumn(string Title, string Property, int width, AG_Style styles,
+            DataGridViewCellStyle dgvCellStyle)
+        {
+            DefaultCellStyle = dgvCellStyle;
+            return AddColumn(Title, Property, width, styles);
+        }
+
         public DataGridViewColumn AddColumn(string Title, string Property, int width, AG_Style styles)
         {
             DataGridViewColumn dgv = null;
@@ -75,6 +82,9 @@ namespace NTR_Controls
             if ((int)(styles & AG_Style.RightJustified) > 0)
                 dgv.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
+            if ((int)(styles & AG_Style.N1) > 0)
+                dgv.DefaultCellStyle.Format = "N1";
+
             return dgv;
         }
 
@@ -104,5 +114,6 @@ namespace NTR_Controls
         Nationality = 0x80,
         NumDec = 0x100,
         RightJustified = 0x200,
+        N1 = 0x400,
     }
 }

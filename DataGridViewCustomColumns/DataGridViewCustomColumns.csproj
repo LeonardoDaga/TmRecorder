@@ -135,6 +135,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CellColorStyle.cs" />
+    <Compile Include="TMR_NumericStyledColumn.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TMR_NumericStyledColumn.Designer.cs">
+      <DependentUpon>TMR_NumericStyledColumn.cs</DependentUpon>
+    </Compile>
     <Compile Include="TMR_ReportColumn.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -208,11 +215,11 @@
       <DependentUpon>TMR_AgeColumn.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TMR_DataGridView.cs">
+    <Compile Include="TMR_NumDecColumn.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="TMR_DataGridView.Designer.cs">
-      <DependentUpon>TMR_DataGridView.cs</DependentUpon>
+    <Compile Include="TMR_NumDecColumn.Designer.cs">
+      <DependentUpon>TMR_NumDecColumn.cs</DependentUpon>
     </Compile>
     <Compile Include="TMR_NameInjurySqColumn.cs">
       <SubType>Component</SubType>
@@ -441,9 +448,9 @@
       <DependentUpon>TMR_AgeColumn.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="TMR_DataGridView.resx">
+    <EmbeddedResource Include="TMR_NumDecColumn.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>TMR_DataGridView.cs</DependentUpon>
+      <DependentUpon>TMR_NumDecColumn.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TMR_NameInjurySqColumn.resx">
       <SubType>Designer</SubType>

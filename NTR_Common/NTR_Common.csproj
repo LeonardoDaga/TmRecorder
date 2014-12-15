@@ -91,6 +91,7 @@
     <Compile Include="AlarmForm.Designer.cs">
       <DependentUpon>AlarmForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="NTR_Functions.cs" />
     <Compile Include="GainDS.cs">
       <DependentUpon>GainDS.xsd</DependentUpon>
       <SubType>Component</SubType>

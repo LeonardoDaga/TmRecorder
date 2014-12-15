@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using Common;
+using System;
 namespace NTR_Common
 {
     partial class GainDS
@@ -54,6 +55,18 @@ namespace NTR_Common
         {
             float k = (float)this.SkillFPGain[skill][spec + 1];
             return k;
+        }
+        public decimal K_FPn_Max(int skill, int FPn)
+        {
+            int[] FpVect = Tm_Utility.FPnToFPvector(FPn);
+
+            float k = 0;
+            if (FpVect[1] == -1)
+                k = (float)this.SkillFPGain[skill][FpVect[0]+1];
+            else
+                k = Math.Max((float)this.SkillFPGain[skill][FpVect[0]+1],
+                             (float)this.SkillFPGain[skill][FpVect[1]+1]);
+            return (decimal)k;
         }
         public float A_FP(int aspec, int spec)
         {
@@ -169,7 +182,13 @@ namespace NTR_Common
             Set_KSum_Gain();
         }
 
-        internal float A_Ada(int row, int col, decimal ada)
+        internal decimal A_Ada(int row, int col, decimal ada)
+        {
+            decimal k = (decimal)A_FP(row, col);
+            return (k + ada / 20.0M * ((decimal)A_max - k));
+        }
+
+        internal float A_Ada(int row, int col, float ada)
         {
             float k = A_FP(row, col);
             return (k + (float)ada / 20.0f * (A_max - k));

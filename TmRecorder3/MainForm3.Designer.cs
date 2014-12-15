@@ -39,6 +39,15 @@
             this.reloadDataFromFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabSquadA = new System.Windows.Forms.TabPage();
+            this.chkBTeam = new System.Windows.Forms.CheckBox();
+            this.chkU21 = new System.Windows.Forms.CheckBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.qsMinRating = new NTR_Controls.QuantitySelector();
+            this.chkShowF = new System.Windows.Forms.CheckBox();
+            this.chkShowOM = new System.Windows.Forms.CheckBox();
+            this.chkShowM = new System.Windows.Forms.CheckBox();
+            this.chkShowDM = new System.Windows.Forms.CheckBox();
+            this.chkShowD = new System.Windows.Forms.CheckBox();
             this.cbDataDay = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dgPlayers = new NTR_Controls.AeroDataGrid();
@@ -50,6 +59,7 @@
             this.varDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.nTR_SquadDb = new NTR_Db.NTR_SquadDb();
             this.DB = new NTR_Db.Data(this.components);
+            this.chkO21 = new System.Windows.Forms.CheckBox();
             this.tsMainBar.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabSquadA.SuspendLayout();
@@ -123,6 +133,16 @@
             // 
             // tabSquadA
             // 
+            this.tabSquadA.Controls.Add(this.chkBTeam);
+            this.tabSquadA.Controls.Add(this.chkO21);
+            this.tabSquadA.Controls.Add(this.chkU21);
+            this.tabSquadA.Controls.Add(this.label2);
+            this.tabSquadA.Controls.Add(this.qsMinRating);
+            this.tabSquadA.Controls.Add(this.chkShowF);
+            this.tabSquadA.Controls.Add(this.chkShowOM);
+            this.tabSquadA.Controls.Add(this.chkShowM);
+            this.tabSquadA.Controls.Add(this.chkShowDM);
+            this.tabSquadA.Controls.Add(this.chkShowD);
             this.tabSquadA.Controls.Add(this.cbDataDay);
             this.tabSquadA.Controls.Add(this.label1);
             this.tabSquadA.Controls.Add(this.dgPlayers);
@@ -131,8 +151,118 @@
             this.tabSquadA.Padding = new System.Windows.Forms.Padding(3);
             this.tabSquadA.Size = new System.Drawing.Size(943, 420);
             this.tabSquadA.TabIndex = 0;
-            this.tabSquadA.Text = "Squad A";
+            this.tabSquadA.Text = "Field Players";
             this.tabSquadA.UseVisualStyleBackColor = true;
+            // 
+            // chkBTeam
+            // 
+            this.chkBTeam.AutoSize = true;
+            this.chkBTeam.Location = new System.Drawing.Point(715, 6);
+            this.chkBTeam.Name = "chkBTeam";
+            this.chkBTeam.Size = new System.Drawing.Size(63, 17);
+            this.chkBTeam.TabIndex = 8;
+            this.chkBTeam.Text = "B-Team";
+            this.chkBTeam.UseVisualStyleBackColor = true;
+            this.chkBTeam.CheckedChanged += new System.EventHandler(this.chkShow_CheckedChanged);
+            // 
+            // chkU21
+            // 
+            this.chkU21.AutoSize = true;
+            this.chkU21.Location = new System.Drawing.Point(611, 6);
+            this.chkU21.Name = "chkU21";
+            this.chkU21.Size = new System.Drawing.Size(46, 17);
+            this.chkU21.TabIndex = 8;
+            this.chkU21.Text = "U21";
+            this.chkU21.UseVisualStyleBackColor = true;
+            this.chkU21.CheckedChanged += new System.EventHandler(this.chkShow_CheckedChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(438, 7);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(67, 13);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Min. Rating";
+            // 
+            // qsMinRating
+            // 
+            this.qsMinRating.Location = new System.Drawing.Point(507, 5);
+            this.qsMinRating.Name = "qsMinRating";
+            this.qsMinRating.Size = new System.Drawing.Size(85, 17);
+            this.qsMinRating.TabIndex = 6;
+            this.qsMinRating.Value = 0F;
+            this.qsMinRating.ValueChanged += new NTR_Controls.QuantitySelector.ValueChangedHandler(this.qsMinRating_ValueChanged);
+            // 
+            // chkShowF
+            // 
+            this.chkShowF.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.chkShowF.Image = global::TmRecorder3.Properties.Resources.F;
+            this.chkShowF.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.chkShowF.Location = new System.Drawing.Point(387, 3);
+            this.chkShowF.Name = "chkShowF";
+            this.chkShowF.Size = new System.Drawing.Size(40, 22);
+            this.chkShowF.TabIndex = 5;
+            this.chkShowF.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkShowF.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.chkShowF.UseVisualStyleBackColor = true;
+            this.chkShowF.CheckedChanged += new System.EventHandler(this.chkShow_CheckedChanged);
+            // 
+            // chkShowOM
+            // 
+            this.chkShowOM.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.chkShowOM.Image = global::TmRecorder3.Properties.Resources.OM;
+            this.chkShowOM.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.chkShowOM.Location = new System.Drawing.Point(341, 3);
+            this.chkShowOM.Name = "chkShowOM";
+            this.chkShowOM.Size = new System.Drawing.Size(40, 22);
+            this.chkShowOM.TabIndex = 5;
+            this.chkShowOM.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkShowOM.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.chkShowOM.UseVisualStyleBackColor = true;
+            this.chkShowOM.CheckedChanged += new System.EventHandler(this.chkShow_CheckedChanged);
+            // 
+            // chkShowM
+            // 
+            this.chkShowM.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.chkShowM.Image = global::TmRecorder3.Properties.Resources.M;
+            this.chkShowM.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.chkShowM.Location = new System.Drawing.Point(295, 3);
+            this.chkShowM.Name = "chkShowM";
+            this.chkShowM.Size = new System.Drawing.Size(40, 22);
+            this.chkShowM.TabIndex = 5;
+            this.chkShowM.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkShowM.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.chkShowM.UseVisualStyleBackColor = true;
+            this.chkShowM.CheckedChanged += new System.EventHandler(this.chkShow_CheckedChanged);
+            // 
+            // chkShowDM
+            // 
+            this.chkShowDM.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.chkShowDM.Image = global::TmRecorder3.Properties.Resources.DM;
+            this.chkShowDM.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.chkShowDM.Location = new System.Drawing.Point(249, 3);
+            this.chkShowDM.Name = "chkShowDM";
+            this.chkShowDM.Size = new System.Drawing.Size(40, 22);
+            this.chkShowDM.TabIndex = 5;
+            this.chkShowDM.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkShowDM.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.chkShowDM.UseVisualStyleBackColor = true;
+            this.chkShowDM.CheckedChanged += new System.EventHandler(this.chkShow_CheckedChanged);
+            // 
+            // chkShowD
+            // 
+            this.chkShowD.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.chkShowD.Image = global::TmRecorder3.Properties.Resources.D;
+            this.chkShowD.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.chkShowD.Location = new System.Drawing.Point(203, 3);
+            this.chkShowD.Name = "chkShowD";
+            this.chkShowD.Size = new System.Drawing.Size(40, 22);
+            this.chkShowD.TabIndex = 5;
+            this.chkShowD.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkShowD.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.chkShowD.UseVisualStyleBackColor = true;
+            this.chkShowD.CheckedChanged += new System.EventHandler(this.chkShow_CheckedChanged);
             // 
             // cbDataDay
             // 
@@ -228,13 +358,25 @@
             // nTR_SquadDb
             // 
             this.nTR_SquadDb.DataSetName = "NTR_SquadDb";
+            this.nTR_SquadDb.GDS = null;
             this.nTR_SquadDb.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // DB
             // 
             this.DB.latestDataDay = new System.DateTime(((long)(0)));
             // 
-            // MainForm
+            // chkO21
+            // 
+            this.chkO21.AutoSize = true;
+            this.chkO21.Location = new System.Drawing.Point(663, 6);
+            this.chkO21.Name = "chkO21";
+            this.chkO21.Size = new System.Drawing.Size(47, 17);
+            this.chkO21.TabIndex = 8;
+            this.chkO21.Text = "O21";
+            this.chkO21.UseVisualStyleBackColor = true;
+            this.chkO21.CheckedChanged += new System.EventHandler(this.chkShow_CheckedChanged);
+            // 
+            // MainForm3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -242,7 +384,7 @@
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.tsMainBar);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Name = "MainForm";
+            this.Name = "MainForm3";
             this.Text = "TmRecorder 3.x.x.x";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.tsMainBar.ResumeLayout(false);
@@ -279,6 +421,16 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn wBornDataGridViewTextBoxColumn;
         private System.Windows.Forms.ToolStripMenuItem reloadDataFromFilesToolStripMenuItem;
         private System.Windows.Forms.ComboBox cbDataDay;
+        private System.Windows.Forms.CheckBox chkShowD;
+        private System.Windows.Forms.Label label2;
+        private NTR_Controls.QuantitySelector qsMinRating;
+        private System.Windows.Forms.CheckBox chkShowF;
+        private System.Windows.Forms.CheckBox chkShowOM;
+        private System.Windows.Forms.CheckBox chkShowM;
+        private System.Windows.Forms.CheckBox chkShowDM;
+        private System.Windows.Forms.CheckBox chkBTeam;
+        private System.Windows.Forms.CheckBox chkU21;
+        private System.Windows.Forms.CheckBox chkO21;
     }
 }
 

@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tagsBar1 = new Common.TagsBar();
+            this.quantitySelector1 = new NTR_Controls.QuantitySelector();
             this.SuspendLayout();
             // 
             // tagsBar1
@@ -60,11 +61,20 @@
             0,
             0});
             // 
+            // quantitySelector1
+            // 
+            this.quantitySelector1.Location = new System.Drawing.Point(166, 70);
+            this.quantitySelector1.Name = "quantitySelector1";
+            this.quantitySelector1.Size = new System.Drawing.Size(150, 28);
+            this.quantitySelector1.TabIndex = 1;
+            this.quantitySelector1.Value = 3.51F;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(420, 261);
+            this.Controls.Add(this.quantitySelector1);
             this.Controls.Add(this.tagsBar1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -75,6 +85,7 @@
         #endregion
 
         private Common.TagsBar tagsBar1;
+        private NTR_Controls.QuantitySelector quantitySelector1;
 
     }
 }

@@ -901,7 +901,7 @@ namespace TMRecorder
                 dP[2]++;
                 Program.Setts.RouFunction = of.RoutineFunction;
                 Program.Setts.RouParams = of.RoutineParameters;
-                History.GD.funRou = new Function(Program.Setts.RouFunction, Program.Setts.RouParams);
+                History.GD.funRou = new Common.Function(Program.Setts.RouFunction, Program.Setts.RouParams);
 
                 if (History.actualDts != null)
                     History.actualDts.RecalculateSpecData(History.PFun);

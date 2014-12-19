@@ -241,6 +241,9 @@ namespace DataGridViewCustomColumns
                                             TypeConverter formattedValueTypeConverter, 
                                             DataGridViewDataErrorContexts context)
         {
+            if (value == null)
+                return "";
+
             string str = (string)value;
 
             //if (str.IndexOf("&#39;") != 0)

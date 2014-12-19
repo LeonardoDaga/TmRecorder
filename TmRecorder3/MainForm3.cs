@@ -183,9 +183,9 @@ namespace TmRecorder3
                 absPrevWeek = selectedItemPrev.AbsWeek;
             }
 
-            ThisWeekPlayers = from c in DB.squadDB.HistData
+            ThisWeekPlayers = (from c in DB.squadDB.HistData
                               where (c.Week == selectedItem.AbsWeek) && (c.PlayerRow.FPn != 0)
-                              select new PlayerData(c, absPrevWeek);
+                              select new PlayerData(c, absPrevWeek)).OrderBy(p => p.Number);
 
             FormatPlayersGrid();
 
@@ -198,7 +198,7 @@ namespace TmRecorder3
             varDataBindingSource.DataSource = ThisWeekPlayers;
 
             dgPlayers.Columns.Clear();
-            dgPlayers.AddColumn("N", "Number", 20, AG_Style.Numeric | AG_Style.Frozen);
+            DataGridViewColumn numCol = dgPlayers.AddColumn("N", "Number", 20, AG_Style.Numeric | AG_Style.Frozen | AG_Style.N0);
             dgPlayers.AddColumn("FP", "FPn", 42, AG_Style.FavPosition | AG_Style.Frozen);
             dgPlayers.AddColumn("Name", "Name", 60, AG_Style.NameInj | AG_Style.Frozen | AG_Style.ResizeAllCells);
             dgPlayers.AddColumn("Age", "wBorn", 32, AG_Style.Age | AG_Style.Frozen);
@@ -274,12 +274,21 @@ namespace TmRecorder3
                 absPrevWeek = selectedItemPrev.AbsWeek;
             }
 
-            ThisWeekPlayers = from c in DB.squadDB.HistData
+            ThisWeekPlayers = (from c in DB.squadDB.HistData
                               where (c.Week == selectedItem.AbsWeek) && (c.PlayerRow.FPn != 0)
-                              select new PlayerData(c, absPrevWeek);
+                              select new PlayerData(c, absPrevWeek)) as EnumerableRowCollection<PlayerData>;
 
             dgPlayers.SetWhen(selectedItem.Date);
-            varDataBindingSource.DataSource = ThisWeekPlayers;
+
+            if (ThisWeekPlayers.Count() > 0)
+            {
+                varDataBindingSource.DataSource = ThisWeekPlayers;
+            }
+            else
+            {
+                varDataBindingSource.DataSource = null;
+                dgPlayers.Rows.Clear();
+            }
         }
 
         private void chkShow_CheckedChanged(object sender, EventArgs e)
@@ -299,36 +308,44 @@ namespace TmRecorder3
         {
             TmSWD selectedItem = (TmSWD)cbDataDay.SelectedItem;
 
-            Players = from c in ThisWeekPlayers
+            EnumerableRowCollection<PlayerData> TempPlayers = (from c in ThisWeekPlayers
                       where (c.CStr > (decimal)qsMinRating.Value) &&
                           (((showD) && (c.FPn > 0) && (c.FPn < 30)) ||
                           ((showDM) && (c.FPn >= 20) && (c.FPn < 50)) ||
                           ((showM) && (c.FPn >= 40) && (c.FPn < 70)) ||
                           ((showOM) && (c.FPn >= 60) && (c.FPn < 90)) ||
                           ((showF) && (c.FPn >= 80) && (c.FPn <= 90)))
-                      select c;
+                      select c) as EnumerableRowCollection<PlayerData>;
 
-            //if (chkU21.Checked && !chkO21.Checked)
-            //    TempPlayers = from c in TempPlayers
-            //              where (c.wBorn > selectedItem.AbsWeek - 21 * 12)
-            //              select c;
-            //else if (chkU21.Checked && !chkO21.Checked)
-            //    TempPlayers = from c in TempPlayers
-            //              where (c.wBorn < selectedItem.AbsWeek - 21 * 12)
-            //              select c;
+            if (chkU21.Checked && !chkO21.Checked)
+                TempPlayers = (from c in TempPlayers
+                              where (c.wBorn > selectedItem.AbsWeek - 21 * 12)
+                               select c) as EnumerableRowCollection<PlayerData>;
+            else if (chkU21.Checked && !chkO21.Checked)
+                TempPlayers = (from c in TempPlayers
+                              where (c.wBorn < selectedItem.AbsWeek - 21 * 12)
+                              select c) as EnumerableRowCollection<PlayerData>;
 
-            //if (chkBTeam.Checked)
-            //    Players = from c in TempPlayers
-            //              where (c.BTeam == true)
-            //              select c;
-            //else
-            //    Players = from c in TempPlayers
-            //              where (c.BTeam == false)
-            //              select c;
+            if (chkBTeam.Checked)
+                Players = (from c in TempPlayers
+                          where (c.BTeam == true)
+                           select c) as EnumerableRowCollection<PlayerData>;
+            else
+                Players = (from c in TempPlayers
+                          where (c.BTeam == false)
+                          select c) as EnumerableRowCollection<PlayerData>;
 
             dgPlayers.SetWhen(selectedItem.Date);
-            varDataBindingSource.DataSource = Players;
 
+            if (Players.Count() > 0)
+            {
+                varDataBindingSource.DataSource = Players;
+            }
+            else
+            {
+                varDataBindingSource.DataSource = null;
+                dgPlayers.Rows.Clear();
+            }
         }
 
         public bool showD

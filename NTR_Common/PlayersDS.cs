@@ -462,201 +462,239 @@ namespace NTR_Common
 
             DateTime pageDate = DateTime.Now;
 
-            List<string> tables = HTML_Parser.GetTags(page, "table");
+            List<string> tables = HTML_Parser.GetFullTags(page, "table");
             if (tables.Count == 0) 
                 return false;
 
-            VarDataRow vdr = this.VarData.FindByWeek(TmWeek.thisWeek().absweek);
-            if (vdr == null)
+            int dayOfTheWeek = TmWeek.GetTmAbsDay(DateTime.Now) % 7;
+            VarDataRow vdr; 
+            if (dayOfTheWeek < 5)
             {
-                vdr = this.VarData.NewVarDataRow();
-                vdr.Week = TmWeek.thisWeek().absweek;
-                VarData.AddVarDataRow(vdr);
+                vdr = this.VarData.FindByWeek(TmWeek.thisWeek().absweek - 1);
+                if (vdr == null)
+                {
+                    VarDataRow vdrThisWeek = this.VarData.FindByWeek(TmWeek.thisWeek().absweek);
+                    if (vdrThisWeek == null)
+                        return false;
+
+                    vdrThisWeek.Week = TmWeek.thisWeek().absweek - 1;
+
+                    vdr = this.VarData.NewVarDataRow();
+                    vdr.Week = TmWeek.thisWeek().absweek;
+                    VarData.AddVarDataRow(vdr);
+                }
+                else
+                {
+                    vdr = this.VarData.FindByWeek(TmWeek.thisWeek().absweek);
+                }
+            }
+            else
+            {
+                vdr = this.VarData.FindByWeek(TmWeek.thisWeek().absweek);
+                if (vdr == null)
+                {
+                    vdr = this.VarData.NewVarDataRow();
+                    vdr.Week = TmWeek.thisWeek().absweek;
+                    VarData.AddVarDataRow(vdr);
+                }
             }
 
-            // It's a base page
-            string[] pagelines = page.Split('\n');
+            //// It's a base page
+            //string[] pagelines = page.Split('\n');
 
-            for (int ix = 0; ix < pagelines.Length; ix++)
-            {
-                string line = pagelines[ix];
+            //for (int ix = 0; ix < pagelines.Length; ix++)
+            //{
+            //    string line = pagelines[ix];
 
-                if (line.Contains("select_player"))
-                {
-                    int index = 0;
-                    string Age = "";
-                    // The successive row contains the age info
-                    do
-                    {
-                        line = pagelines[ix];
-                        Age = HTML_Parser.GetField(line, "</strong>", "<", ref index);
-                        ix++;
-                    } while (Age == "");                    
+            //    if (line.Contains("select_player"))
+            //    {
+            //        int index = 0;
+            //        string Age = "";
+            //        // The successive row contains the age info
+            //        do
+            //        {
+            //            line = pagelines[ix];
+            //            Age = HTML_Parser.GetField(line, "</strong>", "<", ref index);
+            //            ix++;
+            //        } while (Age == "");                    
 
-                    string Heigth = HTML_Parser.GetField(line, "</strong>", "<", ref index);
-                    string Weight = HTML_Parser.GetField(line, "</strong>", "<", ref index);
+            //        string Heigth = HTML_Parser.GetField(line, "</strong>", "<", ref index);
+            //        string Weight = HTML_Parser.GetField(line, "</strong>", "<", ref index);
 
-                    FixDataVal.wBorn = TmWeek.GetBornWeekFromAge(pageDate, Age);
+            //        FixDataVal.wBorn = TmWeek.GetBornWeekFromAge(pageDate, Age);
 
-                    continue;
-                }
+            //        continue;
+            //    }
 
-                if (line.Contains("'importage'"))
-                {
-                    // Line containing Age, Height and Weight
-                    int index = 0;
-                    string training = HTML_Parser.GetField(line, "'importage', '", "');", ref index);
+            //    if (line.Contains("'importage'"))
+            //    {
+            //        // Line containing Age, Height and Weight
+            //        int index = 0;
+            //        string training = HTML_Parser.GetField(line, "'importage', '", "');", ref index);
 
-                    //FixDataVal.SetTSINull();
-                    //FixDataVal.SetTI(pageDate, training);
-                    //FixDataVal.AvTSI = Utility.WeightedMean(FixDataVal.TSI);
+            //        //FixDataVal.SetTSINull();
+            //        //FixDataVal.SetTI(pageDate, training);
+            //        //FixDataVal.AvTSI = Utility.WeightedMean(FixDataVal.TSI);
 
-                    continue;
-                }
+            //        continue;
+            //    }
 
-                if (line.Contains("<!-- Header start -->"))
-                {
-                    string full_line = "";
-                    ix++;
+            //    if (line.Contains("<!-- Header start -->"))
+            //    {
+            //        string full_line = "";
+            //        ix++;
 
-                    for (; ix < pagelines.Length; ix++)
-                    {
-                        line = pagelines[ix];
-                        full_line += line.TrimEnd('\r');
-                        if (line.Contains("<!-- Header end -->")) break;
-                    }
+            //        for (; ix < pagelines.Length; ix++)
+            //        {
+            //            line = pagelines[ix];
+            //            full_line += line.TrimEnd('\r');
+            //            if (line.Contains("<!-- Header end -->")) break;
+            //        }
 
-                    // Season line
-                    int index = 0;
-                    string FullName = HTML_Parser.GetField(full_line, "</div>", " <a href", ref index);
-                    string RealCountry = HTML_Parser.GetField(full_line, "showcountry=", "><img", ref index);
-                    FixDataVal.Nome = FullName.Replace("  ", " ");
-                    FixDataVal.Nationality = RealCountry;
+            //        // Season line
+            //        int index = 0;
+            //        string FullName = HTML_Parser.GetField(full_line, "</div>", " <a href", ref index);
+            //        string RealCountry = HTML_Parser.GetField(full_line, "showcountry=", "><img", ref index);
+            //        FixDataVal.Nome = FullName.Replace("  ", " ");
+            //        FixDataVal.Nationality = RealCountry;
 
-                    continue;
-                }
-            } // end for (int ix = 0; ix < lines.Length; ix++)
+            //        continue;
+            //    }
+            //} // end for (int ix = 0; ix < lines.Length; ix++)
 
             for (int ix = 0; ix < tables.Count; ix++)
             {
                 string table = tables[ix];
 
-                if (table.Contains(">ASI<"))
+                if (table.Contains("info_table"))
                 {
                     // Line containing Age, Height and Weight
+                    List<string> tagsTr = HTML_Parser.GetTags(table, "tr");
+
+                    string td;
+                    string val;
+
+                    // Getting Wage
+                    td = HTML_Parser.GetTag(tagsTr[4], "td");
+                    val = HTML_Parser.CleanTags(td).Replace(",", "");
+                    FixDataVal.Wage = int.Parse(val);
+
+                    // Getting ASI
+                    td = HTML_Parser.GetTag(tagsTr[6], "td");
+                    val = HTML_Parser.CleanTags(td).Replace(",", "");
+                    vdr.ASI = int.Parse(val);
+
+                    // Getting ASI
+                    td = HTML_Parser.GetTag(tagsTr[8], "td");
+                    val = HTML_Parser.CleanTags(td);
+                    FixDataVal.Rou = decimal.Parse(val, CommGlobal.ciUs);
+
+                    continue;
+                }
+
+                if (table.Contains("skill_table") && !(table.Contains("hidden_skill_table")))
+                {
                     List<string> tags = HTML_Parser.GetTags(table, "td");
 
                     // Parse td containing skills
-                    for (int i = 0; i < 14; i++)
+                    for (int i = 0; i < tags.Count; i++)
                     {
-                        if (tags[i].Contains("star.gif"))
+                        if (tags[i].Contains("star.png"))
                             tags[i] = "20";
-                        else if (tags[i].Contains("star_silver.gif"))
+                        else if (tags[i].Contains("star_silver.png"))
                             tags[i] = "19";
                         else
                             tags[i] = HTML_Parser.CleanTags(tags[i]);
                     }
 
-                    string FP = TM_Compatible.ConvertNewFP(tags[14]);
-                    FixDataVal.FP = FP;
-                    FixDataVal.FPn = Tm_Utility.FPToNumber(FP);
-
                     if (FixDataVal.FPn == 0) // It's a GK
                     {
                         vdr.For = decimal.Parse(tags[0]);
-                        vdr.Res = decimal.Parse(tags[1]);
-                        vdr.Vel = decimal.Parse(tags[2]);
-                        vdr.Mar = decimal.Parse(tags[3]);
-                        vdr.Con = decimal.Parse(tags[4]);
+                        vdr.Res = decimal.Parse(tags[2]);
+                        vdr.Vel = decimal.Parse(tags[4]);
+                        vdr.Mar = decimal.Parse(tags[1]);
+                        vdr.Con = decimal.Parse(tags[3]);
                         vdr.Wor = decimal.Parse(tags[5]);
-                        vdr.Pos = decimal.Parse(tags[6]);
-                        vdr.Pas = decimal.Parse(tags[10]);
+                        vdr.Pos = decimal.Parse(tags[7]);
+                        vdr.Pas = decimal.Parse(tags[9]);
                         vdr.Cro = decimal.Parse(tags[11]);
-                        vdr.Tec = decimal.Parse(tags[12]);
-                        vdr.Tes = decimal.Parse(tags[13]);
+                        vdr.Tec = decimal.Parse(tags[13]);
+                        vdr.Tes = decimal.Parse(tags[15]);
                     }
                     else
                     {
                         vdr.For = decimal.Parse(tags[0]);
-                        vdr.Res = decimal.Parse(tags[1]);
-                        vdr.Vel = decimal.Parse(tags[2]);
-                        vdr.Mar = decimal.Parse(tags[3]);
-                        vdr.Con = decimal.Parse(tags[4]);
-                        vdr.Wor = decimal.Parse(tags[5]);
-                        vdr.Pos = decimal.Parse(tags[6]);
-                        vdr.Pas = decimal.Parse(tags[7]);
-                        vdr.Cro = decimal.Parse(tags[8]);
-                        vdr.Tec = decimal.Parse(tags[9]);
-                        vdr.Tes = decimal.Parse(tags[10]);
-                        vdr.Fin = decimal.Parse(tags[11]);
-                        vdr.Dis = decimal.Parse(tags[12]);
+                        vdr.Res = decimal.Parse(tags[2]);
+                        vdr.Vel = decimal.Parse(tags[4]);
+                        vdr.Mar = decimal.Parse(tags[6]);
+                        vdr.Con = decimal.Parse(tags[8]);
+                        vdr.Wor = decimal.Parse(tags[10]);
+                        vdr.Pos = decimal.Parse(tags[12]);
+                        vdr.Pas = decimal.Parse(tags[1]);
+                        vdr.Cro = decimal.Parse(tags[3]);
+                        vdr.Tec = decimal.Parse(tags[5]);
+                        vdr.Tes = decimal.Parse(tags[7]);
+                        vdr.Fin = decimal.Parse(tags[9]);
+                        vdr.Dis = decimal.Parse(tags[11]);
                         vdr.Cal = decimal.Parse(tags[13]);
                     }
 
-                    string routine = tags[15];
-                    string wage = tags[16];
-                    string ASI = tags[17];
-                    wage = wage.Replace(",", "");
-                    FixDataVal.Wage = int.Parse(wage);
-                    FixDataVal.Rou = decimal.Parse(routine, Common.CommGlobal.ciUs);
-                    vdr.ASI = int.Parse(ASI.Replace("&nbsp;", "").Replace(",", ""));
-                    continue;
                 }
 
-                if (table.Contains("<!-- Season -->"))
-                {
-                    List<string> rows = HTML_Parser.GetTags2(table, "tr");
+                //if (table.Contains("<!-- Season -->"))
+                //{
+                //    List<string> rows = HTML_Parser.GetTags2(table, "tr");
 
-                    for (int ir = 1; ir < rows.Count; ir++)
-                    {
-                        List<string> tdFields = HTML_Parser.GetTags(rows[ir], "td");
+                //    for (int ir = 1; ir < rows.Count; ir++)
+                //    {
+                //        List<string> tdFields = HTML_Parser.GetTags(rows[ir], "td");
 
-                        if (tdFields == null) continue;
+                //        if (tdFields == null) continue;
 
-                        string Fee;
+                //        string Fee;
 
-                        if (tdFields.Count == 12)
-                        {
-                            // Season  = tdFields[0]; 
-                            // Club    = tdFields[1];; 
-                            // Nation  = tdFields[2]; 
-                            // Age     = tdFields[3]; 
-                            Fee = tdFields[4];
-                            // GP      = tdFields[5]; 
-                            // Gol     = tdFields[6]; 
-                            // Assist  = tdFields[7]; 
-                            // Prod    = tdFields[8]; 
-                            // Mom     = tdFields[9];
-                            // Cards   = tdFields[10];
-                            decimal avRating;
-                            decimal.TryParse(tdFields[11], NumberStyles.Float, CommGlobal.ciUs, out avRating);
-                            FixDataVal.AvRating = avRating;
-                            break; // Get only the first season
-                            // continue;
-                        }
+                //        if (tdFields.Count == 12)
+                //        {
+                //            // Season  = tdFields[0]; 
+                //            // Club    = tdFields[1];; 
+                //            // Nation  = tdFields[2]; 
+                //            // Age     = tdFields[3]; 
+                //            Fee = tdFields[4];
+                //            // GP      = tdFields[5]; 
+                //            // Gol     = tdFields[6]; 
+                //            // Assist  = tdFields[7]; 
+                //            // Prod    = tdFields[8]; 
+                //            // Mom     = tdFields[9];
+                //            // Cards   = tdFields[10];
+                //            decimal avRating;
+                //            decimal.TryParse(tdFields[11], NumberStyles.Float, CommGlobal.ciUs, out avRating);
+                //            FixDataVal.AvRating = avRating;
+                //            break; // Get only the first season
+                //            // continue;
+                //        }
 
-                        if (tdFields.Count == 9)
-                        {
-                            // GP      = tdFields[2; 
-                            // Gol     = tdFields[3]; 
-                            // Assist  = tdFields[4]; 
-                            // Prod    = tdFields[5]; 
-                            // Mom     = tdFields[6];
-                            // Cards   = tdFields[7];
-                            // float.TryParse(tdFields[8], out gr.AvRating);
-                        }
-                    }
-                }
+                //        if (tdFields.Count == 9)
+                //        {
+                //            // GP      = tdFields[2; 
+                //            // Gol     = tdFields[3]; 
+                //            // Assist  = tdFields[4]; 
+                //            // Prod    = tdFields[5]; 
+                //            // Mom     = tdFields[6];
+                //            // Cards   = tdFields[7];
+                //            // float.TryParse(tdFields[8], out gr.AvRating);
+                //        }
+                //    }
+                //}
 
-                if ((table.Contains("scouts.php") && !table.Contains("scouts_table") && (!scout_parsed)) ||
-                    ((ix < tables.Count - 1) && (ix == 1) && (tables[ix + 1].Contains("scouts.php"))))
-                {
-                    List<ScoutReview> srList = ScoutReview.ParseTable(table);
+                //if ((table.Contains("scouts.php") && !table.Contains("scouts_table") && (!scout_parsed)) ||
+                //    ((ix < tables.Count - 1) && (ix == 1) && (tables[ix + 1].Contains("scouts.php"))))
+                //{
+                //    List<ScoutReview> srList = ScoutReview.ParseTable(table);
 
-                    FixDataVal.FillWithScoutReviewList(srList);
+                //    FixDataVal.FillWithScoutReviewList(srList);
 
-                    scout_parsed = true;
-                }
+                //    scout_parsed = true;
+                //}
             }
 
             return true;

@@ -35,7 +35,7 @@ namespace NTR_Controls
             return AddColumn(Title, Property, width, styles);
         }
 
-        public DataGridViewColumn AddColumn(string Title, string Property, int width, AG_Style styles)
+        public DataGridViewColumn AddColumn(string Title, string Property, int width, AG_Style styles, string description = "")
         {
             DataGridViewColumn dgv = null;
 
@@ -71,6 +71,8 @@ namespace NTR_Controls
             dgv.Name = Title;
             dgv.DataPropertyName = Property;
             dgv.Width = width;
+            dgv.ToolTipText = description;
+            dgv.SortMode = DataGridViewColumnSortMode.Automatic;
 
             this.Columns.Add(dgv);
 
@@ -84,6 +86,9 @@ namespace NTR_Controls
 
             if ((int)(styles & AG_Style.N1) > 0)
                 dgv.DefaultCellStyle.Format = "N1";
+
+            if ((int)(styles & AG_Style.N0) > 0)
+                dgv.DefaultCellStyle.Format = "N0";
 
             return dgv;
         }
@@ -115,5 +120,6 @@ namespace NTR_Controls
         NumDec = 0x100,
         RightJustified = 0x200,
         N1 = 0x400,
+        N0 = 0x800,
     }
 }

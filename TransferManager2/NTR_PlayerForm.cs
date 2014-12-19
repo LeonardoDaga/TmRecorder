@@ -512,6 +512,9 @@ namespace TransferManager
             {
             }
 
+            if (vdr == null)
+                return;
+
             if (vdr.Skills != null)
                 gsr.Skills = vdr.Skills;
             

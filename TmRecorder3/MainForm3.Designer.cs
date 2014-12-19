@@ -40,6 +40,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabSquadA = new System.Windows.Forms.TabPage();
             this.chkBTeam = new System.Windows.Forms.CheckBox();
+            this.chkO21 = new System.Windows.Forms.CheckBox();
             this.chkU21 = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.qsMinRating = new NTR_Controls.QuantitySelector();
@@ -57,9 +58,9 @@
             this.aSIDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.wBornDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.varDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.nTR_SquadDb = new NTR_Db.NTR_SquadDb();
             this.DB = new NTR_Db.Data(this.components);
-            this.chkO21 = new System.Windows.Forms.CheckBox();
             this.tsMainBar.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabSquadA.SuspendLayout();
@@ -124,6 +125,7 @@
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabSquadA);
+            this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 36);
             this.tabControl1.Name = "tabControl1";
@@ -164,6 +166,17 @@
             this.chkBTeam.Text = "B-Team";
             this.chkBTeam.UseVisualStyleBackColor = true;
             this.chkBTeam.CheckedChanged += new System.EventHandler(this.chkShow_CheckedChanged);
+            // 
+            // chkO21
+            // 
+            this.chkO21.AutoSize = true;
+            this.chkO21.Location = new System.Drawing.Point(663, 6);
+            this.chkO21.Name = "chkO21";
+            this.chkO21.Size = new System.Drawing.Size(47, 17);
+            this.chkO21.TabIndex = 8;
+            this.chkO21.Text = "O21";
+            this.chkO21.UseVisualStyleBackColor = true;
+            this.chkO21.CheckedChanged += new System.EventHandler(this.chkShow_CheckedChanged);
             // 
             // chkU21
             // 
@@ -288,6 +301,7 @@
             // 
             this.dgPlayers.AllowUserToAddRows = false;
             this.dgPlayers.AllowUserToDeleteRows = false;
+            this.dgPlayers.AllowUserToOrderColumns = true;
             this.dgPlayers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -355,6 +369,16 @@
             // 
             this.varDataBindingSource.DataSource = typeof(NTR_Db.PlayerData);
             // 
+            // tabPage1
+            // 
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(943, 420);
+            this.tabPage1.TabIndex = 1;
+            this.tabPage1.Text = "Goalkeepers";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
             // nTR_SquadDb
             // 
             this.nTR_SquadDb.DataSetName = "NTR_SquadDb";
@@ -364,17 +388,6 @@
             // DB
             // 
             this.DB.latestDataDay = new System.DateTime(((long)(0)));
-            // 
-            // chkO21
-            // 
-            this.chkO21.AutoSize = true;
-            this.chkO21.Location = new System.Drawing.Point(663, 6);
-            this.chkO21.Name = "chkO21";
-            this.chkO21.Size = new System.Drawing.Size(47, 17);
-            this.chkO21.TabIndex = 8;
-            this.chkO21.Text = "O21";
-            this.chkO21.UseVisualStyleBackColor = true;
-            this.chkO21.CheckedChanged += new System.EventHandler(this.chkShow_CheckedChanged);
             // 
             // MainForm3
             // 
@@ -431,6 +444,7 @@
         private System.Windows.Forms.CheckBox chkBTeam;
         private System.Windows.Forms.CheckBox chkU21;
         private System.Windows.Forms.CheckBox chkO21;
+        private System.Windows.Forms.TabPage tabPage1;
     }
 }
 

@@ -261,6 +261,9 @@ namespace DataGridViewCustomColumns
                                             TypeConverter formattedValueTypeConverter, 
                                             DataGridViewDataErrorContexts context)
         {
+            if (value == null)
+                return "";
+
             Type type = value.GetType();
             if (type.Name == "String")
                 return (string)value;

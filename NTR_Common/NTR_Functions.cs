@@ -60,17 +60,21 @@ namespace NTR_Common
         public decimal[] GetAttitude(Common.decvar[] skillsvar, int FPn, decimal Rou, decimal Ada)
         {
             decimal[] skills = new decimal[14];
-            for (int i=0; i<14; i++)
-            {
-                skills[i] = skillsvar[i].actual;
-            }
 
             if (FPn != 0) // FP != GK
             {
+                for (int i=0; i<14; i++)
+                {
+                    skills[i] = skillsvar[i].actual;
+                }
                 return GetAttitude_PL(skills, FPn, Rou, Ada);
             }
             else
             {
+                for (int i = 0; i < 11; i++)
+                {
+                    skills[i] = skillsvar[i].actual;
+                }
                 return GetAttitude_GK(skills, Rou);
             }
         }

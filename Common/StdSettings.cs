@@ -82,5 +82,14 @@ namespace Common
             if (!this.Contains(key))
                 Add(key, o);
         }
+
+        /// <summary>
+        /// Clone the input settings object
+        /// </summary>
+        /// <param name="input"></param>
+        static public SettingsBase Clone(SettingsBase input)
+        {
+            return (SettingsBase)input.MemberwiseClone();
+        }
     }
 }

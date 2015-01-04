@@ -1,4 +1,5 @@
-﻿namespace NTR_Controls
+﻿using System.Windows.Forms;
+namespace NTR_Controls
 {
     partial class AeroDataGrid
     {
@@ -29,6 +30,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            // this.CellMouseDown += AeroDataGrid_CellMouseDown;
         }
 
         #endregion

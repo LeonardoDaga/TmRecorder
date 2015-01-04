@@ -41,6 +41,15 @@ namespace DataGridViewCustomColumns
             return null;
         }
 
+        public static CellColorStyleList NoGainColorStyle()
+        {
+            CellColorStyleList newList = new CellColorStyleList();
+
+            newList.Add(new CellColorStyle(-100, 100, Color.FromArgb(255, 255, 255), Color.Black,
+                Color.FromArgb(255, 255, 255), Color.Blue));
+            return newList;
+        }
+
         public static CellColorStyleList DefaultGainColorStyle()
         {
             CellColorStyleList newList = new CellColorStyleList();

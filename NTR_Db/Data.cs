@@ -381,7 +381,7 @@ namespace NTR_Db
         }
     }
 
-    public class PlayerData
+    public class PlayerData 
     {
         private NTR_SquadDb.HistDataRow thisWeek;
         private NTR_SquadDb.HistDataRow prevWeek;
@@ -397,6 +397,13 @@ namespace NTR_Db
 
         public int Number { get; set; }
         public string Name { get; set; }
+        public string NameEx 
+        { 
+            get
+            {
+                return Name + "|" + Inj + "|" + Ban;
+            }
+        }
         public int Week { get; set; }
         public string SWeek { get { return (new TmSWD(Week)).ToString(); } }
         public intvar ASI { get; set; }
@@ -443,6 +450,15 @@ namespace NTR_Db
         public decvar Lon { get { return Skills[12]; } set { Skills[12] = value; dirt(); } }
         public decvar Set { get { return Skills[13]; } set { Skills[13] = value; dirt(); } }
 
+        public decvar Han { get { return Skills[3]; } set { Skills[3] = value; dirt(); } }
+        public decvar One { get { return Skills[4]; } set { Skills[4] = value; dirt(); } }
+        public decvar Ref { get { return Skills[5]; } set { Skills[5] = value; dirt(); } }
+        public decvar Ari { get { return Skills[6]; } set { Skills[6] = value; dirt(); } }
+        public decvar Jum { get { return Skills[7]; } set { Skills[7] = value; dirt(); } }
+        public decvar Com { get { return Skills[8]; } set { Skills[8] = value; dirt(); } }
+        public decvar Kic { get { return Skills[9]; } set { Skills[9] = value; dirt(); } }
+        public decvar Thr { get { return Skills[10]; } set { Skills[10] = value; dirt(); } }
+
         private decvar _SkillSum;
         public decvar SkillSum
         {
@@ -450,7 +466,10 @@ namespace NTR_Db
             {
                 if (!isSumComputed)
                 {
-                    _SkillSum = Str + Pac + Sta + Mar + Tac + Wor + Pos + Pas + Cro + Tec + Hea + Fin + Lon + Set;
+                    if (FPn == 0)
+                        _SkillSum = Str + Pac + Sta + Mar + Tac + Wor + Pos + Pas + Cro + Tec + Hea;
+                    else
+                        _SkillSum = Str + Pac + Sta + Mar + Tac + Wor + Pos + Pas + Cro + Tec + Hea + Fin + Lon + Set;
                     isSumComputed = true;
                 }
                 return _SkillSum;
@@ -461,16 +480,35 @@ namespace NTR_Db
         {
             get
             {
-                return Tm_Utility.ASItoSkSum((decimal)ASI.actual, false) - this.SkillSum.actual;
+                return Tm_Utility.ASItoSkSum((decimal)ASI.actual, FPn == 0) - this.SkillSum.actual;
             }
         }
 
         public decimal Rou { get; set; }
         public decimal CStr { get; set; }
         public decimal Ada { get; set; }
-        public bool BTeam { get; set; }
+        public bool BTeam 
+        { 
+            get
+            {
+                try
+                {
+                    return thisWeek.PlayerRow.BTeam;
+                }
+                catch (Exception)
+                {
+                    thisWeek.PlayerRow.BTeam = false;
+                    return false;
+                }
+            }
+            set
+            {
+                thisWeek.PlayerRow.BTeam = value;
+            }
+        }
 
-        private decimal[] _Atts = new decimal[13];
+
+        private decimal[] _Atts = new decimal[14];
         public decimal[] Atts
         {
             get
@@ -499,18 +537,20 @@ namespace NTR_Db
             OMR = (int)10,
             OML = (int)11,
             FC = (int)12,
+            GK = (int)0,
         }
 
+        public decimal GK { get { return Atts[(int)eAttitude.GK]; } }
         public decimal DC { get { return Atts[(int)eAttitude.DC]; } }
         public decimal DR { get { return Atts[(int)eAttitude.DR]; } }
         public decimal DL { get { return Atts[(int)eAttitude.DL]; } }
-        public decimal DMC { get { return _Atts[(int)eAttitude.DMC]; } }
-        public decimal DMR { get { return _Atts[(int)eAttitude.DMR]; } }
-        public decimal DML { get { return _Atts[(int)eAttitude.DML]; } }
+        public decimal DMC { get { return Atts[(int)eAttitude.DMC]; } }
+        public decimal DMR { get { return Atts[(int)eAttitude.DMR]; } }
+        public decimal DML { get { return Atts[(int)eAttitude.DML]; } }
         public decimal MC { get { return Atts[(int)eAttitude.MC]; } }
         public decimal MR { get { return Atts[(int)eAttitude.MR]; } }
         public decimal ML { get { return Atts[(int)eAttitude.ML]; } }
-        public decimal OMC { get { return _Atts[(int)eAttitude.OMC]; } }
+        public decimal OMC { get { return Atts[(int)eAttitude.OMC]; } }
         public decimal OMR { get { return Atts[(int)eAttitude.OMR]; } }
         public decimal OML { get { return Atts[(int)eAttitude.OML]; } }
         public decimal FC { get { return Atts[(int)eAttitude.FC]; } }
@@ -533,6 +573,8 @@ namespace NTR_Db
 
             Name = thisWeek.PlayerRow.Name;
             Week = thisWeek.Week;
+            Inj = thisWeek.Inj;
+            Ban = thisWeek.Ban;
 
             Number = thisWeek.PlayerRow.No;
             FPn = thisWeek.PlayerRow.FPn;
@@ -547,6 +589,14 @@ namespace NTR_Db
             if (prevWeek != null)
             {
                 ASI = new intvar(thisWeek.ASI, prevWeek.ASI);
+                try
+                {
+                    TI = new intvar((int)(thisWeek._TI), (int)(prevWeek._TI));
+                }
+                catch
+                {
+                    TI = new intvar((int)(thisWeek._TI), 0);
+                }
                 Str = new decvar(thisWeek.For, prevWeek.For, 10 * DB.GDS.K_FPn_Max((int)eSkill.Str, FPn));
                 Pac = new decvar(thisWeek.Vel, prevWeek.Vel, 10 * DB.GDS.K_FPn_Max((int)eSkill.Pac, FPn));
                 Sta = new decvar(thisWeek.Res, prevWeek.Res, 10 * DB.GDS.K_FPn_Max((int)eSkill.Sta, FPn));
@@ -559,42 +609,53 @@ namespace NTR_Db
                 Cro = new decvar(thisWeek.Cro, prevWeek.Cro, 10 * DB.GDS.K_FPn_Max((int)eSkill.Cro, FPn));
                 Tec = new decvar(thisWeek.Tec, prevWeek.Tec, 10 * DB.GDS.K_FPn_Max((int)eSkill.Tec, FPn));
                 Hea = new decvar(thisWeek.Tes, prevWeek.Tes, 10 * DB.GDS.K_FPn_Max((int)eSkill.Hea, FPn));
-                Fin = new decvar(thisWeek.Fin, prevWeek.Fin, 10 * DB.GDS.K_FPn_Max((int)eSkill.Fin, FPn));
-                Lon = new decvar(thisWeek.Tir, prevWeek.Tir, 10 * DB.GDS.K_FPn_Max((int)eSkill.Lon, FPn));
-                Set = new decvar(thisWeek.Cal, prevWeek.Cal, 10 * DB.GDS.K_FPn_Max((int)eSkill.Set, FPn));
+                if (FPn != 0)
+                {
+                    Fin = new decvar(thisWeek.Fin, prevWeek.Fin, 10 * DB.GDS.K_FPn_Max((int)eSkill.Fin, FPn));
+                    Lon = new decvar(thisWeek.Dis, prevWeek.Dis, 10 * DB.GDS.K_FPn_Max((int)eSkill.Lon, FPn));
+                    Set = new decvar(thisWeek.Cal, prevWeek.Cal, 10 * DB.GDS.K_FPn_Max((int)eSkill.Set, FPn));
+                }
             }
             else
             {
                 ASI = new intvar(thisWeek.ASI);
-                Str = new decvar(thisWeek.For, 10 * DB.GDS.K_FPn_Max((int)eSkill.Str, FPn));
-                Pac = new decvar(thisWeek.Vel, 10 * DB.GDS.K_FPn_Max((int)eSkill.Pac, FPn));
-                Sta = new decvar(thisWeek.Res, 10 * DB.GDS.K_FPn_Max((int)eSkill.Sta, FPn));
+                try
+                {
+                    TI = new intvar((int)(thisWeek._TI), int.MinValue);
+                }
+                catch
+                {
+                    TI = new intvar(0, 0);
+                }
+                Str = new decvar(thisWeek.For, decimal.MinValue, 10 * DB.GDS.K_FPn_Max((int)eSkill.Str, FPn));
+                Pac = new decvar(thisWeek.Vel, decimal.MinValue, 10 * DB.GDS.K_FPn_Max((int)eSkill.Pac, FPn));
+                Sta = new decvar(thisWeek.Res, decimal.MinValue, 10 * DB.GDS.K_FPn_Max((int)eSkill.Sta, FPn));
 
-                Mar = new decvar(thisWeek.Mar, 10 * DB.GDS.K_FPn_Max((int)eSkill.Mar, FPn));
-                Tac = new decvar(thisWeek.Con, 10 * DB.GDS.K_FPn_Max((int)eSkill.Tac, FPn));
-                Wor = new decvar(thisWeek.Wor, 10 * DB.GDS.K_FPn_Max((int)eSkill.Wor, FPn));
-                Pos = new decvar(thisWeek.Pos, 10 * DB.GDS.K_FPn_Max((int)eSkill.Pos, FPn));
-                Pas = new decvar(thisWeek.Pas, 10 * DB.GDS.K_FPn_Max((int)eSkill.Pas, FPn));
-                Cro = new decvar(thisWeek.Cro, 10 * DB.GDS.K_FPn_Max((int)eSkill.Cro, FPn));
-                Tec = new decvar(thisWeek.Tec, 10 * DB.GDS.K_FPn_Max((int)eSkill.Tec, FPn));
-                Hea = new decvar(thisWeek.Tes, 10 * DB.GDS.K_FPn_Max((int)eSkill.Hea, FPn));
-                Fin = new decvar(thisWeek.Fin, 10 * DB.GDS.K_FPn_Max((int)eSkill.Fin, FPn));
-                Lon = new decvar(thisWeek.Tir, 10 * DB.GDS.K_FPn_Max((int)eSkill.Lon, FPn));
-                Set = new decvar(thisWeek.Cal, 10 * DB.GDS.K_FPn_Max((int)eSkill.Set, FPn));
+                Mar = new decvar(thisWeek.Mar, decimal.MinValue, 10 * DB.GDS.K_FPn_Max((int)eSkill.Mar, FPn));
+                Tac = new decvar(thisWeek.Con, decimal.MinValue, 10 * DB.GDS.K_FPn_Max((int)eSkill.Tac, FPn));
+                Wor = new decvar(thisWeek.Wor, decimal.MinValue, 10 * DB.GDS.K_FPn_Max((int)eSkill.Wor, FPn));
+                Pos = new decvar(thisWeek.Pos, decimal.MinValue, 10 * DB.GDS.K_FPn_Max((int)eSkill.Pos, FPn));
+                Pas = new decvar(thisWeek.Pas, decimal.MinValue, 10 * DB.GDS.K_FPn_Max((int)eSkill.Pas, FPn));
+                Cro = new decvar(thisWeek.Cro, decimal.MinValue, 10 * DB.GDS.K_FPn_Max((int)eSkill.Cro, FPn));
+                Tec = new decvar(thisWeek.Tec, decimal.MinValue, 10 * DB.GDS.K_FPn_Max((int)eSkill.Tec, FPn));
+                Hea = new decvar(thisWeek.Tes, decimal.MinValue, 10 * DB.GDS.K_FPn_Max((int)eSkill.Hea, FPn));
+                if (FPn != 0)
+                {
+                    Fin = new decvar(thisWeek.Fin, decimal.MinValue, 10 * DB.GDS.K_FPn_Max((int)eSkill.Fin, FPn));
+                    Lon = new decvar(thisWeek.Dis, decimal.MinValue, 10 * DB.GDS.K_FPn_Max((int)eSkill.Lon, FPn));
+                    Set = new decvar(thisWeek.Cal, decimal.MinValue, 10 * DB.GDS.K_FPn_Max((int)eSkill.Set, FPn));
+                }
             }
 
             decimal kRou = (decimal)DB.GDS.funRou.Value((float)Rou);
-            CStr = (decimal)MaxAttsToStar(MaxAtts() / kRou * ((SkillSum.actual + SSD) / SkillSum.actual));
-
-            try
-            {
-                BTeam = thisWeek.PlayerRow.BTeam;
-            }
-            catch (Exception)
-            {
-                BTeam = false;
-            }
+            
+            if (FPn != 0)
+                CStr = (decimal)MaxAttsToStar(MaxAtts() / 5M / kRou * ((SkillSum.actual + SSD) / SkillSum.actual));
+            else
+                CStr = (decimal)MaxAttsToStar(GK / 5M / kRou * ((SkillSum.actual + SSD) / SkillSum.actual));
         }
+
+
 
         public decimal MaxAtts()
         {
@@ -612,12 +673,17 @@ namespace NTR_Db
             max = (OMR > max) ? OMR : max;
             max = (OMC > max) ? OMC : max;
             max = (FC > max) ? FC : max;
-            return max / 5M;
+            return max;
         }
 
         public decimal MaxAttsToStar(decimal a)
         {
             return (a - 2.0M) / 3.0M;
         }
+
+        public short Inj { get; set; }
+        public short Ban { get; set; }
+
+        public intvar TI { get; set; }
     }
 }

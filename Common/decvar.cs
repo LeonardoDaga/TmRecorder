@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Common
 {
-    public class decvar : basevar
+    public class decvar : basevar, IComparable<decvar>
     {
         public decimal actual;
         public decimal prev = decimal.MinValue;
@@ -52,6 +52,11 @@ namespace Common
                 return actual.ToString() + "|" + prev.ToString();
             else
                 return actual.ToString();
+        }
+
+        public int CompareTo(decvar other)
+        {
+            return actual.CompareTo(other.actual);
         }
     }
 }

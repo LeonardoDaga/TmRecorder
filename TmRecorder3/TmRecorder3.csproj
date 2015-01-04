@@ -44,15 +44,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataTemp.cs">
-      <DependentUpon>DataTemp.xsd</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DataTemp.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataTemp.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Language.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -63,10 +54,19 @@
       <DependentUpon>MainForm3.cs</DependentUpon>
     </Compile>
     <Compile Include="MySettings.cs" />
+    <Compile Include="OptionsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OptionsForm.Designer.cs">
+      <DependentUpon>OptionsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainForm3.resx">
       <DependentUpon>MainForm3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OptionsForm.resx">
+      <DependentUpon>OptionsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -78,17 +78,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="DataTemp.xsc">
-      <DependentUpon>DataTemp.xsd</DependentUpon>
-    </None>
-    <None Include="DataTemp.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DataTemp.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="DataTemp.xss">
-      <DependentUpon>DataTemp.xsd</DependentUpon>
-    </None>
     <None Include="Properties\DataSources\NTR_Db.NTR_SquadDb+PlayerDataTable.datasource" />
     <None Include="Properties\DataSources\NTR_Db.NTR_SquadDb+PlayerRow.datasource" />
     <None Include="Properties\DataSources\NTR_Db.NTR_SquadDb+PlayerRowChangeEvent.datasource" />

@@ -14,18 +14,65 @@ namespace NTR_Controls
 {
     public partial class AeroDataGrid : DataGridView
     {
+        OrderCommand lastOrderCommand;
+        BindingSource dataBindingSource = new BindingSource();
+        public Type DataType;
+
+        object _dataCollection = null;
+        public object DataCollection
+        {
+            get { return _dataCollection; }
+            set
+            {
+                _dataCollection = value;
+                this.DataSource = dataBindingSource;
+                dataBindingSource.DataSource = _dataCollection;
+            }
+        }
+
         //[DllImport("uxtheme", ExactSpelling = true, CharSet = CharSet.Unicode)]
         //public extern static Int32 SetWindowTheme(IntPtr hWnd,
         //              String textSubAppName, String textSubIdList);
-
         public AeroDataGrid()
         {
             InitializeComponent();
             this.DoubleBuffered = true;            
         }
 
-        void AeroDataGrid_HandleCreated(object sender, EventArgs e)
+        //void AeroDataGrid_CellMouseDown(object sender, System.Windows.Forms.DataGridViewCellMouseEventArgs e)
+        //{
+        //    if (e.RowIndex == -1)
+        //        return;
+        //    if (e.Button == System.Windows.Forms.MouseButtons.Left)
+        //        return;
+
+        //    if (Control.ModifierKeys != Keys.Control)
+        //        foreach (DataGridViewRow row in this.SelectedRows)
+        //        {
+        //            row.Selected = false;
+        //        }
+
+        //    this.Rows[e.RowIndex].Selected = true; // !dgPlayersGK.Rows[e.RowIndex].Selected;
+        //}
+
+        public void AeroDataGrid_ColumnHeaderMouseClick<T>(object sender, DataGridViewCellMouseEventArgs e)
         {
+            DataGridViewColumn dgvColumn = Columns[e.ColumnIndex];
+
+            if (lastOrderCommand == null)
+                lastOrderCommand = new OrderCommand();
+
+            if (lastOrderCommand.columnOrdered == dgvColumn.DataPropertyName)
+                lastOrderCommand.isAscending = !lastOrderCommand.isAscending;
+            else
+            {
+                lastOrderCommand.columnOrdered = dgvColumn.DataPropertyName;
+                lastOrderCommand.isAscending = true;
+            }
+
+            EnumerableRowCollection<T> collectionToReorder = _dataCollection as EnumerableRowCollection<T>;
+            var orderedDataCollection = collectionToReorder.Order(dgvColumn.DataPropertyName, lastOrderCommand.isAscending);
+            dataBindingSource.DataSource = orderedDataCollection;
         }
 
         public DataGridViewColumn AddColumn(string Title, string Property, int width, AG_Style styles,
@@ -104,6 +151,12 @@ namespace NTR_Controls
                 }
             }
         }
+    }
+
+    public class OrderCommand
+    {
+        public string columnOrdered;
+        public bool isAscending;
     }
 
     [Flags]

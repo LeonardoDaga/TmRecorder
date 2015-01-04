@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
+using NTR_Common;
 using Common;
 using System.Windows.Forms;
 
@@ -210,10 +211,10 @@ namespace TmRecorder3
             get { return Gain_Function.FromName((string)sb["GainFunction"]); }
             set { sb["GainFunction"] = Gain_Function.ToString(value); }
         }
-        public Function.FunctionType RouFunction
+        public NTR_Common.Function.FunctionType RouFunction
         {
-            get { return Function.FromName((string)sb["RouFunction"]); }
-            set { sb["RouFunction"] = Function.ToString(value); }
+            get { return NTR_Common.Function.FromName((string)sb["RouFunction"]); }
+            set { sb["RouFunction"] = NTR_Common.Function.ToString(value); }
         }
         public float[] RouParams
         {
@@ -368,6 +369,11 @@ namespace TmRecorder3
             InstallationDirectory = SetDiskForFile(disk, InstallationDirectory);
             NationListFile = SetDiskForFile(disk, NationListFile);
             GainSet = SetDiskForFile(disk, GainSet);
+        }
+
+        public void Clone(AppSettings setts)
+        {
+            sb = SettingsBase.Clone(setts.sb);
         }
 
         #region Private functions

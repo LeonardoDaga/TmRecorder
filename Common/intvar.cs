@@ -13,7 +13,7 @@ namespace Common
         { }
     }
 
-    public class intvar: basevar
+    public class intvar: basevar, IComparable<intvar>
     {
         public int actual;
         public int prev = int.MinValue;
@@ -38,6 +38,11 @@ namespace Common
                 return actual.ToString() + "|" + prev.ToString();
             else
                 return actual.ToString();
+        }
+
+        public int CompareTo(intvar other)
+        {
+            return actual.CompareTo(other.actual);
         }
     }
 }

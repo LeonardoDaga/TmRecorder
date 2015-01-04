@@ -23,7 +23,9 @@ namespace TmRecorder3
     {
         SplashForm sf = null;
         public EnumerableRowCollection<PlayerData> ThisWeekPlayers;
+        public EnumerableRowCollection<PlayerData> ThisWeekGK;
         public EnumerableRowCollection<PlayerData> Players;
+        public EnumerableRowCollection<PlayerData> GKs;
 
         public MainForm3()
         {
@@ -135,6 +137,8 @@ namespace TmRecorder3
                     Program.Setts.FirstInstallation = false;
                     Program.Setts.Save();
                 }
+
+                dgPlayers.DataType = typeof(PlayerData);
             }
             catch (Exception ex)
             {
@@ -155,6 +159,7 @@ namespace TmRecorder3
 
                 TmSWD tmSwdSelected = null;
                 cbDataDay.Items.Clear();
+                cbDataDayGK.Items.Clear();
 
                 foreach (var date in Dates)
                 {
@@ -164,11 +169,11 @@ namespace TmRecorder3
                         tmSwdSelected = tmSWD;
 
                     cbDataDay.Items.Add(tmSWD);
+                    cbDataDayGK.Items.Add(tmSWD);
                 }
 
                 cbDataDay.SelectedItem = tmSwdSelected;
-                // dtDataDay.Value = DB.latestDataDay;
-                // DB.CleanOldData();
+                cbDataDayGK.SelectedItem = tmSwdSelected;
             }
             catch (Exception)
             {
@@ -186,8 +191,12 @@ namespace TmRecorder3
             ThisWeekPlayers = (from c in DB.squadDB.HistData
                               where (c.Week == selectedItem.AbsWeek) && (c.PlayerRow.FPn != 0)
                               select new PlayerData(c, absPrevWeek)).OrderBy(p => p.Number);
+            ThisWeekGK = (from c in DB.squadDB.HistData
+                              where (c.Week == selectedItem.AbsWeek) && (c.PlayerRow.FPn == 0)
+                              select new PlayerData(c, absPrevWeek)).OrderBy(p => p.Number);
 
             FormatPlayersGrid();
+            FormatPlayersGridGK();
 
             sf.Close();
         }
@@ -195,15 +204,16 @@ namespace TmRecorder3
         private void FormatPlayersGrid()
         {
             dgPlayers.AutoGenerateColumns = false;
-            varDataBindingSource.DataSource = ThisWeekPlayers;
+            dgPlayers.DataCollection = ThisWeekPlayers;
 
             dgPlayers.Columns.Clear();
             DataGridViewColumn numCol = dgPlayers.AddColumn("N", "Number", 20, AG_Style.Numeric | AG_Style.Frozen | AG_Style.N0);
             dgPlayers.AddColumn("FP", "FPn", 42, AG_Style.FavPosition | AG_Style.Frozen);
-            dgPlayers.AddColumn("Name", "Name", 60, AG_Style.NameInj | AG_Style.Frozen | AG_Style.ResizeAllCells);
+            dgPlayers.AddColumn("Name", "NameEx", 60, AG_Style.NameInj | AG_Style.Frozen | AG_Style.ResizeAllCells);
             dgPlayers.AddColumn("Age", "wBorn", 32, AG_Style.Age | AG_Style.Frozen);
             dgPlayers.AddColumn("Nat", "Nationality", 28, AG_Style.Nationality | AG_Style.Frozen);
             dgPlayers.AddColumn("ASI", "ASI", 49, AG_Style.NumDec | AG_Style.Frozen);
+            dgPlayers.AddColumn("TI", "TI", 32, AG_Style.NumDec | AG_Style.Frozen);
 
             AddPlayersSkillColumn("Str");
             AddPlayersSkillColumn("Pac");
@@ -245,6 +255,42 @@ namespace TmRecorder3
             AddPlayersFpColumn("FC", dgvcsPosCells);
         }
 
+        private void FormatPlayersGridGK()
+        {
+            dgPlayersGK.AutoGenerateColumns = false;
+            dgPlayersGK.DataCollection = ThisWeekGK;
+
+            dgPlayersGK.Columns.Clear();
+            DataGridViewColumn numCol = dgPlayersGK.AddColumn("N", "Number", 20, AG_Style.Numeric | AG_Style.Frozen | AG_Style.N0);
+            dgPlayersGK.AddColumn("Name", "NameEx", 60, AG_Style.NameInj | AG_Style.Frozen | AG_Style.ResizeAllCells);
+            dgPlayersGK.AddColumn("Age", "wBorn", 32, AG_Style.Age | AG_Style.Frozen);
+            dgPlayersGK.AddColumn("Nat", "Nationality", 28, AG_Style.Nationality | AG_Style.Frozen);
+            dgPlayersGK.AddColumn("ASI", "ASI", 49, AG_Style.NumDec | AG_Style.Frozen);
+            dgPlayersGK.AddColumn("TI", "TI", 32, AG_Style.NumDec | AG_Style.Frozen);
+
+            AddPlayersSkillColumnGK("Str");
+            AddPlayersSkillColumnGK("Pac");
+            AddPlayersSkillColumnGK("Sta");
+
+            AddPlayersSkillColumnGK("Han");
+            AddPlayersSkillColumnGK("One");
+            AddPlayersSkillColumnGK("Ref");
+            AddPlayersSkillColumnGK("Ari");
+            AddPlayersSkillColumnGK("Jum");
+            AddPlayersSkillColumnGK("Com");
+            AddPlayersSkillColumnGK("Kic");
+            AddPlayersSkillColumnGK("Thr");
+
+            dgPlayersGK.AddColumn("Rou", "Rou", 30, AG_Style.Numeric | AG_Style.RightJustified);
+            dgPlayersGK.AddColumn("SSD", "SSD", 30, AG_Style.Numeric | AG_Style.RightJustified);
+            dgPlayersGK.AddColumn("CStr", "CStr", 30, AG_Style.Numeric | AG_Style.RightJustified);
+
+            DataGridViewCellStyle dgvcsPosCells = new DataGridViewCellStyle();
+            dgvcsPosCells.Format = "N1";
+
+            AddPlayersFpColumnGK("GK", dgvcsPosCells);
+        }
+
         private void AddPlayersFpColumn(string skill, DataGridViewCellStyle dgvcsPosCells)
         {
             TMR_NumDecColumn dgvc = (TMR_NumDecColumn)dgPlayers.AddColumn(skill, skill, 30, AG_Style.NumDec, dgvcsPosCells);
@@ -254,7 +300,25 @@ namespace TmRecorder3
         private void AddPlayersSkillColumn(string skill)
         {
             TMR_NumDecColumn dgvc = (TMR_NumDecColumn)dgPlayers.AddColumn(skill, skill, 25, AG_Style.NumDec);
-            dgvc.CellColorStyles = CellColorStyleList.DefaultGainColorStyle();
+            if (Program.Setts.EvidenceGain)
+                dgvc.CellColorStyles = CellColorStyleList.DefaultGainColorStyle();
+            else
+                dgvc.CellColorStyles = CellColorStyleList.NoGainColorStyle();
+        }
+
+        private void AddPlayersFpColumnGK(string skill, DataGridViewCellStyle dgvcsPosCells)
+        {
+            TMR_NumDecColumn dgvc = (TMR_NumDecColumn)dgPlayersGK.AddColumn(skill, skill, 30, AG_Style.NumDec, dgvcsPosCells);
+            dgvc.CellColorStyles = CellColorStyleList.DefaultFpColorStyle();
+        }
+
+        private void AddPlayersSkillColumnGK(string skill)
+        {
+            TMR_NumDecColumn dgvc = (TMR_NumDecColumn)dgPlayersGK.AddColumn(skill, skill, 26, AG_Style.NumDec);
+            if (Program.Setts.EvidenceGain)
+                dgvc.CellColorStyles = CellColorStyleList.DefaultGainColorStyle();
+            else
+                dgvc.CellColorStyles = CellColorStyleList.NoGainColorStyle();
         }
 
         private void reloadDataFromFilesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -265,7 +329,9 @@ namespace TmRecorder3
 
         private void cbDataDay_SelectedIndexChanged(object sender, EventArgs e)
         {
-            varDataBindingSource.DataSource = null;
+            cbDataDayGK.SelectedItem = cbDataDay.SelectedItem;
+
+            dgPlayers.DataCollection = null;
             TmSWD selectedItem = (TmSWD)cbDataDay.SelectedItem;
             int absPrevWeek = -1;
             if (cbDataDay.SelectedIndex != cbDataDay.Items.Count - 1)
@@ -280,20 +346,41 @@ namespace TmRecorder3
 
             dgPlayers.SetWhen(selectedItem.Date);
 
-            if (ThisWeekPlayers.Count() > 0)
+            UpdateTable();
+        }
+
+        private void cbDataDayGK_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cbDataDay.SelectedItem = cbDataDayGK.SelectedItem;
+
+            dgPlayersGK.DataCollection = null;
+            TmSWD selectedItem = (TmSWD)cbDataDayGK.SelectedItem;
+            int absPrevWeek = -1;
+            if (cbDataDayGK.SelectedIndex != cbDataDayGK.Items.Count - 1)
             {
-                varDataBindingSource.DataSource = ThisWeekPlayers;
+                TmSWD selectedItemPrev = (TmSWD)cbDataDayGK.Items[cbDataDayGK.SelectedIndex + 1];
+                absPrevWeek = selectedItemPrev.AbsWeek;
             }
-            else
-            {
-                varDataBindingSource.DataSource = null;
-                dgPlayers.Rows.Clear();
-            }
+
+            ThisWeekGK = (from c in DB.squadDB.HistData
+                          where (c.Week == selectedItem.AbsWeek) && (c.PlayerRow.FPn == 0)
+                          select new PlayerData(c, absPrevWeek)) as EnumerableRowCollection<PlayerData>;
+
+            dgPlayersGK.SetWhen(selectedItem.Date);
+
+            UpdateTableGK();
         }
 
         private void chkShow_CheckedChanged(object sender, EventArgs e)
         {
-            varDataBindingSource.DataSource = null;
+            if (chkO21GK.Checked != chkO21.Checked)
+                chkO21GK.Checked = chkO21.Checked;
+            if (chkU21GK.Checked != chkU21.Checked)
+                chkU21GK.Checked = chkU21.Checked;
+            if (chkBTeamGK.Checked != chkBTeam.Checked)
+                chkBTeamGK.Checked = chkBTeam.Checked;
+
+            dgPlayers.DataCollection = null;
             int absPrevWeek = -1;
             if (cbDataDay.SelectedIndex != cbDataDay.Items.Count - 1)
             {
@@ -321,7 +408,7 @@ namespace TmRecorder3
                 TempPlayers = (from c in TempPlayers
                               where (c.wBorn > selectedItem.AbsWeek - 21 * 12)
                                select c) as EnumerableRowCollection<PlayerData>;
-            else if (chkU21.Checked && !chkO21.Checked)
+            else if (!chkU21.Checked && chkO21.Checked)
                 TempPlayers = (from c in TempPlayers
                               where (c.wBorn < selectedItem.AbsWeek - 21 * 12)
                               select c) as EnumerableRowCollection<PlayerData>;
@@ -339,12 +426,52 @@ namespace TmRecorder3
 
             if (Players.Count() > 0)
             {
-                varDataBindingSource.DataSource = Players;
+                dgPlayers.DataCollection = Players;
             }
             else
             {
-                varDataBindingSource.DataSource = null;
+                dgPlayers.DataCollection = null;
                 dgPlayers.Rows.Clear();
+            }
+        }
+
+        private void UpdateTableGK()
+        {
+            TmSWD selectedItem = (TmSWD)cbDataDayGK.SelectedItem;
+
+            EnumerableRowCollection<PlayerData> TempPlayers = (from c in ThisWeekGK
+                                                               where (c.CStr > (decimal)qsMinRatingGK.Value) &&
+                                                                   (c.FPn == 0) 
+                                                               select c) as EnumerableRowCollection<PlayerData>;
+
+            if (chkU21GK.Checked && !chkO21GK.Checked)
+                TempPlayers = (from c in TempPlayers
+                               where (c.wBorn > selectedItem.AbsWeek - 21 * 12)
+                               select c) as EnumerableRowCollection<PlayerData>;
+            else if (!chkU21GK.Checked && chkO21GK.Checked)
+                TempPlayers = (from c in TempPlayers
+                               where (c.wBorn < selectedItem.AbsWeek - 21 * 12)
+                               select c) as EnumerableRowCollection<PlayerData>;
+
+            if (chkBTeamGK.Checked)
+                GKs = (from c in TempPlayers
+                           where (c.BTeam == true)
+                           select c) as EnumerableRowCollection<PlayerData>;
+            else
+                GKs = (from c in TempPlayers
+                           where (c.BTeam == false)
+                           select c) as EnumerableRowCollection<PlayerData>;
+
+            dgPlayersGK.SetWhen(selectedItem.Date);
+
+            if (GKs.Count() > 0)
+            {
+                dgPlayersGK.DataCollection = GKs;
+            }
+            else
+            {
+                dgPlayersGK.DataCollection = null;
+                dgPlayersGK.Rows.Clear();
             }
         }
 
@@ -391,8 +518,230 @@ namespace TmRecorder3
 
         private void qsMinRating_ValueChanged(float NewValue)
         {
+            if (qsMinRatingGK.Value != NewValue)
+                qsMinRatingGK.Value = NewValue;
             UpdateTable();
         }
 
+        private void qsMinRatingGK_ValueChanged(float NewValue)
+        {
+            if (qsMinRating.Value != NewValue)
+                qsMinRating.Value = NewValue;
+            UpdateTableGK();
+        }
+
+        private void dgPlayers_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            dgPlayers.AeroDataGrid_ColumnHeaderMouseClick<PlayerData>(sender, e);
+        }
+
+        private void dgPlayersGK_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            dgPlayersGK.AeroDataGrid_ColumnHeaderMouseClick<PlayerData>(sender, e);
+        }
+
+        private void chkShowGK_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkO21.Checked != chkO21GK.Checked)
+                chkO21.Checked = chkO21GK.Checked;
+            if (chkU21.Checked != chkU21GK.Checked)
+                chkU21.Checked = chkU21GK.Checked;
+            if (chkBTeam.Checked != chkBTeamGK.Checked)
+                chkBTeam.Checked = chkBTeamGK.Checked;
+
+            dgPlayersGK.DataCollection = null;
+            int absPrevWeek = -1;
+            if (cbDataDayGK.SelectedIndex != cbDataDayGK.Items.Count - 1)
+            {
+                TmSWD selectedItemPrev = (TmSWD)cbDataDayGK.Items[cbDataDayGK.SelectedIndex + 1];
+                absPrevWeek = selectedItemPrev.AbsWeek;
+            }
+
+            UpdateTableGK();
+        }
+
+
+        public bool stopCall { get; set; }
+
+        private void contextMenuPlayersPage_Opening(object sender, CancelEventArgs e)
+        {
+            movePlayerToATeamToolStripMenuItem.Visible = chkBTeam.Checked;
+            movePlayerToBTeamToolStripMenuItem.Visible = !chkBTeam.Checked;
+        }
+
+        //private void dgPlayersGK_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        //{
+        //    if (e.RowIndex == -1)
+        //        return;
+        //    if (e.Button == System.Windows.Forms.MouseButtons.Left)
+        //        return;
+
+        //    if (Control.ModifierKeys != Keys.Control)
+        //        foreach (DataGridViewRow row in dgPlayersGK.SelectedRows)
+        //        {
+        //            row.Selected = false;
+        //        }
+
+        //    dgPlayersGK.Rows[e.RowIndex].Selected = true; // !dgPlayersGK.Rows[e.RowIndex].Selected;
+        //}
+
+        private void movePlayerToBTeamToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            List<PlayerData> listPlayerData = new List<PlayerData>();
+
+            if (tabMain.SelectedTab == tabSquad)
+            {
+                foreach (DataGridViewRow player in dgPlayers.SelectedRows)
+                    listPlayerData.Add((PlayerData)player.DataBoundItem);
+
+                foreach (PlayerData pd in listPlayerData)
+                    pd.BTeam = true;
+
+                UpdateTable();
+            }
+            else if (tabMain.SelectedTab == tabGK)
+            {
+                foreach (DataGridViewRow player in dgPlayersGK.SelectedRows)
+                    listPlayerData.Add((PlayerData)player.DataBoundItem);
+
+                foreach (PlayerData pd in listPlayerData)
+                    pd.BTeam = true;
+
+                UpdateTableGK();
+            }
+        }
+
+        private void movePlayerToATeamToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            List<PlayerData> listPlayerData = new List<PlayerData>();
+
+            if (tabMain.SelectedTab == tabSquad)
+            {
+                foreach (DataGridViewRow player in dgPlayers.SelectedRows)
+                    listPlayerData.Add((PlayerData)player.DataBoundItem);
+
+                foreach (PlayerData pd in listPlayerData)
+                    pd.BTeam = false;
+
+                UpdateTable();
+            }
+            else if (tabMain.SelectedTab == tabGK)
+            {
+                foreach (DataGridViewRow player in dgPlayersGK.SelectedRows)
+                    listPlayerData.Add((PlayerData)player.DataBoundItem);
+
+                foreach (PlayerData pd in listPlayerData)
+                    pd.BTeam = false;
+
+                UpdateTableGK();
+            }
+        }
+
+        private void tsOptions_Click(object sender, EventArgs e)
+        {
+            OptionsForm of = new OptionsForm(Program.Setts);
+            if (of.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                FormatPlayersGrid();
+                FormatPlayersGridGK();
+                UpdateTable();
+                UpdateTableGK();
+            }
+        }
+
+        private void webBrowser_DocumentCompleted_1(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+
+        }
+
+        private void webBrowser_Navigating(object sender, WebBrowserNavigatingEventArgs e)
+        {
+
+        }
+
+        private void webBrowser_ProgressChanged(object sender, WebBrowserProgressChangedEventArgs e)
+        {
+
+        }
+
+        private void tsbPrevPlayer_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsbNextPlayer_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void navigateProfilesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void navigateReportsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnPrevMatch_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnNextMatch_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsbNavigateMainTeamMatches_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsbNavigateReservesMatches_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsbPrev_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsbNext_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addExtraTeamToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsbChangeToConfiguredExtraTeam_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void gotoMToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void gotoAdobeFlashplayerPageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void loadFromBackupFilesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void sendThisPageToLedLennonForDebugToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

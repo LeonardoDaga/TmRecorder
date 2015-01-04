@@ -49,6 +49,7 @@
     <Compile Include="AeroDataGrid.Designer.cs">
       <DependentUpon>AeroDataGrid.cs</DependentUpon>
     </Compile>
+    <Compile Include="Linq.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuantitySelector.cs">
       <SubType>UserControl</SubType>

@@ -26,6 +26,7 @@ namespace TmRecorder3
         public EnumerableRowCollection<PlayerData> ThisWeekGK;
         public EnumerableRowCollection<PlayerData> Players;
         public EnumerableRowCollection<PlayerData> GKs;
+        Browser TheBrowser = new Browser();
 
         public MainForm3()
         {
@@ -649,7 +650,8 @@ namespace TmRecorder3
             }
         }
 
-        private void webBrowser_DocumentCompleted_1(object sender, WebBrowserDocumentCompletedEventArgs e)
+        #region Browser Code
+        private void webBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
 
         }
@@ -743,5 +745,46 @@ namespace TmRecorder3
         {
 
         }
+
+        private void tsbScouts_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsbImportSquad_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsbTrainingTraining_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsbMatchListA_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsbMatchListB_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsbMatchSquadA_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsbMatchSquadB_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsbImport_Click(object sender, EventArgs e)
+        {
+            TheBrowser.Import();
+        }
+        #endregion
     }
 }

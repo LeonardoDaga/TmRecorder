@@ -133,4 +133,32 @@
   <data name="F" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\F.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="Scouts" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAYZJREFUOE/NkS1whDAQhZFIJBaJPIlFIpFYZCQSi0QiYyORkdhIZCQWiYx8fQtc
+        2+lc50xF38zyd3nfvt2L/lRplmBdHaZJo6wqLM5BG4P75/dSSsG5FQGA3wO0XWHW7QRkSQRVJb/DtNbI
+        slwOQHU9EUAYS6CO0D0itFmEYKrXgK5XmOf5jF4x+rodJ8DTJIDNjjCEoE9hmxTbcDa6VBTFGVsAkuJg
+        fhkhHAdWAo6Kxm2BL3nvUhxtAugKD+7rBCzLgmeJeedl33fsWsHnBIjRz+jKBDWBpriSjE12ASSBbFqM
+        xlok6UWWyJ6HzwS2gx9KWD47AbQsp7AZdUHiOIYaeshd3mXjjp09DQd3gKlEGB7ImUC+o0vOXaRxdAGe
+        qvMYpoyxNiyaPwGMLOWnGloVUEx3W74kZihWw63T5L4D1F3chShMBZKf3UUlI3p2F9DBOaWC4tbHAlgG
+        YG5gOYKMeFtea+CiAiGhZXUZwPl3JpN/4T7yXjm7LBwh0Dhx5peR/4Gi6APoUFly7cUeXAAAAABJRU5E
+        rkJggg==
+</value>
+  </data>
+  <data name="Squad" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAARCAYAAADUryzEAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAdpJREFUOE99UyGwqzAQREYiYyORyFhkZCQWiUTGRiKRWGQkEotEImORlZX77wKl
+        /01f384wpbm7vc3ekb1QKIE8F7j+3sjzHGWpIMRn7IakwqVv0NXVR1JjNbbJQan8O4GxJY7FYZst1i3A
+        9d2txhqFGDp4J+F7R2qKn0SV0Xg8DuyxQYwtQpgwjBXmwcJQbN8D9qnEuljKe+D5fMIPmhpkJ9GcAjEF
+        YoywtUkBlh5JzXk+IR5Leu98gznkqElZIogk/bFRwkoPEXiSnwKEaWpJ2ZoKGcdxoKo0mPz2S8ocXWfo
+        7uTB3qL38k3QG7StTgQvhZ1rT4LmP8N5hF0toIsMRaEgpYSpCuyzSx3Zo+OxkhqPcVSUI9E7+yZg8Jx5
+        5vzLTmut0vxVIbAtCsso4BoBbnaV/IQgV7m7NSVGMsqY97h4T5hcKfn3QrW1pk41ddJY55K6n04LIuBi
+        bnARfCfhHTDksPctmdsiE2cyE+zBYXD1WXyefxLxVRSZJCghpwnl8pTMmznRuu+TwTx79L0ns7+t99WV
+        yfhJZwRJBk5BE8GYpsPTukK/w9iK1npIyddRxu/LMt8qr+PfEeaQ9p/lXkfp82YzX1f7E9YaKu5pJ8o7
+        +byWuLpn2T/VTG7fzFmM4AAAAABJRU5ErkJggg==
+</value>
+  </data>
 </root>

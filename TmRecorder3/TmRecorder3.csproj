@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Browser.cs" />
     <Compile Include="Language.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -142,6 +143,10 @@
       <Project>{b2e3e5fe-5b00-4cd2-9421-928527670538}</Project>
       <Name>NTR_Forms</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TMR_CostumControls\TMR_CustomControls.csproj">
+      <Project>{df2a1b02-eacf-4f54-8692-abac9af54d8e}</Project>
+      <Name>TMR_CustomControls</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
@@ -160,6 +165,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\F.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Squad.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

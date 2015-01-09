@@ -34,7 +34,6 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -49,8 +48,20 @@
     <Compile Include="AeroDataGrid.Designer.cs">
       <DependentUpon>AeroDataGrid.cs</DependentUpon>
     </Compile>
+    <Compile Include="Browser.cs" />
     <Compile Include="Linq.cs" />
+    <Compile Include="NTR_Browser.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NTR_Browser.Designer.cs">
+      <DependentUpon>NTR_Browser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="QuantitySelector.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -59,6 +70,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{dfee4c9b-f9fc-4186-945f-27518e4fceb7}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataGridViewCustomColumns\DataGridViewCustomColumns.csproj">
       <Project>{a61c4450-11b5-4ab8-b6c1-c07ac448ff23}</Project>
       <Name>DataGridViewCustomColumns</Name>
@@ -69,9 +84,49 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="NTR_Browser.resx">
+      <DependentUpon>NTR_Browser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="QuantitySelector.resx">
       <DependentUpon>QuantitySelector.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Next.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Prev.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Next1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Import.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImportPage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImportPage1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImportPage24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PageImport.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_import.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImportIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

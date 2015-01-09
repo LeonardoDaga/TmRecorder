@@ -44,7 +44,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Browser.cs" />
     <Compile Include="Language.cs">
       <SubType>Form</SubType>
     </Compile>

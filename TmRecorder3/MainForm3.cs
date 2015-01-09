@@ -26,7 +26,6 @@ namespace TmRecorder3
         public EnumerableRowCollection<PlayerData> ThisWeekGK;
         public EnumerableRowCollection<PlayerData> Players;
         public EnumerableRowCollection<PlayerData> GKs;
-        Browser TheBrowser = new Browser();
 
         public MainForm3()
         {
@@ -140,6 +139,8 @@ namespace TmRecorder3
                 }
 
                 dgPlayers.DataType = typeof(PlayerData);
+
+                ntrBrowser.DefaultDirectory = Program.Setts.DefaultDirectory;
             }
             catch (Exception ex)
             {
@@ -661,11 +662,6 @@ namespace TmRecorder3
 
         }
 
-        private void webBrowser_ProgressChanged(object sender, WebBrowserProgressChangedEventArgs e)
-        {
-
-        }
-
         private void tsbPrevPlayer_Click(object sender, EventArgs e)
         {
 
@@ -706,32 +702,12 @@ namespace TmRecorder3
 
         }
 
-        private void tsbPrev_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tsbNext_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void addExtraTeamToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
 
         }
 
         private void tsbChangeToConfiguredExtraTeam_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void gotoMToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void gotoAdobeFlashplayerPageToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
         }
@@ -783,7 +759,6 @@ namespace TmRecorder3
 
         private void tsbImport_Click(object sender, EventArgs e)
         {
-            TheBrowser.Import();
         }
         #endregion
     }

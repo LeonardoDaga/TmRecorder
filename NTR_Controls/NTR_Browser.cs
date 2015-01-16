@@ -6,12 +6,17 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using NTR_Db;
 
 namespace NTR_Controls
 {
+    public delegate void ImportedContentHandler(Content content);    
+
     public partial class NTR_Browser : UserControl
     {
         Browser TheBrowser = null;
+
+        public event ImportedContentHandler ImportedContent;
 
         private string _defaultDirectory = "";
         public string DefaultDirectory 
@@ -56,6 +61,11 @@ namespace NTR_Controls
             TheBrowser.Goto(Browser.Pages.AdobeFlashplayer);
         }
 
+        public void Goto(string address)
+        {
+            TheBrowser.Goto(address);
+        }
+
         private void webBrowser_ProgressChanged(object sender, WebBrowserProgressChangedEventArgs e)
         {
             if (e.CurrentProgress <= 0)
@@ -82,7 +92,12 @@ namespace NTR_Controls
 
         private void tsbImport_Click(object sender, EventArgs e)
         {
-            TheBrowser.Import();
+            Content content = TheBrowser.Import();
+            if (content == null)
+                return;
+
+            if (ImportedContent != null)
+                ImportedContent(content);
         }
 
     }

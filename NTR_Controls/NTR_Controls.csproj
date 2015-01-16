@@ -31,6 +31,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.mshtml, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>C:\Program Files (x86)\Microsoft.NET\Primary Interop Assemblies\Microsoft.mshtml.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -78,9 +83,17 @@
       <Project>{a61c4450-11b5-4ab8-b6c1-c07ac448ff23}</Project>
       <Name>DataGridViewCustomColumns</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Multilanguage\Languages.csproj">
+      <Project>{e0e469c1-bfb5-4ec0-93f1-f019c9101110}</Project>
+      <Name>Languages</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NTR_Common\NTR_Common.csproj">
       <Project>{d32f5344-d291-42fc-8b6e-4183864e2d77}</Project>
       <Name>NTR_Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NTR_Db\NTR_Db.csproj">
+      <Project>{df7d6401-1959-405f-8f35-65fd8ad320b7}</Project>
+      <Name>NTR_Db</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -127,6 +140,36 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ImportIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\File1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\assistant_manager.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fixture_loader.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\get_players_training_loader.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\match_loader.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\player_info_loader.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\players_loader.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shortlist_loader.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\training_loader.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\transfer_loader.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

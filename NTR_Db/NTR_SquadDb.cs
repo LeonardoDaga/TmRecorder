@@ -1,4 +1,9 @@
-﻿namespace NTR_Db
+﻿using Common;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+
+namespace NTR_Db
 {
 }
 namespace NTR_Db
@@ -9,6 +14,27 @@ namespace NTR_Db {
     public partial class NTR_SquadDb 
     {
         public NTR_Common.GainDS GDS { get; set; }
+
+        private List<int> _weeksWithData = null;
+        public List<int> WeeksWithData
+        {
+            get
+            {
+                if ((_weeksWithData == null) || (_weeksWithData.Count != HistData.Count))
+                {
+                    _weeksWithData = new List<int>();
+
+                    var dates = (from c in HistData
+                                 group c by c.Week into g
+                                 select g).OrderByDescending(p => p.Key);
+
+                    foreach (var date in dates)
+                        _weeksWithData.Add((int)date.Key);
+                }
+
+                return _weeksWithData;
+            }
+        }
 
         partial class HistDataDataTable
         {
@@ -144,6 +170,43 @@ namespace NTR_Db {
             //    }
             //}
 
+        }
+
+        internal void UpdateDecimals(Content content)
+        {
+            int newWeek = content.Week;
+
+            // Find the closest week to the input week
+            int closestWeek = -1;
+            foreach(int week in this.WeeksWithData)
+            {
+                if (week >= newWeek) continue;
+
+                if (newWeek - week < newWeek - closestWeek)
+                    closestWeek = week;
+            }
+
+            foreach(PlayerRow playerRow in content.squadDB.Player)
+            {
+                int idPlayer = playerRow.PlayerID;
+
+                // Get relative history rows
+                HistDataRow newRow = HistData.FindByPlayerIDWeek(idPlayer, newWeek);
+                HistDataRow oldRow = HistData.FindByPlayerIDWeek(idPlayer, closestWeek);
+
+                int numSkillToUpdate = (playerRow.FPn == 0)?11:14;
+                for (int i = 0; i < numSkillToUpdate ; i++)
+                {
+                    int trainStep = Tm_Training.TrCode2ToTrValue(newRow.Training, (Tm_Training.eTrainingType)(i+1));
+
+                    if (trainStep == 1)
+                        newRow[4 + i] = (decimal)oldRow[4 + i] + 0.1M;
+                    else if (trainStep == -1)
+                        newRow[4 + i] = (decimal)oldRow[4 + i] - 0.1M;
+                    else if (trainStep == 0)
+                        newRow[4 + i] = (decimal)oldRow[4 + i];
+                }
+            }
         }
     }
 

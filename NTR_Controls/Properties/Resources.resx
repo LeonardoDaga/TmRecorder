@@ -151,4 +151,31 @@
   <data name="ImportIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ImportIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="assistant_manager" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\assistant_manager.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="fixture_loader" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fixture_loader.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="get_players_training_loader" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\get_players_training_loader.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="match_loader" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\match_loader.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="players_loader" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\players_loader.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="player_info_loader" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\player_info_loader.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="shortlist_loader" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\shortlist_loader.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="training_loader" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\training_loader.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="transfer_loader" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\transfer_loader.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
 </root>

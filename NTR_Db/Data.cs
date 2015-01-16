@@ -14,7 +14,7 @@ namespace NTR_Db
 {
     public partial class Data : Component
     {
-        public int latestDataWeek = 0;
+        public int latestDataWeek = -1;
         public DateTime latestDataDay { get; set; }
 
         public Data()
@@ -378,6 +378,23 @@ namespace NTR_Db
             trainersSkillsDS.Clear();
             scoutSkillsDS.Clear();
             squadDB.Clear();
+        }
+
+        public void MergeContent(Content content)
+        {
+            NTR_SquadDb mergeDB = content.squadDB;
+
+            if (mergeDB == null)
+            {
+                MessageBox.Show("Error loading the content of the page");
+                return;
+            }
+
+            squadDB.Merge(mergeDB);
+
+            squadDB.UpdateDecimals(content);
+
+            latestDataWeek = content.Week;
         }
     }
 

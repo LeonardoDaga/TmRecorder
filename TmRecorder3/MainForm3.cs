@@ -149,33 +149,36 @@ namespace TmRecorder3
             LoadPlayersDB();
         }
 
+        private void SetDatesList()
+        {
+            List<int> weeks = DB.squadDB.WeeksWithData;
+
+            TmSWD tmSwdSelected = null;
+            cbDataDay.Items.Clear();
+            cbDataDayGK.Items.Clear();
+
+            foreach (int week in weeks)
+            {
+                TmSWD tmSWD = TmWeek.TmWeekToSWD(week);
+
+                if (DB.latestDataWeek == week)
+                    tmSwdSelected = tmSWD;
+
+                cbDataDay.Items.Add(tmSWD);
+                cbDataDayGK.Items.Add(tmSWD);
+            }
+
+            cbDataDay.SelectedItem = tmSwdSelected;
+            cbDataDayGK.SelectedItem = tmSwdSelected;
+        }
+
         private void LoadPlayersDB()
         {
             try
             {
                 DB.Load(Program.Setts.DefaultDirectory, ref sf, (Program.Setts.Trace > 0));
 
-                var Dates = (from c in DB.squadDB.HistData
-                             group c by c.Week into g
-                             select g).OrderByDescending(p => p.Key);
-
-                TmSWD tmSwdSelected = null;
-                cbDataDay.Items.Clear();
-                cbDataDayGK.Items.Clear();
-
-                foreach (var date in Dates)
-                {
-                    TmSWD tmSWD = TmWeek.TmWeekToSWD(date.Key);
-
-                    if (DB.latestDataWeek == (int)date.Key)
-                        tmSwdSelected = tmSWD;
-
-                    cbDataDay.Items.Add(tmSWD);
-                    cbDataDayGK.Items.Add(tmSWD);
-                }
-
-                cbDataDay.SelectedItem = tmSwdSelected;
-                cbDataDayGK.SelectedItem = tmSwdSelected;
+                SetDatesList();
             }
             catch (Exception)
             {
@@ -200,7 +203,109 @@ namespace TmRecorder3
             FormatPlayersGrid();
             FormatPlayersGridGK();
 
+            UpdateBrowserNavigationPanel();
+
             sf.Close();
+        }
+
+        private void UpdateBrowserNavigationPanel()
+        {
+            int thisWeek = TmWeek.thisWeek().absweek;
+            int lastTrainingWeek = DB.latestDataWeek;
+
+            if (lastTrainingWeek == -1) // Never imported data
+            {
+                tsbImportSquad.ForeColor = Color.DarkRed;
+                tsbImportSquad.ToolTipText = "Import squad data (never imported)";
+                tsbImportSquad.UnderColor = Color.DarkRed;
+                tsbImportSquad.UnderText = "Click here";
+            }
+            else if (thisWeek > lastTrainingWeek)
+            {
+                tsbImportSquad.ForeColor = Color.DarkRed;
+                tsbImportSquad.ToolTipText = "Squad data imported " + (thisWeek - lastTrainingWeek).ToString() + " weeks ago";
+                tsbImportSquad.UnderColor = Color.DarkRed;
+                tsbImportSquad.UnderText = "To import";
+
+                if (Program.Setts.PlayerType != 2) // Non PRO player
+                    tsbTrainingTraining.Enabled = true;
+            }
+            else
+            {
+                if (Program.Setts.PlayerType != 2) // Non PRO player
+                    tsbTrainingTraining.Enabled = true;
+
+                tsbImportSquad.ForeColor = Color.DarkGreen;
+                tsbImportSquad.ToolTipText = "Squad data updated";
+                tsbImportSquad.UnderText = "Import ok";
+                tsbImportSquad.UnderColor = Color.DarkGreen;
+            }
+
+            //if (!champDS.Match.UpdatedCalendar())
+            //{
+            //    tsbMatchListA.ForeColor = Color.DarkRed;
+            //    tsbMatchSquadA.Enabled = false;
+            //    tsbMatchListA.ToolTipText = "Match List for Main Team not imported";
+            //    tsbMatchListA.UnderText = "To import";
+            //    tsbMatchListA.UnderColor = Color.DarkRed;
+            //}
+            //else
+            //{
+            //    tsbMatchListA.ForeColor = Color.DarkGreen;
+            //    tsbMatchSquadA.Enabled = true;
+            //    tsbMatchListA.ToolTipText = "Match List for Main Team OK";
+            //    tsbMatchListA.UnderText = "Import ok";
+            //    tsbMatchListA.UnderColor = Color.DarkGreen;
+            //}
+
+            //if (!champDS.Match.UpdatedCalendarReserves())
+            //{
+            //    tsbMatchListB.ForeColor = Color.DarkRed;
+            //    tsbMatchSquadB.Enabled = false;
+            //    tsbMatchListB.ToolTipText = "Match List for Reserves Team  not imported";
+            //    tsbMatchListB.UnderText = "Not imported";
+            //    tsbMatchListB.UnderColor = Color.DarkRed;
+            //}
+            //else
+            //{
+            //    tsbMatchListB.ForeColor = Color.DarkGreen;
+            //    tsbMatchSquadB.Enabled = true;
+            //    tsbMatchListB.ToolTipText = "Match List for Reserves Team OK";
+            //    tsbMatchListB.UnderText = "Import ok";
+            //    tsbMatchListB.UnderColor = Color.DarkGreen;
+            //}
+
+            //int matchToUpdate = champDS.Match.Updated();
+            //if (matchToUpdate > 0)
+            //{
+            //    tsbMatchSquadA.ForeColor = Color.DarkRed;
+            //    tsbMatchSquadA.ToolTipText = "There are at least " + matchToUpdate.ToString() + " match to update";
+            //    tsbMatchSquadA.UnderText = "To import " + matchToUpdate.ToString();
+            //    tsbMatchSquadA.UnderColor = Color.DarkRed;
+            //}
+            //else
+            //{
+            //    tsbMatchSquadA.ForeColor = Color.DarkGreen;
+            //    tsbMatchSquadA.ToolTipText = "All the matches before today have been loaded";
+            //    tsbMatchSquadA.UnderText = "Import ok";
+            //    tsbMatchSquadA.UnderColor = Color.DarkGreen;
+            //}
+
+            //matchToUpdate = champDS.Match.UpdatedReserves();
+            //if (matchToUpdate > 0)
+            //{
+            //    tsbMatchSquadB.ForeColor = Color.DarkRed;
+            //    tsbMatchSquadB.ToolTipText = "There are at least " + matchToUpdate.ToString() + " match to update";
+            //    tsbMatchSquadB.UnderText = "To import " + matchToUpdate.ToString();
+            //    tsbMatchSquadB.UnderColor = Color.DarkRed;
+            //}
+            //else
+            //{
+            //    tsbMatchSquadB.ForeColor = Color.DarkGreen;
+            //    tsbMatchSquadB.ToolTipText = "All the matches before today have been loaded";
+            //    tsbMatchSquadB.UnderText = "Import ok";
+            //    tsbMatchSquadB.UnderColor = Color.DarkGreen;
+            //}
         }
 
         private void FormatPlayersGrid()
@@ -571,22 +676,6 @@ namespace TmRecorder3
             movePlayerToBTeamToolStripMenuItem.Visible = !chkBTeam.Checked;
         }
 
-        //private void dgPlayersGK_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
-        //{
-        //    if (e.RowIndex == -1)
-        //        return;
-        //    if (e.Button == System.Windows.Forms.MouseButtons.Left)
-        //        return;
-
-        //    if (Control.ModifierKeys != Keys.Control)
-        //        foreach (DataGridViewRow row in dgPlayersGK.SelectedRows)
-        //        {
-        //            row.Selected = false;
-        //        }
-
-        //    dgPlayersGK.Rows[e.RowIndex].Selected = true; // !dgPlayersGK.Rows[e.RowIndex].Selected;
-        //}
-
         private void movePlayerToBTeamToolStripMenuItem_Click(object sender, EventArgs e)
         {
             List<PlayerData> listPlayerData = new List<PlayerData>();
@@ -729,7 +818,7 @@ namespace TmRecorder3
 
         private void tsbImportSquad_Click(object sender, EventArgs e)
         {
-
+            ntrBrowser.Goto(Browser.Pages.Players);
         }
 
         private void tsbTrainingTraining_Click(object sender, EventArgs e)
@@ -761,5 +850,15 @@ namespace TmRecorder3
         {
         }
         #endregion
+
+        private void ntrBrowser_ImportedContent(Content content)
+        {
+            // Check if there is already a week in the code
+            DB.MergeContent(content);
+
+            SetDatesList();
+
+            UpdateBrowserNavigationPanel();
+        }
     }
 }

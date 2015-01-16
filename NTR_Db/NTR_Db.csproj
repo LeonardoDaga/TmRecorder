@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Content.cs" />
     <Compile Include="Data.cs">
       <SubType>Component</SubType>
     </Compile>

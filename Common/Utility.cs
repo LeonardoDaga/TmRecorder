@@ -241,7 +241,7 @@ namespace Common
             int i = (int)tType - 1;
 
             trCode >>= (3 * i);
-            trCode &= 0x111;
+            trCode &= 0x7;
             return (int)trCode - 2;
         }
 
@@ -258,6 +258,30 @@ namespace Common
             if ((trCode[1] & fact) > 0) return -2;
 
             return 0;
+        }
+
+        public static ulong TrainingDataToTrCode2(Dictionary<string, string> data, bool isGK)
+        {
+            UInt64 res = 0;
+
+            try
+            {
+                UInt64 fact = 1;
+
+                int numData = isGK?10:13;
+
+                for (int i = 0; i <= numData; i++, fact <<= 3)
+                {
+                    decimal tr = decimal.Parse(data[i.ToString()]);
+                    UInt64 val = (UInt64)((int)tr + 2);
+                    res = res + val * fact;
+                }
+            }
+            catch (Exception)
+            {
+            }
+
+            return res;
         }
     }
 
@@ -650,6 +674,11 @@ namespace Common
             return str;
         }
 
+        public static int GetBornWeekFromAge(int Age)
+        {
+            return GetBornWeekFromAge(DateTime.Now, 0, Age);
+        }
+
         public static int GetBornWeekFromAge(DateTime refDate, string Age)
         {
             TmWeek tmwNow = new TmWeek(refDate);
@@ -742,6 +771,20 @@ namespace Common
         {
             DateTime dt = tmDay0.AddDays(7 * (tmweek + 1));
             return new TmSWD(dt);
+        }
+
+        public static int GetBornWeekFromAgeString(string yymm)
+        {
+            return GetBornWeekFromAgeString(yymm, DateTime.Now);
+        }
+
+        public static int GetBornWeekFromAgeString(string yymm, DateTime refDate)
+        {
+            // Extract month and year
+            string[] split = yymm.Split('.');
+            int yy = int.Parse(split[0]);
+            int mm = int.Parse(split[1]);
+            return GetBornWeekFromAge(refDate, mm, yy);
         }
     }
 }

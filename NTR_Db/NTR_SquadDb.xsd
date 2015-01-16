@@ -12,7 +12,7 @@
   <xs:element name="NTR_SquadDb" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="NTR_SquadDb" msprop:Generator_UserDSName="NTR_SquadDb">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Player" msprop:Generator_TableClassName="PlayerDataTable" msprop:Generator_TableVarName="tablePlayer" msprop:Generator_RowChangedName="PlayerRowChanged" msprop:Generator_TablePropName="Player" msprop:Generator_RowDeletingName="PlayerRowDeleting" msprop:Generator_RowChangingName="PlayerRowChanging" msprop:Generator_RowEvHandlerName="PlayerRowChangeEventHandler" msprop:Generator_RowDeletedName="PlayerRowDeleted" msprop:Generator_RowClassName="PlayerRow" msprop:Generator_UserTableName="Player" msprop:Generator_RowEvArgName="PlayerRowChangeEvent">
+        <xs:element name="Player" msprop:Generator_TableClassName="PlayerDataTable" msprop:Generator_TableVarName="tablePlayer" msprop:Generator_TablePropName="Player" msprop:Generator_RowDeletingName="PlayerRowDeleting" msprop:Generator_RowChangingName="PlayerRowChanging" msprop:Generator_RowEvHandlerName="PlayerRowChangeEventHandler" msprop:Generator_RowDeletedName="PlayerRowDeleted" msprop:Generator_UserTableName="Player" msprop:Generator_RowChangedName="PlayerRowChanged" msprop:Generator_RowEvArgName="PlayerRowChangeEvent" msprop:Generator_RowClassName="PlayerRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="PlayerID" msprop:Generator_ColumnVarNameInTable="columnPlayerID" msprop:Generator_ColumnPropNameInRow="PlayerID" msprop:Generator_ColumnPropNameInTable="PlayerIDColumn" msprop:Generator_UserColumnName="PlayerID" type="xs:int" />
@@ -43,10 +43,12 @@
               <xs:element name="FPn" msprop:Generator_ColumnVarNameInTable="columnFPn" msprop:Generator_ColumnPropNameInRow="FPn" msprop:Generator_ColumnPropNameInTable="FPnColumn" msprop:Generator_UserColumnName="FPn" type="xs:int" minOccurs="0" />
               <xs:element name="Calc" msdata:ReadOnly="true" msdata:Expression="PlayerID + Ada" msprop:Generator_ColumnVarNameInTable="columnCalc" msprop:Generator_ColumnPropNameInRow="Calc" msprop:Generator_ColumnPropNameInTable="CalcColumn" msprop:Generator_UserColumnName="Calc" type="xs:int" minOccurs="0" />
               <xs:element name="BTeam" msprop:Generator_ColumnVarNameInTable="columnBTeam" msprop:Generator_ColumnPropNameInRow="BTeam" msprop:Generator_ColumnPropNameInTable="BTeamColumn" msprop:Generator_UserColumnName="BTeam" type="xs:boolean" minOccurs="0" />
+              <xs:element name="TeamID" msprop:Generator_ColumnVarNameInTable="columnTeamID" msprop:Generator_ColumnPropNameInRow="TeamID" msprop:Generator_ColumnPropNameInTable="TeamIDColumn" msprop:Generator_UserColumnName="TeamID" type="xs:int" minOccurs="0" />
+              <xs:element name="ForceInTeam" msprop:Generator_ColumnVarNameInTable="columnForceInTeam" msprop:Generator_ColumnPropNameInRow="ForceInTeam" msprop:Generator_ColumnPropNameInTable="ForceInTeamColumn" msprop:Generator_UserColumnName="ForceInTeam" type="xs:boolean" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="HistData" msprop:Generator_TableClassName="HistDataDataTable" msprop:Generator_TableVarName="tableHistData" msprop:Generator_RowChangedName="HistDataRowChanged" msprop:Generator_TablePropName="HistData" msprop:Generator_RowDeletingName="HistDataRowDeleting" msprop:Generator_RowChangingName="HistDataRowChanging" msprop:Generator_RowEvHandlerName="HistDataRowChangeEventHandler" msprop:Generator_RowDeletedName="HistDataRowDeleted" msprop:Generator_RowClassName="HistDataRow" msprop:Generator_UserTableName="HistData" msprop:Generator_RowEvArgName="HistDataRowChangeEvent">
+        <xs:element name="HistData" msprop:Generator_TableClassName="HistDataDataTable" msprop:Generator_TableVarName="tableHistData" msprop:Generator_TablePropName="HistData" msprop:Generator_RowDeletingName="HistDataRowDeleting" msprop:Generator_RowChangingName="HistDataRowChanging" msprop:Generator_RowEvHandlerName="HistDataRowChangeEventHandler" msprop:Generator_RowDeletedName="HistDataRowDeleted" msprop:Generator_UserTableName="HistData" msprop:Generator_RowChangedName="HistDataRowChanged" msprop:Generator_RowEvArgName="HistDataRowChangeEvent" msprop:Generator_RowClassName="HistDataRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="PlayerID" msprop:Generator_ColumnVarNameInTable="columnPlayerID" msprop:Generator_ColumnPropNameInRow="PlayerID" msprop:Generator_ColumnPropNameInTable="PlayerIDColumn" msprop:Generator_UserColumnName="PlayerID" type="xs:int" />
@@ -73,7 +75,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="ScoutReview" msprop:Generator_TableClassName="ScoutReviewDataTable" msprop:Generator_TableVarName="tableScoutReview" msprop:Generator_RowChangedName="ScoutReviewRowChanged" msprop:Generator_TablePropName="ScoutReview" msprop:Generator_RowDeletingName="ScoutReviewRowDeleting" msprop:Generator_RowChangingName="ScoutReviewRowChanging" msprop:Generator_RowEvHandlerName="ScoutReviewRowChangeEventHandler" msprop:Generator_RowDeletedName="ScoutReviewRowDeleted" msprop:Generator_RowClassName="ScoutReviewRow" msprop:Generator_UserTableName="ScoutReview" msprop:Generator_RowEvArgName="ScoutReviewRowChangeEvent">
+        <xs:element name="ScoutReview" msprop:Generator_TableClassName="ScoutReviewDataTable" msprop:Generator_TableVarName="tableScoutReview" msprop:Generator_TablePropName="ScoutReview" msprop:Generator_RowDeletingName="ScoutReviewRowDeleting" msprop:Generator_RowChangingName="ScoutReviewRowChanging" msprop:Generator_RowEvHandlerName="ScoutReviewRowChangeEventHandler" msprop:Generator_RowDeletedName="ScoutReviewRowDeleted" msprop:Generator_UserTableName="ScoutReview" msprop:Generator_RowChangedName="ScoutReviewRowChanged" msprop:Generator_RowEvArgName="ScoutReviewRowChangeEvent" msprop:Generator_RowClassName="ScoutReviewRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="PlayerID" msprop:Generator_ColumnVarNameInTable="columnPlayerID" msprop:Generator_ColumnPropNameInRow="PlayerID" msprop:Generator_ColumnPropNameInTable="PlayerIDColumn" msprop:Generator_UserColumnName="PlayerID" type="xs:int" />
@@ -84,7 +86,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="TempData" msprop:Generator_TableClassName="TempDataDataTable" msprop:Generator_TableVarName="tableTempData" msprop:Generator_RowChangedName="TempDataRowChanged" msprop:Generator_TablePropName="TempData" msprop:Generator_RowDeletingName="TempDataRowDeleting" msprop:Generator_RowChangingName="TempDataRowChanging" msprop:Generator_RowEvHandlerName="TempDataRowChangeEventHandler" msprop:Generator_RowDeletedName="TempDataRowDeleted" msprop:Generator_RowClassName="TempDataRow" msprop:Generator_UserTableName="TempData" msprop:Generator_RowEvArgName="TempDataRowChangeEvent">
+        <xs:element name="TempData" msprop:Generator_TableClassName="TempDataDataTable" msprop:Generator_TableVarName="tableTempData" msprop:Generator_TablePropName="TempData" msprop:Generator_RowDeletingName="TempDataRowDeleting" msprop:Generator_RowChangingName="TempDataRowChanging" msprop:Generator_RowEvHandlerName="TempDataRowChangeEventHandler" msprop:Generator_RowDeletedName="TempDataRowDeleted" msprop:Generator_UserTableName="TempData" msprop:Generator_RowChangedName="TempDataRowChanged" msprop:Generator_RowEvArgName="TempDataRowChangeEvent" msprop:Generator_RowClassName="TempDataRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="PlayerID" msprop:Generator_ColumnVarNameInTable="columnPlayerID" msprop:Generator_ColumnPropNameInRow="PlayerID" msprop:Generator_ColumnPropNameInTable="PlayerIDColumn" msprop:Generator_UserColumnName="PlayerID" type="xs:int" />
@@ -96,7 +98,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Scout" msprop:Generator_TableClassName="ScoutDataTable" msprop:Generator_TableVarName="tableScout" msprop:Generator_RowChangedName="ScoutRowChanged" msprop:Generator_TablePropName="Scout" msprop:Generator_RowDeletingName="ScoutRowDeleting" msprop:Generator_RowChangingName="ScoutRowChanging" msprop:Generator_RowEvHandlerName="ScoutRowChangeEventHandler" msprop:Generator_RowDeletedName="ScoutRowDeleted" msprop:Generator_RowClassName="ScoutRow" msprop:Generator_UserTableName="Scout" msprop:Generator_RowEvArgName="ScoutRowChangeEvent">
+        <xs:element name="Scout" msprop:Generator_TableClassName="ScoutDataTable" msprop:Generator_TableVarName="tableScout" msprop:Generator_TablePropName="Scout" msprop:Generator_RowDeletingName="ScoutRowDeleting" msprop:Generator_RowChangingName="ScoutRowChanging" msprop:Generator_RowEvHandlerName="ScoutRowChangeEventHandler" msprop:Generator_RowDeletedName="ScoutRowDeleted" msprop:Generator_UserTableName="Scout" msprop:Generator_RowChangedName="ScoutRowChanged" msprop:Generator_RowEvArgName="ScoutRowChangeEvent" msprop:Generator_RowClassName="ScoutRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ScoutID" msprop:Generator_ColumnVarNameInTable="columnScoutID" msprop:Generator_ColumnPropNameInRow="ScoutID" msprop:Generator_ColumnPropNameInTable="ScoutIDColumn" msprop:Generator_UserColumnName="ScoutID" type="xs:int" />
@@ -111,11 +113,35 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="Team" msprop:Generator_TableClassName="TeamDataTable" msprop:Generator_TableVarName="tableTeam" msprop:Generator_TablePropName="Team" msprop:Generator_RowDeletingName="TeamRowDeleting" msprop:Generator_RowChangingName="TeamRowChanging" msprop:Generator_RowEvHandlerName="TeamRowChangeEventHandler" msprop:Generator_RowDeletedName="TeamRowDeleted" msprop:Generator_UserTableName="Team" msprop:Generator_RowChangedName="TeamRowChanged" msprop:Generator_RowEvArgName="TeamRowChangeEvent" msprop:Generator_RowClassName="TeamRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TeamID" msprop:Generator_ColumnVarNameInTable="columnTeamID" msprop:Generator_ColumnPropNameInRow="TeamID" msprop:Generator_ColumnPropNameInTable="TeamIDColumn" msprop:Generator_UserColumnName="TeamID" type="xs:int" />
+              <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:Player" />
       <xs:field xpath="mstns:PlayerID" />
+    </xs:unique>
+    <xs:unique name="PlayerTeamKey">
+      <xs:selector xpath=".//mstns:Player" />
+      <xs:field xpath="mstns:PlayerID" />
+      <xs:field xpath="mstns:TeamID" />
+    </xs:unique>
+    <xs:unique name="PlayerKeyForceInTeam">
+      <xs:selector xpath=".//mstns:Player" />
+      <xs:field xpath="mstns:PlayerID" />
+      <xs:field xpath="mstns:ForceInTeam" />
     </xs:unique>
     <xs:unique name="HistData_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:HistData" />
@@ -136,13 +162,18 @@
       <xs:selector xpath=".//mstns:Scout" />
       <xs:field xpath="mstns:ScoutID" />
     </xs:unique>
+    <xs:unique name="Team_Constraint11" msdata:ConstraintName="Constraint11">
+      <xs:selector xpath=".//mstns:Team" />
+      <xs:field xpath="mstns:TeamID" />
+    </xs:unique>
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="Player_ScoutReview" msdata:parent="Player" msdata:child="ScoutReview" msdata:parentkey="PlayerID" msdata:childkey="PlayerID" msprop:Generator_UserChildTable="ScoutReview" msprop:Generator_ChildPropName="GetScoutReviewRows" msprop:Generator_UserRelationName="Player_ScoutReview" msprop:Generator_ParentPropName="PlayerRow" msprop:Generator_RelationVarName="relationPlayer_ScoutReview" msprop:Generator_UserParentTable="Player" />
-      <msdata:Relationship name="Player_VarData" msdata:parent="Player" msdata:child="HistData" msdata:parentkey="PlayerID" msdata:childkey="PlayerID" msprop:Generator_UserChildTable="HistData" msprop:Generator_ChildPropName="GetHistDataRows" msprop:Generator_UserRelationName="Player_VarData" msprop:Generator_ParentPropName="PlayerRow" msprop:Generator_RelationVarName="relationPlayer_VarData" msprop:Generator_UserParentTable="Player" />
-      <msdata:Relationship name="Player_TempData" msdata:parent="Player" msdata:child="TempData" msdata:parentkey="PlayerID" msdata:childkey="PlayerID" msprop:Generator_UserChildTable="TempData" msprop:Generator_ChildPropName="GetTempDataRows" msprop:Generator_UserRelationName="Player_TempData" msprop:Generator_ParentPropName="PlayerRow" msprop:Generator_RelationVarName="relationPlayer_TempData" msprop:Generator_UserParentTable="Player" />
-      <msdata:Relationship name="Scout_ScoutReview" msdata:parent="Scout" msdata:child="ScoutReview" msdata:parentkey="ScoutID" msdata:childkey="ScoutID" msprop:Generator_UserChildTable="ScoutReview" msprop:Generator_ChildPropName="GetScoutReviewRows" msprop:Generator_UserRelationName="Scout_ScoutReview" msprop:Generator_RelationVarName="relationScout_ScoutReview" msprop:Generator_UserParentTable="Scout" msprop:Generator_ParentPropName="ScoutRow" />
+      <msdata:Relationship name="Player_ScoutReview" msdata:parent="Player" msdata:child="ScoutReview" msdata:parentkey="PlayerID" msdata:childkey="PlayerID" msprop:Generator_UserChildTable="ScoutReview" msprop:Generator_ChildPropName="GetScoutReviewRows" msprop:Generator_UserRelationName="Player_ScoutReview" msprop:Generator_RelationVarName="relationPlayer_ScoutReview" msprop:Generator_UserParentTable="Player" msprop:Generator_ParentPropName="PlayerRow" />
+      <msdata:Relationship name="Player_VarData" msdata:parent="Player" msdata:child="HistData" msdata:parentkey="PlayerID" msdata:childkey="PlayerID" msprop:Generator_UserChildTable="HistData" msprop:Generator_ChildPropName="GetHistDataRows" msprop:Generator_UserRelationName="Player_VarData" msprop:Generator_RelationVarName="relationPlayer_VarData" msprop:Generator_UserParentTable="Player" msprop:Generator_ParentPropName="PlayerRow" />
+      <msdata:Relationship name="Player_TempData" msdata:parent="Player" msdata:child="TempData" msdata:parentkey="PlayerID" msdata:childkey="PlayerID" msprop:Generator_UserChildTable="TempData" msprop:Generator_ChildPropName="GetTempDataRows" msprop:Generator_UserRelationName="Player_TempData" msprop:Generator_RelationVarName="relationPlayer_TempData" msprop:Generator_UserParentTable="Player" msprop:Generator_ParentPropName="PlayerRow" />
+      <msdata:Relationship name="Scout_ScoutReview" msdata:parent="Scout" msdata:child="ScoutReview" msdata:parentkey="ScoutID" msdata:childkey="ScoutID" msprop:Generator_UserChildTable="ScoutReview" msprop:Generator_ChildPropName="GetScoutReviewRows" msprop:Generator_UserRelationName="Scout_ScoutReview" msprop:Generator_ParentPropName="ScoutRow" msprop:Generator_RelationVarName="relationScout_ScoutReview" msprop:Generator_UserParentTable="Scout" />
+      <msdata:Relationship name="Team_Player" msdata:parent="Team" msdata:child="Player" msdata:parentkey="TeamID" msdata:childkey="TeamID" msprop:Generator_UserChildTable="Player" msprop:Generator_ChildPropName="GetPlayerRows" msprop:Generator_UserRelationName="Team_Player" msprop:Generator_RelationVarName="relationTeam_Player" msprop:Generator_UserParentTable="Team" msprop:Generator_ParentPropName="TeamRow" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

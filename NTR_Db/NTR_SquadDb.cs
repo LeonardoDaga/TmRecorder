@@ -13,6 +13,14 @@ namespace NTR_Db {
 
     public partial class NTR_SquadDb 
     {
+        partial class MatchDataDataTable
+        {
+        }
+    
+        partial class MatchDataTable
+        {
+        }
+    
         public NTR_Common.GainDS GDS { get; set; }
 
         private List<int> _weeksWithData = null;

@@ -146,7 +146,9 @@ namespace TmRecorder3
             {
             }
 
-            LoadPlayersDB();
+            LoadDB();
+            LoadPlayers();
+            LoadMatches();
         }
 
         private void SetDatesList()
@@ -172,18 +174,21 @@ namespace TmRecorder3
             cbDataDayGK.SelectedItem = tmSwdSelected;
         }
 
-        private void LoadPlayersDB()
+        private void LoadDB()
         {
             try
             {
                 DB.Load(Program.Setts.DefaultDirectory, ref sf, (Program.Setts.Trace > 0));
 
-                SetDatesList();
+                SetDatesList()                
             }
             catch (Exception)
             {
             }
+        }
 
+        private void LoadPlayers()
+        {
             TmSWD selectedItem = (TmSWD)cbDataDay.SelectedItem;
 
             int absPrevWeek = -1;
@@ -199,6 +204,32 @@ namespace TmRecorder3
             ThisWeekGK = (from c in DB.squadDB.HistData
                               where (c.Week == selectedItem.AbsWeek) && (c.PlayerRow.FPn == 0)
                               select new PlayerData(c, absPrevWeek)).OrderBy(p => p.Number);
+
+            FormatPlayersGrid();
+            FormatPlayersGridGK();
+
+            UpdateBrowserNavigationPanel();
+
+            sf.Close();
+        }
+
+        private void LoadMatches()
+        {
+           TmSWD selectedItem = (TmSWD)cbDataDay.SelectedItem;
+
+            int absPrevWeek = -1;
+            if (cbDataDay.SelectedIndex != cbDataDay.Items.Count)
+            {
+                TmSWD selectedItemPrev = (TmSWD)cbDataDay.Items[cbDataDay.SelectedIndex + 1];
+                absPrevWeek = selectedItemPrev.AbsWeek;
+            }
+
+            ThisWeekPlayers = (from c in DB.squadDB.HistData
+                               where (c.Week == selectedItem.AbsWeek) && (c.PlayerRow.FPn != 0)
+                               select new PlayerData(c, absPrevWeek)).OrderBy(p => p.Number);
+            ThisWeekGK = (from c in DB.squadDB.HistData
+                          where (c.Week == selectedItem.AbsWeek) && (c.PlayerRow.FPn == 0)
+                          select new PlayerData(c, absPrevWeek)).OrderBy(p => p.Number);
 
             FormatPlayersGrid();
             FormatPlayersGridGK();
@@ -431,7 +462,9 @@ namespace TmRecorder3
         private void reloadDataFromFilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DB.Clear();
-            LoadPlayersDB();
+            LoadDB();
+            LoadPlayers();
+            LoadMatches();
         }
 
         private void cbDataDay_SelectedIndexChanged(object sender, EventArgs e)

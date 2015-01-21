@@ -44,7 +44,6 @@
             this.chkO21 = new System.Windows.Forms.CheckBox();
             this.chkU21 = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.qsMinRating = new NTR_Controls.QuantitySelector();
             this.chkShowF = new System.Windows.Forms.CheckBox();
             this.chkShowOM = new System.Windows.Forms.CheckBox();
             this.chkShowM = new System.Windows.Forms.CheckBox();
@@ -52,7 +51,6 @@
             this.chkShowD = new System.Windows.Forms.CheckBox();
             this.cbDataDay = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.dgPlayers = new NTR_Controls.AeroDataGrid();
             this.contextMenuPlayersPage = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.movePlayerToATeamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.movePlayerToBTeamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,10 +61,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.cbDataDayGK = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.dgPlayersGK = new NTR_Controls.AeroDataGrid();
-            this.qsMinRatingGK = new NTR_Controls.QuantitySelector();
             this.tabBrowser = new System.Windows.Forms.TabPage();
-            this.ntrBrowser = new NTR_Controls.NTR_Browser();
             this.tsBrowserImport = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
@@ -93,18 +88,53 @@
             this.RightToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.LeftToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.ContentPanel = new System.Windows.Forms.ToolStripContentPanel();
+            this.tabMatches = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.chkHome = new System.Windows.Forms.CheckBox();
+            this.chkAway = new System.Windows.Forms.CheckBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.chkSquadMain = new System.Windows.Forms.CheckBox();
+            this.chkSquadReserves = new System.Windows.Forms.CheckBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cmbSeason = new System.Windows.Forms.ComboBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkMT1 = new System.Windows.Forms.CheckBox();
+            this.chkMT2 = new System.Windows.Forms.CheckBox();
+            this.chkMT3 = new System.Windows.Forms.CheckBox();
+            this.chkMT4 = new System.Windows.Forms.CheckBox();
+            this.chkMT5 = new System.Windows.Forms.CheckBox();
+            this.txtMatchStart = new System.Windows.Forms.TextBox();
+            this.btnHelp = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.qsMinRating = new NTR_Controls.QuantitySelector();
+            this.dgPlayers = new NTR_Controls.AeroDataGrid();
+            this.dgPlayersGK = new NTR_Controls.AeroDataGrid();
+            this.qsMinRatingGK = new NTR_Controls.QuantitySelector();
+            this.dgMatches = new NTR_Controls.AeroDataGrid();
+            this.ntrBrowser = new NTR_Controls.NTR_Browser();
             this.nTR_SquadDb = new NTR_Db.NTR_SquadDb();
             this.DB = new NTR_Db.Data(this.components);
             this.varDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tsMainBar.SuspendLayout();
             this.tabMain.SuspendLayout();
             this.tabSquad.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgPlayers)).BeginInit();
             this.contextMenuPlayersPage.SuspendLayout();
             this.tabGK.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgPlayersGK)).BeginInit();
             this.tabBrowser.SuspendLayout();
             this.tsBrowserImport.SuspendLayout();
+            this.tabMatches.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgPlayers)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgPlayersGK)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgMatches)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nTR_SquadDb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.varDataBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -116,7 +146,7 @@
             this.toolStripDropDownButton3});
             this.tsMainBar.Location = new System.Drawing.Point(0, 0);
             this.tsMainBar.Name = "tsMainBar";
-            this.tsMainBar.Size = new System.Drawing.Size(951, 36);
+            this.tsMainBar.Size = new System.Drawing.Size(1246, 38);
             this.tsMainBar.TabIndex = 2;
             this.tsMainBar.Text = "toolStrip1";
             // 
@@ -127,14 +157,14 @@
             this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(38, 33);
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(38, 35);
             this.toolStripDropDownButton1.Text = "File";
             this.toolStripDropDownButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // importDataFromTmR1xFormatToolStripMenuItem
             // 
             this.importDataFromTmR1xFormatToolStripMenuItem.Name = "importDataFromTmR1xFormatToolStripMenuItem";
-            this.importDataFromTmR1xFormatToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
+            this.importDataFromTmR1xFormatToolStripMenuItem.Size = new System.Drawing.Size(250, 22);
             this.importDataFromTmR1xFormatToolStripMenuItem.Text = "Import Data from TmR 1.x format";
             // 
             // toolStripDropDownButton3
@@ -145,21 +175,21 @@
             this.toolStripDropDownButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton3.Image")));
             this.toolStripDropDownButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton3.Name = "toolStripDropDownButton3";
-            this.toolStripDropDownButton3.Size = new System.Drawing.Size(47, 33);
+            this.toolStripDropDownButton3.Size = new System.Drawing.Size(49, 35);
             this.toolStripDropDownButton3.Text = "Tools";
             this.toolStripDropDownButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // tsOptions
             // 
             this.tsOptions.Name = "tsOptions";
-            this.tsOptions.Size = new System.Drawing.Size(188, 22);
+            this.tsOptions.Size = new System.Drawing.Size(190, 22);
             this.tsOptions.Text = "Options";
             this.tsOptions.Click += new System.EventHandler(this.tsOptions_Click);
             // 
             // reloadDataFromFilesToolStripMenuItem
             // 
             this.reloadDataFromFilesToolStripMenuItem.Name = "reloadDataFromFilesToolStripMenuItem";
-            this.reloadDataFromFilesToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.reloadDataFromFilesToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.reloadDataFromFilesToolStripMenuItem.Text = "Reload Data from files";
             this.reloadDataFromFilesToolStripMenuItem.Click += new System.EventHandler(this.reloadDataFromFilesToolStripMenuItem_Click);
             // 
@@ -167,12 +197,13 @@
             // 
             this.tabMain.Controls.Add(this.tabSquad);
             this.tabMain.Controls.Add(this.tabGK);
+            this.tabMain.Controls.Add(this.tabMatches);
             this.tabMain.Controls.Add(this.tabBrowser);
             this.tabMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabMain.Location = new System.Drawing.Point(0, 36);
+            this.tabMain.Location = new System.Drawing.Point(0, 38);
             this.tabMain.Name = "tabMain";
             this.tabMain.SelectedIndex = 0;
-            this.tabMain.Size = new System.Drawing.Size(951, 446);
+            this.tabMain.Size = new System.Drawing.Size(1246, 557);
             this.tabMain.TabIndex = 3;
             // 
             // tabSquad
@@ -193,7 +224,7 @@
             this.tabSquad.Location = new System.Drawing.Point(4, 22);
             this.tabSquad.Name = "tabSquad";
             this.tabSquad.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSquad.Size = new System.Drawing.Size(943, 420);
+            this.tabSquad.Size = new System.Drawing.Size(1238, 531);
             this.tabSquad.TabIndex = 0;
             this.tabSquad.Text = "Field Players";
             this.tabSquad.UseVisualStyleBackColor = true;
@@ -239,15 +270,6 @@
             this.label2.Size = new System.Drawing.Size(67, 13);
             this.label2.TabIndex = 7;
             this.label2.Text = "Min. Rating";
-            // 
-            // qsMinRating
-            // 
-            this.qsMinRating.Location = new System.Drawing.Point(507, 5);
-            this.qsMinRating.Name = "qsMinRating";
-            this.qsMinRating.Size = new System.Drawing.Size(85, 17);
-            this.qsMinRating.TabIndex = 6;
-            this.qsMinRating.Value = 0F;
-            this.qsMinRating.ValueChanged += new NTR_Controls.QuantitySelector.ValueChangedHandler(this.qsMinRating_ValueChanged);
             // 
             // chkShowF
             // 
@@ -339,55 +361,26 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Weeks Data";
             // 
-            // dgPlayers
-            // 
-            this.dgPlayers.AllowUserToAddRows = false;
-            this.dgPlayers.AllowUserToDeleteRows = false;
-            this.dgPlayers.AllowUserToOrderColumns = true;
-            this.dgPlayers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgPlayers.AutoGenerateColumns = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgPlayers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgPlayers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgPlayers.ContextMenuStrip = this.contextMenuPlayersPage;
-            this.dgPlayers.DataCollection = null;
-            this.dgPlayers.Location = new System.Drawing.Point(3, 27);
-            this.dgPlayers.Name = "dgPlayers";
-            this.dgPlayers.ReadOnly = true;
-            this.dgPlayers.RowHeadersWidth = 20;
-            this.dgPlayers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgPlayers.Size = new System.Drawing.Size(937, 391);
-            this.dgPlayers.TabIndex = 1;
-            this.dgPlayers.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgPlayers_ColumnHeaderMouseClick);
-            // 
             // contextMenuPlayersPage
             // 
             this.contextMenuPlayersPage.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.movePlayerToATeamToolStripMenuItem,
             this.movePlayerToBTeamToolStripMenuItem});
             this.contextMenuPlayersPage.Name = "contextMenuPlayersPage";
-            this.contextMenuPlayersPage.Size = new System.Drawing.Size(209, 48);
+            this.contextMenuPlayersPage.Size = new System.Drawing.Size(220, 48);
             this.contextMenuPlayersPage.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuPlayersPage_Opening);
             // 
             // movePlayerToATeamToolStripMenuItem
             // 
             this.movePlayerToATeamToolStripMenuItem.Name = "movePlayerToATeamToolStripMenuItem";
-            this.movePlayerToATeamToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.movePlayerToATeamToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
             this.movePlayerToATeamToolStripMenuItem.Text = "Move Player To Main Team";
             this.movePlayerToATeamToolStripMenuItem.Click += new System.EventHandler(this.movePlayerToATeamToolStripMenuItem_Click);
             // 
             // movePlayerToBTeamToolStripMenuItem
             // 
             this.movePlayerToBTeamToolStripMenuItem.Name = "movePlayerToBTeamToolStripMenuItem";
-            this.movePlayerToBTeamToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.movePlayerToBTeamToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
             this.movePlayerToBTeamToolStripMenuItem.Text = "Move Player To B Team";
             this.movePlayerToBTeamToolStripMenuItem.Click += new System.EventHandler(this.movePlayerToBTeamToolStripMenuItem_Click);
             // 
@@ -404,7 +397,7 @@
             this.tabGK.Location = new System.Drawing.Point(4, 22);
             this.tabGK.Name = "tabGK";
             this.tabGK.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGK.Size = new System.Drawing.Size(943, 420);
+            this.tabGK.Size = new System.Drawing.Size(1238, 531);
             this.tabGK.TabIndex = 1;
             this.tabGK.Text = "Goalkeepers";
             this.tabGK.UseVisualStyleBackColor = true;
@@ -471,44 +464,6 @@
             this.label4.TabIndex = 10;
             this.label4.Text = "Weeks Data";
             // 
-            // dgPlayersGK
-            // 
-            this.dgPlayersGK.AllowUserToAddRows = false;
-            this.dgPlayersGK.AllowUserToDeleteRows = false;
-            this.dgPlayersGK.AllowUserToOrderColumns = true;
-            this.dgPlayersGK.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgPlayersGK.AutoGenerateColumns = false;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgPlayersGK.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgPlayersGK.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgPlayersGK.ContextMenuStrip = this.contextMenuPlayersPage;
-            this.dgPlayersGK.DataCollection = null;
-            this.dgPlayersGK.Location = new System.Drawing.Point(3, 27);
-            this.dgPlayersGK.Name = "dgPlayersGK";
-            this.dgPlayersGK.ReadOnly = true;
-            this.dgPlayersGK.RowHeadersWidth = 20;
-            this.dgPlayersGK.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgPlayersGK.Size = new System.Drawing.Size(937, 391);
-            this.dgPlayersGK.TabIndex = 9;
-            this.dgPlayersGK.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgPlayersGK_ColumnHeaderMouseClick);
-            // 
-            // qsMinRatingGK
-            // 
-            this.qsMinRatingGK.Location = new System.Drawing.Point(279, 5);
-            this.qsMinRatingGK.Name = "qsMinRatingGK";
-            this.qsMinRatingGK.Size = new System.Drawing.Size(85, 17);
-            this.qsMinRatingGK.TabIndex = 17;
-            this.qsMinRatingGK.Value = 0F;
-            this.qsMinRatingGK.ValueChanged += new NTR_Controls.QuantitySelector.ValueChangedHandler(this.qsMinRatingGK_ValueChanged);
-            // 
             // tabBrowser
             // 
             this.tabBrowser.Controls.Add(this.ntrBrowser);
@@ -517,22 +472,10 @@
             this.tabBrowser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabBrowser.Name = "tabBrowser";
             this.tabBrowser.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tabBrowser.Size = new System.Drawing.Size(943, 420);
+            this.tabBrowser.Size = new System.Drawing.Size(1238, 531);
             this.tabBrowser.TabIndex = 9;
             this.tabBrowser.Text = "Trophy Browser";
             this.tabBrowser.UseVisualStyleBackColor = true;
-            // 
-            // ntrBrowser
-            // 
-            this.ntrBrowser.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ntrBrowser.DefaultDirectory = "";
-            this.ntrBrowser.Location = new System.Drawing.Point(98, 2);
-            this.ntrBrowser.Name = "ntrBrowser";
-            this.ntrBrowser.Size = new System.Drawing.Size(845, 418);
-            this.ntrBrowser.TabIndex = 3;
-            this.ntrBrowser.ImportedContent += new NTR_Controls.ImportedContentHandler(this.ntrBrowser_ImportedContent);
             // 
             // tsBrowserImport
             // 
@@ -558,7 +501,7 @@
             this.tsBrowserImport.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
             this.tsBrowserImport.Location = new System.Drawing.Point(0, 2);
             this.tsBrowserImport.Name = "tsBrowserImport";
-            this.tsBrowserImport.Size = new System.Drawing.Size(93, 354);
+            this.tsBrowserImport.Size = new System.Drawing.Size(95, 354);
             this.tsBrowserImport.TabIndex = 2;
             this.tsBrowserImport.Text = "toolStrip4";
             // 
@@ -568,7 +511,7 @@
             this.toolStripLabel2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripLabel2.ForeColor = System.Drawing.Color.Navy;
             this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(91, 13);
+            this.toolStripLabel2.Size = new System.Drawing.Size(93, 13);
             this.toolStripLabel2.Text = "TM Access";
             // 
             // toolStripDropDownButton2
@@ -580,38 +523,38 @@
             this.toolStripDropDownButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton2.Image")));
             this.toolStripDropDownButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton2.Name = "toolStripDropDownButton2";
-            this.toolStripDropDownButton2.Size = new System.Drawing.Size(91, 20);
+            this.toolStripDropDownButton2.Size = new System.Drawing.Size(93, 20);
             this.toolStripDropDownButton2.Text = "Extra Team";
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(323, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(336, 22);
             this.toolStripMenuItem1.Text = "Add Extra Team";
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(323, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(336, 22);
             this.toolStripMenuItem2.Text = "Change Browser to the actual Team";
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(323, 22);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(336, 22);
             this.toolStripMenuItem3.Text = "Load HTML file (Squad,Training,Calendar,Players)";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(91, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(93, 6);
             // 
             // toolStripLabel13
             // 
             this.toolStripLabel13.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripLabel13.ForeColor = System.Drawing.Color.Navy;
             this.toolStripLabel13.Name = "toolStripLabel13";
-            this.toolStripLabel13.Size = new System.Drawing.Size(91, 13);
+            this.toolStripLabel13.Size = new System.Drawing.Size(93, 13);
             this.toolStripLabel13.Text = "Automatic";
             // 
             // toolStripLabel1
@@ -620,20 +563,20 @@
             this.toolStripLabel1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripLabel1.ForeColor = System.Drawing.Color.Navy;
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(91, 13);
+            this.toolStripLabel1.Size = new System.Drawing.Size(93, 13);
             this.toolStripLabel1.Text = "Import Panel";
             // 
             // toolStripSeparator8
             // 
             this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(91, 6);
+            this.toolStripSeparator8.Size = new System.Drawing.Size(93, 6);
             // 
             // toolStripLabel5
             // 
             this.toolStripLabel5.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripLabel5.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.toolStripLabel5.Name = "toolStripLabel5";
-            this.toolStripLabel5.Size = new System.Drawing.Size(91, 13);
+            this.toolStripLabel5.Size = new System.Drawing.Size(93, 13);
             this.toolStripLabel5.Text = "Squad Data";
             // 
             // tsbImportSquad
@@ -658,7 +601,7 @@
             this.toolStripLabel14.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripLabel14.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.toolStripLabel14.Name = "toolStripLabel14";
-            this.toolStripLabel14.Size = new System.Drawing.Size(91, 13);
+            this.toolStripLabel14.Size = new System.Drawing.Size(93, 13);
             this.toolStripLabel14.Text = "Training";
             // 
             // tsbScouts
@@ -700,7 +643,7 @@
             this.toolStripLabel15.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripLabel15.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.toolStripLabel15.Name = "toolStripLabel15";
-            this.toolStripLabel15.Size = new System.Drawing.Size(91, 13);
+            this.toolStripLabel15.Size = new System.Drawing.Size(93, 13);
             this.toolStripLabel15.Text = "Matches List";
             // 
             // tsbMatchListA
@@ -742,7 +685,7 @@
             this.toolStripLabel4.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripLabel4.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.toolStripLabel4.Name = "toolStripLabel4";
-            this.toolStripLabel4.Size = new System.Drawing.Size(91, 13);
+            this.toolStripLabel4.Size = new System.Drawing.Size(93, 13);
             this.toolStripLabel4.Text = "Matches";
             // 
             // tsbMatchSquadA
@@ -818,6 +761,379 @@
             this.ContentPanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ContentPanel.Size = new System.Drawing.Size(842, 385);
             // 
+            // tabMatches
+            // 
+            this.tabMatches.Controls.Add(this.tableLayoutPanel1);
+            this.tabMatches.Location = new System.Drawing.Point(4, 22);
+            this.tabMatches.Name = "tabMatches";
+            this.tabMatches.Padding = new System.Windows.Forms.Padding(3);
+            this.tabMatches.Size = new System.Drawing.Size(1238, 531);
+            this.tabMatches.TabIndex = 10;
+            this.tabMatches.Text = "Matches";
+            this.tabMatches.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46.9697F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 53.0303F));
+            this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1232, 525);
+            this.tableLayoutPanel1.TabIndex = 3;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.groupBox4);
+            this.panel1.Controls.Add(this.groupBox3);
+            this.panel1.Controls.Add(this.groupBox2);
+            this.panel1.Controls.Add(this.groupBox1);
+            this.panel1.Controls.Add(this.txtMatchStart);
+            this.panel1.Controls.Add(this.btnHelp);
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.dgMatches);
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(3, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(572, 517);
+            this.panel1.TabIndex = 0;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.chkHome);
+            this.groupBox4.Controls.Add(this.chkAway);
+            this.groupBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.groupBox4.Location = new System.Drawing.Point(443, 0);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox4.Size = new System.Drawing.Size(72, 67);
+            this.groupBox4.TabIndex = 9;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Location";
+            // 
+            // chkHome
+            // 
+            this.chkHome.AutoSize = true;
+            this.chkHome.ForeColor = System.Drawing.Color.Black;
+            this.chkHome.Location = new System.Drawing.Point(7, 22);
+            this.chkHome.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.chkHome.Name = "chkHome";
+            this.chkHome.Size = new System.Drawing.Size(56, 17);
+            this.chkHome.TabIndex = 2;
+            this.chkHome.Text = "Home";
+            this.chkHome.UseVisualStyleBackColor = true;
+            // 
+            // chkAway
+            // 
+            this.chkAway.AutoSize = true;
+            this.chkAway.ForeColor = System.Drawing.Color.Black;
+            this.chkAway.Location = new System.Drawing.Point(7, 41);
+            this.chkAway.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.chkAway.Name = "chkAway";
+            this.chkAway.Size = new System.Drawing.Size(53, 17);
+            this.chkAway.TabIndex = 2;
+            this.chkAway.Text = "Away";
+            this.chkAway.UseVisualStyleBackColor = true;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.chkSquadMain);
+            this.groupBox3.Controls.Add(this.chkSquadReserves);
+            this.groupBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.groupBox3.Location = new System.Drawing.Point(348, 0);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox3.Size = new System.Drawing.Size(90, 67);
+            this.groupBox3.TabIndex = 8;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Squad";
+            // 
+            // chkSquadMain
+            // 
+            this.chkSquadMain.AutoSize = true;
+            this.chkSquadMain.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.chkSquadMain.Location = new System.Drawing.Point(7, 22);
+            this.chkSquadMain.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.chkSquadMain.Name = "chkSquadMain";
+            this.chkSquadMain.Size = new System.Drawing.Size(52, 17);
+            this.chkSquadMain.TabIndex = 2;
+            this.chkSquadMain.Text = "Main";
+            this.chkSquadMain.UseVisualStyleBackColor = true;
+            // 
+            // chkSquadReserves
+            // 
+            this.chkSquadReserves.AutoSize = true;
+            this.chkSquadReserves.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.chkSquadReserves.Location = new System.Drawing.Point(7, 41);
+            this.chkSquadReserves.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.chkSquadReserves.Name = "chkSquadReserves";
+            this.chkSquadReserves.Size = new System.Drawing.Size(70, 17);
+            this.chkSquadReserves.TabIndex = 2;
+            this.chkSquadReserves.Text = "Reserves";
+            this.chkSquadReserves.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.cmbSeason);
+            this.groupBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.groupBox2.Location = new System.Drawing.Point(261, 0);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox2.Size = new System.Drawing.Size(84, 67);
+            this.groupBox2.TabIndex = 7;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Season";
+            // 
+            // cmbSeason
+            // 
+            this.cmbSeason.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSeason.FormattingEnabled = true;
+            this.cmbSeason.Location = new System.Drawing.Point(11, 28);
+            this.cmbSeason.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cmbSeason.Name = "cmbSeason";
+            this.cmbSeason.Size = new System.Drawing.Size(63, 21);
+            this.cmbSeason.TabIndex = 5;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.chkMT1);
+            this.groupBox1.Controls.Add(this.chkMT2);
+            this.groupBox1.Controls.Add(this.chkMT3);
+            this.groupBox1.Controls.Add(this.chkMT4);
+            this.groupBox1.Controls.Add(this.chkMT5);
+            this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.groupBox1.Location = new System.Drawing.Point(54, 0);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox1.Size = new System.Drawing.Size(203, 67);
+            this.groupBox1.TabIndex = 6;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Type";
+            // 
+            // chkMT1
+            // 
+            this.chkMT1.AutoSize = true;
+            this.chkMT1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.chkMT1.Location = new System.Drawing.Point(6, 22);
+            this.chkMT1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.chkMT1.Name = "chkMT1";
+            this.chkMT1.Size = new System.Drawing.Size(63, 17);
+            this.chkMT1.TabIndex = 2;
+            this.chkMT1.Text = "League";
+            this.chkMT1.UseVisualStyleBackColor = true;
+            // 
+            // chkMT2
+            // 
+            this.chkMT2.AutoSize = true;
+            this.chkMT2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.chkMT2.Location = new System.Drawing.Point(78, 22);
+            this.chkMT2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.chkMT2.Name = "chkMT2";
+            this.chkMT2.Size = new System.Drawing.Size(47, 17);
+            this.chkMT2.TabIndex = 2;
+            this.chkMT2.Text = "Cup";
+            this.chkMT2.UseVisualStyleBackColor = true;
+            // 
+            // chkMT3
+            // 
+            this.chkMT3.AutoSize = true;
+            this.chkMT3.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.chkMT3.Location = new System.Drawing.Point(131, 22);
+            this.chkMT3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.chkMT3.Name = "chkMT3";
+            this.chkMT3.Size = new System.Drawing.Size(67, 17);
+            this.chkMT3.TabIndex = 2;
+            this.chkMT3.Text = "Friendly";
+            this.chkMT3.UseVisualStyleBackColor = true;
+            // 
+            // chkMT4
+            // 
+            this.chkMT4.AutoSize = true;
+            this.chkMT4.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.chkMT4.Location = new System.Drawing.Point(7, 41);
+            this.chkMT4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.chkMT4.Name = "chkMT4";
+            this.chkMT4.Size = new System.Drawing.Size(59, 17);
+            this.chkMT4.TabIndex = 2;
+            this.chkMT4.Text = "Fr.Lea.";
+            this.chkMT4.UseVisualStyleBackColor = true;
+            // 
+            // chkMT5
+            // 
+            this.chkMT5.AutoSize = true;
+            this.chkMT5.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.chkMT5.Location = new System.Drawing.Point(78, 41);
+            this.chkMT5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.chkMT5.Name = "chkMT5";
+            this.chkMT5.Size = new System.Drawing.Size(75, 17);
+            this.chkMT5.TabIndex = 2;
+            this.chkMT5.Text = "Int.Match";
+            this.chkMT5.UseVisualStyleBackColor = true;
+            // 
+            // txtMatchStart
+            // 
+            this.txtMatchStart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtMatchStart.Location = new System.Drawing.Point(3, 453);
+            this.txtMatchStart.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtMatchStart.Multiline = true;
+            this.txtMatchStart.Name = "txtMatchStart";
+            this.txtMatchStart.ReadOnly = true;
+            this.txtMatchStart.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtMatchStart.Size = new System.Drawing.Size(563, 61);
+            this.txtMatchStart.TabIndex = 4;
+            // 
+            // btnHelp
+            // 
+            this.btnHelp.Location = new System.Drawing.Point(520, 22);
+            this.btnHelp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnHelp.Name = "btnHelp";
+            this.btnHelp.Size = new System.Drawing.Size(44, 26);
+            this.btnHelp.TabIndex = 3;
+            this.btnHelp.Text = "Help";
+            this.btnHelp.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(3, 434);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(73, 13);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "Match Start";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(3, 23);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(43, 26);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "Match\r\nSelect";
+            // 
+            // qsMinRating
+            // 
+            this.qsMinRating.Location = new System.Drawing.Point(507, 5);
+            this.qsMinRating.Name = "qsMinRating";
+            this.qsMinRating.Size = new System.Drawing.Size(85, 17);
+            this.qsMinRating.TabIndex = 6;
+            this.qsMinRating.Value = 0F;
+            this.qsMinRating.ValueChanged += new NTR_Controls.QuantitySelector.ValueChangedHandler(this.qsMinRating_ValueChanged);
+            // 
+            // dgPlayers
+            // 
+            this.dgPlayers.AllowUserToAddRows = false;
+            this.dgPlayers.AllowUserToDeleteRows = false;
+            this.dgPlayers.AllowUserToOrderColumns = true;
+            this.dgPlayers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgPlayers.AutoGenerateColumns = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgPlayers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgPlayers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgPlayers.ContextMenuStrip = this.contextMenuPlayersPage;
+            this.dgPlayers.DataCollection = null;
+            this.dgPlayers.Location = new System.Drawing.Point(3, 27);
+            this.dgPlayers.Name = "dgPlayers";
+            this.dgPlayers.ReadOnly = true;
+            this.dgPlayers.RowHeadersWidth = 20;
+            this.dgPlayers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgPlayers.Size = new System.Drawing.Size(937, 501);
+            this.dgPlayers.TabIndex = 1;
+            this.dgPlayers.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgPlayers_ColumnHeaderMouseClick);
+            // 
+            // dgPlayersGK
+            // 
+            this.dgPlayersGK.AllowUserToAddRows = false;
+            this.dgPlayersGK.AllowUserToDeleteRows = false;
+            this.dgPlayersGK.AllowUserToOrderColumns = true;
+            this.dgPlayersGK.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgPlayersGK.AutoGenerateColumns = false;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgPlayersGK.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgPlayersGK.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgPlayersGK.ContextMenuStrip = this.contextMenuPlayersPage;
+            this.dgPlayersGK.DataCollection = null;
+            this.dgPlayersGK.Location = new System.Drawing.Point(3, 27);
+            this.dgPlayersGK.Name = "dgPlayersGK";
+            this.dgPlayersGK.ReadOnly = true;
+            this.dgPlayersGK.RowHeadersWidth = 20;
+            this.dgPlayersGK.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgPlayersGK.Size = new System.Drawing.Size(937, 501);
+            this.dgPlayersGK.TabIndex = 9;
+            this.dgPlayersGK.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgPlayersGK_ColumnHeaderMouseClick);
+            // 
+            // qsMinRatingGK
+            // 
+            this.qsMinRatingGK.Location = new System.Drawing.Point(279, 5);
+            this.qsMinRatingGK.Name = "qsMinRatingGK";
+            this.qsMinRatingGK.Size = new System.Drawing.Size(85, 17);
+            this.qsMinRatingGK.TabIndex = 17;
+            this.qsMinRatingGK.Value = 0F;
+            this.qsMinRatingGK.ValueChanged += new NTR_Controls.QuantitySelector.ValueChangedHandler(this.qsMinRatingGK_ValueChanged);
+            // 
+            // dgMatches
+            // 
+            this.dgMatches.AllowUserToAddRows = false;
+            this.dgMatches.AllowUserToDeleteRows = false;
+            this.dgMatches.AllowUserToResizeRows = false;
+            this.dgMatches.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgMatches.AutoGenerateColumns = false;
+            this.dgMatches.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgMatches.DataCollection = null;
+            this.dgMatches.Location = new System.Drawing.Point(0, 68);
+            this.dgMatches.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dgMatches.MultiSelect = false;
+            this.dgMatches.Name = "dgMatches";
+            this.dgMatches.ReadOnly = true;
+            this.dgMatches.RowHeadersWidth = 20;
+            this.dgMatches.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgMatches.Size = new System.Drawing.Size(568, 362);
+            this.dgMatches.TabIndex = 1;
+            // 
+            // ntrBrowser
+            // 
+            this.ntrBrowser.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ntrBrowser.DefaultDirectory = "";
+            this.ntrBrowser.Location = new System.Drawing.Point(98, 2);
+            this.ntrBrowser.Name = "ntrBrowser";
+            this.ntrBrowser.Size = new System.Drawing.Size(845, 526);
+            this.ntrBrowser.TabIndex = 3;
+            this.ntrBrowser.ImportedContent += new NTR_Controls.ImportedContentHandler(this.ntrBrowser_ImportedContent);
+            // 
             // nTR_SquadDb
             // 
             this.nTR_SquadDb.DataSetName = "NTR_SquadDb";
@@ -836,7 +1152,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(951, 482);
+            this.ClientSize = new System.Drawing.Size(1246, 595);
             this.Controls.Add(this.tabMain);
             this.Controls.Add(this.tsMainBar);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -848,15 +1164,27 @@
             this.tabMain.ResumeLayout(false);
             this.tabSquad.ResumeLayout(false);
             this.tabSquad.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgPlayers)).EndInit();
             this.contextMenuPlayersPage.ResumeLayout(false);
             this.tabGK.ResumeLayout(false);
             this.tabGK.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgPlayersGK)).EndInit();
             this.tabBrowser.ResumeLayout(false);
             this.tabBrowser.PerformLayout();
             this.tsBrowserImport.ResumeLayout(false);
             this.tsBrowserImport.PerformLayout();
+            this.tabMatches.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgPlayers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgPlayersGK)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgMatches)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nTR_SquadDb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.varDataBindingSource)).EndInit();
             this.ResumeLayout(false);
@@ -930,6 +1258,28 @@
         private System.Windows.Forms.ToolStripPanel LeftToolStripPanel;
         private System.Windows.Forms.ToolStripContentPanel ContentPanel;
         private NTR_Controls.NTR_Browser ntrBrowser;
+        private System.Windows.Forms.TabPage tabMatches;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.CheckBox chkHome;
+        private System.Windows.Forms.CheckBox chkAway;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.CheckBox chkSquadMain;
+        private System.Windows.Forms.CheckBox chkSquadReserves;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.ComboBox cmbSeason;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.CheckBox chkMT1;
+        private System.Windows.Forms.CheckBox chkMT2;
+        private System.Windows.Forms.CheckBox chkMT3;
+        private System.Windows.Forms.CheckBox chkMT4;
+        private System.Windows.Forms.CheckBox chkMT5;
+        private System.Windows.Forms.TextBox txtMatchStart;
+        private System.Windows.Forms.Button btnHelp;
+        private System.Windows.Forms.Label label5;
+        private NTR_Controls.AeroDataGrid dgMatches;
+        private System.Windows.Forms.Label label6;
     }
 }
 

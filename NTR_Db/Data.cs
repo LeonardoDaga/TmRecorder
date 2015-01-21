@@ -9,6 +9,7 @@ using Common;
 using System.Windows.Forms;
 using Languages;
 using NTR_Common;
+using System.IO.Compression;
 
 namespace NTR_Db
 {
@@ -84,10 +85,55 @@ namespace NTR_Db
             bool trace)
         {
             // Load first the squad data
-            FileInfo fi = new FileInfo(Path.Combine(dirPath, "Ntr_DB.5.xml"));
+            FileInfo fi = new FileInfo(Path.Combine(dirPath, "Players.5.xml"));
 
             if (!fi.Exists)
+            {
                 LoadFromVersion4(dirPath, ref sf, trace);
+
+                // Save in format 5
+                Save(dirPath);
+            }
+            else
+            {
+                DirectoryInfo di = new DirectoryInfo(dirPath);
+
+                fi = new FileInfo(Path.Combine(dirPath, "Players.5.xml"));
+                squadDB.Player.ReadXml(fi.FullName);
+
+                FileInfo[] fis = di.GetFiles("HistData-*.5.xml");
+                int cntfis = fis.Length;
+                for (int i = 0; i < cntfis; i++)
+                {
+                    fi = fis[i];
+
+                    NTR_SquadDb.HistDataDataTable tempHistDataDataTable = new NTR_SquadDb.HistDataDataTable();
+                    tempHistDataDataTable.ReadXml(fi.FullName);
+                    squadDB.HistData.Merge(tempHistDataDataTable);
+                }
+
+                fi = new FileInfo(Path.Combine(dirPath, "ScoutReview.5.xml"));
+                squadDB.ScoutReview.ReadXml(fi.FullName);
+
+                fi = new FileInfo(Path.Combine(dirPath, "Scout.5.xml"));
+                squadDB.Scout.ReadXml(fi.FullName);
+
+                fi = new FileInfo(Path.Combine(dirPath, "TempData.5.xml"));
+                squadDB.TempData.ReadXml(fi.FullName);
+
+                fi = new FileInfo(Path.Combine(dirPath, "Team.5.xml"));
+                squadDB.Team.ReadXml(fi.FullName);
+
+                fi = new FileInfo(Path.Combine(dirPath, "Match.5.xml"));
+                squadDB.Match.ReadXml(fi.FullName);
+
+                latestDataWeek = -1;
+                foreach (NTR_SquadDb.HistDataRow histDataRow in squadDB.HistData)
+                {
+                    if (latestDataWeek < histDataRow.Week)
+                        latestDataWeek = histDataRow.Week;
+                }
+            }
         }
 
         public void LoadFromVersion4(string dirPath, ref Common.SplashForm sf,
@@ -395,6 +441,58 @@ namespace NTR_Db
             squadDB.UpdateDecimals(content);
 
             latestDataWeek = content.Week;
+        }
+
+        public void Save(string dirPath)
+        {
+            // Use it to write it compressed
+            //FileStream outfile = new FileStream("TmDB.xmz", FileMode.Create, FileAccess.Write);
+            //GZipStream ZipStream = new GZipStream(outfile, CompressionMode.Compress, false);
+
+            //squadDB.WriteXml(ZipStream);
+
+            //ZipStream.Close(); // important to close this first to flush compressed stream
+            //outfile.Close(); // important to close this second to flush output stream
+
+            FileInfo fi = new FileInfo(Path.Combine(dirPath, "Players.5.xml"));
+            squadDB.Player.WriteXml(fi.FullName);
+            
+            List<int> weeks = squadDB.WeeksWithData;
+            foreach (int week in weeks)
+            {
+                string filterWeek = "Week=" + week.ToString();
+
+                string filename = "HistData-Week" + week.ToString() + ".5.xml";
+                fi = new FileInfo(Path.Combine(dirPath, filename));
+
+                NTR_SquadDb.HistDataDataTable tempHistDataDataTable = new NTR_SquadDb.HistDataDataTable();
+
+                NTR_SquadDb.HistDataRow[] arrHistDataRows = (NTR_SquadDb.HistDataRow[])squadDB.HistData.Select(filterWeek);
+
+                foreach (NTR_SquadDb.HistDataRow histDataRow in arrHistDataRows)
+                {
+                    NTR_SquadDb.HistDataRow newHistDataRow = tempHistDataDataTable.NewHistDataRow();
+                    newHistDataRow.ItemArray = histDataRow.ItemArray;
+                    tempHistDataDataTable.AddHistDataRow(newHistDataRow);
+                }
+
+                tempHistDataDataTable.WriteXml(fi.FullName);
+            }
+
+            fi = new FileInfo(Path.Combine(dirPath, "ScoutReview.5.xml"));
+            squadDB.ScoutReview.WriteXml(fi.FullName);
+
+            fi = new FileInfo(Path.Combine(dirPath, "Scout.5.xml"));
+            squadDB.Scout.WriteXml(fi.FullName);
+
+            fi = new FileInfo(Path.Combine(dirPath, "TempData.5.xml"));
+            squadDB.TempData.WriteXml(fi.FullName);
+
+            fi = new FileInfo(Path.Combine(dirPath, "Team.5.xml"));
+            squadDB.Team.WriteXml(fi.FullName);
+
+            fi = new FileInfo(Path.Combine(dirPath, "Match.5.xml"));
+            squadDB.Match.WriteXml(fi.FullName);
         }
     }
 

@@ -398,5 +398,10 @@ namespace NTR_Controls
             file.Write(page);
             file.Close();
         }
+
+        internal void Update()
+        {
+            webBrowser.Update();
+        }
     }
 }

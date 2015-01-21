@@ -122,6 +122,10 @@
       <Project>{a61c4450-11b5-4ab8-b6c1-c07ac448ff23}</Project>
       <Name>DataGridViewCustomColumns</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FieldFormationControl\FieldFormationControl\FieldFormationControl.csproj">
+      <Project>{23e5dd68-40ad-438a-8fa8-4a8a632d2480}</Project>
+      <Name>FieldFormationControl</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Multilanguage\Languages.csproj">
       <Project>{e0e469c1-bfb5-4ec0-93f1-f019c9101110}</Project>
       <Name>Languages</Name>

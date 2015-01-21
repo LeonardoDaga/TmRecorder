@@ -100,5 +100,10 @@ namespace NTR_Controls
                 ImportedContent(content);
         }
 
+        private void tsbUpdate_Click(object sender, EventArgs e)
+        {
+            TheBrowser.Update();
+        }
+
     }
 }

@@ -126,6 +126,7 @@
               </xs:element>
               <xs:element name="Color" msprop:Generator_ColumnVarNameInTable="columnColor" msprop:Generator_ColumnPropNameInRow="Color" msprop:Generator_ColumnPropNameInTable="ColorColumn" msprop:Generator_UserColumnName="Color" type="xs:int" minOccurs="0" />
               <xs:element name="Nick" msprop:Generator_ColumnVarNameInTable="columnNick" msprop:Generator_ColumnPropNameInRow="Nick" msprop:Generator_ColumnPropNameInTable="NickColumn" msprop:Generator_UserColumnName="Nick" type="xs:string" minOccurs="0" />
+              <xs:element name="Owner" msprop:Generator_ColumnVarNameInTable="columnOwner" msprop:Generator_ColumnPropNameInRow="Owner" msprop:Generator_ColumnPropNameInTable="OwnerColumn" msprop:Generator_UserColumnName="Owner" type="xs:boolean" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -166,6 +167,7 @@
               <xs:element name="Analysis" msprop:Generator_ColumnVarNameInTable="columnAnalysis" msprop:Generator_ColumnPropNameInRow="Analysis" msprop:Generator_ColumnPropNameInTable="AnalysisColumn" msprop:Generator_UserColumnName="Analysis" type="xs:string" minOccurs="0" />
               <xs:element name="Assist" msprop:Generator_ColumnVarNameInTable="columnAssist" msprop:Generator_ColumnPropNameInRow="Assist" msprop:Generator_ColumnPropNameInTable="AssistColumn" msprop:Generator_UserColumnName="Assist" type="xs:int" minOccurs="0" />
               <xs:element name="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="Status" type="xs:string" minOccurs="0" />
+              <xs:element name="TeamID" msprop:Generator_ColumnVarNameInTable="columnTeamID" msprop:Generator_ColumnPropNameInRow="TeamID" msprop:Generator_ColumnPropNameInTable="TeamIDColumn" msprop:Generator_UserColumnName="TeamID" type="xs:int" minOccurs="0" />
               <xs:element name="NPos" msprop:Generator_ColumnVarNameInTable="columnNPos" msprop:Generator_ColumnPropNameInRow="NPos" msprop:Generator_ColumnPropNameInTable="NPosColumn" msprop:Generator_UserColumnName="NPos" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
@@ -174,13 +176,23 @@
           <xs:complexType>
             <xs:sequence>
               <xs:element name="MatchID" msprop:Generator_ColumnVarNameInTable="columnMatchID" msprop:Generator_ColumnPropNameInRow="MatchID" msprop:Generator_ColumnPropNameInTable="MatchIDColumn" msprop:Generator_UserColumnName="MatchID" type="xs:int" />
-              <xs:element name="ActionID" msprop:Generator_ColumnVarNameInTable="columnActionID" msprop:Generator_ColumnPropNameInRow="ActionID" msprop:Generator_ColumnPropNameInTable="ActionIDColumn" msprop:Generator_UserColumnName="ActionID" type="xs:string" />
+              <xs:element name="ActionID" msprop:Generator_ColumnVarNameInTable="columnActionID" msprop:Generator_ColumnPropNameInRow="ActionID" msprop:Generator_ColumnPropNameInTable="ActionIDColumn" msprop:Generator_UserColumnName="ActionID" type="xs:int" />
               <xs:element name="Time" msprop:Generator_ColumnVarNameInTable="columnTime" msprop:Generator_ColumnPropNameInRow="Time" msprop:Generator_ColumnPropNameInTable="TimeColumn" msprop:Generator_UserColumnName="Time" type="xs:int" minOccurs="0" />
               <xs:element name="Description" msprop:Generator_ColumnVarNameInTable="columnDescription" msprop:Generator_ColumnPropNameInRow="Description" msprop:Generator_ColumnPropNameInTable="DescriptionColumn" msprop:Generator_UserColumnName="Description" type="xs:string" minOccurs="0" />
               <xs:element name="ActionType" msprop:Generator_ColumnVarNameInTable="columnActionType" msprop:Generator_ColumnPropNameInRow="ActionType" msprop:Generator_ColumnPropNameInTable="ActionTypeColumn" msprop:Generator_UserColumnName="ActionType" type="xs:string" minOccurs="0" />
               <xs:element name="TeamID" msdata:Caption="ID" msprop:Generator_ColumnVarNameInTable="columnTeamID" msprop:Generator_ColumnPropNameInRow="TeamID" msprop:Generator_ColumnPropNameInTable="TeamIDColumn" msprop:Generator_UserColumnName="TeamID" type="xs:int" minOccurs="0" />
               <xs:element name="ActionCode" msprop:Generator_ColumnVarNameInTable="columnActionCode" msprop:Generator_ColumnPropNameInRow="ActionCode" msprop:Generator_ColumnPropNameInTable="ActionCodeColumn" msprop:Generator_UserColumnName="ActionCode" type="xs:string" minOccurs="0" />
               <xs:element name="FullDesc" msprop:Generator_ColumnVarNameInTable="columnFullDesc" msprop:Generator_ColumnPropNameInRow="FullDesc" msprop:Generator_ColumnPropNameInTable="FullDescColumn" msprop:Generator_UserColumnName="FullDesc" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TeamData" msprop:Generator_TableClassName="TeamDataDataTable" msprop:Generator_TableVarName="tableTeamData" msprop:Generator_TablePropName="TeamData" msprop:Generator_RowDeletingName="TeamDataRowDeleting" msprop:Generator_RowChangingName="TeamDataRowChanging" msprop:Generator_RowEvHandlerName="TeamDataRowChangeEventHandler" msprop:Generator_RowDeletedName="TeamDataRowDeleted" msprop:Generator_UserTableName="TeamData" msprop:Generator_RowChangedName="TeamDataRowChanged" msprop:Generator_RowEvArgName="TeamDataRowChangeEvent" msprop:Generator_RowClassName="TeamDataRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TeamID" msprop:Generator_ColumnVarNameInTable="columnTeamID" msprop:Generator_ColumnPropNameInRow="TeamID" msprop:Generator_ColumnPropNameInTable="TeamIDColumn" msprop:Generator_UserColumnName="TeamID" type="xs:int" />
+              <xs:element name="Week" msprop:Generator_ColumnVarNameInTable="columnWeek" msprop:Generator_ColumnPropNameInRow="Week" msprop:Generator_ColumnPropNameInTable="WeekColumn" msprop:Generator_UserColumnName="Week" type="xs:int" />
+              <xs:element name="NumSupporters" msdata:Caption="StadiumSize" msprop:Generator_ColumnVarNameInTable="columnNumSupporters" msprop:Generator_ColumnPropNameInRow="NumSupporters" msprop:Generator_ColumnPropNameInTable="NumSupportersColumn" msprop:Generator_UserColumnName="NumSupporters" type="xs:int" minOccurs="0" />
+              <xs:element name="StadiumSize" msprop:Generator_ColumnVarNameInTable="columnStadiumSize" msprop:Generator_ColumnPropNameInRow="StadiumSize" msprop:Generator_ColumnPropNameInTable="StadiumSizeColumn" msprop:Generator_UserColumnName="StadiumSize" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -219,7 +231,7 @@
       <xs:selector xpath=".//mstns:Scout" />
       <xs:field xpath="mstns:ScoutID" />
     </xs:unique>
-    <xs:unique name="Team_Constraint11" msdata:ConstraintName="Constraint11">
+    <xs:unique name="Team_Constraint11" msdata:ConstraintName="Constraint11" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:Team" />
       <xs:field xpath="mstns:TeamID" />
     </xs:unique>
@@ -237,6 +249,11 @@
       <xs:field xpath="mstns:MatchID" />
       <xs:field xpath="mstns:ActionID" />
     </xs:unique>
+    <xs:unique name="TeamData_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:TeamData" />
+      <xs:field xpath="mstns:TeamID" />
+      <xs:field xpath="mstns:Week" />
+    </xs:unique>
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
@@ -251,6 +268,7 @@
       <msdata:Relationship name="Team_Actions" msdata:parent="Team" msdata:child="Actions" msdata:parentkey="TeamID" msdata:childkey="TeamID" msprop:Generator_UserChildTable="Actions" msprop:Generator_ChildPropName="GetActionsRows" msprop:Generator_UserRelationName="Team_Actions" msprop:Generator_ParentPropName="TeamRow" msprop:Generator_RelationVarName="relationTeam_Actions" msprop:Generator_UserParentTable="Team" />
       <msdata:Relationship name="Team_Match" msdata:parent="Team" msdata:child="Match" msdata:parentkey="TeamID" msdata:childkey="OTeamID" msprop:Generator_UserChildTable="Match" msprop:Generator_ChildPropName="GetMatchRowsByTeam_Match" msprop:Generator_UserRelationName="Team_Match" msprop:Generator_ParentPropName="TeamRowByTeam_Match" msprop:Generator_RelationVarName="relationTeam_Match" msprop:Generator_UserParentTable="Team" />
       <msdata:Relationship name="Team_Match1" msdata:parent="Team" msdata:child="Match" msdata:parentkey="TeamID" msdata:childkey="YTeamID" msprop:Generator_UserChildTable="Match" msprop:Generator_ChildPropName="GetMatchRowsByTeam_Match1" msprop:Generator_UserRelationName="Team_Match1" msprop:Generator_ParentPropName="TeamRowByTeam_Match1" msprop:Generator_RelationVarName="relationTeam_Match1" msprop:Generator_UserParentTable="Team" />
+      <msdata:Relationship name="Team_TeamData" msdata:parent="Team" msdata:child="TeamData" msdata:parentkey="TeamID" msdata:childkey="TeamID" msprop:Generator_UserChildTable="TeamData" msprop:Generator_ChildPropName="GetTeamDataRows" msprop:Generator_UserRelationName="Team_TeamData" msprop:Generator_ParentPropName="TeamRow" msprop:Generator_RelationVarName="relationTeam_TeamData" msprop:Generator_UserParentTable="Team" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

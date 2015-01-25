@@ -161,6 +161,8 @@ namespace NTR_Db
                 if (trace) tracer.WriteLine("Added player DB from " + fi.Name);
             }
             if (trace) tracer.Flush();
+
+            // Getting History data
             FileInfo[] fis = di.GetFiles("HistTM-*.2.xml");
             int cntfis = fis.Length;
             for (int i=0; i<cntfis; i++)
@@ -174,6 +176,8 @@ namespace NTR_Db
                 if (trace) tracer.WriteLine("Added History data from " + fi.Name);
             }
             if (trace) tracer.Flush();
+
+            // Getting training data
             fis = di.GetFiles("TrainTM-*.2.xml");
             cntfis = fis.Length;
             for (int i = 0; i < cntfis; i++)            
@@ -186,7 +190,245 @@ namespace NTR_Db
                 
                 if (trace) tracer.WriteLine("Added Training data from " + fi.Name);
             }
+
             if (trace) tracer.Flush();
+
+            // Getting matches data
+            FileInfo fin = new FileInfo(Path.Combine(di.FullName, "MatchesHistory.3.xml"));
+            AddChampsDataFromOldXML(fin);
+
+            fis = di.GetFiles("Match_*.xml");
+            cntfis = fis.Length;
+
+            for (int i = 0; i < cntfis; i++)
+            {
+                fin = fis[i];
+
+                sf.UpdateStatusMessage((i * 100) / cntfis, "Loading Matches from the old DB...");
+
+                AddMatchDataFromXML(fin);
+
+                if (trace) tracer.WriteLine("Added Matches data from " + fin.Name);
+            }
+        }
+
+        private void AddMatchDataFromXML(FileInfo fin)
+        {
+            MatchDS matchDS = new MatchDS();
+            matchDS.ReadXml(fin.FullName);
+
+            int matchID = int.Parse(HTML_Parser.GetNumberAfter(fin.FullName, "Match_"));
+
+            NTR_SquadDb.MatchRow mrRow = squadDB.Match.FindByMatchID(matchID);
+            int YTeamID = mrRow.YTeamID;
+            int OTeamID = mrRow.OTeamID;
+
+            try
+            {
+
+                foreach (MatchDS.YourTeamPerfRow perfRow in matchDS.YourTeamPerf)
+                {
+                    NTR_SquadDb.PlayerRow pr = squadDB.Player.FindByPlayerID(perfRow.PlayerID);
+                    if (pr == null)
+                    {
+                        pr = squadDB.Player.NewPlayerRow();
+                        pr.PlayerID = perfRow.PlayerID;
+                        pr.Name = perfRow.Name;
+                        squadDB.Player.AddPlayerRow(pr);
+                    }
+
+                    NTR_SquadDb.PlayerPerfRow ppr = squadDB.PlayerPerf.FindByMatchIDPlayerID(matchID, perfRow.PlayerID);
+                    if (ppr == null)
+                    {
+                        ppr = squadDB.PlayerPerf.NewPlayerPerfRow();
+                        ppr.PlayerID = perfRow.PlayerID;
+                        ppr.MatchID = matchID;
+                        squadDB.PlayerPerf.AddPlayerPerfRow(ppr);
+                    }
+
+                    pr.TeamID = YTeamID;
+                    ppr.TeamID = YTeamID;
+                    if (!perfRow.IsVoteNull())
+                        ppr.Vote = perfRow.Vote;
+                    ppr.Position = perfRow.Position;
+                    ppr.Scored = perfRow.Scored;
+                    ppr.Number = perfRow.Number;
+                    ppr.Assist = perfRow.Assist;
+                    ppr.Status = perfRow.Status;
+                    ppr.NPos = perfRow.NPos;
+                }
+            }
+            catch (Exception)
+            {
+            }
+
+            try
+            {
+                foreach (MatchDS.OppsTeamPerfRow perfRow in matchDS.OppsTeamPerf)
+                {
+                    NTR_SquadDb.PlayerRow pr = squadDB.Player.FindByPlayerID(perfRow.PlayerID);
+                    if (pr == null)
+                    {
+                        pr = squadDB.Player.NewPlayerRow();
+                        pr.PlayerID = perfRow.PlayerID;
+
+                        pr.TeamID = OTeamID;
+                        pr.Name = perfRow.Name;
+                        squadDB.Player.AddPlayerRow(pr);
+                    }
+
+                    NTR_SquadDb.PlayerPerfRow ppr = squadDB.PlayerPerf.FindByMatchIDPlayerID(matchID, perfRow.PlayerID);
+                    if (ppr == null)
+                    {
+                        ppr = squadDB.PlayerPerf.NewPlayerPerfRow();
+                        ppr.PlayerID = perfRow.PlayerID;
+                        ppr.MatchID = matchID;
+                        squadDB.PlayerPerf.AddPlayerPerfRow(ppr);
+                    }
+
+                    ppr.TeamID = OTeamID;
+                    if (!perfRow.IsVoteNull())
+                        ppr.Vote = perfRow.Vote;
+                    ppr.Position = perfRow.Position;
+                    ppr.Scored = perfRow.Scored;
+                    ppr.Number = perfRow.Number;
+                    ppr.Assist = perfRow.Assist;
+                    ppr.Status = perfRow.Status;
+                    ppr.NPos = perfRow.NPos;
+                }
+            }
+            catch(Exception)
+            {
+            }
+
+            // TODO: Save Actions
+            int actionID = 0;
+            foreach (MatchDS.ActionsRow actionsRow in matchDS.Actions)
+            {
+                NTR_SquadDb.ActionsRow ar = squadDB.Actions.FindByMatchIDActionID(matchID, actionID);
+                if (ar == null)
+                {
+                    ar = squadDB.Actions.NewActionsRow();
+                    ar.ActionID = actionID;
+                    ar.MatchID = matchID;
+                    squadDB.Actions.AddActionsRow(ar);
+                }
+                actionID++;
+
+                ar.ActionCode = actionsRow.ActionCode;
+                if (!actionsRow.IsActionTypeNull())
+                    ar.ActionType = actionsRow.ActionType;
+                ar.Description = actionsRow.Description;
+                ar.FullDesc = actionsRow.FullDesc;
+                ar.Time = actionsRow.Time;
+                ar.TeamID = actionsRow.ID;
+
+                NTR_SquadDb.TeamRow tr = squadDB.Team.FindByTeamID(ar.TeamID);
+                if (tr == null)
+                {
+                    // Find the relative match
+                    NTR_SquadDb.MatchRow mr = squadDB.Match.FindByMatchID(matchID);
+                    if (mr.OTeamID != ar.TeamID)
+                    {
+                        // Then it's my team
+
+                    }
+                }
+            }
+        }
+
+        private void AddChampsDataFromOldXML(FileInfo fi)
+        {
+            try
+            {
+                ChampDS champDS = new ChampDS();
+                champDS.ReadXml(fi.FullName);
+
+                int teamID = -1;
+                if (champDS.PlyStats.Count > 0)
+                {
+                    int playerID = champDS.PlyStats[0].PlayerID;
+                    NTR_SquadDb.PlayerRow playerRow = squadDB.Player.FindByPlayerID(playerID);
+                    if (playerRow != null)
+                    {
+                        if (!playerRow.IsTeamIDNull())
+                            teamID = playerRow.TeamID;
+                    }
+                }
+
+                //if (teamID != -1)
+                //{
+                //    MessageBox.Show("There is a problem detecting the ID of the imported team. Please enter it here:");
+                //    return;
+                //}
+
+                foreach (ChampDS.MatchRow omr in champDS.Match)
+                {
+                    NTR_SquadDb.MatchRow nmr = squadDB.Match.FindByMatchID(omr.MatchID);
+                    if (nmr == null)
+                    {
+                        nmr = squadDB.Match.NewMatchRow();
+                        nmr.MatchID = omr.MatchID;
+                        squadDB.Match.AddMatchRow(nmr);
+                    }
+
+                    nmr.Date = omr.Date;
+                    nmr.Score = omr.Score;
+                    nmr.MatchType = omr.MatchType;
+                    if (!omr.IsCrowdNull())
+                    {
+                        nmr.Crowd = omr.Crowd;
+                        nmr.Stadium = omr.Stadium;
+                        nmr.Pitch = omr.Pitch;
+                        nmr.Weather = omr.Weather;
+                        nmr.Lineups = omr.YourFormation + ";" + omr.OppsFormation;
+                        nmr.Stats = omr.YourStats + ";" + omr.OppsStats;
+                        nmr.Mentalities = omr.YourMentality + ";" + omr.OppsMentality;
+                        nmr.AttackStyles = omr.YourAttackingStyle + ";" + omr.OppsAttackingStyle;
+                    }
+                    if (!omr.IsCardsNull())
+                        nmr.Cards = omr.Cards;
+
+                    nmr.Report = omr.Report;
+                    nmr.isHome = omr.isHome;
+                    nmr.Analyzed = omr.Analyzed;
+
+                    // nmr.BestPlayer = omr.Best
+                    nmr.OTeamID = omr.OppsClubID;
+
+                    NTR_SquadDb.TeamRow oppsTeamRow = squadDB.Team.FindByTeamID(nmr.OTeamID);
+                    if (oppsTeamRow == null)
+                    {
+                        oppsTeamRow = squadDB.Team.NewTeamRow();
+                        oppsTeamRow.TeamID = nmr.OTeamID;
+                        oppsTeamRow.Name = omr.OppsClubName;
+                        squadDB.Team.AddTeamRow(oppsTeamRow);
+                    }
+
+                    if (!omr.IsOppsNickNull())
+                    {
+                        oppsTeamRow.Nick = omr.OppsNick;
+                    }
+
+                    NTR_SquadDb.TeamRow yourTeamRow = squadDB.Team.FindByTeamID(teamID);
+                    if (yourTeamRow == null)
+                    {
+                        yourTeamRow = squadDB.Team.NewTeamRow();
+                        yourTeamRow.TeamID = teamID;
+                        squadDB.Team.AddTeamRow(yourTeamRow);
+                    }
+                    if (!omr.IsYourNickNull())
+                    {
+                        yourTeamRow.Nick = omr.YourNick;
+                    }
+
+                    // Look for your teamID searching the players
+                    nmr.YTeamID = teamID;
+                }
+            }
+            catch (Exception)
+            {
+            }
         }
 
         private void AddTrainingDataFromXML(FileInfo fi)
@@ -494,6 +736,8 @@ namespace NTR_Db
             fi = new FileInfo(Path.Combine(dirPath, "Match.5.xml"));
             squadDB.Match.WriteXml(fi.FullName);
         }
+
+        public Dictionary<int, string> Teams { get; set; }
     }
 
     public class PlayerData 

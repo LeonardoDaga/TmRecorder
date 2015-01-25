@@ -180,7 +180,7 @@ namespace TmRecorder3
             {
                 DB.Load(Program.Setts.DefaultDirectory, ref sf, (Program.Setts.Trace > 0));
 
-                SetDatesList()                
+                SetDatesList();
             }
             catch (Exception)
             {

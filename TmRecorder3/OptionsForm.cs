@@ -1,4 +1,5 @@
 ﻿using NTR_Common;
+using NTR_Db;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,17 +17,19 @@ namespace TmRecorder3
     {
         private AppSettings appSettings;
         private Common.NationsDS Nations;
+        public NTR_Db.Data DB { get; set; }
 
         public OptionsForm()
         {
             InitializeComponent();
         }
 
-        public OptionsForm(AppSettings appSettings)
+        public OptionsForm(AppSettings appSettings, NTR_Db.Data DB)
         {
             InitializeComponent();
 
             this.appSettings = appSettings;
+            this.DB = DB;
         }
 
         #region Property easy access
@@ -77,28 +80,16 @@ namespace TmRecorder3
             }
         }
 
-        public string MainSquadName
+        public Dictionary<int, string> SquadList
         {
-            get { return txtMainSquadName.Text; }
-            set { txtMainSquadName.Text = value; }
-        }
-
-        public string ReserveSquadName
-        {
-            get { return txtReserveSquadName.Text; }
-            set { txtReserveSquadName.Text = value; }
-        }
-
-        public int MainSquadID
-        {
-            get { return int.Parse(txtMainSquadID.Text); }
-            set { txtMainSquadID.Text = value.ToString(); }
-        }
-
-        public int ReserveSquadID
-        {
-            get { return int.Parse(txtReserveSquadID.Text); }
-            set { txtReserveSquadID.Text = value.ToString(); }
+            set 
+            { 
+                foreach (var squad in value)
+                {
+                    ListViewItem lsi = new ListViewItem(new []{squad.Value, squad.Key.ToString()});
+                    lstSquads.Items.Add(lsi);
+                }
+            }
         }
 
         DirectoryInfo diGains = null;
@@ -196,11 +187,6 @@ namespace TmRecorder3
             // Name of the team
             DefaultNation = appSettings.HomeNation;
 
-            MainSquadName = appSettings.MainSquadName;
-            ReserveSquadName = appSettings.ReserveSquadName;
-            MainSquadID = appSettings.MainSquadID;
-            ReserveSquadID = appSettings.ReserveSquadID;
-
             // Gains
             GainSet = appSettings.GainSet;
 
@@ -210,6 +196,9 @@ namespace TmRecorder3
             // Routine
             RoutineParameters = appSettings.RouParams;
             RoutineFunction = appSettings.RouFunction;
+
+            // Squad list in the default page
+            SquadList = DB.OwnedSquadsList;
         }
 
         private void UpdateSettingsWithControls()
@@ -222,11 +211,6 @@ namespace TmRecorder3
 
             // Name of the team
             appSettings.HomeNation = DefaultNation;
-
-            appSettings.MainSquadName = MainSquadName;
-            appSettings.ReserveSquadName = ReserveSquadName;
-            appSettings.MainSquadID = MainSquadID;
-            appSettings.ReserveSquadID = ReserveSquadID;
 
             // Gains
             appSettings.GainSet = GainSet;
@@ -261,6 +245,7 @@ namespace TmRecorder3
 
             UpdateControlsWithSettings();
         }
+
 
     }
 }

@@ -147,6 +147,12 @@ namespace TmRecorder3
             }
 
             LoadDB();
+
+            FormatPlayersGrid();
+            FormatPlayersGridGK();
+            UpdateTable();
+            UpdateTableGK();
+
             LoadPlayers();
             LoadMatches();
         }
@@ -187,8 +193,24 @@ namespace TmRecorder3
             }
         }
 
+        private void LoadOldDB()
+        {
+            try
+            {
+                DB.LoadOldDB(Program.Setts.DefaultDirectory, ref sf, (Program.Setts.Trace > 0));
+
+                SetDatesList();
+            }
+            catch (Exception)
+            {
+            }
+        }
+
         private void LoadPlayers()
         {
+            if (cbDataDay.Items.Count == 0)
+                return;
+
             TmSWD selectedItem = (TmSWD)cbDataDay.SelectedItem;
 
             int absPrevWeek = -1;
@@ -215,28 +237,6 @@ namespace TmRecorder3
 
         private void LoadMatches()
         {
-           TmSWD selectedItem = (TmSWD)cbDataDay.SelectedItem;
-
-            int absPrevWeek = -1;
-            if (cbDataDay.SelectedIndex != cbDataDay.Items.Count)
-            {
-                TmSWD selectedItemPrev = (TmSWD)cbDataDay.Items[cbDataDay.SelectedIndex + 1];
-                absPrevWeek = selectedItemPrev.AbsWeek;
-            }
-
-            ThisWeekPlayers = (from c in DB.squadDB.HistData
-                               where (c.Week == selectedItem.AbsWeek) && (c.PlayerRow.FPn != 0)
-                               select new PlayerData(c, absPrevWeek)).OrderBy(p => p.Number);
-            ThisWeekGK = (from c in DB.squadDB.HistData
-                          where (c.Week == selectedItem.AbsWeek) && (c.PlayerRow.FPn == 0)
-                          select new PlayerData(c, absPrevWeek)).OrderBy(p => p.Number);
-
-            FormatPlayersGrid();
-            FormatPlayersGridGK();
-
-            UpdateBrowserNavigationPanel();
-
-            sf.Close();
         }
 
         private void UpdateBrowserNavigationPanel()
@@ -533,6 +533,9 @@ namespace TmRecorder3
 
         private void UpdateTable()
         {
+            if (cbDataDay.Items.Count == 0)
+                return;
+
             TmSWD selectedItem = (TmSWD)cbDataDay.SelectedItem;
 
             EnumerableRowCollection<PlayerData> TempPlayers = (from c in ThisWeekPlayers
@@ -577,6 +580,9 @@ namespace TmRecorder3
 
         private void UpdateTableGK()
         {
+            if (cbDataDayGK.Items.Count == 0)
+                return;
+
             TmSWD selectedItem = (TmSWD)cbDataDayGK.SelectedItem;
 
             EnumerableRowCollection<PlayerData> TempPlayers = (from c in ThisWeekGK
@@ -763,7 +769,7 @@ namespace TmRecorder3
 
         private void tsOptions_Click(object sender, EventArgs e)
         {
-            OptionsForm of = new OptionsForm(Program.Setts);
+            OptionsForm of = new OptionsForm(Program.Setts, this.DB);
             if (of.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 FormatPlayersGrid();
@@ -892,6 +898,21 @@ namespace TmRecorder3
             SetDatesList();
 
             UpdateBrowserNavigationPanel();
+        }
+
+        private void reloadOldReleaseDBToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (DB.OwnedSquadsList.Count == 0)
+            {
+                MessageBox.Show("Please import all the team you manage, first");
+                return;
+            }
+
+            OpenFileDialog ofd = Select the directory where is your TeamDS data;
+
+            LoadOldDB();
+            LoadPlayers();
+            LoadMatches();
         }
     }
 }

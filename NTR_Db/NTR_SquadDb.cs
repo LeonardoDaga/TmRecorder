@@ -194,6 +194,9 @@ namespace NTR_Db {
                     closestWeek = week;
             }
 
+            if (closestWeek == -1)
+                return;
+
             foreach(PlayerRow playerRow in content.squadDB.Player)
             {
                 int idPlayer = playerRow.PlayerID;

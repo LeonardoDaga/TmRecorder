@@ -67,14 +67,45 @@ namespace NTR_Db
 
             try
             {
+                // Creates the DB where to put the results, in case it's not already created
+                if (squadDB == null)
+                    squadDB = new NTR_SquadDb();
+
                 {
                     int Id = 0;
 
                     int.TryParse(HTML_Parser.GetNumberAfter(originalSquadString, "A_team="), out Id);
                     MainSquadID = Id;
+                    NTR_SquadDb.TeamRow tr = squadDB.Team.FindByTeamID(Id);
+                    if (tr == null)
+                    {
+                        tr = squadDB.Team.NewTeamRow();
+                        tr.TeamID = Id;
+                        if (Id == TeamID)
+                            tr.Name = ClubName;
+                        else
+                            tr.Name = "";
+                        squadDB.Team.AddTeamRow(tr);
+                    }
+                    tr.Owner = true;
+                    tr.IsReserve = false;
 
                     int.TryParse(HTML_Parser.GetNumberAfter(originalSquadString, "B_team="), out Id);
                     ReserveSquadID = Id;
+
+                    if (Id != 0)
+                    {
+                        tr = squadDB.Team.FindByTeamID(Id);
+                        if (tr == null)
+                        {
+                            tr = squadDB.Team.NewTeamRow();
+                            tr.TeamID = Id;
+                            tr.Name = "";
+                            squadDB.Team.AddTeamRow(tr);
+                        }
+                        tr.Owner = true;
+                        tr.IsReserve = true;
+                    }
                 }
 
                 // squad = HTML_Parser.ConvertHTML_Text(squad);

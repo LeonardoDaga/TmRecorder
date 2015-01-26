@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm3));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsMainBar = new System.Windows.Forms.ToolStrip();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.importDataFromTmR1xFormatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -118,6 +118,7 @@
             this.nTR_SquadDb = new NTR_Db.NTR_SquadDb();
             this.DB = new NTR_Db.Data(this.components);
             this.varDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.reloadOldReleaseDBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsMainBar.SuspendLayout();
             this.tabMain.SuspendLayout();
             this.tabSquad.SuspendLayout();
@@ -146,7 +147,7 @@
             this.toolStripDropDownButton3});
             this.tsMainBar.Location = new System.Drawing.Point(0, 0);
             this.tsMainBar.Name = "tsMainBar";
-            this.tsMainBar.Size = new System.Drawing.Size(1212, 38);
+            this.tsMainBar.Size = new System.Drawing.Size(1212, 36);
             this.tsMainBar.TabIndex = 2;
             this.tsMainBar.Text = "toolStrip1";
             // 
@@ -157,40 +158,41 @@
             this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(38, 35);
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(38, 33);
             this.toolStripDropDownButton1.Text = "File";
             this.toolStripDropDownButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // importDataFromTmR1xFormatToolStripMenuItem
             // 
             this.importDataFromTmR1xFormatToolStripMenuItem.Name = "importDataFromTmR1xFormatToolStripMenuItem";
-            this.importDataFromTmR1xFormatToolStripMenuItem.Size = new System.Drawing.Size(250, 22);
+            this.importDataFromTmR1xFormatToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
             this.importDataFromTmR1xFormatToolStripMenuItem.Text = "Import Data from TmR 1.x format";
             // 
             // toolStripDropDownButton3
             // 
             this.toolStripDropDownButton3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsOptions,
-            this.reloadDataFromFilesToolStripMenuItem});
+            this.reloadDataFromFilesToolStripMenuItem,
+            this.reloadOldReleaseDBToolStripMenuItem});
             this.toolStripDropDownButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton3.Image")));
             this.toolStripDropDownButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton3.Name = "toolStripDropDownButton3";
-            this.toolStripDropDownButton3.Size = new System.Drawing.Size(49, 35);
+            this.toolStripDropDownButton3.Size = new System.Drawing.Size(47, 33);
             this.toolStripDropDownButton3.Text = "Tools";
             this.toolStripDropDownButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // tsOptions
             // 
             this.tsOptions.Name = "tsOptions";
-            this.tsOptions.Size = new System.Drawing.Size(190, 22);
+            this.tsOptions.Size = new System.Drawing.Size(192, 22);
             this.tsOptions.Text = "Options";
             this.tsOptions.Click += new System.EventHandler(this.tsOptions_Click);
             // 
             // reloadDataFromFilesToolStripMenuItem
             // 
             this.reloadDataFromFilesToolStripMenuItem.Name = "reloadDataFromFilesToolStripMenuItem";
-            this.reloadDataFromFilesToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.reloadDataFromFilesToolStripMenuItem.Text = "Reload Data from files";
+            this.reloadDataFromFilesToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.reloadDataFromFilesToolStripMenuItem.Text = "Reload DB";
             this.reloadDataFromFilesToolStripMenuItem.Click += new System.EventHandler(this.reloadDataFromFilesToolStripMenuItem_Click);
             // 
             // tabMain
@@ -200,10 +202,10 @@
             this.tabMain.Controls.Add(this.tabMatches);
             this.tabMain.Controls.Add(this.tabBrowser);
             this.tabMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabMain.Location = new System.Drawing.Point(0, 38);
+            this.tabMain.Location = new System.Drawing.Point(0, 36);
             this.tabMain.Name = "tabMain";
             this.tabMain.SelectedIndex = 0;
-            this.tabMain.Size = new System.Drawing.Size(1212, 557);
+            this.tabMain.Size = new System.Drawing.Size(1212, 559);
             this.tabMain.TabIndex = 3;
             // 
             // tabSquad
@@ -224,7 +226,7 @@
             this.tabSquad.Location = new System.Drawing.Point(4, 22);
             this.tabSquad.Name = "tabSquad";
             this.tabSquad.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSquad.Size = new System.Drawing.Size(1204, 531);
+            this.tabSquad.Size = new System.Drawing.Size(1204, 533);
             this.tabSquad.TabIndex = 0;
             this.tabSquad.Text = "Field Players";
             this.tabSquad.UseVisualStyleBackColor = true;
@@ -379,14 +381,14 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgPlayers.AutoGenerateColumns = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgPlayers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgPlayers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgPlayers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgPlayers.ContextMenuStrip = this.contextMenuPlayersPage;
             this.dgPlayers.DataCollection = null;
@@ -395,7 +397,7 @@
             this.dgPlayers.ReadOnly = true;
             this.dgPlayers.RowHeadersWidth = 20;
             this.dgPlayers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgPlayers.Size = new System.Drawing.Size(1198, 501);
+            this.dgPlayers.Size = new System.Drawing.Size(1198, 503);
             this.dgPlayers.TabIndex = 1;
             this.dgPlayers.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgPlayers_ColumnHeaderMouseClick);
             // 
@@ -405,20 +407,20 @@
             this.movePlayerToATeamToolStripMenuItem,
             this.movePlayerToBTeamToolStripMenuItem});
             this.contextMenuPlayersPage.Name = "contextMenuPlayersPage";
-            this.contextMenuPlayersPage.Size = new System.Drawing.Size(220, 48);
+            this.contextMenuPlayersPage.Size = new System.Drawing.Size(209, 48);
             this.contextMenuPlayersPage.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuPlayersPage_Opening);
             // 
             // movePlayerToATeamToolStripMenuItem
             // 
             this.movePlayerToATeamToolStripMenuItem.Name = "movePlayerToATeamToolStripMenuItem";
-            this.movePlayerToATeamToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
+            this.movePlayerToATeamToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
             this.movePlayerToATeamToolStripMenuItem.Text = "Move Player To Main Team";
             this.movePlayerToATeamToolStripMenuItem.Click += new System.EventHandler(this.movePlayerToATeamToolStripMenuItem_Click);
             // 
             // movePlayerToBTeamToolStripMenuItem
             // 
             this.movePlayerToBTeamToolStripMenuItem.Name = "movePlayerToBTeamToolStripMenuItem";
-            this.movePlayerToBTeamToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
+            this.movePlayerToBTeamToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
             this.movePlayerToBTeamToolStripMenuItem.Text = "Move Player To B Team";
             this.movePlayerToBTeamToolStripMenuItem.Click += new System.EventHandler(this.movePlayerToBTeamToolStripMenuItem_Click);
             // 
@@ -511,14 +513,14 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgPlayersGK.AutoGenerateColumns = false;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgPlayersGK.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgPlayersGK.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgPlayersGK.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgPlayersGK.ContextMenuStrip = this.contextMenuPlayersPage;
             this.dgPlayersGK.DataCollection = null;
@@ -874,7 +876,7 @@
             this.tsBrowserImport.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
             this.tsBrowserImport.Location = new System.Drawing.Point(0, 2);
             this.tsBrowserImport.Name = "tsBrowserImport";
-            this.tsBrowserImport.Size = new System.Drawing.Size(95, 354);
+            this.tsBrowserImport.Size = new System.Drawing.Size(93, 354);
             this.tsBrowserImport.TabIndex = 2;
             this.tsBrowserImport.Text = "toolStrip4";
             // 
@@ -884,7 +886,7 @@
             this.toolStripLabel2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripLabel2.ForeColor = System.Drawing.Color.Navy;
             this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(93, 13);
+            this.toolStripLabel2.Size = new System.Drawing.Size(91, 13);
             this.toolStripLabel2.Text = "TM Access";
             // 
             // toolStripDropDownButton2
@@ -896,38 +898,38 @@
             this.toolStripDropDownButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton2.Image")));
             this.toolStripDropDownButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton2.Name = "toolStripDropDownButton2";
-            this.toolStripDropDownButton2.Size = new System.Drawing.Size(93, 20);
+            this.toolStripDropDownButton2.Size = new System.Drawing.Size(91, 20);
             this.toolStripDropDownButton2.Text = "Extra Team";
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(336, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(323, 22);
             this.toolStripMenuItem1.Text = "Add Extra Team";
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(336, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(323, 22);
             this.toolStripMenuItem2.Text = "Change Browser to the actual Team";
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(336, 22);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(323, 22);
             this.toolStripMenuItem3.Text = "Load HTML file (Squad,Training,Calendar,Players)";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(93, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(91, 6);
             // 
             // toolStripLabel13
             // 
             this.toolStripLabel13.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripLabel13.ForeColor = System.Drawing.Color.Navy;
             this.toolStripLabel13.Name = "toolStripLabel13";
-            this.toolStripLabel13.Size = new System.Drawing.Size(93, 13);
+            this.toolStripLabel13.Size = new System.Drawing.Size(91, 13);
             this.toolStripLabel13.Text = "Automatic";
             // 
             // toolStripLabel1
@@ -936,20 +938,20 @@
             this.toolStripLabel1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripLabel1.ForeColor = System.Drawing.Color.Navy;
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(93, 13);
+            this.toolStripLabel1.Size = new System.Drawing.Size(91, 13);
             this.toolStripLabel1.Text = "Import Panel";
             // 
             // toolStripSeparator8
             // 
             this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(93, 6);
+            this.toolStripSeparator8.Size = new System.Drawing.Size(91, 6);
             // 
             // toolStripLabel5
             // 
             this.toolStripLabel5.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripLabel5.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.toolStripLabel5.Name = "toolStripLabel5";
-            this.toolStripLabel5.Size = new System.Drawing.Size(93, 13);
+            this.toolStripLabel5.Size = new System.Drawing.Size(91, 13);
             this.toolStripLabel5.Text = "Squad Data";
             // 
             // tsbImportSquad
@@ -974,7 +976,7 @@
             this.toolStripLabel14.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripLabel14.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.toolStripLabel14.Name = "toolStripLabel14";
-            this.toolStripLabel14.Size = new System.Drawing.Size(93, 13);
+            this.toolStripLabel14.Size = new System.Drawing.Size(91, 13);
             this.toolStripLabel14.Text = "Training";
             // 
             // tsbScouts
@@ -1016,7 +1018,7 @@
             this.toolStripLabel15.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripLabel15.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.toolStripLabel15.Name = "toolStripLabel15";
-            this.toolStripLabel15.Size = new System.Drawing.Size(93, 13);
+            this.toolStripLabel15.Size = new System.Drawing.Size(91, 13);
             this.toolStripLabel15.Text = "Matches List";
             // 
             // tsbMatchListA
@@ -1058,7 +1060,7 @@
             this.toolStripLabel4.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripLabel4.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.toolStripLabel4.Name = "toolStripLabel4";
-            this.toolStripLabel4.Size = new System.Drawing.Size(93, 13);
+            this.toolStripLabel4.Size = new System.Drawing.Size(91, 13);
             this.toolStripLabel4.Text = "Matches";
             // 
             // tsbMatchSquadA
@@ -1143,10 +1145,18 @@
             // DB
             // 
             this.DB.latestDataDay = new System.DateTime(((long)(0)));
+            this.DB.Teams = null;
             // 
             // varDataBindingSource
             // 
             this.varDataBindingSource.DataSource = typeof(NTR_Db.PlayerData);
+            // 
+            // reloadOldReleaseDBToolStripMenuItem
+            // 
+            this.reloadOldReleaseDBToolStripMenuItem.Name = "reloadOldReleaseDBToolStripMenuItem";
+            this.reloadOldReleaseDBToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.reloadOldReleaseDBToolStripMenuItem.Text = "Reload Old Version DB";
+            this.reloadOldReleaseDBToolStripMenuItem.Click += new System.EventHandler(this.reloadOldReleaseDBToolStripMenuItem_Click);
             // 
             // MainForm3
             // 
@@ -1280,6 +1290,7 @@
         private System.Windows.Forms.Label label5;
         private NTR_Controls.AeroDataGrid dgMatches;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ToolStripMenuItem reloadOldReleaseDBToolStripMenuItem;
     }
 }
 

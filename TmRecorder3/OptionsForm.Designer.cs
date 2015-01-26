@@ -32,19 +32,15 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OptionsForm));
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabMain = new System.Windows.Forms.TabPage();
+            this.lstSquads = new System.Windows.Forms.ListView();
+            this.colName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cbDefaultNation = new System.Windows.Forms.ComboBox();
             this.nationNamesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.rbPro = new System.Windows.Forms.RadioButton();
             this.rbNonPro = new System.Windows.Forms.RadioButton();
-            this.txtReserveSquadID = new System.Windows.Forms.TextBox();
-            this.txtMainSquadID = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.txtReserveSquadName = new System.Windows.Forms.TextBox();
-            this.txtMainSquadName = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.tabFolders = new System.Windows.Forms.TabPage();
             this.btnSelectDataDirectory = new System.Windows.Forms.Button();
@@ -89,16 +85,10 @@
             // 
             // tabMain
             // 
+            this.tabMain.Controls.Add(this.lstSquads);
             this.tabMain.Controls.Add(this.cbDefaultNation);
             this.tabMain.Controls.Add(this.label2);
             this.tabMain.Controls.Add(this.groupBox3);
-            this.tabMain.Controls.Add(this.txtReserveSquadID);
-            this.tabMain.Controls.Add(this.txtMainSquadID);
-            this.tabMain.Controls.Add(this.label11);
-            this.tabMain.Controls.Add(this.txtReserveSquadName);
-            this.tabMain.Controls.Add(this.txtMainSquadName);
-            this.tabMain.Controls.Add(this.label10);
-            this.tabMain.Controls.Add(this.label12);
             this.tabMain.Controls.Add(this.label9);
             this.tabMain.Location = new System.Drawing.Point(4, 22);
             this.tabMain.Name = "tabMain";
@@ -107,6 +97,31 @@
             this.tabMain.TabIndex = 0;
             this.tabMain.Text = "Main";
             this.tabMain.UseVisualStyleBackColor = true;
+            // 
+            // lstSquads
+            // 
+            this.lstSquads.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lstSquads.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colName,
+            this.colID});
+            this.lstSquads.Location = new System.Drawing.Point(109, 60);
+            this.lstSquads.Name = "lstSquads";
+            this.lstSquads.Size = new System.Drawing.Size(532, 218);
+            this.lstSquads.TabIndex = 14;
+            this.lstSquads.UseCompatibleStateImageBehavior = false;
+            this.lstSquads.View = System.Windows.Forms.View.Details;
+            // 
+            // colName
+            // 
+            this.colName.Text = "Team Name";
+            this.colName.Width = 372;
+            // 
+            // colID
+            // 
+            this.colID.Text = "Team ID";
+            this.colID.Width = 112;
             // 
             // cbDefaultNation
             // 
@@ -164,76 +179,15 @@
             this.rbNonPro.Text = "Non PRO";
             this.rbNonPro.UseVisualStyleBackColor = true;
             // 
-            // txtReserveSquadID
-            // 
-            this.txtReserveSquadID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtReserveSquadID.Location = new System.Drawing.Point(527, 102);
-            this.txtReserveSquadID.Name = "txtReserveSquadID";
-            this.txtReserveSquadID.Size = new System.Drawing.Size(114, 20);
-            this.txtReserveSquadID.TabIndex = 7;
-            // 
-            // txtMainSquadID
-            // 
-            this.txtMainSquadID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMainSquadID.Location = new System.Drawing.Point(527, 76);
-            this.txtMainSquadID.Name = "txtMainSquadID";
-            this.txtMainSquadID.Size = new System.Drawing.Size(114, 20);
-            this.txtMainSquadID.TabIndex = 8;
-            // 
-            // label11
-            // 
-            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(524, 60);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(18, 13);
-            this.label11.TabIndex = 3;
-            this.label11.Text = "ID";
-            // 
-            // txtReserveSquadName
-            // 
-            this.txtReserveSquadName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtReserveSquadName.Location = new System.Drawing.Point(96, 102);
-            this.txtReserveSquadName.Name = "txtReserveSquadName";
-            this.txtReserveSquadName.Size = new System.Drawing.Size(425, 20);
-            this.txtReserveSquadName.TabIndex = 9;
-            // 
-            // txtMainSquadName
-            // 
-            this.txtMainSquadName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMainSquadName.Location = new System.Drawing.Point(96, 76);
-            this.txtMainSquadName.Name = "txtMainSquadName";
-            this.txtMainSquadName.Size = new System.Drawing.Size(425, 20);
-            this.txtMainSquadName.TabIndex = 10;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(93, 60);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(35, 13);
-            this.label10.TabIndex = 4;
-            this.label10.Text = "Name";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(5, 105);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(81, 13);
-            this.label12.TabIndex = 5;
-            this.label12.Text = "Reserve Squad";
-            // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(5, 79);
+            this.label9.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.label9.Location = new System.Drawing.Point(8, 67);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(64, 13);
+            this.label9.Size = new System.Drawing.Size(95, 13);
             this.label9.TabIndex = 6;
-            this.label9.Text = "Main Squad";
+            this.label9.Text = "Owned Teams List";
             // 
             // tabFolders
             // 
@@ -464,13 +418,6 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.RadioButton rbPro;
         private System.Windows.Forms.RadioButton rbNonPro;
-        private System.Windows.Forms.TextBox txtReserveSquadID;
-        private System.Windows.Forms.TextBox txtMainSquadID;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox txtReserveSquadName;
-        private System.Windows.Forms.TextBox txtMainSquadName;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox cbDefaultNation;
         private System.Windows.Forms.Label label2;
@@ -492,5 +439,8 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
         private System.Windows.Forms.BindingSource nationNamesBindingSource;
+        private System.Windows.Forms.ListView lstSquads;
+        private System.Windows.Forms.ColumnHeader colName;
+        private System.Windows.Forms.ColumnHeader colID;
     }
 }

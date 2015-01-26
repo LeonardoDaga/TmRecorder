@@ -18,6 +18,27 @@ namespace NTR_Db
         public int latestDataWeek = -1;
         public DateTime latestDataDay { get; set; }
 
+        private Dictionary<int, string> _ownedSquadsList = null;
+        public Dictionary<int, string> OwnedSquadsList
+        {
+            get
+            {
+                if (_ownedSquadsList == null)
+                {
+                    _ownedSquadsList = new Dictionary<int, string>();
+
+                    EnumerableRowCollection<NTR_SquadDb.TeamRow> OwnedSquads = (from c in squadDB.Team
+                                                                    where (c.Owner == true)
+                                                                    select c);
+                    foreach (NTR_SquadDb.TeamRow tr in OwnedSquads)
+                    {
+                        _ownedSquadsList.Add(tr.TeamID, tr.Name);
+                    }
+                }
+                return _ownedSquadsList;
+            }
+        }
+
         public Data()
         {
             InitializeComponent();
@@ -81,20 +102,23 @@ namespace NTR_Db
             }
         }
 
+        public void LoadOldDB(string dirPath, ref Common.SplashForm sf, bool trace)
+        {
+            LoadFromVersion4(dirPath, ref sf, trace);
+
+            // Save in format 5
+            Save(dirPath);
+
+            Invalidate();
+        }
+
         public void Load(string dirPath, ref Common.SplashForm sf,
             bool trace)
         {
             // Load first the squad data
             FileInfo fi = new FileInfo(Path.Combine(dirPath, "Players.5.xml"));
 
-            if (!fi.Exists)
-            {
-                LoadFromVersion4(dirPath, ref sf, trace);
-
-                // Save in format 5
-                Save(dirPath);
-            }
-            else
+            if (fi.Exists)
             {
                 DirectoryInfo di = new DirectoryInfo(dirPath);
 
@@ -134,6 +158,7 @@ namespace NTR_Db
                         latestDataWeek = histDataRow.Week;
                 }
             }
+            Invalidate();
         }
 
         public void LoadFromVersion4(string dirPath, ref Common.SplashForm sf,
@@ -210,6 +235,8 @@ namespace NTR_Db
 
                 if (trace) tracer.WriteLine("Added Matches data from " + fin.Name);
             }
+
+            Invalidate();
         }
 
         private void AddMatchDataFromXML(FileInfo fin)
@@ -335,6 +362,8 @@ namespace NTR_Db
                     }
                 }
             }
+
+            Invalidate();
         }
 
         private void AddChampsDataFromOldXML(FileInfo fi)
@@ -666,6 +695,7 @@ namespace NTR_Db
             trainersSkillsDS.Clear();
             scoutSkillsDS.Clear();
             squadDB.Clear();
+            Invalidate();
         }
 
         public void MergeContent(Content content)
@@ -683,6 +713,13 @@ namespace NTR_Db
             squadDB.UpdateDecimals(content);
 
             latestDataWeek = content.Week;
+
+            Invalidate();
+        }
+
+        private void Invalidate()
+        {
+            _ownedSquadsList = null;
         }
 
         public void Save(string dirPath)

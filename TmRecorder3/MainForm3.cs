@@ -23,6 +23,7 @@ namespace TmRecorder3
     {
         SplashForm sf = null;
         public EnumerableRowCollection<PlayerData> ThisWeekPlayers;
+        public EnumerableRowCollection<MatchData> ThisSeasonMatches;
         public EnumerableRowCollection<PlayerData> ThisWeekGK;
         public EnumerableRowCollection<PlayerData> Players;
         public EnumerableRowCollection<PlayerData> GKs;
@@ -193,13 +194,11 @@ namespace TmRecorder3
             }
         }
 
-        private void LoadOldDB()
+        private void LoadOldDB(string folder)
         {
             try
             {
-                DB.LoadOldDB(Program.Setts.DefaultDirectory, ref sf, (Program.Setts.Trace > 0));
-
-                SetDatesList();
+                DB.LoadOldDB(folder, ref sf, (Program.Setts.Trace > 0));
             }
             catch (Exception)
             {
@@ -211,10 +210,13 @@ namespace TmRecorder3
             if (cbDataDay.Items.Count == 0)
                 return;
 
+            if (cbDataDay.SelectedItem == null)
+                cbDataDay.SelectedItem = cbDataDay.Items[0];
+
             TmSWD selectedItem = (TmSWD)cbDataDay.SelectedItem;
 
             int absPrevWeek = -1;
-            if (cbDataDay.SelectedIndex != cbDataDay.Items.Count)
+            if ((cbDataDay.SelectedIndex + 1) != cbDataDay.Items.Count)
             {
                 TmSWD selectedItemPrev = (TmSWD)cbDataDay.Items[cbDataDay.SelectedIndex + 1];
                 absPrevWeek = selectedItemPrev.AbsWeek;
@@ -237,6 +239,21 @@ namespace TmRecorder3
 
         private void LoadMatches()
         {
+            cmbSeason.Items.Clear();
+            foreach(int season in DB.squadDB.SeasonsWithData)
+            {
+                cmbSeason.Items.Add(season);
+            }
+            cmbSeason.SelectedItem = cmbSeason.Items[0];
+
+            DateTime startDate = TmWeek.GetDateTimeOfSeasonStart((int)cmbSeason.SelectedItem);
+            DateTime endDate = startDate.AddDays(7 * 12);
+
+            ThisSeasonMatches = (from c in DB.squadDB.Match
+                                 where (c.Date > startDate) && (c.Date < endDate)
+                                 select new MatchData(c)).OrderBy(p => p.Date);
+
+            FormatMatchesGrid();
         }
 
         private void UpdateBrowserNavigationPanel()
@@ -337,6 +354,20 @@ namespace TmRecorder3
             //    tsbMatchSquadB.UnderText = "Import ok";
             //    tsbMatchSquadB.UnderColor = Color.DarkGreen;
             //}
+        }
+
+        private void FormatMatchesGrid()
+        {
+            dgMatches.AutoGenerateColumns = false;
+            dgMatches.DataCollection = ThisSeasonMatches;
+
+            dgMatches.Columns.Clear();
+            dgMatches.AddColumn("Date", "Date", 40, AG_Style.String | AG_Style.ResizeAllCells);
+            dgMatches.AddColumn("Home", "Home", 90, AG_Style.FormatString | AG_Style.ResizeAllCells);
+            dgMatches.AddColumn("-", "ScoreString", 20, AG_Style.FormatString | AG_Style.ResizeAllCells);
+            dgMatches.AddColumn("Away", "Away", 90, AG_Style.FormatString | AG_Style.ResizeAllCells);
+            dgMatches.AddColumn("Type", "MatchType", 35, AG_Style.MatchType);
+            dgMatches.AddColumn("Crowd", "Crowd", 90, AG_Style.Numeric | AG_Style.ResizeAllCells);
         }
 
         private void FormatPlayersGrid()
@@ -908,11 +939,36 @@ namespace TmRecorder3
                 return;
             }
 
-            OpenFileDialog ofd = Select the directory where is your TeamDS data;
+            folderBrowserDialog.SelectedPath = Program.Setts.DefaultDirectory;
+            folderBrowserDialog.Description = "Select the folder with old DB";
 
-            LoadOldDB();
+            if (folderBrowserDialog.ShowDialog(this) == System.Windows.Forms.DialogResult.Cancel)
+            {
+                MessageBox.Show("You have to select a folder to load the data from the previous release", "Load Data from Old release");
+                return;
+            }
+
+            DirectoryInfo di = new DirectoryInfo(folderBrowserDialog.SelectedPath);
+            LoadOldDBRecursively(di);
+
+            // Save in format 5
+            DB.Save(Program.Setts.DefaultDirectory);
+
+            SetDatesList();
+
+            DB.squadDB.UpdateDecimalsHistory();
+
             LoadPlayers();
             LoadMatches();
         }
+
+        private void LoadOldDBRecursively(DirectoryInfo di)
+        {
+            LoadOldDB(di.FullName);
+
+            foreach (DirectoryInfo directory in di.GetDirectories())
+                LoadOldDBRecursively(directory);
+        }
+
     }
 }

@@ -786,5 +786,10 @@ namespace Common
             int mm = int.Parse(split[1]);
             return GetBornWeekFromAge(refDate, mm, yy);
         }
+
+        public static int GetSeasonFromWeek(int week)
+        {
+            return week / 12;
+        }
     }
 }

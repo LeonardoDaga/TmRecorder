@@ -114,6 +114,14 @@ namespace NTR_Controls
             {
                 dgv = new TMR_NumDecColumn();
             }
+            else if ((int)(styles & AG_Style.FormatString) > 0)
+            {
+                dgv = new NTR_FormatStringColumn();
+            }
+            else if ((int)(styles & AG_Style.MatchType) > 0)
+            {
+                dgv = new TMR_MatchTypeColumn();
+            }
 
             dgv.Name = Title;
             dgv.DataPropertyName = Property;
@@ -174,5 +182,7 @@ namespace NTR_Controls
         RightJustified = 0x200,
         N1 = 0x400,
         N0 = 0x800,
+        FormatString = 0x1000,
+        MatchType = 0x2000,
     }
 }

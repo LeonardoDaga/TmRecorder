@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Languages;
 using NTR_Common;
 using System.IO.Compression;
+using System.Drawing;
 
 namespace NTR_Db
 {
@@ -18,14 +19,14 @@ namespace NTR_Db
         public int latestDataWeek = -1;
         public DateTime latestDataDay { get; set; }
 
-        private Dictionary<int, string> _ownedSquadsList = null;
-        public Dictionary<int, string> OwnedSquadsList
+        private TeamList _ownedSquadsList = null;
+        public TeamList OwnedSquadsList
         {
             get
             {
                 if (_ownedSquadsList == null)
                 {
-                    _ownedSquadsList = new Dictionary<int, string>();
+                    _ownedSquadsList = new TeamList();
 
                     EnumerableRowCollection<NTR_SquadDb.TeamRow> OwnedSquads = (from c in squadDB.Team
                                                                     where (c.Owner == true)
@@ -105,9 +106,6 @@ namespace NTR_Db
         public void LoadOldDB(string dirPath, ref Common.SplashForm sf, bool trace)
         {
             LoadFromVersion4(dirPath, ref sf, trace);
-
-            // Save in format 5
-            Save(dirPath);
 
             Invalidate();
         }
@@ -349,18 +347,6 @@ namespace NTR_Db
                 ar.FullDesc = actionsRow.FullDesc;
                 ar.Time = actionsRow.Time;
                 ar.TeamID = actionsRow.ID;
-
-                NTR_SquadDb.TeamRow tr = squadDB.Team.FindByTeamID(ar.TeamID);
-                if (tr == null)
-                {
-                    // Find the relative match
-                    NTR_SquadDb.MatchRow mr = squadDB.Match.FindByMatchID(matchID);
-                    if (mr.OTeamID != ar.TeamID)
-                    {
-                        // Then it's my team
-
-                    }
-                }
             }
 
             Invalidate();
@@ -372,24 +358,6 @@ namespace NTR_Db
             {
                 ChampDS champDS = new ChampDS();
                 champDS.ReadXml(fi.FullName);
-
-                int teamID = -1;
-                if (champDS.PlyStats.Count > 0)
-                {
-                    int playerID = champDS.PlyStats[0].PlayerID;
-                    NTR_SquadDb.PlayerRow playerRow = squadDB.Player.FindByPlayerID(playerID);
-                    if (playerRow != null)
-                    {
-                        if (!playerRow.IsTeamIDNull())
-                            teamID = playerRow.TeamID;
-                    }
-                }
-
-                //if (teamID != -1)
-                //{
-                //    MessageBox.Show("There is a problem detecting the ID of the imported team. Please enter it here:");
-                //    return;
-                //}
 
                 foreach (ChampDS.MatchRow omr in champDS.Match)
                 {
@@ -431,6 +399,7 @@ namespace NTR_Db
                         oppsTeamRow = squadDB.Team.NewTeamRow();
                         oppsTeamRow.TeamID = nmr.OTeamID;
                         oppsTeamRow.Name = omr.OppsClubName;
+                        oppsTeamRow.Owner = false;
                         squadDB.Team.AddTeamRow(oppsTeamRow);
                     }
 
@@ -439,20 +408,17 @@ namespace NTR_Db
                         oppsTeamRow.Nick = omr.OppsNick;
                     }
 
-                    NTR_SquadDb.TeamRow yourTeamRow = squadDB.Team.FindByTeamID(teamID);
-                    if (yourTeamRow == null)
-                    {
-                        yourTeamRow = squadDB.Team.NewTeamRow();
-                        yourTeamRow.TeamID = teamID;
-                        squadDB.Team.AddTeamRow(yourTeamRow);
-                    }
+                    var team = OwnedSquadsList.FindValue(omr.isHome ? omr.Home : omr.Away);
+                    int myTeamId = team.Key;
+
+                    NTR_SquadDb.TeamRow yourTeamRow = squadDB.Team.FindByTeamID(myTeamId);
                     if (!omr.IsYourNickNull())
                     {
                         yourTeamRow.Nick = omr.YourNick;
                     }
 
                     // Look for your teamID searching the players
-                    nmr.YTeamID = teamID;
+                    nmr.YTeamID = myTeamId;
                 }
             }
             catch (Exception)
@@ -639,7 +605,6 @@ namespace NTR_Db
             //-------------------------------------------
 
             // SCOUTS
-            scoutSkillsDS.Clear();
             foreach (ExtraDS.ScoutsRow esr in extraDS.Scouts)
             {
                 ScoutsNReviews.ScoutsRow ssr = scoutSkillsDS.Scouts.NewScoutsRow();
@@ -647,13 +612,17 @@ namespace NTR_Db
                 scoutSkillsDS.Scouts.AddScoutsRow(ssr);
             }
 
-            squadDB.Clear();
-
             try
             {
                 foreach (ExtraDS.GiocatoriRow gr in extraDS.Giocatori)
                 {
-                    NTR_SquadDb.PlayerRow pr = squadDB.Player.NewPlayerRow();
+                    NTR_SquadDb.PlayerRow pr = squadDB.Player.FindByPlayerID(gr.PlayerID);
+                    if (pr == null)
+                    {
+                        pr = squadDB.Player.NewPlayerRow();
+                        pr.PlayerID = gr.PlayerID;
+                        squadDB.Player.AddPlayerRow(pr);
+                    }
 
                     pr.Ada = gr.Ada;
                     pr.FP = gr.FP;
@@ -661,7 +630,6 @@ namespace NTR_Db
                     pr.Nationality = gr.Nationality;
                     pr.Name = gr.Nome;
                     pr.No = gr.Numero;
-                    pr.PlayerID = gr.PlayerID;
 
                     pr.wBorn = gr.wBorn;
 
@@ -670,17 +638,23 @@ namespace NTR_Db
                     if (!gr.IsProfessionalismNull())
                         pr.Pro = gr.Professionalism;
                     if (!gr.IsLeadershipNull())
-                        pr.Lea = gr.Leadership;
+                        pr.Lea = gr.Leadership;                    
 
-                    squadDB.Player.AddPlayerRow(pr);
+                    NTR_SquadDb.TempDataRow tdr = squadDB.TempData.FindByPlayerID(gr.PlayerID);
+                    if(tdr == null)
+                    {
+                        tdr = squadDB.TempData.NewTempDataRow();
+                        tdr.PlayerID = gr.PlayerID;
+                        squadDB.TempData.AddTempDataRow(tdr);
+                    }
 
-                    NTR_SquadDb.TempDataRow tdr = squadDB.TempData.NewTempDataRow();
-                    tdr.PlayerID = gr.PlayerID;
                     if (!gr.IsRoutineNull())
-                        tdr.Rou = gr.Routine;
+                        if (tdr.IsRouNull())
+                            tdr.Rou = gr.Routine;
+                        else
+                            tdr.Rou = (tdr.Rou > gr.Routine) ? tdr.Rou : tdr.Rou = gr.Routine;
                     else
-                        tdr.Rou = 0;
-                    squadDB.TempData.AddTempDataRow(tdr);
+                        tdr.Rou = 0;                    
                 }
             }
             catch (Exception ex)
@@ -720,6 +694,7 @@ namespace NTR_Db
         private void Invalidate()
         {
             _ownedSquadsList = null;
+            squadDB.Invalidate();
         }
 
         public void Save(string dirPath)
@@ -775,6 +750,23 @@ namespace NTR_Db
         }
 
         public Dictionary<int, string> Teams { get; set; }
+    }
+
+    public class TeamList: Dictionary<int, string>
+    {
+        public KeyValuePair<int, string> FindValue(string name)
+        {
+            if (!this.ContainsValue(name))
+                return new KeyValuePair<int,string>(-1, "");
+
+            foreach(var squad in this)
+            {
+                if (squad.Value == name)
+                    return squad;
+            }
+
+            return new KeyValuePair<int, string>(-1, "");
+        }
     }
 
     public class PlayerData 
@@ -1081,5 +1073,142 @@ namespace NTR_Db
         public short Ban { get; set; }
 
         public intvar TI { get; set; }
+    }
+
+    public class MatchData
+    {
+        public MatchData(NTR_SquadDb.MatchRow mr)
+        {
+            Date = mr.Date;
+            Crowd = mr.Crowd;
+            if (!mr.IsCardsNull())
+                Cards = mr.Cards;
+            else
+                Cards = "";
+            if (!mr.IsBestPlayerNull())
+                BestPlayer = mr.BestPlayer;
+            else
+                BestPlayer = 0;
+            AttackStyles = mr.AttackStyles;
+            Analyzed = mr.Analyzed;
+            IsHome = mr.isHome;
+            LineUps = mr.Lineups;
+            MatchID = mr.MatchID;
+            MatchType = mr.MatchType;
+            Mentalities = mr.Mentalities;
+            OTeamID = mr.OTeamID;
+            Pitch = mr.Pitch;
+            Report = mr.Report;
+            Score = new MatchScore(mr.Score, IsHome);
+            ScoreString = mr.Score;
+            ScoreString.backColor = Score.ScoreColor;
+            Stadium = mr.Stadium;
+            Stats = mr.Stats;
+            Weather = mr.Weather;
+            YTeamID = mr.YTeamID;
+
+            if (mr.isHome)
+            {
+                Home = mr.TeamRowByTeam_YTeam.Name;
+                Away = mr.TeamRowByTeam_OTeam.Name;
+                Home.isBold = true;
+                Away.isBold = false;
+            }
+            else
+            {
+                Away = mr.TeamRowByTeam_YTeam.Name;
+                Home = mr.TeamRowByTeam_OTeam.Name;
+                Away.isBold = true;
+                Home.isBold = false;
+            }
+            Away.backColor = Score.ScoreColor;
+            Home.backColor = Score.ScoreColor;
+        }
+
+        public DateTime Date { get; set; }
+        public int Crowd { get; set; }
+        public string Cards { get; set; }
+        public int BestPlayer { get; set; }
+        public string AttackStyles { get; set; }
+        public int Analyzed { get; set; }
+        public bool IsHome { get; set; }
+        public string LineUps { get; set; }
+        public int MatchID { get; set; }
+        public byte MatchType { get; set; }
+        public string Mentalities { get; set; }
+        public int OTeamID { get; set; }
+        public string Pitch { get; set; }
+        public bool Report { get; set; }
+        public MatchScore Score { get; set; }
+        public FormattedString ScoreString { get; set; }
+        public string Stadium { get; set; }
+        public string Stats { get; set; }
+        public string Weather { get; set; }
+        public int YTeamID { get; set; }
+        public FormattedString Home { get; set; }
+        public FormattedString Away { get; set; }
+    }
+
+    public class FormattedString
+    {
+        public bool isBold;
+        public string value;
+        public Color backColor = Color.White;
+        public Color fontColor = Color.Black;
+
+        public FormattedString(string s)
+        {
+            value = s;
+        }
+
+        public static implicit operator FormattedString(string s)
+        {
+            return new FormattedString(s);
+        }
+
+        public override string ToString()
+        {
+            return value;
+        }
+    }
+
+    public class MatchScore
+    {
+        public int home;
+        public int away;
+
+        public Color ScoreColor
+        {
+            get
+            {
+                if (home == away)
+                    return Color.LightGray;
+                else if ((home < away) && IsHome)
+                    return Color.LightSalmon;
+                else if ((home > away) && !IsHome)
+                    return Color.LightSalmon;
+                else
+                    return Color.LightGreen;
+            }
+        }
+
+        public MatchScore(string score, bool isHome)
+        {
+            IsHome = isHome;
+
+            try
+            {
+                string[] str = score.Split('-');
+                int.TryParse(str[0], out home);
+                int.TryParse(str[1], out away);
+            }
+            catch
+            {
+                home = 0;
+                away = 0;
+            }
+        }
+
+        public bool IsHome { get; set; }
     }
 }

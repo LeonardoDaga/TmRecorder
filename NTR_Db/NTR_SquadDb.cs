@@ -23,12 +23,18 @@ namespace NTR_Db {
     
         public NTR_Common.GainDS GDS { get; set; }
 
+        public void Invalidate()
+        {
+            _weeksWithData = null;
+            _seasonsWithData = null;
+        }
+
         private List<int> _weeksWithData = null;
         public List<int> WeeksWithData
         {
             get
             {
-                if ((_weeksWithData == null) || (_weeksWithData.Count != HistData.Count))
+                if (_weeksWithData == null)
                 {
                     _weeksWithData = new List<int>();
 
@@ -41,6 +47,29 @@ namespace NTR_Db {
                 }
 
                 return _weeksWithData;
+            }
+        }
+
+        private List<int> _seasonsWithData = null;
+        public List<int> SeasonsWithData
+        {
+            get
+            {
+                if (_seasonsWithData == null) 
+                {
+                    _seasonsWithData = new List<int>();
+
+                    foreach(var week in WeeksWithData)
+                    {
+                        int season = TmWeek.GetSeasonFromWeek(week);
+                        if (!_seasonsWithData.Contains(season))
+                        {
+                            _seasonsWithData.Add(season);
+                        }
+                    }
+                }
+
+                return _seasonsWithData;
             }
         }
 
@@ -205,6 +234,9 @@ namespace NTR_Db {
                 HistDataRow newRow = HistData.FindByPlayerIDWeek(idPlayer, newWeek);
                 HistDataRow oldRow = HistData.FindByPlayerIDWeek(idPlayer, closestWeek);
 
+                if (oldRow == null)
+                    continue;
+
                 int numSkillToUpdate = (playerRow.FPn == 0)?11:14;
                 for (int i = 0; i < numSkillToUpdate ; i++)
                 {
@@ -216,6 +248,42 @@ namespace NTR_Db {
                         newRow[4 + i] = (decimal)oldRow[4 + i] - 0.1M;
                     else if (trainStep == 0)
                         newRow[4 + i] = (decimal)oldRow[4 + i];
+                }
+            }
+        }
+
+        public void UpdateDecimalsHistory()
+        {
+            for (int week = WeeksWithData.Count - 2; week >= 0; week--)
+            {
+                int newWeek = WeeksWithData[week];
+                int closestWeek = WeeksWithData[week + 1];
+
+                foreach (PlayerRow playerRow in Player)
+                {
+                    int idPlayer = playerRow.PlayerID;
+
+                    // Get relative history rows
+                    HistDataRow newRow = HistData.FindByPlayerIDWeek(idPlayer, newWeek);
+                    HistDataRow oldRow = HistData.FindByPlayerIDWeek(idPlayer, closestWeek);
+
+                    if (newRow == null)
+                        continue;
+                    if (oldRow == null)
+                        continue;
+
+                    int numSkillToUpdate = (playerRow.FPn == 0) ? 11 : 14;
+                    for (int i = 0; i < numSkillToUpdate; i++)
+                    {
+                        int trainStep = Tm_Training.TrCode2ToTrValue(newRow.Training, (Tm_Training.eTrainingType)(i + 1));
+
+                        if (trainStep == 1)
+                            newRow[4 + i] = (decimal)oldRow[4 + i] + 0.1M;
+                        else if (trainStep == -1)
+                            newRow[4 + i] = (decimal)oldRow[4 + i] - 0.1M;
+                        else if (trainStep == 0)
+                            newRow[4 + i] = (decimal)oldRow[4 + i];
+                    }
                 }
             }
         }

@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm3));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tsMainBar = new System.Windows.Forms.ToolStrip();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.importDataFromTmR1xFormatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,6 +45,7 @@
             this.chkO21 = new System.Windows.Forms.CheckBox();
             this.chkU21 = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.qsMinRating = new NTR_Controls.QuantitySelector();
             this.chkShowF = new System.Windows.Forms.CheckBox();
             this.chkShowOM = new System.Windows.Forms.CheckBox();
             this.chkShowM = new System.Windows.Forms.CheckBox();
@@ -52,6 +53,7 @@
             this.chkShowD = new System.Windows.Forms.CheckBox();
             this.cbDataDay = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.dgPlayers = new NTR_Controls.AeroDataGrid();
             this.contextMenuPlayersPage = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.movePlayerToATeamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.movePlayerToBTeamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -62,9 +64,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.cbDataDayGK = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.dgPlayersGK = new NTR_Controls.AeroDataGrid();
+            this.qsMinRatingGK = new NTR_Controls.QuantitySelector();
             this.tabMatches = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanelMatches = new System.Windows.Forms.TableLayoutPanel();
+            this.panelMatch = new System.Windows.Forms.Panel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.chkHome = new System.Windows.Forms.CheckBox();
             this.chkAway = new System.Windows.Forms.CheckBox();
@@ -77,10 +81,10 @@
             this.chkMT3 = new System.Windows.Forms.CheckBox();
             this.chkMT4 = new System.Windows.Forms.CheckBox();
             this.chkMT5 = new System.Windows.Forms.CheckBox();
-            this.txtMatchStart = new System.Windows.Forms.TextBox();
             this.btnHelp = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
+            this.dgMatches = new NTR_Controls.AeroDataGrid();
             this.tabBrowser = new System.Windows.Forms.TabPage();
+            this.ntrBrowser = new NTR_Controls.NTR_Browser();
             this.tsBrowserImport = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
@@ -109,31 +113,26 @@
             this.ContentPanel = new System.Windows.Forms.ToolStripContentPanel();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
-            this.qsMinRating = new NTR_Controls.QuantitySelector();
-            this.dgPlayers = new NTR_Controls.AeroDataGrid();
-            this.dgPlayersGK = new NTR_Controls.AeroDataGrid();
-            this.qsMinRatingGK = new NTR_Controls.QuantitySelector();
-            this.dgMatches = new NTR_Controls.AeroDataGrid();
-            this.ntrBrowser = new NTR_Controls.NTR_Browser();
             this.nTR_SquadDb = new NTR_Db.NTR_SquadDb();
             this.DB = new NTR_Db.Data(this.components);
             this.varDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnEnlargeMatchWindow = new System.Windows.Forms.Button();
             this.tsMainBar.SuspendLayout();
             this.tabMain.SuspendLayout();
             this.tabSquad.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgPlayers)).BeginInit();
             this.contextMenuPlayersPage.SuspendLayout();
             this.tabGK.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgPlayersGK)).BeginInit();
             this.tabMatches.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.tableLayoutPanelMatches.SuspendLayout();
+            this.panelMatch.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgMatches)).BeginInit();
             this.tabBrowser.SuspendLayout();
             this.tsBrowserImport.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgPlayers)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgPlayersGK)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgMatches)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nTR_SquadDb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.varDataBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -281,6 +280,15 @@
             this.label2.TabIndex = 7;
             this.label2.Text = "Min. Rating";
             // 
+            // qsMinRating
+            // 
+            this.qsMinRating.Location = new System.Drawing.Point(475, 5);
+            this.qsMinRating.Name = "qsMinRating";
+            this.qsMinRating.Size = new System.Drawing.Size(85, 17);
+            this.qsMinRating.TabIndex = 6;
+            this.qsMinRating.Value = 0F;
+            this.qsMinRating.ValueChanged += new NTR_Controls.QuantitySelector.ValueChangedHandler(this.qsMinRating_ValueChanged);
+            // 
             // chkShowF
             // 
             this.chkShowF.Appearance = System.Windows.Forms.Appearance.Button;
@@ -382,6 +390,35 @@
             this.label1.Size = new System.Drawing.Size(68, 13);
             this.label1.TabIndex = 3;
             this.label1.Text = "Weeks Data";
+            // 
+            // dgPlayers
+            // 
+            this.dgPlayers.AllowUserToAddRows = false;
+            this.dgPlayers.AllowUserToDeleteRows = false;
+            this.dgPlayers.AllowUserToOrderColumns = true;
+            this.dgPlayers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgPlayers.AutoGenerateColumns = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgPlayers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgPlayers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgPlayers.ContextMenuStrip = this.contextMenuPlayersPage;
+            this.dgPlayers.DataCollection = null;
+            this.dgPlayers.Location = new System.Drawing.Point(3, 27);
+            this.dgPlayers.Name = "dgPlayers";
+            this.dgPlayers.ReadOnly = true;
+            this.dgPlayers.RowHeadersWidth = 20;
+            this.dgPlayers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgPlayers.Size = new System.Drawing.Size(1198, 501);
+            this.dgPlayers.TabIndex = 1;
+            this.dgPlayers.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgPlayers_ColumnHeaderMouseClick);
             // 
             // contextMenuPlayersPage
             // 
@@ -489,9 +526,47 @@
             this.label4.TabIndex = 10;
             this.label4.Text = "Weeks Data";
             // 
+            // dgPlayersGK
+            // 
+            this.dgPlayersGK.AllowUserToAddRows = false;
+            this.dgPlayersGK.AllowUserToDeleteRows = false;
+            this.dgPlayersGK.AllowUserToOrderColumns = true;
+            this.dgPlayersGK.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgPlayersGK.AutoGenerateColumns = false;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgPlayersGK.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgPlayersGK.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgPlayersGK.ContextMenuStrip = this.contextMenuPlayersPage;
+            this.dgPlayersGK.DataCollection = null;
+            this.dgPlayersGK.Location = new System.Drawing.Point(3, 27);
+            this.dgPlayersGK.Name = "dgPlayersGK";
+            this.dgPlayersGK.ReadOnly = true;
+            this.dgPlayersGK.RowHeadersWidth = 20;
+            this.dgPlayersGK.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgPlayersGK.Size = new System.Drawing.Size(1198, 501);
+            this.dgPlayersGK.TabIndex = 9;
+            this.dgPlayersGK.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgPlayersGK_ColumnHeaderMouseClick);
+            // 
+            // qsMinRatingGK
+            // 
+            this.qsMinRatingGK.Location = new System.Drawing.Point(279, 5);
+            this.qsMinRatingGK.Name = "qsMinRatingGK";
+            this.qsMinRatingGK.Size = new System.Drawing.Size(85, 17);
+            this.qsMinRatingGK.TabIndex = 17;
+            this.qsMinRatingGK.Value = 0F;
+            this.qsMinRatingGK.ValueChanged += new NTR_Controls.QuantitySelector.ValueChangedHandler(this.qsMinRatingGK_ValueChanged);
+            // 
             // tabMatches
             // 
-            this.tabMatches.Controls.Add(this.tableLayoutPanel1);
+            this.tabMatches.Controls.Add(this.tableLayoutPanelMatches);
             this.tabMatches.Location = new System.Drawing.Point(4, 22);
             this.tabMatches.Name = "tabMatches";
             this.tabMatches.Padding = new System.Windows.Forms.Padding(3);
@@ -500,37 +575,36 @@
             this.tabMatches.Text = "Matches";
             this.tabMatches.UseVisualStyleBackColor = true;
             // 
-            // tableLayoutPanel1
+            // tableLayoutPanelMatches
             // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46.9697F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 53.0303F));
-            this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1198, 525);
-            this.tableLayoutPanel1.TabIndex = 3;
+            this.tableLayoutPanelMatches.ColumnCount = 2;
+            this.tableLayoutPanelMatches.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46.99499F));
+            this.tableLayoutPanelMatches.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 53.00501F));
+            this.tableLayoutPanelMatches.Controls.Add(this.panelMatch, 0, 0);
+            this.tableLayoutPanelMatches.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanelMatches.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanelMatches.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tableLayoutPanelMatches.Name = "tableLayoutPanelMatches";
+            this.tableLayoutPanelMatches.RowCount = 1;
+            this.tableLayoutPanelMatches.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanelMatches.Size = new System.Drawing.Size(1198, 525);
+            this.tableLayoutPanelMatches.TabIndex = 3;
             // 
-            // panel1
+            // panelMatch
             // 
-            this.panel1.Controls.Add(this.groupBox4);
-            this.panel1.Controls.Add(this.groupBox3);
-            this.panel1.Controls.Add(this.groupBox2);
-            this.panel1.Controls.Add(this.groupBox1);
-            this.panel1.Controls.Add(this.txtMatchStart);
-            this.panel1.Controls.Add(this.btnHelp);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.dgMatches);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 4);
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(556, 517);
-            this.panel1.TabIndex = 0;
+            this.panelMatch.Controls.Add(this.btnEnlargeMatchWindow);
+            this.panelMatch.Controls.Add(this.groupBox4);
+            this.panelMatch.Controls.Add(this.groupBox3);
+            this.panelMatch.Controls.Add(this.groupBox2);
+            this.panelMatch.Controls.Add(this.groupBox1);
+            this.panelMatch.Controls.Add(this.btnHelp);
+            this.panelMatch.Controls.Add(this.dgMatches);
+            this.panelMatch.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelMatch.Location = new System.Drawing.Point(3, 4);
+            this.panelMatch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panelMatch.Name = "panelMatch";
+            this.panelMatch.Size = new System.Drawing.Size(556, 517);
+            this.panelMatch.TabIndex = 0;
             // 
             // groupBox4
             // 
@@ -689,39 +763,36 @@
             this.chkMT5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkMT5.UseVisualStyleBackColor = true;
             // 
-            // txtMatchStart
-            // 
-            this.txtMatchStart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMatchStart.Location = new System.Drawing.Point(3, 453);
-            this.txtMatchStart.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtMatchStart.Multiline = true;
-            this.txtMatchStart.Name = "txtMatchStart";
-            this.txtMatchStart.ReadOnly = true;
-            this.txtMatchStart.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtMatchStart.Size = new System.Drawing.Size(547, 61);
-            this.txtMatchStart.TabIndex = 4;
-            // 
             // btnHelp
             // 
-            this.btnHelp.Location = new System.Drawing.Point(506, 12);
+            this.btnHelp.Location = new System.Drawing.Point(506, 15);
             this.btnHelp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnHelp.Name = "btnHelp";
-            this.btnHelp.Size = new System.Drawing.Size(44, 26);
+            this.btnHelp.Size = new System.Drawing.Size(44, 21);
             this.btnHelp.TabIndex = 3;
             this.btnHelp.Text = "Help";
             this.btnHelp.UseVisualStyleBackColor = true;
             // 
-            // label5
+            // dgMatches
             // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(3, 434);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(73, 13);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "Match Start";
+            this.dgMatches.AllowUserToAddRows = false;
+            this.dgMatches.AllowUserToDeleteRows = false;
+            this.dgMatches.AllowUserToResizeRows = false;
+            this.dgMatches.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgMatches.AutoGenerateColumns = false;
+            this.dgMatches.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgMatches.DataCollection = null;
+            this.dgMatches.Location = new System.Drawing.Point(0, 68);
+            this.dgMatches.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dgMatches.MultiSelect = false;
+            this.dgMatches.Name = "dgMatches";
+            this.dgMatches.ReadOnly = true;
+            this.dgMatches.RowHeadersWidth = 20;
+            this.dgMatches.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgMatches.Size = new System.Drawing.Size(552, 445);
+            this.dgMatches.TabIndex = 1;
             // 
             // tabBrowser
             // 
@@ -735,6 +806,18 @@
             this.tabBrowser.TabIndex = 9;
             this.tabBrowser.Text = "Trophy Browser";
             this.tabBrowser.UseVisualStyleBackColor = true;
+            // 
+            // ntrBrowser
+            // 
+            this.ntrBrowser.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ntrBrowser.DefaultDirectory = "";
+            this.ntrBrowser.Location = new System.Drawing.Point(98, 2);
+            this.ntrBrowser.Name = "ntrBrowser";
+            this.ntrBrowser.Size = new System.Drawing.Size(1103, 524);
+            this.ntrBrowser.TabIndex = 3;
+            this.ntrBrowser.ImportedContent += new NTR_Controls.ImportedContentHandler(this.ntrBrowser_ImportedContent);
             // 
             // tsBrowserImport
             // 
@@ -1024,115 +1107,6 @@
             // 
             this.openFileDialog.FileName = "openFileDialog1";
             // 
-            // qsMinRating
-            // 
-            this.qsMinRating.Location = new System.Drawing.Point(475, 5);
-            this.qsMinRating.Name = "qsMinRating";
-            this.qsMinRating.Size = new System.Drawing.Size(85, 17);
-            this.qsMinRating.TabIndex = 6;
-            this.qsMinRating.Value = 0F;
-            this.qsMinRating.ValueChanged += new NTR_Controls.QuantitySelector.ValueChangedHandler(this.qsMinRating_ValueChanged);
-            // 
-            // dgPlayers
-            // 
-            this.dgPlayers.AllowUserToAddRows = false;
-            this.dgPlayers.AllowUserToDeleteRows = false;
-            this.dgPlayers.AllowUserToOrderColumns = true;
-            this.dgPlayers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgPlayers.AutoGenerateColumns = false;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgPlayers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.dgPlayers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgPlayers.ContextMenuStrip = this.contextMenuPlayersPage;
-            this.dgPlayers.DataCollection = null;
-            this.dgPlayers.Location = new System.Drawing.Point(3, 27);
-            this.dgPlayers.Name = "dgPlayers";
-            this.dgPlayers.ReadOnly = true;
-            this.dgPlayers.RowHeadersWidth = 20;
-            this.dgPlayers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgPlayers.Size = new System.Drawing.Size(1198, 501);
-            this.dgPlayers.TabIndex = 1;
-            this.dgPlayers.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgPlayers_ColumnHeaderMouseClick);
-            // 
-            // dgPlayersGK
-            // 
-            this.dgPlayersGK.AllowUserToAddRows = false;
-            this.dgPlayersGK.AllowUserToDeleteRows = false;
-            this.dgPlayersGK.AllowUserToOrderColumns = true;
-            this.dgPlayersGK.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgPlayersGK.AutoGenerateColumns = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgPlayersGK.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgPlayersGK.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgPlayersGK.ContextMenuStrip = this.contextMenuPlayersPage;
-            this.dgPlayersGK.DataCollection = null;
-            this.dgPlayersGK.Location = new System.Drawing.Point(3, 27);
-            this.dgPlayersGK.Name = "dgPlayersGK";
-            this.dgPlayersGK.ReadOnly = true;
-            this.dgPlayersGK.RowHeadersWidth = 20;
-            this.dgPlayersGK.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgPlayersGK.Size = new System.Drawing.Size(1198, 501);
-            this.dgPlayersGK.TabIndex = 9;
-            this.dgPlayersGK.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgPlayersGK_ColumnHeaderMouseClick);
-            // 
-            // qsMinRatingGK
-            // 
-            this.qsMinRatingGK.Location = new System.Drawing.Point(279, 5);
-            this.qsMinRatingGK.Name = "qsMinRatingGK";
-            this.qsMinRatingGK.Size = new System.Drawing.Size(85, 17);
-            this.qsMinRatingGK.TabIndex = 17;
-            this.qsMinRatingGK.Value = 0F;
-            this.qsMinRatingGK.ValueChanged += new NTR_Controls.QuantitySelector.ValueChangedHandler(this.qsMinRatingGK_ValueChanged);
-            // 
-            // dgMatches
-            // 
-            this.dgMatches.AllowUserToAddRows = false;
-            this.dgMatches.AllowUserToDeleteRows = false;
-            this.dgMatches.AllowUserToResizeRows = false;
-            this.dgMatches.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgMatches.AutoGenerateColumns = false;
-            this.dgMatches.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dgMatches.DataCollection = null;
-            this.dgMatches.Location = new System.Drawing.Point(0, 68);
-            this.dgMatches.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.dgMatches.MultiSelect = false;
-            this.dgMatches.Name = "dgMatches";
-            this.dgMatches.ReadOnly = true;
-            this.dgMatches.RowHeadersWidth = 20;
-            this.dgMatches.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgMatches.Size = new System.Drawing.Size(552, 362);
-            this.dgMatches.TabIndex = 1;
-            // 
-            // ntrBrowser
-            // 
-            this.ntrBrowser.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ntrBrowser.DefaultDirectory = "";
-            this.ntrBrowser.Location = new System.Drawing.Point(98, 2);
-            this.ntrBrowser.Name = "ntrBrowser";
-            this.ntrBrowser.Size = new System.Drawing.Size(1103, 524);
-            this.ntrBrowser.TabIndex = 3;
-            this.ntrBrowser.ImportedContent += new NTR_Controls.ImportedContentHandler(this.ntrBrowser_ImportedContent);
-            // 
             // nTR_SquadDb
             // 
             this.nTR_SquadDb.DataSetName = "NTR_SquadDb";
@@ -1147,6 +1121,18 @@
             // varDataBindingSource
             // 
             this.varDataBindingSource.DataSource = typeof(NTR_Db.PlayerData);
+            // 
+            // btnEnlargeMatchWindow
+            // 
+            this.btnEnlargeMatchWindow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEnlargeMatchWindow.Location = new System.Drawing.Point(506, 39);
+            this.btnEnlargeMatchWindow.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnEnlargeMatchWindow.Name = "btnEnlargeMatchWindow";
+            this.btnEnlargeMatchWindow.Size = new System.Drawing.Size(44, 20);
+            this.btnEnlargeMatchWindow.TabIndex = 10;
+            this.btnEnlargeMatchWindow.Text = ">>";
+            this.btnEnlargeMatchWindow.UseVisualStyleBackColor = true;
+            this.btnEnlargeMatchWindow.Click += new System.EventHandler(this.btnEnlargeMatchWindow_Click);
             // 
             // MainForm3
             // 
@@ -1164,23 +1150,22 @@
             this.tabMain.ResumeLayout(false);
             this.tabSquad.ResumeLayout(false);
             this.tabSquad.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgPlayers)).EndInit();
             this.contextMenuPlayersPage.ResumeLayout(false);
             this.tabGK.ResumeLayout(false);
             this.tabGK.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgPlayersGK)).EndInit();
             this.tabMatches.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.tableLayoutPanelMatches.ResumeLayout(false);
+            this.panelMatch.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgMatches)).EndInit();
             this.tabBrowser.ResumeLayout(false);
             this.tabBrowser.PerformLayout();
             this.tsBrowserImport.ResumeLayout(false);
             this.tsBrowserImport.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgPlayers)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgPlayersGK)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgMatches)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nTR_SquadDb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.varDataBindingSource)).EndInit();
             this.ResumeLayout(false);
@@ -1255,8 +1240,8 @@
         private System.Windows.Forms.ToolStripContentPanel ContentPanel;
         private NTR_Controls.NTR_Browser ntrBrowser;
         private System.Windows.Forms.TabPage tabMatches;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelMatches;
+        private System.Windows.Forms.Panel panelMatch;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.CheckBox chkHome;
         private System.Windows.Forms.CheckBox chkAway;
@@ -1269,13 +1254,12 @@
         private System.Windows.Forms.CheckBox chkMT3;
         private System.Windows.Forms.CheckBox chkMT4;
         private System.Windows.Forms.CheckBox chkMT5;
-        private System.Windows.Forms.TextBox txtMatchStart;
         private System.Windows.Forms.Button btnHelp;
-        private System.Windows.Forms.Label label5;
         private NTR_Controls.AeroDataGrid dgMatches;
         private System.Windows.Forms.ToolStripMenuItem reloadOldReleaseDBToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
+        private System.Windows.Forms.Button btnEnlargeMatchWindow;
     }
 }
 

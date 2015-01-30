@@ -146,15 +146,20 @@ namespace Common
             return "";
         }
 
-        public static Point GetPosition(int pos, bool your, bool centered)
+        public static Point GetPosition(int pos, bool your, bool centered, Size windowSize)
         {
             Point p = new Point();
 
+            float ox = 10.0;
+            float oy = 5.0;
+            float sx = (windowSize.Width - ox * 2.0) / 12.0;
+            float sy = (windowSize.Height - oy * 2.0) / 5.0;
+
             switch (pos)
             {
-                case Pos.GK: p.X = 10; p.Y = 255; break;
+                case Pos.GK: p.X = ox; p.Y = oy ; break;
 
-                case Pos.DL: p.X = 88; p.Y = 25; break;
+                case Pos.DL: p.X = ; p.Y = 25; break;
                 case Pos.DCL: p.X = 88; p.Y = 140; break;
                 case Pos.DC: p.X = 88; p.Y = 255; break;
                 case Pos.DCR: p.X = 88; p.Y = 370; break;

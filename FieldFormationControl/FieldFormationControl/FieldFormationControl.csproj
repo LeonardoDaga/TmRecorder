@@ -136,6 +136,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SmallPlayer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SmallPlayer.Designer.cs">
+      <DependentUpon>SmallPlayer.cs</DependentUpon>
+    </Compile>
     <Compile Include="FlyingPlayerDataPanel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -193,16 +199,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="RotFormationControl.cs">
+    <Compile Include="RotLineupControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="RotFormationControl.Designer.cs">
-      <DependentUpon>RotFormationControl.cs</DependentUpon>
+    <Compile Include="RotLineupControl.Designer.cs">
+      <DependentUpon>RotLineupControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="SmallPlayer.resx">
+      <DependentUpon>SmallPlayer.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="LineupPlayer.resx">
       <DependentUpon>LineupPlayer.cs</DependentUpon>
     </EmbeddedResource>
@@ -227,9 +237,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="RotFormationControl.resx">
+    <EmbeddedResource Include="RotLineupControl.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>RotFormationControl.cs</DependentUpon>
+      <DependentUpon>RotLineupControl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

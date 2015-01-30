@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.rotFormationControl1 = new FieldFormationControl.RotFormationControl();
+            this.rotFormationControl1 = new FieldFormationControl.RotLineupControl();
             this.SuspendLayout();
             // 
             // rotFormationControl1
@@ -58,7 +58,7 @@
 
         #endregion
 
-        private FieldFormationControl.RotFormationControl rotFormationControl1;
+        private FieldFormationControl.RotLineupControl rotFormationControl1;
     }
 }
 

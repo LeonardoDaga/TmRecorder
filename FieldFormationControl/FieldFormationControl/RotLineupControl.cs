@@ -10,16 +10,16 @@ using System.IO;
 
 namespace FieldFormationControl
 {
-    public partial class RotFormationControl : UserControl
+    public partial class RotLineupControl : UserControl
     {
         #region FieldPlayers Object Declaration
-        FieldPlayer[] fp = new FieldPlayer[48];
+        SmallPlayer[] fp = new SmallPlayer[48];
         #endregion
 
         public Formation lastY_Formation = null;
         public Formation lastO_Formation = null;
 
-        public RotFormationControl()
+        public RotLineupControl()
         {
             InitializeComponent();
         }
@@ -172,7 +172,7 @@ namespace FieldFormationControl
             Player[] p = form.players;
             Player L = p[Pos.DL], CL = p[Pos.DCL], C = p[Pos.DC], CR = p[Pos.DCR], R = p[Pos.DR];
 
-            CreatePlayer(L, Position.GetPosition(Pos.DL, true, !C.visible), ref fp[P.Y_DL]);
+            CreatePlayer(L, Position.GetPosition(Pos.DL, true, !C.visible), ref fp[P.Y_DL], ref this.ClientSize);
             CreatePlayer(CL, Position.GetPosition(Pos.DCL, true, !C.visible), ref fp[P.Y_DCL]);
             CreatePlayer(C, Position.GetPosition(Pos.DC, true, !C.visible), ref fp[P.Y_DC]);
             CreatePlayer(CR, Position.GetPosition(Pos.DCR, true, !C.visible), ref fp[P.Y_DCR]);
@@ -275,7 +275,7 @@ namespace FieldFormationControl
 
         #endregion // Opposite formation
 
-        private void CreatePlayer(Player pl, Point pnt, ref FieldPlayer fp)
+        private void CreatePlayer(Player pl, Point pnt, ref SmallPlayer fp)
         {
             if ((fp != null) && (!pl.visible))
             {
@@ -290,7 +290,7 @@ namespace FieldFormationControl
             }
             else if ((fp == null) && (pl.visible))
             {
-                fp = new FieldPlayer();
+                fp = new SmallPlayer();
                 fp.Data = pl;
                 fp.Location = pnt;
                 fp.Visible = true;

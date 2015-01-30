@@ -41,7 +41,7 @@
       <HintPath>..\DataGridViewCustomColumns\bin\x86\Debug\DataGridViewCustomColumns.dll</HintPath>
     </Reference>
     <Reference Include="Languages">
-      <HintPath>..\Multilanguage\bin\x86\Debug32\Languages.dll</HintPath>
+      <HintPath>..\Multilanguage\bin\x86\Debug\Languages.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -94,6 +94,10 @@
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{DFEE4C9B-F9FC-4186-945F-27518E4FCEB7}</Project>
       <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FieldFormationControl\FieldFormationControl\FieldFormationControl.csproj">
+      <Project>{23E5DD68-40AD-438A-8FA8-4A8A632D2480}</Project>
+      <Name>FieldFormationControl</Name>
     </ProjectReference>
     <ProjectReference Include="..\NTR_Controls\NTR_Controls.csproj">
       <Project>{A62AB280-42D0-4639-8391-4BFA73269625}</Project>

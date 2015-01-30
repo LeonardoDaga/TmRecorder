@@ -970,5 +970,21 @@ namespace TmRecorder3
                 LoadOldDBRecursively(directory);
         }
 
+        private void btnEnlargeMatchWindow_Click(object sender, EventArgs e)
+        {
+            if (btnEnlargeMatchWindow.Text == ">>")
+            {
+                btnEnlargeMatchWindow.Text = "<<";
+                tableLayoutPanelMatches.ColumnStyles[0].Width = 95;
+                tableLayoutPanelMatches.ColumnStyles[1].Width = 5;
+            }
+            else
+            {
+                btnEnlargeMatchWindow.Text = ">>";
+                tableLayoutPanelMatches.ColumnStyles[0].Width = 45;
+                tableLayoutPanelMatches.ColumnStyles[1].Width = 55;
+            }
+        }
+
     }
 }

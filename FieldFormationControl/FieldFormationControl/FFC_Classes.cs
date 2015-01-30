@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Drawing;
 
@@ -71,13 +72,15 @@ namespace FieldFormationControl
         const int NUMSHIRTPTS = 16;
         Point[] pts = new Point[NUMSHIRTPTS];
         Point[] shpts = new Point[NUMSHIRTPTS];
+        public static int XSize = 30;
+        public static int YSize = 20;
 
-        public Shirt()
+        public Shirt(int posX = 25, int posY = 13)
         {
             for (int i = 0; i < NUMSHIRTPTS; i++)
             {
-                pts[i].X = 25 + iPts[i * 2];
-                pts[i].Y = 13 + iPts[i * 2 + 1];
+                pts[i].X = posX + iPts[i * 2];
+                pts[i].Y = posY + iPts[i * 2 + 1];
                 shpts[i].X = pts[i].X + 2;
                 shpts[i].Y = pts[i].Y + 3;
             }

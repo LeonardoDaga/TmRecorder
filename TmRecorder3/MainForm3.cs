@@ -244,6 +244,10 @@ namespace TmRecorder3
             {
                 cmbSeason.Items.Add(season);
             }
+
+            if (cmbSeason.Items.Count == 0)
+                return;
+
             cmbSeason.SelectedItem = cmbSeason.Items[0];
 
             DateTime startDate = TmWeek.GetDateTimeOfSeasonStart((int)cmbSeason.SelectedItem);

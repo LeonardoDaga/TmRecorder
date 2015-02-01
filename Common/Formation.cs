@@ -148,64 +148,64 @@ namespace Common
 
         public static Point GetPosition(int pos, bool your, bool centered, Size windowSize)
         {
-            Point p = new Point();
+            PointF p = new PointF();
 
-            float ox = 10.0;
-            float oy = 5.0;
-            float sx = (windowSize.Width - ox * 2.0) / 12.0;
-            float sy = (windowSize.Height - oy * 2.0) / 5.0;
+            float ox = 10.0f;
+            float oy = 5.0f;
+            float sx = (windowSize.Width - ox * 2.0f) / 12.0f;
+            float sy = (windowSize.Height - oy * 2.0f) / 5.0f;
 
             switch (pos)
             {
-                case Pos.GK: p.X = ox; p.Y = oy ; break;
+                case Pos.GK: p.X = ox + 0 * sx; p.Y = oy + 2 * sy; break;
 
-                case Pos.DL: p.X = ; p.Y = 25; break;
-                case Pos.DCL: p.X = 88; p.Y = 140; break;
-                case Pos.DC: p.X = 88; p.Y = 255; break;
-                case Pos.DCR: p.X = 88; p.Y = 370; break;
-                case Pos.DR: p.X = 88; p.Y = 485; break;
+                case Pos.DL: p.X = ox + 1 * sx; p.Y = oy + 0 * sy; break;
+                case Pos.DCL: p.X = ox + 1 * sx; p.Y = oy + 1 * sy; break;
+                case Pos.DC: p.X = ox + 1 * sx; p.Y = oy + 2 * sy; break;
+                case Pos.DCR: p.X = ox + 1 * sx; p.Y = oy + 3 * sy; break;
+                case Pos.DR: p.X = ox + 1 * sx; p.Y = oy + 4 * sy; break;
 
-                case Pos.DML: p.X = 244; p.Y = 25; break;
-                case Pos.DMCL: p.X = 244; p.Y = 140; break;
-                case Pos.DMC: p.X = 244; p.Y = 255; break;
-                case Pos.DMCR: p.X = 244; p.Y = 370; break;
-                case Pos.DMR: p.X = 244; p.Y = 485; break;
+                case Pos.DML: p.X = ox + 2 * sx; p.Y = oy + 0 * sy; break;
+                case Pos.DMCL: p.X = ox + 2 * sx; p.Y = oy + 1* sy; break;
+                case Pos.DMC: p.X = ox + 2 * sx; p.Y = oy + 2 * sy; break;
+                case Pos.DMCR: p.X = ox + 2 * sx; p.Y = oy + 3 * sy; break;
+                case Pos.DMR: p.X = ox + 2 * sx; p.Y = oy + 4 * sy; break;
 
-                case Pos.ML: p.X = 400; p.Y = 25; break;
-                case Pos.MCL: p.X = 400; p.Y = 140; break;
-                case Pos.MC: p.X = 400; p.Y = 255; break;
-                case Pos.MCR: p.X = 400; p.Y = 370; break;
-                case Pos.MR: p.X = 400; p.Y = 485; break;
+                case Pos.ML: p.X = ox + 3 * sx; p.Y = oy + 0 * sy; break;
+                case Pos.MCL: p.X = ox + 3 * sx; p.Y = oy + 1 * sy; break;
+                case Pos.MC: p.X = ox + 3 * sx; p.Y = oy + 2 * sy; break;
+                case Pos.MCR: p.X = ox + 3 * sx; p.Y = oy + 3 * sy; break;
+                case Pos.MR: p.X = ox + 3 * sx; p.Y = oy + 4 * sy; break;
 
-                case Pos.OML: p.X = 556; p.Y = 25; break;
-                case Pos.OMCL: p.X = 556; p.Y = 140; break;
-                case Pos.OMC: p.X = 556; p.Y = 255; break;
-                case Pos.OMCR: p.X = 556; p.Y = 370; break;
-                case Pos.OMR: p.X = 556; p.Y = 485; break;
+                case Pos.OML: p.X = ox + 4 * sx; p.Y = oy + 0 * sy; break;
+                case Pos.OMCL: p.X = ox + 4 * sx; p.Y = oy + 1 * sy; break;
+                case Pos.OMC: p.X = ox + 4 * sx; p.Y = oy + 2 * sy; break;
+                case Pos.OMCR: p.X = ox + 4 * sx; p.Y = oy + 3 * sy; break;
+                case Pos.OMR: p.X = ox + 4 * sx; p.Y = oy + 4 * sy; break;
 
-                case Pos.FCL: p.X = 712; p.Y = 140; break;
-                case Pos.FC: p.X = 712; p.Y = 255; break;
-                case Pos.FCR: p.X = 712; p.Y = 370; break;
+                case Pos.FCL: p.X = ox + 5 * sx; p.Y = oy + 1 * sy; break;
+                case Pos.FC: p.X = ox + 5 * sx; p.Y = oy + 2 * sy; break;
+                case Pos.FCR: p.X = ox + 5 * sx; p.Y = oy + 3 * sy; break;
             }
 
             if (centered)
             {
-                if (p.Y == 140) p.Y = 178;
-                if (p.Y == 370) p.Y = 331;
+                if (p.Y == oy + 1f * sy) p.Y = oy + 1.5f * sy;
+                if (p.Y == oy + 3f * sy) p.Y = oy + 2.5f * sy;
             }
             else
             {
-                if (p.Y == 178) p.Y = 140;
-                if (p.Y == 331) p.Y = 370;
+                if (p.Y == oy + 1.5f * sy) p.Y = oy + 1f * sy;
+                if (p.Y == oy + 2.5f * sy) p.Y = oy + 3f * sy;
             }
 
             if (!your)
             {
-                p.X = 878 - p.X;
-                p.Y = 510 - p.Y;
+                p.X = 2 * ox + 11 * sx - p.X;
+                p.Y = 2 * oy + 4 * sy - p.Y;
             }
 
-            return p;
+            return new Point((int)p.X, (int)p.Y);
         }
     }
 

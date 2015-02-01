@@ -29,9 +29,22 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.smallPlayer1 = new FieldFormationControl.SmallPlayer();
             this.rotFormationControl1 = new FieldFormationControl.RotLineupControl();
+            this.smallPlayer1 = new FieldFormationControl.SmallPlayer();
             this.SuspendLayout();
+            // 
+            // rotFormationControl1
+            // 
+            this.rotFormationControl1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("rotFormationControl1.BackgroundImage")));
+            this.rotFormationControl1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.rotFormationControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rotFormationControl1.Location = new System.Drawing.Point(0, 0);
+            this.rotFormationControl1.MatchFile = "";
+            this.rotFormationControl1.Name = "rotFormationControl1";
+            this.rotFormationControl1.OppFormationType = Common.eFormationTypes.Type_4_3_3;
+            this.rotFormationControl1.Size = new System.Drawing.Size(1030, 594);
+            this.rotFormationControl1.TabIndex = 1;
+            this.rotFormationControl1.YourFormationType = Common.eFormationTypes.Type_4_4_1_1;
             // 
             // smallPlayer1
             // 
@@ -42,7 +55,7 @@
             this.smallPlayer1.Card = -1;
             this.smallPlayer1.EvidenceColor = System.Drawing.Color.DimGray;
             this.smallPlayer1.Info = "";
-            this.smallPlayer1.Location = new System.Drawing.Point(952, 503);
+            this.smallPlayer1.Location = new System.Drawing.Point(621, 393);
             this.smallPlayer1.Name = "smallPlayer1";
             this.smallPlayer1.NameColor = System.Drawing.Color.Olive;
             this.smallPlayer1.NameFont = new System.Drawing.Font("Arial", 8F);
@@ -62,18 +75,6 @@
             this.smallPlayer1.Value = 63.9F;
             this.smallPlayer1.Vote = 6F;
             this.smallPlayer1.VoteFont = new System.Drawing.Font("Arial", 8F);
-            // 
-            // rotFormationControl1
-            // 
-            this.rotFormationControl1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("rotFormationControl1.BackgroundImage")));
-            this.rotFormationControl1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.rotFormationControl1.Location = new System.Drawing.Point(236, 12);
-            this.rotFormationControl1.MatchFile = "";
-            this.rotFormationControl1.Name = "rotFormationControl1";
-            this.rotFormationControl1.OppFormationType = Common.eFormationTypes.Type_4_4_2;
-            this.rotFormationControl1.Size = new System.Drawing.Size(771, 459);
-            this.rotFormationControl1.TabIndex = 1;
-            this.rotFormationControl1.YourFormationType = Common.eFormationTypes.Type_4_4_2;
             // 
             // Form1
             // 

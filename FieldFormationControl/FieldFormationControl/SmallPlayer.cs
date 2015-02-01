@@ -283,6 +283,7 @@ namespace FieldFormationControl
             InitializeComponent();
             this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
 
+            this.DoubleBuffered = true;  
             /*
             FillContextMenu();
              */

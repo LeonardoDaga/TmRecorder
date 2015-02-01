@@ -69,6 +69,7 @@
             this.tabMatches = new System.Windows.Forms.TabPage();
             this.tableLayoutPanelMatches = new System.Windows.Forms.TableLayoutPanel();
             this.panelMatch = new System.Windows.Forms.Panel();
+            this.btnEnlargeMatchWindow = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.chkHome = new System.Windows.Forms.CheckBox();
             this.chkAway = new System.Windows.Forms.CheckBox();
@@ -116,7 +117,11 @@
             this.nTR_SquadDb = new NTR_Db.NTR_SquadDb();
             this.DB = new NTR_Db.Data(this.components);
             this.varDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.btnEnlargeMatchWindow = new System.Windows.Forms.Button();
+            this.rotLineupControl1 = new FieldFormationControl.RotLineupControl();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lblNameTeamYour = new System.Windows.Forms.Label();
+            this.lblScore = new System.Windows.Forms.Label();
+            this.lblNameTeamOpps = new System.Windows.Forms.Label();
             this.tsMainBar.SuspendLayout();
             this.tabMain.SuspendLayout();
             this.tabSquad.SuspendLayout();
@@ -135,6 +140,7 @@
             this.tsBrowserImport.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nTR_SquadDb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.varDataBindingSource)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tsMainBar
@@ -581,6 +587,7 @@
             this.tableLayoutPanelMatches.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46.99499F));
             this.tableLayoutPanelMatches.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 53.00501F));
             this.tableLayoutPanelMatches.Controls.Add(this.panelMatch, 0, 0);
+            this.tableLayoutPanelMatches.Controls.Add(this.panel1, 1, 0);
             this.tableLayoutPanelMatches.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanelMatches.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanelMatches.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -605,6 +612,18 @@
             this.panelMatch.Name = "panelMatch";
             this.panelMatch.Size = new System.Drawing.Size(556, 517);
             this.panelMatch.TabIndex = 0;
+            // 
+            // btnEnlargeMatchWindow
+            // 
+            this.btnEnlargeMatchWindow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEnlargeMatchWindow.Location = new System.Drawing.Point(506, 39);
+            this.btnEnlargeMatchWindow.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnEnlargeMatchWindow.Name = "btnEnlargeMatchWindow";
+            this.btnEnlargeMatchWindow.Size = new System.Drawing.Size(44, 20);
+            this.btnEnlargeMatchWindow.TabIndex = 10;
+            this.btnEnlargeMatchWindow.Text = ">>";
+            this.btnEnlargeMatchWindow.UseVisualStyleBackColor = true;
+            this.btnEnlargeMatchWindow.Click += new System.EventHandler(this.btnEnlargeMatchWindow_Click);
             // 
             // groupBox4
             // 
@@ -1122,17 +1141,59 @@
             // 
             this.varDataBindingSource.DataSource = typeof(NTR_Db.PlayerData);
             // 
-            // btnEnlargeMatchWindow
+            // rotLineupControl1
             // 
-            this.btnEnlargeMatchWindow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEnlargeMatchWindow.Location = new System.Drawing.Point(506, 39);
-            this.btnEnlargeMatchWindow.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnEnlargeMatchWindow.Name = "btnEnlargeMatchWindow";
-            this.btnEnlargeMatchWindow.Size = new System.Drawing.Size(44, 20);
-            this.btnEnlargeMatchWindow.TabIndex = 10;
-            this.btnEnlargeMatchWindow.Text = ">>";
-            this.btnEnlargeMatchWindow.UseVisualStyleBackColor = true;
-            this.btnEnlargeMatchWindow.Click += new System.EventHandler(this.btnEnlargeMatchWindow_Click);
+            this.rotLineupControl1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("rotLineupControl1.BackgroundImage")));
+            this.rotLineupControl1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.rotLineupControl1.Location = new System.Drawing.Point(0, 29);
+            this.rotLineupControl1.MatchFile = "";
+            this.rotLineupControl1.Name = "rotLineupControl1";
+            this.rotLineupControl1.OppFormationType = Common.eFormationTypes.Type_4_4_2;
+            this.rotLineupControl1.Size = new System.Drawing.Size(630, 385);
+            this.rotLineupControl1.TabIndex = 1;
+            this.rotLineupControl1.YourFormationType = Common.eFormationTypes.Type_4_4_2;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.lblNameTeamOpps);
+            this.panel1.Controls.Add(this.lblScore);
+            this.panel1.Controls.Add(this.lblNameTeamYour);
+            this.panel1.Controls.Add(this.rotLineupControl1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(565, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(630, 519);
+            this.panel1.TabIndex = 1;
+            // 
+            // lblNameTeamYour
+            // 
+            this.lblNameTeamYour.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNameTeamYour.Location = new System.Drawing.Point(3, 4);
+            this.lblNameTeamYour.Name = "lblNameTeamYour";
+            this.lblNameTeamYour.Size = new System.Drawing.Size(283, 21);
+            this.lblNameTeamYour.TabIndex = 2;
+            this.lblNameTeamYour.Text = "Team1";
+            this.lblNameTeamYour.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblScore
+            // 
+            this.lblScore.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScore.Location = new System.Drawing.Point(284, 4);
+            this.lblScore.Name = "lblScore";
+            this.lblScore.Size = new System.Drawing.Size(63, 21);
+            this.lblScore.TabIndex = 2;
+            this.lblScore.Text = "0 - 0";
+            this.lblScore.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblNameTeamOpps
+            // 
+            this.lblNameTeamOpps.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNameTeamOpps.Location = new System.Drawing.Point(353, 4);
+            this.lblNameTeamOpps.Name = "lblNameTeamOpps";
+            this.lblNameTeamOpps.Size = new System.Drawing.Size(261, 21);
+            this.lblNameTeamOpps.TabIndex = 2;
+            this.lblNameTeamOpps.Text = "Team2";
+            this.lblNameTeamOpps.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // MainForm3
             // 
@@ -1168,6 +1229,7 @@
             this.tsBrowserImport.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nTR_SquadDb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.varDataBindingSource)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1260,6 +1322,11 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
         private System.Windows.Forms.Button btnEnlargeMatchWindow;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label lblNameTeamOpps;
+        private System.Windows.Forms.Label lblScore;
+        private System.Windows.Forms.Label lblNameTeamYour;
+        private FieldFormationControl.RotLineupControl rotLineupControl1;
     }
 }
 

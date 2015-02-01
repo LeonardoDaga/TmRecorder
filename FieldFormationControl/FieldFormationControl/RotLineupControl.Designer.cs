@@ -46,7 +46,9 @@ namespace FieldFormationControl
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.Name = "RotLineupControl";
             this.Size = new System.Drawing.Size(755, 459);
+            this.Load += new System.EventHandler(this.RotLineupControl_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.RotLineupControl_Paint);
+            this.Resize += new System.EventHandler(this.RotLineupControl_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.matchDS)).EndInit();
             this.ResumeLayout(false);
 

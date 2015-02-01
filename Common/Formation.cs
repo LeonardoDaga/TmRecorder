@@ -146,14 +146,30 @@ namespace Common
             return "";
         }
 
-        public static Point GetPosition(int pos, bool your, bool centered, Size windowSize)
+        public class OffsetSize
+        {
+            public float ox;
+            public float oy;
+            public float sx;
+            public float sy;
+
+            public OffsetSize(Size windowSize)
+            {
+                ox = 10.0f;
+                oy = 5.0f;
+                sx = (windowSize.Width - ox * 2.0f) / 12.0f;
+                sy = (windowSize.Height - oy * 2.0f) / 5.0f;                
+            }
+        }
+
+        public static Point GetPosition(int pos, bool your, bool centered, OffsetSize offsetSize)
         {
             PointF p = new PointF();
 
-            float ox = 10.0f;
-            float oy = 5.0f;
-            float sx = (windowSize.Width - ox * 2.0f) / 12.0f;
-            float sy = (windowSize.Height - oy * 2.0f) / 5.0f;
+            float ox = offsetSize.ox;
+            float oy = offsetSize.oy;
+            float sx = offsetSize.sx;
+            float sy = offsetSize.sy;
 
             switch (pos)
             {
@@ -190,13 +206,24 @@ namespace Common
 
             if (centered)
             {
-                if (p.Y == oy + 1f * sy) p.Y = oy + 1.5f * sy;
-                if (p.Y == oy + 3f * sy) p.Y = oy + 2.5f * sy;
-            }
-            else
-            {
-                if (p.Y == oy + 1.5f * sy) p.Y = oy + 1f * sy;
-                if (p.Y == oy + 2.5f * sy) p.Y = oy + 3f * sy;
+                switch (pos)
+                {
+                    case Pos.DCL:
+                    case Pos.DMCL:
+                    case Pos.MCL:
+                    case Pos.OMCL:
+                    case Pos.FCL:
+                        p.Y = oy + 1.5f * sy;
+                        break;
+
+                    case Pos.DCR:
+                    case Pos.DMCR:
+                    case Pos.MCR:
+                    case Pos.OMCR:
+                    case Pos.FCR:
+                        p.Y = oy + 2.5f * sy;
+                        break;
+                }
             }
 
             if (!your)

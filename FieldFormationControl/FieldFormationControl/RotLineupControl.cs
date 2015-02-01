@@ -18,6 +18,7 @@ namespace FieldFormationControl
 
         public Formation lastY_Formation = null;
         public Formation lastO_Formation = null;
+        private bool isInitialized = false;
 
         public RotLineupControl()
         {
@@ -32,6 +33,8 @@ namespace FieldFormationControl
             set 
             {
                 y_formType = value;
+                if (!isInitialized)
+                    return;
                 Y_ShowFormationPlayers(y_formType);
             }
         }
@@ -43,6 +46,8 @@ namespace FieldFormationControl
             set 
             {
                 o_formType = value;
+                if (!isInitialized)
+                    return;
                 O_ShowFormationPlayers(o_formType);
             }
         }
@@ -96,88 +101,90 @@ namespace FieldFormationControl
             else
                 lastY_Formation.Type = formType;
 
-            Y_ShowGoalKee(lastY_Formation);
-            Y_ShowDefense(lastY_Formation);
-            Y_ShowMidDefn(lastY_Formation);
-            Y_ShowMidfiel(lastY_Formation);
-            Y_ShowOffense(lastY_Formation);
-            Y_ShowFrwdAttack(lastY_Formation);
+            Position.OffsetSize os = new Position.OffsetSize(this.ClientSize);
+            Y_ShowGoalKee(lastY_Formation, os);
+            Y_ShowDefense(lastY_Formation, os);
+            Y_ShowMidDefn(lastY_Formation, os);
+            Y_ShowMidfiel(lastY_Formation, os);
+            Y_ShowOffense(lastY_Formation, os);
+            Y_ShowFrwdAttack(lastY_Formation, os);
         }
 
         public void Y_ShowFormationPlayers(Formation form)
         {
-            Y_ShowGoalKee(form);
-            Y_ShowDefense(form);
-            Y_ShowMidDefn(form);
-            Y_ShowMidfiel(form);
-            Y_ShowOffense(form);
-            Y_ShowFrwdAttack(form);
+            Position.OffsetSize os = new Position.OffsetSize(this.ClientSize);
+            Y_ShowGoalKee(form, os);
+            Y_ShowDefense(form, os);
+            Y_ShowMidDefn(form, os);
+            Y_ShowMidfiel(form, os);
+            Y_ShowOffense(form, os);
+            Y_ShowFrwdAttack(form, os);
 
             lastY_Formation = form;
         }
 
-        private void Y_ShowGoalKee(Formation form)
+        private void Y_ShowGoalKee(Formation form, Position.OffsetSize os)
         {
             Player GK = form.players[Pos.GK];
-            CreatePlayer(GK, Position.GetPosition(Pos.GK, true, false, this.ClientSize), ref fp[P.Y_GK]);
+            CreatePlayer(GK, Position.GetPosition(Pos.GK, true, false, os), ref fp[P.Y_GK]);
         }
 
-        private void Y_ShowFrwdAttack(Formation form)
+        private void Y_ShowFrwdAttack(Formation form, Position.OffsetSize os)
         {
             Player[] p = form.players;
             Player CL = p[Pos.FCL], C = p[Pos.FC], CR = p[Pos.FCR];
 
-            CreatePlayer(CL, Position.GetPosition(Pos.FCL, true, !C.visible, this.ClientSize), ref fp[P.Y_FCL]);
-            CreatePlayer(C, Position.GetPosition(Pos.FC, true, !C.visible, this.ClientSize), ref fp[P.Y_FC]);
-            CreatePlayer(CR, Position.GetPosition(Pos.FCR, true, !C.visible, this.ClientSize), ref fp[P.Y_FCR]);
+            CreatePlayer(CL, Position.GetPosition(Pos.FCL, true, !C.visible, os), ref fp[P.Y_FCL]);
+            CreatePlayer(C, Position.GetPosition(Pos.FC, true, !C.visible, os), ref fp[P.Y_FC]);
+            CreatePlayer(CR, Position.GetPosition(Pos.FCR, true, !C.visible, os), ref fp[P.Y_FCR]);
         }
 
-        private void Y_ShowOffense(Formation form)
+        private void Y_ShowOffense(Formation form, Position.OffsetSize os)
         {
             Player[] p = form.players;
             Player L = p[Pos.OML], CL = p[Pos.OMCL], C = p[Pos.OMC], CR = p[Pos.OMCR], R = p[Pos.OMR];
 
-            CreatePlayer(L, Position.GetPosition(Pos.OML, true, !C.visible, this.ClientSize), ref fp[P.Y_OML]);
-            CreatePlayer(CL, Position.GetPosition(Pos.OMCL, true, !C.visible, this.ClientSize), ref fp[P.Y_OMCL]);
-            CreatePlayer(C, Position.GetPosition(Pos.OMC, true, !C.visible, this.ClientSize), ref fp[P.Y_OMC]);
-            CreatePlayer(CR, Position.GetPosition(Pos.OMCR, true, !C.visible, this.ClientSize), ref fp[P.Y_OMCR]);
-            CreatePlayer(R, Position.GetPosition(Pos.OMR, true, !C.visible, this.ClientSize), ref fp[P.Y_OMR]);
+            CreatePlayer(L, Position.GetPosition(Pos.OML, true, !C.visible, os), ref fp[P.Y_OML]);
+            CreatePlayer(CL, Position.GetPosition(Pos.OMCL, true, !C.visible, os), ref fp[P.Y_OMCL]);
+            CreatePlayer(C, Position.GetPosition(Pos.OMC, true, !C.visible, os), ref fp[P.Y_OMC]);
+            CreatePlayer(CR, Position.GetPosition(Pos.OMCR, true, !C.visible, os), ref fp[P.Y_OMCR]);
+            CreatePlayer(R, Position.GetPosition(Pos.OMR, true, !C.visible, os), ref fp[P.Y_OMR]);
         }
 
-        private void Y_ShowMidfiel(Formation form)
+        private void Y_ShowMidfiel(Formation form, Position.OffsetSize os)
         {
             Player[] p = form.players;
             Player L = p[Pos.ML], CL = p[Pos.MCL], C = p[Pos.MC], CR = p[Pos.MCR], R = p[Pos.MR];
 
-            CreatePlayer(L, Position.GetPosition(Pos.ML, true, !C.visible, this.ClientSize), ref fp[P.Y_ML]);
-            CreatePlayer(CL, Position.GetPosition(Pos.MCL, true, !C.visible, this.ClientSize), ref fp[P.Y_MCL]);
-            CreatePlayer(C, Position.GetPosition(Pos.MC, true, !C.visible, this.ClientSize), ref fp[P.Y_MC]);
-            CreatePlayer(CR, Position.GetPosition(Pos.MCR, true, !C.visible, this.ClientSize), ref fp[P.Y_MCR]);
-            CreatePlayer(R, Position.GetPosition(Pos.MR, true, !C.visible, this.ClientSize), ref fp[P.Y_MR]);
+            CreatePlayer(L, Position.GetPosition(Pos.ML, true, !C.visible, os), ref fp[P.Y_ML]);
+            CreatePlayer(CL, Position.GetPosition(Pos.MCL, true, !C.visible, os), ref fp[P.Y_MCL]);
+            CreatePlayer(C, Position.GetPosition(Pos.MC, true, !C.visible, os), ref fp[P.Y_MC]);
+            CreatePlayer(CR, Position.GetPosition(Pos.MCR, true, !C.visible, os), ref fp[P.Y_MCR]);
+            CreatePlayer(R, Position.GetPosition(Pos.MR, true, !C.visible, os), ref fp[P.Y_MR]);
         }
 
-        private void Y_ShowMidDefn(Formation form)
+        private void Y_ShowMidDefn(Formation form, Position.OffsetSize os)
         {
             Player[] p = form.players;
             Player L = p[Pos.DML], CL = p[Pos.DMCL], C = p[Pos.DMC], CR = p[Pos.DMCR], R = p[Pos.DMR];
 
-            CreatePlayer(L, Position.GetPosition(Pos.DML, true, !C.visible, this.ClientSize), ref fp[P.Y_DML]);
-            CreatePlayer(CL, Position.GetPosition(Pos.DMCL, true, !C.visible, this.ClientSize), ref fp[P.Y_DMCL]);
-            CreatePlayer(C, Position.GetPosition(Pos.DMC, true, !C.visible, this.ClientSize), ref fp[P.Y_DMC]);
-            CreatePlayer(CR, Position.GetPosition(Pos.DMCR, true, !C.visible, this.ClientSize), ref fp[P.Y_DMCR]);
-            CreatePlayer(R, Position.GetPosition(Pos.DMR, true, !C.visible, this.ClientSize), ref fp[P.Y_DMR]);
+            CreatePlayer(L, Position.GetPosition(Pos.DML, true, !C.visible, os), ref fp[P.Y_DML]);
+            CreatePlayer(CL, Position.GetPosition(Pos.DMCL, true, !C.visible, os), ref fp[P.Y_DMCL]);
+            CreatePlayer(C, Position.GetPosition(Pos.DMC, true, !C.visible, os), ref fp[P.Y_DMC]);
+            CreatePlayer(CR, Position.GetPosition(Pos.DMCR, true, !C.visible, os), ref fp[P.Y_DMCR]);
+            CreatePlayer(R, Position.GetPosition(Pos.DMR, true, !C.visible, os), ref fp[P.Y_DMR]);
         }
 
-        private void Y_ShowDefense(Formation form)
+        private void Y_ShowDefense(Formation form, Position.OffsetSize os)
         {
             Player[] p = form.players;
             Player L = p[Pos.DL], CL = p[Pos.DCL], C = p[Pos.DC], CR = p[Pos.DCR], R = p[Pos.DR];
 
-            CreatePlayer(L, Position.GetPosition(Pos.DL, true, !C.visible, this.ClientSize), ref fp[P.Y_DL]);
-            CreatePlayer(CL, Position.GetPosition(Pos.DCL, true, !C.visible, this.ClientSize), ref fp[P.Y_DCL]);
-            CreatePlayer(C, Position.GetPosition(Pos.DC, true, !C.visible, this.ClientSize), ref fp[P.Y_DC]);
-            CreatePlayer(CR, Position.GetPosition(Pos.DCR, true, !C.visible, this.ClientSize), ref fp[P.Y_DCR]);
-            CreatePlayer(R, Position.GetPosition(Pos.DR, true, !C.visible, this.ClientSize), ref fp[P.Y_DR]);
+            CreatePlayer(L, Position.GetPosition(Pos.DL, true, !C.visible, os), ref fp[P.Y_DL]);
+            CreatePlayer(CL, Position.GetPosition(Pos.DCL, true, !C.visible, os), ref fp[P.Y_DCL]);
+            CreatePlayer(C, Position.GetPosition(Pos.DC, true, !C.visible, os), ref fp[P.Y_DC]);
+            CreatePlayer(CR, Position.GetPosition(Pos.DCR, true, !C.visible, os), ref fp[P.Y_DCR]);
+            CreatePlayer(R, Position.GetPosition(Pos.DR, true, !C.visible, os), ref fp[P.Y_DR]);
         }
 
         #endregion // Opposite formation
@@ -190,99 +197,103 @@ namespace FieldFormationControl
             else
                 lastO_Formation.Type = formType;
 
-            O_ShowGoalKee(lastO_Formation);
-            O_ShowDefense(lastO_Formation);
-            O_ShowMidDefn(lastO_Formation);
-            O_ShowMidfiel(lastO_Formation);
-            O_ShowOffense(lastO_Formation);
-            O_ShowFrwdAttack(lastO_Formation);
+            Position.OffsetSize os = new Position.OffsetSize(this.ClientSize);
+            O_ShowGoalKee(lastO_Formation, os);
+            O_ShowDefense(lastO_Formation, os);
+            O_ShowMidDefn(lastO_Formation, os);
+            O_ShowMidfiel(lastO_Formation, os);
+            O_ShowOffense(lastO_Formation, os);
+            O_ShowFrwdAttack(lastO_Formation, os);
         }
 
         public void O_ShowFormationPlayers(Formation form)
         {
-            O_ShowGoalKee(form);
-            O_ShowDefense(form);
-            O_ShowMidDefn(form);
-            O_ShowMidfiel(form);
-            O_ShowOffense(form);
-            O_ShowFrwdAttack(form);
+            Position.OffsetSize os = new Position.OffsetSize(this.ClientSize);
+            O_ShowGoalKee(form, os);
+            O_ShowDefense(form, os);
+            O_ShowMidDefn(form, os);
+            O_ShowMidfiel(form, os);
+            O_ShowOffense(form, os);
+            O_ShowFrwdAttack(form, os);
 
             lastO_Formation = form;
         }
 
-        private void O_ShowGoalKee(Formation form)
+        private void O_ShowGoalKee(Formation form, Position.OffsetSize os)
         {
             Player GK = form.players[Pos.GK];
-            CreatePlayer(GK, Position.GetPosition(Pos.GK, false, false, this.ClientSize), ref fp[P.O_GK]);
+            
+            CreatePlayer(GK, Position.GetPosition(Pos.GK, false, false, os), ref fp[P.O_GK]);
         }
 
-        private void O_ShowFrwdAttack(Formation form)
+        private void O_ShowFrwdAttack(Formation form, Position.OffsetSize os)
         {
             Player[] p = form.players;
             Player CL = p[Pos.FCL], C = p[Pos.FC], CR = p[Pos.FCR];
 
-            CreatePlayer(CL, Position.GetPosition(Pos.FCL, false, !C.visible, this.ClientSize), ref fp[P.O_FCL]);
-            CreatePlayer(C, Position.GetPosition(Pos.FC, false, !C.visible, this.ClientSize), ref fp[P.O_FC]);
-            CreatePlayer(CR, Position.GetPosition(Pos.FCR, false, !C.visible, this.ClientSize), ref fp[P.O_FCR]);
+            CreatePlayer(CL, Position.GetPosition(Pos.FCL, false, !C.visible, os), ref fp[P.O_FCL]);
+            CreatePlayer(C, Position.GetPosition(Pos.FC, false, !C.visible, os), ref fp[P.O_FC]);
+            CreatePlayer(CR, Position.GetPosition(Pos.FCR, false, !C.visible, os), ref fp[P.O_FCR]);
         }
 
-        private void O_ShowOffense(Formation form)
+        private void O_ShowOffense(Formation form, Position.OffsetSize os)
         {
             Player[] p = form.players;
             Player L = p[Pos.OML], CL = p[Pos.OMCL], C = p[Pos.OMC], CR = p[Pos.OMCR], R = p[Pos.OMR];
 
-            CreatePlayer(L, Position.GetPosition(Pos.OML, false, !C.visible, this.ClientSize), ref fp[P.O_OML]);
-            CreatePlayer(CL, Position.GetPosition(Pos.OMCL, false, !C.visible, this.ClientSize), ref fp[P.O_OMCL]);
-            CreatePlayer(C, Position.GetPosition(Pos.OMC, false, !C.visible, this.ClientSize), ref fp[P.O_OMC]);
-            CreatePlayer(CR, Position.GetPosition(Pos.OMCR, false, !C.visible, this.ClientSize), ref fp[P.O_OMCR]);
-            CreatePlayer(R, Position.GetPosition(Pos.OMR, false, !C.visible, this.ClientSize), ref fp[P.O_OMR]);
+            CreatePlayer(L, Position.GetPosition(Pos.OML, false, !C.visible, os), ref fp[P.O_OML]);
+            CreatePlayer(CL, Position.GetPosition(Pos.OMCL, false, !C.visible, os), ref fp[P.O_OMCL]);
+            CreatePlayer(C, Position.GetPosition(Pos.OMC, false, !C.visible, os), ref fp[P.O_OMC]);
+            CreatePlayer(CR, Position.GetPosition(Pos.OMCR, false, !C.visible, os), ref fp[P.O_OMCR]);
+            CreatePlayer(R, Position.GetPosition(Pos.OMR, false, !C.visible, os), ref fp[P.O_OMR]);
         }
 
-        private void O_ShowMidfiel(Formation form)
+        private void O_ShowMidfiel(Formation form, Position.OffsetSize os)
         {
             Player[] p = form.players;
             Player L = p[Pos.ML], CL = p[Pos.MCL], C = p[Pos.MC], CR = p[Pos.MCR], R = p[Pos.MR];
 
-            CreatePlayer(L, Position.GetPosition(Pos.ML, false, !C.visible, this.ClientSize), ref fp[P.O_ML]);
-            CreatePlayer(CL, Position.GetPosition(Pos.MCL, false, !C.visible, this.ClientSize), ref fp[P.O_MCL]);
-            CreatePlayer(C, Position.GetPosition(Pos.MC, false, !C.visible, this.ClientSize), ref fp[P.O_MC]);
-            CreatePlayer(CR, Position.GetPosition(Pos.MCR, false, !C.visible, this.ClientSize), ref fp[P.O_MCR]);
-            CreatePlayer(R, Position.GetPosition(Pos.MR, false, !C.visible, this.ClientSize), ref fp[P.O_MR]);
+            CreatePlayer(L, Position.GetPosition(Pos.ML, false, !C.visible, os), ref fp[P.O_ML]);
+            CreatePlayer(CL, Position.GetPosition(Pos.MCL, false, !C.visible, os), ref fp[P.O_MCL]);
+            CreatePlayer(C, Position.GetPosition(Pos.MC, false, !C.visible, os), ref fp[P.O_MC]);
+            CreatePlayer(CR, Position.GetPosition(Pos.MCR, false, !C.visible, os), ref fp[P.O_MCR]);
+            CreatePlayer(R, Position.GetPosition(Pos.MR, false, !C.visible, os), ref fp[P.O_MR]);
         }
 
-        private void O_ShowMidDefn(Formation form)
+        private void O_ShowMidDefn(Formation form, Position.OffsetSize os)
         {
             Player[] p = form.players;
             Player L = p[Pos.DML], CL = p[Pos.DMCL], C = p[Pos.DMC], CR = p[Pos.DMCR], R = p[Pos.DMR];
 
-            CreatePlayer(L, Position.GetPosition(Pos.DML, false, !C.visible, this.ClientSize), ref fp[P.O_DML]);
-            CreatePlayer(CL, Position.GetPosition(Pos.DMCL, false, !C.visible, this.ClientSize), ref fp[P.O_DMCL]);
-            CreatePlayer(C, Position.GetPosition(Pos.DMC, false, !C.visible, this.ClientSize), ref fp[P.O_DMC]);
-            CreatePlayer(CR, Position.GetPosition(Pos.DMCR, false, !C.visible, this.ClientSize), ref fp[P.O_DMCR]);
-            CreatePlayer(R, Position.GetPosition(Pos.DMR, false, !C.visible, this.ClientSize), ref fp[P.O_DMR]);
+            CreatePlayer(L, Position.GetPosition(Pos.DML, false, !C.visible, os), ref fp[P.O_DML]);
+            CreatePlayer(CL, Position.GetPosition(Pos.DMCL, false, !C.visible, os), ref fp[P.O_DMCL]);
+            CreatePlayer(C, Position.GetPosition(Pos.DMC, false, !C.visible, os), ref fp[P.O_DMC]);
+            CreatePlayer(CR, Position.GetPosition(Pos.DMCR, false, !C.visible, os), ref fp[P.O_DMCR]);
+            CreatePlayer(R, Position.GetPosition(Pos.DMR, false, !C.visible, os), ref fp[P.O_DMR]);
         }
 
-        private void O_ShowDefense(Formation form)
+        private void O_ShowDefense(Formation form, Position.OffsetSize os)
         {
             Player[] p = form.players;
             Player L = p[Pos.DL], CL = p[Pos.DCL], C = p[Pos.DC], CR = p[Pos.DCR], R = p[Pos.DR];
 
-            CreatePlayer(L, Position.GetPosition(Pos.DL, false, !C.visible, this.ClientSize), ref fp[P.O_DL]);
-            CreatePlayer(CL, Position.GetPosition(Pos.DCL, false, !C.visible, this.ClientSize), ref fp[P.O_DCL]);
-            CreatePlayer(C, Position.GetPosition(Pos.DC, false, !C.visible, this.ClientSize), ref fp[P.O_DC]);
-            CreatePlayer(CR, Position.GetPosition(Pos.DCR, false, !C.visible, this.ClientSize), ref fp[P.O_DCR]);
-            CreatePlayer(R, Position.GetPosition(Pos.DR, false, !C.visible, this.ClientSize), ref fp[P.O_DR]);
+            CreatePlayer(L, Position.GetPosition(Pos.DL, false, !C.visible, os), ref fp[P.O_DL]);
+            CreatePlayer(CL, Position.GetPosition(Pos.DCL, false, !C.visible, os), ref fp[P.O_DCL]);
+            CreatePlayer(C, Position.GetPosition(Pos.DC, false, !C.visible, os), ref fp[P.O_DC]);
+            CreatePlayer(CR, Position.GetPosition(Pos.DCR, false, !C.visible, os), ref fp[P.O_DCR]);
+            CreatePlayer(R, Position.GetPosition(Pos.DR, false, !C.visible, os), ref fp[P.O_DR]);
         }
 
         #endregion // Opposite formation
 
         private void CreatePlayer(Player pl, Point pnt, ref SmallPlayer fp)
         {
-            Size windowSize = this.Size;
-            float ox = 10.0f;
-            float oy = 5.0f;
-            int sx = (int)((windowSize.Width - ox * 2.0f) / 12.0f);
-            int sy = (int)((windowSize.Height - oy * 2.0f) / 5.0f);
+            Position.OffsetSize os = new Position.OffsetSize(this.ClientSize);
+
+            float ox = os.ox;
+            float oy = os.oy;
+            int sx = (int)os.sx;
+            int sy = (int)os.sy;
 
             if ((fp != null) && (!pl.visible))
             {
@@ -293,6 +304,9 @@ namespace FieldFormationControl
             else if ((fp != null) && (pl.visible))
             {
                 fp.Data = pl;
+                fp.Location = pnt;
+                fp.Size = new Size(sx, sy);
+                fp.PlName = sx.ToString() + "," + sy.ToString();
                 return;
             }
             else if ((fp == null) && (pl.visible))
@@ -302,6 +316,7 @@ namespace FieldFormationControl
                 fp.Location = pnt;
                 fp.Visible = true;
                 fp.Size = new Size(sx, sy);
+                fp.PlName = sx.ToString() + "," + sy.ToString();
                 this.Controls.Add(fp);
             }
         }
@@ -325,6 +340,16 @@ namespace FieldFormationControl
         }
 
         private void RotLineupControl_Paint(object sender, PaintEventArgs e)
+        {
+        }
+
+        private void RotLineupControl_Load(object sender, EventArgs e)
+        {
+            Y_ShowFormationPlayers(YourFormationType);
+            O_ShowFormationPlayers(OppFormationType);
+        }
+
+        private void RotLineupControl_Resize(object sender, EventArgs e)
         {
             Y_ShowFormationPlayers(YourFormationType);
             O_ShowFormationPlayers(OppFormationType);

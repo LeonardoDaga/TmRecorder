@@ -67,23 +67,25 @@
             this.dgPlayersGK = new NTR_Controls.AeroDataGrid();
             this.qsMinRatingGK = new NTR_Controls.QuantitySelector();
             this.tabMatches = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanelMatches = new System.Windows.Forms.TableLayoutPanel();
-            this.panelMatch = new System.Windows.Forms.Panel();
+            this.lineupControl = new FieldFormationControl.RotLineupControl();
+            this.lblNameTeamAway = new System.Windows.Forms.Label();
             this.btnEnlargeMatchWindow = new System.Windows.Forms.Button();
+            this.lblScore = new System.Windows.Forms.Label();
+            this.lblNameTeamHome = new System.Windows.Forms.Label();
+            this.btnHelp = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.chkHome = new System.Windows.Forms.CheckBox();
             this.chkAway = new System.Windows.Forms.CheckBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.cmbSeason = new System.Windows.Forms.ComboBox();
+            this.dgMatches = new NTR_Controls.AeroDataGrid();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.chkMT1 = new System.Windows.Forms.CheckBox();
             this.chkMT2 = new System.Windows.Forms.CheckBox();
             this.chkMT3 = new System.Windows.Forms.CheckBox();
             this.chkMT4 = new System.Windows.Forms.CheckBox();
             this.chkMT5 = new System.Windows.Forms.CheckBox();
-            this.btnHelp = new System.Windows.Forms.Button();
-            this.dgMatches = new NTR_Controls.AeroDataGrid();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cmbSeason = new System.Windows.Forms.ComboBox();
             this.tabBrowser = new System.Windows.Forms.TabPage();
             this.ntrBrowser = new NTR_Controls.NTR_Browser();
             this.tsBrowserImport = new System.Windows.Forms.ToolStrip();
@@ -117,11 +119,6 @@
             this.nTR_SquadDb = new NTR_Db.NTR_SquadDb();
             this.DB = new NTR_Db.Data(this.components);
             this.varDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.rotLineupControl1 = new FieldFormationControl.RotLineupControl();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.lblNameTeamYour = new System.Windows.Forms.Label();
-            this.lblScore = new System.Windows.Forms.Label();
-            this.lblNameTeamOpps = new System.Windows.Forms.Label();
             this.tsMainBar.SuspendLayout();
             this.tabMain.SuspendLayout();
             this.tabSquad.SuspendLayout();
@@ -130,17 +127,14 @@
             this.tabGK.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPlayersGK)).BeginInit();
             this.tabMatches.SuspendLayout();
-            this.tableLayoutPanelMatches.SuspendLayout();
-            this.panelMatch.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgMatches)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.tabBrowser.SuspendLayout();
             this.tsBrowserImport.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nTR_SquadDb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.varDataBindingSource)).BeginInit();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tsMainBar
@@ -572,7 +566,17 @@
             // 
             // tabMatches
             // 
-            this.tabMatches.Controls.Add(this.tableLayoutPanelMatches);
+            this.tabMatches.Controls.Add(this.lineupControl);
+            this.tabMatches.Controls.Add(this.lblNameTeamAway);
+            this.tabMatches.Controls.Add(this.btnEnlargeMatchWindow);
+            this.tabMatches.Controls.Add(this.lblScore);
+            this.tabMatches.Controls.Add(this.lblNameTeamHome);
+            this.tabMatches.Controls.Add(this.btnHelp);
+            this.tabMatches.Controls.Add(this.groupBox4);
+            this.tabMatches.Controls.Add(this.dgMatches);
+            this.tabMatches.Controls.Add(this.groupBox1);
+            this.tabMatches.Controls.Add(this.groupBox3);
+            this.tabMatches.Controls.Add(this.groupBox2);
             this.tabMatches.Location = new System.Drawing.Point(4, 22);
             this.tabMatches.Name = "tabMatches";
             this.tabMatches.Padding = new System.Windows.Forms.Padding(3);
@@ -580,57 +584,80 @@
             this.tabMatches.TabIndex = 10;
             this.tabMatches.Text = "Matches";
             this.tabMatches.UseVisualStyleBackColor = true;
+            this.tabMatches.Resize += new System.EventHandler(this.tabMatches_Resize);
             // 
-            // tableLayoutPanelMatches
+            // lineupControl
             // 
-            this.tableLayoutPanelMatches.ColumnCount = 2;
-            this.tableLayoutPanelMatches.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46.99499F));
-            this.tableLayoutPanelMatches.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 53.00501F));
-            this.tableLayoutPanelMatches.Controls.Add(this.panelMatch, 0, 0);
-            this.tableLayoutPanelMatches.Controls.Add(this.panel1, 1, 0);
-            this.tableLayoutPanelMatches.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanelMatches.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanelMatches.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tableLayoutPanelMatches.Name = "tableLayoutPanelMatches";
-            this.tableLayoutPanelMatches.RowCount = 1;
-            this.tableLayoutPanelMatches.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanelMatches.Size = new System.Drawing.Size(1198, 525);
-            this.tableLayoutPanelMatches.TabIndex = 3;
+            this.lineupControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lineupControl.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("lineupControl.BackgroundImage")));
+            this.lineupControl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.lineupControl.Location = new System.Drawing.Point(560, 30);
+            this.lineupControl.MatchFile = "";
+            this.lineupControl.Name = "lineupControl";
+            this.lineupControl.OppFormationType = Common.eFormationTypes.Type_4_4_2;
+            this.lineupControl.Size = new System.Drawing.Size(636, 374);
+            this.lineupControl.TabIndex = 1;
+            this.lineupControl.YourFormationType = Common.eFormationTypes.Type_4_4_2;
             // 
-            // panelMatch
+            // lblNameTeamAway
             // 
-            this.panelMatch.Controls.Add(this.btnEnlargeMatchWindow);
-            this.panelMatch.Controls.Add(this.groupBox4);
-            this.panelMatch.Controls.Add(this.groupBox3);
-            this.panelMatch.Controls.Add(this.groupBox2);
-            this.panelMatch.Controls.Add(this.groupBox1);
-            this.panelMatch.Controls.Add(this.btnHelp);
-            this.panelMatch.Controls.Add(this.dgMatches);
-            this.panelMatch.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelMatch.Location = new System.Drawing.Point(3, 4);
-            this.panelMatch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.panelMatch.Name = "panelMatch";
-            this.panelMatch.Size = new System.Drawing.Size(556, 517);
-            this.panelMatch.TabIndex = 0;
+            this.lblNameTeamAway.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNameTeamAway.Location = new System.Drawing.Point(905, 3);
+            this.lblNameTeamAway.Name = "lblNameTeamAway";
+            this.lblNameTeamAway.Size = new System.Drawing.Size(261, 24);
+            this.lblNameTeamAway.TabIndex = 2;
+            this.lblNameTeamAway.Text = "Team2";
+            this.lblNameTeamAway.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // btnEnlargeMatchWindow
             // 
-            this.btnEnlargeMatchWindow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEnlargeMatchWindow.Location = new System.Drawing.Point(506, 39);
+            this.btnEnlargeMatchWindow.Location = new System.Drawing.Point(505, 40);
             this.btnEnlargeMatchWindow.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnEnlargeMatchWindow.Name = "btnEnlargeMatchWindow";
-            this.btnEnlargeMatchWindow.Size = new System.Drawing.Size(44, 20);
+            this.btnEnlargeMatchWindow.Size = new System.Drawing.Size(39, 20);
             this.btnEnlargeMatchWindow.TabIndex = 10;
             this.btnEnlargeMatchWindow.Text = ">>";
             this.btnEnlargeMatchWindow.UseVisualStyleBackColor = true;
             this.btnEnlargeMatchWindow.Click += new System.EventHandler(this.btnEnlargeMatchWindow_Click);
+            // 
+            // lblScore
+            // 
+            this.lblScore.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScore.Location = new System.Drawing.Point(836, 3);
+            this.lblScore.Name = "lblScore";
+            this.lblScore.Size = new System.Drawing.Size(63, 24);
+            this.lblScore.TabIndex = 2;
+            this.lblScore.Text = "0 - 0";
+            this.lblScore.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblNameTeamHome
+            // 
+            this.lblNameTeamHome.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNameTeamHome.Location = new System.Drawing.Point(555, 3);
+            this.lblNameTeamHome.Name = "lblNameTeamHome";
+            this.lblNameTeamHome.Size = new System.Drawing.Size(275, 24);
+            this.lblNameTeamHome.TabIndex = 2;
+            this.lblNameTeamHome.Text = "Team1";
+            this.lblNameTeamHome.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // btnHelp
+            // 
+            this.btnHelp.Location = new System.Drawing.Point(505, 17);
+            this.btnHelp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnHelp.Name = "btnHelp";
+            this.btnHelp.Size = new System.Drawing.Size(39, 21);
+            this.btnHelp.TabIndex = 3;
+            this.btnHelp.Text = "Help";
+            this.btnHelp.UseVisualStyleBackColor = true;
             // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.chkHome);
             this.groupBox4.Controls.Add(this.chkAway);
             this.groupBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.groupBox4.Location = new System.Drawing.Point(428, 0);
+            this.groupBox4.Location = new System.Drawing.Point(430, 2);
             this.groupBox4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -665,40 +692,26 @@
             this.chkAway.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkAway.UseVisualStyleBackColor = true;
             // 
-            // groupBox3
+            // dgMatches
             // 
-            this.groupBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.groupBox3.Location = new System.Drawing.Point(269, 0);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox3.Size = new System.Drawing.Size(154, 67);
-            this.groupBox3.TabIndex = 8;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Squad";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.cmbSeason);
-            this.groupBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.groupBox2.Location = new System.Drawing.Point(196, 0);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox2.Size = new System.Drawing.Size(68, 67);
-            this.groupBox2.TabIndex = 7;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Season";
-            // 
-            // cmbSeason
-            // 
-            this.cmbSeason.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbSeason.FormattingEnabled = true;
-            this.cmbSeason.Location = new System.Drawing.Point(6, 28);
-            this.cmbSeason.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cmbSeason.Name = "cmbSeason";
-            this.cmbSeason.Size = new System.Drawing.Size(57, 21);
-            this.cmbSeason.TabIndex = 5;
+            this.dgMatches.AllowUserToAddRows = false;
+            this.dgMatches.AllowUserToDeleteRows = false;
+            this.dgMatches.AllowUserToResizeRows = false;
+            this.dgMatches.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.dgMatches.AutoGenerateColumns = false;
+            this.dgMatches.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgMatches.DataCollection = null;
+            this.dgMatches.Location = new System.Drawing.Point(3, 75);
+            this.dgMatches.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dgMatches.MultiSelect = false;
+            this.dgMatches.Name = "dgMatches";
+            this.dgMatches.ReadOnly = true;
+            this.dgMatches.RowHeadersWidth = 20;
+            this.dgMatches.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgMatches.Size = new System.Drawing.Size(542, 452);
+            this.dgMatches.TabIndex = 1;
+            this.dgMatches.SelectionChanged += new System.EventHandler(this.dgMatches_SelectionChanged);
             // 
             // groupBox1
             // 
@@ -708,7 +721,7 @@
             this.groupBox1.Controls.Add(this.chkMT4);
             this.groupBox1.Controls.Add(this.chkMT5);
             this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.groupBox1.Location = new System.Drawing.Point(5, 0);
+            this.groupBox1.Location = new System.Drawing.Point(3, 2);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -782,36 +795,40 @@
             this.chkMT5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkMT5.UseVisualStyleBackColor = true;
             // 
-            // btnHelp
+            // groupBox3
             // 
-            this.btnHelp.Location = new System.Drawing.Point(506, 15);
-            this.btnHelp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnHelp.Name = "btnHelp";
-            this.btnHelp.Size = new System.Drawing.Size(44, 21);
-            this.btnHelp.TabIndex = 3;
-            this.btnHelp.Text = "Help";
-            this.btnHelp.UseVisualStyleBackColor = true;
+            this.groupBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.groupBox3.Location = new System.Drawing.Point(270, 2);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox3.Size = new System.Drawing.Size(154, 67);
+            this.groupBox3.TabIndex = 8;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Squad";
             // 
-            // dgMatches
+            // groupBox2
             // 
-            this.dgMatches.AllowUserToAddRows = false;
-            this.dgMatches.AllowUserToDeleteRows = false;
-            this.dgMatches.AllowUserToResizeRows = false;
-            this.dgMatches.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgMatches.AutoGenerateColumns = false;
-            this.dgMatches.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dgMatches.DataCollection = null;
-            this.dgMatches.Location = new System.Drawing.Point(0, 68);
-            this.dgMatches.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.dgMatches.MultiSelect = false;
-            this.dgMatches.Name = "dgMatches";
-            this.dgMatches.ReadOnly = true;
-            this.dgMatches.RowHeadersWidth = 20;
-            this.dgMatches.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgMatches.Size = new System.Drawing.Size(552, 445);
-            this.dgMatches.TabIndex = 1;
+            this.groupBox2.Controls.Add(this.cmbSeason);
+            this.groupBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.groupBox2.Location = new System.Drawing.Point(196, 2);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox2.Size = new System.Drawing.Size(68, 67);
+            this.groupBox2.TabIndex = 7;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Season";
+            // 
+            // cmbSeason
+            // 
+            this.cmbSeason.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSeason.FormattingEnabled = true;
+            this.cmbSeason.Location = new System.Drawing.Point(6, 28);
+            this.cmbSeason.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cmbSeason.Name = "cmbSeason";
+            this.cmbSeason.Size = new System.Drawing.Size(57, 21);
+            this.cmbSeason.TabIndex = 5;
             // 
             // tabBrowser
             // 
@@ -1141,60 +1158,6 @@
             // 
             this.varDataBindingSource.DataSource = typeof(NTR_Db.PlayerData);
             // 
-            // rotLineupControl1
-            // 
-            this.rotLineupControl1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("rotLineupControl1.BackgroundImage")));
-            this.rotLineupControl1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.rotLineupControl1.Location = new System.Drawing.Point(0, 29);
-            this.rotLineupControl1.MatchFile = "";
-            this.rotLineupControl1.Name = "rotLineupControl1";
-            this.rotLineupControl1.OppFormationType = Common.eFormationTypes.Type_4_4_2;
-            this.rotLineupControl1.Size = new System.Drawing.Size(630, 385);
-            this.rotLineupControl1.TabIndex = 1;
-            this.rotLineupControl1.YourFormationType = Common.eFormationTypes.Type_4_4_2;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.lblNameTeamOpps);
-            this.panel1.Controls.Add(this.lblScore);
-            this.panel1.Controls.Add(this.lblNameTeamYour);
-            this.panel1.Controls.Add(this.rotLineupControl1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(565, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(630, 519);
-            this.panel1.TabIndex = 1;
-            // 
-            // lblNameTeamYour
-            // 
-            this.lblNameTeamYour.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNameTeamYour.Location = new System.Drawing.Point(3, 4);
-            this.lblNameTeamYour.Name = "lblNameTeamYour";
-            this.lblNameTeamYour.Size = new System.Drawing.Size(283, 21);
-            this.lblNameTeamYour.TabIndex = 2;
-            this.lblNameTeamYour.Text = "Team1";
-            this.lblNameTeamYour.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lblScore
-            // 
-            this.lblScore.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblScore.Location = new System.Drawing.Point(284, 4);
-            this.lblScore.Name = "lblScore";
-            this.lblScore.Size = new System.Drawing.Size(63, 21);
-            this.lblScore.TabIndex = 2;
-            this.lblScore.Text = "0 - 0";
-            this.lblScore.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblNameTeamOpps
-            // 
-            this.lblNameTeamOpps.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNameTeamOpps.Location = new System.Drawing.Point(353, 4);
-            this.lblNameTeamOpps.Name = "lblNameTeamOpps";
-            this.lblNameTeamOpps.Size = new System.Drawing.Size(261, 21);
-            this.lblNameTeamOpps.TabIndex = 2;
-            this.lblNameTeamOpps.Text = "Team2";
-            this.lblNameTeamOpps.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // MainForm3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1217,19 +1180,16 @@
             this.tabGK.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPlayersGK)).EndInit();
             this.tabMatches.ResumeLayout(false);
-            this.tableLayoutPanelMatches.ResumeLayout(false);
-            this.panelMatch.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgMatches)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
             this.tabBrowser.ResumeLayout(false);
             this.tabBrowser.PerformLayout();
             this.tsBrowserImport.ResumeLayout(false);
             this.tsBrowserImport.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nTR_SquadDb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.varDataBindingSource)).EndInit();
-            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1302,8 +1262,6 @@
         private System.Windows.Forms.ToolStripContentPanel ContentPanel;
         private NTR_Controls.NTR_Browser ntrBrowser;
         private System.Windows.Forms.TabPage tabMatches;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelMatches;
-        private System.Windows.Forms.Panel panelMatch;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.CheckBox chkHome;
         private System.Windows.Forms.CheckBox chkAway;
@@ -1322,11 +1280,10 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
         private System.Windows.Forms.Button btnEnlargeMatchWindow;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label lblNameTeamOpps;
+        private System.Windows.Forms.Label lblNameTeamAway;
         private System.Windows.Forms.Label lblScore;
-        private System.Windows.Forms.Label lblNameTeamYour;
-        private FieldFormationControl.RotLineupControl rotLineupControl1;
+        private System.Windows.Forms.Label lblNameTeamHome;
+        private FieldFormationControl.RotLineupControl lineupControl;
     }
 }
 

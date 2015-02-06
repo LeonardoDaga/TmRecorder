@@ -69,7 +69,9 @@ namespace NTR_Controls
             returnedContent.ClubName = HTML_Parser.GetField(doctext, "SESSION[\"clubname\"] = '", "';");
             returnedContent.DocText = "";
 
-            if (!webBrowser.Url.OriginalString.Contains("http://trophymanager.com/players/"))
+            if (webBrowser.Url == null) return null;
+            if ((!webBrowser.Url.OriginalString.Contains("http://trophymanager.com/players/")) &&
+                (!webBrowser.Url.OriginalString.Contains("http://trophymanager.com/matches/")))
             {
                 MessageBox.Show("Sorry, cannot import this page!", "TmRecorder");
                 return null;
@@ -102,7 +104,7 @@ namespace NTR_Controls
 
             SaveImportedFile(page, webBrowser.Url);
 
-            returnedContent.ParsePage(page, startnavigationAddress);
+            returnedContent.ParsePage(page, webBrowser.Url.OriginalString);
 
             return returnedContent;
         }

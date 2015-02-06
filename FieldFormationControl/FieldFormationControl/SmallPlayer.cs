@@ -372,22 +372,23 @@ namespace FieldFormationControl
             sf.Alignment = StringAlignment.Far;
             if (_rule2 != "")
             {
-                rectText = new RectangleF(-2, 1, 26, _rulefont.SizeInPoints + 2);
+                rectText = new RectangleF(-2, 1, this.ClientSize.Width / 2, _rulefont.SizeInPoints + 2);
                 e.Graphics.DrawString(_rule1, _rulefont, brRule, rectText, sf);
-                rectText = new RectangleF(-2, 1 + _rulefont.SizeInPoints + 2, 26, _rulefont.SizeInPoints + 2);
+                rectText = new RectangleF(-2, 1 + _rulefont.SizeInPoints + 2, this.ClientSize.Width / 2, _rulefont.SizeInPoints + 2);
                 e.Graphics.DrawString(_rule2, _rulefont, brRule, rectText, sf);
             }
             else
             {
-                rectText = new RectangleF(-2, _rulefont.SizeInPoints, 26, _rulefont.SizeInPoints + 2);
+                rectText = new RectangleF(-2, _rulefont.SizeInPoints, this.ClientSize.Width / 2, _rulefont.SizeInPoints + 2);
                 e.Graphics.DrawString(_rule1, _rulefont, brRule, rectText, sf);
+                //e.Graphics.DrawRectangle(pen, (int)rectText.Left, (int)rectText.Top, (int)rectText.Width, (int)rectText.Height);
             }
 
             // Draw the vote
             if ((_vote != -1)||(_value != -1))
             {
                 sf.Alignment = StringAlignment.Center;
-                sf.LineAlignment = StringAlignment.Near;
+                //sf.LineAlignment = StringAlignment.Far;
                 string strVal = "";
                 if (_showValue)
                     strVal = _value.ToString("N1");
@@ -395,24 +396,43 @@ namespace FieldFormationControl
                     strVal = _vote.ToString("N0");
 
                 szf = e.Graphics.MeasureString(strVal.ToString(), _votefont);
-                rectText = new RectangleF(this.ClientSize.Width - szf.Width, 18 - szf.Height, szf.Width, szf.Height);
 
+                rectText = new RectangleF(this.ClientSize.Width / 2, _votefont.SizeInPoints, this.ClientSize.Width / 2, _votefont.SizeInPoints + 2);
                 e.Graphics.DrawString(strVal, _votefont, brRule, rectText, sf);
+                //e.Graphics.DrawRectangle(pen, (int)rectText.Left, (int)rectText.Top, (int)rectText.Width, (int)rectText.Height);
             }
             else // Draw the info
             {
                 sf.Alignment = StringAlignment.Near;
                 sf.LineAlignment = StringAlignment.Near;
-                rectText = new RectangleF(52, 14, 24, 25);
+                rectText = new RectangleF(this.ClientSize.Width / 2, 14, this.ClientSize.Width / 2, 25);
                 e.Graphics.DrawString(_info.ToString(), _rulefont, brRule, rectText, sf);
+                //e.Graphics.DrawRectangle(pen, (int)rectText.Left, (int)rectText.Top, (int)rectText.Width, (int)rectText.Height);
             }
+
+            // Draw the stars
+
+            // 
+            int skill = _number / 10;
+            int posSt = this.ClientSize.Width / 2 - (imageStarList.ImageSize.Width * 5 * skill) / 20;
+            Rectangle rect = new Rectangle(posSt, 18 + Shirt.YSize, imageStarList.ImageSize.Height, imageStarList.ImageSize.Width);
+            int star = 0;
+            for (; star < skill - 1; star += 2)
+            {
+                e.Graphics.DrawImage(imageStarList.Images[0], rect);
+                rect.Offset(imageStarList.ImageSize.Width, 0);
+            }
+            if (star < skill)
+                e.Graphics.DrawImage(imageStarList.Images[1], rect);
 
             sf.Alignment = StringAlignment.Center;
             sf.LineAlignment = StringAlignment.Near;
             
             // Modificare interlinea
-            rectText = new RectangleF(0, 18 + Shirt.YSize, this.ClientSize.Width, this.ClientSize.Height - 18 - Shirt.YSize +2);
+            rectText = new RectangleF(0, 18 + Shirt.YSize + imageStarList.ImageSize.Height, this.ClientSize.Width, 
+                this.ClientSize.Height - 18 - Shirt.YSize + 2 - imageStarList.ImageSize.Height);
             e.Graphics.DrawString(_name.ToString(), _namefont, brName, rectText, sf);
+            //e.Graphics.DrawRectangle(pen, (int)rectText.Left, (int)rectText.Top, (int)rectText.Width, (int)rectText.Height);
 
             // Fill the Tooltip
             toolTipText.ToolTipTitle = _name;

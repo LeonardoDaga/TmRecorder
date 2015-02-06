@@ -213,7 +213,7 @@ namespace Common
                     case Pos.MCL:
                     case Pos.OMCL:
                     case Pos.FCL:
-                        p.Y = oy + 1.5f * sy;
+                        p.Y = oy + 1.33f * sy;
                         break;
 
                     case Pos.DCR:
@@ -221,7 +221,7 @@ namespace Common
                     case Pos.MCR:
                     case Pos.OMCR:
                     case Pos.FCR:
-                        p.Y = oy + 2.5f * sy;
+                        p.Y = oy + 2.66f * sy;
                         break;
                 }
             }

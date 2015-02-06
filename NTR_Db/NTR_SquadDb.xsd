@@ -95,6 +95,7 @@
               <xs:element name="AvRating" msprop:Generator_ColumnVarNameInTable="columnAvRating" msprop:Generator_ColumnPropNameInRow="AvRating" msprop:Generator_ColumnPropNameInTable="AvRatingColumn" msprop:Generator_UserColumnName="AvRating" type="xs:decimal" minOccurs="0" />
               <xs:element name="MediaVoto" msprop:Generator_ColumnVarNameInTable="columnMediaVoto" msprop:Generator_ColumnPropNameInRow="MediaVoto" msprop:Generator_ColumnPropNameInTable="MediaVotoColumn" msprop:Generator_UserColumnName="MediaVoto" type="xs:decimal" minOccurs="0" />
               <xs:element name="Rec" msprop:Generator_ColumnVarNameInTable="columnRec" msprop:Generator_ColumnPropNameInRow="Rec" msprop:Generator_ColumnPropNameInTable="RecColumn" msprop:Generator_UserColumnName="Rec" type="xs:decimal" minOccurs="0" />
+              <xs:element name="UpdateDate" msprop:Generator_ColumnVarNameInTable="columnUpdateDate" msprop:Generator_ColumnPropNameInRow="UpdateDate" msprop:Generator_ColumnPropNameInTable="UpdateDateColumn" msprop:Generator_UserColumnName="UpdateDate" type="xs:dateTime" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -170,6 +171,7 @@
               <xs:element name="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="Status" type="xs:string" minOccurs="0" />
               <xs:element name="TeamID" msprop:Generator_ColumnVarNameInTable="columnTeamID" msprop:Generator_ColumnPropNameInRow="TeamID" msprop:Generator_ColumnPropNameInTable="TeamIDColumn" msprop:Generator_UserColumnName="TeamID" type="xs:int" minOccurs="0" />
               <xs:element name="NPos" msprop:Generator_ColumnVarNameInTable="columnNPos" msprop:Generator_ColumnPropNameInRow="NPos" msprop:Generator_ColumnPropNameInTable="NPosColumn" msprop:Generator_UserColumnName="NPos" type="xs:int" minOccurs="0" />
+              <xs:element name="Rec" msprop:Generator_ColumnVarNameInTable="columnRec" msprop:Generator_ColumnPropNameInRow="Rec" msprop:Generator_ColumnPropNameInTable="RecColumn" msprop:Generator_UserColumnName="Rec" type="xs:decimal" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -177,7 +179,7 @@
           <xs:complexType>
             <xs:sequence>
               <xs:element name="MatchID" msprop:Generator_ColumnVarNameInTable="columnMatchID" msprop:Generator_ColumnPropNameInRow="MatchID" msprop:Generator_ColumnPropNameInTable="MatchIDColumn" msprop:Generator_UserColumnName="MatchID" type="xs:int" />
-              <xs:element name="ActionID" msprop:Generator_ColumnVarNameInTable="columnActionID" msprop:Generator_ColumnPropNameInRow="ActionID" msprop:Generator_ColumnPropNameInTable="ActionIDColumn" msprop:Generator_UserColumnName="ActionID" type="xs:int" />
+              <xs:element name="ActionID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnActionID" msprop:Generator_ColumnPropNameInRow="ActionID" msprop:Generator_ColumnPropNameInTable="ActionIDColumn" msprop:Generator_UserColumnName="ActionID" type="xs:int" />
               <xs:element name="Time" msprop:Generator_ColumnVarNameInTable="columnTime" msprop:Generator_ColumnPropNameInRow="Time" msprop:Generator_ColumnPropNameInTable="TimeColumn" msprop:Generator_UserColumnName="Time" type="xs:int" minOccurs="0" />
               <xs:element name="Description" msprop:Generator_ColumnVarNameInTable="columnDescription" msprop:Generator_ColumnPropNameInRow="Description" msprop:Generator_ColumnPropNameInTable="DescriptionColumn" msprop:Generator_UserColumnName="Description" type="xs:string" minOccurs="0" />
               <xs:element name="ActionType" msprop:Generator_ColumnVarNameInTable="columnActionType" msprop:Generator_ColumnPropNameInRow="ActionType" msprop:Generator_ColumnPropNameInTable="ActionTypeColumn" msprop:Generator_UserColumnName="ActionType" type="xs:string" minOccurs="0" />
@@ -194,6 +196,15 @@
               <xs:element name="Week" msprop:Generator_ColumnVarNameInTable="columnWeek" msprop:Generator_ColumnPropNameInRow="Week" msprop:Generator_ColumnPropNameInTable="WeekColumn" msprop:Generator_UserColumnName="Week" type="xs:int" />
               <xs:element name="NumSupporters" msdata:Caption="StadiumSize" msprop:Generator_ColumnVarNameInTable="columnNumSupporters" msprop:Generator_ColumnPropNameInRow="NumSupporters" msprop:Generator_ColumnPropNameInTable="NumSupportersColumn" msprop:Generator_UserColumnName="NumSupporters" type="xs:int" minOccurs="0" />
               <xs:element name="StadiumSize" msprop:Generator_ColumnVarNameInTable="columnStadiumSize" msprop:Generator_ColumnPropNameInRow="StadiumSize" msprop:Generator_ColumnPropNameInTable="StadiumSizeColumn" msprop:Generator_UserColumnName="StadiumSize" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ActionsDecoder" msprop:Generator_TableClassName="ActionsDecoderDataTable" msprop:Generator_TableVarName="tableActionsDecoder" msprop:Generator_TablePropName="ActionsDecoder" msprop:Generator_RowDeletingName="ActionsDecoderRowDeleting" msprop:Generator_RowChangingName="ActionsDecoderRowChanging" msprop:Generator_RowEvHandlerName="ActionsDecoderRowChangeEventHandler" msprop:Generator_RowDeletedName="ActionsDecoderRowDeleted" msprop:Generator_UserTableName="ActionsDecoder" msprop:Generator_RowChangedName="ActionsDecoderRowChanged" msprop:Generator_RowEvArgName="ActionsDecoderRowChangeEvent" msprop:Generator_RowClassName="ActionsDecoderRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ActionType" msprop:Generator_ColumnVarNameInTable="columnActionType" msprop:Generator_ColumnPropNameInRow="ActionType" msprop:Generator_ColumnPropNameInTable="ActionTypeColumn" msprop:Generator_UserColumnName="ActionType" type="xs:string" minOccurs="0" />
+              <xs:element name="Outcome" msprop:Generator_ColumnVarNameInTable="columnOutcome" msprop:Generator_ColumnPropNameInRow="Outcome" msprop:Generator_ColumnPropNameInTable="OutcomeColumn" msprop:Generator_UserColumnName="Outcome" type="xs:string" minOccurs="0" />
+              <xs:element name="Type" msprop:Generator_ColumnVarNameInTable="columnType" msprop:Generator_ColumnPropNameInRow="Type" msprop:Generator_ColumnPropNameInTable="TypeColumn" msprop:Generator_UserColumnName="Type" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -254,6 +265,10 @@
       <xs:selector xpath=".//mstns:TeamData" />
       <xs:field xpath="mstns:TeamID" />
       <xs:field xpath="mstns:Week" />
+    </xs:unique>
+    <xs:unique name="ActionsDecoder_Constraint1" msdata:ConstraintName="Constraint1">
+      <xs:selector xpath=".//mstns:ActionsDecoder" />
+      <xs:field xpath="mstns:ActionType" />
     </xs:unique>
   </xs:element>
   <xs:annotation>

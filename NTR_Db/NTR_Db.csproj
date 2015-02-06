@@ -58,6 +58,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionDecoder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ActionDecoder.Designer.cs">
+      <DependentUpon>ActionDecoder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Content.cs" />
     <Compile Include="Data.cs">
       <SubType>Component</SubType>
@@ -76,6 +82,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ActionDecoder.resx">
+      <DependentUpon>ActionDecoder.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Data.resx">
       <DependentUpon>Data.cs</DependentUpon>
       <SubType>Designer</SubType>

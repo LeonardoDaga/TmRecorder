@@ -142,8 +142,10 @@ namespace TmRecorder3
                 dgPlayers.DataType = typeof(PlayerData);
 
                 ntrBrowser.DefaultDirectory = Program.Setts.DefaultDirectory;
+
+                tabMatches_Resize(sender, e);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
 
@@ -974,20 +976,91 @@ namespace TmRecorder3
                 LoadOldDBRecursively(directory);
         }
 
+        private void dgMatches_SelectionChanged(object sender, EventArgs e)
+        {
+            AeroDataGrid adg = (AeroDataGrid)sender;
+            if (adg.SelectedRows.Count == 0)
+                return;
+            DataGridViewRow row = adg.SelectedRows[0];
+            MatchData md = (MatchData)row.DataBoundItem;
+
+            lineupControl.SetMatchData(md, Program.Setts.YourTeamLeft);
+
+            if ((!Program.Setts.YourTeamLeft) || md.IsHome)
+            {
+                lblNameTeamHome.Text = md.Home.value;
+                lblNameTeamHome.ForeColor = md.Home.tagColor;
+                lblNameTeamAway.Text = md.Away.value;
+                lblNameTeamAway.ForeColor = md.Away.tagColor;
+                lblScore.Text = md.ScoreString.value;
+            }
+            else
+            {
+                lblNameTeamHome.Text = md.Away.value;
+                lblNameTeamHome.ForeColor = md.Away.tagColor;
+                lblNameTeamAway.Text = md.Home.value;
+                lblNameTeamAway.ForeColor = md.Home.tagColor;
+                lblScore.Text = md.Score.away.ToString() + "-" + md.Score.home.ToString();
+            }
+
+            if (lblNameTeamHome.ForeColor.GetBrightness() > 0.45)
+                lblNameTeamHome.ForeColor = Color.Black;
+            if (lblNameTeamAway.ForeColor.GetBrightness() > 0.45)
+                lblNameTeamAway.ForeColor = Color.Black;
+
+        }
+
         private void btnEnlargeMatchWindow_Click(object sender, EventArgs e)
         {
             if (btnEnlargeMatchWindow.Text == ">>")
             {
+                int offw = tabMatches.Width - 20;
                 btnEnlargeMatchWindow.Text = "<<";
-                tableLayoutPanelMatches.ColumnStyles[0].Width = 95;
-                tableLayoutPanelMatches.ColumnStyles[1].Width = 5;
+                dgMatches.Width = (offw * 75) / 100;
+
+                lblNameTeamAway.Font = new Font(lblNameTeamAway.Font.FontFamily, 8f);
+                lblNameTeamHome.Font = new Font(lblNameTeamAway.Font.FontFamily, 8f);
+                lblScore.Font = new Font(lblNameTeamAway.Font.FontFamily, 8f);
             }
             else
             {
                 btnEnlargeMatchWindow.Text = ">>";
-                tableLayoutPanelMatches.ColumnStyles[0].Width = 45;
-                tableLayoutPanelMatches.ColumnStyles[1].Width = 55;
+                dgMatches.Width = 542;
+
+                lblNameTeamAway.Font = new Font(lblNameTeamAway.Font.FontFamily, 14f);
+                lblNameTeamHome.Font = new Font(lblNameTeamAway.Font.FontFamily, 14f);
+                lblScore.Font = new Font(lblNameTeamAway.Font.FontFamily, 14f);
+                lineupControl.SetFontSize(8f);
             }
+
+            tabMatches_Resize(sender, e);
+        }
+
+        private void tabMatches_Resize(object sender, EventArgs e)
+        {
+            int offx = dgMatches.Width + 10;
+            int offw = tabMatches.Width - offx - 10;
+
+            if (btnEnlargeMatchWindow.Text == "<<")
+            {
+                offw = tabMatches.Width - 20;
+                dgMatches.Width = (offw * 75) / 100;
+                offx = dgMatches.Width + 10;
+                offw = tabMatches.Width - offx - 10;
+            }
+
+            lblNameTeamHome.Left = offx;
+            lblNameTeamHome.Width = (int)(offw * 4.5 / 10);
+            lblNameTeamAway.Left = offx + (int)(offw * 5.5 / 10);
+            lblNameTeamAway.Width = (int)(offw * 4.5 / 10);
+            lblScore.Left = offx + (int)(offw * 4.5 / 10);
+            lblScore.Width = (int)(offw / 10);
+
+            lineupControl.Left = offx;
+            lineupControl.Width = offw;
+            lineupControl.Height = (offw * 65)/ 100;
+
+            lineupControl.SetFontSize(lineupControl.Width / 100f);
         }
 
     }

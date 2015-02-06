@@ -29,12 +29,13 @@ namespace FieldFormationControl
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FieldPlayer));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SmallPlayer));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.selectItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTipText = new System.Windows.Forms.ToolTip(this.components);
             this.assImageList = new System.Windows.Forms.ImageList(this.components);
             this.assImageList0 = new System.Windows.Forms.ImageList(this.components);
+            this.imageStarList = new System.Windows.Forms.ImageList(this.components);
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -88,18 +89,26 @@ namespace FieldFormationControl
             this.assImageList0.Images.SetKeyName(7, "ass_head_0.gif");
             this.assImageList0.Images.SetKeyName(8, "ass_gk_0.gif");
             // 
-            // FieldPlayer
+            // imageStarList
+            // 
+            this.imageStarList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageStarList.ImageStream")));
+            this.imageStarList.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageStarList.Images.SetKeyName(0, "FullStar.gif");
+            this.imageStarList.Images.SetKeyName(1, "HalfStar.gif");
+            this.imageStarList.Images.SetKeyName(2, "NoStar.gif");
+            // 
+            // SmallPlayer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
             this.DoubleBuffered = true;
-            this.Name = "FieldPlayer";
+            this.Name = "SmallPlayer";
             this.Size = new System.Drawing.Size(78, 77);
             this.toolTipText.SetToolTip(this, "Testo Tooltip");
+            this.MouseEnter += new System.EventHandler(this.FieldPlayer_MouseEnter);
             this.MouseLeave += new System.EventHandler(this.FieldPlayer_MouseLeave);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.FieldPlayer_MouseMove);
-            this.MouseEnter += new System.EventHandler(this.FieldPlayer_MouseEnter);
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -112,5 +121,6 @@ namespace FieldFormationControl
         private System.Windows.Forms.ToolTip toolTipText;
         private System.Windows.Forms.ImageList assImageList;
         private System.Windows.Forms.ImageList assImageList0;
+        private System.Windows.Forms.ImageList imageStarList;
     }
 }

@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using Common;
 using System.IO;
+using NTR_Db;
 
 namespace FieldFormationControl
 {
@@ -306,7 +307,6 @@ namespace FieldFormationControl
                 fp.Data = pl;
                 fp.Location = pnt;
                 fp.Size = new Size(sx, sy);
-                fp.PlName = sx.ToString() + "," + sy.ToString();
                 return;
             }
             else if ((fp == null) && (pl.visible))
@@ -316,7 +316,9 @@ namespace FieldFormationControl
                 fp.Location = pnt;
                 fp.Visible = true;
                 fp.Size = new Size(sx, sy);
-                fp.PlName = sx.ToString() + "," + sy.ToString();
+                fp.NameFont = new Font("Arial", 8f);
+                fp.RuleFont = new Font("Arial", 8f);
+                fp.VoteFont = new Font("Arial", 8f);
                 this.Controls.Add(fp);
             }
         }
@@ -345,14 +347,106 @@ namespace FieldFormationControl
 
         private void RotLineupControl_Load(object sender, EventArgs e)
         {
-            Y_ShowFormationPlayers(YourFormationType);
-            O_ShowFormationPlayers(OppFormationType);
+            if (lastY_Formation == null)
+                Y_ShowFormationPlayers(YourFormationType);
+            else
+                Y_ShowFormationPlayers(lastY_Formation);
+
+            if (lastO_Formation == null)
+                O_ShowFormationPlayers(OppFormationType);
+            else
+                O_ShowFormationPlayers(lastO_Formation);
         }
 
         private void RotLineupControl_Resize(object sender, EventArgs e)
         {
-            Y_ShowFormationPlayers(YourFormationType);
-            O_ShowFormationPlayers(OppFormationType);
+            if (lastY_Formation == null)
+                Y_ShowFormationPlayers(YourFormationType);
+            else
+                Y_ShowFormationPlayers(lastY_Formation);
+
+            if (lastO_Formation == null)
+                O_ShowFormationPlayers(OppFormationType);
+            else
+                O_ShowFormationPlayers(lastO_Formation);
+        }
+
+        public void SetMatchData(MatchData md, bool yourTeamLeft)
+        {
+            EnumerableRowCollection<NTR_SquadDb.PlayerPerfRow> pprLeftCollection = null;
+            EnumerableRowCollection<NTR_SquadDb.PlayerPerfRow> pprRightCollection = null;
+
+            Color leftColor = Color.Black;
+            Color rightColor = Color.Black;
+
+            if (!md.IsHome && yourTeamLeft)
+            {
+                pprLeftCollection = md.AwayPlayerPerf;
+                pprRightCollection = md.HomePlayerPerf;
+                leftColor = md.Away.tagColor;
+                rightColor = md.Home.tagColor;
+            }
+            else
+            {
+                pprLeftCollection = md.HomePlayerPerf;
+                pprRightCollection = md.AwayPlayerPerf;
+                leftColor = md.Home.tagColor;
+                rightColor = md.Away.tagColor;
+            }
+
+            lastY_Formation = new Formation(eFormationTypes.Type_Empty);
+
+            foreach (NTR_SquadDb.PlayerPerfRow player in pprLeftCollection)
+            {
+                lastY_Formation.TeamColor = leftColor;
+                Player pl = SetPlayer(lastY_Formation, player);
+            }
+
+            Y_ShowFormationPlayers(lastY_Formation);
+
+            lastO_Formation = new Formation(eFormationTypes.Type_Empty);
+
+            foreach (NTR_SquadDb.PlayerPerfRow player in pprRightCollection)
+            {
+                lastO_Formation.TeamColor = rightColor;
+                Player pl = SetPlayer(lastO_Formation, player);
+            }
+
+            O_ShowFormationPlayers(lastO_Formation);
+        }
+
+        public Player SetPlayer(Formation f, NTR_SquadDb.PlayerPerfRow row)
+        {
+            Player pl = f.FindPlayer(row.Position.ToUpper());
+            if (pl == null) return null;
+
+            pl.name = row.PlayerRow.Name;
+            pl.pf = row.Position;
+            pl.vote = (int)row.Vote;
+            pl.playerID = row.PlayerID;
+
+            if (row.IsNumberNull())
+                pl.number = -1;
+            else
+                pl.number = row.Number;
+
+            pl.visible = true;
+
+            return pl;
+        }
+
+        public void SetFontSize(float fontSize)
+        {
+            if (fontSize < 5)
+                return;
+            Font font = new Font("Arial", fontSize);
+            for (int i = 0; i < 48; i++)
+            {
+                if (fp[i] == null) continue;
+                fp[i].NameFont = font;
+                fp[i].VoteFont = font;
+                fp[i].RuleFont = font;
+            }
         }
     }
 

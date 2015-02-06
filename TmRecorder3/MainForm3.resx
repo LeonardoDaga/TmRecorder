@@ -155,7 +155,7 @@
   <metadata name="contextMenuPlayersPage.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>497, 17</value>
   </metadata>
-  <data name="rotLineupControl1.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="lineupControl.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         R0lGODlhtwNtAocAABkqASU5BCk5CClCCClKCDFKCDFSCDlSCDFSEDlSEDFaCDlaCEJaCDlaEEJaEEJa
         GDljCEJjCDljEEJjEEJjGEpjGEJrCEprCEJrEEprEEJrGEprGFJrGEprIVJrIUJzCEpzCEJzEEpzEFJz
@@ -8633,7 +8633,7 @@
     <value>824, 16</value>
   </metadata>
   <metadata name="folderBrowserDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 55</value>
+    <value>19, 43</value>
   </metadata>
   <metadata name="nTR_SquadDb.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -8645,6 +8645,6 @@
     <value>212, 17</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>90</value>
+    <value>65</value>
   </metadata>
 </root>

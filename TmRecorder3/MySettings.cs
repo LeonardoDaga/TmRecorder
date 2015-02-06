@@ -150,11 +150,17 @@ namespace TmRecorder3
             sb.Def("TacticsDBFilename", Path.Combine(appDataFolder, @"TacticsFile.xml"));
             sb.Def("DebugFunction", 0);
             sb.Def("FirstInstallation", true);
+            sb.Def("YourTeamLeft", true);
             
             // Always the last settings
             sb.Def("SettsRelease", 1);
         }
 
+        public bool YourTeamLeft
+        {
+            get { return (bool)sb["YourTeamLeft"]; }
+            set { sb["YourTeamLeft"] = (bool)value; }
+        }
         public bool FirstInstallation
         {
             get { return (bool)sb["FirstInstallation"]; }
@@ -346,6 +352,7 @@ namespace TmRecorder3
             get { return (string)sb["InstallationDirectory"]; }
             set { sb["InstallationDirectory"] = (string)value; }
         }
+
         public string DefaultDirectory
         {
             get { return (string)sb["DefaultDirectory"]; }

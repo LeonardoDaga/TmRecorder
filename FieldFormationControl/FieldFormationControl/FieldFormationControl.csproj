@@ -136,12 +136,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SmallPlayer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="SmallPlayer.Designer.cs">
-      <DependentUpon>SmallPlayer.cs</DependentUpon>
-    </Compile>
     <Compile Include="FlyingPlayerDataPanel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -199,20 +193,22 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RotLineupControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="RotLineupControl.Designer.cs">
       <DependentUpon>RotLineupControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SmallPlayer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SmallPlayer.Designer.cs">
+      <DependentUpon>SmallPlayer.cs</DependentUpon>
+    </Compile>
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="SmallPlayer.resx">
-      <DependentUpon>SmallPlayer.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="LineupPlayer.resx">
       <DependentUpon>LineupPlayer.cs</DependentUpon>
     </EmbeddedResource>
@@ -238,8 +234,12 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="RotLineupControl.resx">
-      <SubType>Designer</SubType>
       <DependentUpon>RotLineupControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SmallPlayer.resx">
+      <DependentUpon>SmallPlayer.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -256,6 +256,7 @@
     <Content Include="Ass_Images\ass_wing.gif" />
     <Content Include="Ass_Images\Cross.gif" />
     <Content Include="Ass_Images\Red.gif" />
+    <Content Include="Ass_Images\SmallStar.gif" />
     <Content Include="Ass_Images\Star.gif" />
     <Content Include="Ass_Images\Yellow.gif" />
     <EmbeddedResource Include="FlyingPlayerDataPanel.resx">
@@ -282,6 +283,10 @@
     <ProjectReference Include="..\..\Multilanguage\Languages.csproj">
       <Project>{E0E469C1-BFB5-4EC0-93F1-F019C9101110}</Project>
       <Name>Languages</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\NTR_Db\NTR_Db.csproj">
+      <Project>{df7d6401-1959-405f-8f35-65fd8ad320b7}</Project>
+      <Name>NTR_Db</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

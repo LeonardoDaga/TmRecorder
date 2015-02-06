@@ -39,6 +39,12 @@ namespace TmRecorder3
             set { txtDataDirectory.Text = value; }
         }
 
+        public bool YourTeamLeft
+        {
+            get { return chkYTeamLeft.Checked; }
+            set { chkYTeamLeft.Checked = value; }
+        }
+
         public int PlayerType
         {
             get
@@ -199,6 +205,9 @@ namespace TmRecorder3
 
             // Squad list in the default page
             SquadList = DB.OwnedSquadsList;
+
+            // Show Your Team Left on match viewer
+            YourTeamLeft = appSettings.YourTeamLeft;
         }
 
         private void UpdateSettingsWithControls()
@@ -221,6 +230,9 @@ namespace TmRecorder3
             // Routine
             appSettings.RouParams = RoutineParameters;
             appSettings.RouFunction = RoutineFunction;
+
+            // Show Your Team Left on match viewer
+            appSettings.YourTeamLeft = YourTeamLeft;
         }
 
         private void btnOK_Click(object sender, EventArgs e)

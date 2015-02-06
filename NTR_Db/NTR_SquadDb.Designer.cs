@@ -44,6 +44,8 @@ namespace NTR_Db {
         
         private TeamDataDataTable tableTeamData;
         
+        private ActionsDecoderDataTable tableActionsDecoder;
+        
         private global::System.Data.DataRelation relationPlayer_ScoutReview;
         
         private global::System.Data.DataRelation relationPlayer_VarData;
@@ -129,6 +131,9 @@ namespace NTR_Db {
                 }
                 if ((ds.Tables["TeamData"] != null)) {
                     base.Tables.Add(new TeamDataDataTable(ds.Tables["TeamData"]));
+                }
+                if ((ds.Tables["ActionsDecoder"] != null)) {
+                    base.Tables.Add(new ActionsDecoderDataTable(ds.Tables["ActionsDecoder"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -251,6 +256,16 @@ namespace NTR_Db {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public ActionsDecoderDataTable ActionsDecoder {
+            get {
+                return this.tableActionsDecoder;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.BrowsableAttribute(true)]
         [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Visible)]
         public override global::System.Data.SchemaSerializationMode SchemaSerializationMode {
@@ -347,6 +362,9 @@ namespace NTR_Db {
                 if ((ds.Tables["TeamData"] != null)) {
                     base.Tables.Add(new TeamDataDataTable(ds.Tables["TeamData"]));
                 }
+                if ((ds.Tables["ActionsDecoder"] != null)) {
+                    base.Tables.Add(new ActionsDecoderDataTable(ds.Tables["ActionsDecoder"]));
+                }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
                 this.Namespace = ds.Namespace;
@@ -440,6 +458,12 @@ namespace NTR_Db {
                     this.tableTeamData.InitVars();
                 }
             }
+            this.tableActionsDecoder = ((ActionsDecoderDataTable)(base.Tables["ActionsDecoder"]));
+            if ((initTable == true)) {
+                if ((this.tableActionsDecoder != null)) {
+                    this.tableActionsDecoder.InitVars();
+                }
+            }
             this.relationPlayer_ScoutReview = this.Relations["Player_ScoutReview"];
             this.relationPlayer_VarData = this.Relations["Player_VarData"];
             this.relationPlayer_TempData = this.Relations["Player_TempData"];
@@ -482,6 +506,8 @@ namespace NTR_Db {
             base.Tables.Add(this.tableActions);
             this.tableTeamData = new TeamDataDataTable();
             base.Tables.Add(this.tableTeamData);
+            this.tableActionsDecoder = new ActionsDecoderDataTable();
+            base.Tables.Add(this.tableActionsDecoder);
             this.relationPlayer_ScoutReview = new global::System.Data.DataRelation("Player_ScoutReview", new global::System.Data.DataColumn[] {
                         this.tablePlayer.PlayerIDColumn}, new global::System.Data.DataColumn[] {
                         this.tableScoutReview.PlayerIDColumn}, false);
@@ -594,6 +620,12 @@ namespace NTR_Db {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializeActionsDecoder() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void SchemaChanged(object sender, global::System.ComponentModel.CollectionChangeEventArgs e) {
             if ((e.Action == global::System.ComponentModel.CollectionChangeAction.Remove)) {
                 this.InitVars();
@@ -682,6 +714,9 @@ namespace NTR_Db {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void TeamDataRowChangeEventHandler(object sender, TeamDataRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void ActionsDecoderRowChangeEventHandler(object sender, ActionsDecoderRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -2203,6 +2238,8 @@ namespace NTR_Db {
             
             private global::System.Data.DataColumn columnRec;
             
+            private global::System.Data.DataColumn columnUpdateDate;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public TempDataDataTable() {
@@ -2286,6 +2323,14 @@ namespace NTR_Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn UpdateDateColumn {
+                get {
+                    return this.columnUpdateDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2321,7 +2366,7 @@ namespace NTR_Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TempDataRow AddTempDataRow(PlayerRow parentPlayerRowByPlayer_TempData, decimal Rou, int Wage, decimal AvRating, decimal MediaVoto, decimal Rec) {
+            public TempDataRow AddTempDataRow(PlayerRow parentPlayerRowByPlayer_TempData, decimal Rou, int Wage, decimal AvRating, decimal MediaVoto, decimal Rec, System.DateTime UpdateDate) {
                 TempDataRow rowTempDataRow = ((TempDataRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -2329,7 +2374,8 @@ namespace NTR_Db {
                         Wage,
                         AvRating,
                         MediaVoto,
-                        Rec};
+                        Rec,
+                        UpdateDate};
                 if ((parentPlayerRowByPlayer_TempData != null)) {
                     columnValuesArray[0] = parentPlayerRowByPlayer_TempData[0];
                 }
@@ -2368,6 +2414,7 @@ namespace NTR_Db {
                 this.columnAvRating = base.Columns["AvRating"];
                 this.columnMediaVoto = base.Columns["MediaVoto"];
                 this.columnRec = base.Columns["Rec"];
+                this.columnUpdateDate = base.Columns["UpdateDate"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2385,6 +2432,8 @@ namespace NTR_Db {
                 base.Columns.Add(this.columnMediaVoto);
                 this.columnRec = new global::System.Data.DataColumn("Rec", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRec);
+                this.columnUpdateDate = new global::System.Data.DataColumn("UpdateDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUpdateDate);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnPlayerID}, true));
                 this.columnPlayerID.AllowDBNull = false;
@@ -3789,6 +3838,8 @@ namespace NTR_Db {
             
             private global::System.Data.DataColumn columnNPos;
             
+            private global::System.Data.DataColumn columnRec;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public PlayerPerfDataTable() {
@@ -3912,6 +3963,14 @@ namespace NTR_Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn RecColumn {
+                get {
+                    return this.columnRec;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -3947,7 +4006,7 @@ namespace NTR_Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public PlayerPerfRow AddPlayerPerfRow(MatchRow parentMatchRowByMatch_YourTeamPerf, PlayerRow parentPlayerRowByPlayer_YourTeamPerf, float Vote, string Position, int Scored, int Number, string Analysis, int Assist, string Status, int TeamID, int NPos) {
+            public PlayerPerfRow AddPlayerPerfRow(MatchRow parentMatchRowByMatch_YourTeamPerf, PlayerRow parentPlayerRowByPlayer_YourTeamPerf, float Vote, string Position, int Scored, int Number, string Analysis, int Assist, string Status, int TeamID, int NPos, decimal Rec) {
                 PlayerPerfRow rowPlayerPerfRow = ((PlayerPerfRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -3960,7 +4019,8 @@ namespace NTR_Db {
                         Assist,
                         Status,
                         TeamID,
-                        NPos};
+                        NPos,
+                        Rec};
                 if ((parentMatchRowByMatch_YourTeamPerf != null)) {
                     columnValuesArray[0] = parentMatchRowByMatch_YourTeamPerf[0];
                 }
@@ -4008,6 +4068,7 @@ namespace NTR_Db {
                 this.columnStatus = base.Columns["Status"];
                 this.columnTeamID = base.Columns["TeamID"];
                 this.columnNPos = base.Columns["NPos"];
+                this.columnRec = base.Columns["Rec"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4035,6 +4096,8 @@ namespace NTR_Db {
                 base.Columns.Add(this.columnTeamID);
                 this.columnNPos = new global::System.Data.DataColumn("NPos", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNPos);
+                this.columnRec = new global::System.Data.DataColumn("Rec", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRec);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("TeamPerfKey", new global::System.Data.DataColumn[] {
                                 this.columnMatchID,
                                 this.columnPlayerID}, true));
@@ -4323,11 +4386,11 @@ namespace NTR_Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ActionsRow AddActionsRow(MatchRow parentMatchRowByMatch_Actions, int ActionID, int Time, string Description, string ActionType, TeamRow parentTeamRowByTeam_Actions, string ActionCode, string FullDesc) {
+            public ActionsRow AddActionsRow(MatchRow parentMatchRowByMatch_Actions, int Time, string Description, string ActionType, TeamRow parentTeamRowByTeam_Actions, string ActionCode, string FullDesc) {
                 ActionsRow rowActionsRow = ((ActionsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
-                        ActionID,
+                        null,
                         Time,
                         Description,
                         ActionType,
@@ -4403,6 +4466,9 @@ namespace NTR_Db {
                                 this.columnMatchID,
                                 this.columnActionID}, true));
                 this.columnMatchID.AllowDBNull = false;
+                this.columnActionID.AutoIncrement = true;
+                this.columnActionID.AutoIncrementSeed = -1;
+                this.columnActionID.AutoIncrementStep = -1;
                 this.columnActionID.AllowDBNull = false;
                 this.columnTeamID.Caption = "ID";
             }
@@ -4797,6 +4863,284 @@ namespace NTR_Db {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "TeamDataDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class ActionsDecoderDataTable : global::System.Data.TypedTableBase<ActionsDecoderRow> {
+            
+            private global::System.Data.DataColumn columnActionType;
+            
+            private global::System.Data.DataColumn columnOutcome;
+            
+            private global::System.Data.DataColumn columnType;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public ActionsDecoderDataTable() {
+                this.TableName = "ActionsDecoder";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal ActionsDecoderDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected ActionsDecoderDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ActionTypeColumn {
+                get {
+                    return this.columnActionType;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn OutcomeColumn {
+                get {
+                    return this.columnOutcome;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TypeColumn {
+                get {
+                    return this.columnType;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public ActionsDecoderRow this[int index] {
+                get {
+                    return ((ActionsDecoderRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event ActionsDecoderRowChangeEventHandler ActionsDecoderRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event ActionsDecoderRowChangeEventHandler ActionsDecoderRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event ActionsDecoderRowChangeEventHandler ActionsDecoderRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event ActionsDecoderRowChangeEventHandler ActionsDecoderRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddActionsDecoderRow(ActionsDecoderRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public ActionsDecoderRow AddActionsDecoderRow(string ActionType, string Outcome, string Type) {
+                ActionsDecoderRow rowActionsDecoderRow = ((ActionsDecoderRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        ActionType,
+                        Outcome,
+                        Type};
+                rowActionsDecoderRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowActionsDecoderRow);
+                return rowActionsDecoderRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                ActionsDecoderDataTable cln = ((ActionsDecoderDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new ActionsDecoderDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnActionType = base.Columns["ActionType"];
+                this.columnOutcome = base.Columns["Outcome"];
+                this.columnType = base.Columns["Type"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnActionType = new global::System.Data.DataColumn("ActionType", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnActionType);
+                this.columnOutcome = new global::System.Data.DataColumn("Outcome", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOutcome);
+                this.columnType = new global::System.Data.DataColumn("Type", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnType);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnActionType}, false));
+                this.columnActionType.Unique = true;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public ActionsDecoderRow NewActionsDecoderRow() {
+                return ((ActionsDecoderRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new ActionsDecoderRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(ActionsDecoderRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.ActionsDecoderRowChanged != null)) {
+                    this.ActionsDecoderRowChanged(this, new ActionsDecoderRowChangeEvent(((ActionsDecoderRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.ActionsDecoderRowChanging != null)) {
+                    this.ActionsDecoderRowChanging(this, new ActionsDecoderRowChangeEvent(((ActionsDecoderRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.ActionsDecoderRowDeleted != null)) {
+                    this.ActionsDecoderRowDeleted(this, new ActionsDecoderRowChangeEvent(((ActionsDecoderRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.ActionsDecoderRowDeleting != null)) {
+                    this.ActionsDecoderRowDeleting(this, new ActionsDecoderRowChangeEvent(((ActionsDecoderRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemoveActionsDecoderRow(ActionsDecoderRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                NTR_SquadDb ds = new NTR_SquadDb();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "ActionsDecoderDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -6207,6 +6551,22 @@ namespace NTR_Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime UpdateDate {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableTempData.UpdateDateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'UpdateDate\' in table \'TempData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTempData.UpdateDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public PlayerRow PlayerRow {
                 get {
                     return ((PlayerRow)(this.GetParentRow(this.Table.ParentRelations["Player_TempData"])));
@@ -6274,6 +6634,18 @@ namespace NTR_Db {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetRecNull() {
                 this[this.tableTempData.RecColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsUpdateDateNull() {
+                return this.IsNull(this.tableTempData.UpdateDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetUpdateDateNull() {
+                this[this.tableTempData.UpdateDateColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -7481,6 +7853,22 @@ namespace NTR_Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal Rec {
+                get {
+                    try {
+                        return ((decimal)(this[this.tablePlayerPerf.RecColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Rec\' in table \'PlayerPerf\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePlayerPerf.RecColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public PlayerRow PlayerRow {
                 get {
                     return ((PlayerRow)(this.GetParentRow(this.Table.ParentRelations["Player_YourTeamPerf"])));
@@ -7607,6 +7995,18 @@ namespace NTR_Db {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetNPosNull() {
                 this[this.tablePlayerPerf.NPosColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsRecNull() {
+                return this.IsNull(this.tablePlayerPerf.RecColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetRecNull() {
+                this[this.tablePlayerPerf.RecColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -7942,6 +8342,105 @@ namespace NTR_Db {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class ActionsDecoderRow : global::System.Data.DataRow {
+            
+            private ActionsDecoderDataTable tableActionsDecoder;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal ActionsDecoderRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableActionsDecoder = ((ActionsDecoderDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string ActionType {
+                get {
+                    try {
+                        return ((string)(this[this.tableActionsDecoder.ActionTypeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ActionType\' in table \'ActionsDecoder\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableActionsDecoder.ActionTypeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Outcome {
+                get {
+                    try {
+                        return ((string)(this[this.tableActionsDecoder.OutcomeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Outcome\' in table \'ActionsDecoder\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableActionsDecoder.OutcomeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Type {
+                get {
+                    try {
+                        return ((string)(this[this.tableActionsDecoder.TypeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Type\' in table \'ActionsDecoder\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableActionsDecoder.TypeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsActionTypeNull() {
+                return this.IsNull(this.tableActionsDecoder.ActionTypeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetActionTypeNull() {
+                this[this.tableActionsDecoder.ActionTypeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsOutcomeNull() {
+                return this.IsNull(this.tableActionsDecoder.OutcomeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetOutcomeNull() {
+                this[this.tableActionsDecoder.OutcomeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsTypeNull() {
+                return this.IsNull(this.tableActionsDecoder.TypeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetTypeNull() {
+                this[this.tableActionsDecoder.TypeColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -8267,6 +8766,40 @@ namespace NTR_Db {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public TeamDataRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class ActionsDecoderRowChangeEvent : global::System.EventArgs {
+            
+            private ActionsDecoderRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public ActionsDecoderRowChangeEvent(ActionsDecoderRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public ActionsDecoderRow Row {
                 get {
                     return this.eventRow;
                 }

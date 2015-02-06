@@ -147,7 +147,20 @@ namespace NTR_Db
                 squadDB.Team.ReadXml(fi.FullName);
 
                 fi = new FileInfo(Path.Combine(dirPath, "Match.5.xml"));
-                squadDB.Match.ReadXml(fi.FullName);
+                if (fi.Exists)
+                    squadDB.Match.ReadXml(fi.FullName);
+
+                fi = new FileInfo(Path.Combine(dirPath, "TeamData.5.xml"));
+                if (fi.Exists)
+                    squadDB.TeamData.ReadXml(fi.FullName);
+
+                fi = new FileInfo(Path.Combine(dirPath, "PlayerPerf.5.xml"));
+                if (fi.Exists)
+                    squadDB.PlayerPerf.ReadXml(fi.FullName);
+
+                fi = new FileInfo(Path.Combine(dirPath, "Actions.5.xml"));
+                if (fi.Exists)
+                    squadDB.Actions.ReadXml(fi.FullName);
 
                 latestDataWeek = -1;
                 foreach (NTR_SquadDb.HistDataRow histDataRow in squadDB.HistData)
@@ -328,6 +341,9 @@ namespace NTR_Db
 
             // TODO: Save Actions
             int actionID = 0;
+            int YTeamColor = -1;
+            int OTeamColor = -1;
+
             foreach (MatchDS.ActionsRow actionsRow in matchDS.Actions)
             {
                 NTR_SquadDb.ActionsRow ar = squadDB.Actions.FindByMatchIDActionID(matchID, actionID);
@@ -347,7 +363,17 @@ namespace NTR_Db
                 ar.FullDesc = actionsRow.FullDesc;
                 ar.Time = actionsRow.Time;
                 ar.TeamID = actionsRow.ID;
+
+                if (ar.TeamID == YTeamID)
+                    YTeamColor = actionsRow.Color;
+                else
+                    OTeamColor = actionsRow.Color;
             }
+
+            NTR_SquadDb.TeamRow oTeamRow = squadDB.Team.FindByTeamID(OTeamID);
+            oTeamRow.Color = OTeamColor;
+            NTR_SquadDb.TeamRow yTeamRow = squadDB.Team.FindByTeamID(YTeamID);
+            yTeamRow.Color = YTeamColor;
 
             Invalidate();
         }
@@ -745,8 +771,17 @@ namespace NTR_Db
             fi = new FileInfo(Path.Combine(dirPath, "Team.5.xml"));
             squadDB.Team.WriteXml(fi.FullName);
 
+            fi = new FileInfo(Path.Combine(dirPath, "TeamData.5.xml"));
+            squadDB.TeamData.WriteXml(fi.FullName);
+
             fi = new FileInfo(Path.Combine(dirPath, "Match.5.xml"));
             squadDB.Match.WriteXml(fi.FullName);
+
+            fi = new FileInfo(Path.Combine(dirPath, "PlayerPerf.5.xml"));
+            squadDB.PlayerPerf.WriteXml(fi.FullName);
+
+            fi = new FileInfo(Path.Combine(dirPath, "Actions.5.xml"));
+            squadDB.Actions.WriteXml(fi.FullName);
         }
 
         public Dictionary<int, string> Teams { get; set; }
@@ -1113,6 +1148,8 @@ namespace NTR_Db
                 Away = mr.TeamRowByTeam_OTeam.Name;
                 Home.isBold = true;
                 Away.isBold = false;
+                Home.tagColor = Color.FromArgb(mr.TeamRowByTeam_YTeam.IsColorNull() ? 0 : mr.TeamRowByTeam_YTeam.Color);
+                Away.tagColor = Color.FromArgb(mr.TeamRowByTeam_OTeam.IsColorNull() ? 0 : mr.TeamRowByTeam_OTeam.Color);
             }
             else
             {
@@ -1120,9 +1157,33 @@ namespace NTR_Db
                 Home = mr.TeamRowByTeam_OTeam.Name;
                 Away.isBold = true;
                 Home.isBold = false;
+                Away.tagColor = Color.FromArgb(mr.TeamRowByTeam_YTeam.IsColorNull() ? 0 : mr.TeamRowByTeam_YTeam.Color);
+                Home.tagColor = Color.FromArgb(mr.TeamRowByTeam_OTeam.IsColorNull() ? 0 : mr.TeamRowByTeam_OTeam.Color);
             }
+
             Away.backColor = Score.ScoreColor;
             Home.backColor = Score.ScoreColor;
+
+            NTR_SquadDb squadDB = (NTR_SquadDb)mr.Table.DataSet;
+
+            if (mr.isHome)
+            {
+                HomePlayerPerf = from c in squadDB.PlayerPerf
+                                 where (c.MatchID == mr.MatchID) && (c.TeamID == mr.YTeamID)
+                                 select c;
+                AwayPlayerPerf = from c in squadDB.PlayerPerf
+                                 where (c.MatchID == mr.MatchID) && (c.TeamID == mr.OTeamID)
+                                 select c;
+            }
+            else
+            {
+                HomePlayerPerf = from c in squadDB.PlayerPerf
+                                 where (c.MatchID == mr.MatchID) && (c.TeamID == mr.OTeamID)
+                                 select c;
+                AwayPlayerPerf = from c in squadDB.PlayerPerf
+                                 where (c.MatchID == mr.MatchID) && (c.TeamID == mr.YTeamID)
+                                 select c;
+            }
         }
 
         public DateTime Date { get; set; }
@@ -1140,13 +1201,16 @@ namespace NTR_Db
         public string Pitch { get; set; }
         public bool Report { get; set; }
         public MatchScore Score { get; set; }
-        public FormattedString ScoreString { get; set; }
         public string Stadium { get; set; }
         public string Stats { get; set; }
         public string Weather { get; set; }
         public int YTeamID { get; set; }
+        public FormattedString ScoreString { get; set; }
         public FormattedString Home { get; set; }
         public FormattedString Away { get; set; }
+
+        public EnumerableRowCollection<NTR_SquadDb.PlayerPerfRow> HomePlayerPerf { get; set; }
+        public EnumerableRowCollection<NTR_SquadDb.PlayerPerfRow> AwayPlayerPerf { get; set; }
     }
 
     public class FormattedString
@@ -1155,6 +1219,7 @@ namespace NTR_Db
         public string value;
         public Color backColor = Color.White;
         public Color fontColor = Color.Black;
+        public Color tagColor = Color.Black;
 
         public FormattedString(string s)
         {

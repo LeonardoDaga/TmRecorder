@@ -31,10 +31,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lblActionDescription = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
-            this.checkedListBox2 = new System.Windows.Forms.CheckedListBox();
+            this.chkOutcome = new System.Windows.Forms.CheckedListBox();
+            this.chkActionType = new System.Windows.Forms.CheckedListBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.btnOK = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -47,10 +49,13 @@
             // 
             // lblActionDescription
             // 
+            this.lblActionDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblActionDescription.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblActionDescription.Location = new System.Drawing.Point(15, 62);
             this.lblActionDescription.Name = "lblActionDescription";
-            this.lblActionDescription.Size = new System.Drawing.Size(527, 73);
+            this.lblActionDescription.Size = new System.Drawing.Size(536, 66);
             this.lblActionDescription.TabIndex = 1;
             // 
             // label3
@@ -63,26 +68,29 @@
             this.label3.Text = "This is an action that is not recognized by TM Recorder. Please help the applicat" +
     "ion to understand the action type to improve your team\'s statistics.";
             // 
-            // checkedListBox1
+            // chkOutcome
             // 
-            this.checkedListBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Items.AddRange(new object[] {
+            this.chkOutcome.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.chkOutcome.BackColor = System.Drawing.SystemColors.Control;
+            this.chkOutcome.FormattingEnabled = true;
+            this.chkOutcome.Items.AddRange(new object[] {
             "Failed attack",
             "Off Shot",
             "In Shot",
             "Goal",
-            "Ban for the opposite team"});
-            this.checkedListBox1.Location = new System.Drawing.Point(204, 165);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(164, 94);
-            this.checkedListBox1.TabIndex = 4;
+            "Ban for the opposite team",
+            "Injury"});
+            this.chkOutcome.Location = new System.Drawing.Point(200, 151);
+            this.chkOutcome.Name = "chkOutcome";
+            this.chkOutcome.Size = new System.Drawing.Size(164, 94);
+            this.chkOutcome.TabIndex = 4;
             // 
-            // checkedListBox2
+            // chkActionType
             // 
-            this.checkedListBox2.BackColor = System.Drawing.SystemColors.Control;
-            this.checkedListBox2.FormattingEnabled = true;
-            this.checkedListBox2.Items.AddRange(new object[] {
+            this.chkActionType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.chkActionType.BackColor = System.Drawing.SystemColors.Control;
+            this.chkActionType.FormattingEnabled = true;
+            this.chkActionType.Items.AddRange(new object[] {
             "Short Pass",
             "Through Ball",
             "Wing",
@@ -90,15 +98,18 @@
             "Counter Attack",
             "Corner",
             "Freekick",
-            "GK long ball attack"});
-            this.checkedListBox2.Location = new System.Drawing.Point(15, 165);
-            this.checkedListBox2.Name = "checkedListBox2";
-            this.checkedListBox2.Size = new System.Drawing.Size(164, 124);
-            this.checkedListBox2.TabIndex = 4;
+            "GK long ball attack",
+            "Yellow/Red Card",
+            "Injury"});
+            this.chkActionType.Location = new System.Drawing.Point(15, 151);
+            this.chkActionType.Name = "chkActionType";
+            this.chkActionType.Size = new System.Drawing.Size(164, 154);
+            this.chkActionType.TabIndex = 4;
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(12, 145);
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label2.Location = new System.Drawing.Point(12, 134);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(150, 17);
             this.label2.TabIndex = 0;
@@ -106,19 +117,47 @@
             // 
             // label4
             // 
-            this.label4.Location = new System.Drawing.Point(201, 145);
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label4.Location = new System.Drawing.Point(197, 134);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(150, 17);
             this.label4.TabIndex = 0;
             this.label4.Text = "Outcome";
             // 
+            // btnOK
+            // 
+            this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnOK.Location = new System.Drawing.Point(377, 278);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(84, 23);
+            this.btnOK.TabIndex = 5;
+            this.btnOK.Text = "OK";
+            this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Location = new System.Drawing.Point(467, 278);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(84, 23);
+            this.btnCancel.TabIndex = 5;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            // 
             // ActionDecoder
             // 
+            this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(554, 312);
-            this.Controls.Add(this.checkedListBox2);
-            this.Controls.Add(this.checkedListBox1);
+            this.CancelButton = this.btnCancel;
+            this.ClientSize = new System.Drawing.Size(563, 313);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnOK);
+            this.Controls.Add(this.chkActionType);
+            this.Controls.Add(this.chkOutcome);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lblActionDescription);
             this.Controls.Add(this.label4);
@@ -126,6 +165,7 @@
             this.Controls.Add(this.label1);
             this.Name = "ActionDecoder";
             this.Text = "Action Decoder";
+            this.Load += new System.EventHandler(this.ActionDecoder_Load);
             this.ResumeLayout(false);
 
         }
@@ -135,9 +175,11 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblActionDescription;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
-        private System.Windows.Forms.CheckedListBox checkedListBox2;
+        private System.Windows.Forms.CheckedListBox chkOutcome;
+        private System.Windows.Forms.CheckedListBox chkActionType;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnOK;
+        private System.Windows.Forms.Button btnCancel;
     }
 }

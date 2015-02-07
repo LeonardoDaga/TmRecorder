@@ -4910,7 +4910,7 @@ namespace NTR_Db {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class ActionsDecoderDataTable : global::System.Data.TypedTableBase<ActionsDecoderRow> {
             
-            private global::System.Data.DataColumn columnActionType;
+            private global::System.Data.DataColumn columnActionCode;
             
             private global::System.Data.DataColumn columnOutcome;
             
@@ -4951,9 +4951,9 @@ namespace NTR_Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn ActionTypeColumn {
+            public global::System.Data.DataColumn ActionCodeColumn {
                 get {
-                    return this.columnActionType;
+                    return this.columnActionCode;
                 }
             }
             
@@ -5010,15 +5010,22 @@ namespace NTR_Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ActionsDecoderRow AddActionsDecoderRow(string ActionType, string Outcome, string Type) {
+            public ActionsDecoderRow AddActionsDecoderRow(string ActionCode, byte Outcome, byte Type) {
                 ActionsDecoderRow rowActionsDecoderRow = ((ActionsDecoderRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        ActionType,
+                        ActionCode,
                         Outcome,
                         Type};
                 rowActionsDecoderRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowActionsDecoderRow);
                 return rowActionsDecoderRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public ActionsDecoderRow FindByActionCode(string ActionCode) {
+                return ((ActionsDecoderRow)(this.Rows.Find(new object[] {
+                            ActionCode})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5038,7 +5045,7 @@ namespace NTR_Db {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnActionType = base.Columns["ActionType"];
+                this.columnActionCode = base.Columns["ActionCode"];
                 this.columnOutcome = base.Columns["Outcome"];
                 this.columnType = base.Columns["Type"];
             }
@@ -5046,15 +5053,16 @@ namespace NTR_Db {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnActionType = new global::System.Data.DataColumn("ActionType", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnActionType);
-                this.columnOutcome = new global::System.Data.DataColumn("Outcome", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnActionCode = new global::System.Data.DataColumn("ActionCode", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnActionCode);
+                this.columnOutcome = new global::System.Data.DataColumn("Outcome", typeof(byte), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnOutcome);
-                this.columnType = new global::System.Data.DataColumn("Type", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnType = new global::System.Data.DataColumn("Type", typeof(byte), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnType);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnActionType}, false));
-                this.columnActionType.Unique = true;
+                                this.columnActionCode}, true));
+                this.columnActionCode.AllowDBNull = false;
+                this.columnActionCode.Unique = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8357,26 +8365,21 @@ namespace NTR_Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string ActionType {
+            public string ActionCode {
                 get {
-                    try {
-                        return ((string)(this[this.tableActionsDecoder.ActionTypeColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ActionType\' in table \'ActionsDecoder\' is DBNull.", e);
-                    }
+                    return ((string)(this[this.tableActionsDecoder.ActionCodeColumn]));
                 }
                 set {
-                    this[this.tableActionsDecoder.ActionTypeColumn] = value;
+                    this[this.tableActionsDecoder.ActionCodeColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Outcome {
+            public byte Outcome {
                 get {
                     try {
-                        return ((string)(this[this.tableActionsDecoder.OutcomeColumn]));
+                        return ((byte)(this[this.tableActionsDecoder.OutcomeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'Outcome\' in table \'ActionsDecoder\' is DBNull.", e);
@@ -8389,10 +8392,10 @@ namespace NTR_Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Type {
+            public byte Type {
                 get {
                     try {
-                        return ((string)(this[this.tableActionsDecoder.TypeColumn]));
+                        return ((byte)(this[this.tableActionsDecoder.TypeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'Type\' in table \'ActionsDecoder\' is DBNull.", e);
@@ -8401,18 +8404,6 @@ namespace NTR_Db {
                 set {
                     this[this.tableActionsDecoder.TypeColumn] = value;
                 }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsActionTypeNull() {
-                return this.IsNull(this.tableActionsDecoder.ActionTypeColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetActionTypeNull() {
-                this[this.tableActionsDecoder.ActionTypeColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

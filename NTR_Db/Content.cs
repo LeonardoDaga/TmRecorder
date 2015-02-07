@@ -336,6 +336,28 @@ namespace NTR_Db
                     }
 
                     atr.Description = description;
+
+                    NTR_SquadDb.ActionsDecoderRow actionDecRow = squadDB.ActionsDecoder.FindByActionCode(atr.ActionCode);
+                    if (actionDecRow == null)
+                    {
+                        actionDecRow = squadDB.ActionsDecoder.NewActionsDecoderRow();
+                        actionDecRow.ActionCode = atr.ActionCode;
+                        squadDB.ActionsDecoder.AddActionsDecoderRow(actionDecRow);
+
+                        ActionDecoder actionDecoderDlg = new ActionDecoder();
+                        actionDecoderDlg.Data = actionDecRow;
+                        actionDecoderDlg.Description = description;
+                        actionDecoderDlg.FullDescription = atr.FullDesc;
+
+                        if (actionDecoderDlg.ShowDialog() == DialogResult.Cancel)
+                        {
+                            if (MessageBox.Show("Do you want to continue with the next action [press OK] or cancel [press Cancel] the analysis of the actions at all for this match?", "Actions analysis", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                                continue;
+                            else
+                                break;
+                        }
+                    }
+
                     atr.Time = int.Parse(items["min"]);
                     atr.TeamID = int.Parse(items["club"]);
                     atr.MatchID = matchId;

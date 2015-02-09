@@ -153,6 +153,8 @@
               <xs:element name="Mentalities" msdata:Caption="YourMentality" msprop:Generator_ColumnVarNameInTable="columnMentalities" msprop:Generator_ColumnPropNameInRow="Mentalities" msprop:Generator_ColumnPropNameInTable="MentalitiesColumn" msprop:Generator_UserColumnName="Mentalities" type="xs:string" minOccurs="0" />
               <xs:element name="OTeamID" msdata:Caption="ID" msprop:Generator_ColumnVarNameInTable="columnOTeamID" msprop:Generator_ColumnPropNameInRow="OTeamID" msprop:Generator_ColumnPropNameInTable="OTeamIDColumn" msprop:Generator_UserColumnName="OTeamID" type="xs:int" minOccurs="0" />
               <xs:element name="YTeamID" msdata:Caption="ID" msprop:Generator_ColumnVarNameInTable="columnYTeamID" msprop:Generator_ColumnPropNameInRow="YTeamID" msprop:Generator_ColumnPropNameInTable="YTeamIDColumn" msprop:Generator_UserColumnName="YTeamID" type="xs:int" minOccurs="0" />
+              <xs:element name="OActions" msdata:Caption="Actions" msprop:Generator_ColumnVarNameInTable="columnOActions" msprop:Generator_ColumnPropNameInRow="OActions" msprop:Generator_ColumnPropNameInTable="OActionsColumn" msprop:Generator_UserColumnName="OActions" type="xs:string" minOccurs="0" />
+              <xs:element name="YActions" msdata:Caption="Actions" msprop:Generator_ColumnVarNameInTable="columnYActions" msprop:Generator_ColumnPropNameInRow="YActions" msprop:Generator_ColumnPropNameInTable="YActionsColumn" msprop:Generator_UserColumnName="YActions" type="xs:string" minOccurs="0" />
               <xs:element name="AttackStyles" msdata:Caption="YourAttackingStyle" msprop:Generator_ColumnVarNameInTable="columnAttackStyles" msprop:Generator_ColumnPropNameInRow="AttackStyles" msprop:Generator_ColumnPropNameInTable="AttackStylesColumn" msprop:Generator_UserColumnName="AttackStyles" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
@@ -172,6 +174,7 @@
               <xs:element name="TeamID" msprop:Generator_ColumnVarNameInTable="columnTeamID" msprop:Generator_ColumnPropNameInRow="TeamID" msprop:Generator_ColumnPropNameInTable="TeamIDColumn" msprop:Generator_UserColumnName="TeamID" type="xs:int" minOccurs="0" />
               <xs:element name="NPos" msprop:Generator_ColumnVarNameInTable="columnNPos" msprop:Generator_ColumnPropNameInRow="NPos" msprop:Generator_ColumnPropNameInTable="NPosColumn" msprop:Generator_UserColumnName="NPos" type="xs:int" minOccurs="0" />
               <xs:element name="Rec" msprop:Generator_ColumnVarNameInTable="columnRec" msprop:Generator_ColumnPropNameInRow="Rec" msprop:Generator_ColumnPropNameInTable="RecColumn" msprop:Generator_UserColumnName="Rec" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Actions" msprop:Generator_ColumnVarNameInTable="columnActions" msprop:Generator_ColumnPropNameInRow="Actions" msprop:Generator_ColumnPropNameInTable="ActionsColumn" msprop:Generator_UserColumnName="Actions" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

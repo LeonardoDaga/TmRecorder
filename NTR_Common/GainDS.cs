@@ -56,6 +56,7 @@ namespace NTR_Common
             float k = (float)this.SkillFPGain[skill][spec + 1];
             return k;
         }
+
         public decimal K_FPn_Max(int skill, int FPn)
         {
             int[] FpVect = Tm_Utility.FPnToFPvector(FPn);

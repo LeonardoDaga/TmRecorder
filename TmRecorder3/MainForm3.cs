@@ -932,6 +932,8 @@ namespace TmRecorder3
             // Check if there is already a week in the code
             DB.MergeContent(content);
 
+            DB.Save(Program.Setts.DefaultDirectory);
+
             SetDatesList();
 
             UpdateBrowserNavigationPanel();

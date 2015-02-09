@@ -64,6 +64,7 @@
     <Compile Include="ActionDecoder.Designer.cs">
       <DependentUpon>ActionDecoder.cs</DependentUpon>
     </Compile>
+    <Compile Include="ActionsList.cs" />
     <Compile Include="Content.cs" />
     <Compile Include="Data.cs">
       <SubType>Component</SubType>

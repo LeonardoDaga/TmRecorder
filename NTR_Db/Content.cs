@@ -122,6 +122,9 @@ namespace NTR_Db
 
                 matchRow.isHome = (homeTeamId == this.TeamID);
 
+                int yourTeamId = matchRow.isHome ? homeTeamId : awayTeamId;
+                int oppsTeamId = matchRow.isHome ? awayTeamId : homeTeamId;
+
                 if (matchRow.isHome)
                 {
                     matchRow.Mentalities = mentality[int.Parse(match_info["home_mentality"])] + ";" + mentality[int.Parse(match_info["away_mentality"])];
@@ -145,6 +148,7 @@ namespace NTR_Db
                 int pl_mid = 0;
                 int pl_att = 0;
 
+                List<int> homePlayers = new List<int>();
                 foreach (string player_row in home_pl)
                 {
                     Dictionary<string, string> team = HTML_Parser.CreateDictionary(player_row, ';');
@@ -198,12 +202,15 @@ namespace NTR_Db
                     ppr.Rec = decimal.Parse(team["rec"]);
                     if (team["mom"] == "1")
                         matchRow.BestPlayer = ppr.PlayerID;
+
+                    homePlayers.Add(playerID);
                 }
 
                 string homeformation = pl_def.ToString() + "-" + pl_mid.ToString() + "-" + pl_att.ToString();
 
                 pl_att = pl_def = pl_mid = 0;
 
+                List<int> awayPlayers = new List<int>();
                 foreach (string player_row in away_pl)
                 {
                     Dictionary<string, string> team = HTML_Parser.CreateDictionary(player_row, ';');
@@ -257,6 +264,8 @@ namespace NTR_Db
                     ppr.Rec = decimal.Parse(team["rec"]);
                     if (team["mom"] == "1")
                         matchRow.BestPlayer = ppr.PlayerID;
+
+                    awayPlayers.Add(playerID);
                 }
 
                 string awayformation = pl_def.ToString() + "-" + pl_mid.ToString() + "-" + pl_att.ToString();
@@ -292,6 +301,10 @@ namespace NTR_Db
                 List<int> yelcPlayers = new List<int>();
                 List<int> redcPlayers = new List<int>();
                 List<int> injrPlayers = new List<int>();
+
+                ActionsList yourActionsList = new ActionsList();
+                ActionsList oppsActionsList = new ActionsList();
+                Dictionary<int, ActionsList> playerActionListDict = new Dictionary<int, ActionsList>();
 
                 foreach (string min in mins)
                 {
@@ -363,6 +376,31 @@ namespace NTR_Db
                     atr.MatchID = matchId;
 
                     squadDB.Actions.AddActionsRow(atr);
+                    
+                    if (atr.TeamID == yourTeamId)
+                        yourActionsList.AddNewAttackAction(actionDecRow);
+                    else
+                        oppsActionsList.AddNewAttackAction(actionDecRow);
+
+                    List<int> playerIds = HTML_Parser.GetNumbersBetween(atr.FullDesc, "[player=", "]");
+                    foreach (int playerId in playerIds)
+                    {
+                        if (!playerActionListDict.ContainsKey(playerId))
+                            playerActionListDict.Add(playerId, new ActionsList());
+
+                        ActionsList playerActionList = playerActionListDict[playerId];
+
+                        int playerTeamId = -1;
+                        if (homePlayers.Contains(playerId))
+                            playerTeamId = homeTeamId;
+                        else
+                            playerTeamId = awayTeamId;
+
+                        if (atr.TeamID == playerTeamId)
+                            playerActionList.AddNewAttackAction(actionDecRow);
+                        else
+                            playerActionList.AddNewDefendAction(actionDecRow);
+                    }
 
                     if (items.ContainsKey("injury"))
                     {
@@ -431,6 +469,18 @@ namespace NTR_Db
                 }
 
                 matchRow.Score = homeGoal.ToString() + "-" + awayGoal.ToString();
+                
+                matchRow.OActions = oppsActionsList.ToString();
+                matchRow.YActions = yourActionsList.ToString();
+
+                foreach(KeyValuePair<int, ActionsList> actionList in playerActionListDict)
+                {
+                    NTR_SquadDb.PlayerPerfRow ppr = squadDB.PlayerPerf.FindByMatchIDPlayerID(matchId, actionList.Key);
+                    if (ppr != null)
+                        ppr.Actions = actionList.Value.ToString();
+                }
+
+                ActionsList tempActionsList = ActionsList.Parse(matchRow.OActions);
 
                 string home_stats = match_info["possession_home"] + "%;" +
                     homeTiriTot.ToString() + ";" +

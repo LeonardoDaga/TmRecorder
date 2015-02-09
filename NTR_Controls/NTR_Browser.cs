@@ -19,16 +19,18 @@ namespace NTR_Controls
         public event ImportedContentHandler ImportedContent;
 
         private string _defaultDirectory = "";
-        public string DefaultDirectory 
-        { 
-            get { return _defaultDirectory; } 
-            set 
+        public string DefaultDirectory
+        {
+            get { return _defaultDirectory; }
+            set
             {
                 _defaultDirectory = value;
                 if (TheBrowser != null)
                     TheBrowser.DefaultDirectory = _defaultDirectory;
             }
         }
+
+        public NTR_Db.NTR_SquadDb SourceDB { get; set; }
 
         public NTR_Browser()
         {
@@ -92,7 +94,12 @@ namespace NTR_Controls
 
         private void tsbImport_Click(object sender, EventArgs e)
         {
-            Content content = TheBrowser.Import();
+            NTR_Db.NTR_SquadDb.ActionsDecoderDataTable addt = null;
+
+            if ((SourceDB != null) && (SourceDB.ActionsDecoder != null))
+                addt = SourceDB.ActionsDecoder;
+
+            Content content = TheBrowser.Import(addt);
             if (content == null)
                 return;
 

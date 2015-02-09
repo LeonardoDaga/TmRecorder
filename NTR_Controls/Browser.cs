@@ -54,7 +54,7 @@ namespace NTR_Controls
             webBrowser.GoBack();
         }
 
-        internal Content Import()
+        internal Content Import(NTR_SquadDb.ActionsDecoderDataTable ActionsDecoderDT)
         {
             string doctext = "";
             Content returnedContent = new Content();
@@ -103,6 +103,11 @@ namespace NTR_Controls
             }
 
             SaveImportedFile(page, webBrowser.Url);
+
+            // Initialize the datatable to parse the actual content and avoid to fill it again with
+            // old values
+            if (ActionsDecoderDT != null)
+                returnedContent.squadDB.ActionsDecoder.Merge(ActionsDecoderDT);
 
             returnedContent.ParsePage(page, webBrowser.Url.OriginalString);
 

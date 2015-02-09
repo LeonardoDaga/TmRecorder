@@ -162,6 +162,10 @@ namespace NTR_Db
                 if (fi.Exists)
                     squadDB.Actions.ReadXml(fi.FullName);
 
+                fi = new FileInfo(Path.Combine(dirPath, "ActionsDecoder.5.xml"));
+                if (fi.Exists)
+                    squadDB.ActionsDecoder.ReadXml(fi.FullName);
+
                 latestDataWeek = -1;
                 foreach (NTR_SquadDb.HistDataRow histDataRow in squadDB.HistData)
                 {
@@ -782,6 +786,9 @@ namespace NTR_Db
 
             fi = new FileInfo(Path.Combine(dirPath, "Actions.5.xml"));
             squadDB.Actions.WriteXml(fi.FullName);
+
+            fi = new FileInfo(Path.Combine(dirPath, "ActionsDecoder.5.xml"));
+            squadDB.ActionsDecoder.WriteXml(fi.FullName);
         }
 
         public Dictionary<int, string> Teams { get; set; }

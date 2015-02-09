@@ -3307,6 +3307,10 @@ namespace NTR_Db {
             
             private global::System.Data.DataColumn columnYTeamID;
             
+            private global::System.Data.DataColumn columnOActions;
+            
+            private global::System.Data.DataColumn columnYActions;
+            
             private global::System.Data.DataColumn columnAttackStyles;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3488,6 +3492,22 @@ namespace NTR_Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn OActionsColumn {
+                get {
+                    return this.columnOActions;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn YActionsColumn {
+                get {
+                    return this.columnYActions;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn AttackStylesColumn {
                 get {
                     return this.columnAttackStyles;
@@ -3550,6 +3570,8 @@ namespace NTR_Db {
                         string Mentalities, 
                         TeamRow parentTeamRowByTeam_OTeam, 
                         TeamRow parentTeamRowByTeam_YTeam, 
+                        string OActions, 
+                        string YActions, 
                         string AttackStyles) {
                 MatchRow rowMatchRow = ((MatchRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
@@ -3571,6 +3593,8 @@ namespace NTR_Db {
                         Mentalities,
                         null,
                         null,
+                        OActions,
+                        YActions,
                         AttackStyles};
                 if ((parentTeamRowByTeam_OTeam != null)) {
                     columnValuesArray[16] = parentTeamRowByTeam_OTeam[0];
@@ -3625,6 +3649,8 @@ namespace NTR_Db {
                 this.columnMentalities = base.Columns["Mentalities"];
                 this.columnOTeamID = base.Columns["OTeamID"];
                 this.columnYTeamID = base.Columns["YTeamID"];
+                this.columnOActions = base.Columns["OActions"];
+                this.columnYActions = base.Columns["YActions"];
                 this.columnAttackStyles = base.Columns["AttackStyles"];
             }
             
@@ -3667,6 +3693,10 @@ namespace NTR_Db {
                 base.Columns.Add(this.columnOTeamID);
                 this.columnYTeamID = new global::System.Data.DataColumn("YTeamID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnYTeamID);
+                this.columnOActions = new global::System.Data.DataColumn("OActions", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOActions);
+                this.columnYActions = new global::System.Data.DataColumn("YActions", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnYActions);
                 this.columnAttackStyles = new global::System.Data.DataColumn("AttackStyles", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnAttackStyles);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("MatchTableKey1", new global::System.Data.DataColumn[] {
@@ -3682,6 +3712,8 @@ namespace NTR_Db {
                 this.columnMentalities.Caption = "YourMentality";
                 this.columnOTeamID.Caption = "ID";
                 this.columnYTeamID.Caption = "ID";
+                this.columnOActions.Caption = "Actions";
+                this.columnYActions.Caption = "Actions";
                 this.columnAttackStyles.Caption = "YourAttackingStyle";
             }
             
@@ -3840,6 +3872,8 @@ namespace NTR_Db {
             
             private global::System.Data.DataColumn columnRec;
             
+            private global::System.Data.DataColumn columnActions;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public PlayerPerfDataTable() {
@@ -3971,6 +4005,14 @@ namespace NTR_Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ActionsColumn {
+                get {
+                    return this.columnActions;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -4006,7 +4048,7 @@ namespace NTR_Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public PlayerPerfRow AddPlayerPerfRow(MatchRow parentMatchRowByMatch_YourTeamPerf, PlayerRow parentPlayerRowByPlayer_YourTeamPerf, float Vote, string Position, int Scored, int Number, string Analysis, int Assist, string Status, int TeamID, int NPos, decimal Rec) {
+            public PlayerPerfRow AddPlayerPerfRow(MatchRow parentMatchRowByMatch_YourTeamPerf, PlayerRow parentPlayerRowByPlayer_YourTeamPerf, float Vote, string Position, int Scored, int Number, string Analysis, int Assist, string Status, int TeamID, int NPos, decimal Rec, string Actions) {
                 PlayerPerfRow rowPlayerPerfRow = ((PlayerPerfRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -4020,7 +4062,8 @@ namespace NTR_Db {
                         Status,
                         TeamID,
                         NPos,
-                        Rec};
+                        Rec,
+                        Actions};
                 if ((parentMatchRowByMatch_YourTeamPerf != null)) {
                     columnValuesArray[0] = parentMatchRowByMatch_YourTeamPerf[0];
                 }
@@ -4069,6 +4112,7 @@ namespace NTR_Db {
                 this.columnTeamID = base.Columns["TeamID"];
                 this.columnNPos = base.Columns["NPos"];
                 this.columnRec = base.Columns["Rec"];
+                this.columnActions = base.Columns["Actions"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4098,6 +4142,8 @@ namespace NTR_Db {
                 base.Columns.Add(this.columnNPos);
                 this.columnRec = new global::System.Data.DataColumn("Rec", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRec);
+                this.columnActions = new global::System.Data.DataColumn("Actions", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnActions);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("TeamPerfKey", new global::System.Data.DataColumn[] {
                                 this.columnMatchID,
                                 this.columnPlayerID}, true));
@@ -7428,6 +7474,38 @@ namespace NTR_Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string OActions {
+                get {
+                    try {
+                        return ((string)(this[this.tableMatch.OActionsColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'OActions\' in table \'Match\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableMatch.OActionsColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string YActions {
+                get {
+                    try {
+                        return ((string)(this[this.tableMatch.YActionsColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'YActions\' in table \'Match\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableMatch.YActionsColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string AttackStyles {
                 get {
                     try {
@@ -7642,6 +7720,30 @@ namespace NTR_Db {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetYTeamIDNull() {
                 this[this.tableMatch.YTeamIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsOActionsNull() {
+                return this.IsNull(this.tableMatch.OActionsColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetOActionsNull() {
+                this[this.tableMatch.OActionsColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsYActionsNull() {
+                return this.IsNull(this.tableMatch.YActionsColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetYActionsNull() {
+                this[this.tableMatch.YActionsColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7877,6 +7979,22 @@ namespace NTR_Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Actions {
+                get {
+                    try {
+                        return ((string)(this[this.tablePlayerPerf.ActionsColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Actions\' in table \'PlayerPerf\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePlayerPerf.ActionsColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public PlayerRow PlayerRow {
                 get {
                     return ((PlayerRow)(this.GetParentRow(this.Table.ParentRelations["Player_YourTeamPerf"])));
@@ -8015,6 +8133,18 @@ namespace NTR_Db {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetRecNull() {
                 this[this.tablePlayerPerf.RecColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsActionsNull() {
+                return this.IsNull(this.tablePlayerPerf.ActionsColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetActionsNull() {
+                this[this.tablePlayerPerf.ActionsColumn] = global::System.Convert.DBNull;
             }
         }
         

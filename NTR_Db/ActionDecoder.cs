@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,6 +12,7 @@ namespace NTR_Db
 {
     public partial class ActionDecoder : Form
     {
+
         public ActionDecoder()
         {
             InitializeComponent();
@@ -18,6 +20,7 @@ namespace NTR_Db
 
         public NTR_SquadDb.ActionsDecoderRow Data { get; set; }
 
+        public string FullDescription { get; set; }
         public string Description { get; set; }
 
         private void ActionDecoder_Load(object sender, EventArgs e)
@@ -109,6 +112,7 @@ namespace NTR_Db
             {
                 chkOutcome.SetItemChecked(0, true);
             }
+
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -123,7 +127,5 @@ namespace NTR_Db
                 Data.Outcome = (byte)ix;
             }
         }
-
-        public string FullDescription { get; set; }
     }
 }

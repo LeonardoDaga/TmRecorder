@@ -106,6 +106,8 @@ namespace NTR_Controls
 
             // Initialize the datatable to parse the actual content and avoid to fill it again with
             // old values
+            if (returnedContent.squadDB == null)
+                returnedContent.squadDB = new NTR_SquadDb();
             if (ActionsDecoderDT != null)
                 returnedContent.squadDB.ActionsDecoder.Merge(ActionsDecoderDT);
 

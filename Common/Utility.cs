@@ -789,7 +789,7 @@ namespace Common
 
         public static int GetSeasonFromWeek(int week)
         {
-            return week / 12;
+            return week / 12 + 1;
         }
     }
 }

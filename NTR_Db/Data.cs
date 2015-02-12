@@ -1122,7 +1122,9 @@ namespace NTR_Db
         public MatchData(NTR_SquadDb.MatchRow mr)
         {
             Date = mr.Date;
-            Crowd = mr.Crowd;
+
+            if (!mr.IsCrowdNull()) 
+                Crowd = mr.Crowd;
             if (!mr.IsCardsNull())
                 Cards = mr.Cards;
             else
@@ -1131,23 +1133,33 @@ namespace NTR_Db
                 BestPlayer = mr.BestPlayer;
             else
                 BestPlayer = 0;
-            AttackStyles = mr.AttackStyles;
+
             Analyzed = mr.Analyzed;
             IsHome = mr.isHome;
-            LineUps = mr.Lineups;
             MatchID = mr.MatchID;
             MatchType = mr.MatchType;
-            Mentalities = mr.Mentalities;
             OTeamID = mr.OTeamID;
-            Pitch = mr.Pitch;
             Report = mr.Report;
+            YTeamID = mr.YTeamID;
+
+            if (!mr.IsAttackStylesNull())
+            {
+                AttackStyles = mr.AttackStyles;
+                LineUps = mr.Lineups;
+                Pitch = mr.Pitch;
+                Mentalities = mr.Mentalities;
+            }
+
             Score = new MatchScore(mr.Score, IsHome);
             ScoreString = mr.Score;
             ScoreString.backColor = Score.ScoreColor;
-            Stadium = mr.Stadium;
-            Stats = mr.Stats;
-            Weather = mr.Weather;
-            YTeamID = mr.YTeamID;
+
+            if (!mr.IsStadiumNull())
+            {
+                Stadium = mr.Stadium;
+                Stats = mr.Stats;
+                Weather = mr.Weather;
+            }
 
             if (mr.isHome)
             {
@@ -1173,23 +1185,26 @@ namespace NTR_Db
 
             NTR_SquadDb squadDB = (NTR_SquadDb)mr.Table.DataSet;
 
-            if (mr.isHome)
+            if (mr.Report)
             {
-                HomePlayerPerf = from c in squadDB.PlayerPerf
-                                 where (c.MatchID == mr.MatchID) && (c.TeamID == mr.YTeamID)
-                                 select c;
-                AwayPlayerPerf = from c in squadDB.PlayerPerf
-                                 where (c.MatchID == mr.MatchID) && (c.TeamID == mr.OTeamID)
-                                 select c;
-            }
-            else
-            {
-                HomePlayerPerf = from c in squadDB.PlayerPerf
-                                 where (c.MatchID == mr.MatchID) && (c.TeamID == mr.OTeamID)
-                                 select c;
-                AwayPlayerPerf = from c in squadDB.PlayerPerf
-                                 where (c.MatchID == mr.MatchID) && (c.TeamID == mr.YTeamID)
-                                 select c;
+                if (mr.isHome)
+                {
+                    HomePlayerPerf = from c in squadDB.PlayerPerf
+                                     where (c.MatchID == mr.MatchID) && (c.TeamID == mr.YTeamID)
+                                     select c;
+                    AwayPlayerPerf = from c in squadDB.PlayerPerf
+                                     where (c.MatchID == mr.MatchID) && (c.TeamID == mr.OTeamID)
+                                     select c;
+                }
+                else
+                {
+                    HomePlayerPerf = from c in squadDB.PlayerPerf
+                                     where (c.MatchID == mr.MatchID) && (c.TeamID == mr.OTeamID)
+                                     select c;
+                    AwayPlayerPerf = from c in squadDB.PlayerPerf
+                                     where (c.MatchID == mr.MatchID) && (c.TeamID == mr.YTeamID)
+                                     select c;
+                }
             }
         }
 

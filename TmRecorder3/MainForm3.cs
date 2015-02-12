@@ -151,6 +151,8 @@ namespace TmRecorder3
 
             LoadDB();
 
+            ntrBrowser.SourceDB = this.DB.squadDB;
+
             FormatPlayersGrid();
             FormatPlayersGridGK();
             UpdateTable();
@@ -433,7 +435,14 @@ namespace TmRecorder3
         private void FormatPlayersGridGK()
         {
             dgPlayersGK.AutoGenerateColumns = false;
-            dgPlayersGK.DataCollection = ThisWeekGK;
+
+            try
+            {
+                dgPlayersGK.DataCollection = ThisWeekGK;
+            }
+            catch(Exception)
+            {
+            }
 
             dgPlayersGK.Columns.Clear();
             DataGridViewColumn numCol = dgPlayersGK.AddColumn("N", "Number", 20, AG_Style.Numeric | AG_Style.Frozen | AG_Style.N0);
@@ -539,9 +548,15 @@ namespace TmRecorder3
                 absPrevWeek = selectedItemPrev.AbsWeek;
             }
 
-            ThisWeekGK = (from c in DB.squadDB.HistData
-                          where (c.Week == selectedItem.AbsWeek) && (c.PlayerRow.FPn == 0)
-                          select new PlayerData(c, absPrevWeek)) as EnumerableRowCollection<PlayerData>;
+            try
+            {
+                ThisWeekGK = (from c in DB.squadDB.HistData
+                              where (c.Week == selectedItem.AbsWeek) && (c.PlayerRow.FPn == 0)
+                              select new PlayerData(c, absPrevWeek)) as EnumerableRowCollection<PlayerData>;
+            }
+            catch(Exception)
+            {
+            }
 
             dgPlayersGK.SetWhen(selectedItem.Date);
 

@@ -473,6 +473,42 @@ namespace NTR_Db
                 matchRow.OActions = oppsActionsList.ToString();
                 matchRow.YActions = yourActionsList.ToString();
 
+                matchRow.OTeamID = oppsTeamId;
+                matchRow.YTeamID = yourTeamId;
+
+                matchRow.Analyzed = 1;
+
+                string type = match_info["matchtype"];
+                if (type == "l")
+                    matchRow.MatchType = (byte)0;
+                else if (type == "f")
+                    matchRow.MatchType = (byte)2;
+                else if (type == "fl")
+                    matchRow.MatchType = (byte)3;
+                else if (type.StartsWith("p"))
+                {
+                    byte i = byte.Parse(type.Substring(1));
+                    matchRow.MatchType = (byte)(10 + i);
+                }
+                else if (type.StartsWith("ue"))
+                {
+                    byte i = byte.Parse(type.Substring(2));
+                    matchRow.MatchType = (byte)(20 + i);
+                }
+                else if (type.StartsWith("lq"))
+                {
+                    matchRow.MatchType = (byte)5; // Qualificazioni campionato
+                }
+                else
+                {
+                    matchRow.MatchType = (byte)4; // Altra internazionale
+                }
+
+                long iKickOff = long.Parse(match_info["kickoff"]);
+                
+                DateTime dt = new DateTime(1970, 1, 1, 1, 0, 0);
+                matchRow.Date = dt.AddSeconds((double)iKickOff);
+
                 foreach(KeyValuePair<int, ActionsList> actionList in playerActionListDict)
                 {
                     NTR_SquadDb.PlayerPerfRow ppr = squadDB.PlayerPerf.FindByMatchIDPlayerID(matchId, actionList.Key);
@@ -536,6 +572,19 @@ namespace NTR_Db
                     NTR_SquadDb.PlayerPerfRow ppr = squadDB.PlayerPerf.FindByMatchIDPlayerID(matchId, gp);
                     if (ppr != null) { ppr.Status += "R"; continue; }
                 }
+
+                if (matchRow.isHome)
+                    matchRow.TeamRowByTeam_OTeam.Name = match_info["away_name"];
+                else
+                    matchRow.TeamRowByTeam_OTeam.Name = match_info["home_name"];
+
+                string oppsColor = matchRow.isHome ? match_info["away_color"] : match_info["home_color"];
+                if ((oppsColor == "undefined") || (oppsColor == "")) oppsColor = "0000FF";
+
+                if (matchRow.isHome)
+                    matchRow.TeamRowByTeam_OTeam.Color = int.Parse(oppsColor, System.Globalization.NumberStyles.HexNumber);
+
+                matchRow.TeamRowByTeam_OTeam.Owner = false;
 
                 return true;
             }

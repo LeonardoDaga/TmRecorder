@@ -396,6 +396,7 @@ namespace FieldFormationControl
 
             lastY_Formation = new Formation(eFormationTypes.Type_Empty);
 
+            if (md.Report)
             foreach (NTR_SquadDb.PlayerPerfRow player in pprLeftCollection)
             {
                 lastY_Formation.TeamColor = leftColor;
@@ -406,6 +407,7 @@ namespace FieldFormationControl
 
             lastO_Formation = new Formation(eFormationTypes.Type_Empty);
 
+            if (md.Report)
             foreach (NTR_SquadDb.PlayerPerfRow player in pprRightCollection)
             {
                 lastO_Formation.TeamColor = rightColor;

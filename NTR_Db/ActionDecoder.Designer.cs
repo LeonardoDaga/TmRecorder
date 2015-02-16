@@ -55,7 +55,7 @@
             this.lblActionDescription.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblActionDescription.Location = new System.Drawing.Point(15, 62);
             this.lblActionDescription.Name = "lblActionDescription";
-            this.lblActionDescription.Size = new System.Drawing.Size(536, 66);
+            this.lblActionDescription.Size = new System.Drawing.Size(536, 65);
             this.lblActionDescription.TabIndex = 1;
             // 
             // label3
@@ -78,11 +78,13 @@
             "Off Shot",
             "In Shot",
             "Goal",
+            "Fault",
             "Ban for the opposite team",
-            "Injury"});
-            this.chkOutcome.Location = new System.Drawing.Point(200, 151);
+            "Injury",
+            "No Outcome"});
+            this.chkOutcome.Location = new System.Drawing.Point(200, 154);
             this.chkOutcome.Name = "chkOutcome";
-            this.chkOutcome.Size = new System.Drawing.Size(164, 94);
+            this.chkOutcome.Size = new System.Drawing.Size(164, 124);
             this.chkOutcome.TabIndex = 4;
             // 
             // chkActionType
@@ -98,18 +100,23 @@
             "Counter Attack",
             "Corner",
             "Freekick",
+            "GK counterattack",
             "GK long ball attack",
+            "Penalty Shot",
+            "Penalty Fault",
             "Yellow/Red Card",
-            "Injury"});
-            this.chkActionType.Location = new System.Drawing.Point(15, 151);
+            "Injury",
+            "Substitution",
+            "Not identified"});
+            this.chkActionType.Location = new System.Drawing.Point(15, 154);
             this.chkActionType.Name = "chkActionType";
-            this.chkActionType.Size = new System.Drawing.Size(164, 154);
+            this.chkActionType.Size = new System.Drawing.Size(164, 229);
             this.chkActionType.TabIndex = 4;
             // 
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label2.Location = new System.Drawing.Point(12, 134);
+            this.label2.Location = new System.Drawing.Point(12, 137);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(150, 17);
             this.label2.TabIndex = 0;
@@ -118,7 +125,7 @@
             // label4
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label4.Location = new System.Drawing.Point(197, 134);
+            this.label4.Location = new System.Drawing.Point(197, 137);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(150, 17);
             this.label4.TabIndex = 0;
@@ -128,7 +135,7 @@
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Location = new System.Drawing.Point(377, 278);
+            this.btnOK.Location = new System.Drawing.Point(377, 363);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(84, 23);
             this.btnOK.TabIndex = 5;
@@ -140,7 +147,7 @@
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(467, 278);
+            this.btnCancel.Location = new System.Drawing.Point(467, 363);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(84, 23);
             this.btnCancel.TabIndex = 5;
@@ -153,7 +160,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(563, 313);
+            this.ClientSize = new System.Drawing.Size(563, 394);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.chkActionType);

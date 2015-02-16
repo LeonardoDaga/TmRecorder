@@ -974,12 +974,12 @@ namespace TmRecorder3
             DirectoryInfo di = new DirectoryInfo(folderBrowserDialog.SelectedPath);
             LoadOldDBRecursively(di);
 
-            // Save in format 5
-            DB.Save(Program.Setts.DefaultDirectory);
-
             SetDatesList();
 
             DB.squadDB.UpdateDecimalsHistory();
+
+            // Save in format 5
+            DB.Save(Program.Setts.DefaultDirectory);
 
             LoadPlayers();
             LoadMatches();
@@ -999,7 +999,17 @@ namespace TmRecorder3
             if (adg.SelectedRows.Count == 0)
                 return;
             DataGridViewRow row = adg.SelectedRows[0];
-            MatchData md = (MatchData)row.DataBoundItem;
+
+            MatchData md = null;
+            try
+            {
+                md = (MatchData)row.DataBoundItem;
+            }
+            catch (Exception)
+            {
+                return;
+            }
+
 
             lineupControl.SetMatchData(md, Program.Setts.YourTeamLeft);
 
@@ -1078,6 +1088,71 @@ namespace TmRecorder3
             lineupControl.Height = (offw * 65)/ 100;
 
             lineupControl.SetFontSize(lineupControl.Width / 100f);
+        }
+
+        private void searchAndImportAllSavedPagesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            folderBrowserDialog.SelectedPath = Program.Setts.DefaultDirectory;
+            folderBrowserDialog.Description = "Select the folder with saved pages";
+
+            if (folderBrowserDialog.ShowDialog(this) == System.Windows.Forms.DialogResult.Cancel)
+            {
+                MessageBox.Show("You have to select a folder to load the data from the previous release", "Load Data from saved pages");
+                return;
+            }
+
+            DirectoryInfo di = new DirectoryInfo(folderBrowserDialog.SelectedPath);
+            LoadSavedPagesRecursively(di);
+
+            SetDatesList();
+
+            DB.squadDB.UpdateDecimalsHistory();
+
+            // Save in format 5
+            DB.Save(Program.Setts.DefaultDirectory);
+
+            LoadPlayers();
+            LoadMatches();
+        }
+
+        private void LoadSavedPagesRecursively(DirectoryInfo di)
+        {
+            LoadSavedPages(di.FullName);
+
+            foreach (DirectoryInfo directory in di.GetDirectories())
+                LoadSavedPagesRecursively(directory);
+        }
+
+        private void LoadSavedPages(string folder)
+        {
+            try
+            {
+                DB.LoadSavedPages(folder, ref sf, (Program.Setts.Trace > 0));
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        private void recalculateDecimalsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DB.squadDB.UpdateDecimalsHistory();
+
+            DB.Save(Program.Setts.DefaultDirectory);
+
+            LoadPlayers();
+        }
+
+        private void cmbSeason_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DateTime startDate = TmWeek.GetDateTimeOfSeasonStart((int)cmbSeason.SelectedItem);
+            DateTime endDate = startDate.AddDays(7 * 12);
+
+            ThisSeasonMatches = (from c in DB.squadDB.Match
+                                 where (c.Date > startDate) && (c.Date < endDate)
+                                 select new MatchData(c)).OrderBy(p => p.Date);
+
+            dgMatches.DataCollection = ThisSeasonMatches;
         }
 
     }

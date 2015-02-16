@@ -87,6 +87,9 @@ namespace DataGridViewCustomColumns
             DataGridViewAdvancedBorderStyle advancedBorderStyle,
             DataGridViewPaintParts paintParts)
         {
+            if (value == null)
+                return;
+
             StringFormat sf = new StringFormat();
             sf.Alignment = StringAlignment.Near;
             sf.LineAlignment = StringAlignment.Center;

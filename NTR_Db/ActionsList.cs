@@ -117,6 +117,8 @@ namespace NTR_Db
         //[7]	"GK long ball attack"	object {string}
         //[8]	"card"	object {string}
         //[9]	"Injuries"	object {string}
+        //[10]	"Substitution"	object {string}
+        //[11]	"Not identified"	object {string}
 
         // Outcome
         //[0]	"Failed attack"	object {string}
@@ -125,6 +127,7 @@ namespace NTR_Db
         //[3]	"Goal"	object {string}
         //[4]	"Ban for the opposite team"	object {string}
         //[5]	"Injury for the opposite team"	object {string}        
+        //[6]	"No outcome"	object {string}
 
         public override string ToString()
         {

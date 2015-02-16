@@ -33,7 +33,7 @@ namespace NTR_Db
 
         public int Week { get; set; }
 
-        public void ParsePage(string page, string address)
+        public void ParsePage(string page, string address, int importWeek = -1)
         {
             if (page.Contains("http://trophymanager.com/players/"))
             {
@@ -51,7 +51,10 @@ namespace NTR_Db
                 else
                 {
                     // Get the actual week
-                    this.Week = TmWeek.thisWeek().absweek;
+                    if (importWeek == -1)
+                        this.Week = TmWeek.thisWeek().absweek;
+                    else
+                        this.Week = importWeek;
 
                     LoadSquad(pages[0]);
                     LoadTraining(pages[1]);
@@ -61,10 +64,114 @@ namespace NTR_Db
             {
                 LoadMatches(page);
             }
+            else if (page.Contains("http://trophymanager.com/fixtures/club/"))
+            {
+                LoadFixtures(page);
+            }
+        }
+
+        private int LoadFixtures(string page)
+        {
+            int cnt = 0;
+
+            string strTeamId = HTML_Parser.GetNumberAfter(page, "fixtures/club/");
+            TeamID = int.Parse(strTeamId);
+
+            // Get the items
+            string[] rows = page.Split('\n');
+
+            foreach (string row in rows)
+            {
+                if (!row.Contains(";")) continue;
+
+                Dictionary<string, string> items = HTML_Parser.CreateDictionary(row, ';');
+
+                int matchId = int.Parse(items["id"]);
+
+                NTR_SquadDb.MatchRow matchRow = squadDB.Match.FindByMatchID(matchId);
+                if (matchRow == null)
+                {
+                    matchRow = squadDB.Match.NewMatchRow();
+                    matchRow.MatchID = matchId;
+                    squadDB.Match.AddMatchRow(matchRow);
+                }
+
+                // First, get the day number
+                matchRow.Date = DateTime.Parse(items["date"]);
+                matchRow.Score = items["result"];
+
+                int home = int.Parse(items["home"]);
+                int away = int.Parse(items["away"]);
+
+                matchRow.isHome = (home == TeamID);
+
+                int OTeamID = 0;
+                string OTeamName = "";
+
+                if (matchRow.isHome)
+                {
+                    matchRow.Analyzed = 0;
+                    matchRow.YTeamID = home;
+                    matchRow.TeamRowByTeam_YTeam.Name = items["home_name"];
+                    OTeamID = away;
+                    OTeamName = items["away_name"];
+                }
+                else if (away == this.TeamID)
+                {
+                    matchRow.Analyzed = 0;
+                    matchRow.YTeamID = away;
+                    matchRow.TeamRowByTeam_YTeam.Name = items["away_name"];
+                    OTeamID = home;
+                    OTeamName = items["home_name"];
+                }
+
+                NTR_SquadDb.TeamRow trow = this.squadDB.Team.FindByTeamID(OTeamID);
+                if (trow == null)
+                {
+                    trow = this.squadDB.Team.NewTeamRow();
+                    trow.TeamID = OTeamID;
+                    trow.Owner = false;
+                    squadDB.Team.AddTeamRow(trow);
+                }
+
+                matchRow.OTeamID = OTeamID;
+                matchRow.TeamRowByTeam_OTeam.Name = OTeamName;
+
+                if (items["type"] == "l")
+                    matchRow.MatchType = (byte)0;
+                else if (items["type"] == "f")
+                    matchRow.MatchType = (byte)2;
+                else if (items["type"] == "fl")
+                    matchRow.MatchType = (byte)3;
+                else if (items["type"].StartsWith("p"))
+                {
+                    byte i = byte.Parse(items["type"].Substring(1));
+                    matchRow.MatchType = (byte)(10 + i);
+                }
+                else if (items["type"].StartsWith("ue"))
+                {
+                    byte i = byte.Parse(items["type"].Substring(2));
+                    matchRow.MatchType = (byte)(20 + i);
+                }
+                else if (items["type"].StartsWith("lq"))
+                {
+                    matchRow.MatchType = (byte)5; // Qualificazioni campionato
+                }
+                else
+                {
+                    matchRow.MatchType = (byte)4; // Altra internazionale
+                }
+
+                cnt++;
+            }
+
+            return cnt;
         }
 
         private bool LoadMatches(string page)
         {
+            if (page.Contains("Javascript error")) return false;
+
             string lineup_home_str = HTML_Parser.GetTag(page, "LINEUP_HOME");
             string lineup_away_str = HTML_Parser.GetTag(page, "LINEUP_AWAY");
             string match_info_str = HTML_Parser.GetTag(page, "MATCH_INFO");
@@ -104,23 +211,23 @@ namespace NTR_Db
                 {
                     homeTeamRow = squadDB.Team.NewTeamRow();
                     homeTeamRow.TeamID = homeTeamId;
-                    homeTeamRow.Nick = match_info["home_nick"];
                     squadDB.Team.AddTeamRow(homeTeamRow);
                 }
-                
+                homeTeamRow.Nick = match_info["home_nick"];
+               
                 NTR_SquadDb.TeamRow awayTeamRow = squadDB.Team.FindByTeamID(awayTeamId);
                 if (awayTeamRow == null)
                 {
                     awayTeamRow = squadDB.Team.NewTeamRow();
                     awayTeamRow.TeamID = awayTeamId;
-                    awayTeamRow.Nick = match_info["away_nick"];
                     squadDB.Team.AddTeamRow(awayTeamRow);
                 }
+                awayTeamRow.Nick = match_info["away_nick"];
 
                 matchRow.Stadium = match_info["stadium"];
                 matchRow.Crowd = int.Parse(match_info["attendance"]);
 
-                matchRow.isHome = (homeTeamId == this.TeamID);
+                matchRow.isHome = homeTeamRow.Owner;
 
                 int yourTeamId = matchRow.isHome ? homeTeamId : awayTeamId;
                 int oppsTeamId = matchRow.isHome ? awayTeamId : homeTeamId;
@@ -190,6 +297,7 @@ namespace NTR_Db
                         squadDB.PlayerPerf.AddPlayerPerfRow(ppr);
                     }
 
+                    ppr.TeamID = homeTeamId;
                     ppr.Assist = 0;
                     if (team["no"] == "null") team["no"] = "0";
                     ppr.Number = int.Parse(team["no"]);
@@ -238,7 +346,7 @@ namespace NTR_Db
                     {
                         pl = squadDB.Player.NewPlayerRow();
                         pl.PlayerID = playerID;
-                        pl.TeamID = homeTeamId;
+                        pl.TeamID = awayTeamId;
                         pl.Name = team["name"];
                         squadDB.Player.AddPlayerRow(pl);
                     }
@@ -252,6 +360,7 @@ namespace NTR_Db
                         squadDB.PlayerPerf.AddPlayerPerfRow(ppr);
                     }
 
+                    ppr.TeamID = awayTeamId;
                     ppr.Assist = 0;
                     if (team["no"] == "null") team["no"] = "0";
                     ppr.Number = int.Parse(team["no"]);
@@ -269,7 +378,7 @@ namespace NTR_Db
                 }
 
                 string awayformation = pl_def.ToString() + "-" + pl_mid.ToString() + "-" + pl_att.ToString();
-                if (!matchRow.isHome)
+                if (matchRow.isHome)
                 {
                     matchRow.Lineups = homeformation + ";" + awayformation;
                 }
@@ -477,6 +586,7 @@ namespace NTR_Db
                 matchRow.YTeamID = yourTeamId;
 
                 matchRow.Analyzed = 1;
+                matchRow.Report = true;
 
                 string type = match_info["matchtype"];
                 if (type == "l")
@@ -838,9 +948,16 @@ namespace NTR_Db
 
             histRow.ASI = int.Parse(data["asi"]);
 
-            tempRow.Rou = decimal.Parse(data["routine"], Common.CommGlobal.ciUs);
+            DateTime dateOfImportWeek = (new TmWeek(this.Week)).ToDate();
 
-            
+            if (tempRow.IsUpdateDateNull())
+                tempRow.UpdateDate = dateOfImportWeek;
+
+            if (tempRow.UpdateDate <= dateOfImportWeek)
+            {
+                tempRow.UpdateDate = dateOfImportWeek;
+                tempRow.Rou = decimal.Parse(data["routine"], Common.CommGlobal.ciUs);
+            }            
         }
     }
 }

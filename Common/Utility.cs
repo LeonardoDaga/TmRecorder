@@ -767,6 +767,22 @@ namespace Common
             }
         }
 
+        public static TmWeek SWDtoTmWeek(string swdTime)
+        {
+            try
+            {
+                string[] spl = swdTime.Split('-');
+                int season = int.Parse(spl[0].Substring(1));
+                int week = int.Parse(spl[1].Substring(1));
+
+                return new TmWeek(season, week);
+            }
+            catch (Exception ex)
+            {
+                return new TmWeek(0,0);
+            }
+        }
+
         public static TmSWD TmWeekToSWD(int tmweek)
         {
             DateTime dt = tmDay0.AddDays(7 * (tmweek + 1));

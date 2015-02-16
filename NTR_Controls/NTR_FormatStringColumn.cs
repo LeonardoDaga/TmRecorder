@@ -185,6 +185,9 @@ namespace NTR_Controls
 
             DataGridViewCellStyle cs = new DataGridViewCellStyle(cellStyle);
 
+            if (value == null)
+                return "";
+
             FormattedString fstring = (FormattedString)value;
             FontStyle fs = FontStyle.Regular;
 

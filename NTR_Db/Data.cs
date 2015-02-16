@@ -792,6 +792,87 @@ namespace NTR_Db
         }
 
         public Dictionary<int, string> Teams { get; set; }
+
+        public void LoadSavedPages(string dirPath, ref Common.SplashForm sf, bool trace)
+        {
+            // Select first all the team files
+            // Name template: NF-players-S37-W10-D6.2.htm
+            DirectoryInfo di = new DirectoryInfo(dirPath);
+
+            sf.UpdateStatusMessage(0, "Loading Players From the saved pages...");
+
+            foreach (FileInfo fi in di.GetFiles("NF-players-*.2.htm*"))
+            {
+                StreamReader file = new StreamReader(fi.FullName);
+
+                string playersPage = file.ReadToEnd();
+
+                file.Close();
+
+                Content content = new Content();
+                content.squadDB = this.squadDB;
+
+                string[] str = fi.FullName.Split('-');
+                string dateString = str[2] + "-" + str[3] + "-" + str[4];
+                int importWeek = TmWeek.SWDtoTmWeek(dateString).absweek;
+
+                content.ParsePage(playersPage, "http://trophymanager.com/players/", importWeek);
+            }
+
+            // Select first all the team files
+            // Name template: NF-fixturesclub3350340-S37-W10-D6.2.htm
+            di = new DirectoryInfo(dirPath);
+
+            sf.UpdateStatusMessage(0, "Loading Fixtures From the saved pages...");
+
+            foreach (FileInfo fi in di.GetFiles("NF-fixturesclub*.2.htm*"))
+            {
+                StreamReader file = new StreamReader(fi.FullName);
+
+                string fixturesPage = file.ReadToEnd();
+
+                file.Close();
+
+                Content content = new Content();
+                content.squadDB = this.squadDB;
+
+                string[] str = fi.FullName.Split('-');
+                string dateString = str[2] + "-" + str[3] + "-" + str[4];
+                int importWeek = TmWeek.SWDtoTmWeek(dateString).absweek;
+
+                string clubId = HTML_Parser.GetNumberAfter(fi.FullName, "NF-fixturesclub");
+
+                content.ParsePage(fixturesPage, "http://trophymanager.com/fixtures/club/" + clubId + "//", importWeek);
+            }
+
+            // Select the matches files
+            // Name template: NF-matches79252194-S37-W10-D6.2.htm
+            di = new DirectoryInfo(dirPath);
+
+            sf.UpdateStatusMessage(0, "Loading Matches From the saved pages...");
+
+            foreach (FileInfo fi in di.GetFiles("NF-matches*.2.htm*"))
+            {
+                StreamReader file = new StreamReader(fi.FullName);
+
+                string matchPage = file.ReadToEnd();
+
+                file.Close();
+
+                Content content = new Content();
+                content.squadDB = this.squadDB;
+
+                string[] str = fi.FullName.Split('-');
+                string dateString = str[2] + "-" + str[3] + "-" + str[4];
+                int importWeek = TmWeek.SWDtoTmWeek(dateString).absweek;
+
+                string matchId = HTML_Parser.GetNumberAfter(fi.FullName, "NF-matches");
+
+                content.ParsePage(matchPage, "http://trophymanager.com/matches/" + matchId + "//", importWeek);
+            }
+
+            Invalidate();
+        }
     }
 
     public class TeamList: Dictionary<int, string>
@@ -1021,11 +1102,16 @@ namespace NTR_Db
                 ASI = new intvar(thisWeek.ASI, prevWeek.ASI);
                 try
                 {
-                    TI = new intvar((int)(thisWeek._TI), (int)(prevWeek._TI));
+                    if (!thisWeek.Is_TINull() && !prevWeek.Is_TINull()) 
+                        TI = new intvar((int)(thisWeek._TI), (int)(prevWeek._TI));
+                    else if (!thisWeek.Is_TINull() && prevWeek.Is_TINull())
+                        TI = new intvar((int)(thisWeek._TI), 0);
+                    else
+                        TI = new intvar(0, 0);
                 }
                 catch
                 {
-                    TI = new intvar((int)(thisWeek._TI), 0);
+                    TI = new intvar(0, 0);
                 }
                 Str = new decvar(thisWeek.For, prevWeek.For, 10 * DB.GDS.K_FPn_Max((int)eSkill.Str, FPn));
                 Pac = new decvar(thisWeek.Vel, prevWeek.Vel, 10 * DB.GDS.K_FPn_Max((int)eSkill.Pac, FPn));
@@ -1187,24 +1273,29 @@ namespace NTR_Db
 
             if (mr.Report)
             {
-                if (mr.isHome)
+                try
                 {
-                    HomePlayerPerf = from c in squadDB.PlayerPerf
-                                     where (c.MatchID == mr.MatchID) && (c.TeamID == mr.YTeamID)
-                                     select c;
-                    AwayPlayerPerf = from c in squadDB.PlayerPerf
-                                     where (c.MatchID == mr.MatchID) && (c.TeamID == mr.OTeamID)
-                                     select c;
+                    if (mr.isHome)
+                    {
+                        HomePlayerPerf = from c in squadDB.PlayerPerf
+                                         where (c.MatchID == mr.MatchID) && (c.TeamID == mr.YTeamID)
+                                         select c;
+                        AwayPlayerPerf = from c in squadDB.PlayerPerf
+                                         where (c.MatchID == mr.MatchID) && (c.TeamID == mr.OTeamID)
+                                         select c;
+                    }
+                    else
+                    {
+                        HomePlayerPerf = from c in squadDB.PlayerPerf
+                                         where (c.MatchID == mr.MatchID) && (c.TeamID == mr.OTeamID)
+                                         select c;
+                        AwayPlayerPerf = from c in squadDB.PlayerPerf
+                                         where (c.MatchID == mr.MatchID) && (c.TeamID == mr.YTeamID)
+                                         select c;
+                    }
                 }
-                else
-                {
-                    HomePlayerPerf = from c in squadDB.PlayerPerf
-                                     where (c.MatchID == mr.MatchID) && (c.TeamID == mr.OTeamID)
-                                     select c;
-                    AwayPlayerPerf = from c in squadDB.PlayerPerf
-                                     where (c.MatchID == mr.MatchID) && (c.TeamID == mr.YTeamID)
-                                     select c;
-                }
+                catch (Exception)
+                { }
             }
         }
 

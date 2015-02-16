@@ -34,60 +34,84 @@ namespace NTR_Db
             //[4]	"Counter Attack"	object {string}
             //[5]	"Corner"	object {string}
             //[6]	"Freekick"	object {string}
-            //[7]	"GK long ball attack"	object {string}
-            //[8]	"card"	object {string}
-            //[9]	"Injuries"	object {string}
+            //[7]	"GK counterattack"	object {string}
+            //[8]	"GK long ball attack"	object {string}
+            //[9]	"Penalty"	object {string}
+            //[10]	"card"	object {string}
+            //[11]	"Injuries"	object {string}
+            //[12]	"Substitution"	object {string}
+            //[13]	"Not identified"	object {string}
+            int actionType;
             if (Data.ActionCode.StartsWith("sho"))
             {
-                chkActionType.SetItemChecked(0, true);
+                actionType = 0;
             }
             else if (Data.ActionCode.StartsWith("thr"))
             {
-                chkActionType.SetItemChecked(1, true);
+                actionType = 1;
             }
             else if (Data.ActionCode.StartsWith("win"))
             {
-                chkActionType.SetItemChecked(2, true);
+                actionType = 2;
             }
             else if (Data.ActionCode.StartsWith("cou"))
             {
-                chkActionType.SetItemChecked(4, true);
+                actionType = 4;
             }
             else if (Data.ActionCode.StartsWith("lon"))
             {
-                chkActionType.SetItemChecked(3, true);
+                actionType = 3;
             }
             else if (Data.ActionCode.StartsWith("doe"))
             {
-                chkActionType.SetItemChecked(5, true);
+                actionType = 5;
             }
             else if (Data.ActionCode.StartsWith("dire"))
             {
-                chkActionType.SetItemChecked(6, true);
+                actionType = 6;
             }
             else if (Data.ActionCode.StartsWith("kco"))
             {
-                chkActionType.SetItemChecked(7, true);
+                actionType = 7;
+            }
+            else if (Data.ActionCode.StartsWith("klo"))
+            {
+                actionType = 8;
+            }
+            else if (Data.ActionCode.StartsWith("p_sh"))
+            {
+                actionType = 9;
+            }
+            else if (Data.ActionCode.StartsWith("p_as"))
+            {
+                actionType = 10;
             }
             else if (Data.ActionCode.StartsWith("card"))
             {
-                chkActionType.SetItemChecked(8, true);
+                actionType = 11;
             }
             else if (Data.ActionCode.StartsWith("inj"))
             {
-                chkActionType.SetItemChecked(9, true);
+                actionType = 12;
+            }
+            else if (Data.ActionCode.StartsWith("cod"))
+            {
+                actionType = 13;
             }
             else 
             {
-                chkActionType.SetItemChecked(0, true);
+                actionType = 14;
             }
+            chkActionType.SetItemChecked(actionType, true);
 
             //[0]	"Failed attack"	object {string}
             //[1]	"Off Shot"	object {string}
             //[2]	"In Shot"	object {string}
             //[3]	"Goal"	object {string}
-            //[4]	"Ban for the opposite team"	object {string}
+            //[4]	"Penalty"	object {string}
             //[5]	"Ban for the opposite team"	object {string}
+            //[6]	"Injury"	object {string}
+            //[7]	"No outcome"	object {string}
             if (FullDescription.Contains("<goal;"))
             {
                 chkOutcome.SetItemChecked(3, true);
@@ -100,17 +124,40 @@ namespace NTR_Db
             {
                 chkOutcome.SetItemChecked(2, true);
             }
-            else if (FullDescription.Contains("<yellow="))
-            {
-                chkOutcome.SetItemChecked(4, true);
-            }
-            else if (FullDescription.Contains("<injury="))
+            else if ((FullDescription.Contains("<yellow=")) || (FullDescription.Contains("<red=")) || (FullDescription.Contains("<yellow_red=")))
             {
                 chkOutcome.SetItemChecked(5, true);
             }
+            else if (FullDescription.Contains("<injury="))
+            {
+                chkOutcome.SetItemChecked(6, true);
+            }
+            else if (FullDescription.Contains("<sub_out="))
+            {
+                chkOutcome.SetItemChecked(7, true);
+            }
+            else if (actionType == 10)
+            {
+                chkOutcome.SetItemChecked(4, true);
+            }
+            else if (actionType == 9)
+            {
+                chkOutcome.SetItemChecked(7, true);
+            }
+            else if (actionType == 11) // card action without a card from the referee
+            {
+                chkOutcome.SetItemChecked(7, true);
+            }
+            else if (actionType == 13) // action with no fault
+            {
+                chkOutcome.SetItemChecked(7, true);
+            }
             else // Failed attack
             {
-                chkOutcome.SetItemChecked(0, true);
+                if (actionType < 9)
+                    chkOutcome.SetItemChecked(0, true);
+                else
+                    chkOutcome.SetItemChecked(7, true);
             }
 
         }

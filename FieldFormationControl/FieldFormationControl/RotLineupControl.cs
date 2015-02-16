@@ -299,6 +299,7 @@ namespace FieldFormationControl
             if ((fp != null) && (!pl.visible))
             {
                 this.Controls.Remove(fp);
+                fp.Dispose();
                 fp = null;
                 return;
             }

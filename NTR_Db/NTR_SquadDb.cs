@@ -275,7 +275,12 @@ namespace NTR_Db {
                     int numSkillToUpdate = (playerRow.FPn == 0) ? 11 : 14;
                     for (int i = 0; i < numSkillToUpdate; i++)
                     {
-                        int trainStep = Tm_Training.TrCode2ToTrValue(newRow.Training, (Tm_Training.eTrainingType)(i + 1));
+                        int trainStep;
+
+                        if (newRow.IsTrainingNull())
+                            trainStep = 0;
+                        else
+                            trainStep = Tm_Training.TrCode2ToTrValue(newRow.Training, (Tm_Training.eTrainingType)(i + 1));
 
                         if (trainStep == 1)
                             newRow[4 + i] = (decimal)oldRow[4 + i] + 0.1M;

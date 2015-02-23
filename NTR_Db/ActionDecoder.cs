@@ -174,5 +174,10 @@ namespace NTR_Db
                 Data.Outcome = (byte)ix;
             }
         }
+
+        public static object GetStats(string p)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -264,6 +264,21 @@ namespace FieldFormationControl
             }
         }
 
+        private int _rec = 0;
+        public int Rec
+        {
+            set
+            {
+                _rec = value;
+                this.Invalidate();
+            }
+
+            get
+            {
+                return _rec;
+            }
+        }
+
         private string _name = "NNNNNNN Nome Cognome";
         public string PlName
         {
@@ -393,7 +408,7 @@ namespace FieldFormationControl
                 if (_showValue)
                     strVal = _value.ToString("N1");
                 else
-                    strVal = _vote.ToString("N0");
+                    strVal = _vote.ToString("N1");
 
                 szf = e.Graphics.MeasureString(strVal.ToString(), _votefont);
 
@@ -413,16 +428,16 @@ namespace FieldFormationControl
             // Draw the stars
 
             // 
-            int skill = _number / 10;
-            int posSt = this.ClientSize.Width / 2 - (imageStarList.ImageSize.Width * 5 * skill) / 20;
+            int rec = _rec;
+            int posSt = this.ClientSize.Width / 2 - (imageStarList.ImageSize.Width * 5 * rec) / 20;
             Rectangle rect = new Rectangle(posSt, 18 + Shirt.YSize, imageStarList.ImageSize.Height, imageStarList.ImageSize.Width);
             int star = 0;
-            for (; star < skill - 1; star += 2)
+            for (; star < rec - 1; star += 2)
             {
                 e.Graphics.DrawImage(imageStarList.Images[0], rect);
                 rect.Offset(imageStarList.ImageSize.Width, 0);
             }
-            if (star < skill)
+            if (star < rec)
                 e.Graphics.DrawImage(imageStarList.Images[1], rect);
 
             sf.Alignment = StringAlignment.Center;

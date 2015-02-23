@@ -308,6 +308,8 @@ namespace FieldFormationControl
                 fp.Data = pl;
                 fp.Location = pnt;
                 fp.Size = new Size(sx, sy);
+                fp.Rec = (int)(pl.rec * 2);
+                fp.Vote = pl.vote;
                 return;
             }
             else if ((fp == null) && (pl.visible))
@@ -320,6 +322,8 @@ namespace FieldFormationControl
                 fp.NameFont = new Font("Arial", 8f);
                 fp.RuleFont = new Font("Arial", 8f);
                 fp.VoteFont = new Font("Arial", 8f);
+                fp.Rec = (int)(pl.rec * 2);
+                fp.Vote = pl.vote;
                 this.Controls.Add(fp);
             }
         }
@@ -425,8 +429,9 @@ namespace FieldFormationControl
 
             pl.name = row.PlayerRow.Name;
             pl.pf = row.Position;
-            pl.vote = (int)row.Vote;
+            pl.vote = row.Vote;
             pl.playerID = row.PlayerID;
+            pl.rec = row.Rec;
 
             if (row.IsNumberNull())
                 pl.number = -1;

@@ -1228,8 +1228,11 @@ namespace NTR_Db
             Report = mr.Report;
             YTeamID = mr.YTeamID;
 
-            if (!mr.IsAttackStylesNull())
+
+            if (Report)
             {
+                YActions = mr.YActions;
+                OActions = mr.OActions;
                 AttackStyles = mr.AttackStyles;
                 LineUps = mr.Lineups;
                 Pitch = mr.Pitch;
@@ -1321,6 +1324,8 @@ namespace NTR_Db
         public FormattedString ScoreString { get; set; }
         public FormattedString Home { get; set; }
         public FormattedString Away { get; set; }
+        public string YActions { get; set; }
+        public string OActions { get; set; }
 
         public EnumerableRowCollection<NTR_SquadDb.PlayerPerfRow> HomePlayerPerf { get; set; }
         public EnumerableRowCollection<NTR_SquadDb.PlayerPerfRow> AwayPlayerPerf { get; set; }

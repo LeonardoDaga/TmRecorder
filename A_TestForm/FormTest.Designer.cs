@@ -28,36 +28,53 @@
         /// </summary>
         private void InitializeComponent()
         {
+            NTR_Controls.Column column1 = new NTR_Controls.Column();
+            NTR_Controls.Row row1 = new NTR_Controls.Row();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormTest));
-            this.rotLineupControl1 = new FieldFormationControl.RotLineupControl();
+            this.matchStats2 = new NTR_Controls.MatchStats();
             this.SuspendLayout();
             // 
-            // rotLineupControl1
+            // matchStats2
             // 
-            this.rotLineupControl1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("rotLineupControl1.BackgroundImage")));
-            this.rotLineupControl1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.rotLineupControl1.Location = new System.Drawing.Point(12, 12);
-            this.rotLineupControl1.MatchFile = "";
-            this.rotLineupControl1.Name = "rotLineupControl1";
-            this.rotLineupControl1.OppFormationType = Common.eFormationTypes.Type_4_4_2;
-            this.rotLineupControl1.Size = new System.Drawing.Size(637, 346);
-            this.rotLineupControl1.TabIndex = 0;
-            this.rotLineupControl1.YourFormationType = Common.eFormationTypes.Type_4_4_2;
+            column1.Alignment = System.Drawing.StringAlignment.Near;
+            column1.Color = System.Drawing.Color.Black;
+            column1.ColumnSize = 100;
+            column1.ColumnSizeType = NTR_Controls.SizeType.Percentage;
+            column1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            column1.Name = "Name";
+            column1.Property = null;
+            this.matchStats2.Columns = new NTR_Controls.Column[] {
+        column1};
+            this.matchStats2.HeaderColor = System.Drawing.Color.Black;
+            this.matchStats2.HeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            this.matchStats2.Location = new System.Drawing.Point(321, 83);
+            this.matchStats2.Name = "matchStats2";
+            this.matchStats2.Size = new System.Drawing.Size(166, 146);
+            this.matchStats2.TabIndex = 0;
+            row1.Format = "{0}";
+            row1.IsHeader = true;
+            row1.Items = ((System.Collections.Generic.List<NTR_Controls.Item>)(resources.GetObject("row1.Items")));
+            row1.Name = "Title";
+            row1.Text = "Title";
+            this.matchStats2.Table = new NTR_Controls.Row[] {
+        row1};
+            this.matchStats2.Title = "Title";
+            this.matchStats2.TitleAlignment = System.Drawing.StringAlignment.Near;
+            this.matchStats2.TitleColor = System.Drawing.Color.Black;
+            this.matchStats2.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             // 
             // FormTest
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(740, 370);
-            this.Controls.Add(this.rotLineupControl1);
+            this.ClientSize = new System.Drawing.Size(670, 342);
+            this.Controls.Add(this.matchStats2);
             this.Name = "FormTest";
-            this.Text = "FormTest";
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private FieldFormationControl.RotLineupControl rotLineupControl1;
+        private NTR_Controls.MatchStats matchStats1;
+        private NTR_Controls.MatchStats matchStats2;
     }
 }

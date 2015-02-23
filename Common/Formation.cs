@@ -265,6 +265,7 @@ namespace Common
         public BitP bitPosition = BitP.NON;
         public int playerID = 0;
         public string sSkills = "";
+        public decimal rec = 0M;
 
         public Player(BitP ord)
         {

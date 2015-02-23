@@ -28,6 +28,9 @@ namespace TmRecorder3
         public EnumerableRowCollection<PlayerData> Players;
         public EnumerableRowCollection<PlayerData> GKs;
 
+        NTR_SquadDb.ActionsTableDataTable AnalysisHome;
+        NTR_SquadDb.ActionsTableDataTable AnalysisAway;
+
         public MainForm3()
         {
             InitializeComponent();
@@ -258,10 +261,11 @@ namespace TmRecorder3
             DateTime endDate = startDate.AddDays(7 * 12);
 
             ThisSeasonMatches = (from c in DB.squadDB.Match
-                                 where (c.Date > startDate) && (c.Date < endDate)
+                                 where (!c.IsDateNull()) && (c.Date > startDate) && (c.Date < endDate)
                                  select new MatchData(c)).OrderBy(p => p.Date);
 
             FormatMatchesGrid();
+            FormatStatsGrids();
         }
 
         private void UpdateBrowserNavigationPanel()
@@ -362,6 +366,33 @@ namespace TmRecorder3
             //    tsbMatchSquadB.UnderText = "Import ok";
             //    tsbMatchSquadB.UnderColor = Color.DarkGreen;
             //}
+        }
+
+        private void FormatStatsGrids()
+        {
+            dgAnalysisHome.AutoGenerateColumns = false;
+            dgAnalysisHome.DataCollection = AnalysisHome;
+
+            dgAnalysisHome.Columns.Clear();
+
+            dgAnalysisHome.AddColumn("Name", "Name", 40, AG_Style.String | AG_Style.ResizeAllCells);
+            dgAnalysisHome.AddColumn("Tot", "Total", 27, AG_Style.Numeric | AG_Style.N0);
+            dgAnalysisHome.AddColumn("Fld", "Failed", 27, AG_Style.Numeric | AG_Style.N0);
+            dgAnalysisHome.AddColumn("SOf", "Shot_off", 27, AG_Style.Numeric | AG_Style.N0);
+            dgAnalysisHome.AddColumn("SIn", "Shot_in", 27, AG_Style.Numeric | AG_Style.N0);
+            dgAnalysisHome.AddColumn("Gol", "Goal", 27, AG_Style.Numeric | AG_Style.N0);
+
+            dgAnalysisAway.AutoGenerateColumns = false;
+            dgAnalysisAway.DataCollection = AnalysisAway;
+
+            dgAnalysisAway.Columns.Clear();
+
+            dgAnalysisAway.AddColumn("Name", "Name", 40, AG_Style.String | AG_Style.ResizeAllCells);
+            dgAnalysisAway.AddColumn("Tot", "Total", 27, AG_Style.String | AG_Style.N0);
+            dgAnalysisAway.AddColumn("Fld", "Failed", 27, AG_Style.String | AG_Style.N0);
+            dgAnalysisAway.AddColumn("SOf", "Shot_off", 27, AG_Style.String | AG_Style.N0);
+            dgAnalysisAway.AddColumn("SIn", "Shot_in", 27, AG_Style.String | AG_Style.N0);
+            dgAnalysisAway.AddColumn("Gol", "Goal", 27, AG_Style.String | AG_Style.N0);
         }
 
         private void FormatMatchesGrid()
@@ -1030,11 +1061,61 @@ namespace TmRecorder3
                 lblScore.Text = md.Score.away.ToString() + "-" + md.Score.home.ToString();
             }
 
+            if (Program.Setts.YourTeamLeft || md.IsHome)
+            {
+                AnalysisHome = ActionsList.ParseAsTable(md.YActions);
+                AnalysisAway = ActionsList.ParseAsTable(md.OActions);
+            }
+            else
+            {
+                AnalysisHome = ActionsList.ParseAsTable(md.OActions);
+                AnalysisAway = ActionsList.ParseAsTable(md.YActions);
+            }
+
+            dgAnalysisHome.DataCollection = AnalysisHome;
+            dgAnalysisAway.DataCollection = AnalysisAway;
+
             if (lblNameTeamHome.ForeColor.GetBrightness() > 0.45)
                 lblNameTeamHome.ForeColor = Color.Black;
             if (lblNameTeamAway.ForeColor.GetBrightness() > 0.45)
                 lblNameTeamAway.ForeColor = Color.Black;
 
+            // Fill Matchstats
+            string[] Stats = HTML_Parser.Split(md.Stats, ";;");
+            msGameBreakDown.SetData("Possession,{0};Shots (Total),{0};Shots On Target,{0};Set Pieces,{0};Penalties,{0}",
+                Stats);
+
+            Dictionary<string, string> TM_Acronyms = new Dictionary<string, string>()
+            {
+                // Bal", "Count", "Wing", "Short", "Long", "Filt"
+                // "Norm", "VeDef", "Def", "SlDef", "Norm", "SlOff", "Off", "VrOff"
+                { "Bal", "Balanced"},
+                { "Count", "Counterattack"},
+                { "Wing", "Wing"},
+                { "Short", "Short Passes"},
+                { "Long", "Long Passes"},
+                { "Filt", "Filtering"},
+                { "VeDef", "Very Defensive"},
+                { "Def", "Defensive"},
+                { "SlDef", "Slightly Defensive"},
+                { "SlOff", "Slightly Offensive"},
+                { "Off", "Offensive"},
+                { "VrOff", "Very Offensive"},
+                { "Norm", "Normal"},
+            };
+
+            string[] Lineups = HTML_Parser.Split(md.LineUps, ";");
+            string[] AttackStyles = HTML_Parser.Split(md.AttackStyles, ";");
+            string[] Mentalities = HTML_Parser.Split(md.Mentalities, ";");
+            string[] Tactics = null;
+            if (Lineups != null)
+            {
+                Tactics = new string[2];
+                Tactics[0] = Lineups[0] + ";" + TM_Acronyms[AttackStyles[0]] + ";" + TM_Acronyms[Mentalities[0]];
+                Tactics[1] = Lineups[1] + ";" + TM_Acronyms[AttackStyles[1]] + ";" + TM_Acronyms[Mentalities[1]];
+            }
+            msTacticsBreakdown.SetData("Lineups,{0};AttackStyles,{0};Mentalities,{0}",
+                Tactics);
         }
 
         private void btnEnlargeMatchWindow_Click(object sender, EventArgs e)
@@ -1085,7 +1166,29 @@ namespace TmRecorder3
 
             lineupControl.Left = offx;
             lineupControl.Width = offw;
-            lineupControl.Height = (offw * 65)/ 100;
+            lineupControl.Height = (offw * 60)/ 100;
+
+            int iAnalysisWidth = 235;
+
+            dgAnalysisHome.Left = offx;
+            dgAnalysisHome.Width = iAnalysisWidth;
+            dgAnalysisHome.Top = lineupControl.Top + lineupControl.Height + 5;
+            dgAnalysisHome.Height = tabMatches.Height - lineupControl.Top  - lineupControl.Height - 10;
+
+            dgAnalysisAway.Left = offx + offw - iAnalysisWidth;
+            dgAnalysisAway.Width = iAnalysisWidth;
+            dgAnalysisAway.Top = lineupControl.Top + lineupControl.Height + 5;
+            dgAnalysisAway.Height = tabMatches.Height - lineupControl.Top - lineupControl.Height - 10;
+
+            msGameBreakDown.Top = lineupControl.Top + lineupControl.Height + 5;
+            msGameBreakDown.Height = 102;
+            msGameBreakDown.Left = offx + iAnalysisWidth + 5;
+            msGameBreakDown.Width = offw - 2 * iAnalysisWidth - 10;
+
+            msTacticsBreakdown.Top = msGameBreakDown.Top + msGameBreakDown.Height + 5;
+            msTacticsBreakdown.Height = 85;
+            msTacticsBreakdown.Left = offx + iAnalysisWidth + 5;
+            msTacticsBreakdown.Width = offw - 2 * iAnalysisWidth - 10;
 
             lineupControl.SetFontSize(lineupControl.Width / 100f);
         }
@@ -1149,7 +1252,7 @@ namespace TmRecorder3
             DateTime endDate = startDate.AddDays(7 * 12);
 
             ThisSeasonMatches = (from c in DB.squadDB.Match
-                                 where (c.Date > startDate) && (c.Date < endDate)
+                                 where (!c.IsDateNull()) && (c.Date < endDate) && (c.Date > startDate)
                                  select new MatchData(c)).OrderBy(p => p.Date);
 
             dgMatches.DataCollection = ThisSeasonMatches;

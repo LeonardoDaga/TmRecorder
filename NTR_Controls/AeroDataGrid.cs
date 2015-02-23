@@ -36,7 +36,14 @@ namespace NTR_Controls
         public AeroDataGrid()
         {
             InitializeComponent();
-            this.DoubleBuffered = true;            
+            this.DoubleBuffered = true;
+
+            this.CellPainting += AeroDataGrid_CellPainting;
+        }
+
+        void AeroDataGrid_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            
         }
 
         //void AeroDataGrid_CellMouseDown(object sender, System.Windows.Forms.DataGridViewCellMouseEventArgs e)

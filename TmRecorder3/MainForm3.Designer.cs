@@ -32,6 +32,35 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm3));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            NTR_Controls.Column column1 = new NTR_Controls.Column();
+            NTR_Controls.Column column2 = new NTR_Controls.Column();
+            NTR_Controls.Column column3 = new NTR_Controls.Column();
+            NTR_Controls.Row row1 = new NTR_Controls.Row();
+            NTR_Controls.Row row2 = new NTR_Controls.Row();
+            NTR_Controls.Row row3 = new NTR_Controls.Row();
+            NTR_Controls.Column column4 = new NTR_Controls.Column();
+            NTR_Controls.Column column5 = new NTR_Controls.Column();
+            NTR_Controls.Column column6 = new NTR_Controls.Column();
+            NTR_Controls.Column column7 = new NTR_Controls.Column();
+            NTR_Controls.Column column8 = new NTR_Controls.Column();
+            NTR_Controls.Row row4 = new NTR_Controls.Row();
+            NTR_Controls.Row row5 = new NTR_Controls.Row();
+            NTR_Controls.Row row6 = new NTR_Controls.Row();
+            NTR_Controls.Row row7 = new NTR_Controls.Row();
+            NTR_Controls.Row row8 = new NTR_Controls.Row();
+            NTR_Controls.Row row9 = new NTR_Controls.Row();
+            NTR_Controls.Row row10 = new NTR_Controls.Row();
+            NTR_Controls.Row row11 = new NTR_Controls.Row();
+            NTR_Controls.Row row12 = new NTR_Controls.Row();
+            NTR_Controls.Row row13 = new NTR_Controls.Row();
+            NTR_Controls.Column column9 = new NTR_Controls.Column();
+            NTR_Controls.Column column10 = new NTR_Controls.Column();
+            NTR_Controls.Column column11 = new NTR_Controls.Column();
+            NTR_Controls.Row row14 = new NTR_Controls.Row();
+            NTR_Controls.Row row15 = new NTR_Controls.Row();
+            NTR_Controls.Row row16 = new NTR_Controls.Row();
+            NTR_Controls.Row row17 = new NTR_Controls.Row();
+            NTR_Controls.Row row18 = new NTR_Controls.Row();
             this.tsMainBar = new System.Windows.Forms.ToolStrip();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.importDataFromTmR1xFormatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -69,6 +98,11 @@
             this.dgPlayersGK = new NTR_Controls.AeroDataGrid();
             this.qsMinRatingGK = new NTR_Controls.QuantitySelector();
             this.tabMatches = new System.Windows.Forms.TabPage();
+            this.msTacticsBreakdown = new NTR_Controls.MatchStats();
+            this.matchStats1 = new NTR_Controls.MatchStats();
+            this.msGameBreakDown = new NTR_Controls.MatchStats();
+            this.dgAnalysisAway = new NTR_Controls.AeroDataGrid();
+            this.dgAnalysisHome = new NTR_Controls.AeroDataGrid();
             this.lineupControl = new FieldFormationControl.RotLineupControl();
             this.lblNameTeamAway = new System.Windows.Forms.Label();
             this.btnEnlargeMatchWindow = new System.Windows.Forms.Button();
@@ -129,6 +163,8 @@
             this.tabGK.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPlayersGK)).BeginInit();
             this.tabMatches.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgAnalysisAway)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgAnalysisHome)).BeginInit();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgMatches)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -146,7 +182,7 @@
             this.toolStripDropDownButton3});
             this.tsMainBar.Location = new System.Drawing.Point(0, 0);
             this.tsMainBar.Name = "tsMainBar";
-            this.tsMainBar.Size = new System.Drawing.Size(1212, 36);
+            this.tsMainBar.Size = new System.Drawing.Size(1212, 38);
             this.tsMainBar.TabIndex = 2;
             this.tsMainBar.Text = "toolStrip1";
             // 
@@ -157,14 +193,14 @@
             this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(38, 33);
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(38, 35);
             this.toolStripDropDownButton1.Text = "File";
             this.toolStripDropDownButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // importDataFromTmR1xFormatToolStripMenuItem
             // 
             this.importDataFromTmR1xFormatToolStripMenuItem.Name = "importDataFromTmR1xFormatToolStripMenuItem";
-            this.importDataFromTmR1xFormatToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
+            this.importDataFromTmR1xFormatToolStripMenuItem.Size = new System.Drawing.Size(250, 22);
             this.importDataFromTmR1xFormatToolStripMenuItem.Text = "Import Data from TmR 1.x format";
             // 
             // toolStripDropDownButton3
@@ -178,42 +214,42 @@
             this.toolStripDropDownButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton3.Image")));
             this.toolStripDropDownButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton3.Name = "toolStripDropDownButton3";
-            this.toolStripDropDownButton3.Size = new System.Drawing.Size(47, 33);
+            this.toolStripDropDownButton3.Size = new System.Drawing.Size(49, 35);
             this.toolStripDropDownButton3.Text = "Tools";
             this.toolStripDropDownButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // tsOptions
             // 
             this.tsOptions.Name = "tsOptions";
-            this.tsOptions.Size = new System.Drawing.Size(249, 22);
+            this.tsOptions.Size = new System.Drawing.Size(253, 22);
             this.tsOptions.Text = "Options";
             this.tsOptions.Click += new System.EventHandler(this.tsOptions_Click);
             // 
             // reloadDataFromFilesToolStripMenuItem
             // 
             this.reloadDataFromFilesToolStripMenuItem.Name = "reloadDataFromFilesToolStripMenuItem";
-            this.reloadDataFromFilesToolStripMenuItem.Size = new System.Drawing.Size(249, 22);
+            this.reloadDataFromFilesToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
             this.reloadDataFromFilesToolStripMenuItem.Text = "Reload DB";
             this.reloadDataFromFilesToolStripMenuItem.Click += new System.EventHandler(this.reloadDataFromFilesToolStripMenuItem_Click);
             // 
             // reloadOldReleaseDBToolStripMenuItem
             // 
             this.reloadOldReleaseDBToolStripMenuItem.Name = "reloadOldReleaseDBToolStripMenuItem";
-            this.reloadOldReleaseDBToolStripMenuItem.Size = new System.Drawing.Size(249, 22);
+            this.reloadOldReleaseDBToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
             this.reloadOldReleaseDBToolStripMenuItem.Text = "Reload Old Version DB";
             this.reloadOldReleaseDBToolStripMenuItem.Click += new System.EventHandler(this.reloadOldReleaseDBToolStripMenuItem_Click);
             // 
             // searchAndImportAllSavedPagesToolStripMenuItem
             // 
             this.searchAndImportAllSavedPagesToolStripMenuItem.Name = "searchAndImportAllSavedPagesToolStripMenuItem";
-            this.searchAndImportAllSavedPagesToolStripMenuItem.Size = new System.Drawing.Size(249, 22);
+            this.searchAndImportAllSavedPagesToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
             this.searchAndImportAllSavedPagesToolStripMenuItem.Text = "Search and import all saved pages";
             this.searchAndImportAllSavedPagesToolStripMenuItem.Click += new System.EventHandler(this.searchAndImportAllSavedPagesToolStripMenuItem_Click);
             // 
             // recalculateDecimalsToolStripMenuItem
             // 
             this.recalculateDecimalsToolStripMenuItem.Name = "recalculateDecimalsToolStripMenuItem";
-            this.recalculateDecimalsToolStripMenuItem.Size = new System.Drawing.Size(249, 22);
+            this.recalculateDecimalsToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
             this.recalculateDecimalsToolStripMenuItem.Text = "Recalculate decimals";
             this.recalculateDecimalsToolStripMenuItem.Click += new System.EventHandler(this.recalculateDecimalsToolStripMenuItem_Click);
             // 
@@ -224,10 +260,10 @@
             this.tabMain.Controls.Add(this.tabMatches);
             this.tabMain.Controls.Add(this.tabBrowser);
             this.tabMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabMain.Location = new System.Drawing.Point(0, 36);
+            this.tabMain.Location = new System.Drawing.Point(0, 38);
             this.tabMain.Name = "tabMain";
             this.tabMain.SelectedIndex = 0;
-            this.tabMain.Size = new System.Drawing.Size(1212, 559);
+            this.tabMain.Size = new System.Drawing.Size(1212, 568);
             this.tabMain.TabIndex = 3;
             // 
             // tabSquad
@@ -248,7 +284,7 @@
             this.tabSquad.Location = new System.Drawing.Point(4, 22);
             this.tabSquad.Name = "tabSquad";
             this.tabSquad.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSquad.Size = new System.Drawing.Size(1204, 533);
+            this.tabSquad.Size = new System.Drawing.Size(1204, 542);
             this.tabSquad.TabIndex = 0;
             this.tabSquad.Text = "Field Players";
             this.tabSquad.UseVisualStyleBackColor = true;
@@ -434,7 +470,7 @@
             this.dgPlayers.ReadOnly = true;
             this.dgPlayers.RowHeadersWidth = 20;
             this.dgPlayers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgPlayers.Size = new System.Drawing.Size(1198, 503);
+            this.dgPlayers.Size = new System.Drawing.Size(1198, 501);
             this.dgPlayers.TabIndex = 1;
             this.dgPlayers.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgPlayers_ColumnHeaderMouseClick);
             // 
@@ -444,20 +480,20 @@
             this.movePlayerToATeamToolStripMenuItem,
             this.movePlayerToBTeamToolStripMenuItem});
             this.contextMenuPlayersPage.Name = "contextMenuPlayersPage";
-            this.contextMenuPlayersPage.Size = new System.Drawing.Size(209, 48);
+            this.contextMenuPlayersPage.Size = new System.Drawing.Size(220, 48);
             this.contextMenuPlayersPage.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuPlayersPage_Opening);
             // 
             // movePlayerToATeamToolStripMenuItem
             // 
             this.movePlayerToATeamToolStripMenuItem.Name = "movePlayerToATeamToolStripMenuItem";
-            this.movePlayerToATeamToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.movePlayerToATeamToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
             this.movePlayerToATeamToolStripMenuItem.Text = "Move Player To Main Team";
             this.movePlayerToATeamToolStripMenuItem.Click += new System.EventHandler(this.movePlayerToATeamToolStripMenuItem_Click);
             // 
             // movePlayerToBTeamToolStripMenuItem
             // 
             this.movePlayerToBTeamToolStripMenuItem.Name = "movePlayerToBTeamToolStripMenuItem";
-            this.movePlayerToBTeamToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.movePlayerToBTeamToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
             this.movePlayerToBTeamToolStripMenuItem.Text = "Move Player To B Team";
             this.movePlayerToBTeamToolStripMenuItem.Click += new System.EventHandler(this.movePlayerToBTeamToolStripMenuItem_Click);
             // 
@@ -474,7 +510,7 @@
             this.tabGK.Location = new System.Drawing.Point(4, 22);
             this.tabGK.Name = "tabGK";
             this.tabGK.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGK.Size = new System.Drawing.Size(1204, 533);
+            this.tabGK.Size = new System.Drawing.Size(1204, 542);
             this.tabGK.TabIndex = 1;
             this.tabGK.Text = "Goalkeepers";
             this.tabGK.UseVisualStyleBackColor = true;
@@ -584,6 +620,11 @@
             // 
             // tabMatches
             // 
+            this.tabMatches.Controls.Add(this.msTacticsBreakdown);
+            this.tabMatches.Controls.Add(this.matchStats1);
+            this.tabMatches.Controls.Add(this.msGameBreakDown);
+            this.tabMatches.Controls.Add(this.dgAnalysisAway);
+            this.tabMatches.Controls.Add(this.dgAnalysisHome);
             this.tabMatches.Controls.Add(this.lineupControl);
             this.tabMatches.Controls.Add(this.lblNameTeamAway);
             this.tabMatches.Controls.Add(this.btnEnlargeMatchWindow);
@@ -598,11 +639,272 @@
             this.tabMatches.Location = new System.Drawing.Point(4, 22);
             this.tabMatches.Name = "tabMatches";
             this.tabMatches.Padding = new System.Windows.Forms.Padding(3);
-            this.tabMatches.Size = new System.Drawing.Size(1204, 533);
+            this.tabMatches.Size = new System.Drawing.Size(1204, 542);
             this.tabMatches.TabIndex = 10;
             this.tabMatches.Text = "Matches";
             this.tabMatches.UseVisualStyleBackColor = true;
             this.tabMatches.Resize += new System.EventHandler(this.tabMatches_Resize);
+            // 
+            // msTacticsBreakdown
+            // 
+            this.msTacticsBreakdown.BackColor = System.Drawing.Color.Transparent;
+            column1.Alignment = System.Drawing.StringAlignment.Far;
+            column1.Color = System.Drawing.Color.Black;
+            column1.ColumnSize = 33;
+            column1.ColumnSizeType = NTR_Controls.SizeType.Percentage;
+            column1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            column1.Name = "Home Values";
+            column1.Property = "YValues";
+            column2.Alignment = System.Drawing.StringAlignment.Center;
+            column2.Color = System.Drawing.Color.Black;
+            column2.ColumnSize = 34;
+            column2.ColumnSizeType = NTR_Controls.SizeType.Percentage;
+            column2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            column2.Name = "Title";
+            column2.Property = "Title";
+            column3.Alignment = System.Drawing.StringAlignment.Near;
+            column3.Color = System.Drawing.Color.Black;
+            column3.ColumnSize = 33;
+            column3.ColumnSizeType = NTR_Controls.SizeType.Percentage;
+            column3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            column3.Name = "Away Values";
+            column3.Property = "OValues";
+            this.msTacticsBreakdown.Columns = new NTR_Controls.Column[] {
+        column1,
+        column2,
+        column3};
+            this.msTacticsBreakdown.HeaderColor = System.Drawing.Color.Black;
+            this.msTacticsBreakdown.HeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            this.msTacticsBreakdown.Location = new System.Drawing.Point(791, 514);
+            this.msTacticsBreakdown.Name = "msTacticsBreakdown";
+            this.msTacticsBreakdown.Size = new System.Drawing.Size(184, 102);
+            this.msTacticsBreakdown.TabIndex = 12;
+            row1.Format = null;
+            row1.Items = null;
+            row1.Name = "Lineup";
+            row1.Text = "Lineup";
+            row2.Format = null;
+            row2.Items = null;
+            row2.Name = "Mentality";
+            row2.Text = "Mentality";
+            row3.Format = null;
+            row3.Items = null;
+            row3.Name = "AttackingStyle";
+            row3.Text = "Attacking Style";
+            this.msTacticsBreakdown.Table = new NTR_Controls.Row[] {
+        row1,
+        row2,
+        row3};
+            this.msTacticsBreakdown.Title = "Tactics Breakdown";
+            this.msTacticsBreakdown.TitleAlignment = System.Drawing.StringAlignment.Center;
+            this.msTacticsBreakdown.TitleColor = System.Drawing.Color.RoyalBlue;
+            this.msTacticsBreakdown.TitleFont = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            // 
+            // matchStats1
+            // 
+            this.matchStats1.BackColor = System.Drawing.Color.LemonChiffon;
+            column4.Alignment = System.Drawing.StringAlignment.Far;
+            column4.Color = System.Drawing.Color.Black;
+            column4.ColumnSize = 100;
+            column4.ColumnSizeType = NTR_Controls.SizeType.Percentage;
+            column4.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            column4.Name = "Title";
+            column4.Property = "Title";
+            column5.Alignment = System.Drawing.StringAlignment.Center;
+            column5.Color = System.Drawing.Color.Black;
+            column5.ColumnSize = 25;
+            column5.ColumnSizeType = NTR_Controls.SizeType.Pixels;
+            column5.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            column5.Name = "Tot";
+            column5.Property = "Tot";
+            column6.Alignment = System.Drawing.StringAlignment.Center;
+            column6.Color = System.Drawing.Color.Black;
+            column6.ColumnSize = 25;
+            column6.ColumnSizeType = NTR_Controls.SizeType.Pixels;
+            column6.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            column6.Name = "ShOut";
+            column6.Property = "ShotOut";
+            column7.Alignment = System.Drawing.StringAlignment.Center;
+            column7.Color = System.Drawing.Color.Black;
+            column7.ColumnSize = 25;
+            column7.ColumnSizeType = NTR_Controls.SizeType.Pixels;
+            column7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            column7.Name = "ShtIn";
+            column7.Property = "ShotIn";
+            column8.Alignment = System.Drawing.StringAlignment.Center;
+            column8.Color = System.Drawing.Color.Black;
+            column8.ColumnSize = 25;
+            column8.ColumnSizeType = NTR_Controls.SizeType.Pixels;
+            column8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            column8.Name = "Goal";
+            column8.Property = "Goal";
+            this.matchStats1.Columns = new NTR_Controls.Column[] {
+        column4,
+        column5,
+        column6,
+        column7,
+        column8};
+            this.matchStats1.HeaderColor = System.Drawing.Color.Black;
+            this.matchStats1.HeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            this.matchStats1.Location = new System.Drawing.Point(560, 410);
+            this.matchStats1.Name = "matchStats1";
+            this.matchStats1.Size = new System.Drawing.Size(212, 160);
+            this.matchStats1.TabIndex = 12;
+            row4.Format = null;
+            row4.IsHeader = true;
+            row4.Items = null;
+            row4.Name = "Type";
+            row4.Text = "Type";
+            row5.Format = "{0}";
+            row5.Items = null;
+            row5.Name = "ShortPass";
+            row5.Text = "Short Pass";
+            row6.Format = "{0}";
+            row6.Items = null;
+            row6.Name = "ThroughBall";
+            row6.Text = "Through Ball";
+            row7.Format = "{0}";
+            row7.Items = null;
+            row7.Name = "Wing";
+            row7.Text = "Wing";
+            row8.Format = "{0}";
+            row8.Items = null;
+            row8.Name = "LongBall";
+            row8.Text = "Long Ball";
+            row9.Format = "{0}";
+            row9.Items = null;
+            row9.Name = "CounterAttack";
+            row9.Text = "Counter Attack";
+            row10.Format = null;
+            row10.Items = ((System.Collections.Generic.List<NTR_Controls.Item>)(resources.GetObject("row10.Items")));
+            row10.Name = "Corner";
+            row10.Text = "Corner";
+            row11.Format = null;
+            row11.Items = ((System.Collections.Generic.List<NTR_Controls.Item>)(resources.GetObject("row11.Items")));
+            row11.Name = "Freekick";
+            row11.Text = "Freekick";
+            row12.Format = null;
+            row12.Items = ((System.Collections.Generic.List<NTR_Controls.Item>)(resources.GetObject("row12.Items")));
+            row12.Name = "GkLongBall";
+            row12.Text = "Gk Long Ball";
+            row13.Format = null;
+            row13.Items = ((System.Collections.Generic.List<NTR_Controls.Item>)(resources.GetObject("row13.Items")));
+            row13.Name = "GkCounterAttack";
+            row13.Text = "Gk Counter Attack";
+            this.matchStats1.Table = new NTR_Controls.Row[] {
+        row4,
+        row5,
+        row6,
+        row7,
+        row8,
+        row9,
+        row10,
+        row11,
+        row12,
+        row13};
+            this.matchStats1.Title = "Actions";
+            this.matchStats1.TitleAlignment = System.Drawing.StringAlignment.Center;
+            this.matchStats1.TitleColor = System.Drawing.Color.DarkRed;
+            this.matchStats1.TitleFont = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            // 
+            // msGameBreakDown
+            // 
+            this.msGameBreakDown.BackColor = System.Drawing.Color.Transparent;
+            column9.Alignment = System.Drawing.StringAlignment.Far;
+            column9.Color = System.Drawing.Color.Black;
+            column9.ColumnSize = 35;
+            column9.ColumnSizeType = NTR_Controls.SizeType.Pixels;
+            column9.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            column9.Name = "Home Values";
+            column9.Property = "YValues";
+            column10.Alignment = System.Drawing.StringAlignment.Center;
+            column10.Color = System.Drawing.Color.Black;
+            column10.ColumnSize = 100;
+            column10.ColumnSizeType = NTR_Controls.SizeType.Percentage;
+            column10.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            column10.Name = "Title";
+            column10.Property = "Title";
+            column11.Alignment = System.Drawing.StringAlignment.Near;
+            column11.Color = System.Drawing.Color.Black;
+            column11.ColumnSize = 35;
+            column11.ColumnSizeType = NTR_Controls.SizeType.Pixels;
+            column11.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            column11.Name = "Away Values";
+            column11.Property = "OValues";
+            this.msGameBreakDown.Columns = new NTR_Controls.Column[] {
+        column9,
+        column10,
+        column11};
+            this.msGameBreakDown.HeaderColor = System.Drawing.Color.Black;
+            this.msGameBreakDown.HeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            this.msGameBreakDown.Location = new System.Drawing.Point(791, 410);
+            this.msGameBreakDown.Name = "msGameBreakDown";
+            this.msGameBreakDown.Size = new System.Drawing.Size(184, 102);
+            this.msGameBreakDown.TabIndex = 12;
+            row14.Format = null;
+            row14.Items = null;
+            row14.Name = "Possession";
+            row14.Text = "Possession";
+            row15.Format = null;
+            row15.Items = null;
+            row15.Name = "ShotsTotal";
+            row15.Text = "Shots (Total)";
+            row16.Format = null;
+            row16.Items = null;
+            row16.Name = "ShotsInGoal";
+            row16.Text = "Shots In Goal";
+            row17.Format = null;
+            row17.Items = null;
+            row17.Name = "SetPieces";
+            row17.Text = "Set Pieces";
+            row18.Format = null;
+            row18.Items = null;
+            row18.Name = "Penalties";
+            row18.Text = "Penalties";
+            this.msGameBreakDown.Table = new NTR_Controls.Row[] {
+        row14,
+        row15,
+        row16,
+        row17,
+        row18};
+            this.msGameBreakDown.Title = "Game Breakdown";
+            this.msGameBreakDown.TitleAlignment = System.Drawing.StringAlignment.Center;
+            this.msGameBreakDown.TitleColor = System.Drawing.Color.DarkBlue;
+            this.msGameBreakDown.TitleFont = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            // 
+            // dgAnalysisAway
+            // 
+            this.dgAnalysisAway.AllowUserToAddRows = false;
+            this.dgAnalysisAway.AllowUserToDeleteRows = false;
+            this.dgAnalysisAway.AllowUserToResizeRows = false;
+            this.dgAnalysisAway.AutoGenerateColumns = false;
+            this.dgAnalysisAway.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgAnalysisAway.DataCollection = null;
+            this.dgAnalysisAway.Location = new System.Drawing.Point(981, 410);
+            this.dgAnalysisAway.MultiSelect = false;
+            this.dgAnalysisAway.Name = "dgAnalysisAway";
+            this.dgAnalysisAway.ReadOnly = true;
+            this.dgAnalysisAway.RowHeadersWidth = 20;
+            this.dgAnalysisAway.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgAnalysisAway.Size = new System.Drawing.Size(215, 124);
+            this.dgAnalysisAway.TabIndex = 11;
+            // 
+            // dgAnalysisHome
+            // 
+            this.dgAnalysisHome.AllowUserToAddRows = false;
+            this.dgAnalysisHome.AllowUserToDeleteRows = false;
+            this.dgAnalysisHome.AllowUserToResizeRows = false;
+            this.dgAnalysisHome.AutoGenerateColumns = false;
+            this.dgAnalysisHome.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgAnalysisHome.DataCollection = null;
+            this.dgAnalysisHome.Location = new System.Drawing.Point(558, 410);
+            this.dgAnalysisHome.MultiSelect = false;
+            this.dgAnalysisHome.Name = "dgAnalysisHome";
+            this.dgAnalysisHome.ReadOnly = true;
+            this.dgAnalysisHome.RowHeadersWidth = 20;
+            this.dgAnalysisHome.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgAnalysisHome.Size = new System.Drawing.Size(227, 124);
+            this.dgAnalysisHome.TabIndex = 11;
             // 
             // lineupControl
             // 
@@ -727,7 +1029,7 @@
             this.dgMatches.ReadOnly = true;
             this.dgMatches.RowHeadersWidth = 20;
             this.dgMatches.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgMatches.Size = new System.Drawing.Size(542, 452);
+            this.dgMatches.Size = new System.Drawing.Size(542, 590);
             this.dgMatches.TabIndex = 1;
             this.dgMatches.SelectionChanged += new System.EventHandler(this.dgMatches_SelectionChanged);
             // 
@@ -857,7 +1159,7 @@
             this.tabBrowser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabBrowser.Name = "tabBrowser";
             this.tabBrowser.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tabBrowser.Size = new System.Drawing.Size(1204, 533);
+            this.tabBrowser.Size = new System.Drawing.Size(1204, 542);
             this.tabBrowser.TabIndex = 9;
             this.tabBrowser.Text = "Trophy Browser";
             this.tabBrowser.UseVisualStyleBackColor = true;
@@ -899,7 +1201,7 @@
             this.tsBrowserImport.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
             this.tsBrowserImport.Location = new System.Drawing.Point(0, 2);
             this.tsBrowserImport.Name = "tsBrowserImport";
-            this.tsBrowserImport.Size = new System.Drawing.Size(93, 354);
+            this.tsBrowserImport.Size = new System.Drawing.Size(95, 354);
             this.tsBrowserImport.TabIndex = 2;
             this.tsBrowserImport.Text = "toolStrip4";
             // 
@@ -909,7 +1211,7 @@
             this.toolStripLabel2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripLabel2.ForeColor = System.Drawing.Color.Navy;
             this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(91, 13);
+            this.toolStripLabel2.Size = new System.Drawing.Size(93, 13);
             this.toolStripLabel2.Text = "TM Access";
             // 
             // toolStripDropDownButton2
@@ -921,38 +1223,38 @@
             this.toolStripDropDownButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton2.Image")));
             this.toolStripDropDownButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton2.Name = "toolStripDropDownButton2";
-            this.toolStripDropDownButton2.Size = new System.Drawing.Size(91, 20);
+            this.toolStripDropDownButton2.Size = new System.Drawing.Size(93, 20);
             this.toolStripDropDownButton2.Text = "Extra Team";
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(323, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(336, 22);
             this.toolStripMenuItem1.Text = "Add Extra Team";
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(323, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(336, 22);
             this.toolStripMenuItem2.Text = "Change Browser to the actual Team";
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(323, 22);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(336, 22);
             this.toolStripMenuItem3.Text = "Load HTML file (Squad,Training,Calendar,Players)";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(91, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(93, 6);
             // 
             // toolStripLabel13
             // 
             this.toolStripLabel13.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripLabel13.ForeColor = System.Drawing.Color.Navy;
             this.toolStripLabel13.Name = "toolStripLabel13";
-            this.toolStripLabel13.Size = new System.Drawing.Size(91, 13);
+            this.toolStripLabel13.Size = new System.Drawing.Size(93, 13);
             this.toolStripLabel13.Text = "Automatic";
             // 
             // toolStripLabel1
@@ -961,20 +1263,20 @@
             this.toolStripLabel1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripLabel1.ForeColor = System.Drawing.Color.Navy;
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(91, 13);
+            this.toolStripLabel1.Size = new System.Drawing.Size(93, 13);
             this.toolStripLabel1.Text = "Import Panel";
             // 
             // toolStripSeparator8
             // 
             this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(91, 6);
+            this.toolStripSeparator8.Size = new System.Drawing.Size(93, 6);
             // 
             // toolStripLabel5
             // 
             this.toolStripLabel5.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripLabel5.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.toolStripLabel5.Name = "toolStripLabel5";
-            this.toolStripLabel5.Size = new System.Drawing.Size(91, 13);
+            this.toolStripLabel5.Size = new System.Drawing.Size(93, 13);
             this.toolStripLabel5.Text = "Squad Data";
             // 
             // tsbImportSquad
@@ -999,7 +1301,7 @@
             this.toolStripLabel14.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripLabel14.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.toolStripLabel14.Name = "toolStripLabel14";
-            this.toolStripLabel14.Size = new System.Drawing.Size(91, 13);
+            this.toolStripLabel14.Size = new System.Drawing.Size(93, 13);
             this.toolStripLabel14.Text = "Training";
             // 
             // tsbScouts
@@ -1041,7 +1343,7 @@
             this.toolStripLabel15.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripLabel15.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.toolStripLabel15.Name = "toolStripLabel15";
-            this.toolStripLabel15.Size = new System.Drawing.Size(91, 13);
+            this.toolStripLabel15.Size = new System.Drawing.Size(93, 13);
             this.toolStripLabel15.Text = "Matches List";
             // 
             // tsbMatchListA
@@ -1083,7 +1385,7 @@
             this.toolStripLabel4.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripLabel4.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.toolStripLabel4.Name = "toolStripLabel4";
-            this.toolStripLabel4.Size = new System.Drawing.Size(91, 13);
+            this.toolStripLabel4.Size = new System.Drawing.Size(93, 13);
             this.toolStripLabel4.Text = "Matches";
             // 
             // tsbMatchSquadA
@@ -1182,7 +1484,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1212, 595);
+            this.ClientSize = new System.Drawing.Size(1212, 606);
             this.Controls.Add(this.tabMain);
             this.Controls.Add(this.tsMainBar);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1200,6 +1502,8 @@
             this.tabGK.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPlayersGK)).EndInit();
             this.tabMatches.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgAnalysisAway)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgAnalysisHome)).EndInit();
             this.groupBox4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgMatches)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -1306,6 +1610,11 @@
         private FieldFormationControl.RotLineupControl lineupControl;
         private System.Windows.Forms.ToolStripMenuItem searchAndImportAllSavedPagesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem recalculateDecimalsToolStripMenuItem;
+        private NTR_Controls.AeroDataGrid dgAnalysisHome;
+        private NTR_Controls.AeroDataGrid dgAnalysisAway;
+        private NTR_Controls.MatchStats msGameBreakDown;
+        private NTR_Controls.MatchStats msTacticsBreakdown;
+        private NTR_Controls.MatchStats matchStats1;
     }
 }
 

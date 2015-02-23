@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -141,8 +142,11 @@ namespace NTR_Db
             return str;
         }
 
-        internal static ActionsList Parse(string coded)
+        public static ActionsList Parse(string coded)
         {
+            if (coded == null)
+                return null;
+
             ActionsList al = new ActionsList();
 
             string[] items = coded.Split(';');
@@ -157,6 +161,40 @@ namespace NTR_Db
             }
 
             return al;
+        }
+
+        public static NTR_SquadDb.ActionsTableDataTable ParseAsTable(string coded)
+        {
+            if (coded == null) return null;
+
+            ActionsList actionList = Parse(coded);
+
+            NTR_SquadDb.ActionsTableDataTable adt = new NTR_SquadDb.ActionsTableDataTable();
+
+            foreach (KeyValuePair<byte, ActionsItem> item in actionList)
+            {
+                if (item.Key > 9) continue;
+
+                NTR_SquadDb.ActionsTableRow ar = adt.NewActionsTableRow();
+                ar.Name = ActionStat.ActionStatStr[item.Key];
+
+                int total = 0;
+
+                foreach (var i in item.Value)
+                {
+                    if (i.Key < 4) total += i.Value;
+                    if (i.Key == 0) ar.Failed = i.Value;
+                    if (i.Key == 1) ar.Shot_Off = i.Value;
+                    if (i.Key == 2) ar.Shot_in = i.Value;
+                    if (i.Key == 3) ar.Goal = i.Value;
+                }
+                
+                ar.Total = total;
+
+                adt.AddActionsTableRow(ar);
+            }
+
+            return adt;
         }
 
         public void AddNewAttackAction(NTR_SquadDb.ActionsDecoderRow actionDecRow)
@@ -178,6 +216,66 @@ namespace NTR_Db
             ActionsItem action = this[actionDecRow.Type];
 
             action.AddDefend(actionDecRow.Outcome);
+        }
+
+        public static EnumerableRowCollection<ActionStat> GetStats(string listOfActions)
+        {
+            ActionsList actionList = ActionsList.Parse(listOfActions);
+
+            if (actionList == null)
+                return null;
+
+            var actionStats = (from a in actionList
+                               select new ActionStat(a));
+
+            return actionStats as EnumerableRowCollection<ActionStat>;
+        }
+    }
+
+    public class ActionStat
+    {
+        public string Name;
+        public int Total;
+        public int Failed;
+        public int Shot_off;
+        public int Shot_in;
+        public int Goal;
+        private KeyValuePair<byte, ActionsItem> a;
+
+        public static string[] ActionStatStr = new string[]
+        {
+            "Short Pass",           // Short Pass
+            "Throu Ball",           // Through Ball
+            "Wing",           // Wing
+            "Long Ball",           // Long Ball
+            "Cnt Attack",           // Counter Attack
+            "Corner",           // Corner
+            "Freekick",           // Freekick
+            "GK CntAtk",           // GK counterattack
+            "GK LngBll",           // GK long ball attack
+            "Penalty",      	 //  Penalty Shot
+            "Penalty Fault",           // Penalty Fault
+            "Yellow/Red Card",           // Yellow/Red Card
+            "Injury",           // Injury
+            "Substitution",           // Substitution
+            "Not identified",           // Not identified
+        };
+
+        public ActionStat(KeyValuePair<byte, ActionsItem> a)
+        {
+            Name = ActionStatStr[a.Key];
+            ActionsItem ai = a.Value;
+
+            int total = 0;
+            foreach(var i in ai)
+            {
+                total++;
+                if (i.Key == 0) Failed = i.Value;
+                if (i.Key == 1) Shot_off = i.Value;
+                if (i.Key == 2) Shot_in = i.Value;
+                if (i.Key == 3) Goal = i.Value;
+            }
+            Total = total;
         }
     }
 }

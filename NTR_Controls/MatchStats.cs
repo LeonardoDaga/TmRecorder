@@ -6,47 +6,23 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using NTR_Common;
 
 namespace NTR_Controls
 {
+    // Nuova implementazione
+    // Il controllo contiene l'elenco delle colonne con in nome (solo per visualizzazione) e la proprietà che serve per 
+    // identificare il valore nell'ItemDictionary
+    // Il controllo internamente indicizza la posizione di tutte le celle (opzionale)
+    // Il controllo contiene, sull'interfaccia, l'elenco dei titoli delle righe, corrispondente alla colonna title.
+    // Il controllo contiene, internamente, l'ItemDictionary con gli elementi da visualizzare. Non mostrata ad interfaccia
+    // per non farla incasinare
+
     public enum SizeType
     {
         Percentage,
         Pixels
     }
-
-    public class Dictionary2D<K1, K2, V>
-    {
-        private Dictionary<K1, Dictionary<K2, V>> dict =
-            new Dictionary<K1, Dictionary<K2, V>>();
-
-        public V this[K1 key1, K2 key2]
-        {
-            get
-            {
-                try
-                {
-                    return dict[key1][key2];
-                }
-                catch
-                {
-                    return default(V);
-                }
-            }
-
-            set
-            {
-                if (!dict.ContainsKey(key1))
-                {
-                    dict[key1] = new Dictionary<K2, V>();
-                }
-                dict[key1][key2] = value;
-            }
-        }
-    }
-
-    public class ItemDictionary:Dictionary2D<string, string, object>
-    { }
 
     public class Column
     {
@@ -101,51 +77,7 @@ namespace NTR_Controls
 
     }
 
-    //public class Item 
-    //{
-    //    private object o;
-    //    public Item(object o)
-    //    {
-
-    //    }
-
-    //    //public class Value
-    //    //{
-    //    //    private object value = "";
-
-    //    //    public Value(string str)
-    //    //    {
-    //    //        value = str;
-    //    //    }
-
-    //    //    public static implicit operator Value(string str)
-    //    //    {
-    //    //        return new Value(str);
-    //    //    }
-
-    //    //    public override string ToString()
-    //    //    {
-    //    //        return value.ToString();
-    //    //    }
-    //    //}
-
-    //    public string Format { get; set; }
-    //    public int IntValue 
-    //    { 
-    //        get {return (int)o;}
-    //        set { o = value; }
-    //    }
-    //    public int FloatValue { get; set; }
-    //    public int StrValue { get; set; }
-    //}
-
     [Serializable]
-    public class Item
-    {
-        public object o { get; set; }
-        public string Name { get; set; }
-    }
-
     public class Row
     {
         public string Name { get; set; }
@@ -154,55 +86,6 @@ namespace NTR_Controls
 
         [DefaultValue(false)]
         public bool IsHeader { get; set; }
-
-        List<Item> _items = new List<Item>();
-        public List<Item> Items
-        {
-            get { return _items; }
-            set { _items = value; }
-        }
-
-        internal string GetText(string property)
-        {
-            if (property == "Title")
-                return Text;
-            else
-            {
-                object o = null;
-                string text;
-
-                if (Items == null)
-                {
-                    Random rg = new Random();
-                    o = rg.Next(0, 30);
-                }
-                else
-                {
-                    IEnumerable<Item> items = (from c in Items
-                                               where (c.Name == property)
-                                               select c);
-                    if (items.Count<Item>() > 0)
-                        o = items.First<Item>().o;
-                    else
-                        o = null;
-                }
-
-                if ((o == null) || (Format == null))
-                {
-                    text = "n/a";
-                }
-                else if (o.GetType() == typeof(int))
-                {
-                    int i = (int)o;
-                    text = string.Format(Format, i);
-                }
-                else
-                {
-                    text = o.ToString();
-                }
-                return text;
-            }
-        }
     }
 
     public partial class MatchStats : UserControl
@@ -266,13 +149,15 @@ namespace NTR_Controls
 
         #endregion
 
-        #region Row
-        public Row[] Table
+        #region Rows
+        public Row[] Rows
         {
             get;
             set;
         }
         #endregion
+
+        private ItemDictionary Table = null;
 
         #endregion
 
@@ -281,26 +166,44 @@ namespace NTR_Controls
             InitializeComponent();
         }
 
-        public void SetItemDictionary(ItemDictionary id)
+        public void SetItemDictionary(ItemDictionary idTable)
         {
-            foreach (Row row in this.Table)
+            Table = idTable;
+        }
+
+        internal string GetText(string propertyCol, string row)
+        {
+            if (propertyCol == "Title")
+                return row;
+            else
             {
-                if (row.Items != null)
-                    row.Items.Clear();
-                else
-                    row.Items = new List<Item>();
+                object o = null;
+                string text;
 
-                foreach (Column col in this.Columns)
+                if (Table == null)
                 {
-                    if (col.Property == "Title")
-                        continue;
-
-                    Item item = new Item();
-                    item.Name = col.Property;
-                    item.o = id[row.Name, item.Name];
-
-                    row.Items.Add(item);
+                    Random rg = new Random();
+                    o = rg.Next(0, 30);
                 }
+                else
+                {
+                    o = Table[propertyCol, row];
+                }
+
+                if ((o == null) || (Format == null))
+                {
+                    text = "n/a";
+                }
+                else if (o.GetType() == typeof(int))
+                {
+                    int i = (int)o;
+                    text = string.Format(Format, i);
+                }
+                else
+                {
+                    text = o.ToString();
+                }
+                return text;
             }
         }
 
@@ -352,11 +255,11 @@ namespace NTR_Controls
                 }
 
                 // Drawing each column
-                if (this.Table == null) break;
+                if (this.Rows == null) break;
 
                 float rowTop = szf.Height;
 
-                foreach (Row row in this.Table)
+                foreach (Row row in this.Rows)
                 {
                     float colLeft = 0;
 
@@ -413,7 +316,7 @@ namespace NTR_Controls
                     colProperties.Add(col.Property);
             }
 
-            this.Table = new Row[strTitles.Length];
+            this.Rows = new Row[strTitles.Length];
 
             for(int i=0; i<strTitles.Length; i++)
             {
@@ -424,7 +327,7 @@ namespace NTR_Controls
                 string title = strs[0];
                 string format = strs[1];
 
-                this.Table[i] = row;
+                this.Rows[i] = row;
                 row.Name = title;
                 row.Text = title;
                 row.Format = format;
@@ -449,7 +352,7 @@ namespace NTR_Controls
                         item.o = items[row];
                         item.Name = colProperties[col];
 
-                        this.Table[row].Items.Add(item);
+                        this.Rows[row].Items.Add(item);
                     }
                 }
             }

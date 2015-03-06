@@ -99,7 +99,7 @@
             this.qsMinRatingGK = new NTR_Controls.QuantitySelector();
             this.tabMatches = new System.Windows.Forms.TabPage();
             this.msTacticsBreakdown = new NTR_Controls.MatchStats();
-            this.matchStats1 = new NTR_Controls.MatchStats();
+            this.msActionsHome = new NTR_Controls.MatchStats();
             this.msGameBreakDown = new NTR_Controls.MatchStats();
             this.dgAnalysisAway = new NTR_Controls.AeroDataGrid();
             this.dgAnalysisHome = new NTR_Controls.AeroDataGrid();
@@ -621,7 +621,7 @@
             // tabMatches
             // 
             this.tabMatches.Controls.Add(this.msTacticsBreakdown);
-            this.tabMatches.Controls.Add(this.matchStats1);
+            this.tabMatches.Controls.Add(this.msActionsHome);
             this.tabMatches.Controls.Add(this.msGameBreakDown);
             this.tabMatches.Controls.Add(this.dgAnalysisAway);
             this.tabMatches.Controls.Add(this.dgAnalysisHome);
@@ -691,7 +691,7 @@
             row3.Items = null;
             row3.Name = "AttackingStyle";
             row3.Text = "Attacking Style";
-            this.msTacticsBreakdown.Table = new NTR_Controls.Row[] {
+            this.msTacticsBreakdown.Rows = new NTR_Controls.Row[] {
         row1,
         row2,
         row3};
@@ -700,9 +700,9 @@
             this.msTacticsBreakdown.TitleColor = System.Drawing.Color.RoyalBlue;
             this.msTacticsBreakdown.TitleFont = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             // 
-            // matchStats1
+            // msActionsHome
             // 
-            this.matchStats1.BackColor = System.Drawing.Color.LemonChiffon;
+            this.msActionsHome.BackColor = System.Drawing.Color.LemonChiffon;
             column4.Alignment = System.Drawing.StringAlignment.Far;
             column4.Color = System.Drawing.Color.Black;
             column4.ColumnSize = 100;
@@ -738,18 +738,18 @@
             column8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             column8.Name = "Goal";
             column8.Property = "Goal";
-            this.matchStats1.Columns = new NTR_Controls.Column[] {
+            this.msActionsHome.Columns = new NTR_Controls.Column[] {
         column4,
         column5,
         column6,
         column7,
         column8};
-            this.matchStats1.HeaderColor = System.Drawing.Color.Black;
-            this.matchStats1.HeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            this.matchStats1.Location = new System.Drawing.Point(560, 410);
-            this.matchStats1.Name = "matchStats1";
-            this.matchStats1.Size = new System.Drawing.Size(212, 160);
-            this.matchStats1.TabIndex = 12;
+            this.msActionsHome.HeaderColor = System.Drawing.Color.Black;
+            this.msActionsHome.HeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            this.msActionsHome.Location = new System.Drawing.Point(551, 330);
+            this.msActionsHome.Name = "msActionsHome";
+            this.msActionsHome.Size = new System.Drawing.Size(213, 160);
+            this.msActionsHome.TabIndex = 12;
             row4.Format = null;
             row4.IsHeader = true;
             row4.Items = null;
@@ -791,7 +791,7 @@
             row13.Items = ((System.Collections.Generic.List<NTR_Controls.Item>)(resources.GetObject("row13.Items")));
             row13.Name = "GkCounterAttack";
             row13.Text = "Gk Counter Attack";
-            this.matchStats1.Table = new NTR_Controls.Row[] {
+            this.msActionsHome.Rows = new NTR_Controls.Row[] {
         row4,
         row5,
         row6,
@@ -802,10 +802,10 @@
         row11,
         row12,
         row13};
-            this.matchStats1.Title = "Actions";
-            this.matchStats1.TitleAlignment = System.Drawing.StringAlignment.Center;
-            this.matchStats1.TitleColor = System.Drawing.Color.DarkRed;
-            this.matchStats1.TitleFont = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.msActionsHome.Title = "Actions";
+            this.msActionsHome.TitleAlignment = System.Drawing.StringAlignment.Center;
+            this.msActionsHome.TitleColor = System.Drawing.Color.DarkRed;
+            this.msActionsHome.TitleFont = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             // 
             // msGameBreakDown
             // 
@@ -861,7 +861,7 @@
             row18.Items = null;
             row18.Name = "Penalties";
             row18.Text = "Penalties";
-            this.msGameBreakDown.Table = new NTR_Controls.Row[] {
+            this.msGameBreakDown.Rows = new NTR_Controls.Row[] {
         row14,
         row15,
         row16,
@@ -1614,7 +1614,7 @@
         private NTR_Controls.AeroDataGrid dgAnalysisAway;
         private NTR_Controls.MatchStats msGameBreakDown;
         private NTR_Controls.MatchStats msTacticsBreakdown;
-        private NTR_Controls.MatchStats matchStats1;
+        private NTR_Controls.MatchStats msActionsHome;
     }
 }
 

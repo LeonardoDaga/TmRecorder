@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Common;
+using NTR_Common;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
@@ -195,6 +197,52 @@ namespace NTR_Db
             }
 
             return adt;
+        }
+
+        public static ItemDictionary ParseAsItemDictionary(string coded)
+        {
+            if (coded == null) return null;
+
+            ActionsList actionList = Parse(coded);
+
+            ItemDictionary outputAnalysis = new ItemDictionary();
+
+            string[] Titles = new string[]
+                {"Short Passes,{0}","Through Ball,{0}","Wing,{0}","Long Ball,{0}","Counter Attack,{0}",
+                "Corner,{0}","Freekick,{0}","Wing,{0}","GkLongBall,{0}","Gk Counter Attack,{0}"};
+            string[] Cols = new string[]
+                {"Tot","Fld","Sht","SOut","Gol"};
+
+            foreach (KeyValuePair<byte, ActionsItem> item in actionList)
+            {
+                if (item.Key > 9) continue;
+
+                string failed = "";
+                string shot_off = "";
+                string shot_in = "";
+                string goal = "";
+
+                int total = 0;
+                foreach (var i in item.Value)
+                {
+                    if (i.Key < 4) total += i.Value;
+                    if (i.Key == 0) failed = i.Value.ToString();
+                    if (i.Key == 1) shot_off = i.Value.ToString();
+                    if (i.Key == 2) shot_in = i.Value.ToString();
+                    if (i.Key == 3) goal = i.Value.ToString();
+                }
+
+                string[] strSplit = HTML_Parser.Split(Titles[item.Key], ",");
+
+                outputAnalysis[Titles[item.Key], "Title"] = strSplit[0];
+                outputAnalysis[Titles[item.Key], Cols[0]] = total.ToString();
+                outputAnalysis[Titles[item.Key], Cols[1]] = failed.ToString();
+                outputAnalysis[Titles[item.Key], Cols[2]] = shot_off.ToString();
+                outputAnalysis[Titles[item.Key], Cols[3]] = shot_in.ToString();
+                outputAnalysis[Titles[item.Key], Cols[4]] = goal.ToString();
+            }
+
+            return outputAnalysis;
         }
 
         public void AddNewAttackAction(NTR_SquadDb.ActionsDecoderRow actionDecRow)

@@ -56,7 +56,7 @@
             row1.Items = ((System.Collections.Generic.List<NTR_Controls.Item>)(resources.GetObject("row1.Items")));
             row1.Name = "Title";
             row1.Text = "Title";
-            this.matchStats2.Table = new NTR_Controls.Row[] {
+            this.matchStats2.Rows = new NTR_Controls.Row[] {
         row1};
             this.matchStats2.Title = "Title";
             this.matchStats2.TitleAlignment = System.Drawing.StringAlignment.Near;

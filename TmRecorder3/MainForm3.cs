@@ -30,6 +30,8 @@ namespace TmRecorder3
 
         NTR_SquadDb.ActionsTableDataTable AnalysisHome;
         NTR_SquadDb.ActionsTableDataTable AnalysisAway;
+        ItemDictionary AnalysisMdHome;
+        ItemDictionary AnalysisMdAway;
 
         public MainForm3()
         {
@@ -1065,11 +1067,15 @@ namespace TmRecorder3
             {
                 AnalysisHome = ActionsList.ParseAsTable(md.YActions);
                 AnalysisAway = ActionsList.ParseAsTable(md.OActions);
+                AnalysisMdHome = ActionsList.ParseAsItemDictionary(md.YActions);
+                AnalysisMdAway = ActionsList.ParseAsItemDictionary(md.OActions);
             }
             else
             {
                 AnalysisHome = ActionsList.ParseAsTable(md.OActions);
                 AnalysisAway = ActionsList.ParseAsTable(md.YActions);
+                AnalysisMdAway = ActionsList.ParseAsItemDictionary(md.YActions);
+                AnalysisMdHome = ActionsList.ParseAsItemDictionary(md.OActions);
             }
 
             dgAnalysisHome.DataCollection = AnalysisHome;
@@ -1116,6 +1122,8 @@ namespace TmRecorder3
             }
             msTacticsBreakdown.SetData("Lineups,{0};AttackStyles,{0};Mentalities,{0}",
                 Tactics);
+
+            msActionsHome.SetItemDictionary(AnalysisMdHome);
         }
 
         private void btnEnlargeMatchWindow_Click(object sender, EventArgs e)

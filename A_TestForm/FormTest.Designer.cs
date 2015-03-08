@@ -53,7 +53,6 @@
             this.matchStats2.TabIndex = 0;
             row1.Format = "{0}";
             row1.IsHeader = true;
-            row1.Items = ((System.Collections.Generic.List<NTR_Controls.Item>)(resources.GetObject("row1.Items")));
             row1.Name = "Title";
             row1.Text = "Title";
             this.matchStats2.Rows = new NTR_Controls.Row[] {

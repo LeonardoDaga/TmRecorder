@@ -150,10 +150,39 @@ namespace NTR_Controls
         #endregion
 
         #region Rows
+        private Dictionary<string, Row> _rowsDict = new Dictionary<string, Row>();
+        private Row[] _rows = null;
         public Row[] Rows
         {
-            get;
-            set;
+            get
+            {
+                return _rows;
+            }
+            set
+            {
+                _rows = value;
+            }
+        }
+        private Row GetRow(string name)
+        {
+            if (_rowsDict.Count == 0)
+            {
+                foreach (Row row in _rows)
+                {
+                    _rowsDict.Add(row.Name, row);
+                }
+            }
+            Row rowOut = _rowsDict[name];
+            if (rowOut.Name != name)
+            {
+                _rowsDict.Clear();
+                foreach (Row row in _rows)
+                {
+                    _rowsDict.Add(row.Name, row);
+                }
+                rowOut = _rowsDict[name];
+            }
+            return rowOut;
         }
         #endregion
 
@@ -190,14 +219,15 @@ namespace NTR_Controls
                     o = Table[propertyCol, row];
                 }
 
-                if ((o == null) || (Format == null))
+                Row thisRow = GetRow(row);
+                if ((o == null) || (thisRow.Format == null))
                 {
                     text = "n/a";
                 }
                 else if (o.GetType() == typeof(int))
                 {
                     int i = (int)o;
-                    text = string.Format(Format, i);
+                    text = string.Format(thisRow.Format, i);
                 }
                 else
                 {
@@ -267,7 +297,7 @@ namespace NTR_Controls
                     {
                         Column col = _columns[iCol];
 
-                        string text = row.GetText(col.Property);
+                        string text = GetText(col.Property, row.Name);
 
                         // Drawing the element string
                         szf = e.Graphics.MeasureString(text, _columns[iCol].Font);
@@ -332,7 +362,8 @@ namespace NTR_Controls
                 row.Text = title;
                 row.Format = format;
 
-                row.Items = new List<Item>();
+                //Table[r]
+                //row.Items = new List<Item>();
             }
 
 
@@ -347,12 +378,14 @@ namespace NTR_Controls
                         if (strTitles[row] == "")
                             continue;
 
-                        Item item = new Item();
+                        //Item item = new Item();
 
-                        item.o = items[row];
-                        item.Name = colProperties[col];
+                        //item.o = items[row];
+                        //item.Name = colProperties[col];
 
-                        this.Rows[row].Items.Add(item);
+                        //this.Rows[row].Items.Add(item);
+
+                        //Table[item.Name, colProperties]
                     }
                 }
             }

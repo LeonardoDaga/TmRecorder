@@ -12,8 +12,6 @@ namespace A_TestForm
 {
     public partial class FormTest : Form
     {
-        ItemDictionary dataTable = new ItemDictionary();
-
         public FormTest()
         {
             InitializeComponent();

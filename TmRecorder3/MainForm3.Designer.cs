@@ -720,13 +720,13 @@
             column6.ColumnSizeType = NTR_Controls.SizeType.Pixels;
             column6.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             column6.Name = "ShOut";
-            column6.Property = "ShotOut";
+            column6.Property = "SOut";
             column7.Alignment = System.Drawing.StringAlignment.Center;
             column7.Color = System.Drawing.Color.Black;
             column7.ColumnSize = 25;
             column7.ColumnSizeType = NTR_Controls.SizeType.Pixels;
             column7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            column7.Name = "ShtIn";
+            column7.Name = "ShIn";
             column7.Property = "ShotIn";
             column8.Alignment = System.Drawing.StringAlignment.Center;
             column8.Color = System.Drawing.Color.Black;
@@ -734,7 +734,7 @@
             column8.ColumnSizeType = NTR_Controls.SizeType.Pixels;
             column8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             column8.Name = "Goal";
-            column8.Property = "Goal";
+            column8.Property = "Gol";
             this.msActionsHome.Columns = new NTR_Controls.Column[] {
         column4,
         column5,

@@ -208,10 +208,10 @@ namespace NTR_Db
             ItemDictionary outputAnalysis = new ItemDictionary();
 
             string[] Titles = new string[]
-                {"Short Passes,{0}","Through Ball,{0}","Wing,{0}","Long Ball,{0}","Counter Attack,{0}",
-                "Corner,{0}","Freekick,{0}","Wing,{0}","GkLongBall,{0}","Gk Counter Attack,{0}"};
+                {"ShortPass","ThroughBall","Wing","LongBall","CounterAttack",
+                "Corner","Freekick","Wing","GkLongBall","GkCounterAttack"};
             string[] Cols = new string[]
-                {"Tot","Fld","Sht","SOut","Gol"};
+                {"Tot","Fld","ShIn","SOut","Gol"};
 
             foreach (KeyValuePair<byte, ActionsItem> item in actionList)
             {

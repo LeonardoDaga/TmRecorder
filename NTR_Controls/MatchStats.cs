@@ -198,6 +198,8 @@ namespace NTR_Controls
         public void SetItemDictionary(ItemDictionary idTable)
         {
             Table = idTable;
+
+            Invalidate();
         }
 
         internal string GetText(string propertyCol, string row)
@@ -216,7 +218,7 @@ namespace NTR_Controls
                 }
                 else
                 {
-                    o = Table[propertyCol, row];
+                    o = Table[row, propertyCol];
                 }
 
                 Row thisRow = GetRow(row);
@@ -361,11 +363,9 @@ namespace NTR_Controls
                 row.Name = title;
                 row.Text = title;
                 row.Format = format;
-
-                //Table[r]
-                //row.Items = new List<Item>();
             }
 
+            Table = new ItemDictionary();
 
             if (values != null)
             {
@@ -373,19 +373,9 @@ namespace NTR_Controls
                 {
                     string[] items = values[col].Split(';');
 
-                    for (int row = 0; row < strTitles.Length; row++)
+                    for (int row = 0; row < this.Rows.Length; row++)
                     {
-                        if (strTitles[row] == "")
-                            continue;
-
-                        //Item item = new Item();
-
-                        //item.o = items[row];
-                        //item.Name = colProperties[col];
-
-                        //this.Rows[row].Items.Add(item);
-
-                        //Table[item.Name, colProperties]
+                        Table[Rows[row].Name, colProperties[col]] = items[row];
                     }
                 }
             }

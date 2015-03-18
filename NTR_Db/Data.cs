@@ -1250,24 +1250,31 @@ namespace NTR_Db
                 Weather = mr.Weather;
             }
 
-            if (mr.isHome)
+            Home = "";
+            Away = "";
+
+            try
             {
-                Home = mr.TeamRowByTeam_YTeam.Name;
-                Away = mr.TeamRowByTeam_OTeam.Name;
-                Home.isBold = true;
-                Away.isBold = false;
-                Home.tagColor = Color.FromArgb(mr.TeamRowByTeam_YTeam.IsColorNull() ? 0 : mr.TeamRowByTeam_YTeam.Color);
-                Away.tagColor = Color.FromArgb(mr.TeamRowByTeam_OTeam.IsColorNull() ? 0 : mr.TeamRowByTeam_OTeam.Color);
+                if (mr.isHome)
+                {
+                    Home.isBold = true;
+                    Away.isBold = false;
+                    Home = mr.TeamRowByTeam_YTeam.Name;
+                    Away = mr.TeamRowByTeam_OTeam.Name;
+                    Home.tagColor = Color.FromArgb(mr.TeamRowByTeam_YTeam.IsColorNull() ? 0 : mr.TeamRowByTeam_YTeam.Color);
+                    Away.tagColor = Color.FromArgb(mr.TeamRowByTeam_OTeam.IsColorNull() ? 0 : mr.TeamRowByTeam_OTeam.Color);
+                }
+                else
+                {
+                    Away.isBold = true;
+                    Home.isBold = false;
+                    Away = mr.TeamRowByTeam_YTeam.Name;
+                    Home = mr.TeamRowByTeam_OTeam.Name;
+                    Away.tagColor = Color.FromArgb(mr.TeamRowByTeam_YTeam.IsColorNull() ? 0 : mr.TeamRowByTeam_YTeam.Color);
+                    Home.tagColor = Color.FromArgb(mr.TeamRowByTeam_OTeam.IsColorNull() ? 0 : mr.TeamRowByTeam_OTeam.Color);
+                }
             }
-            else
-            {
-                Away = mr.TeamRowByTeam_YTeam.Name;
-                Home = mr.TeamRowByTeam_OTeam.Name;
-                Away.isBold = true;
-                Home.isBold = false;
-                Away.tagColor = Color.FromArgb(mr.TeamRowByTeam_YTeam.IsColorNull() ? 0 : mr.TeamRowByTeam_YTeam.Color);
-                Home.tagColor = Color.FromArgb(mr.TeamRowByTeam_OTeam.IsColorNull() ? 0 : mr.TeamRowByTeam_OTeam.Color);
-            }
+            catch { }
 
             Away.backColor = Score.ScoreColor;
             Home.backColor = Score.ScoreColor;

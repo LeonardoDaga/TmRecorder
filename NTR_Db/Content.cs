@@ -227,7 +227,10 @@ namespace NTR_Db
                 matchRow.Stadium = match_info["stadium"];
                 matchRow.Crowd = int.Parse(match_info["attendance"]);
 
-                matchRow.isHome = homeTeamRow.Owner;
+                if (!homeTeamRow.IsOwnerNull())
+                    matchRow.isHome = homeTeamRow.Owner;
+                else
+                    matchRow.isHome = false;
 
                 int yourTeamId = matchRow.isHome ? homeTeamId : awayTeamId;
                 int oppsTeamId = matchRow.isHome ? awayTeamId : homeTeamId;

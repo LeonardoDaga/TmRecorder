@@ -267,7 +267,7 @@ namespace TmRecorder3
                                  select new MatchData(c)).OrderBy(p => p.Date);
 
             FormatMatchesGrid();
-            FormatStatsGrids();
+            // FormatStatsGrids();
         }
 
         private void UpdateBrowserNavigationPanel()
@@ -370,32 +370,32 @@ namespace TmRecorder3
             //}
         }
 
-        private void FormatStatsGrids()
-        {
-            dgAnalysisHome.AutoGenerateColumns = false;
-            dgAnalysisHome.DataCollection = AnalysisHome;
+        //private void FormatStatsGrids()
+        //{
+        //    dgAnalysisHome.AutoGenerateColumns = false;
+        //    dgAnalysisHome.DataCollection = AnalysisHome;
 
-            dgAnalysisHome.Columns.Clear();
+        //    dgAnalysisHome.Columns.Clear();
 
-            dgAnalysisHome.AddColumn("Name", "Name", 40, AG_Style.String | AG_Style.ResizeAllCells);
-            dgAnalysisHome.AddColumn("Tot", "Total", 27, AG_Style.Numeric | AG_Style.N0);
-            dgAnalysisHome.AddColumn("Fld", "Failed", 27, AG_Style.Numeric | AG_Style.N0);
-            dgAnalysisHome.AddColumn("SOf", "Shot_off", 27, AG_Style.Numeric | AG_Style.N0);
-            dgAnalysisHome.AddColumn("SIn", "Shot_in", 27, AG_Style.Numeric | AG_Style.N0);
-            dgAnalysisHome.AddColumn("Gol", "Goal", 27, AG_Style.Numeric | AG_Style.N0);
+        //    dgAnalysisHome.AddColumn("Name", "Name", 40, AG_Style.String | AG_Style.ResizeAllCells);
+        //    dgAnalysisHome.AddColumn("Tot", "Total", 27, AG_Style.Numeric | AG_Style.N0);
+        //    dgAnalysisHome.AddColumn("Fld", "Failed", 27, AG_Style.Numeric | AG_Style.N0);
+        //    dgAnalysisHome.AddColumn("SOf", "Shot_off", 27, AG_Style.Numeric | AG_Style.N0);
+        //    dgAnalysisHome.AddColumn("SIn", "Shot_in", 27, AG_Style.Numeric | AG_Style.N0);
+        //    dgAnalysisHome.AddColumn("Gol", "Goal", 27, AG_Style.Numeric | AG_Style.N0);
 
-            dgAnalysisAway.AutoGenerateColumns = false;
-            dgAnalysisAway.DataCollection = AnalysisAway;
+        //    dgAnalysisAway.AutoGenerateColumns = false;
+        //    dgAnalysisAway.DataCollection = AnalysisAway;
 
-            dgAnalysisAway.Columns.Clear();
+        //    dgAnalysisAway.Columns.Clear();
 
-            dgAnalysisAway.AddColumn("Name", "Name", 40, AG_Style.String | AG_Style.ResizeAllCells);
-            dgAnalysisAway.AddColumn("Tot", "Total", 27, AG_Style.String | AG_Style.N0);
-            dgAnalysisAway.AddColumn("Fld", "Failed", 27, AG_Style.String | AG_Style.N0);
-            dgAnalysisAway.AddColumn("SOf", "Shot_off", 27, AG_Style.String | AG_Style.N0);
-            dgAnalysisAway.AddColumn("SIn", "Shot_in", 27, AG_Style.String | AG_Style.N0);
-            dgAnalysisAway.AddColumn("Gol", "Goal", 27, AG_Style.String | AG_Style.N0);
-        }
+        //    dgAnalysisAway.AddColumn("Name", "Name", 40, AG_Style.String | AG_Style.ResizeAllCells);
+        //    dgAnalysisAway.AddColumn("Tot", "Total", 27, AG_Style.String | AG_Style.N0);
+        //    dgAnalysisAway.AddColumn("Fld", "Failed", 27, AG_Style.String | AG_Style.N0);
+        //    dgAnalysisAway.AddColumn("SOf", "Shot_off", 27, AG_Style.String | AG_Style.N0);
+        //    dgAnalysisAway.AddColumn("SIn", "Shot_in", 27, AG_Style.String | AG_Style.N0);
+        //    dgAnalysisAway.AddColumn("Gol", "Goal", 27, AG_Style.String | AG_Style.N0);
+        //}
 
         private void FormatMatchesGrid()
         {
@@ -1078,8 +1078,8 @@ namespace TmRecorder3
                 AnalysisMdHome = ActionsList.ParseAsItemDictionary(md.OActions);
             }
 
-            dgAnalysisHome.DataCollection = AnalysisHome;
-            dgAnalysisAway.DataCollection = AnalysisAway;
+            //dgAnalysisHome.DataCollection = AnalysisHome;
+            //dgAnalysisAway.DataCollection = AnalysisAway;
 
             if (lblNameTeamHome.ForeColor.GetBrightness() > 0.45)
                 lblNameTeamHome.ForeColor = Color.Black;
@@ -1124,6 +1124,7 @@ namespace TmRecorder3
                 Tactics);
 
             msActionsHome.SetItemDictionary(AnalysisMdHome);
+            msActionsAway.SetItemDictionary(AnalysisMdAway);
         }
 
         private void btnEnlargeMatchWindow_Click(object sender, EventArgs e)
@@ -1178,15 +1179,15 @@ namespace TmRecorder3
 
             int iAnalysisWidth = 235;
 
-            dgAnalysisHome.Left = offx;
-            dgAnalysisHome.Width = iAnalysisWidth;
-            dgAnalysisHome.Top = lineupControl.Top + lineupControl.Height + 5;
-            dgAnalysisHome.Height = tabMatches.Height - lineupControl.Top  - lineupControl.Height - 10;
+            msActionsHome.Left = offx;
+            msActionsHome.Width = iAnalysisWidth;
+            msActionsHome.Top = lineupControl.Top + lineupControl.Height + 5;
+            msActionsHome.Height = tabMatches.Height - lineupControl.Top - lineupControl.Height - 10;
 
-            dgAnalysisAway.Left = offx + offw - iAnalysisWidth;
-            dgAnalysisAway.Width = iAnalysisWidth;
-            dgAnalysisAway.Top = lineupControl.Top + lineupControl.Height + 5;
-            dgAnalysisAway.Height = tabMatches.Height - lineupControl.Top - lineupControl.Height - 10;
+            msActionsAway.Left = offx + offw - iAnalysisWidth;
+            msActionsAway.Width = iAnalysisWidth;
+            msActionsAway.Top = lineupControl.Top + lineupControl.Height + 5;
+            msActionsAway.Height = tabMatches.Height - lineupControl.Top - lineupControl.Height - 10;
 
             msGameBreakDown.Top = lineupControl.Top + lineupControl.Height + 5;
             msGameBreakDown.Height = 102;
@@ -1264,6 +1265,11 @@ namespace TmRecorder3
                                  select new MatchData(c)).OrderBy(p => p.Date);
 
             dgMatches.DataCollection = ThisSeasonMatches;
+        }
+
+        private void msActionsHome_Load(object sender, EventArgs e)
+        {
+
         }
 
     }

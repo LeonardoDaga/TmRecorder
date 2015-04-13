@@ -35,32 +35,20 @@
             NTR_Controls.Column column1 = new NTR_Controls.Column();
             NTR_Controls.Column column2 = new NTR_Controls.Column();
             NTR_Controls.Column column3 = new NTR_Controls.Column();
-            NTR_Controls.Row row1 = new NTR_Controls.Row();
-            NTR_Controls.Row row2 = new NTR_Controls.Row();
-            NTR_Controls.Row row3 = new NTR_Controls.Row();
             NTR_Controls.Column column4 = new NTR_Controls.Column();
             NTR_Controls.Column column5 = new NTR_Controls.Column();
             NTR_Controls.Column column6 = new NTR_Controls.Column();
             NTR_Controls.Column column7 = new NTR_Controls.Column();
             NTR_Controls.Column column8 = new NTR_Controls.Column();
-            NTR_Controls.Row row4 = new NTR_Controls.Row();
-            NTR_Controls.Row row5 = new NTR_Controls.Row();
-            NTR_Controls.Row row6 = new NTR_Controls.Row();
-            NTR_Controls.Row row7 = new NTR_Controls.Row();
-            NTR_Controls.Row row8 = new NTR_Controls.Row();
-            NTR_Controls.Row row9 = new NTR_Controls.Row();
-            NTR_Controls.Row row10 = new NTR_Controls.Row();
-            NTR_Controls.Row row11 = new NTR_Controls.Row();
-            NTR_Controls.Row row12 = new NTR_Controls.Row();
-            NTR_Controls.Row row13 = new NTR_Controls.Row();
             NTR_Controls.Column column9 = new NTR_Controls.Column();
             NTR_Controls.Column column10 = new NTR_Controls.Column();
             NTR_Controls.Column column11 = new NTR_Controls.Column();
-            NTR_Controls.Row row14 = new NTR_Controls.Row();
-            NTR_Controls.Row row15 = new NTR_Controls.Row();
-            NTR_Controls.Row row16 = new NTR_Controls.Row();
-            NTR_Controls.Row row17 = new NTR_Controls.Row();
-            NTR_Controls.Row row18 = new NTR_Controls.Row();
+            NTR_Controls.Column column12 = new NTR_Controls.Column();
+            NTR_Controls.Column column13 = new NTR_Controls.Column();
+            NTR_Controls.Column column14 = new NTR_Controls.Column();
+            NTR_Controls.Column column15 = new NTR_Controls.Column();
+            NTR_Controls.Column column16 = new NTR_Controls.Column();
+            NTR_Controls.Column column17 = new NTR_Controls.Column();
             this.tsMainBar = new System.Windows.Forms.ToolStrip();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.importDataFromTmR1xFormatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -98,11 +86,10 @@
             this.dgPlayersGK = new NTR_Controls.AeroDataGrid();
             this.qsMinRatingGK = new NTR_Controls.QuantitySelector();
             this.tabMatches = new System.Windows.Forms.TabPage();
+            this.msActionsAway = new NTR_Controls.MatchStats();
             this.msTacticsBreakdown = new NTR_Controls.MatchStats();
             this.msActionsHome = new NTR_Controls.MatchStats();
             this.msGameBreakDown = new NTR_Controls.MatchStats();
-            this.dgAnalysisAway = new NTR_Controls.AeroDataGrid();
-            this.dgAnalysisHome = new NTR_Controls.AeroDataGrid();
             this.lineupControl = new FieldFormationControl.RotLineupControl();
             this.lblNameTeamAway = new System.Windows.Forms.Label();
             this.btnEnlargeMatchWindow = new System.Windows.Forms.Button();
@@ -163,8 +150,6 @@
             this.tabGK.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPlayersGK)).BeginInit();
             this.tabMatches.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgAnalysisAway)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgAnalysisHome)).BeginInit();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgMatches)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -620,11 +605,10 @@
             // 
             // tabMatches
             // 
+            this.tabMatches.Controls.Add(this.msActionsAway);
             this.tabMatches.Controls.Add(this.msTacticsBreakdown);
             this.tabMatches.Controls.Add(this.msActionsHome);
             this.tabMatches.Controls.Add(this.msGameBreakDown);
-            this.tabMatches.Controls.Add(this.dgAnalysisAway);
-            this.tabMatches.Controls.Add(this.dgAnalysisHome);
             this.tabMatches.Controls.Add(this.lineupControl);
             this.tabMatches.Controls.Add(this.lblNameTeamAway);
             this.tabMatches.Controls.Add(this.btnEnlargeMatchWindow);
@@ -645,53 +629,122 @@
             this.tabMatches.UseVisualStyleBackColor = true;
             this.tabMatches.Resize += new System.EventHandler(this.tabMatches_Resize);
             // 
+            // msActionsAway
+            // 
+            this.msActionsAway.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(255)))), ((int)(((byte)(210)))));
+            column1.Alignment = System.Drawing.StringAlignment.Far;
+            column1.Color = System.Drawing.Color.Black;
+            column1.ColumnSize = 100;
+            column1.ColumnSizeType = NTR_Controls.SizeType.Percentage;
+            column1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            column1.Name = "Title";
+            column1.Property = "Title";
+            column2.Alignment = System.Drawing.StringAlignment.Center;
+            column2.Color = System.Drawing.Color.Black;
+            column2.ColumnSize = 30;
+            column2.ColumnSizeType = NTR_Controls.SizeType.Pixels;
+            column2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            column2.Name = "Tot";
+            column2.Property = "Tot";
+            column3.Alignment = System.Drawing.StringAlignment.Center;
+            column3.Color = System.Drawing.Color.Black;
+            column3.ColumnSize = 30;
+            column3.ColumnSizeType = NTR_Controls.SizeType.Pixels;
+            column3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            column3.Name = "SOut";
+            column3.Property = "SOut";
+            column4.Alignment = System.Drawing.StringAlignment.Center;
+            column4.Color = System.Drawing.Color.Black;
+            column4.ColumnSize = 30;
+            column4.ColumnSizeType = NTR_Controls.SizeType.Pixels;
+            column4.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            column4.Name = "ShIn";
+            column4.Property = "ShIn";
+            column5.Alignment = System.Drawing.StringAlignment.Center;
+            column5.Color = System.Drawing.Color.Black;
+            column5.ColumnSize = 30;
+            column5.ColumnSizeType = NTR_Controls.SizeType.Pixels;
+            column5.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            column5.Name = "Goal";
+            column5.Property = "Gol";
+            column6.Alignment = System.Drawing.StringAlignment.Near;
+            column6.Color = System.Drawing.Color.Black;
+            column6.ColumnSize = 10;
+            column6.ColumnSizeType = NTR_Controls.SizeType.Percentage;
+            column6.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            column6.Name = "Name";
+            column6.Property = "Name";
+            this.msActionsAway.Columns = new NTR_Controls.Column[] {
+        column1,
+        column2,
+        column3,
+        column4,
+        column5,
+        column6};
+            this.msActionsAway.HeaderColor = System.Drawing.Color.Black;
+            this.msActionsAway.HeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            this.msActionsAway.IsSelectable = true;
+            this.msActionsAway.Location = new System.Drawing.Point(974, 406);
+            this.msActionsAway.Name = "msActionsAway";
+            this.msActionsAway.Rows = new NTR_Controls.Row[] {
+        ((NTR_Controls.Row)(resources.GetObject("msActionsAway.Rows"))),
+        ((NTR_Controls.Row)(resources.GetObject("msActionsAway.Rows1"))),
+        ((NTR_Controls.Row)(resources.GetObject("msActionsAway.Rows2"))),
+        ((NTR_Controls.Row)(resources.GetObject("msActionsAway.Rows3"))),
+        ((NTR_Controls.Row)(resources.GetObject("msActionsAway.Rows4"))),
+        ((NTR_Controls.Row)(resources.GetObject("msActionsAway.Rows5"))),
+        ((NTR_Controls.Row)(resources.GetObject("msActionsAway.Rows6"))),
+        ((NTR_Controls.Row)(resources.GetObject("msActionsAway.Rows7"))),
+        ((NTR_Controls.Row)(resources.GetObject("msActionsAway.Rows8"))),
+        ((NTR_Controls.Row)(resources.GetObject("msActionsAway.Rows9")))};
+            this.msActionsAway.selectedRow = -1;
+            this.msActionsAway.Size = new System.Drawing.Size(234, 191);
+            this.msActionsAway.TabIndex = 13;
+            this.msActionsAway.Title = "Actions";
+            this.msActionsAway.TitleAlignment = System.Drawing.StringAlignment.Center;
+            this.msActionsAway.TitleColor = System.Drawing.Color.DarkRed;
+            this.msActionsAway.TitleFont = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            // 
             // msTacticsBreakdown
             // 
             this.msTacticsBreakdown.BackColor = System.Drawing.Color.Transparent;
-            column1.Alignment = System.Drawing.StringAlignment.Far;
-            column1.Color = System.Drawing.Color.Black;
-            column1.ColumnSize = 33;
-            column1.ColumnSizeType = NTR_Controls.SizeType.Percentage;
-            column1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            column1.Name = "Home Values";
-            column1.Property = "YValues";
-            column2.Alignment = System.Drawing.StringAlignment.Center;
-            column2.Color = System.Drawing.Color.Black;
-            column2.ColumnSize = 34;
-            column2.ColumnSizeType = NTR_Controls.SizeType.Percentage;
-            column2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            column2.Name = "Title";
-            column2.Property = "Title";
-            column3.Alignment = System.Drawing.StringAlignment.Near;
-            column3.Color = System.Drawing.Color.Black;
-            column3.ColumnSize = 33;
-            column3.ColumnSizeType = NTR_Controls.SizeType.Percentage;
-            column3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            column3.Name = "Away Values";
-            column3.Property = "OValues";
+            column7.Alignment = System.Drawing.StringAlignment.Far;
+            column7.Color = System.Drawing.Color.Black;
+            column7.ColumnSize = 33;
+            column7.ColumnSizeType = NTR_Controls.SizeType.Percentage;
+            column7.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            column7.Name = "Home Values";
+            column7.Property = "YValues";
+            column8.Alignment = System.Drawing.StringAlignment.Center;
+            column8.Color = System.Drawing.Color.Black;
+            column8.ColumnSize = 34;
+            column8.ColumnSizeType = NTR_Controls.SizeType.Percentage;
+            column8.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            column8.Name = "Title";
+            column8.Property = "Title";
+            column9.Alignment = System.Drawing.StringAlignment.Near;
+            column9.Color = System.Drawing.Color.Black;
+            column9.ColumnSize = 33;
+            column9.ColumnSizeType = NTR_Controls.SizeType.Percentage;
+            column9.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            column9.Name = "Away Values";
+            column9.Property = "OValues";
             this.msTacticsBreakdown.Columns = new NTR_Controls.Column[] {
-        column1,
-        column2,
-        column3};
+        column7,
+        column8,
+        column9};
             this.msTacticsBreakdown.HeaderColor = System.Drawing.Color.Black;
             this.msTacticsBreakdown.HeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            this.msTacticsBreakdown.IsSelectable = false;
             this.msTacticsBreakdown.Location = new System.Drawing.Point(791, 514);
             this.msTacticsBreakdown.Name = "msTacticsBreakdown";
+            this.msTacticsBreakdown.Rows = new NTR_Controls.Row[] {
+        ((NTR_Controls.Row)(resources.GetObject("msTacticsBreakdown.Rows"))),
+        ((NTR_Controls.Row)(resources.GetObject("msTacticsBreakdown.Rows1"))),
+        ((NTR_Controls.Row)(resources.GetObject("msTacticsBreakdown.Rows2")))};
+            this.msTacticsBreakdown.selectedRow = -1;
             this.msTacticsBreakdown.Size = new System.Drawing.Size(184, 102);
             this.msTacticsBreakdown.TabIndex = 12;
-            row1.Format = null;
-            row1.Name = "Lineup";
-            row1.Text = "Lineup";
-            row2.Format = null;
-            row2.Name = "Mentality";
-            row2.Text = "Mentality";
-            row3.Format = null;
-            row3.Name = "AttackingStyle";
-            row3.Text = "Attacking Style";
-            this.msTacticsBreakdown.Rows = new NTR_Controls.Row[] {
-        row1,
-        row2,
-        row3};
             this.msTacticsBreakdown.Title = "Tactics Breakdown";
             this.msTacticsBreakdown.TitleAlignment = System.Drawing.StringAlignment.Center;
             this.msTacticsBreakdown.TitleColor = System.Drawing.Color.RoyalBlue;
@@ -699,194 +752,119 @@
             // 
             // msActionsHome
             // 
-            this.msActionsHome.BackColor = System.Drawing.Color.LemonChiffon;
-            column4.Alignment = System.Drawing.StringAlignment.Far;
-            column4.Color = System.Drawing.Color.Black;
-            column4.ColumnSize = 100;
-            column4.ColumnSizeType = NTR_Controls.SizeType.Percentage;
-            column4.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            column4.Name = "Title";
-            column4.Property = "Title";
-            column5.Alignment = System.Drawing.StringAlignment.Center;
-            column5.Color = System.Drawing.Color.Black;
-            column5.ColumnSize = 25;
-            column5.ColumnSizeType = NTR_Controls.SizeType.Pixels;
-            column5.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            column5.Name = "Tot";
-            column5.Property = "Tot";
-            column6.Alignment = System.Drawing.StringAlignment.Center;
-            column6.Color = System.Drawing.Color.Black;
-            column6.ColumnSize = 25;
-            column6.ColumnSizeType = NTR_Controls.SizeType.Pixels;
-            column6.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            column6.Name = "ShOut";
-            column6.Property = "ShotOut";
-            column7.Alignment = System.Drawing.StringAlignment.Center;
-            column7.Color = System.Drawing.Color.Black;
-            column7.ColumnSize = 25;
-            column7.ColumnSizeType = NTR_Controls.SizeType.Pixels;
-            column7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            column7.Name = "ShtIn";
-            column7.Property = "ShotIn";
-            column8.Alignment = System.Drawing.StringAlignment.Center;
-            column8.Color = System.Drawing.Color.Black;
-            column8.ColumnSize = 25;
-            column8.ColumnSizeType = NTR_Controls.SizeType.Pixels;
-            column8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            column8.Name = "Goal";
-            column8.Property = "Goal";
-            this.msActionsHome.Columns = new NTR_Controls.Column[] {
-        column4,
-        column5,
-        column6,
-        column7,
-        column8};
-            this.msActionsHome.HeaderColor = System.Drawing.Color.Black;
-            this.msActionsHome.HeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            this.msActionsHome.Location = new System.Drawing.Point(551, 330);
-            this.msActionsHome.Name = "msActionsHome";
-            this.msActionsHome.Size = new System.Drawing.Size(213, 160);
-            this.msActionsHome.TabIndex = 12;
-            row4.Format = null;
-            row4.IsHeader = true;
-            row4.Name = "Type";
-            row4.Text = "Type";
-            row5.Format = "{0}";
-            row5.Name = "ShortPass";
-            row5.Text = "Short Pass";
-            row6.Format = "{0}";
-            row6.Name = "ThroughBall";
-            row6.Text = "Through Ball";
-            row7.Format = "{0}";
-            row7.Name = "Wing";
-            row7.Text = "Wing";
-            row8.Format = "{0}";
-            row8.Name = "LongBall";
-            row8.Text = "Long Ball";
-            row9.Format = "{0}";
-            row9.Name = "CounterAttack";
-            row9.Text = "Counter Attack";
-            row10.Format = null;
-            row10.Name = "Corner";
-            row10.Text = "Corner";
-            row11.Format = null;
-            row11.Name = "Freekick";
-            row11.Text = "Freekick";
-            row12.Format = null;
-            row12.Name = "GkLongBall";
-            row12.Text = "Gk Long Ball";
-            row13.Format = null;
-            row13.Name = "GkCounterAttack";
-            row13.Text = "Gk Counter Attack";
-            this.msActionsHome.Rows = new NTR_Controls.Row[] {
-        row4,
-        row5,
-        row6,
-        row7,
-        row8,
-        row9,
-        row10,
-        row11,
-        row12,
-        row13};
-            this.msActionsHome.Title = "Actions";
-            this.msActionsHome.TitleAlignment = System.Drawing.StringAlignment.Center;
-            this.msActionsHome.TitleColor = System.Drawing.Color.DarkRed;
-            this.msActionsHome.TitleFont = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            // 
-            // msGameBreakDown
-            // 
-            this.msGameBreakDown.BackColor = System.Drawing.Color.Transparent;
-            column9.Alignment = System.Drawing.StringAlignment.Far;
-            column9.Color = System.Drawing.Color.Black;
-            column9.ColumnSize = 35;
-            column9.ColumnSizeType = NTR_Controls.SizeType.Pixels;
-            column9.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            column9.Name = "Home Values";
-            column9.Property = "YValues";
-            column10.Alignment = System.Drawing.StringAlignment.Center;
+            this.msActionsHome.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(255)))), ((int)(((byte)(210)))));
+            column10.Alignment = System.Drawing.StringAlignment.Far;
             column10.Color = System.Drawing.Color.Black;
             column10.ColumnSize = 100;
             column10.ColumnSizeType = NTR_Controls.SizeType.Percentage;
             column10.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             column10.Name = "Title";
             column10.Property = "Title";
-            column11.Alignment = System.Drawing.StringAlignment.Near;
+            column11.Alignment = System.Drawing.StringAlignment.Center;
             column11.Color = System.Drawing.Color.Black;
-            column11.ColumnSize = 35;
+            column11.ColumnSize = 30;
             column11.ColumnSizeType = NTR_Controls.SizeType.Pixels;
             column11.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            column11.Name = "Away Values";
-            column11.Property = "OValues";
-            this.msGameBreakDown.Columns = new NTR_Controls.Column[] {
-        column9,
+            column11.Name = "Tot";
+            column11.Property = "Tot";
+            column12.Alignment = System.Drawing.StringAlignment.Center;
+            column12.Color = System.Drawing.Color.Black;
+            column12.ColumnSize = 30;
+            column12.ColumnSizeType = NTR_Controls.SizeType.Pixels;
+            column12.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            column12.Name = "SOut";
+            column12.Property = "SOut";
+            column13.Alignment = System.Drawing.StringAlignment.Center;
+            column13.Color = System.Drawing.Color.Black;
+            column13.ColumnSize = 30;
+            column13.ColumnSizeType = NTR_Controls.SizeType.Pixels;
+            column13.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            column13.Name = "ShIn";
+            column13.Property = "ShIn";
+            column14.Alignment = System.Drawing.StringAlignment.Center;
+            column14.Color = System.Drawing.Color.Black;
+            column14.ColumnSize = 30;
+            column14.ColumnSizeType = NTR_Controls.SizeType.Pixels;
+            column14.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            column14.Name = "Goal";
+            column14.Property = "Gol";
+            this.msActionsHome.Columns = new NTR_Controls.Column[] {
         column10,
-        column11};
+        column11,
+        column12,
+        column13,
+        column14};
+            this.msActionsHome.HeaderColor = System.Drawing.Color.Black;
+            this.msActionsHome.HeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            this.msActionsHome.IsSelectable = true;
+            this.msActionsHome.Location = new System.Drawing.Point(551, 406);
+            this.msActionsHome.Name = "msActionsHome";
+            this.msActionsHome.Rows = new NTR_Controls.Row[] {
+        ((NTR_Controls.Row)(resources.GetObject("msActionsHome.Rows"))),
+        ((NTR_Controls.Row)(resources.GetObject("msActionsHome.Rows1"))),
+        ((NTR_Controls.Row)(resources.GetObject("msActionsHome.Rows2"))),
+        ((NTR_Controls.Row)(resources.GetObject("msActionsHome.Rows3"))),
+        ((NTR_Controls.Row)(resources.GetObject("msActionsHome.Rows4"))),
+        ((NTR_Controls.Row)(resources.GetObject("msActionsHome.Rows5"))),
+        ((NTR_Controls.Row)(resources.GetObject("msActionsHome.Rows6"))),
+        ((NTR_Controls.Row)(resources.GetObject("msActionsHome.Rows7"))),
+        ((NTR_Controls.Row)(resources.GetObject("msActionsHome.Rows8"))),
+        ((NTR_Controls.Row)(resources.GetObject("msActionsHome.Rows9")))};
+            this.msActionsHome.selectedRow = -1;
+            this.msActionsHome.Size = new System.Drawing.Size(234, 187);
+            this.msActionsHome.TabIndex = 12;
+            this.msActionsHome.Title = "Actions";
+            this.msActionsHome.TitleAlignment = System.Drawing.StringAlignment.Center;
+            this.msActionsHome.TitleColor = System.Drawing.Color.DarkRed;
+            this.msActionsHome.TitleFont = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.msActionsHome.Load += new System.EventHandler(this.msActionsHome_Load);
+            // 
+            // msGameBreakDown
+            // 
+            this.msGameBreakDown.BackColor = System.Drawing.Color.Transparent;
+            column15.Alignment = System.Drawing.StringAlignment.Far;
+            column15.Color = System.Drawing.Color.Black;
+            column15.ColumnSize = 35;
+            column15.ColumnSizeType = NTR_Controls.SizeType.Pixels;
+            column15.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            column15.Name = "Home Values";
+            column15.Property = "YValues";
+            column16.Alignment = System.Drawing.StringAlignment.Center;
+            column16.Color = System.Drawing.Color.Black;
+            column16.ColumnSize = 100;
+            column16.ColumnSizeType = NTR_Controls.SizeType.Percentage;
+            column16.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            column16.Name = "Title";
+            column16.Property = "Title";
+            column17.Alignment = System.Drawing.StringAlignment.Near;
+            column17.Color = System.Drawing.Color.Black;
+            column17.ColumnSize = 35;
+            column17.ColumnSizeType = NTR_Controls.SizeType.Pixels;
+            column17.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            column17.Name = "Away Values";
+            column17.Property = "OValues";
+            this.msGameBreakDown.Columns = new NTR_Controls.Column[] {
+        column15,
+        column16,
+        column17};
             this.msGameBreakDown.HeaderColor = System.Drawing.Color.Black;
             this.msGameBreakDown.HeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            this.msGameBreakDown.IsSelectable = false;
             this.msGameBreakDown.Location = new System.Drawing.Point(791, 410);
             this.msGameBreakDown.Name = "msGameBreakDown";
+            this.msGameBreakDown.Rows = new NTR_Controls.Row[] {
+        ((NTR_Controls.Row)(resources.GetObject("msGameBreakDown.Rows"))),
+        ((NTR_Controls.Row)(resources.GetObject("msGameBreakDown.Rows1"))),
+        ((NTR_Controls.Row)(resources.GetObject("msGameBreakDown.Rows2"))),
+        ((NTR_Controls.Row)(resources.GetObject("msGameBreakDown.Rows3"))),
+        ((NTR_Controls.Row)(resources.GetObject("msGameBreakDown.Rows4")))};
+            this.msGameBreakDown.selectedRow = -1;
             this.msGameBreakDown.Size = new System.Drawing.Size(184, 102);
             this.msGameBreakDown.TabIndex = 12;
-            row14.Format = null;
-            row14.Name = "Possession";
-            row14.Text = "Possession";
-            row15.Format = null;
-            row15.Name = "ShotsTotal";
-            row15.Text = "Shots (Total)";
-            row16.Format = null;
-            row16.Name = "ShotsInGoal";
-            row16.Text = "Shots In Goal";
-            row17.Format = null;
-            row17.Name = "SetPieces";
-            row17.Text = "Set Pieces";
-            row18.Format = null;
-            row18.Name = "Penalties";
-            row18.Text = "Penalties";
-            this.msGameBreakDown.Rows = new NTR_Controls.Row[] {
-        row14,
-        row15,
-        row16,
-        row17,
-        row18};
             this.msGameBreakDown.Title = "Game Breakdown";
             this.msGameBreakDown.TitleAlignment = System.Drawing.StringAlignment.Center;
             this.msGameBreakDown.TitleColor = System.Drawing.Color.DarkBlue;
             this.msGameBreakDown.TitleFont = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            // 
-            // dgAnalysisAway
-            // 
-            this.dgAnalysisAway.AllowUserToAddRows = false;
-            this.dgAnalysisAway.AllowUserToDeleteRows = false;
-            this.dgAnalysisAway.AllowUserToResizeRows = false;
-            this.dgAnalysisAway.AutoGenerateColumns = false;
-            this.dgAnalysisAway.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dgAnalysisAway.DataCollection = null;
-            this.dgAnalysisAway.Location = new System.Drawing.Point(981, 410);
-            this.dgAnalysisAway.MultiSelect = false;
-            this.dgAnalysisAway.Name = "dgAnalysisAway";
-            this.dgAnalysisAway.ReadOnly = true;
-            this.dgAnalysisAway.RowHeadersWidth = 20;
-            this.dgAnalysisAway.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgAnalysisAway.Size = new System.Drawing.Size(215, 124);
-            this.dgAnalysisAway.TabIndex = 11;
-            // 
-            // dgAnalysisHome
-            // 
-            this.dgAnalysisHome.AllowUserToAddRows = false;
-            this.dgAnalysisHome.AllowUserToDeleteRows = false;
-            this.dgAnalysisHome.AllowUserToResizeRows = false;
-            this.dgAnalysisHome.AutoGenerateColumns = false;
-            this.dgAnalysisHome.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dgAnalysisHome.DataCollection = null;
-            this.dgAnalysisHome.Location = new System.Drawing.Point(558, 410);
-            this.dgAnalysisHome.MultiSelect = false;
-            this.dgAnalysisHome.Name = "dgAnalysisHome";
-            this.dgAnalysisHome.ReadOnly = true;
-            this.dgAnalysisHome.RowHeadersWidth = 20;
-            this.dgAnalysisHome.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgAnalysisHome.Size = new System.Drawing.Size(227, 124);
-            this.dgAnalysisHome.TabIndex = 11;
             // 
             // lineupControl
             // 
@@ -1004,14 +982,14 @@
             this.dgMatches.AutoGenerateColumns = false;
             this.dgMatches.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgMatches.DataCollection = null;
-            this.dgMatches.Location = new System.Drawing.Point(3, 75);
+            this.dgMatches.Location = new System.Drawing.Point(0, 70);
             this.dgMatches.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgMatches.MultiSelect = false;
             this.dgMatches.Name = "dgMatches";
             this.dgMatches.ReadOnly = true;
             this.dgMatches.RowHeadersWidth = 20;
             this.dgMatches.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgMatches.Size = new System.Drawing.Size(542, 590);
+            this.dgMatches.Size = new System.Drawing.Size(545, 472);
             this.dgMatches.TabIndex = 1;
             this.dgMatches.SelectionChanged += new System.EventHandler(this.dgMatches_SelectionChanged);
             // 
@@ -1484,8 +1462,6 @@
             this.tabGK.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPlayersGK)).EndInit();
             this.tabMatches.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgAnalysisAway)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgAnalysisHome)).EndInit();
             this.groupBox4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgMatches)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -1592,11 +1568,10 @@
         private FieldFormationControl.RotLineupControl lineupControl;
         private System.Windows.Forms.ToolStripMenuItem searchAndImportAllSavedPagesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem recalculateDecimalsToolStripMenuItem;
-        private NTR_Controls.AeroDataGrid dgAnalysisHome;
-        private NTR_Controls.AeroDataGrid dgAnalysisAway;
         private NTR_Controls.MatchStats msGameBreakDown;
         private NTR_Controls.MatchStats msTacticsBreakdown;
         private NTR_Controls.MatchStats msActionsHome;
+        private NTR_Controls.MatchStats msActionsAway;
     }
 }
 

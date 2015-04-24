@@ -29,15 +29,16 @@ namespace TMRecorder
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GKForm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GKForm));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblName = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabSkills = new System.Windows.Forms.TabPage();
@@ -52,12 +53,51 @@ namespace TMRecorder
             this.graphInjuries = new ZedGraph.ZedGraphControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.graphSpecs = new ZedGraph.ZedGraphControl();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.dgScouts = new System.Windows.Forms.DataGridView();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.developmentDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.seniorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.youthDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.physicalDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tacticalDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.technicalDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.psychologyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.scoutsNReviews = new Common.ScoutsNReviews();
+            this.dgReviews = new System.Windows.Forms.DataGridView();
+            this.scoutIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Vote = new DataGridViewCustomColumns.TMR_ReportColumn(this.components);
+            this.bloomingDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_ReportColumn(this.components);
+            this.BloomingStatus = new DataGridViewCustomColumns.TMR_ReportColumn(this.components);
+            this.Development = new DataGridViewCustomColumns.TMR_ReportColumn(this.components);
+            this.Speciality = new DataGridViewCustomColumns.TMR_ReportColumn(this.components);
+            this.Physics = new DataGridViewCustomColumns.TMR_ReportColumn(this.components);
+            this.Tactics = new DataGridViewCustomColumns.TMR_ReportColumn(this.components);
+            this.Technics = new DataGridViewCustomColumns.TMR_ReportColumn(this.components);
+            this.Charisma = new DataGridViewCustomColumns.TMR_ReportColumn(this.components);
+            this.Professionalism = new DataGridViewCustomColumns.TMR_ReportColumn(this.components);
+            this.aggressivityDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_ReportColumn(this.components);
+            this.label4 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.tagsBarPro = new Common.TagsBar();
+            this.tagsBarAgg = new Common.TagsBar();
+            this.tagsBarLea = new Common.TagsBar();
+            this.tagsBarTec = new Common.TagsBar();
+            this.tagsBarTac = new Common.TagsBar();
+            this.tagsBarPhy = new Common.TagsBar();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.label3 = new System.Windows.Forms.Label();
             this.cmbSeason = new System.Windows.Forms.ComboBox();
             this.chkNormalized = new System.Windows.Forms.CheckBox();
             this.chkShowPosition = new System.Windows.Forms.CheckBox();
             this.graphPerf = new ZedGraph.ZedGraphControl();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.trainingBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.playerTraining = new TMRecorder.PlayerTraining();
             this.tabPlayerBrowser = new System.Windows.Forms.TabPage();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.webBrowser = new System.Windows.Forms.WebBrowser();
@@ -79,8 +119,19 @@ namespace TMRecorder
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblRoutine = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.gkData1 = new TMRecorder.GKData();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.seasonDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gPDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.aDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cardsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ratDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ratDevDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.performancesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gameTableDS = new Common.GameTable();
             this.label5 = new System.Windows.Forms.Label();
             this.txtNotes = new System.Windows.Forms.TextBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -95,53 +146,21 @@ namespace TMRecorder
             this.tsbComputeGrowth = new System.Windows.Forms.ToolStripButton();
             this.lblWage = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.gameTableDS = new Common.GameTable();
-            this.performancesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.seasonDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.gPDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.gDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.aDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cardsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ratDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ratDevDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.tagsBarPro = new Common.TagsBar();
-            this.tagsBarAgg = new Common.TagsBar();
-            this.tagsBarLea = new Common.TagsBar();
-            this.tagsBarTec = new Common.TagsBar();
-            this.tagsBarTac = new Common.TagsBar();
-            this.tagsBarPhy = new Common.TagsBar();
-            this.scoutsNReviews = new Common.ScoutsNReviews();
-            this.dgScouts = new System.Windows.Forms.DataGridView();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.developmentDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.seniorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.youthDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.physicalDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tacticalDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.technicalDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.psychologyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgReviews = new System.Windows.Forms.DataGridView();
-            this.scoutIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Vote = new DataGridViewCustomColumns.TMR_ReportColumn(this.components);
-            this.bloomingDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_ReportColumn(this.components);
-            this.BloomingStatus = new DataGridViewCustomColumns.TMR_ReportColumn(this.components);
-            this.Development = new DataGridViewCustomColumns.TMR_ReportColumn(this.components);
-            this.Speciality = new DataGridViewCustomColumns.TMR_ReportColumn(this.components);
-            this.Physics = new DataGridViewCustomColumns.TMR_ReportColumn(this.components);
-            this.Tactics = new DataGridViewCustomColumns.TMR_ReportColumn(this.components);
-            this.Technics = new DataGridViewCustomColumns.TMR_ReportColumn(this.components);
-            this.Charisma = new DataGridViewCustomColumns.TMR_ReportColumn(this.components);
-            this.Professionalism = new DataGridViewCustomColumns.TMR_ReportColumn(this.components);
-            this.aggressivityDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_ReportColumn(this.components);
             this.reviewDataTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.gkData1 = new TMRecorder.GKData();
+            this.PlayerAge = new DataGridViewCustomColumns.TMR_AgeColumn(this.components);
+            this.absWeekDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_DateColumn(this.components);
+            this.forDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_ArrowColumn(this.components);
+            this.resDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_ArrowColumn(this.components);
+            this.velDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_ArrowColumn(this.components);
+            this.marDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_ArrowColumn(this.components);
+            this.conDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_ArrowColumn(this.components);
+            this.worDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_ArrowColumn(this.components);
+            this.posDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_ArrowColumn(this.components);
+            this.pasDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_ArrowColumn(this.components);
+            this.croDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_ArrowColumn(this.components);
+            this.tecDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_ArrowColumn(this.components);
+            this.tesDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_ArrowColumn(this.components);
+            this.tIDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabSkills.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -151,7 +170,15 @@ namespace TMRecorder
             this.splitContainer2.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.tabPage5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgScouts)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.scoutsNReviews)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgReviews)).BeginInit();
             this.tabPage4.SuspendLayout();
+            this.tabPage6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trainingBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerTraining)).BeginInit();
             this.tabPlayerBrowser.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
@@ -163,14 +190,10 @@ namespace TMRecorder
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gameTableDS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.performancesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            this.tabPage5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.scoutsNReviews)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgScouts)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgReviews)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.performancesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gameTableDS)).BeginInit();
+            this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.reviewDataTableBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -194,6 +217,7 @@ namespace TMRecorder
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Controls.Add(this.tabPlayerBrowser);
             this.tabControl1.Location = new System.Drawing.Point(257, 28);
             this.tabControl1.Name = "tabControl1";
@@ -531,627 +555,6 @@ namespace TMRecorder
             this.graphSpecs.ZoomModifierKeys2 = System.Windows.Forms.Keys.None;
             this.graphSpecs.ZoomStepFraction = 0.1D;
             // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.label3);
-            this.tabPage4.Controls.Add(this.cmbSeason);
-            this.tabPage4.Controls.Add(this.chkNormalized);
-            this.tabPage4.Controls.Add(this.chkShowPosition);
-            this.tabPage4.Controls.Add(this.graphPerf);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(680, 472);
-            this.tabPage4.TabIndex = 4;
-            this.tabPage4.Text = "Performances";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(6, 10);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 13);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Season";
-            // 
-            // cmbSeason
-            // 
-            this.cmbSeason.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbSeason.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbSeason.FormattingEnabled = true;
-            this.cmbSeason.Location = new System.Drawing.Point(58, 7);
-            this.cmbSeason.Name = "cmbSeason";
-            this.cmbSeason.Size = new System.Drawing.Size(97, 21);
-            this.cmbSeason.TabIndex = 9;
-            this.cmbSeason.SelectedIndexChanged += new System.EventHandler(this.cmbSeason_SelectedIndexChanged);
-            // 
-            // chkNormalized
-            // 
-            this.chkNormalized.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chkNormalized.AutoSize = true;
-            this.chkNormalized.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkNormalized.Location = new System.Drawing.Point(461, 9);
-            this.chkNormalized.Name = "chkNormalized";
-            this.chkNormalized.Size = new System.Drawing.Size(78, 17);
-            this.chkNormalized.TabIndex = 8;
-            this.chkNormalized.Text = "Normalized";
-            this.chkNormalized.UseVisualStyleBackColor = true;
-            this.chkNormalized.CheckedChanged += new System.EventHandler(this.chkNormalized_CheckedChanged);
-            // 
-            // chkShowPosition
-            // 
-            this.chkShowPosition.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chkShowPosition.AutoSize = true;
-            this.chkShowPosition.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkShowPosition.Location = new System.Drawing.Point(544, 9);
-            this.chkShowPosition.Name = "chkShowPosition";
-            this.chkShowPosition.Size = new System.Drawing.Size(93, 17);
-            this.chkShowPosition.TabIndex = 7;
-            this.chkShowPosition.Text = "Show Position";
-            this.chkShowPosition.UseVisualStyleBackColor = true;
-            this.chkShowPosition.CheckedChanged += new System.EventHandler(this.chkNormalized_CheckedChanged);
-            // 
-            // graphPerf
-            // 
-            this.graphPerf.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.graphPerf.EditButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphPerf.EditModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.None)));
-            this.graphPerf.IsAutoScrollRange = false;
-            this.graphPerf.IsEnableHEdit = false;
-            this.graphPerf.IsEnableHPan = true;
-            this.graphPerf.IsEnableHZoom = true;
-            this.graphPerf.IsEnableVEdit = false;
-            this.graphPerf.IsEnableVPan = true;
-            this.graphPerf.IsEnableVZoom = true;
-            this.graphPerf.IsPrintFillPage = true;
-            this.graphPerf.IsPrintKeepAspectRatio = true;
-            this.graphPerf.IsScrollY2 = false;
-            this.graphPerf.IsShowContextMenu = true;
-            this.graphPerf.IsShowCopyMessage = true;
-            this.graphPerf.IsShowCursorValues = false;
-            this.graphPerf.IsShowHScrollBar = false;
-            this.graphPerf.IsShowPointValues = false;
-            this.graphPerf.IsShowVScrollBar = false;
-            this.graphPerf.IsSynchronizeXAxes = false;
-            this.graphPerf.IsSynchronizeYAxes = false;
-            this.graphPerf.IsZoomOnMouseCenter = false;
-            this.graphPerf.LinkButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphPerf.LinkModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.None)));
-            this.graphPerf.Location = new System.Drawing.Point(3, 3);
-            this.graphPerf.Name = "graphPerf";
-            this.graphPerf.PanButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphPerf.PanButtons2 = System.Windows.Forms.MouseButtons.Middle;
-            this.graphPerf.PanModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.None)));
-            this.graphPerf.PanModifierKeys2 = System.Windows.Forms.Keys.None;
-            this.graphPerf.PointDateFormat = "g";
-            this.graphPerf.PointValueFormat = "G";
-            this.graphPerf.ScrollMaxX = 0D;
-            this.graphPerf.ScrollMaxY = 0D;
-            this.graphPerf.ScrollMaxY2 = 0D;
-            this.graphPerf.ScrollMinX = 0D;
-            this.graphPerf.ScrollMinY = 0D;
-            this.graphPerf.ScrollMinY2 = 0D;
-            this.graphPerf.Size = new System.Drawing.Size(674, 466);
-            this.graphPerf.TabIndex = 6;
-            this.graphPerf.ZoomButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphPerf.ZoomButtons2 = System.Windows.Forms.MouseButtons.None;
-            this.graphPerf.ZoomModifierKeys = System.Windows.Forms.Keys.None;
-            this.graphPerf.ZoomModifierKeys2 = System.Windows.Forms.Keys.None;
-            this.graphPerf.ZoomStepFraction = 0.1D;
-            // 
-            // tabPlayerBrowser
-            // 
-            this.tabPlayerBrowser.Controls.Add(this.toolStripContainer1);
-            this.tabPlayerBrowser.Location = new System.Drawing.Point(4, 22);
-            this.tabPlayerBrowser.Name = "tabPlayerBrowser";
-            this.tabPlayerBrowser.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPlayerBrowser.Size = new System.Drawing.Size(680, 472);
-            this.tabPlayerBrowser.TabIndex = 8;
-            this.tabPlayerBrowser.Text = "Trophy Browser - Player";
-            this.tabPlayerBrowser.UseVisualStyleBackColor = true;
-            // 
-            // toolStripContainer1
-            // 
-            this.toolStripContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            // 
-            // toolStripContainer1.ContentPanel
-            // 
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.webBrowser);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(680, 447);
-            this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
-            this.toolStripContainer1.Name = "toolStripContainer1";
-            this.toolStripContainer1.Size = new System.Drawing.Size(680, 472);
-            this.toolStripContainer1.TabIndex = 1;
-            this.toolStripContainer1.Text = "toolStripContainer1";
-            // 
-            // toolStripContainer1.TopToolStripPanel
-            // 
-            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.tsBrowsePlayers);
-            // 
-            // webBrowser
-            // 
-            this.webBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.webBrowser.Location = new System.Drawing.Point(0, 0);
-            this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowser.Name = "webBrowser";
-            this.webBrowser.ScriptErrorsSuppressed = true;
-            this.webBrowser.Size = new System.Drawing.Size(680, 447);
-            this.webBrowser.TabIndex = 2;
-            this.webBrowser.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser_DocumentCompleted);
-            this.webBrowser.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.webBrowser_Navigating);
-            this.webBrowser.ProgressChanged += new System.Windows.Forms.WebBrowserProgressChangedEventHandler(this.webBrowser_ProgressChanged);
-            // 
-            // tsBrowsePlayers
-            // 
-            this.tsBrowsePlayers.Dock = System.Windows.Forms.DockStyle.None;
-            this.tsBrowsePlayers.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripLabel6,
-            this.tsbLoadPlayerPage,
-            this.tsbNavigationType,
-            this.toolStripSeparator11,
-            this.toolStripLabel4,
-            this.tsbProgressBar,
-            this.tsbProgressText,
-            this.tsbImport});
-            this.tsBrowsePlayers.Location = new System.Drawing.Point(3, 0);
-            this.tsBrowsePlayers.Name = "tsBrowsePlayers";
-            this.tsBrowsePlayers.Size = new System.Drawing.Size(651, 25);
-            this.tsBrowsePlayers.TabIndex = 3;
-            this.tsBrowsePlayers.Text = "toolStrip2";
-            // 
-            // toolStripLabel6
-            // 
-            this.toolStripLabel6.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripLabel6.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.toolStripLabel6.Name = "toolStripLabel6";
-            this.toolStripLabel6.Size = new System.Drawing.Size(136, 22);
-            this.toolStripLabel6.Text = "Browsing Players Tools";
-            // 
-            // tsbLoadPlayerPage
-            // 
-            this.tsbLoadPlayerPage.Image = ((System.Drawing.Image)(resources.GetObject("tsbLoadPlayerPage.Image")));
-            this.tsbLoadPlayerPage.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbLoadPlayerPage.Name = "tsbLoadPlayerPage";
-            this.tsbLoadPlayerPage.Size = new System.Drawing.Size(117, 22);
-            this.tsbLoadPlayerPage.Text = "Load Player Page";
-            this.tsbLoadPlayerPage.Click += new System.EventHandler(this.tsbLoadPlayerPage_Click);
-            // 
-            // tsbNavigationType
-            // 
-            this.tsbNavigationType.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.navigateProfilesToolStripMenuItem,
-            this.navigateReportsToolStripMenuItem});
-            this.tsbNavigationType.Image = ((System.Drawing.Image)(resources.GetObject("tsbNavigationType.Image")));
-            this.tsbNavigationType.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbNavigationType.Name = "tsbNavigationType";
-            this.tsbNavigationType.Size = new System.Drawing.Size(125, 22);
-            this.tsbNavigationType.Text = "Navigate Profiles";
-            // 
-            // navigateProfilesToolStripMenuItem
-            // 
-            this.navigateProfilesToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("navigateProfilesToolStripMenuItem.Image")));
-            this.navigateProfilesToolStripMenuItem.Name = "navigateProfilesToolStripMenuItem";
-            this.navigateProfilesToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.navigateProfilesToolStripMenuItem.Text = "Navigate Profiles";
-            this.navigateProfilesToolStripMenuItem.Click += new System.EventHandler(this.navigateProfilesToolStripMenuItem_Click);
-            // 
-            // navigateReportsToolStripMenuItem
-            // 
-            this.navigateReportsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("navigateReportsToolStripMenuItem.Image")));
-            this.navigateReportsToolStripMenuItem.Name = "navigateReportsToolStripMenuItem";
-            this.navigateReportsToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.navigateReportsToolStripMenuItem.Text = "Navigate Reports";
-            this.navigateReportsToolStripMenuItem.Click += new System.EventHandler(this.navigateReportsToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator11
-            // 
-            this.toolStripSeparator11.Name = "toolStripSeparator11";
-            this.toolStripSeparator11.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripLabel4
-            // 
-            this.toolStripLabel4.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripLabel4.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.toolStripLabel4.Name = "toolStripLabel4";
-            this.toolStripLabel4.Size = new System.Drawing.Size(87, 22);
-            this.toolStripLabel4.Text = "Load progress";
-            // 
-            // tsbProgressBar
-            // 
-            this.tsbProgressBar.Name = "tsbProgressBar";
-            this.tsbProgressBar.Size = new System.Drawing.Size(62, 22);
-            this.tsbProgressBar.Step = 5;
-            // 
-            // tsbProgressText
-            // 
-            this.tsbProgressText.Name = "tsbProgressText";
-            this.tsbProgressText.Size = new System.Drawing.Size(10, 22);
-            this.tsbProgressText.Text = " ";
-            // 
-            // tsbImport
-            // 
-            this.tsbImport.BackColor = System.Drawing.SystemColors.Control;
-            this.tsbImport.Image = ((System.Drawing.Image)(resources.GetObject("tsbImport.Image")));
-            this.tsbImport.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbImport.Name = "tsbImport";
-            this.tsbImport.Size = new System.Drawing.Size(63, 22);
-            this.tsbImport.Text = "Import";
-            this.tsbImport.Click += new System.EventHandler(this.tsbImport_Click);
-            // 
-            // lblAge
-            // 
-            this.lblAge.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblAge.Location = new System.Drawing.Point(177, 72);
-            this.lblAge.Name = "lblAge";
-            this.lblAge.Size = new System.Drawing.Size(71, 18);
-            this.lblAge.TabIndex = 8;
-            this.lblAge.Text = "27";
-            this.lblAge.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblASI
-            // 
-            this.lblASI.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblASI.Location = new System.Drawing.Point(177, 49);
-            this.lblASI.Name = "lblASI";
-            this.lblASI.Size = new System.Drawing.Size(71, 18);
-            this.lblASI.TabIndex = 9;
-            this.lblASI.Text = "9891";
-            this.lblASI.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(144, 75);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(26, 13);
-            this.label8.TabIndex = 6;
-            this.label8.Text = "Age";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(146, 52);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(24, 13);
-            this.label6.TabIndex = 7;
-            this.label6.Text = "ASI";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.lblRoutine);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.gkData1);
-            this.groupBox1.Location = new System.Drawing.Point(6, 95);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(245, 118);
-            this.groupBox1.TabIndex = 10;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "GK Skill";
-            // 
-            // lblRoutine
-            // 
-            this.lblRoutine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.lblRoutine.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblRoutine.Location = new System.Drawing.Point(55, 96);
-            this.lblRoutine.Name = "lblRoutine";
-            this.lblRoutine.Size = new System.Drawing.Size(36, 17);
-            this.lblRoutine.TabIndex = 16;
-            this.lblRoutine.Text = "0";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 98);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 13);
-            this.label2.TabIndex = 15;
-            this.label2.Text = "Routine";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.groupBox2.Controls.Add(this.splitContainer1);
-            this.groupBox2.Location = new System.Drawing.Point(6, 214);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(245, 312);
-            this.groupBox2.TabIndex = 11;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Player Infos";
-            // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(3, 16);
-            this.splitContainer1.Name = "splitContainer1";
-            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.Controls.Add(this.dataGridView2);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.label5);
-            this.splitContainer1.Panel2.Controls.Add(this.txtNotes);
-            this.splitContainer1.Size = new System.Drawing.Size(239, 293);
-            this.splitContainer1.SplitterDistance = 190;
-            this.splitContainer1.TabIndex = 10;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 3);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(35, 13);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Notes";
-            // 
-            // txtNotes
-            // 
-            this.txtNotes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNotes.Location = new System.Drawing.Point(0, 19);
-            this.txtNotes.Multiline = true;
-            this.txtNotes.Name = "txtNotes";
-            this.txtNotes.ReadOnly = true;
-            this.txtNotes.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtNotes.Size = new System.Drawing.Size(239, 80);
-            this.txtNotes.TabIndex = 6;
-            // 
-            // toolStrip1
-            // 
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripLabel2,
-            this.toolStripButton1,
-            this.toolStripButton2,
-            this.toolStripSeparator2,
-            this.toolStripLabel1,
-            this.tsbPlayers,
-            this.toolStripButton4,
-            this.tsbComputeGrowth});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(942, 25);
-            this.toolStrip1.TabIndex = 12;
-            this.toolStrip1.Text = "toolStripMenu";
-            // 
-            // toolStripLabel2
-            // 
-            this.toolStripLabel2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(48, 22);
-            this.toolStripLabel2.Text = "Browse";
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(88, 22);
-            this.toolStripButton1.Text = "Prev. Player";
-            this.toolStripButton1.Click += new System.EventHandler(this.btnPrev_Click);
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(86, 22);
-            this.toolStripButton2.Text = "Next Player";
-            this.toolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.toolStripButton2.Click += new System.EventHandler(this.btnNext_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(28, 22);
-            this.toolStripLabel1.Text = "Edit";
-            // 
-            // tsbPlayers
-            // 
-            this.tsbPlayers.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.gKToolStripMenuItem});
-            this.tsbPlayers.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsbPlayers.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.tsbPlayers.Image = ((System.Drawing.Image)(resources.GetObject("tsbPlayers.Image")));
-            this.tsbPlayers.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbPlayers.Name = "tsbPlayers";
-            this.tsbPlayers.Size = new System.Drawing.Size(254, 22);
-            this.tsbPlayers.Text = "[FC] Robert \"O Baixinho\" Scherpenzeel";
-            // 
-            // gKToolStripMenuItem
-            // 
-            this.gKToolStripMenuItem.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.gKToolStripMenuItem.Name = "gKToolStripMenuItem";
-            this.gKToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
-            this.gKToolStripMenuItem.Text = "GK - Goalkeepers";
-            // 
-            // toolStripButton4
-            // 
-            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
-            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(100, 22);
-            this.toolStripButton4.Text = "Explore Player";
-            this.toolStripButton4.Click += new System.EventHandler(this.openPlayerPageToolStripMenuItem_Click);
-            // 
-            // tsbComputeGrowth
-            // 
-            this.tsbComputeGrowth.Image = ((System.Drawing.Image)(resources.GetObject("tsbComputeGrowth.Image")));
-            this.tsbComputeGrowth.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbComputeGrowth.Name = "tsbComputeGrowth";
-            this.tsbComputeGrowth.Size = new System.Drawing.Size(119, 22);
-            this.tsbComputeGrowth.Text = "Compute Growth";
-            this.tsbComputeGrowth.Click += new System.EventHandler(this.tsbComputeGrowth_Click);
-            // 
-            // lblWage
-            // 
-            this.lblWage.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblWage.Location = new System.Drawing.Point(59, 72);
-            this.lblWage.Name = "lblWage";
-            this.lblWage.Size = new System.Drawing.Size(69, 18);
-            this.lblWage.TabIndex = 14;
-            this.lblWage.Text = "27";
-            this.lblWage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(17, 75);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(36, 13);
-            this.label1.TabIndex = 13;
-            this.label1.Text = "Wage";
-            // 
-            // gameTableDS
-            // 
-            this.gameTableDS.DataSetName = "GameTable";
-            this.gameTableDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // performancesBindingSource
-            // 
-            this.performancesBindingSource.DataMember = "Performances";
-            this.performancesBindingSource.DataSource = this.gameTableDS;
-            // 
-            // dataGridView2
-            // 
-            this.dataGridView2.AllowUserToAddRows = false;
-            this.dataGridView2.AllowUserToDeleteRows = false;
-            this.dataGridView2.AutoGenerateColumns = false;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.seasonDataGridViewTextBoxColumn,
-            this.gPDataGridViewTextBoxColumn,
-            this.gDataGridViewTextBoxColumn,
-            this.aDataGridViewTextBoxColumn,
-            this.cardsDataGridViewTextBoxColumn,
-            this.ratDataGridViewTextBoxColumn,
-            this.ratDevDataGridViewTextBoxColumn});
-            this.dataGridView2.DataSource = this.performancesBindingSource;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle7;
-            this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView2.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.ReadOnly = true;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView2.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
-            this.dataGridView2.RowHeadersWidth = 10;
-            this.dataGridView2.RowTemplate.Height = 19;
-            this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(239, 190);
-            this.dataGridView2.TabIndex = 1;
-            // 
-            // seasonDataGridViewTextBoxColumn
-            // 
-            this.seasonDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.seasonDataGridViewTextBoxColumn.DataPropertyName = "Season";
-            this.seasonDataGridViewTextBoxColumn.HeaderText = "Sea";
-            this.seasonDataGridViewTextBoxColumn.MinimumWidth = 30;
-            this.seasonDataGridViewTextBoxColumn.Name = "seasonDataGridViewTextBoxColumn";
-            this.seasonDataGridViewTextBoxColumn.ReadOnly = true;
-            this.seasonDataGridViewTextBoxColumn.ToolTipText = "Season";
-            // 
-            // gPDataGridViewTextBoxColumn
-            // 
-            this.gPDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-            this.gPDataGridViewTextBoxColumn.DataPropertyName = "GP";
-            this.gPDataGridViewTextBoxColumn.HeaderText = "GP";
-            this.gPDataGridViewTextBoxColumn.MinimumWidth = 30;
-            this.gPDataGridViewTextBoxColumn.Name = "gPDataGridViewTextBoxColumn";
-            this.gPDataGridViewTextBoxColumn.ReadOnly = true;
-            this.gPDataGridViewTextBoxColumn.ToolTipText = "Game Played";
-            this.gPDataGridViewTextBoxColumn.Width = 30;
-            // 
-            // gDataGridViewTextBoxColumn
-            // 
-            this.gDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-            this.gDataGridViewTextBoxColumn.DataPropertyName = "G";
-            this.gDataGridViewTextBoxColumn.HeaderText = "G";
-            this.gDataGridViewTextBoxColumn.MinimumWidth = 30;
-            this.gDataGridViewTextBoxColumn.Name = "gDataGridViewTextBoxColumn";
-            this.gDataGridViewTextBoxColumn.ReadOnly = true;
-            this.gDataGridViewTextBoxColumn.ToolTipText = "Goals";
-            this.gDataGridViewTextBoxColumn.Width = 30;
-            // 
-            // aDataGridViewTextBoxColumn
-            // 
-            this.aDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-            this.aDataGridViewTextBoxColumn.DataPropertyName = "A";
-            this.aDataGridViewTextBoxColumn.HeaderText = "A";
-            this.aDataGridViewTextBoxColumn.MinimumWidth = 30;
-            this.aDataGridViewTextBoxColumn.Name = "aDataGridViewTextBoxColumn";
-            this.aDataGridViewTextBoxColumn.ReadOnly = true;
-            this.aDataGridViewTextBoxColumn.ToolTipText = "Assists";
-            this.aDataGridViewTextBoxColumn.Width = 30;
-            // 
-            // cardsDataGridViewTextBoxColumn
-            // 
-            this.cardsDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-            this.cardsDataGridViewTextBoxColumn.DataPropertyName = "Cards";
-            this.cardsDataGridViewTextBoxColumn.HeaderText = "Crd";
-            this.cardsDataGridViewTextBoxColumn.MinimumWidth = 30;
-            this.cardsDataGridViewTextBoxColumn.Name = "cardsDataGridViewTextBoxColumn";
-            this.cardsDataGridViewTextBoxColumn.ReadOnly = true;
-            this.cardsDataGridViewTextBoxColumn.ToolTipText = "Cards";
-            this.cardsDataGridViewTextBoxColumn.Width = 30;
-            // 
-            // ratDataGridViewTextBoxColumn
-            // 
-            this.ratDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-            this.ratDataGridViewTextBoxColumn.DataPropertyName = "Rat";
-            dataGridViewCellStyle6.Format = "N1";
-            this.ratDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
-            this.ratDataGridViewTextBoxColumn.HeaderText = "Rat";
-            this.ratDataGridViewTextBoxColumn.MinimumWidth = 33;
-            this.ratDataGridViewTextBoxColumn.Name = "ratDataGridViewTextBoxColumn";
-            this.ratDataGridViewTextBoxColumn.ReadOnly = true;
-            this.ratDataGridViewTextBoxColumn.ToolTipText = "Ratings";
-            this.ratDataGridViewTextBoxColumn.Width = 33;
-            // 
-            // ratDevDataGridViewTextBoxColumn
-            // 
-            this.ratDevDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-            this.ratDevDataGridViewTextBoxColumn.DataPropertyName = "MoM";
-            this.ratDevDataGridViewTextBoxColumn.HeaderText = "MoM";
-            this.ratDevDataGridViewTextBoxColumn.MinimumWidth = 38;
-            this.ratDevDataGridViewTextBoxColumn.Name = "ratDevDataGridViewTextBoxColumn";
-            this.ratDevDataGridViewTextBoxColumn.ReadOnly = true;
-            this.ratDevDataGridViewTextBoxColumn.ToolTipText = "Man of the Match";
-            this.ratDevDataGridViewTextBoxColumn.Width = 38;
-            // 
             // tabPage5
             // 
             this.tabPage5.Controls.Add(this.dgScouts);
@@ -1172,6 +575,309 @@ namespace TMRecorder
             this.tabPage5.TabIndex = 9;
             this.tabPage5.Text = "Scouts Report";
             this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // dgScouts
+            // 
+            this.dgScouts.AllowUserToAddRows = false;
+            this.dgScouts.AllowUserToDeleteRows = false;
+            this.dgScouts.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgScouts.AutoGenerateColumns = false;
+            this.dgScouts.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
+            this.dgScouts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgScouts.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.nameDataGridViewTextBoxColumn,
+            this.developmentDataGridViewTextBoxColumn1,
+            this.seniorDataGridViewTextBoxColumn,
+            this.youthDataGridViewTextBoxColumn,
+            this.physicalDataGridViewTextBoxColumn1,
+            this.tacticalDataGridViewTextBoxColumn1,
+            this.technicalDataGridViewTextBoxColumn1,
+            this.psychologyDataGridViewTextBoxColumn});
+            this.dgScouts.DataMember = "Scouts";
+            this.dgScouts.DataSource = this.scoutsNReviews;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.NullValue = "-";
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgScouts.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dgScouts.Location = new System.Drawing.Point(1, 22);
+            this.dgScouts.Name = "dgScouts";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgScouts.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgScouts.RowHeadersWidth = 20;
+            this.dgScouts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgScouts.Size = new System.Drawing.Size(676, 141);
+            this.dgScouts.TabIndex = 16;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.Width = 60;
+            // 
+            // developmentDataGridViewTextBoxColumn1
+            // 
+            this.developmentDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.developmentDataGridViewTextBoxColumn1.DataPropertyName = "Development";
+            this.developmentDataGridViewTextBoxColumn1.HeaderText = "Development";
+            this.developmentDataGridViewTextBoxColumn1.Name = "developmentDataGridViewTextBoxColumn1";
+            this.developmentDataGridViewTextBoxColumn1.Width = 95;
+            // 
+            // seniorDataGridViewTextBoxColumn
+            // 
+            this.seniorDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.seniorDataGridViewTextBoxColumn.DataPropertyName = "Senior";
+            this.seniorDataGridViewTextBoxColumn.HeaderText = "Senior";
+            this.seniorDataGridViewTextBoxColumn.Name = "seniorDataGridViewTextBoxColumn";
+            this.seniorDataGridViewTextBoxColumn.Width = 62;
+            // 
+            // youthDataGridViewTextBoxColumn
+            // 
+            this.youthDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.youthDataGridViewTextBoxColumn.DataPropertyName = "Youth";
+            this.youthDataGridViewTextBoxColumn.HeaderText = "Youth";
+            this.youthDataGridViewTextBoxColumn.Name = "youthDataGridViewTextBoxColumn";
+            this.youthDataGridViewTextBoxColumn.Width = 60;
+            // 
+            // physicalDataGridViewTextBoxColumn1
+            // 
+            this.physicalDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.physicalDataGridViewTextBoxColumn1.DataPropertyName = "Physical";
+            this.physicalDataGridViewTextBoxColumn1.HeaderText = "Physical";
+            this.physicalDataGridViewTextBoxColumn1.Name = "physicalDataGridViewTextBoxColumn1";
+            this.physicalDataGridViewTextBoxColumn1.Width = 71;
+            // 
+            // tacticalDataGridViewTextBoxColumn1
+            // 
+            this.tacticalDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.tacticalDataGridViewTextBoxColumn1.DataPropertyName = "Tactical";
+            this.tacticalDataGridViewTextBoxColumn1.HeaderText = "Tactical";
+            this.tacticalDataGridViewTextBoxColumn1.Name = "tacticalDataGridViewTextBoxColumn1";
+            this.tacticalDataGridViewTextBoxColumn1.Width = 70;
+            // 
+            // technicalDataGridViewTextBoxColumn1
+            // 
+            this.technicalDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.technicalDataGridViewTextBoxColumn1.DataPropertyName = "Technical";
+            this.technicalDataGridViewTextBoxColumn1.HeaderText = "Technical";
+            this.technicalDataGridViewTextBoxColumn1.Name = "technicalDataGridViewTextBoxColumn1";
+            this.technicalDataGridViewTextBoxColumn1.Width = 79;
+            // 
+            // psychologyDataGridViewTextBoxColumn
+            // 
+            this.psychologyDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.psychologyDataGridViewTextBoxColumn.DataPropertyName = "Psychology";
+            this.psychologyDataGridViewTextBoxColumn.HeaderText = "Psychology";
+            this.psychologyDataGridViewTextBoxColumn.Name = "psychologyDataGridViewTextBoxColumn";
+            this.psychologyDataGridViewTextBoxColumn.Width = 86;
+            // 
+            // scoutsNReviews
+            // 
+            this.scoutsNReviews.DataSetName = "ScoutsNReviews";
+            this.scoutsNReviews.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // dgReviews
+            // 
+            this.dgReviews.AllowUserToAddRows = false;
+            this.dgReviews.AllowUserToDeleteRows = false;
+            this.dgReviews.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgReviews.AutoGenerateColumns = false;
+            this.dgReviews.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
+            this.dgReviews.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgReviews.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.scoutIDDataGridViewTextBoxColumn,
+            this.dateDataGridViewTextBoxColumn,
+            this.ageDataGridViewTextBoxColumn,
+            this.Vote,
+            this.bloomingDataGridViewTextBoxColumn,
+            this.BloomingStatus,
+            this.Development,
+            this.Speciality,
+            this.Physics,
+            this.Tactics,
+            this.Technics,
+            this.Charisma,
+            this.Professionalism,
+            this.aggressivityDataGridViewTextBoxColumn});
+            this.dgReviews.DataMember = "Review";
+            this.dgReviews.DataSource = this.scoutsNReviews;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.NullValue = "-";
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgReviews.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgReviews.Location = new System.Drawing.Point(1, 189);
+            this.dgReviews.Name = "dgReviews";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgReviews.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgReviews.RowHeadersWidth = 20;
+            this.dgReviews.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgReviews.Size = new System.Drawing.Size(676, 132);
+            this.dgReviews.TabIndex = 17;
+            // 
+            // scoutIDDataGridViewTextBoxColumn
+            // 
+            this.scoutIDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.scoutIDDataGridViewTextBoxColumn.DataPropertyName = "ScoutName";
+            this.scoutIDDataGridViewTextBoxColumn.HeaderText = "Scout";
+            this.scoutIDDataGridViewTextBoxColumn.Name = "scoutIDDataGridViewTextBoxColumn";
+            this.scoutIDDataGridViewTextBoxColumn.Width = 60;
+            // 
+            // dateDataGridViewTextBoxColumn
+            // 
+            this.dateDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dateDataGridViewTextBoxColumn.DataPropertyName = "Date";
+            this.dateDataGridViewTextBoxColumn.HeaderText = "Date";
+            this.dateDataGridViewTextBoxColumn.Name = "dateDataGridViewTextBoxColumn";
+            this.dateDataGridViewTextBoxColumn.Width = 55;
+            // 
+            // ageDataGridViewTextBoxColumn
+            // 
+            this.ageDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.ageDataGridViewTextBoxColumn.DataPropertyName = "Age";
+            this.ageDataGridViewTextBoxColumn.HeaderText = "Age";
+            this.ageDataGridViewTextBoxColumn.MinimumWidth = 30;
+            this.ageDataGridViewTextBoxColumn.Name = "ageDataGridViewTextBoxColumn";
+            this.ageDataGridViewTextBoxColumn.Width = 30;
+            // 
+            // Vote
+            // 
+            this.Vote.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.Vote.DataPropertyName = "Vote";
+            this.Vote.FPn = 0;
+            this.Vote.HeaderText = "Vote";
+            this.Vote.MinimumWidth = 30;
+            this.Vote.Name = "Vote";
+            this.Vote.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Vote.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Vote.Width = 30;
+            // 
+            // bloomingDataGridViewTextBoxColumn
+            // 
+            this.bloomingDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.bloomingDataGridViewTextBoxColumn.DataPropertyName = "Blooming";
+            this.bloomingDataGridViewTextBoxColumn.FPn = 0;
+            this.bloomingDataGridViewTextBoxColumn.HeaderText = "Blo";
+            this.bloomingDataGridViewTextBoxColumn.Name = "bloomingDataGridViewTextBoxColumn";
+            this.bloomingDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.bloomingDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.bloomingDataGridViewTextBoxColumn.ToolTipText = "Blooming";
+            this.bloomingDataGridViewTextBoxColumn.Width = 47;
+            // 
+            // BloomingStatus
+            // 
+            this.BloomingStatus.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.BloomingStatus.DataPropertyName = "Blooming_Status";
+            this.BloomingStatus.FPn = 0;
+            this.BloomingStatus.HeaderText = "Bl.Stat";
+            this.BloomingStatus.Name = "BloomingStatus";
+            this.BloomingStatus.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.BloomingStatus.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.BloomingStatus.ToolTipText = "Blooming Status";
+            this.BloomingStatus.Width = 63;
+            // 
+            // Development
+            // 
+            this.Development.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Development.DataPropertyName = "Development";
+            this.Development.FPn = 0;
+            this.Development.HeaderText = "Dev";
+            this.Development.Name = "Development";
+            this.Development.Width = 33;
+            // 
+            // Speciality
+            // 
+            this.Speciality.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Speciality.DataPropertyName = "Speciality";
+            this.Speciality.FPn = 0;
+            this.Speciality.HeaderText = "Spe";
+            this.Speciality.Name = "Speciality";
+            this.Speciality.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Speciality.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Speciality.ToolTipText = "Speciality";
+            this.Speciality.Width = 51;
+            // 
+            // Physics
+            // 
+            this.Physics.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Physics.DataPropertyName = "Physique";
+            this.Physics.FPn = 0;
+            this.Physics.HeaderText = "Phy";
+            this.Physics.Name = "Physics";
+            this.Physics.Width = 31;
+            // 
+            // Tactics
+            // 
+            this.Tactics.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Tactics.DataPropertyName = "Tactics";
+            this.Tactics.FPn = 0;
+            this.Tactics.HeaderText = "Tac";
+            this.Tactics.Name = "Tactics";
+            this.Tactics.Width = 32;
+            // 
+            // Technics
+            // 
+            this.Technics.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Technics.DataPropertyName = "Technics";
+            this.Technics.FPn = 0;
+            this.Technics.HeaderText = "Tec";
+            this.Technics.Name = "Technics";
+            this.Technics.Width = 32;
+            // 
+            // Charisma
+            // 
+            this.Charisma.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Charisma.DataPropertyName = "Charisma";
+            this.Charisma.FPn = 0;
+            this.Charisma.HeaderText = "Lea";
+            this.Charisma.Name = "Charisma";
+            this.Charisma.Width = 31;
+            // 
+            // Professionalism
+            // 
+            this.Professionalism.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Professionalism.DataPropertyName = "Professionalism";
+            this.Professionalism.FPn = 0;
+            this.Professionalism.HeaderText = "Pro";
+            this.Professionalism.Name = "Professionalism";
+            this.Professionalism.Width = 29;
+            // 
+            // aggressivityDataGridViewTextBoxColumn
+            // 
+            this.aggressivityDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.aggressivityDataGridViewTextBoxColumn.DataPropertyName = "Aggressivity";
+            this.aggressivityDataGridViewTextBoxColumn.FPn = 0;
+            this.aggressivityDataGridViewTextBoxColumn.HeaderText = "Agg";
+            this.aggressivityDataGridViewTextBoxColumn.Name = "aggressivityDataGridViewTextBoxColumn";
+            this.aggressivityDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.aggressivityDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.aggressivityDataGridViewTextBoxColumn.ToolTipText = "Aggressivity";
+            this.aggressivityDataGridViewTextBoxColumn.Width = 51;
             // 
             // label4
             // 
@@ -1381,312 +1087,388 @@ namespace TMRecorder
             0,
             0});
             // 
-            // scoutsNReviews
+            // tabPage4
             // 
-            this.scoutsNReviews.DataSetName = "ScoutsNReviews";
-            this.scoutsNReviews.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.tabPage4.Controls.Add(this.label3);
+            this.tabPage4.Controls.Add(this.cmbSeason);
+            this.tabPage4.Controls.Add(this.chkNormalized);
+            this.tabPage4.Controls.Add(this.chkShowPosition);
+            this.tabPage4.Controls.Add(this.graphPerf);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(680, 472);
+            this.tabPage4.TabIndex = 4;
+            this.tabPage4.Text = "Performances";
+            this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // dgScouts
+            // label3
             // 
-            this.dgScouts.AllowUserToAddRows = false;
-            this.dgScouts.AllowUserToDeleteRows = false;
-            this.dgScouts.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgScouts.AutoGenerateColumns = false;
-            this.dgScouts.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
-            this.dgScouts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgScouts.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.nameDataGridViewTextBoxColumn,
-            this.developmentDataGridViewTextBoxColumn1,
-            this.seniorDataGridViewTextBoxColumn,
-            this.youthDataGridViewTextBoxColumn,
-            this.physicalDataGridViewTextBoxColumn1,
-            this.tacticalDataGridViewTextBoxColumn1,
-            this.technicalDataGridViewTextBoxColumn1,
-            this.psychologyDataGridViewTextBoxColumn});
-            this.dgScouts.DataMember = "Scouts";
-            this.dgScouts.DataSource = this.scoutsNReviews;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.NullValue = "-";
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgScouts.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dgScouts.Location = new System.Drawing.Point(1, 22);
-            this.dgScouts.Name = "dgScouts";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgScouts.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgScouts.RowHeadersWidth = 20;
-            this.dgScouts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgScouts.Size = new System.Drawing.Size(676, 141);
-            this.dgScouts.TabIndex = 16;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(6, 10);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(49, 13);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Season";
             // 
-            // nameDataGridViewTextBoxColumn
+            // cmbSeason
             // 
-            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.Width = 60;
+            this.cmbSeason.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSeason.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbSeason.FormattingEnabled = true;
+            this.cmbSeason.Location = new System.Drawing.Point(58, 7);
+            this.cmbSeason.Name = "cmbSeason";
+            this.cmbSeason.Size = new System.Drawing.Size(97, 21);
+            this.cmbSeason.TabIndex = 9;
+            this.cmbSeason.SelectedIndexChanged += new System.EventHandler(this.cmbSeason_SelectedIndexChanged);
             // 
-            // developmentDataGridViewTextBoxColumn1
+            // chkNormalized
             // 
-            this.developmentDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.developmentDataGridViewTextBoxColumn1.DataPropertyName = "Development";
-            this.developmentDataGridViewTextBoxColumn1.HeaderText = "Development";
-            this.developmentDataGridViewTextBoxColumn1.Name = "developmentDataGridViewTextBoxColumn1";
-            this.developmentDataGridViewTextBoxColumn1.Width = 95;
+            this.chkNormalized.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkNormalized.AutoSize = true;
+            this.chkNormalized.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkNormalized.Location = new System.Drawing.Point(461, 9);
+            this.chkNormalized.Name = "chkNormalized";
+            this.chkNormalized.Size = new System.Drawing.Size(78, 17);
+            this.chkNormalized.TabIndex = 8;
+            this.chkNormalized.Text = "Normalized";
+            this.chkNormalized.UseVisualStyleBackColor = true;
+            this.chkNormalized.CheckedChanged += new System.EventHandler(this.chkNormalized_CheckedChanged);
             // 
-            // seniorDataGridViewTextBoxColumn
+            // chkShowPosition
             // 
-            this.seniorDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.seniorDataGridViewTextBoxColumn.DataPropertyName = "Senior";
-            this.seniorDataGridViewTextBoxColumn.HeaderText = "Senior";
-            this.seniorDataGridViewTextBoxColumn.Name = "seniorDataGridViewTextBoxColumn";
-            this.seniorDataGridViewTextBoxColumn.Width = 62;
+            this.chkShowPosition.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkShowPosition.AutoSize = true;
+            this.chkShowPosition.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkShowPosition.Location = new System.Drawing.Point(544, 9);
+            this.chkShowPosition.Name = "chkShowPosition";
+            this.chkShowPosition.Size = new System.Drawing.Size(93, 17);
+            this.chkShowPosition.TabIndex = 7;
+            this.chkShowPosition.Text = "Show Position";
+            this.chkShowPosition.UseVisualStyleBackColor = true;
+            this.chkShowPosition.CheckedChanged += new System.EventHandler(this.chkNormalized_CheckedChanged);
             // 
-            // youthDataGridViewTextBoxColumn
+            // graphPerf
             // 
-            this.youthDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.youthDataGridViewTextBoxColumn.DataPropertyName = "Youth";
-            this.youthDataGridViewTextBoxColumn.HeaderText = "Youth";
-            this.youthDataGridViewTextBoxColumn.Name = "youthDataGridViewTextBoxColumn";
-            this.youthDataGridViewTextBoxColumn.Width = 60;
+            this.graphPerf.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.graphPerf.EditButtons = System.Windows.Forms.MouseButtons.Left;
+            this.graphPerf.EditModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.None)));
+            this.graphPerf.IsAutoScrollRange = false;
+            this.graphPerf.IsEnableHEdit = false;
+            this.graphPerf.IsEnableHPan = true;
+            this.graphPerf.IsEnableHZoom = true;
+            this.graphPerf.IsEnableVEdit = false;
+            this.graphPerf.IsEnableVPan = true;
+            this.graphPerf.IsEnableVZoom = true;
+            this.graphPerf.IsPrintFillPage = true;
+            this.graphPerf.IsPrintKeepAspectRatio = true;
+            this.graphPerf.IsScrollY2 = false;
+            this.graphPerf.IsShowContextMenu = true;
+            this.graphPerf.IsShowCopyMessage = true;
+            this.graphPerf.IsShowCursorValues = false;
+            this.graphPerf.IsShowHScrollBar = false;
+            this.graphPerf.IsShowPointValues = false;
+            this.graphPerf.IsShowVScrollBar = false;
+            this.graphPerf.IsSynchronizeXAxes = false;
+            this.graphPerf.IsSynchronizeYAxes = false;
+            this.graphPerf.IsZoomOnMouseCenter = false;
+            this.graphPerf.LinkButtons = System.Windows.Forms.MouseButtons.Left;
+            this.graphPerf.LinkModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.None)));
+            this.graphPerf.Location = new System.Drawing.Point(3, 3);
+            this.graphPerf.Name = "graphPerf";
+            this.graphPerf.PanButtons = System.Windows.Forms.MouseButtons.Left;
+            this.graphPerf.PanButtons2 = System.Windows.Forms.MouseButtons.Middle;
+            this.graphPerf.PanModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.None)));
+            this.graphPerf.PanModifierKeys2 = System.Windows.Forms.Keys.None;
+            this.graphPerf.PointDateFormat = "g";
+            this.graphPerf.PointValueFormat = "G";
+            this.graphPerf.ScrollMaxX = 0D;
+            this.graphPerf.ScrollMaxY = 0D;
+            this.graphPerf.ScrollMaxY2 = 0D;
+            this.graphPerf.ScrollMinX = 0D;
+            this.graphPerf.ScrollMinY = 0D;
+            this.graphPerf.ScrollMinY2 = 0D;
+            this.graphPerf.Size = new System.Drawing.Size(674, 466);
+            this.graphPerf.TabIndex = 6;
+            this.graphPerf.ZoomButtons = System.Windows.Forms.MouseButtons.Left;
+            this.graphPerf.ZoomButtons2 = System.Windows.Forms.MouseButtons.None;
+            this.graphPerf.ZoomModifierKeys = System.Windows.Forms.Keys.None;
+            this.graphPerf.ZoomModifierKeys2 = System.Windows.Forms.Keys.None;
+            this.graphPerf.ZoomStepFraction = 0.1D;
             // 
-            // physicalDataGridViewTextBoxColumn1
+            // tabPage6
             // 
-            this.physicalDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.physicalDataGridViewTextBoxColumn1.DataPropertyName = "Physical";
-            this.physicalDataGridViewTextBoxColumn1.HeaderText = "Physical";
-            this.physicalDataGridViewTextBoxColumn1.Name = "physicalDataGridViewTextBoxColumn1";
-            this.physicalDataGridViewTextBoxColumn1.Width = 71;
+            this.tabPage6.Controls.Add(this.dataGridView1);
+            this.tabPage6.Location = new System.Drawing.Point(4, 22);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage6.Size = new System.Drawing.Size(680, 472);
+            this.tabPage6.TabIndex = 10;
+            this.tabPage6.Text = "Player Training";
+            this.tabPage6.UseVisualStyleBackColor = true;
             // 
-            // tacticalDataGridViewTextBoxColumn1
+            // dataGridView1
             // 
-            this.tacticalDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.tacticalDataGridViewTextBoxColumn1.DataPropertyName = "Tactical";
-            this.tacticalDataGridViewTextBoxColumn1.HeaderText = "Tactical";
-            this.tacticalDataGridViewTextBoxColumn1.Name = "tacticalDataGridViewTextBoxColumn1";
-            this.tacticalDataGridViewTextBoxColumn1.Width = 70;
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.AutoGenerateColumns = false;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.PlayerAge,
+            this.absWeekDataGridViewTextBoxColumn,
+            this.forDataGridViewTextBoxColumn,
+            this.resDataGridViewTextBoxColumn,
+            this.velDataGridViewTextBoxColumn,
+            this.marDataGridViewTextBoxColumn,
+            this.conDataGridViewTextBoxColumn,
+            this.worDataGridViewTextBoxColumn,
+            this.posDataGridViewTextBoxColumn,
+            this.pasDataGridViewTextBoxColumn,
+            this.croDataGridViewTextBoxColumn,
+            this.tecDataGridViewTextBoxColumn,
+            this.tesDataGridViewTextBoxColumn,
+            this.tIDataGridViewTextBoxColumn});
+            this.dataGridView1.DataSource = this.trainingBindingSource;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(3, 3);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridView1.MultiSelect = false;
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersWidth = 20;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(674, 466);
+            this.dataGridView1.TabIndex = 1;
             // 
-            // technicalDataGridViewTextBoxColumn1
+            // trainingBindingSource
             // 
-            this.technicalDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.technicalDataGridViewTextBoxColumn1.DataPropertyName = "Technical";
-            this.technicalDataGridViewTextBoxColumn1.HeaderText = "Technical";
-            this.technicalDataGridViewTextBoxColumn1.Name = "technicalDataGridViewTextBoxColumn1";
-            this.technicalDataGridViewTextBoxColumn1.Width = 79;
+            this.trainingBindingSource.DataMember = "Training";
+            this.trainingBindingSource.DataSource = this.playerTraining;
             // 
-            // psychologyDataGridViewTextBoxColumn
+            // playerTraining
             // 
-            this.psychologyDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.psychologyDataGridViewTextBoxColumn.DataPropertyName = "Psychology";
-            this.psychologyDataGridViewTextBoxColumn.HeaderText = "Psychology";
-            this.psychologyDataGridViewTextBoxColumn.Name = "psychologyDataGridViewTextBoxColumn";
-            this.psychologyDataGridViewTextBoxColumn.Width = 86;
+            this.playerTraining.DataSetName = "PlayerTraining";
+            this.playerTraining.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // dgReviews
+            // tabPlayerBrowser
             // 
-            this.dgReviews.AllowUserToAddRows = false;
-            this.dgReviews.AllowUserToDeleteRows = false;
-            this.dgReviews.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.tabPlayerBrowser.Controls.Add(this.toolStripContainer1);
+            this.tabPlayerBrowser.Location = new System.Drawing.Point(4, 22);
+            this.tabPlayerBrowser.Name = "tabPlayerBrowser";
+            this.tabPlayerBrowser.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPlayerBrowser.Size = new System.Drawing.Size(680, 472);
+            this.tabPlayerBrowser.TabIndex = 8;
+            this.tabPlayerBrowser.Text = "Trophy Browser - Player";
+            this.tabPlayerBrowser.UseVisualStyleBackColor = true;
+            // 
+            // toolStripContainer1
+            // 
+            this.toolStripContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgReviews.AutoGenerateColumns = false;
-            this.dgReviews.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
-            this.dgReviews.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgReviews.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.scoutIDDataGridViewTextBoxColumn,
-            this.dateDataGridViewTextBoxColumn,
-            this.ageDataGridViewTextBoxColumn,
-            this.Vote,
-            this.bloomingDataGridViewTextBoxColumn,
-            this.BloomingStatus,
-            this.Development,
-            this.Speciality,
-            this.Physics,
-            this.Tactics,
-            this.Technics,
-            this.Charisma,
-            this.Professionalism,
-            this.aggressivityDataGridViewTextBoxColumn});
-            this.dgReviews.DataMember = "Review";
-            this.dgReviews.DataSource = this.scoutsNReviews;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.NullValue = "-";
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgReviews.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dgReviews.Location = new System.Drawing.Point(1, 189);
-            this.dgReviews.Name = "dgReviews";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgReviews.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.dgReviews.RowHeadersWidth = 20;
-            this.dgReviews.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgReviews.Size = new System.Drawing.Size(676, 132);
-            this.dgReviews.TabIndex = 17;
             // 
-            // scoutIDDataGridViewTextBoxColumn
+            // toolStripContainer1.ContentPanel
             // 
-            this.scoutIDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.scoutIDDataGridViewTextBoxColumn.DataPropertyName = "ScoutName";
-            this.scoutIDDataGridViewTextBoxColumn.HeaderText = "Scout";
-            this.scoutIDDataGridViewTextBoxColumn.Name = "scoutIDDataGridViewTextBoxColumn";
-            this.scoutIDDataGridViewTextBoxColumn.Width = 60;
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.webBrowser);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(680, 447);
+            this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
+            this.toolStripContainer1.Name = "toolStripContainer1";
+            this.toolStripContainer1.Size = new System.Drawing.Size(680, 472);
+            this.toolStripContainer1.TabIndex = 1;
+            this.toolStripContainer1.Text = "toolStripContainer1";
             // 
-            // dateDataGridViewTextBoxColumn
+            // toolStripContainer1.TopToolStripPanel
             // 
-            this.dateDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dateDataGridViewTextBoxColumn.DataPropertyName = "Date";
-            this.dateDataGridViewTextBoxColumn.HeaderText = "Date";
-            this.dateDataGridViewTextBoxColumn.Name = "dateDataGridViewTextBoxColumn";
-            this.dateDataGridViewTextBoxColumn.Width = 55;
+            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.tsBrowsePlayers);
             // 
-            // ageDataGridViewTextBoxColumn
+            // webBrowser
             // 
-            this.ageDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-            this.ageDataGridViewTextBoxColumn.DataPropertyName = "Age";
-            this.ageDataGridViewTextBoxColumn.HeaderText = "Age";
-            this.ageDataGridViewTextBoxColumn.MinimumWidth = 30;
-            this.ageDataGridViewTextBoxColumn.Name = "ageDataGridViewTextBoxColumn";
-            this.ageDataGridViewTextBoxColumn.Width = 30;
+            this.webBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.webBrowser.Location = new System.Drawing.Point(0, 0);
+            this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser.Name = "webBrowser";
+            this.webBrowser.ScriptErrorsSuppressed = true;
+            this.webBrowser.Size = new System.Drawing.Size(680, 447);
+            this.webBrowser.TabIndex = 2;
+            this.webBrowser.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser_DocumentCompleted);
+            this.webBrowser.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.webBrowser_Navigating);
+            this.webBrowser.ProgressChanged += new System.Windows.Forms.WebBrowserProgressChangedEventHandler(this.webBrowser_ProgressChanged);
             // 
-            // Vote
+            // tsBrowsePlayers
             // 
-            this.Vote.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-            this.Vote.DataPropertyName = "Vote";
-            this.Vote.FPn = 0;
-            this.Vote.HeaderText = "Vote";
-            this.Vote.MinimumWidth = 30;
-            this.Vote.Name = "Vote";
-            this.Vote.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Vote.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Vote.Width = 30;
+            this.tsBrowsePlayers.Dock = System.Windows.Forms.DockStyle.None;
+            this.tsBrowsePlayers.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel6,
+            this.tsbLoadPlayerPage,
+            this.tsbNavigationType,
+            this.toolStripSeparator11,
+            this.toolStripLabel4,
+            this.tsbProgressBar,
+            this.tsbProgressText,
+            this.tsbImport});
+            this.tsBrowsePlayers.Location = new System.Drawing.Point(3, 0);
+            this.tsBrowsePlayers.Name = "tsBrowsePlayers";
+            this.tsBrowsePlayers.Size = new System.Drawing.Size(620, 25);
+            this.tsBrowsePlayers.TabIndex = 3;
+            this.tsBrowsePlayers.Text = "toolStrip2";
             // 
-            // bloomingDataGridViewTextBoxColumn
+            // toolStripLabel6
             // 
-            this.bloomingDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.bloomingDataGridViewTextBoxColumn.DataPropertyName = "Blooming";
-            this.bloomingDataGridViewTextBoxColumn.FPn = 0;
-            this.bloomingDataGridViewTextBoxColumn.HeaderText = "Blo";
-            this.bloomingDataGridViewTextBoxColumn.Name = "bloomingDataGridViewTextBoxColumn";
-            this.bloomingDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.bloomingDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.bloomingDataGridViewTextBoxColumn.ToolTipText = "Blooming";
-            this.bloomingDataGridViewTextBoxColumn.Width = 47;
+            this.toolStripLabel6.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripLabel6.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.toolStripLabel6.Name = "toolStripLabel6";
+            this.toolStripLabel6.Size = new System.Drawing.Size(136, 22);
+            this.toolStripLabel6.Text = "Browsing Players Tools";
             // 
-            // BloomingStatus
+            // tsbLoadPlayerPage
             // 
-            this.BloomingStatus.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.BloomingStatus.DataPropertyName = "Blooming_Status";
-            this.BloomingStatus.FPn = 0;
-            this.BloomingStatus.HeaderText = "Bl.Stat";
-            this.BloomingStatus.Name = "BloomingStatus";
-            this.BloomingStatus.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.BloomingStatus.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.BloomingStatus.ToolTipText = "Blooming Status";
-            this.BloomingStatus.Width = 63;
+            this.tsbLoadPlayerPage.Image = ((System.Drawing.Image)(resources.GetObject("tsbLoadPlayerPage.Image")));
+            this.tsbLoadPlayerPage.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbLoadPlayerPage.Name = "tsbLoadPlayerPage";
+            this.tsbLoadPlayerPage.Size = new System.Drawing.Size(117, 22);
+            this.tsbLoadPlayerPage.Text = "Load Player Page";
+            this.tsbLoadPlayerPage.Click += new System.EventHandler(this.tsbLoadPlayerPage_Click);
             // 
-            // Development
+            // tsbNavigationType
             // 
-            this.Development.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Development.DataPropertyName = "Development";
-            this.Development.FPn = 0;
-            this.Development.HeaderText = "Dev";
-            this.Development.Name = "Development";
-            this.Development.Width = 33;
+            this.tsbNavigationType.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.navigateProfilesToolStripMenuItem,
+            this.navigateReportsToolStripMenuItem});
+            this.tsbNavigationType.Image = ((System.Drawing.Image)(resources.GetObject("tsbNavigationType.Image")));
+            this.tsbNavigationType.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbNavigationType.Name = "tsbNavigationType";
+            this.tsbNavigationType.Size = new System.Drawing.Size(125, 22);
+            this.tsbNavigationType.Text = "Navigate Profiles";
             // 
-            // Speciality
+            // navigateProfilesToolStripMenuItem
             // 
-            this.Speciality.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Speciality.DataPropertyName = "Speciality";
-            this.Speciality.FPn = 0;
-            this.Speciality.HeaderText = "Spe";
-            this.Speciality.Name = "Speciality";
-            this.Speciality.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Speciality.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Speciality.ToolTipText = "Speciality";
-            this.Speciality.Width = 51;
+            this.navigateProfilesToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("navigateProfilesToolStripMenuItem.Image")));
+            this.navigateProfilesToolStripMenuItem.Name = "navigateProfilesToolStripMenuItem";
+            this.navigateProfilesToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.navigateProfilesToolStripMenuItem.Text = "Navigate Profiles";
+            this.navigateProfilesToolStripMenuItem.Click += new System.EventHandler(this.navigateProfilesToolStripMenuItem_Click);
             // 
-            // Physics
+            // navigateReportsToolStripMenuItem
             // 
-            this.Physics.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Physics.DataPropertyName = "Physique";
-            this.Physics.FPn = 0;
-            this.Physics.HeaderText = "Phy";
-            this.Physics.Name = "Physics";
-            this.Physics.Width = 31;
+            this.navigateReportsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("navigateReportsToolStripMenuItem.Image")));
+            this.navigateReportsToolStripMenuItem.Name = "navigateReportsToolStripMenuItem";
+            this.navigateReportsToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.navigateReportsToolStripMenuItem.Text = "Navigate Reports";
+            this.navigateReportsToolStripMenuItem.Click += new System.EventHandler(this.navigateReportsToolStripMenuItem_Click);
             // 
-            // Tactics
+            // toolStripSeparator11
             // 
-            this.Tactics.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Tactics.DataPropertyName = "Tactics";
-            this.Tactics.FPn = 0;
-            this.Tactics.HeaderText = "Tac";
-            this.Tactics.Name = "Tactics";
-            this.Tactics.Width = 32;
+            this.toolStripSeparator11.Name = "toolStripSeparator11";
+            this.toolStripSeparator11.Size = new System.Drawing.Size(6, 25);
             // 
-            // Technics
+            // toolStripLabel4
             // 
-            this.Technics.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Technics.DataPropertyName = "Technics";
-            this.Technics.FPn = 0;
-            this.Technics.HeaderText = "Tec";
-            this.Technics.Name = "Technics";
-            this.Technics.Width = 32;
+            this.toolStripLabel4.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripLabel4.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.toolStripLabel4.Name = "toolStripLabel4";
+            this.toolStripLabel4.Size = new System.Drawing.Size(87, 22);
+            this.toolStripLabel4.Text = "Load progress";
             // 
-            // Charisma
+            // tsbProgressBar
             // 
-            this.Charisma.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Charisma.DataPropertyName = "Charisma";
-            this.Charisma.FPn = 0;
-            this.Charisma.HeaderText = "Lea";
-            this.Charisma.Name = "Charisma";
-            this.Charisma.Width = 31;
+            this.tsbProgressBar.Name = "tsbProgressBar";
+            this.tsbProgressBar.Size = new System.Drawing.Size(62, 22);
+            this.tsbProgressBar.Step = 5;
             // 
-            // Professionalism
+            // tsbProgressText
             // 
-            this.Professionalism.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Professionalism.DataPropertyName = "Professionalism";
-            this.Professionalism.FPn = 0;
-            this.Professionalism.HeaderText = "Pro";
-            this.Professionalism.Name = "Professionalism";
-            this.Professionalism.Width = 29;
+            this.tsbProgressText.Name = "tsbProgressText";
+            this.tsbProgressText.Size = new System.Drawing.Size(10, 22);
+            this.tsbProgressText.Text = " ";
             // 
-            // aggressivityDataGridViewTextBoxColumn
+            // tsbImport
             // 
-            this.aggressivityDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.aggressivityDataGridViewTextBoxColumn.DataPropertyName = "Aggressivity";
-            this.aggressivityDataGridViewTextBoxColumn.FPn = 0;
-            this.aggressivityDataGridViewTextBoxColumn.HeaderText = "Agg";
-            this.aggressivityDataGridViewTextBoxColumn.Name = "aggressivityDataGridViewTextBoxColumn";
-            this.aggressivityDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.aggressivityDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.aggressivityDataGridViewTextBoxColumn.ToolTipText = "Aggressivity";
-            this.aggressivityDataGridViewTextBoxColumn.Width = 51;
+            this.tsbImport.BackColor = System.Drawing.SystemColors.Control;
+            this.tsbImport.Image = ((System.Drawing.Image)(resources.GetObject("tsbImport.Image")));
+            this.tsbImport.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbImport.Name = "tsbImport";
+            this.tsbImport.Size = new System.Drawing.Size(63, 22);
+            this.tsbImport.Text = "Import";
+            this.tsbImport.Click += new System.EventHandler(this.tsbImport_Click);
             // 
-            // reviewDataTableBindingSource
+            // lblAge
             // 
-            this.reviewDataTableBindingSource.DataSource = typeof(Common.ScoutsNReviews.ReviewDataTable);
+            this.lblAge.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblAge.Location = new System.Drawing.Point(177, 72);
+            this.lblAge.Name = "lblAge";
+            this.lblAge.Size = new System.Drawing.Size(71, 18);
+            this.lblAge.TabIndex = 8;
+            this.lblAge.Text = "27";
+            this.lblAge.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblASI
+            // 
+            this.lblASI.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblASI.Location = new System.Drawing.Point(177, 49);
+            this.lblASI.Name = "lblASI";
+            this.lblASI.Size = new System.Drawing.Size(71, 18);
+            this.lblASI.TabIndex = 9;
+            this.lblASI.Text = "9891";
+            this.lblASI.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(144, 75);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(26, 13);
+            this.label8.TabIndex = 6;
+            this.label8.Text = "Age";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(146, 52);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(24, 13);
+            this.label6.TabIndex = 7;
+            this.label6.Text = "ASI";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.lblRoutine);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.gkData1);
+            this.groupBox1.Location = new System.Drawing.Point(6, 95);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(245, 118);
+            this.groupBox1.TabIndex = 10;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "GK Skill";
+            // 
+            // lblRoutine
+            // 
+            this.lblRoutine.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.lblRoutine.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblRoutine.Location = new System.Drawing.Point(55, 96);
+            this.lblRoutine.Name = "lblRoutine";
+            this.lblRoutine.Size = new System.Drawing.Size(36, 17);
+            this.lblRoutine.TabIndex = 16;
+            this.lblRoutine.Text = "0";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(9, 98);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(44, 13);
+            this.label2.TabIndex = 15;
+            this.label2.Text = "Routine";
             // 
             // gkData1
             // 
@@ -1694,6 +1476,449 @@ namespace TMRecorder
             this.gkData1.Name = "gkData1";
             this.gkData1.Size = new System.Drawing.Size(236, 77);
             this.gkData1.TabIndex = 5;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox2.Controls.Add(this.splitContainer1);
+            this.groupBox2.Location = new System.Drawing.Point(6, 214);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(245, 312);
+            this.groupBox2.TabIndex = 11;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Player Infos";
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(3, 16);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.dataGridView2);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.label5);
+            this.splitContainer1.Panel2.Controls.Add(this.txtNotes);
+            this.splitContainer1.Size = new System.Drawing.Size(239, 293);
+            this.splitContainer1.SplitterDistance = 190;
+            this.splitContainer1.TabIndex = 10;
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.AllowUserToDeleteRows = false;
+            this.dataGridView2.AutoGenerateColumns = false;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.seasonDataGridViewTextBoxColumn,
+            this.gPDataGridViewTextBoxColumn,
+            this.gDataGridViewTextBoxColumn,
+            this.aDataGridViewTextBoxColumn,
+            this.cardsDataGridViewTextBoxColumn,
+            this.ratDataGridViewTextBoxColumn,
+            this.ratDevDataGridViewTextBoxColumn});
+            this.dataGridView2.DataSource = this.performancesBindingSource;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle8;
+            this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView2.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.ReadOnly = true;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView2.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            this.dataGridView2.RowHeadersWidth = 10;
+            this.dataGridView2.RowTemplate.Height = 19;
+            this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView2.Size = new System.Drawing.Size(239, 190);
+            this.dataGridView2.TabIndex = 1;
+            // 
+            // seasonDataGridViewTextBoxColumn
+            // 
+            this.seasonDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.seasonDataGridViewTextBoxColumn.DataPropertyName = "Season";
+            this.seasonDataGridViewTextBoxColumn.HeaderText = "Sea";
+            this.seasonDataGridViewTextBoxColumn.MinimumWidth = 30;
+            this.seasonDataGridViewTextBoxColumn.Name = "seasonDataGridViewTextBoxColumn";
+            this.seasonDataGridViewTextBoxColumn.ReadOnly = true;
+            this.seasonDataGridViewTextBoxColumn.ToolTipText = "Season";
+            // 
+            // gPDataGridViewTextBoxColumn
+            // 
+            this.gPDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.gPDataGridViewTextBoxColumn.DataPropertyName = "GP";
+            this.gPDataGridViewTextBoxColumn.HeaderText = "GP";
+            this.gPDataGridViewTextBoxColumn.MinimumWidth = 30;
+            this.gPDataGridViewTextBoxColumn.Name = "gPDataGridViewTextBoxColumn";
+            this.gPDataGridViewTextBoxColumn.ReadOnly = true;
+            this.gPDataGridViewTextBoxColumn.ToolTipText = "Game Played";
+            this.gPDataGridViewTextBoxColumn.Width = 30;
+            // 
+            // gDataGridViewTextBoxColumn
+            // 
+            this.gDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.gDataGridViewTextBoxColumn.DataPropertyName = "G";
+            this.gDataGridViewTextBoxColumn.HeaderText = "G";
+            this.gDataGridViewTextBoxColumn.MinimumWidth = 30;
+            this.gDataGridViewTextBoxColumn.Name = "gDataGridViewTextBoxColumn";
+            this.gDataGridViewTextBoxColumn.ReadOnly = true;
+            this.gDataGridViewTextBoxColumn.ToolTipText = "Goals";
+            this.gDataGridViewTextBoxColumn.Width = 30;
+            // 
+            // aDataGridViewTextBoxColumn
+            // 
+            this.aDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.aDataGridViewTextBoxColumn.DataPropertyName = "A";
+            this.aDataGridViewTextBoxColumn.HeaderText = "A";
+            this.aDataGridViewTextBoxColumn.MinimumWidth = 30;
+            this.aDataGridViewTextBoxColumn.Name = "aDataGridViewTextBoxColumn";
+            this.aDataGridViewTextBoxColumn.ReadOnly = true;
+            this.aDataGridViewTextBoxColumn.ToolTipText = "Assists";
+            this.aDataGridViewTextBoxColumn.Width = 30;
+            // 
+            // cardsDataGridViewTextBoxColumn
+            // 
+            this.cardsDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.cardsDataGridViewTextBoxColumn.DataPropertyName = "Cards";
+            this.cardsDataGridViewTextBoxColumn.HeaderText = "Crd";
+            this.cardsDataGridViewTextBoxColumn.MinimumWidth = 30;
+            this.cardsDataGridViewTextBoxColumn.Name = "cardsDataGridViewTextBoxColumn";
+            this.cardsDataGridViewTextBoxColumn.ReadOnly = true;
+            this.cardsDataGridViewTextBoxColumn.ToolTipText = "Cards";
+            this.cardsDataGridViewTextBoxColumn.Width = 30;
+            // 
+            // ratDataGridViewTextBoxColumn
+            // 
+            this.ratDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.ratDataGridViewTextBoxColumn.DataPropertyName = "Rat";
+            dataGridViewCellStyle7.Format = "N1";
+            this.ratDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle7;
+            this.ratDataGridViewTextBoxColumn.HeaderText = "Rat";
+            this.ratDataGridViewTextBoxColumn.MinimumWidth = 33;
+            this.ratDataGridViewTextBoxColumn.Name = "ratDataGridViewTextBoxColumn";
+            this.ratDataGridViewTextBoxColumn.ReadOnly = true;
+            this.ratDataGridViewTextBoxColumn.ToolTipText = "Ratings";
+            this.ratDataGridViewTextBoxColumn.Width = 33;
+            // 
+            // ratDevDataGridViewTextBoxColumn
+            // 
+            this.ratDevDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.ratDevDataGridViewTextBoxColumn.DataPropertyName = "MoM";
+            this.ratDevDataGridViewTextBoxColumn.HeaderText = "MoM";
+            this.ratDevDataGridViewTextBoxColumn.MinimumWidth = 38;
+            this.ratDevDataGridViewTextBoxColumn.Name = "ratDevDataGridViewTextBoxColumn";
+            this.ratDevDataGridViewTextBoxColumn.ReadOnly = true;
+            this.ratDevDataGridViewTextBoxColumn.ToolTipText = "Man of the Match";
+            this.ratDevDataGridViewTextBoxColumn.Width = 38;
+            // 
+            // performancesBindingSource
+            // 
+            this.performancesBindingSource.DataMember = "Performances";
+            this.performancesBindingSource.DataSource = this.gameTableDS;
+            // 
+            // gameTableDS
+            // 
+            this.gameTableDS.DataSetName = "GameTable";
+            this.gameTableDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(3, 3);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(35, 13);
+            this.label5.TabIndex = 5;
+            this.label5.Text = "Notes";
+            // 
+            // txtNotes
+            // 
+            this.txtNotes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtNotes.Location = new System.Drawing.Point(0, 19);
+            this.txtNotes.Multiline = true;
+            this.txtNotes.Name = "txtNotes";
+            this.txtNotes.ReadOnly = true;
+            this.txtNotes.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtNotes.Size = new System.Drawing.Size(239, 80);
+            this.txtNotes.TabIndex = 6;
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel2,
+            this.toolStripButton1,
+            this.toolStripButton2,
+            this.toolStripSeparator2,
+            this.toolStripLabel1,
+            this.tsbPlayers,
+            this.toolStripButton4,
+            this.tsbComputeGrowth});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(942, 25);
+            this.toolStrip1.TabIndex = 12;
+            this.toolStrip1.Text = "toolStripMenu";
+            // 
+            // toolStripLabel2
+            // 
+            this.toolStripLabel2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripLabel2.Name = "toolStripLabel2";
+            this.toolStripLabel2.Size = new System.Drawing.Size(48, 22);
+            this.toolStripLabel2.Text = "Browse";
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(88, 22);
+            this.toolStripButton1.Text = "Prev. Player";
+            this.toolStripButton1.Click += new System.EventHandler(this.btnPrev_Click);
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(86, 22);
+            this.toolStripButton2.Text = "Next Player";
+            this.toolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.toolStripButton2.Click += new System.EventHandler(this.btnNext_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(28, 22);
+            this.toolStripLabel1.Text = "Edit";
+            // 
+            // tsbPlayers
+            // 
+            this.tsbPlayers.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.gKToolStripMenuItem});
+            this.tsbPlayers.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsbPlayers.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.tsbPlayers.Image = ((System.Drawing.Image)(resources.GetObject("tsbPlayers.Image")));
+            this.tsbPlayers.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbPlayers.Name = "tsbPlayers";
+            this.tsbPlayers.Size = new System.Drawing.Size(254, 22);
+            this.tsbPlayers.Text = "[FC] Robert \"O Baixinho\" Scherpenzeel";
+            // 
+            // gKToolStripMenuItem
+            // 
+            this.gKToolStripMenuItem.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.gKToolStripMenuItem.Name = "gKToolStripMenuItem";
+            this.gKToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.gKToolStripMenuItem.Text = "GK - Goalkeepers";
+            // 
+            // toolStripButton4
+            // 
+            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
+            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton4.Name = "toolStripButton4";
+            this.toolStripButton4.Size = new System.Drawing.Size(100, 22);
+            this.toolStripButton4.Text = "Explore Player";
+            this.toolStripButton4.Click += new System.EventHandler(this.openPlayerPageToolStripMenuItem_Click);
+            // 
+            // tsbComputeGrowth
+            // 
+            this.tsbComputeGrowth.Image = ((System.Drawing.Image)(resources.GetObject("tsbComputeGrowth.Image")));
+            this.tsbComputeGrowth.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbComputeGrowth.Name = "tsbComputeGrowth";
+            this.tsbComputeGrowth.Size = new System.Drawing.Size(119, 22);
+            this.tsbComputeGrowth.Text = "Compute Growth";
+            this.tsbComputeGrowth.Click += new System.EventHandler(this.tsbComputeGrowth_Click);
+            // 
+            // lblWage
+            // 
+            this.lblWage.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblWage.Location = new System.Drawing.Point(59, 72);
+            this.lblWage.Name = "lblWage";
+            this.lblWage.Size = new System.Drawing.Size(69, 18);
+            this.lblWage.TabIndex = 14;
+            this.lblWage.Text = "27";
+            this.lblWage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(17, 75);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(36, 13);
+            this.label1.TabIndex = 13;
+            this.label1.Text = "Wage";
+            // 
+            // reviewDataTableBindingSource
+            // 
+            this.reviewDataTableBindingSource.DataSource = typeof(Common.ScoutsNReviews.ReviewDataTable);
+            // 
+            // PlayerAge
+            // 
+            this.PlayerAge.DataPropertyName = "Age";
+            this.PlayerAge.HeaderText = "Age";
+            this.PlayerAge.Name = "PlayerAge";
+            this.PlayerAge.ReadOnly = true;
+            this.PlayerAge.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.PlayerAge.When = new System.DateTime(2015, 4, 19, 18, 30, 40, 171);
+            this.PlayerAge.Width = 40;
+            // 
+            // absWeekDataGridViewTextBoxColumn
+            // 
+            this.absWeekDataGridViewTextBoxColumn.DataPropertyName = "absWeek";
+            this.absWeekDataGridViewTextBoxColumn.HeaderText = "Week";
+            this.absWeekDataGridViewTextBoxColumn.Name = "absWeekDataGridViewTextBoxColumn";
+            this.absWeekDataGridViewTextBoxColumn.ReadOnly = true;
+            this.absWeekDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.absWeekDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.absWeekDataGridViewTextBoxColumn.Width = 40;
+            // 
+            // forDataGridViewTextBoxColumn
+            // 
+            this.forDataGridViewTextBoxColumn.DataPropertyName = "For";
+            this.forDataGridViewTextBoxColumn.HeaderText = "Str";
+            this.forDataGridViewTextBoxColumn.Name = "forDataGridViewTextBoxColumn";
+            this.forDataGridViewTextBoxColumn.ReadOnly = true;
+            this.forDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.forDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.forDataGridViewTextBoxColumn.Width = 26;
+            // 
+            // resDataGridViewTextBoxColumn
+            // 
+            this.resDataGridViewTextBoxColumn.DataPropertyName = "Res";
+            this.resDataGridViewTextBoxColumn.HeaderText = "Res";
+            this.resDataGridViewTextBoxColumn.Name = "resDataGridViewTextBoxColumn";
+            this.resDataGridViewTextBoxColumn.ReadOnly = true;
+            this.resDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.resDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.resDataGridViewTextBoxColumn.Width = 26;
+            // 
+            // velDataGridViewTextBoxColumn
+            // 
+            this.velDataGridViewTextBoxColumn.DataPropertyName = "Vel";
+            this.velDataGridViewTextBoxColumn.HeaderText = "Pac";
+            this.velDataGridViewTextBoxColumn.Name = "velDataGridViewTextBoxColumn";
+            this.velDataGridViewTextBoxColumn.ReadOnly = true;
+            this.velDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.velDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.velDataGridViewTextBoxColumn.Width = 26;
+            // 
+            // marDataGridViewTextBoxColumn
+            // 
+            this.marDataGridViewTextBoxColumn.DataPropertyName = "Mar";
+            this.marDataGridViewTextBoxColumn.HeaderText = "Han";
+            this.marDataGridViewTextBoxColumn.Name = "marDataGridViewTextBoxColumn";
+            this.marDataGridViewTextBoxColumn.ReadOnly = true;
+            this.marDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.marDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.marDataGridViewTextBoxColumn.Width = 26;
+            // 
+            // conDataGridViewTextBoxColumn
+            // 
+            this.conDataGridViewTextBoxColumn.DataPropertyName = "Con";
+            this.conDataGridViewTextBoxColumn.HeaderText = "One";
+            this.conDataGridViewTextBoxColumn.Name = "conDataGridViewTextBoxColumn";
+            this.conDataGridViewTextBoxColumn.ReadOnly = true;
+            this.conDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.conDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.conDataGridViewTextBoxColumn.Width = 26;
+            // 
+            // worDataGridViewTextBoxColumn
+            // 
+            this.worDataGridViewTextBoxColumn.DataPropertyName = "Wor";
+            this.worDataGridViewTextBoxColumn.HeaderText = "Ref";
+            this.worDataGridViewTextBoxColumn.Name = "worDataGridViewTextBoxColumn";
+            this.worDataGridViewTextBoxColumn.ReadOnly = true;
+            this.worDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.worDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.worDataGridViewTextBoxColumn.Width = 26;
+            // 
+            // posDataGridViewTextBoxColumn
+            // 
+            this.posDataGridViewTextBoxColumn.DataPropertyName = "Pos";
+            this.posDataGridViewTextBoxColumn.HeaderText = "Aer";
+            this.posDataGridViewTextBoxColumn.Name = "posDataGridViewTextBoxColumn";
+            this.posDataGridViewTextBoxColumn.ReadOnly = true;
+            this.posDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.posDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.posDataGridViewTextBoxColumn.Width = 26;
+            // 
+            // pasDataGridViewTextBoxColumn
+            // 
+            this.pasDataGridViewTextBoxColumn.DataPropertyName = "Pas";
+            this.pasDataGridViewTextBoxColumn.HeaderText = "Jum";
+            this.pasDataGridViewTextBoxColumn.Name = "pasDataGridViewTextBoxColumn";
+            this.pasDataGridViewTextBoxColumn.ReadOnly = true;
+            this.pasDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.pasDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.pasDataGridViewTextBoxColumn.Width = 26;
+            // 
+            // croDataGridViewTextBoxColumn
+            // 
+            this.croDataGridViewTextBoxColumn.DataPropertyName = "Cro";
+            this.croDataGridViewTextBoxColumn.HeaderText = "Com";
+            this.croDataGridViewTextBoxColumn.Name = "croDataGridViewTextBoxColumn";
+            this.croDataGridViewTextBoxColumn.ReadOnly = true;
+            this.croDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.croDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.croDataGridViewTextBoxColumn.Width = 26;
+            // 
+            // tecDataGridViewTextBoxColumn
+            // 
+            this.tecDataGridViewTextBoxColumn.DataPropertyName = "Tec";
+            this.tecDataGridViewTextBoxColumn.HeaderText = "Kic";
+            this.tecDataGridViewTextBoxColumn.Name = "tecDataGridViewTextBoxColumn";
+            this.tecDataGridViewTextBoxColumn.ReadOnly = true;
+            this.tecDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.tecDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.tecDataGridViewTextBoxColumn.Width = 26;
+            // 
+            // tesDataGridViewTextBoxColumn
+            // 
+            this.tesDataGridViewTextBoxColumn.DataPropertyName = "Tes";
+            this.tesDataGridViewTextBoxColumn.HeaderText = "Thr";
+            this.tesDataGridViewTextBoxColumn.Name = "tesDataGridViewTextBoxColumn";
+            this.tesDataGridViewTextBoxColumn.ReadOnly = true;
+            this.tesDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.tesDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.tesDataGridViewTextBoxColumn.Width = 26;
+            // 
+            // tIDataGridViewTextBoxColumn
+            // 
+            this.tIDataGridViewTextBoxColumn.DataPropertyName = "TI";
+            this.tIDataGridViewTextBoxColumn.HeaderText = "TI";
+            this.tIDataGridViewTextBoxColumn.Name = "tIDataGridViewTextBoxColumn";
+            this.tIDataGridViewTextBoxColumn.ReadOnly = true;
+            this.tIDataGridViewTextBoxColumn.Width = 30;
             // 
             // GKForm
             // 
@@ -1726,8 +1951,17 @@ namespace TMRecorder
             this.splitContainer2.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgScouts)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.scoutsNReviews)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgReviews)).EndInit();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            this.tabPage6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trainingBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerTraining)).EndInit();
             this.tabPlayerBrowser.ResumeLayout(false);
             this.toolStripContainer1.ContentPanel.ResumeLayout(false);
             this.toolStripContainer1.TopToolStripPanel.ResumeLayout(false);
@@ -1744,16 +1978,11 @@ namespace TMRecorder
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.performancesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gameTableDS)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gameTableDS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.performancesBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            this.tabPage5.ResumeLayout(false);
-            this.tabPage5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.scoutsNReviews)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgScouts)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgReviews)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.reviewDataTableBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1866,5 +2095,24 @@ namespace TMRecorder
         private DataGridViewCustomColumns.TMR_ReportColumn Professionalism;
         private DataGridViewCustomColumns.TMR_ReportColumn aggressivityDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource reviewDataTableBindingSource;
+        private System.Windows.Forms.TabPage tabPage6;
+        private System.Windows.Forms.BindingSource trainingBindingSource;
+        private PlayerTraining playerTraining;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private DataGridViewCustomColumns.TMR_TrainSkillColumn TrainingProgram;
+        private DataGridViewCustomColumns.TMR_AgeColumn PlayerAge;
+        private DataGridViewCustomColumns.TMR_DateColumn absWeekDataGridViewTextBoxColumn;
+        private DataGridViewCustomColumns.TMR_ArrowColumn forDataGridViewTextBoxColumn;
+        private DataGridViewCustomColumns.TMR_ArrowColumn resDataGridViewTextBoxColumn;
+        private DataGridViewCustomColumns.TMR_ArrowColumn velDataGridViewTextBoxColumn;
+        private DataGridViewCustomColumns.TMR_ArrowColumn marDataGridViewTextBoxColumn;
+        private DataGridViewCustomColumns.TMR_ArrowColumn conDataGridViewTextBoxColumn;
+        private DataGridViewCustomColumns.TMR_ArrowColumn worDataGridViewTextBoxColumn;
+        private DataGridViewCustomColumns.TMR_ArrowColumn posDataGridViewTextBoxColumn;
+        private DataGridViewCustomColumns.TMR_ArrowColumn pasDataGridViewTextBoxColumn;
+        private DataGridViewCustomColumns.TMR_ArrowColumn croDataGridViewTextBoxColumn;
+        private DataGridViewCustomColumns.TMR_ArrowColumn tecDataGridViewTextBoxColumn;
+        private DataGridViewCustomColumns.TMR_ArrowColumn tesDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tIDataGridViewTextBoxColumn;
     }
 }

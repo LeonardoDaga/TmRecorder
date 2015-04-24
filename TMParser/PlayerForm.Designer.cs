@@ -142,7 +142,6 @@ namespace TMRecorder
             this.label9 = new System.Windows.Forms.Label();
             this.lblRoutine = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
-            this.playerData1 = new TMRecorder.PlayerData();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
@@ -201,6 +200,7 @@ namespace TMRecorder
             this.scoutsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.extraDS = new Common.ExtraDS();
             this.ReportAnalysis = new Common.ReportAnalysis();
+            this.playerData1 = new TMRecorder.PlayerData();
             this.PlayerAge = new DataGridViewCustomColumns.TMR_AgeColumn(this.components);
             this.absWeekDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_DateColumn(this.components);
             this.forDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_ArrowColumn(this.components);
@@ -844,7 +844,7 @@ namespace TMRecorder
             // whatToDoHereToolStripMenuItem
             // 
             this.whatToDoHereToolStripMenuItem.Name = "whatToDoHereToolStripMenuItem";
-            this.whatToDoHereToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.whatToDoHereToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.whatToDoHereToolStripMenuItem.Text = "What To Do Here?";
             this.whatToDoHereToolStripMenuItem.Click += new System.EventHandler(this.whatToDoHereToolStripMenuItem_Click);
             // 
@@ -1955,15 +1955,6 @@ namespace TMRecorder
             this.label24.TabIndex = 2;
             this.label24.Text = "Routine";
             // 
-            // playerData1
-            // 
-            this.playerData1.BackColor = System.Drawing.SystemColors.Control;
-            this.playerData1.ForeColor = System.Drawing.Color.Black;
-            this.playerData1.Location = new System.Drawing.Point(9, 16);
-            this.playerData1.Name = "playerData1";
-            this.playerData1.Size = new System.Drawing.Size(230, 92);
-            this.playerData1.TabIndex = 1;
-            // 
             // groupBox2
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -2254,7 +2245,7 @@ namespace TMRecorder
             this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(147, 22);
+            this.toolStripButton3.Size = new System.Drawing.Size(146, 22);
             this.toolStripButton3.Text = "Export History To Excel";
             this.toolStripButton3.Click += new System.EventHandler(this.exportInExcelFormat_Click);
             // 
@@ -2291,6 +2282,7 @@ namespace TMRecorder
             this.tmR_AgeColumn1.DataPropertyName = "Age";
             this.tmR_AgeColumn1.HeaderText = "Age";
             this.tmR_AgeColumn1.Name = "tmR_AgeColumn1";
+            this.tmR_AgeColumn1.When = new System.DateTime(2015, 4, 19, 16, 39, 22, 335);
             this.tmR_AgeColumn1.Width = 40;
             // 
             // tmR_DateColumn1
@@ -2486,6 +2478,15 @@ namespace TMRecorder
             this.ReportAnalysis.DataSetName = "ReportAnalysis";
             this.ReportAnalysis.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
+            // playerData1
+            // 
+            this.playerData1.BackColor = System.Drawing.SystemColors.Control;
+            this.playerData1.ForeColor = System.Drawing.Color.Black;
+            this.playerData1.Location = new System.Drawing.Point(9, 16);
+            this.playerData1.Name = "playerData1";
+            this.playerData1.Size = new System.Drawing.Size(230, 92);
+            this.playerData1.TabIndex = 1;
+            // 
             // PlayerAge
             // 
             this.PlayerAge.DataPropertyName = "Age";
@@ -2493,6 +2494,7 @@ namespace TMRecorder
             this.PlayerAge.Name = "PlayerAge";
             this.PlayerAge.ReadOnly = true;
             this.PlayerAge.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.PlayerAge.When = new System.DateTime(2015, 4, 19, 18, 31, 41, 824);
             this.PlayerAge.Width = 40;
             // 
             // absWeekDataGridViewTextBoxColumn
@@ -2628,7 +2630,7 @@ namespace TMRecorder
             // tirDataGridViewTextBoxColumn
             // 
             this.tirDataGridViewTextBoxColumn.DataPropertyName = "Tir";
-            this.tirDataGridViewTextBoxColumn.HeaderText = "Tir";
+            this.tirDataGridViewTextBoxColumn.HeaderText = "Lon";
             this.tirDataGridViewTextBoxColumn.Name = "tirDataGridViewTextBoxColumn";
             this.tirDataGridViewTextBoxColumn.ReadOnly = true;
             this.tirDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -2638,7 +2640,7 @@ namespace TMRecorder
             // calDataGridViewTextBoxColumn
             // 
             this.calDataGridViewTextBoxColumn.DataPropertyName = "Cal";
-            this.calDataGridViewTextBoxColumn.HeaderText = "CP";
+            this.calDataGridViewTextBoxColumn.HeaderText = "Set";
             this.calDataGridViewTextBoxColumn.Name = "calDataGridViewTextBoxColumn";
             this.calDataGridViewTextBoxColumn.ReadOnly = true;
             this.calDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;

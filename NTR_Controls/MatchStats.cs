@@ -120,6 +120,7 @@ namespace NTR_Controls
 
         private ItemDictionary Table = null;
 
+        public int highlightedRow { get; set; }
         public int selectedRow { get; set; }
 
         public bool IsSelectable { get; set; }
@@ -131,6 +132,7 @@ namespace NTR_Controls
             InitializeComponent();
             this.DoubleBuffered = true;
             this.MouseWheel += MatchStats_MouseWheel;
+            highlightedRow = -1;
             selectedRow = -1;
         }
 
@@ -187,7 +189,8 @@ namespace NTR_Controls
             sf.LineAlignment = StringAlignment.Center;
 
             // Selected Row pen
-            Pen penRect = new Pen(Color.Gray);
+            Pen penHighlight = new Pen(Color.LightGray);
+            Pen penSelect = new Pen(Color.Red);
 
             // Drawing the title
             SizeF szf = e.Graphics.MeasureString(Title, TitleFont);
@@ -274,10 +277,16 @@ namespace NTR_Controls
                         colLeft += colSizes[iCol];
                     }
 
+                    if ((iRow == highlightedRow) && (IsSelectable) && !row.IsHeader)
+                    {
+                        Rectangle cellRectangle = new Rectangle(0, (int)rowTop, this.Width, (int)szf.Height);
+                        e.Graphics.DrawRectangle(penHighlight, cellRectangle);
+                    }
+
                     if ((iRow == selectedRow) && (IsSelectable) && !row.IsHeader)
                     {
                         Rectangle cellRectangle = new Rectangle(0, (int)rowTop, this.Width, (int)szf.Height);
-                        e.Graphics.DrawRectangle(penRect, cellRectangle);
+                        e.Graphics.DrawRectangle(penSelect, cellRectangle);
                     }
 
                     rowTop += maxRowHeight;
@@ -354,7 +363,38 @@ namespace NTR_Controls
 
         private void MatchStats_MouseClick(object sender, MouseEventArgs e)
         {
+            if (!IsSelectable)
+                return;
 
+            int i;
+            for (i = -1; i < rowTops.Length - 1; i++)
+            {
+                if (e.Y < rowTops[i + 1])
+                    break;
+            }
+
+            if (i == -1)
+            {
+                return;
+            }
+
+            if (i >= rowTops.Length - 1)
+                i = rowTops.Length - 2;
+
+            if (i != selectedRow)
+            {
+                Rectangle oldRectangle;
+                if (selectedRow != -1)
+                {
+                    oldRectangle = new Rectangle(0, (int)rowTops[selectedRow], (int)this.Width, (int)rowTops[highlightedRow + 1]);
+                    Invalidate(oldRectangle);
+                }
+
+                selectedRow = i;
+
+                Rectangle newRectangle = new Rectangle(0, (int)rowTops[selectedRow], this.Width, (int)rowTops[highlightedRow + 1]);
+                Invalidate(newRectangle);
+            }
         }
 
         private void MatchStats_MouseWheel(object sender, MouseEventArgs e)
@@ -381,20 +421,42 @@ namespace NTR_Controls
             if (i >= rowTops.Length - 1)
                 i = rowTops.Length - 2;
 
-            if (i != selectedRow)
+            if (i != highlightedRow)
             {
                 Rectangle oldRectangle;
-                if (selectedRow != -1)
+                if (highlightedRow != -1)
                 {
-                    oldRectangle = new Rectangle(0, (int)rowTops[selectedRow], (int)this.Width, (int)rowTops[selectedRow + 1]);
+                    oldRectangle = new Rectangle(0, (int)rowTops[highlightedRow], (int)this.Width, (int)rowTops[highlightedRow + 1]);
                     Invalidate(oldRectangle);
                 }
 
-                selectedRow = i;
+                highlightedRow = i;
 
-                Rectangle newRectangle = new Rectangle(0, (int)rowTops[selectedRow], this.Width, (int)rowTops[selectedRow + 1]);
+                Rectangle newRectangle = new Rectangle(0, (int)rowTops[highlightedRow], this.Width, (int)rowTops[highlightedRow + 1]);
                 Invalidate(newRectangle);
             }
+        }
+
+        private void MatchStats_MouseLeave(object sender, EventArgs e)
+        {
+            if (highlightedRow == -1)
+                return;
+            Rectangle oldRectangle = new Rectangle(0, (int)rowTops[highlightedRow], (int)this.Width, (int)rowTops[highlightedRow + 1]);
+            Invalidate(oldRectangle);
+            highlightedRow = -1;
+        }
+
+        private void MatchStats_Enter(object sender, EventArgs e)
+        {
+        }
+
+        private void MatchStats_Leave(object sender, EventArgs e)
+        {
+            if (selectedRow == -1)
+                return;
+            Rectangle oldRectangle = new Rectangle(0, (int)rowTops[selectedRow], (int)this.Width, (int)rowTops[selectedRow + 1]);
+            Invalidate(oldRectangle);
+            selectedRow = -1;
         }
     }
 

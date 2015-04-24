@@ -94,6 +94,17 @@ namespace DataGridViewCustomColumns
             Brush fbr = null, bbr = null;
             Pen gbr = null;
 
+            decimal val;
+
+            try
+            {
+                val = (decimal)value;
+            }
+            catch
+            {
+                return;
+            }
+
             TMR_ArrowColumn dnc = (TMR_ArrowColumn)this.OwningColumn;            
 
             DataGridViewElementStates isSelected = cellState & DataGridViewElementStates.Selected;
@@ -116,7 +127,6 @@ namespace DataGridViewCustomColumns
             pt.Offset(1, (cellRect.Height - dnc.arrowIcons.ImageSize.Height) / 2);
 
             Image image = null;
-            decimal val = (decimal)value;
 
             int skVal = ((int)val) / 100;
 

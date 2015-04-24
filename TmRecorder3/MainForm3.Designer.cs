@@ -697,7 +697,7 @@
         ((NTR_Controls.Row)(resources.GetObject("msActionsAway.Rows7"))),
         ((NTR_Controls.Row)(resources.GetObject("msActionsAway.Rows8"))),
         ((NTR_Controls.Row)(resources.GetObject("msActionsAway.Rows9")))};
-            this.msActionsAway.selectedRow = -1;
+            this.msActionsAway.highlightedRow = -1;
             this.msActionsAway.Size = new System.Drawing.Size(234, 191);
             this.msActionsAway.TabIndex = 13;
             this.msActionsAway.Title = "Actions";
@@ -742,7 +742,7 @@
         ((NTR_Controls.Row)(resources.GetObject("msTacticsBreakdown.Rows"))),
         ((NTR_Controls.Row)(resources.GetObject("msTacticsBreakdown.Rows1"))),
         ((NTR_Controls.Row)(resources.GetObject("msTacticsBreakdown.Rows2")))};
-            this.msTacticsBreakdown.selectedRow = -1;
+            this.msTacticsBreakdown.highlightedRow = -1;
             this.msTacticsBreakdown.Size = new System.Drawing.Size(184, 102);
             this.msTacticsBreakdown.TabIndex = 12;
             this.msTacticsBreakdown.Title = "Tactics Breakdown";
@@ -810,7 +810,7 @@
         ((NTR_Controls.Row)(resources.GetObject("msActionsHome.Rows7"))),
         ((NTR_Controls.Row)(resources.GetObject("msActionsHome.Rows8"))),
         ((NTR_Controls.Row)(resources.GetObject("msActionsHome.Rows9")))};
-            this.msActionsHome.selectedRow = -1;
+            this.msActionsHome.highlightedRow = -1;
             this.msActionsHome.Size = new System.Drawing.Size(234, 187);
             this.msActionsHome.TabIndex = 12;
             this.msActionsHome.Title = "Actions";
@@ -858,7 +858,7 @@
         ((NTR_Controls.Row)(resources.GetObject("msGameBreakDown.Rows2"))),
         ((NTR_Controls.Row)(resources.GetObject("msGameBreakDown.Rows3"))),
         ((NTR_Controls.Row)(resources.GetObject("msGameBreakDown.Rows4")))};
-            this.msGameBreakDown.selectedRow = -1;
+            this.msGameBreakDown.highlightedRow = -1;
             this.msGameBreakDown.Size = new System.Drawing.Size(184, 102);
             this.msGameBreakDown.TabIndex = 12;
             this.msGameBreakDown.Title = "Game Breakdown";

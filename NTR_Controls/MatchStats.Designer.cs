@@ -36,7 +36,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "MatchStats";
             this.Size = new System.Drawing.Size(257, 184);
+            this.Enter += new System.EventHandler(this.MatchStats_Enter);
+            this.Leave += new System.EventHandler(this.MatchStats_Leave);
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MatchStats_MouseClick);
+            this.MouseLeave += new System.EventHandler(this.MatchStats_MouseLeave);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MatchStats_MouseMove);
             this.ResumeLayout(false);
 

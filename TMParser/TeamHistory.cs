@@ -3039,6 +3039,294 @@ namespace TMRecorder
 
         }
 
+        internal void FillGKTrainingTable(PlayerTraining playerTraining, int playerID)
+        {
+            ExtraDS.GiocatoriRow egr = PlayersDS.Giocatori.FindByPlayerID(playerID);
+            int ix = -1;
+            TrainingDataSet tds_in = null;
+            int check = 0;
+
+            TrainingHist.Sort(ListTrainingDataSet.CompareTrainingByDate);
+
+            try
+            {
+                foreach (TrainingDataSet tds in TrainingHist)
+                {
+                    tds_in = tds;
+
+                    TrainingDataSet.PortieriRow gr = tds.Portieri.FindByPlayerID(playerID);
+                    if (gr == null) continue;
+
+                    PlayerTraining.TrainingRow tr = playerTraining.Training.NewTrainingRow();
+                    tr.absWeek = TmWeek.GetTmAbsWk(tds.WeekNoData[0].Date);
+
+                    int cnt = 0;
+                    ix = this.Count - 1;
+                    check++;
+                    while (TmWeek.GetTmAbsWk(this[ix].Date) != tr.absWeek)
+                    {
+                        check++;
+                        ix = ix - 1;
+                        cnt = cnt + 1;
+
+                        if (ix == -1) ix = this.Count - 1;
+                        if (cnt == this.Count * 2) break;
+                    }
+
+                    check++;
+                    if (cnt == this.Count * 2) continue; // not found
+
+                    ExtTMDataSet.PortieriNSkillRow gsr = this[ix].PortieriNSkill.FindByPlayerID(playerID);
+
+                    if (gsr == null) continue;
+
+                    check++;
+                    tr.For = gr.For + 2 + (int)gsr.For * 100;
+                    tr.Res = gr.Res + 2 + (int)gsr.Res * 100;
+                    tr.Vel = gr.Vel + 2 + (int)gsr.Vel * 100;
+                    tr.Mar = gr.Pre + 2 + (int)gsr.Pre * 100;
+                    tr.Con = gr.Uno + 2 + (int)gsr.Uno * 100;
+                    tr.Wor = gr.Rif + 2 + (int)gsr.Rif * 100;
+                    tr.Pos = gr.Aer + 2 + (int)gsr.Aer * 100;
+                    tr.Pas = gr.Ele + 2 + (int)gsr.Ele * 100;
+                    tr.Cro = gr.Com + 2 + (int)gsr.Com * 100;
+                    tr.Tec = gr.Tir + 2 + (int)gsr.Tir * 100;
+                    tr.Tes = gr.Lan + 2 + (int)gsr.Lan * 100;
+
+                    check++;
+                    tr.Age = egr.wBorn + (TmWeek.thisWeek().absweek - tr.absWeek);
+                    tr.TI = gr.TI;
+
+                    check++;
+                    if (!gr.IsTrainerIDNull() && gr.TrainerID != 0)
+                    {
+                        if (gr.TrainerID > 0)
+                        {
+                            TrainingDataSet.TrainersRow trr = tds.Trainers.FindByID(gr.TrainerID);
+                            if (trr == null)
+                            {
+                                tr.TrainerName = "No Name";
+                                tr.Percentage = 0;
+                            }
+                            else
+                            {
+                                tr.TrainerName = trr.Name;
+                                tr.Percentage = trr.Percentage;
+                            }
+                            tr.Program = "";
+
+                            TrainersSkills.TrainersRow tstr = null;
+                            if (dbTrainers != null)
+                                tstr = dbTrainers.Trainers.FindByID(gr.TrainerID);
+
+                            check++;
+                            if (tstr != null)
+                            {
+                                if (!tstr.IsMotNull())
+                                    tr.TrainerMot = (int)tstr.Mot;
+
+                                if ((trr.Program & 1) > 0)
+                                {
+                                    tr.For += 10;
+                                    tr.Res += 10;
+                                    tr.Wor += 10;
+                                    tr.Program += "Phy:" + tstr.Fis.ToString() + ";";
+                                }
+                                if ((trr.Program & 2) > 0)
+                                {
+                                    tr.Mar += 20;
+                                    tr.Con += 20;
+                                    tr.Program += "Def:" + tstr.Dif.ToString() + ";";
+                                }
+                                if ((trr.Program & 4) > 0)
+                                {
+                                    tr.Pas += 30;
+                                    tr.Cal += 30;
+                                    tr.Tec += 30;
+                                    tr.Program += "Tec:" + tstr.Tec.ToString() + ";";
+                                }
+                                if ((trr.Program & 8) > 0)
+                                {
+                                    tr.Vel += 40;
+                                    tr.Cro += 40;
+                                    tr.Program += "Win:" + tstr.Win.ToString() + ";";
+                                }
+                                if ((trr.Program & 16) > 0)
+                                {
+                                    tr.Tes += 50;
+                                    tr.Pos += 50;
+                                    tr.Program += "Hea:" + tstr.Hea.ToString() + ";";
+                                }
+                                if ((trr.Program & 32) > 0)
+                                {
+                                    tr.Fin += 60;
+                                    tr.Tir += 60;
+                                    tr.Program += "Att:" + tstr.Att.ToString() + ";";
+                                }
+                            }
+                            else
+                            {
+                                tr.Program = "-";
+                            }
+                        }
+                        else
+                        {
+                            int trainingType = -gr.TrainerID;
+                            switch (trainingType)
+                            {
+                                case 1:
+                                    tr.TrainerName = "Allenamento Tecnico";
+                                    tr.Program = "Tec;Pas;Set;";
+                                    tr.Tec += 30;
+                                    tr.Pas += 30;
+                                    tr.Cal += 30;
+                                    break;
+                                case 2:
+                                    tr.TrainerName = "Allenamento Fisico";
+                                    tr.Program = "Str;Sta;Pac;Wor;";
+                                    tr.For += 10;
+                                    tr.Res += 10;
+                                    tr.Vel += 10;
+                                    tr.Wor += 10;
+                                    break;
+                                case 3:
+                                    tr.TrainerName = "Allenamento Tattico";
+                                    tr.Program = "Wor;Pos;Pas;";
+                                    tr.Wor += 50;
+                                    tr.Pos += 50;
+                                    tr.Pas += 50;
+                                    break;
+                                case 4:
+                                    tr.TrainerName = "Allenamento Finalizzazione";
+                                    tr.Program = "Fin;Lon;Hea;";
+                                    tr.Fin += 60;
+                                    tr.Tir += 60;
+                                    tr.Tes += 60;
+                                    break;
+                                case 5:
+                                    tr.TrainerName = "Allenamento Difensivo";
+                                    tr.Program = "Mar;Tak;Pos;Hea;";
+                                    tr.Mar += 20;
+                                    tr.Con += 20;
+                                    tr.Pos += 20;
+                                    tr.Tes += 20;
+                                    break;
+                                case 6:
+                                    tr.TrainerName = "Allenamento Fascia";
+                                    tr.Program = "Cro;Pac;Tec;";
+                                    tr.Cro += 40;
+                                    tr.Vel += 40;
+                                    tr.Tec += 40;
+                                    break;
+                                case 7:
+                                    tr.Program = "GK;";
+                                    break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        tr.TrainerName = "-";
+                        tr.Program = "-";
+                    }
+
+                    check++;
+                    PlayerTraining.TrainingRow trp = playerTraining.Training.FindByabsWeek(tr.absWeek);
+                    if (trp == null)
+                        playerTraining.Training.AddTrainingRow(tr);
+                    else
+                    {
+                        //playerTraining.Training.RemoveTrainingRow(trp);
+                        //playerTraining.Training.AddTrainingRow(tr);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                string swRelease = "Sw Release:" + Application.ProductName + "("
+                    + Application.ProductVersion + ")";
+
+                string info = "playerID = " + playerID.ToString() + "\r\n";
+                info += "check = " + check.ToString() + "\r\n";
+                info += "ix = " + ix.ToString() + "\r\n";
+                info += "this.Count = " + this.Count.ToString() + "\r\n";
+
+                string filename = "dbinfo." + DateTime.Now.Hour.ToString() +
+                    DateTime.Now.Minute.ToString() + ".tmreport.txt";
+                string pathfilename = Path.Combine(Program.Setts.TeamDataFolder, filename);
+                FileInfo fi = new FileInfo(pathfilename);
+
+                if (PlayersDS != null)
+                {
+                    PlayersDS.WriteXml(fi.FullName);
+                    StreamReader file = new StreamReader(fi.FullName);
+                    info += "PlayersDS:\r\n" + file.ReadToEnd();
+                    file.Close();
+                }
+                else
+                {
+                    info += "\r\nPlayerTraining:null\r\n";
+                }
+
+                if (playerTraining != null)
+                {
+                    playerTraining.WriteXml(fi.FullName);
+                    StreamReader file = new StreamReader(fi.FullName);
+                    info += "PlayerTraining:\r\n" + file.ReadToEnd();
+                    file.Close();
+                }
+                else
+                {
+                    info += "\r\nPlayerTraining:null\r\n";
+                }
+
+                if (dbTrainers != null)
+                {
+                    dbTrainers.WriteXml(fi.FullName);
+                    StreamReader file = new StreamReader(fi.FullName);
+                    info += "dbTrainers:\r\n" + file.ReadToEnd();
+                    file.Close();
+                }
+                else
+                {
+                    info += "\r\ndbTrainers:null\r\n";
+                }
+
+                if ((ix > this.Count - 1) || (ix < 0))
+                {
+                    info += "\r\nix out of limits\r\n";
+                }
+                else if (this[ix] != null)
+                {
+                    this[ix].WriteXml(fi.FullName);
+                    StreamReader file = new StreamReader(fi.FullName);
+                    info += "\r\nthis[ix]:\r\n" + file.ReadToEnd();
+                    file.Close();
+                }
+                else
+                {
+                    info += "\r\nthis[ix]:null\r\n";
+                }
+
+                if (tds_in != null)
+                {
+                    tds_in.WriteXml(fi.FullName);
+                    StreamReader file = new StreamReader(fi.FullName);
+                    info += "tds_in:\r\n" + file.ReadToEnd();
+                    file.Close();
+                }
+                else
+                {
+                    info += "tds_in:null\r\n";
+                }
+
+                ErrorReport.Send(e, info, Environment.StackTrace, swRelease);
+                MessageBox.Show(Current.Language.SorryTheImportingProcessHasFailedIfYouClickedOkTheInfoOfTheErrorHave +
+                    Current.Language.BeenSentToLedLennonThatWillRemoveThisBugAsSoonAsPossible);
+            }
+
+        }
+
         internal void UpdatePlayerDB(int ID, string item, object value)
         {
             if (item == "Ada")

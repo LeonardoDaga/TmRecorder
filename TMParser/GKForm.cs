@@ -122,6 +122,8 @@ namespace TMRecorder
 
             FillPlayerInfo(true);
 
+            FillTrainingTable(playerDatarow.PlayerID);
+
             string expression = "(PlayerID = " + playerDatarow.PlayerID + ")";
             ChampDS.PlyStatsRow[] drs = (ChampDS.PlyStatsRow[])plyStatsTable.Select(expression);
 
@@ -168,6 +170,13 @@ namespace TMRecorder
                 tagsBar.Tags.Add(key.Value);
             }
             tagsBar.Invalidate();
+        }
+
+        private void FillTrainingTable(int playerID)
+        {
+            playerTraining.Clear();
+
+            History.FillGKTrainingTable(playerTraining, playerID);
         }
 
         private void FillSeasonCombo(ChampDS.PlyStatsRow[] drs)

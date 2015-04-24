@@ -623,6 +623,9 @@ namespace TmRecorder3
 
             TmSWD selectedItem = (TmSWD)cbDataDay.SelectedItem;
 
+            if (ThisWeekPlayers == null)
+                return;
+
             EnumerableRowCollection<PlayerData> TempPlayers = (from c in ThisWeekPlayers
                       where (c.CStr > (decimal)qsMinRating.Value) &&
                           (((showD) && (c.FPn > 0) && (c.FPn < 30)) ||

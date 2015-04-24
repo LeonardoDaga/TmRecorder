@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace DataGridViewCustomColumns
 {
@@ -23,6 +24,17 @@ namespace DataGridViewCustomColumns
             ForeColor = font;
             SelectionBackColor = backhl;
             SelectionForeColor = fonthl;
+        }
+
+        public static CellColorStyle FromDataGridViewCellStyle(DataGridViewCellStyle gridViewCellStyle)
+        {
+            CellColorStyle ccStyle = new CellColorStyle(0, 100,
+                gridViewCellStyle.BackColor,
+                gridViewCellStyle.ForeColor,
+                gridViewCellStyle.SelectionBackColor,
+                gridViewCellStyle.SelectionForeColor);
+
+            return ccStyle;
         }
     }
 

@@ -442,7 +442,14 @@ namespace NTR_Db
                         continue;
                     }
 
+                    atr.Time = int.Parse(items["min"]);
+                    atr.TeamID = int.Parse(items["club"]);
+                    atr.MatchID = matchId;
+
                     string description = items["text"];
+                    string attPlayers = "";
+                    string defPlayers = "";
+
                     while (description.Contains("[player="))
                     {
                         string strnum = HTML_Parser.GetNumberAfter(description, "[player=");
@@ -458,7 +465,19 @@ namespace NTR_Db
                         string name = pr.Name;
 
                         description = description.Replace("[player=" + strnum + "]", name);
+
+                        if (pr.TeamRow.TeamID == atr.TeamID)
+                        {
+                            attPlayers += numPl.ToString() + ",";
+                        }
+                        else
+                        {
+                            defPlayers += numPl.ToString() + ",";
+                        }
                     }
+
+                    atr.Attackers = attPlayers;
+                    atr.Defenders = defPlayers;
 
                     atr.Description = description;
 
@@ -482,10 +501,6 @@ namespace NTR_Db
                                 break;
                         }
                     }
-
-                    atr.Time = int.Parse(items["min"]);
-                    atr.TeamID = int.Parse(items["club"]);
-                    atr.MatchID = matchId;
 
                     squadDB.Actions.AddActionsRow(atr);
                     

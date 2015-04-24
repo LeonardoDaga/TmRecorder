@@ -131,38 +131,45 @@ namespace DataGridViewCustomColumns
                 intvar intval = null;
                 decvar decval = null;
                 decimal quality = -1;
+                CellColorStyle cellStyle;
 
+                TMR_NumDecColumn dgc = (TMR_NumDecColumn)(this.OwningColumn);
+                
                 if (value.GetType() == typeof(int))
                 {
                     dec = Convert.ToDecimal(value);
-                    quality = dec;
+                    quality = -1;
+                    cellStyle = CellColorStyle.FromDataGridViewCellStyle(gridViewCellStyle);
                 }
                 else if (value.GetType() == typeof(decimal))
                 {
                     dec = Convert.ToDecimal(value);
-                    quality = dec;
+                    quality = -1;
+                    cellStyle = CellColorStyle.FromDataGridViewCellStyle(gridViewCellStyle);
                 }
                 else if (value.GetType() == typeof(intvar))
                 {
                     intval = (intvar)value;
                     dec = Convert.ToDecimal(intval.actual);
+                    quality = -1;
+                    cellStyle = dgc.CellColorStyles.GetColorStyle(-1);
                 }
                 else if (value.GetType() == typeof(decvar))
                 {
                     decval = (decvar)value;
                     dec = decval.actual;
                     quality = decval.quality;
+                    cellStyle = dgc.CellColorStyles.GetColorStyle(quality);
                 }
                 else
+                {
                     dec = 0;
+                    cellStyle = dgc.CellColorStyles.GetColorStyle(-1);
+                }
 
                 StringFormat sf = new StringFormat();
                 sf.Alignment = StringAlignment.Near;
                 sf.LineAlignment = StringAlignment.Center;
-
-                TMR_NumDecColumn dgc = (TMR_NumDecColumn)(this.OwningColumn);
-                
-                CellColorStyle cellStyle = dgc.CellColorStyles.GetColorStyle(quality);
 
                 Brush fbr = null, bbr = null;
                 Pen gbr = null;
@@ -201,9 +208,9 @@ namespace DataGridViewCustomColumns
 
                 string str;
 
-                if (value.GetType() == typeof(decimal))
-                    str = dec.ToString("N1");
-                else
+                //if (value.GetType() == typeof(decimal))
+                //    str = dec.ToString("N1");
+                //else
                     str = ((int)dec).ToString();
 
                 SizeF szf = new SizeF(0, 0);
@@ -211,7 +218,7 @@ namespace DataGridViewCustomColumns
                 if (this.OwningColumn.DataPropertyName == "ASI")
                     filterASIvalue = true;
 
-                if ((dec < 19) || (filterASIvalue) || (value.GetType() == typeof(decimal)))
+                if ((dec < 19) || (filterASIvalue) ) // || (value.GetType() == typeof(decimal)))
                 {
                     graphics.DrawString(str.ToString(), gridViewCellStyle.Font, fbr, cellRect, sf);
                     szf = graphics.MeasureString(str.ToString(), gridViewCellStyle.Font);
@@ -304,6 +311,27 @@ namespace DataGridViewCustomColumns
                     graphics.FillRectangle(hbr, bar);
                     graphics.DrawRectangle(gbr, bar);
                 }
+                else if (value.GetType() == typeof(decimal))
+                {
+                    decimal decpart = (dec - decimal.Floor(dec));
+
+                    int height = (int)((decpart * 100M * (cellRect.Height - 2)) / 100M);
+
+                    Rectangle bar = new Rectangle(cellRect.Left + 1,
+                        cellRect.Bottom - 5, height, 3);
+
+                    Brush hbr = null;
+                    if (decpart <= 0.5M)
+                        hbr = new SolidBrush(Color.Blue);
+                    else if (decpart <= 0.8M)
+                        hbr = new SolidBrush(Color.Yellow);
+                    else
+                        hbr = new SolidBrush(Color.Red);
+
+                    graphics.FillRectangle(hbr, bar);
+                    graphics.DrawRectangle(gbr, bar);
+                }
+
                 fbr.Dispose();
                 bbr.Dispose();
                 gbr.Dispose();

@@ -4331,7 +4331,11 @@ namespace NTR_Db {
             
             private global::System.Data.DataColumn columnActionCode;
             
+            private global::System.Data.DataColumn columnAttackers;
+            
             private global::System.Data.DataColumn columnFullDesc;
+            
+            private global::System.Data.DataColumn columnDefenders;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -4424,9 +4428,25 @@ namespace NTR_Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn AttackersColumn {
+                get {
+                    return this.columnAttackers;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn FullDescColumn {
                 get {
                     return this.columnFullDesc;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DefendersColumn {
+                get {
+                    return this.columnDefenders;
                 }
             }
             
@@ -4467,7 +4487,7 @@ namespace NTR_Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ActionsRow AddActionsRow(MatchRow parentMatchRowByMatch_Actions, int Time, string Description, string ActionType, TeamRow parentTeamRowByTeam_Actions, string ActionCode, string FullDesc) {
+            public ActionsRow AddActionsRow(MatchRow parentMatchRowByMatch_Actions, int Time, string Description, string ActionType, TeamRow parentTeamRowByTeam_Actions, string ActionCode, string Attackers, string FullDesc, string Defenders) {
                 ActionsRow rowActionsRow = ((ActionsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -4477,7 +4497,9 @@ namespace NTR_Db {
                         ActionType,
                         null,
                         ActionCode,
-                        FullDesc};
+                        Attackers,
+                        FullDesc,
+                        Defenders};
                 if ((parentMatchRowByMatch_Actions != null)) {
                     columnValuesArray[0] = parentMatchRowByMatch_Actions[0];
                 }
@@ -4521,7 +4543,9 @@ namespace NTR_Db {
                 this.columnActionType = base.Columns["ActionType"];
                 this.columnTeamID = base.Columns["TeamID"];
                 this.columnActionCode = base.Columns["ActionCode"];
+                this.columnAttackers = base.Columns["Attackers"];
                 this.columnFullDesc = base.Columns["FullDesc"];
+                this.columnDefenders = base.Columns["Defenders"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4541,8 +4565,12 @@ namespace NTR_Db {
                 base.Columns.Add(this.columnTeamID);
                 this.columnActionCode = new global::System.Data.DataColumn("ActionCode", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnActionCode);
+                this.columnAttackers = new global::System.Data.DataColumn("Attackers", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAttackers);
                 this.columnFullDesc = new global::System.Data.DataColumn("FullDesc", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFullDesc);
+                this.columnDefenders = new global::System.Data.DataColumn("Defenders", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDefenders);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnMatchID,
                                 this.columnActionID}, true));
@@ -8623,6 +8651,22 @@ namespace NTR_Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Attackers {
+                get {
+                    try {
+                        return ((string)(this[this.tableActions.AttackersColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Attackers\' in table \'Actions\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableActions.AttackersColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string FullDesc {
                 get {
                     try {
@@ -8634,6 +8678,22 @@ namespace NTR_Db {
                 }
                 set {
                     this[this.tableActions.FullDescColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Defenders {
+                get {
+                    try {
+                        return ((string)(this[this.tableActions.DefendersColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Defenders\' in table \'Actions\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableActions.DefendersColumn] = value;
                 }
             }
             
@@ -8721,6 +8781,18 @@ namespace NTR_Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsAttackersNull() {
+                return this.IsNull(this.tableActions.AttackersColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetAttackersNull() {
+                this[this.tableActions.AttackersColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsFullDescNull() {
                 return this.IsNull(this.tableActions.FullDescColumn);
             }
@@ -8729,6 +8801,18 @@ namespace NTR_Db {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetFullDescNull() {
                 this[this.tableActions.FullDescColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDefendersNull() {
+                return this.IsNull(this.tableActions.DefendersColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDefendersNull() {
+                this[this.tableActions.DefendersColumn] = global::System.Convert.DBNull;
             }
         }
         

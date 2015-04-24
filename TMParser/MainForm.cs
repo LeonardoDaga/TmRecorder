@@ -1122,6 +1122,11 @@ namespace TMRecorder
             UpdateShownGrid();
 
             ShowActualPlayers(dt);
+
+            dataGridGiocatori.SetWhen(dt);
+            dataGridGiocatoriB.SetWhen(dt);
+            dataGridPortieri.SetWhen(dt);
+
             dataGridPlayersInfo.DataSource = extraDS.Giocatori;
         }
 
@@ -1255,6 +1260,53 @@ namespace TMRecorder
             EvidenceSkillsGiocatoriForGains(dataGridGiocatoriB);
         }
 
+        float[] ComputeGains(string fp)
+        {
+            string FP = TM_Compatible.ConvertNewFP(fp);
+
+            string[] spec = new string[] { "DC", "DR", "DL", "DMC", "DMR", 
+                    "DML", "MC", "MR", "ML", "OMC", "OMR", "OML", "FC" }; 
+            
+            string[] FPs = FP.Split('/');
+
+            float[] gains = new float[14];
+
+            if (FPs.Length == 1)
+            {
+                int n;
+                for (n = 0; n < 13; n++)
+                    if (FP == spec[n]) break;
+
+                // Evidenzia solo le colonne degli skills
+                for (int j = 0; j < 14; j++)
+                {
+                    DataGridViewCellStyle Style = new DataGridViewCellStyle();
+
+                    gains[j] = History.GD.K_FP(j, n);
+                }
+            }
+            else
+            {
+                int n1, n2;
+                for (n1 = 0; n1 < 13; n1++)
+                    if (FPs[0] == spec[n1]) break;
+                for (n2 = 0; n2 < 13; n2++)
+                    if (FPs[1] == spec[n2]) break;
+                string FP1 = FPs[0];
+                string FP2 = FPs[1];
+
+                // Evidenzia solo le colonne degli skills
+                for (int j = 0; j < 14; j++)
+                {
+                    DataGridViewCellStyle Style = new DataGridViewCellStyle();
+
+                    gains[j] = Math.Max(History.GD.K_FP(j, n1), History.GD.K_FP(j, n2));
+                }
+            }
+
+            return gains;
+        }
+
         private void EvidenceSkillsGiocatoriForGains(DataGridView dgv)
         {
             if (!Program.Setts.EvidenceGain)
@@ -1271,51 +1323,18 @@ namespace TMRecorder
 
             for (int i = 0; i < dgv.Rows.Count; i++)
             {
-                string[] spec = new string[] { "DC", "DR", "DL", "DMC", "DMR", 
-                    "DML", "MC", "MR", "ML", "OMC", "OMR", "OML", "FC" };
-
                 System.Windows.Forms.DataGridViewRow dvr = dgv.Rows[i];
                 ExtTMDataSet.GiocatoriNSkillRow gsr = (ExtTMDataSet.GiocatoriNSkillRow)dvr.DataBoundItem;
 
-                string FP = TM_Compatible.ConvertNewFP(gsr.FP);
-                string[] FPs = FP.Split('/');
+                float[] gains = ComputeGains(gsr.FP);
 
-                if (FPs.Length == 1)
+                for (int j = 0; j < 14; j++)
                 {
-                    int n;
-                    for (n = 0; n < 13; n++)
-                        if (FP == spec[n]) break;
+                    DataGridViewCellStyle Style = new DataGridViewCellStyle();
 
-                    // Evidenzia solo le colonne degli skills
-                    for (int j = 0; j < 14; j++)
-                    {
-                        DataGridViewCellStyle Style = new DataGridViewCellStyle();
+                    SelectGainColor(gains[j], Style);
 
-                        SelectGainColor(History.GD.K_FP(j, n), Style);
-
-                        dgv[j + 8, i].Style = Style;
-                    }
-                }
-                else
-                {
-                    int n1, n2;
-                    for (n1 = 0; n1 < 13; n1++)
-                        if (FPs[0] == spec[n1]) break;
-                    for (n2 = 0; n2 < 13; n2++)
-                        if (FPs[1] == spec[n2]) break;
-                    string FP1 = FPs[0];
-                    string FP2 = FPs[1];
-
-                    // Evidenzia solo le colonne degli skills
-                    for (int j = 0; j < 14; j++)
-                    {
-                        DataGridViewCellStyle Style = new DataGridViewCellStyle();
-
-                        float maxGain = Math.Max(History.GD.K_FP(j, n1), History.GD.K_FP(j, n2));
-                        SelectGainColor(maxGain, Style);
-
-                        dgv[j + 8, i].Style = Style;
-                    }
+                    dgv[j + 8, i].Style = Style;
                 }
             }
         }
@@ -3003,7 +3022,7 @@ namespace TMRecorder
             if (plRow.IsAbilityNull()) plRow.Ability = 0;
 
             ped.dialogBag.Properties.Add(new PropertySpec("Adaptability", typeof(decimal),
-                "Player Info", "Adaptability of the player: it's a value from 0 (min adaptability) to 20 (max)",
+                "Player Info", "Adaptability of the player: it'I a value from 0 (min adaptability) to 20 (max)",
                 plRow.Ada));
             ped.dialogBag.Properties.Add(new PropertySpec("Name", typeof(string),
                 "Player Info", "Name of the player",
@@ -3515,7 +3534,8 @@ namespace TMRecorder
 
             if (doctext.StartsWith("Exception error") || doctext.StartsWith("GBC error") || doctext.Contains("Javascript error"))
             {
-                return;
+                if (!doctext.Contains("forfait=yes"))
+                    return;
 
                 //page = doctext;
 
@@ -3709,28 +3729,31 @@ namespace TMRecorder
                     doctext += "\n";
                 }
 
-                string training_doctext = Import_Players_Training_Adv();
-                if ((training_doctext == "") || (training_doctext == null))
+                if (Program.Setts.PlayerType == 2)
                 {
-                    if (training_doctext == null)
-                        training_doctext = "GBC error: failed importing players training  (text is null)";
-                    else
-                        training_doctext = "GBC error: failed importing players training  (text is empty)";
+                    string training_doctext = Import_Players_Training_Adv();
+                    if ((training_doctext == "") || (training_doctext == null))
+                    {
+                        if (training_doctext == null)
+                            training_doctext = "GBC error: failed importing players training  (text is null)";
+                        else
+                            training_doctext = "GBC error: failed importing players training  (text is empty)";
 
-                    FileInfo fi = new FileInfo(Program.Setts.DatafilePath + "\\get_players_training_loader.js");
-                    if (!fi.Exists)
-                    {
-                        training_doctext += "\nThe js does not exists in " + Program.Setts.DatafilePath;
+                        FileInfo fi = new FileInfo(Program.Setts.DatafilePath + "\\get_players_training_loader.js");
+                        if (!fi.Exists)
+                        {
+                            training_doctext += "\nThe js does not exists in " + Program.Setts.DatafilePath;
+                        }
+                        else
+                        {
+                            training_doctext += "\nJs content (in " + Program.Setts.DatafilePath + "): \n";
+                            training_doctext += System.IO.File.ReadAllText(Program.Setts.DatafilePath + "\\get_players_training_loader.js");
+                        }
+                        training_doctext += "\n";
                     }
-                    else
-                    {
-                        training_doctext += "\nJs content (in " + Program.Setts.DatafilePath + "): \n";
-                        training_doctext += System.IO.File.ReadAllText(Program.Setts.DatafilePath + "\\get_players_training_loader.js");
-                    }
-                    training_doctext += "\n";
+
+                    doctext += "\n\r\n" + training_doctext;
                 }
-
-                doctext += "\n\r\n" + training_doctext;
             }
             //else if (startnavigationAddress.Contains("/players/"))
             //{
@@ -4142,7 +4165,8 @@ namespace TMRecorder
                 string[] stringSeparators = new string[] { "\n\r\n" };
                 string[] pages = page.Split(stringSeparators, StringSplitOptions.None);
 
-                if (pages.Length < 2)
+                if (((pages.Length < 2) && (Program.Setts.PlayerType == 2)) ||
+                    ((pages.Length < 1) && (Program.Setts.PlayerType != 2)))
                 {
                     string swRelease = "Sw Release:" + Application.ProductName + "("  + Application.ProductVersion + ")";
                     page = "Navigation Address: " + startnavigationAddress + "\n" + page;
@@ -4150,10 +4174,17 @@ namespace TMRecorder
                     string message = "Error retrieving data from the players page";
                     SendFileTo.ErrorReport.SendPage(message, page, Environment.StackTrace, swRelease);
                 }
-                else
+                else if (Program.Setts.PlayerType == 2)
                 {
                     History.LoadSquad_NewTm(dt, pages[0]);
                     History.LoadTraining_NewTM2(dt, pages[1]);
+                    isDirty = true;
+                    InvalidateGrids();
+                    UpdateShownGrid();
+                }
+                else if (Program.Setts.PlayerType == 1)
+                {
+                    History.LoadSquad_NewTm(dt, pages[0]);
                     isDirty = true;
                     InvalidateGrids();
                     UpdateShownGrid();

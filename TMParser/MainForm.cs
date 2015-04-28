@@ -1126,6 +1126,7 @@ namespace TMRecorder
             dataGridGiocatori.SetWhen(dt);
             dataGridGiocatoriB.SetWhen(dt);
             dataGridPortieri.SetWhen(dt);
+            dataGridPlayersInfo.SetWhen(dt);
 
             dataGridPlayersInfo.DataSource = extraDS.Giocatori;
         }

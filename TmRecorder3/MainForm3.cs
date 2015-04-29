@@ -232,10 +232,10 @@ namespace TmRecorder3
             }
 
             ThisWeekPlayers = (from c in DB.squadDB.HistData
-                              where (c.Week == selectedItem.AbsWeek) && (c.PlayerRow.FPn != 0)
+                               where (c.Week == selectedItem.AbsWeek) && (!c.PlayerRow.IsFPnNull()) && (c.PlayerRow.FPn != 0)
                               select new PlayerData(c, absPrevWeek)).OrderBy(p => p.Number);
             ThisWeekGK = (from c in DB.squadDB.HistData
-                              where (c.Week == selectedItem.AbsWeek) && (c.PlayerRow.FPn == 0)
+                          where (c.Week == selectedItem.AbsWeek) && (!c.PlayerRow.IsFPnNull()) && (c.PlayerRow.FPn == 0)
                               select new PlayerData(c, absPrevWeek)).OrderBy(p => p.Number);
 
             FormatPlayersGrid();
@@ -560,7 +560,7 @@ namespace TmRecorder3
             }
 
             ThisWeekPlayers = (from c in DB.squadDB.HistData
-                              where (c.Week == selectedItem.AbsWeek) && (c.PlayerRow.FPn != 0)
+                               where (c.Week == selectedItem.AbsWeek) && (!c.PlayerRow.IsFPnNull()) && (c.PlayerRow.FPn != 0)
                               select new PlayerData(c, absPrevWeek)) as EnumerableRowCollection<PlayerData>;
 
             dgPlayers.SetWhen(selectedItem.Date);
@@ -584,7 +584,7 @@ namespace TmRecorder3
             try
             {
                 ThisWeekGK = (from c in DB.squadDB.HistData
-                              where (c.Week == selectedItem.AbsWeek) && (c.PlayerRow.FPn == 0)
+                              where (c.Week == selectedItem.AbsWeek) && (!c.PlayerRow.IsFPnNull()) && (c.PlayerRow.FPn == 0)
                               select new PlayerData(c, absPrevWeek)) as EnumerableRowCollection<PlayerData>;
             }
             catch(Exception)

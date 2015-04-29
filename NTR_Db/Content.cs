@@ -286,10 +286,10 @@ namespace NTR_Db
                     {
                         pl = squadDB.Player.NewPlayerRow();
                         pl.PlayerID = playerID;
-                        pl.TeamID = homeTeamId;
                         pl.Name = team["name"];
                         squadDB.Player.AddPlayerRow(pl);
                     }
+                    pl.TeamID = homeTeamId;
 
                     NTR_SquadDb.PlayerPerfRow ppr = squadDB.PlayerPerf.FindByMatchIDPlayerID(matchId, playerID);
                     if (ppr == null)
@@ -349,10 +349,10 @@ namespace NTR_Db
                     {
                         pl = squadDB.Player.NewPlayerRow();
                         pl.PlayerID = playerID;
-                        pl.TeamID = awayTeamId;
                         pl.Name = team["name"];
                         squadDB.Player.AddPlayerRow(pl);
                     }
+                    pl.TeamID = awayTeamId;
 
                     NTR_SquadDb.PlayerPerfRow ppr = squadDB.PlayerPerf.FindByMatchIDPlayerID(matchId, playerID);
                     if (ppr == null)

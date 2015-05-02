@@ -11,7 +11,7 @@ namespace DataGridViewCustomColumns
 {
     public partial class TMR_NumDecColumn : DataGridViewColumn
     {
-        public CellColorStyleList CellColorStyles = CellColorStyleList.DefaultGainColorStyle();
+        public CellColorStyleList CellColorStyles = null;
 
         public TMR_NumDecColumn()
             : base(new TMR_NumDecCell())
@@ -145,7 +145,11 @@ namespace DataGridViewCustomColumns
                 {
                     dec = Convert.ToDecimal(value);
                     quality = -1;
-                    cellStyle = CellColorStyle.FromDataGridViewCellStyle(gridViewCellStyle);
+
+                    if (dgc.CellColorStyles == null)
+                        cellStyle = CellColorStyle.FromDataGridViewCellStyle(gridViewCellStyle);
+                    else
+                        cellStyle = dgc.CellColorStyles.GetColorStyle(dec);
                 }
                 else if (value.GetType() == typeof(intvar))
                 {
@@ -208,9 +212,9 @@ namespace DataGridViewCustomColumns
 
                 string str;
 
-                //if (value.GetType() == typeof(decimal))
-                //    str = dec.ToString("N1");
-                //else
+                if ((dgc.CellColorStyles != null) && (dgc.CellColorStyles.Type == CellColorStyleList.ListType.DefaultFp))
+                    str = dec.ToString("N1");
+                else
                     str = ((int)dec).ToString();
 
                 SizeF szf = new SizeF(0, 0);
@@ -218,7 +222,12 @@ namespace DataGridViewCustomColumns
                 if (this.OwningColumn.DataPropertyName == "ASI")
                     filterASIvalue = true;
 
-                if ((dec < 19) || (filterASIvalue) ) // || (value.GetType() == typeof(decimal)))
+                if ((dgc.CellColorStyles != null) && (dgc.CellColorStyles.Type == CellColorStyleList.ListType.DefaultFp))
+                {
+                    graphics.DrawString(str.ToString(), gridViewCellStyle.Font, fbr, cellRect, sf);
+                    szf = graphics.MeasureString(str.ToString(), gridViewCellStyle.Font);
+                }
+                else if ((dec < 19) || (filterASIvalue)) // || 
                 {
                     graphics.DrawString(str.ToString(), gridViewCellStyle.Font, fbr, cellRect, sf);
                     szf = graphics.MeasureString(str.ToString(), gridViewCellStyle.Font);
@@ -311,7 +320,7 @@ namespace DataGridViewCustomColumns
                     graphics.FillRectangle(hbr, bar);
                     graphics.DrawRectangle(gbr, bar);
                 }
-                else if (value.GetType() == typeof(decimal))
+                else if (dgc.CellColorStyles == null)
                 {
                     decimal decpart = (dec - decimal.Floor(dec));
 

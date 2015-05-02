@@ -40,6 +40,15 @@ namespace DataGridViewCustomColumns
 
     public class CellColorStyleList: List<CellColorStyle>
     {
+        public enum ListType
+        {
+            DefaultGain,
+            DefaultFp,
+            NoGain
+        }
+
+        public ListType Type { get; set; }
+
         public CellColorStyle GetColorStyle(decimal val)
         {
             foreach (var colorStyle in this)
@@ -56,6 +65,7 @@ namespace DataGridViewCustomColumns
         public static CellColorStyleList NoGainColorStyle()
         {
             CellColorStyleList newList = new CellColorStyleList();
+            newList.Type = ListType.NoGain;
 
             newList.Add(new CellColorStyle(-100, 100, Color.FromArgb(255, 255, 255), Color.Black,
                 Color.FromArgb(255, 255, 255), Color.Blue));
@@ -65,6 +75,7 @@ namespace DataGridViewCustomColumns
         public static CellColorStyleList DefaultGainColorStyle()
         {
             CellColorStyleList newList = new CellColorStyleList();
+            newList.Type = ListType.DefaultGain;
 
             newList.Add(new CellColorStyle(-100, 0, Color.FromArgb(255, 255, 255), Color.Black,
                 Color.FromArgb(255, 255, 255), Color.Blue));
@@ -86,6 +97,7 @@ namespace DataGridViewCustomColumns
         public static CellColorStyleList DefaultFpColorStyle()
         {
             CellColorStyleList newList = new CellColorStyleList();
+            newList.Type = ListType.DefaultFp;
 
             newList.Add(new CellColorStyle(-100, 0, Color.White, Color.Black,
                 Color.FromArgb(255, 255, 255), Color.Blue));

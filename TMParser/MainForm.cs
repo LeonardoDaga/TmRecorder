@@ -3218,6 +3218,7 @@ namespace TMRecorder
         private void webBrowser_DocumentCompleted_1(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
             string actualUrl = e.Url.ToString();
+
             if (actualUrl == "http://trophymanager.com/players/#/a/true/b//")
                 actualUrl = "http://trophymanager.com/players/";
 
@@ -3245,6 +3246,8 @@ namespace TMRecorder
             if (url.StartsWith("http://trophymanager.com/"))
             {
                 navigationAddress = e.Url.ToString();
+
+                tbTxtAddress.Text = url;
 
                 startnavigationAddress = navigationAddress;
 

@@ -1,27 +1,26 @@
-﻿using System.Resources;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Runtime.CompilerServices;
-//using System.Runtime.InteropServices;
+using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("TM Recorder")]
-[assembly: AssemblyDescription("Trophy Manager - Team Recorder")]
+[assembly: AssemblyTitle("ATmRecorderCleaner")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("INSYDE")]
-[assembly: AssemblyProduct("TM Recorder")]
-[assembly: AssemblyCopyright("Led Lennon Copyright ©  2007-2015")]
-[assembly: AssemblyTrademark("Leonardo Daga")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ATmRecorderCleaner")]
+[assembly: AssemblyCopyright("Copyright ©  2015")]
+[assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 
 // COM, set the ComVisible attribute to true on that type.
-//[assembly: ComVisible(false)]
+[assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-//[assembly: Guid("827f3724-6849-4a27-8af0-4968556d91ea")]
+[assembly: Guid("a30cc08e-0066-4a49-adad-e7bbb23e0155")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -30,7 +29,8 @@ using System.Runtime.CompilerServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("2.7.1.6")]
-[assembly: AssemblyFileVersion("2.7.1.6")]
-[assembly: NeutralResourcesLanguage("en")]
-
+// You can specify all the values or you can default the Build and Revision Numbers 
+// by using the '*' as shown below:
+// [assembly: AssemblyVersion("1.0.*")]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]

@@ -55,7 +55,7 @@
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <PublishUrl>H:\Dev2012\TmRecorder2014\TMRecorderSetup\</PublishUrl>
+    <PublishUrl>D:\TmRecorder Setup\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -71,8 +71,8 @@
     <ProductName>TM Recorder</ProductName>
     <PublisherName>INSYDE</PublisherName>
     <DisallowUrlActivation>true</DisallowUrlActivation>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>2.7.1.0</ApplicationVersion>
+    <ApplicationRevision>6</ApplicationRevision>
+    <ApplicationVersion>2.7.1.6</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -159,6 +159,10 @@
     <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.mshtml, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -363,7 +367,6 @@
     <Compile Include="TeamHistory.cs" />
     <Compile Include="TeamStats.cs">
       <DependentUpon>TeamStats.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="TeamStats.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -385,7 +388,6 @@
     </Compile>
     <Compile Include="Trading.cs">
       <DependentUpon>Trading.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Trading.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -601,6 +603,7 @@
     <Content Include="Datafiles\player_info_loader.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Datafiles\RatingR2.tmgain.xml" />
     <Content Include="Datafiles\ReportAnalysisFileEN.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -779,6 +782,16 @@
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="Datafiles\NationList.xml">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="Datafiles\RatingR2.tmgain.xml">
       <Visible>False</Visible>
       <Group>
       </Group>

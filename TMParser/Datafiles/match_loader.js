@@ -132,7 +132,7 @@ function get_report()
 
 	try
 	{
-		for (var i=0; i<last_min; i++) 
+		for (var i=0; i <= last_min; i++) 
 		{
 		    if(!report[i]) continue;
 		    for (var j in report[i]) 

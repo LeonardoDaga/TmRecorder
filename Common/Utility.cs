@@ -456,6 +456,55 @@ namespace Common
             return -1;
         }
 
+        public static string NumberToFP(int FPn)
+        {
+            switch (FPn)
+            {
+                case 0: return "GK";
+                case 10: return "DC";
+                case 11: return "DC/DL";
+                case 12: return "DR/DC";
+                case 13: return "DL";
+                case 14: return "DL/DR";
+                case 15: return "DR";
+                case 20: return "DC/DMC";
+                case 21: return "DL/DML";
+                case 22: return "DMR/DR";
+                case 25: return "DC/MC";
+                case 30: return "DMC";
+                case 31: return "DMC/DML";
+                case 32: return "DMC/DMR";
+                case 33: return "DML";
+                case 34: return "DML/DMR";
+                case 35: return "DMR";
+                case 40: return "DMC/MC";
+                case 41: return "DML/ML";
+                case 42: return "DMR/MR";
+                case 50: return "MC";
+                case 51: return "MC/ML";
+                case 52: return "MC/MR";
+                case 53: return "ML";
+                case 54: return "ML/MR";
+                case 55: return "MR";
+                case 60: return "MC/OMC";
+                case 61: return "ML/OML";
+                case 62: return "MR/OMR";
+                case 70: return "OMC";
+                case 71: return "OMC/OML";
+                case 72: return "OMC/OMR";
+                case 73: return "OML";
+                case 74: return "OML/OMR";
+                case 75: return "OMR";
+                case 80: return "FC/OMC";
+                case 81: return "FC/OML";
+                case 82: return "FC/OMR";
+                case 90: return "FC";
+                default: break;
+            }
+
+            return "ERR";
+        }
+
         public static float GetSkSumFromASI(int ASI, bool isGK)
         {
             return ASItoSkSum((float)ASI, isGK);

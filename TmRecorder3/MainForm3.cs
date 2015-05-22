@@ -862,7 +862,7 @@ namespace TmRecorder3
         private void tsOptions_Click(object sender, EventArgs e)
         {
             OptionsForm of = new OptionsForm(Program.Setts, this.DB);
-            if (of.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (of.ShowDialog() == DialogResult.OK)
             {
                 FormatPlayersGrid();
                 FormatPlayersGridGK();
@@ -1279,5 +1279,32 @@ namespace TmRecorder3
 
         }
 
+        private void openPlayerProfilePageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow player;
+
+            if (tabMain.SelectedTab == tabSquad)
+            {
+                player = dgPlayers.SelectedRows[0];
+            }
+            else if (tabMain.SelectedTab == tabGK)
+            {
+                player = dgPlayersGK.SelectedRows[0];
+            }
+            else
+            {
+                return;
+            }
+
+            PlayerData playerData = (PlayerData)player.DataBoundItem;
+
+            TmSWD selectedWeek = (TmSWD)cbDataDay.SelectedItem;
+
+            EnumerableRowCollection<PlayerData> AllPlayers = (from c in DB.squadDB.HistData
+                          where (c.Week == selectedWeek.AbsWeek) 
+                          select new PlayerData(c, selectedWeek.AbsWeek)).OrderBy(p => p.Number);
+
+            TR3_PlayerForm playerForm = new TR3_PlayerForm(AllPlayers, playerData);
+        }
     }
 }

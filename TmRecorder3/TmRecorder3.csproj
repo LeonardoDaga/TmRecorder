@@ -42,8 +42,18 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="ZedGraph, Version=5.0.1.2528, Culture=neutral, PublicKeyToken=02a83cbd123fcd60, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\ZedGraph.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ComputeBloom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ComputeBloom.Designer.cs">
+      <DependentUpon>ComputeBloom.cs</DependentUpon>
+    </Compile>
     <Compile Include="Language.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,13 +70,27 @@
     <Compile Include="OptionsForm.Designer.cs">
       <DependentUpon>OptionsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TR3_PlayerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TR3_PlayerForm.Designer.cs">
+      <DependentUpon>TR3_PlayerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ComputeBloom.resx">
+      <DependentUpon>ComputeBloom.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm3.resx">
       <DependentUpon>MainForm3.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OptionsForm.resx">
       <DependentUpon>OptionsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TR3_PlayerForm.resx">
+      <DependentUpon>TR3_PlayerForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -171,6 +195,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Squad.png" />
+    <Content Include="ZedGraph.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -921,6 +921,16 @@ namespace NTR_Db
         public int wBorn { get; set; }
         public int FPn { get; set; }
         public string Nationality { get; set; }
+        public int playerID { get; set; }
+
+        public string Age
+        {
+            get
+            {
+                TmWeek tmw = new TmWeek(wBorn);
+                return tmw.ToAge(DateTime.Now);
+            }
+        }
 
         private NTR_GainFunction GFun = new NTR_RusCheratte_Function();
 
@@ -1020,6 +1030,7 @@ namespace NTR_Db
 
 
         private decimal[] _Atts = new decimal[14];
+
         public decimal[] Atts
         {
             get
@@ -1074,6 +1085,8 @@ namespace NTR_Db
             NTR_SquadDb DB = (NTR_SquadDb)thisWeek.Table.DataSet;
             GFun.GDS = DB.GDS;
 
+            playerID = thisWeek.PlayerID;
+
             if (absPrevWeek != -1)
             {
                 NTR_SquadDb.HistDataDataTable histTable = (NTR_SquadDb.HistDataDataTable)thisWeek.Table;
@@ -1090,12 +1103,23 @@ namespace NTR_Db
             Number = thisWeek.PlayerRow.No;
             FPn = thisWeek.PlayerRow.FPn;
             wBorn = thisWeek.PlayerRow.wBorn;
-            Nationality = thisWeek.PlayerRow.Nationality;
+            Nationality = thisWeek.PlayerRow.Nationality;            
 
             NTR_SquadDb.TempDataRow tdr = DB.TempData.FindByPlayerID(thisWeek.PlayerID);
 
             if (tdr != null)
+            {
                 Rou = tdr.Rou;
+
+                if (!tdr.IsWageNull())
+                {
+                    Wage = tdr.Wage;
+                }
+                else
+                {
+                    Wage = thisWeek.ASI * 
+                }
+            }
 
             if (prevWeek != null)
             {
@@ -1201,6 +1225,7 @@ namespace NTR_Db
         public short Ban { get; set; }
 
         public intvar TI { get; set; }
+        public int Wage { get; private set; }
     }
 
     public class MatchData

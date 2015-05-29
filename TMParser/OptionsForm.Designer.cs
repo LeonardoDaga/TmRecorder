@@ -377,7 +377,7 @@ namespace TMRecorder
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button1.Location = new System.Drawing.Point(545, 379);
+            this.button1.Location = new System.Drawing.Point(551, 378);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
@@ -388,7 +388,7 @@ namespace TMRecorder
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button2.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.button2.Location = new System.Drawing.Point(464, 379);
+            this.button2.Location = new System.Drawing.Point(470, 378);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 0;
@@ -409,7 +409,7 @@ namespace TMRecorder
             this.tabControl1.Location = new System.Drawing.Point(1, 1);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(633, 372);
+            this.tabControl1.Size = new System.Drawing.Size(639, 371);
             this.tabControl1.TabIndex = 1;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
@@ -432,7 +432,7 @@ namespace TMRecorder
             this.tabGenerali.Location = new System.Drawing.Point(4, 22);
             this.tabGenerali.Name = "tabGenerali";
             this.tabGenerali.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGenerali.Size = new System.Drawing.Size(625, 346);
+            this.tabGenerali.Size = new System.Drawing.Size(631, 345);
             this.tabGenerali.TabIndex = 0;
             this.tabGenerali.Text = "Generics";
             this.tabGenerali.UseVisualStyleBackColor = true;
@@ -600,7 +600,7 @@ namespace TMRecorder
             this.tabPage13.Location = new System.Drawing.Point(4, 22);
             this.tabPage13.Name = "tabPage13";
             this.tabPage13.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage13.Size = new System.Drawing.Size(625, 346);
+            this.tabPage13.Size = new System.Drawing.Size(631, 345);
             this.tabPage13.TabIndex = 4;
             this.tabPage13.Text = "Your Teams Data";
             this.tabPage13.UseVisualStyleBackColor = true;
@@ -721,7 +721,7 @@ namespace TMRecorder
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(625, 346);
+            this.tabPage1.Size = new System.Drawing.Size(631, 345);
             this.tabPage1.TabIndex = 1;
             this.tabPage1.Text = "Gain Set";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -846,7 +846,7 @@ namespace TMRecorder
             this.tabScout.Location = new System.Drawing.Point(4, 22);
             this.tabScout.Name = "tabScout";
             this.tabScout.Padding = new System.Windows.Forms.Padding(3);
-            this.tabScout.Size = new System.Drawing.Size(625, 346);
+            this.tabScout.Size = new System.Drawing.Size(631, 345);
             this.tabScout.TabIndex = 2;
             this.tabScout.Text = "Scouts";
             this.tabScout.UseVisualStyleBackColor = true;
@@ -857,13 +857,13 @@ namespace TMRecorder
             this.pasteScoutListToolStripMenuItem,
             this.pasteTrainersListToolStripMenuItem});
             this.optionFormMenuStrip.Name = "scoutTableMenuStrip";
-            this.optionFormMenuStrip.Size = new System.Drawing.Size(219, 48);
+            this.optionFormMenuStrip.Size = new System.Drawing.Size(209, 48);
             // 
             // pasteScoutListToolStripMenuItem
             // 
             this.pasteScoutListToolStripMenuItem.Name = "pasteScoutListToolStripMenuItem";
             this.pasteScoutListToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.pasteScoutListToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.pasteScoutListToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
             this.pasteScoutListToolStripMenuItem.Text = "Paste Scout List";
             this.pasteScoutListToolStripMenuItem.Click += new System.EventHandler(this.pasteOptionFormToolStripMenuItem_Click);
             // 
@@ -871,7 +871,7 @@ namespace TMRecorder
             // 
             this.pasteTrainersListToolStripMenuItem.Name = "pasteTrainersListToolStripMenuItem";
             this.pasteTrainersListToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.pasteTrainersListToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.pasteTrainersListToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
             this.pasteTrainersListToolStripMenuItem.Text = "Paste Trainers List";
             this.pasteTrainersListToolStripMenuItem.Click += new System.EventHandler(this.pasteOptionFormToolStripMenuItem_Click);
             // 
@@ -914,6 +914,7 @@ namespace TMRecorder
             this.technicalDataGridViewTextBoxColumn,
             this.psychologyDataGridViewTextBoxColumn});
             this.dataGridView1.ContextMenuStrip = this.optionFormMenuStrip;
+            this.dataGridView1.DataCollection = null;
             this.dataGridView1.DataSource = this.scoutsBindingSource;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -1012,7 +1013,7 @@ namespace TMRecorder
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(625, 346);
+            this.tabPage3.Size = new System.Drawing.Size(631, 345);
             this.tabPage3.TabIndex = 3;
             this.tabPage3.Text = "Report Analysis";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1073,7 +1074,7 @@ namespace TMRecorder
             this.tabPage31.Location = new System.Drawing.Point(4, 22);
             this.tabPage31.Name = "tabPage31";
             this.tabPage31.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage31.Size = new System.Drawing.Size(625, 346);
+            this.tabPage31.Size = new System.Drawing.Size(631, 345);
             this.tabPage31.TabIndex = 7;
             this.tabPage31.Text = "Other Options";
             this.tabPage31.UseVisualStyleBackColor = true;
@@ -1257,6 +1258,7 @@ namespace TMRecorder
             this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2});
+            this.dataGridView3.DataCollection = null;
             this.dataGridView3.DataSource = this.tacticsBindingSource;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
@@ -1319,6 +1321,7 @@ namespace TMRecorder
             this.dataGridView4.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4});
+            this.dataGridView4.DataCollection = null;
             this.dataGridView4.DataSource = this.tacticsBindingSource;
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
@@ -1370,6 +1373,7 @@ namespace TMRecorder
             this.dataGridView6.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn7,
             this.dataGridViewTextBoxColumn8});
+            this.dataGridView6.DataCollection = null;
             this.dataGridView6.DataSource = this.tacticsBindingSource;
             dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
@@ -1735,6 +1739,7 @@ namespace TMRecorder
             this.dataGridViewTextBoxColumn25,
             this.dataGridViewTextBoxColumn26});
             this.dataGridView12.ContextMenuStrip = this.optionFormMenuStrip;
+            this.dataGridView12.DataCollection = null;
             this.dataGridView12.DataSource = this.scoutsBindingSource;
             dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
@@ -1878,6 +1883,7 @@ namespace TMRecorder
             this.dataGridView13.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn27,
             this.dataGridViewTextBoxColumn28});
+            this.dataGridView13.DataCollection = null;
             this.dataGridView13.DataSource = this.abilityBindingSource;
             dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Window;
@@ -1940,6 +1946,7 @@ namespace TMRecorder
             this.dataGridView14.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn29,
             this.dataGridViewTextBoxColumn30});
+            this.dataGridView14.DataCollection = null;
             this.dataGridView14.DataSource = this.tacticsBindingSource;
             dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Window;
@@ -2002,6 +2009,7 @@ namespace TMRecorder
             this.dataGridView15.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn31,
             this.dataGridViewTextBoxColumn32});
+            this.dataGridView15.DataCollection = null;
             this.dataGridView15.DataSource = this.physiqueBindingSource;
             dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Window;
@@ -2064,6 +2072,7 @@ namespace TMRecorder
             this.dataGridView16.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn33,
             this.dataGridViewTextBoxColumn34});
+            this.dataGridView16.DataCollection = null;
             this.dataGridView16.DataSource = this.bloomingBindingSource;
             dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle26.BackColor = System.Drawing.SystemColors.Window;
@@ -2126,6 +2135,7 @@ namespace TMRecorder
             this.dataGridView17.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn35,
             this.dataGridViewTextBoxColumn36});
+            this.dataGridView17.DataCollection = null;
             this.dataGridView17.DataSource = this.leadershipBindingSource;
             dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle29.BackColor = System.Drawing.SystemColors.Window;
@@ -2188,6 +2198,7 @@ namespace TMRecorder
             this.dataGridView18.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn37,
             this.dataGridViewTextBoxColumn38});
+            this.dataGridView18.DataCollection = null;
             this.dataGridView18.DataSource = this.aggressivityBindingSource;
             dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle32.BackColor = System.Drawing.SystemColors.Window;
@@ -2250,6 +2261,7 @@ namespace TMRecorder
             this.dataGridView19.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn39,
             this.dataGridViewTextBoxColumn40});
+            this.dataGridView19.DataCollection = null;
             this.dataGridView19.DataSource = this.professionalityBindingSource;
             dataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle35.BackColor = System.Drawing.SystemColors.Window;
@@ -2322,6 +2334,7 @@ namespace TMRecorder
             this.dataGridViewTextBoxColumn47,
             this.dataGridViewTextBoxColumn48});
             this.dataGridView20.ContextMenuStrip = this.optionFormMenuStrip;
+            this.dataGridView20.DataCollection = null;
             this.dataGridView20.DataSource = this.scoutsBindingSource;
             dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle38.BackColor = System.Drawing.SystemColors.Window;
@@ -2453,6 +2466,7 @@ namespace TMRecorder
             this.dataGridView21.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn50,
             this.dataGridViewTextBoxColumn51});
+            this.dataGridView21.DataCollection = null;
             this.dataGridView21.DataSource = this.abilityBindingSource;
             dataGridViewCellStyle41.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle41.BackColor = System.Drawing.SystemColors.Window;
@@ -2515,6 +2529,7 @@ namespace TMRecorder
             this.dataGridView22.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn52,
             this.dataGridViewTextBoxColumn53});
+            this.dataGridView22.DataCollection = null;
             this.dataGridView22.DataSource = this.bloomingBindingSource;
             dataGridViewCellStyle44.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle44.BackColor = System.Drawing.SystemColors.Window;
@@ -2577,6 +2592,7 @@ namespace TMRecorder
             this.dataGridView23.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn54,
             this.dataGridViewTextBoxColumn55});
+            this.dataGridView23.DataCollection = null;
             this.dataGridView23.DataSource = this.leadershipBindingSource;
             dataGridViewCellStyle47.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle47.BackColor = System.Drawing.SystemColors.Window;
@@ -2639,6 +2655,7 @@ namespace TMRecorder
             this.dataGridView24.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn56,
             this.dataGridViewTextBoxColumn57});
+            this.dataGridView24.DataCollection = null;
             this.dataGridView24.DataSource = this.aggressivityBindingSource;
             dataGridViewCellStyle50.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle50.BackColor = System.Drawing.SystemColors.Window;
@@ -2701,6 +2718,7 @@ namespace TMRecorder
             this.dataGridView25.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn58,
             this.dataGridViewTextBoxColumn59});
+            this.dataGridView25.DataCollection = null;
             this.dataGridView25.DataSource = this.professionalityBindingSource;
             dataGridViewCellStyle53.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle53.BackColor = System.Drawing.SystemColors.Window;
@@ -2763,6 +2781,7 @@ namespace TMRecorder
             this.dataGridView26.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn60,
             this.dataGridViewTextBoxColumn61});
+            this.dataGridView26.DataCollection = null;
             this.dataGridView26.DataSource = this.tacticsBindingSource;
             dataGridViewCellStyle56.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle56.BackColor = System.Drawing.SystemColors.Window;
@@ -2825,6 +2844,7 @@ namespace TMRecorder
             this.dataGridView27.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn62,
             this.dataGridViewTextBoxColumn63});
+            this.dataGridView27.DataCollection = null;
             this.dataGridView27.DataSource = this.physiqueBindingSource;
             dataGridViewCellStyle59.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle59.BackColor = System.Drawing.SystemColors.Window;
@@ -2865,7 +2885,7 @@ namespace TMRecorder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(632, 414);
+            this.ClientSize = new System.Drawing.Size(638, 413);
             this.ContextMenuStrip = this.optionFormMenuStrip;
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.button2);

@@ -1117,7 +1117,7 @@ namespace NTR_Db
                 }
                 else
                 {
-                    Wage = thisWeek.ASI * 
+                    Wage = (int)(((double)thisWeek.ASI) * 24.795);
                 }
             }
 

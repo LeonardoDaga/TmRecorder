@@ -1120,14 +1120,7 @@ namespace TmRecorder3
             PlayerName = selectedPlayer.Name;
 
             Age = selectedPlayerData.Age;
-            Wage = selectedPlayerData.
-
-            if (!gRow.IsWageNull())
-                Wage = gRow.Wage;
-            else if (playerDatarow.IsWageNull())
-                Wage = 0;
-            else
-                Wage = playerDatarow.Wage;
+            Wage = selectedPlayerData.Wage;
 
             UpdatePlayerRoutine();
 

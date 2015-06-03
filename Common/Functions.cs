@@ -228,7 +228,8 @@ namespace Common
             }
 
 
-            return AttMax * AttMax / (skillsSum / 1.4f);
+            float OSi = (100f - (skillsSum * 5 - AttMax) / 10.0f) * AttMax / 50f;
+            return OSi * (OSi / 25f); 
         }
 
         public override float GetOSi_GK(float[] atts, float[] skills)
@@ -241,7 +242,8 @@ namespace Common
                 skillsSum += skill;
             }
 
-            return GK * GK  / (skillsSum / 1.1f);
+            float OSi = (100f - (skillsSum * 5 - GK) / 10.0f) * GK / 50f;
+            return OSi * (OSi / 25f); 
         }
 
         #region Private Functions
@@ -419,23 +421,25 @@ namespace Common
                 skillsSum += skill;
             }
 
-
-            // return AttMax / (skillsSum / 140f);
-            return AttMax * AttMax / (skillsSum / 1.40f);
+            float OSi = (100f - (skillsSum * 5 - AttMax) / 10.0f) * AttMax / 50f;
+            float k = (AttMax * AttMax * AttMax) / (27000f + (AttMax * AttMax * AttMax));
+            return k * OSi * (OSi / 25f);
         }
 
         public override float GetOSi_GK(float[] atts, float[] skills)
         {
             float GK = atts[0];
 
-            float skillsSum = 0.0f;
+            float SkS = 0.0f;
             foreach (float skill in skills)
             {
-                skillsSum += skill;
+                SkS += skill;
             }
 
             // return GK / (skillsSum / 110f);
-            return GK * GK / (skillsSum / 1.10f);
+            float OSi = (100f - (SkS * 5 - GK) / 10.0f) * GK / 50f;
+            float k = (GK * GK * GK) / (27000f + (GK * GK * GK));
+            return k * OSi * (OSi / 50f);
         }
     }
 

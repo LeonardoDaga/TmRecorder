@@ -72,20 +72,20 @@ namespace Common
         public abstract float[] GetAttitude_GK(float[] skills, float Rou);
         #endregion
 
-        #region PSP Computation
-        public float GetPSP(float[] atts, float Età)
+        #region OSi Computation
+        public float GetOSi(float[] atts, float[] skills)
         {
             if (atts.Length > 1)
             {
-                return GetPSP_PL(atts, Età);
+                return GetOSi_PL(atts, skills);
             }
             else
             {
-                return GetPSP_GK(atts, Età);
+                return GetOSi_GK(atts, skills);
             }
         }
-        public abstract float GetPSP_PL(float[] atts, float Età);
-        public abstract float GetPSP_GK(float[] atts, float Età);
+        public abstract float GetOSi_PL(float[] atts, float[] skills);
+        public abstract float GetOSi_GK(float[] atts, float[] skills);
         #endregion
 
         public enum FunctionType
@@ -204,35 +204,44 @@ namespace Common
             return PO;
         }
 
-        public override float GetPSP_PL(float[] atts, float Età)
+        public override float GetOSi_PL(float[] atts, float[] skills)
         {
-            float PSP = 0.0F;
-
-            Atts = atts;
-
+            float AttMax = 0;
             // Find the maximum speciality result
-            PSP = Math.Max(DC, DL);
-            PSP = Math.Max(PSP, DR);
-            PSP = Math.Max(PSP, DMC);
-            PSP = Math.Max(PSP, DMR);
-            PSP = Math.Max(PSP, DML);
-            PSP = Math.Max(PSP, MC);
-            PSP = Math.Max(PSP, ML);
-            PSP = Math.Max(PSP, MR);
-            PSP = Math.Max(PSP, OMC);
-            PSP = Math.Max(PSP, OML);
-            PSP = Math.Max(PSP, OMR);
-            PSP = Math.Max(PSP, FC);
+            AttMax = Math.Max(DC, DL);
+            AttMax = Math.Max(AttMax, DR);
+            AttMax = Math.Max(AttMax, DMC);
+            AttMax = Math.Max(AttMax, DMR);
+            AttMax = Math.Max(AttMax, DML);
+            AttMax = Math.Max(AttMax, MC);
+            AttMax = Math.Max(AttMax, ML);
+            AttMax = Math.Max(AttMax, MR);
+            AttMax = Math.Max(AttMax, OMC);
+            AttMax = Math.Max(AttMax, OML);
+            AttMax = Math.Max(AttMax, OMR);
+            AttMax = Math.Max(AttMax, FC);
 
-            PSP = PSP * (1f + (30f - Età) / Età);
+            float skillsSum = 0.0f;
+            foreach (float skill in skills)
+            {
+                skillsSum += skill;
+            }
 
-            return PSP;
+
+            return AttMax * AttMax / (skillsSum / 1.4f);
         }
 
-        public override float GetPSP_GK(float[] atts, float Età)
+        public override float GetOSi_GK(float[] atts, float[] skills)
         {
-            float PO = atts[0];
-            return PO * (1f + (30f - Età) / Età);
+            float GK = atts[0];
+
+            float skillsSum = 0.0f;
+            foreach (float skill in skills)
+            {
+                skillsSum += skill;
+            }
+
+            return GK * GK  / (skillsSum / 1.1f);
         }
 
         #region Private Functions
@@ -387,35 +396,46 @@ namespace Common
             return PO;
         }
 
-        public override float GetPSP_PL(float[] atts, float Età)
+        public override float GetOSi_PL(float[] atts, float[] skills)
         {
-            float PSP = 0.0F;
-
-            Atts = atts;
-
+            float AttMax = 0;
             // Find the maximum speciality result
-            PSP = Math.Max(DC, DL);
-            PSP = Math.Max(PSP, DR);
-            PSP = Math.Max(PSP, DMC);
-            PSP = Math.Max(PSP, DMR);
-            PSP = Math.Max(PSP, DML);
-            PSP = Math.Max(PSP, MC);
-            PSP = Math.Max(PSP, ML);
-            PSP = Math.Max(PSP, MR);
-            PSP = Math.Max(PSP, OMC);
-            PSP = Math.Max(PSP, OML);
-            PSP = Math.Max(PSP, OMR);
-            PSP = Math.Max(PSP, FC);
+            AttMax = Math.Max(DC, DL);
+            AttMax = Math.Max(AttMax, DR);
+            AttMax = Math.Max(AttMax, DMC);
+            AttMax = Math.Max(AttMax, DMR);
+            AttMax = Math.Max(AttMax, DML);
+            AttMax = Math.Max(AttMax, MC);
+            AttMax = Math.Max(AttMax, ML);
+            AttMax = Math.Max(AttMax, MR);
+            AttMax = Math.Max(AttMax, OMC);
+            AttMax = Math.Max(AttMax, OML);
+            AttMax = Math.Max(AttMax, OMR);
+            AttMax = Math.Max(AttMax, FC);
 
-            PSP = PSP * (1f + (30f - Età) / Età);
+            float skillsSum = 0.0f;
+            foreach (float skill in skills)
+            {
+                skillsSum += skill;
+            }
 
-            return PSP;
+
+            // return AttMax / (skillsSum / 140f);
+            return AttMax * AttMax / (skillsSum / 1.40f);
         }
 
-        public override float GetPSP_GK(float[] atts, float Età)
+        public override float GetOSi_GK(float[] atts, float[] skills)
         {
-            float PO = atts[0];
-            return PO * (1f + (30f - Età) / Età);
+            float GK = atts[0];
+
+            float skillsSum = 0.0f;
+            foreach (float skill in skills)
+            {
+                skillsSum += skill;
+            }
+
+            // return GK / (skillsSum / 110f);
+            return GK * GK / (skillsSum / 1.10f);
         }
     }
 

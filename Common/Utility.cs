@@ -117,6 +117,24 @@ namespace Common
         {
             return rect.X.ToString() + "," + rect.Y.ToString() + "," + rect.Width.ToString() + "," + rect.Height.ToString();
         }
+
+        static public double TrainingWeeksInDates(DateTime dtFrom, DateTime dtTo)
+        {
+            // Move to the past tuesday
+            if (dtFrom.DayOfWeek > DayOfWeek.Tuesday)
+                dtFrom = dtFrom.AddDays(-(dtFrom.DayOfWeek - DayOfWeek.Tuesday));
+            else if (dtFrom.DayOfWeek < DayOfWeek.Tuesday)
+                dtFrom = dtFrom.AddDays(-(5 + dtFrom.DayOfWeek - DayOfWeek.Sunday));
+
+            // Move to the past tuesday
+            if (dtTo.DayOfWeek > DayOfWeek.Tuesday)
+                dtTo = dtTo.AddDays(-(dtTo.DayOfWeek - DayOfWeek.Tuesday));
+            else if (dtTo.DayOfWeek < DayOfWeek.Tuesday)
+                dtTo = dtTo.AddDays(-(5 + dtTo.DayOfWeek - DayOfWeek.Sunday));
+
+            TimeSpan ts = dtTo - dtFrom;
+            return (double)ts.Days / 7;
+        }
     }
 
     public class Tm_Training
@@ -858,6 +876,11 @@ namespace Common
         public static int GetSeasonFromWeek(int week)
         {
             return week / 12 + 1;
+        }
+
+        public static DateTime TmWeekToDate(int absweek)
+        {
+            return tmDay0.AddDays(7 * absweek);
         }
     }
 }

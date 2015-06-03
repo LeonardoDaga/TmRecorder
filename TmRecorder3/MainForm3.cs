@@ -1300,11 +1300,8 @@ namespace TmRecorder3
 
             TmSWD selectedWeek = (TmSWD)cbDataDay.SelectedItem;
 
-            EnumerableRowCollection<PlayerData> AllPlayers = (from c in DB.squadDB.HistData
-                          where (c.Week == selectedWeek.AbsWeek) 
-                          select new PlayerData(c, selectedWeek.AbsWeek)).OrderBy(p => p.Number);
-
-            TR3_PlayerForm playerForm = new TR3_PlayerForm(AllPlayers, playerData);
+            TR3_PlayerForm playerForm = new TR3_PlayerForm(DB.squadDB, playerData, selectedWeek);
+            playerForm.ShowDialog();
         }
     }
 }

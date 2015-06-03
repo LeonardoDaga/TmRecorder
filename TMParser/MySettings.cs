@@ -196,7 +196,7 @@ namespace TMRecorder
             sb.Def("MatchOnFieldFilter", 0);
             sb.Def("MainFormPosition", "0,0,0,0");
             sb.Def("GKFormPosition", "0,0,0,0");
-            sb.Def("PlayerFormPosition", "0,0,0,0");
+            sb.Def("PlayerFormPosition", "0,0,500,400");
             sb.Def("ComputeStructureSettings", "");
             sb.Def("TeamMatchesShowMatches", 0);
             sb.Def("MatchAnalysisFileSave", false);

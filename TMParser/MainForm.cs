@@ -1190,9 +1190,16 @@ namespace TMRecorder
                 }
 
                 // Evidenzia solo le colonne degli skills
-                for (int j = 24; j < 38; j++)
+                for (int j = 25; j < 39; j++)
                 {
-                    float f = (float)dgv[j, i].Value;
+                    object o = dgv[j, i].Value;
+
+                    float f = 0f;
+                    if (o.GetType() == typeof(float))
+                        f = (float)o;
+                    else if (o.GetType() == typeof(decimal))
+                        f = (float)(decimal)o;
+
                     if (f > 100) f = 100;
                     if (f < 0) f = 0;
 

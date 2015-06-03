@@ -120,7 +120,6 @@ namespace TmRecorder3
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.trainingBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.playerTraining = new TMRecorder.PlayerTraining();
             this.tabPlayerBrowser = new System.Windows.Forms.TabPage();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.webBrowser = new System.Windows.Forms.WebBrowser();
@@ -195,13 +194,11 @@ namespace TmRecorder3
             this.dataGridViewTextBoxColumn18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.scoutsDataTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.reviewDataTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.bestPlayersDS = new TMRecorder.BestPlayersDS();
             this.bestPlayersDSBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.reviewDataTableBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.scoutsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.extraDS = new Common.ExtraDS();
             this.ReportAnalysis = new Common.ReportAnalysis();
-            this.playerData1 = new TMRecorder.PlayerData();
             this.PlayerAge = new DataGridViewCustomColumns.TMR_AgeColumn(this.components);
             this.absWeekDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_DateColumn(this.components);
             this.forDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_ArrowColumn(this.components);
@@ -253,7 +250,6 @@ namespace TmRecorder3
             this.tabPage6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trainingBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.playerTraining)).BeginInit();
             this.tabPlayerBrowser.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
@@ -272,7 +268,6 @@ namespace TmRecorder3
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scoutsDataTableBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.reviewDataTableBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bestPlayersDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bestPlayersDSBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.reviewDataTableBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.scoutsBindingSource)).BeginInit();
@@ -1720,16 +1715,6 @@ namespace TmRecorder3
             this.dataGridView1.Size = new System.Drawing.Size(682, 516);
             this.dataGridView1.TabIndex = 0;
             // 
-            // trainingBindingSource
-            // 
-            this.trainingBindingSource.DataMember = "Training";
-            this.trainingBindingSource.DataSource = this.playerTraining;
-            // 
-            // playerTraining
-            // 
-            this.playerTraining.DataSetName = "PlayerTraining";
-            this.playerTraining.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // tabPlayerBrowser
             // 
             this.tabPlayerBrowser.Controls.Add(this.toolStripContainer1);
@@ -1898,21 +1883,6 @@ namespace TmRecorder3
             this.txtNotes.Size = new System.Drawing.Size(239, 88);
             this.txtNotes.TabIndex = 6;
             this.txtNotes.TextChanged += new System.EventHandler(this.txtNotes_TextChanged);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.lblBloomAge);
-            this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.lblRoutine);
-            this.groupBox1.Controls.Add(this.label24);
-            this.groupBox1.Controls.Add(this.playerData1);
-            this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.groupBox1.Location = new System.Drawing.Point(6, 99);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(245, 141);
-            this.groupBox1.TabIndex = 8;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Player Skills";
             // 
             // lblBloomAge
             // 
@@ -2449,16 +2419,6 @@ namespace TmRecorder3
             this.reviewDataTableBindingSource.DataSource = typeof(Common.ScoutsNReviews.ReviewDataTable);
             this.reviewDataTableBindingSource.CurrentChanged += new System.EventHandler(this.reviewDataTableBindingSource_CurrentChanged);
             // 
-            // bestPlayersDS
-            // 
-            this.bestPlayersDS.DataSetName = "BestPlayersDS";
-            this.bestPlayersDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // bestPlayersDSBindingSource
-            // 
-            this.bestPlayersDSBindingSource.DataSource = this.bestPlayersDS;
-            this.bestPlayersDSBindingSource.Position = 0;
-            // 
             // reviewDataTableBindingSource1
             // 
             this.reviewDataTableBindingSource1.DataMember = "Review";
@@ -2478,15 +2438,6 @@ namespace TmRecorder3
             // 
             this.ReportAnalysis.DataSetName = "ReportAnalysis";
             this.ReportAnalysis.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // playerData1
-            // 
-            this.playerData1.BackColor = System.Drawing.SystemColors.Control;
-            this.playerData1.ForeColor = System.Drawing.Color.Black;
-            this.playerData1.Location = new System.Drawing.Point(9, 16);
-            this.playerData1.Name = "playerData1";
-            this.playerData1.Size = new System.Drawing.Size(230, 92);
-            this.playerData1.TabIndex = 1;
             // 
             // PlayerAge
             // 
@@ -2739,7 +2690,6 @@ namespace TmRecorder3
             this.tabPage6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trainingBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.playerTraining)).EndInit();
             this.tabPlayerBrowser.ResumeLayout(false);
             this.toolStripContainer1.ContentPanel.ResumeLayout(false);
             this.toolStripContainer1.TopToolStripPanel.ResumeLayout(false);
@@ -2764,7 +2714,6 @@ namespace TmRecorder3
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scoutsDataTableBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.reviewDataTableBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bestPlayersDS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bestPlayersDSBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.reviewDataTableBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.scoutsBindingSource)).EndInit();
@@ -2778,7 +2727,6 @@ namespace TmRecorder3
         #endregion
 
         private System.Windows.Forms.Label lblName;
-        private PlayerData playerData1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblPrefPos;
         private System.Windows.Forms.Label label6;
@@ -2824,7 +2772,6 @@ namespace TmRecorder3
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Button btnGetVotenSkillAuto;
         public ReportAnalysis ReportAnalysis;
-        private PlayerTraining playerTraining;
         private System.Windows.Forms.TabPage tabPage6;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.BindingSource trainingBindingSource;
@@ -2933,7 +2880,6 @@ namespace TmRecorder3
         private System.Windows.Forms.DataGridView dataGridView2;
         private GameTable gameTableDS;
         private System.Windows.Forms.BindingSource performancesBindingSource;
-        private BestPlayersDS bestPlayersDS;
         private System.Windows.Forms.BindingSource bestPlayersDSBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn seasonDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn gPDataGridViewTextBoxColumn;

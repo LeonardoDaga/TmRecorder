@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using System.Linq;
 using ZedGraph;
 using System.Diagnostics;
 using Common;
@@ -17,20 +18,45 @@ namespace TmRecorder3
 {
     public partial class TR3_PlayerForm : Form
     {
-        public ExtTMDataSet.GiocatoriNSkillDataTable GDT;
-        private int iActualPlayer;
         private bool playerInfoChanged = false;
         public bool isDirty = false;
         public ChampDS.PlyStatsDataTable plyStatsTable = null;
-        private EnumerableRowCollection<PlayerData> allPlayers;
         private PlayerData selectedPlayerData;
+        private PlayerHistory playerHistory;
+        private int selectedWeek;
+        private int[] thisWeekPlayersIDs;
 
-        public int actPlayerID
+        public NTR_SquadDb SquadDB { get; set; }
+
+        int _selectedPlayerIndex = -1;
+        public int selectedPlayerIndex
         {
             get
             {
-                ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[iActualPlayer];
-                return playerDatarow.PlayerID;
+                if (_selectedPlayerIndex == -1)
+                {
+                    for (int i = 0; i < thisWeekPlayersIDs.Count(); i++)
+                    {
+                        if (selectedPlayerData.playerID == thisWeekPlayersIDs[i])
+                        {
+                            _selectedPlayerIndex = i;
+                        }
+                    }
+                }
+                return _selectedPlayerIndex;
+            }
+
+            set
+            {
+                _selectedPlayerIndex = value;
+            }
+        }
+
+        public int selectedPlayerID
+        {
+            get
+            {
+                return selectedPlayerData.playerID;
             }
         }
 
@@ -79,32 +105,50 @@ namespace TmRecorder3
             }
         }
 
-        public TR3_PlayerForm(EnumerableRowCollection<PlayerData> allPlayers, PlayerData playerData)
+        public TR3_PlayerForm(NTR_SquadDb squadDB, 
+                            PlayerData playerData, 
+                            TmSWD selectedWeek)
         {
             // Only for debug
             InitializeComponent();
 
             SetLanguage();
 
-            this.allPlayers = allPlayers;
+            SquadDB = squadDB;
             selectedPlayerData = playerData;
 
-            Initialize();            
+            this.selectedWeek = selectedWeek.AbsWeek;
+
+            thisWeekPlayersIDs = (from c in SquadDB.HistData
+                                  where (c.Week == this.selectedWeek)
+                                  select c.PlayerID).ToArray();
+
+            GetPlayerHistory();
+
+            Initialize();
 
             chkNormalized_CheckedChanged(null, EventArgs.Empty);
         }
 
+        public void GetPlayerHistory()
+        {
+            List<NTR_SquadDb.HistDataRow> playerHistoryList = (from c in SquadDB.HistData.AsEnumerable()
+                             where (c.PlayerID == selectedPlayerData.playerID)
+                             select c).OrderBy(p => p.Week).ToList();
+
+            playerHistory = new PlayerHistory(playerHistoryList);
+        }
+
         public void Initialize(int playerID)
         {
-            for (int n = 0; n < GDT.Rows.Count; n++)
-            {
-                ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[n];
-                if (playerDatarow.PlayerID == playerID)
-                {
-                    iActualPlayer = n;
-                    break;
-                }
-            }
+            NTR_SquadDb.HistDataRow selectedPlayerRow = (from c in SquadDB.HistData
+                                                         where (c.PlayerID == playerID) && 
+                                                         (c.Week == selectedWeek)
+                                                         select c).Single<NTR_SquadDb.HistDataRow>();
+
+            selectedPlayerData = new PlayerData(selectedPlayerRow, -1);
+
+            GetPlayerHistory();
 
             Initialize();
         }
@@ -115,28 +159,32 @@ namespace TmRecorder3
 
             FillBaseData(selectedPlayerData);
 
-            FillPlayerData((ExtTMDataSet.PlayerHistoryRow)table.Rows[table.Rows.Count - 1]);
+            FillPlayerData();
 
-            FillSkillGraph(table);
+            if (selectedPlayerData.FPn != 0)
+                FillSkillGraphPlayer();
+            else
+                FillSkillGraphGk();
 
-            FillASIGraph(table);
+            FillASIGraph();
 
-            FillTIGraph(table);
+            FillTIGraph();
 
-            FillInjuriesGraph(table);
+            FillInjuriesGraph();
 
-            FillSpecsGraph(table);
+            if (selectedPlayerData.FPn != 0)
+                FillSpecsGraphPlayer();
+            else
+                FillSpecsGraphGk();
 
             FillPlayerInfo(true);
 
-            FillTrainingTable(playerDatarow.PlayerID);
+            // SetTraining();
 
-            SetTraining();
+            //string expression = "(PlayerID = " + selectedPlayerData.playerID + ")";
+            //ChampDS.PlyStatsRow[] drs = (ChampDS.PlyStatsRow[])plyStatsTable.Select(expression);
 
-            string expression = "(PlayerID = " + playerDatarow.PlayerID + ")";
-            ChampDS.PlyStatsRow[] drs = (ChampDS.PlyStatsRow[])plyStatsTable.Select(expression);
-
-            FillSeasonCombo(drs);
+            //FillSeasonCombo(drs); 
             chkShowPosition.Checked = Program.Setts.ShowPosition;
             chkNormalized.Checked = Program.Setts.ShowStatsNormalized;
 
@@ -144,9 +192,9 @@ namespace TmRecorder3
 
             playerInfoChanged = false;
 
-            FillTagsBar(History.reportParser);
+            //FillTagsBar(History.reportParser);
 
-            FillPlayerBar(playerDatarow.PlayerID);
+            FillPlayerBar(selectedPlayerData.playerID);
 
             if (tabControl1.SelectedTab == tabPlayerBrowser)
             {
@@ -181,22 +229,15 @@ namespace TmRecorder3
             tagsBar.Invalidate();       
         }
 
-        private void FillTrainingTable(int playerID)
-        {
-            playerTraining.Clear();
-
-            History.FillPLTrainingTable(playerTraining, playerID);
-        }
-
         private void SetTraining()
         {
-            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[iActualPlayer];
-            ExtraDS.GiocatoriRow gr = History.PlayersDS.FindByPlayerID(playerDatarow.PlayerID);
+            //ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[iActualPlayer];
+            //ExtraDS.GiocatoriRow gr = History.PlayersDS.FindByPlayerID(playerDatarow.PlayerID);
 
-            FillTrainingPsychologyGraph(gr);
-            FillTrainingPhysicsGraph(gr, playerDatarow);
-            FillTrainingTacticsGraph(gr, playerDatarow);
-            FillTrainingTechnicsGraph(gr, playerDatarow);
+            //FillTrainingPsychologyGraph(gr);
+            //FillTrainingPhysicsGraph(gr, playerDatarow);
+            //FillTrainingTacticsGraph(gr, playerDatarow);
+            //FillTrainingTechnicsGraph(gr, playerDatarow);
         }
 
         private void FillTrainingTechnicsGraph(ExtraDS.GiocatoriRow gr, ExtTMDataSet.GiocatoriNSkillRow gnsr)
@@ -494,26 +535,36 @@ namespace TmRecorder3
                 if (cmbSeason.SelectedItem.ToString() != "All seasons")
                     season = (int)(cmbSeason.SelectedItem);
 
-                ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[iActualPlayer];
-                string expression = "(PlayerID = " + playerDatarow.PlayerID + ")";
-                if (season != -1)
-                    expression += " AND (SeasonID = " + season + ")";
+                List<NTR_SquadDb.PlayerPerfRow> playerPerfRows = null;
+
+                if (season == -1)
+                    playerPerfRows = (from c in SquadDB.PlayerPerf
+                                      where c.PlayerID == selectedPlayerID
+                                      select c).ToList();
                 else
-                    expression += " AND (SeasonID > 0)";
-                ChampDS.PlyStatsRow[] drs = (ChampDS.PlyStatsRow[])plyStatsTable.Select(expression);
-
-                foreach (ChampDS.PlyStatsRow psr in drs)
                 {
-                    if (psr.IsVotesNull()) continue;
+                    DateTime dtSeasonStart = TmWeek.GetDateTimeOfSeasonStart(season);
+                    DateTime dtSeasonEnd = TmWeek.GetDateTimeOfSeasonStart(season + 1);
 
-                    int type = psr.TypeStats;
+                    playerPerfRows = (from c in SquadDB.PlayerPerf
+                                      where (c.PlayerID == selectedPlayerID) && 
+                                      (c.MatchRow.Date >= dtSeasonStart) &&
+                                      (c.MatchRow.Date < dtSeasonEnd)
+                                      select c).ToList();
+                }
+
+                foreach (NTR_SquadDb.PlayerPerfRow playerPerfRow in playerPerfRows)
+                {
+                    if (playerPerfRow.IsVoteNull()) continue;
+
+                    int type = playerPerfRow.MatchRow.MatchType;
                     if (type > 20) type = 4;
                     else if (type > 10) type = 1;
                     else if (type == 5) type = 0;
                     if (votesSng[type] == null)
-                        votesSng[type] = psr.Votes;
+                        votesSng[type] = playerPerfRow.Vote.ToString();
                     else
-                        votesSng[type] += (";" + psr.Votes);
+                        votesSng[type] += ";" + playerPerfRow.Vote.ToString();
                 }
 
                 for (int i = 0; i < numOfMatchTypes; i++)
@@ -593,16 +644,16 @@ namespace TmRecorder3
                 string swRelease = "Sw Release:" + Application.ProductName + "("
                     + Application.ProductVersion + ")";
                 string info = "";
-                info += "iActualPlayer:" + iActualPlayer.ToString() + "\r\n";
+                info += "iActualPlayer:" + selectedPlayerID.ToString() + "\r\n";
                 info += "cmbSeason.SelectedItem:" + cmbSeason.SelectedItem.ToString() + "\r\n";
                 info += "Program.Setts.MatchTypes:" + Program.Setts.MatchTypes + "\r\n";
 
                 string filename = "dbinfo." + DateTime.Now.Hour.ToString() +
                     DateTime.Now.Minute.ToString() + ".tmreport.txt";
-                string pathfilename = Path.Combine(Program.Setts.TeamDataFolder, filename);
+                string pathfilename = Path.Combine(Program.Setts.ApplicationFolder, filename);
                 FileInfo fi = new FileInfo(pathfilename);
 
-                GDT.WriteXml(fi.FullName);
+                //GDT.WriteXml(fi.FullName);
 
                 StreamReader file = new StreamReader(fi.FullName);
                 info += "\r\nGDT:\r\n" + file.ReadToEnd();
@@ -699,81 +750,73 @@ namespace TmRecorder3
 
         private void FillPlayerInfo(bool reset)
         {
-            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[iActualPlayer];
-            ExtraDS.GiocatoriRow gRow = History.PlayersDS.Giocatori.FindByPlayerID(playerDatarow.PlayerID);
-
             scoutsNReviews.Scouts.Clear();
-            foreach (ExtraDS.ScoutsRow sr in History.PlayersDS.Scouts)
+
+            foreach (NTR_SquadDb.ScoutRow sr in SquadDB.Scout)
             {
                 ScoutsNReviews.ScoutsRow srn = scoutsNReviews.Scouts.NewScoutsRow();
                 srn.Name = sr.Name;
-                srn.Physical = sr.Physical;
-                srn.Psychology = sr.Psychology;
-                srn.Development = sr.Development;
-                srn.Senior = sr.Senior;
-                srn.Youth = sr.Youth;
-                srn.Tactical = sr.Tactical;
-                srn.Technical = sr.Technical;
+                srn.Physical = sr.Phy;
+                srn.Psychology = sr.Psy;
+                srn.Development = sr.Dev;
+                srn.Senior = sr.Sen;
+                srn.Youth = sr.Yth;
+                srn.Tactical = sr.Tac;
+                srn.Technical = sr.Tec;
                 scoutsNReviews.Scouts.AddScoutsRow(srn);
             }
 
             scoutsNReviews.Review.Clear();
-            scoutsNReviews.FillTables(gRow, History.reportParser);
 
-            reviewDataTableBindingSource.Filter = "PlayerID=" + gRow.PlayerID.ToString();
+            //scoutsNReviews.FillTables(selectedPlayerData, History.reportParser);
 
-            txtNotes.Text = gRow.Note;
+            //reviewDataTableBindingSource.Filter = "PlayerID=" + selectedPlayerData.playerID.ToString();
 
-            foreach (DataGridViewColumn col in dgReviews.Columns)
-            {
-                if (col.GetType() == typeof(DataGridViewCustomColumns.TMR_ReportColumn))
-                {
-                    DataGridViewCustomColumns.TMR_ReportColumn repCol = 
-                        (DataGridViewCustomColumns.TMR_ReportColumn)col;
+            //txtNotes.Text = selectedPlayerData.Note;
 
-                    repCol.reportParser = History.reportParser;
-                    repCol.FPn = gRow.FPn;
-                }
-            }
+            //foreach (DataGridViewColumn col in dgReviews.Columns)
+            //{
+            //    if (col.GetType() == typeof(DataGridViewCustomColumns.TMR_ReportColumn))
+            //    {
+            //        DataGridViewCustomColumns.TMR_ReportColumn repCol = 
+            //            (DataGridViewCustomColumns.TMR_ReportColumn)col;
 
-            if (!gRow.IsAggressivityNull())
-                tagsBarAgg.Value = (decimal)gRow.Aggressivity / 2M;
-            else
-                tagsBarAgg.Value = 0;
+            //        repCol.reportParser = History.reportParser;
+            //        repCol.FPn = selectedPlayerData.FPn;
+            //    }
+            //}
 
-            if (!gRow.IsProfessionalismNull())
-                tagsBarPro.Value = (decimal)gRow.Professionalism / 2M;
-            else
-                tagsBarPro.Value = 0;
+            //if (!gRow.IsAggressivityNull())
+            //    tagsBarAgg.Value = (decimal)gRow.Aggressivity / 2M;
+            //else
+            //    tagsBarAgg.Value = 0;
 
-            if (!gRow.IsLeadershipNull())
-                tagsBarLea.Value = (decimal)gRow.Leadership / 2M;
-            else
-                tagsBarLea.Value = 0;
+            //if (!gRow.IsProfessionalismNull())
+            //    tagsBarPro.Value = (decimal)gRow.Professionalism / 2M;
+            //else
+            //    tagsBarPro.Value = 0;
 
-            tagsBarPhy.Value = (decimal)gRow.Physics / 5M;
-            tagsBarTac.Value = (decimal)gRow.Tactics / 5M;
-            tagsBarTec.Value = (decimal)gRow.Technics / 5M;
+            //if (!gRow.IsLeadershipNull())
+            //    tagsBarLea.Value = (decimal)gRow.Leadership / 2M;
+            //else
+            //    tagsBarLea.Value = 0;
 
-            string gameTable = "";
-            if (!gRow.IsGameTableNull())
-                gameTable = gRow.GameTable;
-            gameTableDS.LoadSeasonsStrings(gameTable);
+            //tagsBarPhy.Value = (decimal)gRow.Physics / 5M;
+            //tagsBarTac.Value = (decimal)gRow.Tactics / 5M;
+            //tagsBarTec.Value = (decimal)gRow.Technics / 5M;
 
-            if (gRow.wBloomStart != -1) 
-                BloomAgeView = (gRow.wBloomStart - gRow.wBorn) / 12;
-            else
-                BloomAgeView = -1M;
+            //string gameTable = "";
+            //if (!gRow.IsGameTableNull())
+            //    gameTable = gRow.GameTable;
+            //gameTableDS.LoadSeasonsStrings(gameTable);
+
+            //if (gRow.wBloomStart != -1) 
+            //    BloomAgeView = (gRow.wBloomStart - gRow.wBorn) / 12;
+            //else
+            //    BloomAgeView = -1M;
         }
 
-        private void StorePlayerInfo()
-        {
-            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[iActualPlayer];
-            ExtraDS.GiocatoriRow gRow = History.PlayersDS.Giocatori.FindByPlayerID(playerDatarow.PlayerID);
-            gRow.Note = txtNotes.Text;
-        }
-
-        private void FillASIGraph(ExtTMDataSet.PlayerHistoryDataTable table)
+        private void FillASIGraph()
         {
             GraphPane pane = graphASI.GraphPane;
             pane.CurveList.Clear();
@@ -802,10 +845,9 @@ namespace TmRecorder3
             int lastASI = 0;
             double lastXdate = 0.0;
 
-            for (int i = 0; i < table.Rows.Count; i++)
+            int i = 0;
+            foreach (NTR_SquadDb.HistDataRow pr in playerHistory)
             {
-                ExtTMDataSet.PlayerHistoryRow pr = (ExtTMDataSet.PlayerHistoryRow)table.Rows[i];
-
                 dDataASI = pr.ASI;
                 xdate = (double)new XDate(pr.Date);
 
@@ -822,16 +864,16 @@ namespace TmRecorder3
                 dataASI.Add(xdate, dDataASI);
 
                 lastASI = pr.ASI;
+                i++;
             }
 
             xdateN = xdate;
 
             int count = 0;
 
-            for (int i = 0; i < table.Rows.Count; i++)
+            i = 0;
+            foreach (NTR_SquadDb.HistDataRow pr in playerHistory)
             {
-                ExtTMDataSet.PlayerHistoryRow pr = (ExtTMDataSet.PlayerHistoryRow)table.Rows[i];
-
                 xdate = (double)new XDate(pr.Date);
 
                 if (i == 0)
@@ -843,7 +885,7 @@ namespace TmRecorder3
                 if (lastASI == pr.ASI) continue;
 
                 dDataASI = (double)(pr.ASI - lastASI);
-                xdelta = Utility.TrainingWeeksInDates(lastXdate, xdate);
+                xdelta = Utility.TrainingWeeksInDates(XDate.XLDateToDateTime(lastXdate), XDate.XLDateToDateTime(xdate));
                 if (xdelta == 0) xdelta = 1;
 
                 dMax2 = Math.Max(dMax2, dDataASI / xdelta);
@@ -854,6 +896,7 @@ namespace TmRecorder3
                 lastXdate = xdate;
 
                 count++;
+                i++;
             }
 
             // Fill the axis background with a color gradient
@@ -910,17 +953,11 @@ namespace TmRecorder3
             graphASI.Refresh();
         }
 
-        private void FillTIGraph(ExtTMDataSet.PlayerHistoryDataTable table)
+        private void FillTIGraph()
         {
-            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[iActualPlayer];
-            ExtraDS.GiocatoriRow gRow = History.PlayersDS.Giocatori.FindByPlayerID(playerDatarow.PlayerID);
+            string playerTIs = playerHistory.getTIs();
 
-            if ((gRow.IsTSINull()) || (gRow.TSI == ""))
-            {
-                gRow.TSI = TmWeek.ToSWDString(DateTime.Today);
-            }
-
-            WeekHistorical whTI = new WeekHistorical(gRow.TSI);
+            WeekHistorical whTI = new WeekHistorical(playerTIs);
 
             DateTime firstTI = whTI.lastWeek.ToDate();
 
@@ -952,7 +989,8 @@ namespace TmRecorder3
             double xdate0 = 0.0;
 
             int tiCount = whTI.Count;
-            for (int i = 0; i < tiCount; i++)
+            int i = 0;
+            for (; i < tiCount; i++)
             {
                 double dDataTI = 0.0;
 
@@ -970,10 +1008,10 @@ namespace TmRecorder3
             int lastASI = 0;
             double lastXdate = 0.0;
 
+            i = 0;
             if (chkShowTGI.Checked)
-                for (int i = 0; i < table.Rows.Count; i++)
+                foreach (NTR_SquadDb.HistDataRow pr in playerHistory)
                 {
-                    ExtTMDataSet.PlayerHistoryRow pr = (ExtTMDataSet.PlayerHistoryRow)table.Rows[i];
                     xdate = (double)new XDate(pr.Date);
 
                     if (i == 0)
@@ -986,7 +1024,7 @@ namespace TmRecorder3
                     if (lastASI == pr.ASI) continue;
 
                     double dDataASI = (double)(pr.ASI - lastASI);
-                    double xdelta = Utility.TrainingWeeksInDates(lastXdate, xdate);
+                    double xdelta = Utility.TrainingWeeksInDates(XDate.XLDateToDateTime(lastXdate), XDate.XLDateToDateTime(xdate));
                     if (xdelta == 0) continue;
 
                     double deltaASI = dDataASI / xdelta;
@@ -998,6 +1036,8 @@ namespace TmRecorder3
 
                     lastASI = pr.ASI;
                     lastXdate = xdate;
+
+                    i++;
                 }
 
             // Fill the axis background with a color gradient
@@ -1063,7 +1103,7 @@ namespace TmRecorder3
             graphTI.Refresh();
         }
 
-        private void FillInjuriesGraph(ExtTMDataSet.PlayerHistoryDataTable table)
+        private void FillInjuriesGraph()
         {
             GraphPane pane = graphInjuries.GraphPane;
             pane.CurveList.Clear();
@@ -1079,19 +1119,20 @@ namespace TmRecorder3
             pane.XAxis.Scale.Format = "TW";
 
             // Enter some random data values
-            double[] dDataInj = new double[table.Rows.Count];
-            double[] xdate = new double[table.Rows.Count];
+            double[] dDataInj = new double[playerHistory.Count];
+            double[] xdate = new double[playerHistory.Count];
             double dMin = 1.0;
             double dMax = -1.0;
 
-            for (int i = 0; i < table.Rows.Count; i++)
+            int i = 0;
+            foreach(NTR_SquadDb.HistDataRow pr in playerHistory)
             {
-                ExtTMDataSet.PlayerHistoryRow pr = (ExtTMDataSet.PlayerHistoryRow)table.Rows[i];
-
-                dDataInj[i] = (double)pr.Infortunato;
+                dDataInj[i] = (double)pr.Inj;
                 xdate[i] = (double)new XDate(pr.Date);
                 dMin = Math.Min(dMin, dDataInj[i]);
                 dMax = Math.Max(dMax, dDataInj[i]);
+
+                i++;
             }
 
             // Fill the axis background with a color gradient
@@ -1124,12 +1165,9 @@ namespace TmRecorder3
 
             UpdatePlayerRoutine();
 
-            if (!gRow.IsRoutineNull())
-                RoutineView = gRow.Routine;
-            else
-                RoutineView = 0;
+            RoutineView = selectedPlayer.Rou;
 
-            PrefPos = playerDatarow.FP;
+            PrefPos = Tm_Utility.NumberToFP(selectedPlayer.FPn);
         }
 
         private void UpdatePlayerRoutine()
@@ -1137,14 +1175,12 @@ namespace TmRecorder3
 
         }
 
-        private void FillPlayerData(ExtTMDataSet.PlayerHistoryRow dataRow)
+        private void FillPlayerData()
         {
-            this.playerData1.PlayerRow = dataRow;
-
-            ASI = dataRow.ASI;
+            ASI = selectedPlayerData.ASI.actual;
         }
 
-        internal void FillSkillGraph(ExtTMDataSet.PlayerHistoryDataTable table)
+        internal void FillSkillGraphGk()
         {
             MasterPane master = graphSkills.MasterPane;
 
@@ -1162,26 +1198,270 @@ namespace TmRecorder3
             master.Margin.All = 10;
             master.InnerPaneGap = 10;
 
-            double[] dDataCal = new double[table.Rows.Count];
-            double[] dDataCon = new double[table.Rows.Count];
-            double[] dDataCro = new double[table.Rows.Count];
-            double[] dDataFin = new double[table.Rows.Count];
-            double[] dDataFor = new double[table.Rows.Count];
-            double[] dDataHea = new double[table.Rows.Count];
-            double[] dDataMar = new double[table.Rows.Count];
-            double[] dDataPas = new double[table.Rows.Count];
-            double[] dDataPos = new double[table.Rows.Count];
-            double[] dDataRes = new double[table.Rows.Count];
-            double[] dDataTec = new double[table.Rows.Count];
-            double[] dDataTir = new double[table.Rows.Count];
-            double[] dDataVel = new double[table.Rows.Count];
-            double[] dDataWor = new double[table.Rows.Count];
-            double[] xdate = new double[table.Rows.Count];
+            int historyDataCount = playerHistory.Count;
 
-            for (int i = 0; i < table.Rows.Count; i++)
+            double[] dDataFor = new double[historyDataCount];
+            double[] dDataVel = new double[historyDataCount];
+            double[] dDataRes = new double[historyDataCount];
+            double[] dDataPre = new double[historyDataCount];
+            double[] dDataUno = new double[historyDataCount];
+            double[] dDataRif = new double[historyDataCount];
+            double[] dDataAer = new double[historyDataCount];
+            double[] dDataEle = new double[historyDataCount];
+            double[] dDataCom = new double[historyDataCount];
+            double[] dDataTir = new double[historyDataCount];
+            double[] dDataLan = new double[historyDataCount];
+            double[] xdate = new double[historyDataCount];
+
+            int i = 0;
+            foreach (NTR_SquadDb.HistDataRow pr in playerHistory)
             {
-                ExtTMDataSet.PlayerHistoryRow pr = (ExtTMDataSet.PlayerHistoryRow)table.Rows[i];
+                dDataFor[i] = (double)pr.For;
+                dDataVel[i] = (double)pr.Vel;
+                dDataRes[i] = (double)pr.Res;
+                dDataPre[i] = (double)pr.Pre;
+                dDataUno[i] = (double)pr.Uno;
+                dDataRif[i] = (double)pr.Rif;
+                dDataAer[i] = (double)pr.Aer;
+                dDataEle[i] = (double)pr.Ele;
+                dDataCom[i] = (double)pr.Com;
+                dDataTir[i] = (double)pr.Tir;
+                dDataLan[i] = (double)pr.Lan;
+                xdate[i] = (double)new XDate(pr.Date);
 
+                i++;
+            }
+
+            LineItem myCurve;
+
+            // 1o grafico
+            {
+                GraphPane pane = new GraphPane();
+
+                pane.Title.Text = "Physic Skills";
+                pane.YAxis.Title.Text = "Skill Value";
+                pane.XAxis.Title.Text = "Weeks";
+                pane.XAxis.Type = AxisType.Date;
+                pane.XAxis.Scale.MajorStep = 7;
+                pane.XAxis.Scale.MinorStep = 7;
+                pane.XAxis.Scale.MajorUnit = DateUnit.Day;
+                pane.XAxis.Scale.Format = "TW";
+
+                // Fill the axis background with a color gradient
+                pane.Chart.Fill = new Fill(Color.FromArgb(255, 255, 245), Color.FromArgb(255, 255, 190), 90F);
+                // pane.BaseDimension = 6.0F;
+
+                // Generate a red curve with "For" in the legend
+                myCurve = pane.AddCurve("For", xdate, dDataFor, Color.DarkGreen);
+
+                // Make the symbols opaque by filling them with white
+                myCurve.Symbol.Type = SymbolType.Diamond;
+                myCurve.Symbol.Fill = new Fill(Color.White);
+
+                // Generate a red curve with "Res" in the legend
+                myCurve = pane.AddCurve("Res", xdate, dDataRes, Color.Indigo);
+
+                // Make the symbols opaque by filling them with white
+                myCurve.Symbol.Type = SymbolType.Circle;
+                myCurve.Symbol.Fill = new Fill(Color.White);
+
+                // Generate a red curve with "Vel" in the legend
+                myCurve = pane.AddCurve("Vel", xdate, dDataVel, Color.Turquoise);
+
+                // Make the symbols opaque by filling them with white
+                myCurve.Symbol.Type = SymbolType.Triangle;
+                myCurve.Symbol.Fill = new Fill(Color.White);
+
+                // Manually set the x axis range
+                pane.YAxis.Scale.Min = 0;
+                pane.YAxis.Scale.Max = 20;
+                pane.YAxis.Scale.MajorStep = 5;
+                pane.YAxis.Scale.MinorStep = 1;
+
+                master.Add(pane);
+            }
+
+            // 2o grafico
+            {
+                GraphPane pane = new GraphPane();
+
+                pane.Title.Text = "Goal Defense Skills";
+                pane.YAxis.Title.Text = "Skill Value";
+                pane.XAxis.Title.Text = "Weeks";
+                pane.XAxis.Type = AxisType.Date;
+                pane.XAxis.Scale.MajorStep = 7;
+                pane.XAxis.Scale.MinorStep = 7;
+                pane.XAxis.Scale.MajorUnit = DateUnit.Day;
+                pane.XAxis.Scale.Format = "TW";
+
+                // Fill the axis background with a color gradient
+                pane.Chart.Fill = new Fill(Color.FromArgb(255, 255, 245), Color.FromArgb(255, 255, 190), 90F);
+                // pane.BaseDimension = 6.0F;
+
+                // Generate a red curve with "Pre" in the legend
+                myCurve = pane.AddCurve("Pre", xdate, dDataPre, Color.Blue);
+
+                // Make the symbols opaque by filling them with white
+                myCurve.Symbol.Type = SymbolType.Circle;
+                myCurve.Symbol.Fill = new Fill(Color.White);
+
+                // Generate a red curve with "Uno" in the legend
+                myCurve = pane.AddCurve("Uno", xdate, dDataUno, Color.Green);
+
+                // Make the symbols opaque by filling them with white
+                myCurve.Symbol.Type = SymbolType.Diamond;
+                myCurve.Symbol.Fill = new Fill(Color.White);
+
+                // Generate a red curve with "Rif" in the legend
+                myCurve = pane.AddCurve("Rif", xdate, dDataRif, Color.Brown);
+
+                // Make the symbols opaque by filling them with white
+                myCurve.Symbol.Type = SymbolType.Triangle;
+                myCurve.Symbol.Fill = new Fill(Color.White);
+
+                // Manually set the x axis range
+                pane.YAxis.Scale.Min = 0;
+                pane.YAxis.Scale.Max = 20;
+                pane.YAxis.Scale.MajorStep = 5;
+                pane.YAxis.Scale.MinorStep = 1;
+
+                master.Add(pane);
+            }
+
+            // 3o grafico
+            {
+                GraphPane pane = new GraphPane();
+
+                pane.Title.Text = "Area Defense Skills";
+                pane.YAxis.Title.Text = "Skill Value";
+                pane.XAxis.Title.Text = "Weeks";
+                pane.XAxis.Type = AxisType.Date;
+                pane.XAxis.Scale.MajorStep = 7;
+                pane.XAxis.Scale.MinorStep = 7;
+                pane.XAxis.Scale.MajorUnit = DateUnit.Day;
+                pane.XAxis.Scale.Format = "TW";
+
+                // Fill the axis background with a color gradient
+                pane.Chart.Fill = new Fill(Color.FromArgb(255, 255, 245), Color.FromArgb(255, 255, 190), 90F);
+                // pane.BaseDimension = 6.0F;
+
+                // Generate a red curve with "Aer" in the legend
+                myCurve = pane.AddCurve("Aer", xdate, dDataAer, Color.Black);
+
+                // Make the symbols opaque by filling them with white
+                myCurve.Symbol.Type = SymbolType.Circle;
+                myCurve.Symbol.Fill = new Fill(Color.White);
+
+                // Generate a red curve with "Ele" in the legend
+                myCurve = pane.AddCurve("Ele", xdate, dDataEle, Color.Cyan);
+
+                // Make the symbols opaque by filling them with white
+                myCurve.Symbol.Type = SymbolType.Diamond;
+                myCurve.Symbol.Fill = new Fill(Color.White);
+
+                // Manually set the x axis range
+                pane.YAxis.Scale.Min = 0;
+                pane.YAxis.Scale.Max = 20;
+                pane.YAxis.Scale.MajorStep = 5;
+                pane.YAxis.Scale.MinorStep = 1;
+
+                master.Add(pane);
+            }
+
+            // 4o grafico
+            {
+                GraphPane pane = new GraphPane();
+
+                pane.Title.Text = "Offensive Skills";
+                pane.YAxis.Title.Text = "Skill Value";
+                pane.XAxis.Title.Text = "Weeks";
+                pane.XAxis.Type = AxisType.Date;
+                pane.XAxis.Scale.MajorStep = 7;
+                pane.XAxis.Scale.MinorStep = 7;
+                pane.XAxis.Scale.MajorUnit = DateUnit.Day;
+                pane.XAxis.Scale.Format = "TW";
+
+                // Fill the axis background with a color gradient
+                pane.Chart.Fill = new Fill(Color.FromArgb(255, 255, 245), Color.FromArgb(255, 255, 190), 90F);
+                // pane.BaseDimension = 6.0F;
+
+                // Generate a red curve with "Com" in the legend
+                myCurve = pane.AddCurve(Current.Language.Com, xdate, dDataCom, Color.Blue);
+
+                // Make the symbols opaque by filling them with white
+                myCurve.Symbol.Type = SymbolType.Diamond;
+                myCurve.Symbol.Fill = new Fill(Color.White);
+
+                // Generate a red curve with "Tir" in the legend
+                myCurve = pane.AddCurve("Tir", xdate, dDataTir, Color.Red);
+
+                // Make the symbols opaque by filling them with white
+                myCurve.Symbol.Type = SymbolType.Square;
+                myCurve.Symbol.Fill = new Fill(Color.White);
+
+                // Generate a red curve with "Lan" in the legend
+                myCurve = pane.AddCurve("Lan", xdate, dDataLan, Color.SlateGray);
+
+                // Make the symbols opaque by filling them with white
+                myCurve.Symbol.Type = SymbolType.Triangle;
+                myCurve.Symbol.Fill = new Fill(Color.White);
+
+                // Manually set the x axis range
+                pane.YAxis.Scale.Min = 0;
+                pane.YAxis.Scale.Max = 20;
+                pane.YAxis.Scale.MajorStep = 5;
+                pane.YAxis.Scale.MinorStep = 1;
+
+                master.Add(pane);
+            }
+
+            // Tell ZedGraph to auto layout all the panes
+            using (Graphics g = graphSkills.CreateGraphics())
+            {
+                master.SetLayout(g, PaneLayout.SquareColPreferred);
+                master.AxisChange(g);
+            }
+        }
+
+        internal void FillSkillGraphPlayer()
+        {
+            MasterPane master = graphSkills.MasterPane;
+
+            // Remove the default pane that comes with the ZedGraphControl.MasterPane
+            master.PaneList.Clear();
+
+            // Set the master pane title
+            master.Title.Text = "Player History";
+            master.Title.IsVisible = true;
+
+            // Fill the axis background with a color gradient
+            master.Fill = new Fill(Color.FromArgb(255, 255, 245), Color.FromArgb(255, 255, 190), 90F);
+
+            // Set the margins and the space between panes to 10 points
+            master.Margin.All = 10;
+            master.InnerPaneGap = 10;
+
+            int historyDataCount = playerHistory.Count;
+
+            double[] dDataCal = new double[historyDataCount];
+            double[] dDataCon = new double[historyDataCount];
+            double[] dDataCro = new double[historyDataCount];
+            double[] dDataFin = new double[historyDataCount];
+            double[] dDataFor = new double[historyDataCount];
+            double[] dDataHea = new double[historyDataCount];
+            double[] dDataMar = new double[historyDataCount];
+            double[] dDataPas = new double[historyDataCount];
+            double[] dDataPos = new double[historyDataCount];
+            double[] dDataRes = new double[historyDataCount];
+            double[] dDataTec = new double[historyDataCount];
+            double[] dDataTir = new double[historyDataCount];
+            double[] dDataVel = new double[historyDataCount];
+            double[] dDataWor = new double[historyDataCount];
+            double[] xdate = new double[historyDataCount];
+
+            int i = 0;
+            foreach (NTR_SquadDb.HistDataRow pr in playerHistory)
+            {
                 dDataCal[i] = (double)pr.Cal;
                 dDataCon[i] = (double)pr.Con;
                 dDataCro[i] = (double)pr.Cro;
@@ -1197,6 +1477,8 @@ namespace TmRecorder3
                 dDataVel[i] = (double)pr.Vel;
                 dDataWor[i] = (double)pr.Wor;
                 xdate[i] = (double)new XDate(pr.Date);
+
+                i++;
             }
 
             LineItem myCurve;
@@ -1418,7 +1700,7 @@ namespace TmRecorder3
             }
         }
 
-        internal void FillSpecsGraph(ExtTMDataSet.PlayerHistoryDataTable table)
+        internal void FillSpecsGraphGk()
         {
             MasterPane master = graphSpecs.MasterPane;
 
@@ -1436,39 +1718,116 @@ namespace TmRecorder3
             master.Margin.All = 10;
             master.InnerPaneGap = 10;
 
-            double[] dDC = new double[table.Rows.Count];
-            double[] dDL = new double[table.Rows.Count];
-            double[] dDR = new double[table.Rows.Count];
-            double[] dDMC = new double[table.Rows.Count];
-            double[] dDML = new double[table.Rows.Count];
-            double[] dDMR = new double[table.Rows.Count];
-            double[] dMC = new double[table.Rows.Count];
-            double[] dML = new double[table.Rows.Count];
-            double[] dMR = new double[table.Rows.Count];
-            double[] dOMC = new double[table.Rows.Count];
-            double[] dOML = new double[table.Rows.Count];
-            double[] dOMR = new double[table.Rows.Count];
-            double[] dFC = new double[table.Rows.Count];
-            double[] xdate = new double[table.Rows.Count];
+            int historyDataCount = playerHistory.Count;
 
-            for (int i = 0; i < table.Rows.Count; i++)
+            double[] dGK = new double[historyDataCount];
+            double[] xdate = new double[historyDataCount];
+
+            int i = 0;
+            foreach (NTR_SquadDb.HistDataRow ph in playerHistory)
             {
-                ExtTMDataSet.PlayerHistoryRow pr = (ExtTMDataSet.PlayerHistoryRow)table.Rows[i];
+                PlayerData pr = new PlayerData(ph, -1);
+                dGK[i] = (double)pr.GK;
+                xdate[i] = (double)new XDate(ph.Date);
 
-                dDC[i] = pr.DC;
-                dDL[i] = pr.DL;
-                dDR[i] = pr.DR;
-                dDMC[i] = pr.DMC;
-                dDML[i] = pr.DML;
-                dDMR[i] = pr.DMR;
-                dMC[i] = pr.MC;
-                dML[i] = pr.ML;
-                dMR[i] = pr.MR;
-                dOMC[i] = pr.OMC;
-                dOML[i] = pr.OML;
-                dOMR[i] = pr.OMR;
-                dFC[i] = pr.FC;
-                xdate[i] = (double)new XDate(pr.Date);
+                i++;
+            }
+
+            LineItem myCurve;
+
+            // 1o grafico
+            {
+                GraphPane pane = new GraphPane();
+
+                pane.Title.Text = "GK Speciality";
+                pane.YAxis.Title.Text = "Specs Value";
+                pane.XAxis.Title.Text = "Weeks";
+                pane.XAxis.Type = AxisType.Date;
+                pane.XAxis.Scale.MajorStep = 7;
+                pane.XAxis.Scale.MinorStep = 7;
+                pane.XAxis.Scale.MajorUnit = DateUnit.Day;
+                pane.XAxis.Scale.Format = "TW";
+
+                // Fill the axis background with a color gradient
+                pane.Chart.Fill = new Fill(Color.FromArgb(255, 255, 245), Color.FromArgb(255, 255, 190), 90F);
+
+                // Generate a red curve with "For" in the legend
+                myCurve = pane.AddCurve("GK", xdate, dGK, Color.DarkGreen);
+
+                // Make the symbols opaque by filling them with white
+                myCurve.Symbol.Type = SymbolType.Circle;
+                myCurve.Symbol.Fill = new Fill(Color.White);
+
+                // Manually set the x axis range
+                pane.YAxis.Scale.MajorStep = 5;
+                pane.YAxis.Scale.MinorStep = 1;
+
+                master.Add(pane);
+            }
+
+            // Tell ZedGraph to auto layout all the panes
+            using (Graphics g = graphSkills.CreateGraphics())
+            {
+                master.SetLayout(g, PaneLayout.SquareColPreferred);
+                master.AxisChange(g);
+            }
+        }
+
+        internal void FillSpecsGraphPlayer()
+        {
+            MasterPane master = graphSpecs.MasterPane;
+
+            // Remove the default pane that comes with the ZedGraphControl.MasterPane
+            master.PaneList.Clear();
+
+            // Set the master pane title
+            master.Title.Text = "Specialities History";
+            master.Title.IsVisible = true;
+
+            // Fill the axis background with a color gradient
+            master.Fill = new Fill(Color.FromArgb(255, 255, 245), Color.FromArgb(255, 255, 190), 90F);
+
+            // Set the margins and the space between panes to 10 points
+            master.Margin.All = 10;
+            master.InnerPaneGap = 10;
+
+            int historyDataCount = playerHistory.Count;
+
+            double[] dDC = new double[historyDataCount];
+            double[] dDL = new double[historyDataCount];
+            double[] dDR = new double[historyDataCount];
+            double[] dDMC = new double[historyDataCount];
+            double[] dDML = new double[historyDataCount];
+            double[] dDMR = new double[historyDataCount];
+            double[] dMC = new double[historyDataCount];
+            double[] dML = new double[historyDataCount];
+            double[] dMR = new double[historyDataCount];
+            double[] dOMC = new double[historyDataCount];
+            double[] dOML = new double[historyDataCount];
+            double[] dOMR = new double[historyDataCount];
+            double[] dFC = new double[historyDataCount];
+            double[] xdate = new double[historyDataCount];
+
+            int i = 0;
+            foreach (NTR_SquadDb.HistDataRow ph in playerHistory)
+            {
+                PlayerData pr = new PlayerData(ph, -1);
+                dDC[i] = (double)pr.DC;
+                dDL[i] = (double)pr.DL;
+                dDR[i] = (double)pr.DR;
+                dDMC[i] = (double)pr.DMC;
+                dDML[i] = (double)pr.DML;
+                dDMR[i] = (double)pr.DMR;
+                dMC[i] = (double)pr.MC;
+                dML[i] = (double)pr.ML;
+                dMR[i] = (double)pr.MR;
+                dOMC[i] = (double)pr.OMC;
+                dOML[i] = (double)pr.OML;
+                dOMR[i] = (double)pr.OMR;
+                dFC[i] = (double)pr.FC;
+                xdate[i] = (double)new XDate(ph.Date);
+
+                i++;
             }
 
             LineItem myCurve;
@@ -1678,26 +2037,26 @@ namespace TmRecorder3
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-            iActualPlayer++;
+            selectedPlayerIndex++;
 
-            if (iActualPlayer > GDT.Rows.Count - 1)
+            if (selectedPlayerIndex > thisWeekPlayersIDs.Count() - 1)
             {
-                iActualPlayer = 0;
+                selectedPlayerIndex = 0;
             }
 
-            Initialize();
+            Initialize(thisWeekPlayersIDs[selectedPlayerIndex]);
         }
 
         private void btnPrev_Click(object sender, EventArgs e)
         {
-            iActualPlayer--;
+            selectedPlayerIndex--;
 
-            if (iActualPlayer < 0)
+            if (selectedPlayerIndex < 0)
             {
-                iActualPlayer = GDT.Rows.Count - 1;
+                selectedPlayerIndex = thisWeekPlayersIDs.Count() - 1;
             }
 
-            Initialize();
+            Initialize(thisWeekPlayersIDs[selectedPlayerIndex]);
         }
 
         private void txtNotes_TextChanged(object sender, EventArgs e)
@@ -1707,14 +2066,12 @@ namespace TmRecorder3
 
         private void playersMainPageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[iActualPlayer];
-            Clipboard.SetText("http://trophymanager.com/players/" + playerDatarow.PlayerID.ToString());
+            Clipboard.SetText("http://trophymanager.com/players/" + selectedPlayerID);
         }
 
         private void playersScoutPageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[iActualPlayer];
-            Clipboard.SetText("http://trophymanager.com/players/" + playerDatarow.PlayerID.ToString() + "/#/page/scout/");
+            Clipboard.SetText("http://trophymanager.com/players/" + selectedPlayerID + "/#/page/scout/");
         }
 
         private void openPlayerPageToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1747,45 +2104,42 @@ namespace TmRecorder3
 
         private void chkShowTGI_CheckedChanged(object sender, EventArgs e)
         {
-            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[iActualPlayer];
-            ExtTMDataSet.PlayerHistoryDataTable table = History.GetPlayerHistory(playerDatarow.PlayerID);
-            FillTIGraph(table);
+            FillTIGraph();
             Program.Setts.ShowTGI = chkShowTGI.Checked;
             Program.Setts.Save();
         }
 
         private void exportInExcelFormat_Click(object sender, EventArgs e)
         {
-            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[iActualPlayer];
-            ExtTMDataSet.PlayerHistoryDataTable table = History.GetPlayerHistory(playerDatarow.PlayerID);
-            ExtraDS.GiocatoriRow gRow = History.PlayersDS.Giocatori.FindByPlayerID(playerDatarow.PlayerID);
-            WeekHistorical whTI = new WeekHistorical(gRow.TSI);
-            WeekHistorical whASI = new WeekHistorical(whTI.lastWeek);
+            //ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[iActualPlayer];
+            //ExtTMDataSet.PlayerHistoryDataTable table = History.GetPlayerHistory(playerDatarow.PlayerID);
+            //ExtraDS.GiocatoriRow gRow = History.PlayersDS.Giocatori.FindByPlayerID(playerDatarow.PlayerID);
+            //WeekHistorical whTI = new WeekHistorical(gRow.TSI);
+            //WeekHistorical whASI = new WeekHistorical(whTI.lastWeek);
 
-            for (int i = 0; i < table.Rows.Count; i++)
-            {
-                ExtTMDataSet.PlayerHistoryRow pr = (ExtTMDataSet.PlayerHistoryRow)table.Rows[i];
-                whASI.Set(pr.Date, pr.ASI);
-            }
+            //for (int i = 0; i < table.Rows.Count; i++)
+            //{
+            //    ExtTMDataSet.PlayerHistoryRow pr = (ExtTMDataSet.PlayerHistoryRow)table.Rows[i];
+            //    whASI.Set(pr.Date, pr.ASI);
+            //}
 
-            int iniWeek = Math.Min(whASI.lastWeek.absweek, whTI.lastWeek.absweek);
-            int thisWeek = TmWeek.thisWeek().absweek;
+            //int iniWeek = Math.Min(whASI.lastWeek.absweek, whTI.lastWeek.absweek);
+            //int thisWeek = TmWeek.thisWeek().absweek;
 
-            string dates = TmWeek.GenerateDatesString(iniWeek, thisWeek, '\t');
-            string asiHist = whASI.GenerateHistoryString(iniWeek, thisWeek, '\t');
-            string tiHist = whTI.GenerateHistoryString(iniWeek, thisWeek, '\t');
+            //string dates = TmWeek.GenerateDatesString(iniWeek, thisWeek, '\t');
+            //string asiHist = whASI.GenerateHistoryString(iniWeek, thisWeek, '\t');
+            //string tiHist = whTI.GenerateHistoryString(iniWeek, thisWeek, '\t');
 
-            Clipboard.SetText("Date\t" + dates +
-                "\r\nASI\t" + asiHist +
-                "\r\nTI\t" + tiHist);
+            //Clipboard.SetText("Date\t" + dates +
+            //    "\r\nASI\t" + asiHist +
+            //    "\r\nTI\t" + tiHist);
 
-            MessageBox.Show("The history of the player has been copied into the clipboard. \n" +
-                "Open now Excel and paste into a sheet", "Copy to Excel");
+            //MessageBox.Show("The history of the player has been copied into the clipboard. \n" +
+            //    "Open now Excel and paste into a sheet", "Copy to Excel");
         }
 
         private void chkNormalized_CheckedChanged(object sender, EventArgs e)
         {
-            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[iActualPlayer];
             FillMatchStatsGraph(plyStatsTable);
 
             if (chkNormalized.Checked)
@@ -1818,77 +2172,72 @@ namespace TmRecorder3
 
         private void tsbComputeGrowth_Click(object sender, EventArgs e)
         {
-            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[iActualPlayer];
-            ExtTMDataSet.PlayerHistoryDataTable table = History.GetPlayerHistory(playerDatarow.PlayerID);
-
-            ExtraDS.GiocatoriRow gRow = History.PlayersDS.Giocatori.FindByPlayerID(playerDatarow.PlayerID);
-
-
             ComputeBloom cb = new ComputeBloom();
-            cb.ActualASI = gRow.ASI;
-            cb.CurrentSkillSum = (decimal)Tm_Utility.ASItoSkSum((decimal)gRow.ASI, false);
-            cb.RealSkillSum = playerDatarow.SkillSum;
 
-            WeekHistorical whTI = new WeekHistorical(gRow.TSI);
+            cb.ActualASI = selectedPlayerData.ASI.actual;
+            cb.CurrentSkillSum = (decimal)Tm_Utility.ASItoSkSum((float)cb.ActualASI, false);
+            cb.RealSkillSum = selectedPlayerData.SkillSum.actual;
+
+            WeekHistorical whTI = new WeekHistorical(playerHistory.getTIs());
             if (!float.IsNaN(whTI.ActualTI))
                 cb.ActualTI = (decimal)whTI.ActualTI;
             else
                 cb.ActualTI = 0;
 
-            cb.PlayerNameAndID = gRow.Nome + "\n(" + gRow.PlayerID.ToString() + ")";
+            cb.PlayerNameAndID = selectedPlayerData.Name + "\n(" + selectedPlayerData.playerID.ToString() + ")";
 
-            if (gRow.wBloomStart == -1)
+            if (selectedPlayerData.wBloomStart == -1)
             {
-                gRow.wBloomStart = whTI.FindBloomStart();
+                selectedPlayerData.wBloomStart = whTI.FindBloomStart();
 
-                cb.AgeStartOfBloom = (gRow.wBloomStart - gRow.wBorn) / 12;
-                cb.ExplosionTI = gRow.ExplosionTI;
-                cb.AfterBloomingTI = gRow.AfterBloomTI;
-                cb.BeforeExplosionTI = gRow.BeforeExplTI;
+                cb.AgeStartOfBloom = (selectedPlayerData.wBloomStart - selectedPlayerData.wBorn) / 12;
+                cb.ExplosionTI = selectedPlayerData.ExplosionTI;
+                cb.AfterBloomingTI = selectedPlayerData.AfterBloomTI;
+                cb.BeforeExplosionTI = selectedPlayerData.BeforeExplTI;
             }
             else
             {
-                cb.AgeStartOfBloom = (gRow.wBloomStart - gRow.wBorn) / 12;
-                cb.ExplosionTI = gRow.ExplosionTI;
-                cb.AfterBloomingTI = gRow.AfterBloomTI;
-                cb.BeforeExplosionTI = gRow.BeforeExplTI;
+                cb.AgeStartOfBloom = (selectedPlayerData.wBloomStart - selectedPlayerData.wBorn) / 12;
+                cb.ExplosionTI = selectedPlayerData.ExplosionTI;
+                cb.AfterBloomingTI = selectedPlayerData.AfterBloomTI;
+                cb.BeforeExplosionTI = selectedPlayerData.BeforeExplTI;
             }
 
             int savedBloomStart = cb.AgeStartOfBloom;
 
             cb.isGK = false;
-            cb.PlayerBornWeek = gRow.wBorn;
+            cb.PlayerBornWeek = selectedPlayerData.wBorn;
             cb.ShowDialog();
 
             if ((savedBloomStart != cb.AgeStartOfBloom) ||
-                (gRow.ExplosionTI != cb.ExplosionTI) ||
-                (gRow.AfterBloomTI != cb.AfterBloomingTI) ||
-                (gRow.BeforeExplTI != cb.BeforeExplosionTI))
+                (selectedPlayerData.ExplosionTI != cb.ExplosionTI) ||
+                (selectedPlayerData.AfterBloomTI != cb.AfterBloomingTI) ||
+                (selectedPlayerData.BeforeExplTI != cb.BeforeExplosionTI))
             {
-                gRow.wBloomStart = gRow.wBorn + cb.AgeStartOfBloom * 12;
-                gRow.ExplosionTI = cb.ExplosionTI;
-                gRow.AfterBloomTI = cb.AfterBloomingTI;
-                gRow.BeforeExplTI = cb.BeforeExplosionTI;
-                gRow.isDirty = true;
+                selectedPlayerData.wBloomStart = selectedPlayerData.wBorn + cb.AgeStartOfBloom * 12;
+                selectedPlayerData.ExplosionTI = cb.ExplosionTI;
+                selectedPlayerData.AfterBloomTI = cb.AfterBloomingTI;
+                selectedPlayerData.BeforeExplTI = cb.BeforeExplosionTI;
+                selectedPlayerData.isBloomDataDirty = true;
                 isDirty = true;
             }
-            gRow.isDirty = true;
-            gRow.Asi25 = (decimal)(int)cb.ASI25;
-            gRow.Asi30 = (decimal)(int)cb.ASI30;
+            selectedPlayerData.isBloomDataDirty = true;
+            selectedPlayerData.Asi25 = (decimal)(int)cb.ASI25;
+            selectedPlayerData.Asi30 = (decimal)(int)cb.ASI30;
         }
 
         private void btnGetVotenSkillAuto_Click(object sender, EventArgs e)
         {
-            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[iActualPlayer];
+            //ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[iActualPlayer];
 
-            FileInfo fi = new FileInfo(Program.Setts.ReportAnalysisFile);
+            //FileInfo fi = new FileInfo(Program.Setts.ReportAnalysisFile);
 
-            ReportAnalysis.Clear();
-            if (fi.Exists)
-                ReportAnalysis.ReadXml(Program.Setts.ReportAnalysisFile);
+            //ReportAnalysis.Clear();
+            //if (fi.Exists)
+            //    ReportAnalysis.ReadXml(Program.Setts.ReportAnalysisFile);
 
-            History.PlayersDS.ParseScoutReviewForHiddenData(ReportAnalysis, playerDatarow.PlayerID);
-            SetTraining();
+            //History.PlayersDS.ParseScoutReviewForHiddenData(ReportAnalysis, playerDatarow.PlayerID);
+            //SetTraining();
         }
 
         private void toolStripDropDownButton1_Click(object sender, EventArgs e)
@@ -1910,23 +2259,23 @@ namespace TmRecorder3
 
         private void getPotentialForThisPlayerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[iActualPlayer];
+            //ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[iActualPlayer];
 
-            FileInfo fi = new FileInfo(Program.Setts.ReportAnalysisFile);
+            //FileInfo fi = new FileInfo(Program.Setts.ReportAnalysisFile);
 
-            ReportAnalysis.Clear();
-            if (fi.Exists)
-                ReportAnalysis.ReadXml(Program.Setts.ReportAnalysisFile);
+            //ReportAnalysis.Clear();
+            //if (fi.Exists)
+            //    ReportAnalysis.ReadXml(Program.Setts.ReportAnalysisFile);
 
-            History.PlayersDS.ParseScoutReviewForHiddenData(ReportAnalysis, playerDatarow.PlayerID);
-            SetTraining();
+            //History.PlayersDS.ParseScoutReviewForHiddenData(ReportAnalysis, playerDatarow.PlayerID);
+            //SetTraining();
         }
 
         string navigationAddress = "";
         string startnavigationAddress = "";
         private void tsbLoadPlayerPage_Click(object sender, EventArgs e)
         {
-            navigationAddress = "http://trophymanager.com/players/" + actPlayerID.ToString() + "/#/page/history/";
+            navigationAddress = "http://trophymanager.com/players/" + selectedPlayerID.ToString() + "/#/page/history/";
             if (navigationType == NavigationType.NavigateReports)
                 navigationAddress += "/#/page/scout/";
             webBrowser.Navigate(navigationAddress);
@@ -2028,31 +2377,31 @@ namespace TmRecorder3
                 return;
             }
 
-            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[iActualPlayer];
-            ExtraDS.GiocatoriRow gRow = History.PlayersDS.Giocatori.FindByPlayerID(playerDatarow.PlayerID);
+            //ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[iActualPlayer];
+            //ExtraDS.GiocatoriRow gRow = History.PlayersDS.Giocatori.FindByPlayerID(playerDatarow.PlayerID);
 
-            ExtraDS.ParsePlayerPage_NewTM(page, ref gRow, History.reportParser);
+            //ExtraDS.ParsePlayerPage_NewTM(page, ref gRow, History.reportParser);
 
-            // Aggiorna i dati di basi
-            playerDatarow.FP = gRow.FP;
-            gRow.FPn = Tm_Utility.FPToNumber(gRow.FP);
-            playerDatarow.FPn = gRow.FPn;
-            FillBaseData(playerDatarow);
+            //// Aggiorna i dati di basi
+            //playerDatarow.FP = gRow.FP;
+            //gRow.FPn = Tm_Utility.FPToNumber(gRow.FP);
+            //playerDatarow.FPn = gRow.FPn;
+            //FillBaseData(playerDatarow);
 
-            isDirty = true;
+            //isDirty = true;
 
-            ExtTMDataSet.PlayerHistoryDataTable table = History.GetPlayerHistory(playerDatarow.PlayerID);
-            // FillTIGraph(table);
+            //ExtTMDataSet.PlayerHistoryDataTable table = History.GetPlayerHistory(playerDatarow.PlayerID);
+            //// FillTIGraph(table);
 
-            gRow.SetAddedSkill(scoutsNReviews, History.reportParser);
+            //gRow.SetAddedSkill(scoutsNReviews, History.reportParser);
 
-            gRow.ComputeBloomingFromGiudizio(scoutsNReviews);
+            //gRow.ComputeBloomingFromGiudizio(scoutsNReviews);
 
-            FillPlayerInfo(false);
+            //FillPlayerInfo(false);
 
-            SetTraining();
+            //SetTraining();
 
-            gRow.isDirty = true;
+            //gRow.isDirty = true;
         }
 
         private void navigateProfilesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2064,7 +2413,7 @@ namespace TmRecorder3
             {
                 navigationType = NavigationType.NavigateProfiles;
                 navigationAddress = "http://trophymanager.com/players/" +
-                    actPlayerID.ToString();
+                    selectedPlayerID.ToString();
                 webBrowser.Navigate(navigationAddress);
                 startnavigationAddress = navigationAddress;
             }
@@ -2079,7 +2428,7 @@ namespace TmRecorder3
             {
                 navigationType = NavigationType.NavigateReports;
                 navigationAddress = "http://trophymanager.com/players/" +
-                    actPlayerID.ToString() + "/#/page/scout/";
+                    selectedPlayerID.ToString() + "/#/page/scout/";
                 webBrowser.Navigate(navigationAddress);
                 startnavigationAddress = navigationAddress;
             }
@@ -2157,29 +2506,29 @@ namespace TmRecorder3
 
         private void FillPlayerBar(int playerID)
         {
-            ExtTMDataSet.GiocatoriNSkillRow gRow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.FindByPlayerID(playerID);
+            //ExtTMDataSet.GiocatoriNSkillRow gRow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.FindByPlayerID(playerID);
 
-            if (gRow == null)
-            {
-                tsBrowsePlayers.Visible = false;
-                return;
-            }
+            //if (gRow == null)
+            //{
+            //    tsBrowsePlayers.Visible = false;
+            //    return;
+            //}
 
-            tsBrowsePlayers.Visible = true;
+            //tsBrowsePlayers.Visible = true;
 
             //tsbNumberOfReviews.Text = gRow.ScoutReviews.Length + " Scout Reviews stored";
 
-            tsbPlayers.Text = "[" + gRow.FP + "] " + gRow.Nome.Split('|')[0];
+            //tsbPlayers.Text = "[" + gRow.FP + "] " + gRow.Nome.Split('|')[0];
 
-            AddMenuItem(tsbPlayers, "", null);
-            for (int i = 0; i < GDT.Count; i++)
-            {
-                ToolStripItem tsi = new ToolStripMenuItem();
-                tsi.Text = "[" + GDT[i].FP + "] " + GDT[i].Nome.Split('|')[0];
-                tsi.Tag = GDT[i].PlayerID;
-                tsi.Click += ChangePlayer_Click;
-                AddMenuItem(tsbPlayers, GDT[i].FP, tsi);
-            }
+            //AddMenuItem(tsbPlayers, "", null);
+            //for (int i = 0; i < GDT.Count; i++)
+            //{
+            //    ToolStripItem tsi = new ToolStripMenuItem();
+            //    tsi.Text = "[" + GDT[i].FP + "] " + GDT[i].Nome.Split('|')[0];
+            //    tsi.Tag = GDT[i].PlayerID;
+            //    tsi.Click += ChangePlayer_Click;
+            //    AddMenuItem(tsbPlayers, GDT[i].FP, tsi);
+            //}
         }
         #endregion
 
@@ -2319,6 +2668,29 @@ namespace TmRecorder3
         {
             if (tabControl1.SelectedTab == tabPlayerScouting)
                 PlayerForm_SizeChanged(this, EventArgs.Empty);
+        }
+    }
+
+    public class PlayerHistory: List<NTR_SquadDb.HistDataRow>
+    {
+        public PlayerHistory(List<NTR_SquadDb.HistDataRow> s)
+        {
+            this.Clear();
+            this.AddRange(s);
+        }
+
+        internal string getTIs()
+        {
+            string TIs = "";
+
+            if (this.Count > 0)
+                TIs = (new TmWeek(this[0].Week)).ToString();
+
+            foreach(NTR_SquadDb.HistDataRow hr in this)
+            {
+                TIs += ";" + hr.TI.ToString();
+            }
+            return TIs;
         }
     }
 }

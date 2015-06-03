@@ -1134,7 +1134,7 @@ namespace Common {
                     Ada = Ada + 0;
 
                 Atts = PosF.GetAttitude(Skills, this.FP, (float)this.Rou, (float)this.Ada);
-                PSP = PosF.GetPSP(Atts, this.Età);
+                OSi = PosF.GetOSi(Atts, Skills);
 
                 float kRou = PosF.gds.funRou.Value((float)Rou);
 
@@ -1242,7 +1242,7 @@ namespace Common {
                 float[] f = new float[11];
                 f = Skills;
                 Atts = PFun.GetAttitude(f, "GK", (float)this.Rou, 0.0f);
-                PSP = PFun.GetPSP(Atts, this.Età);
+                OSi = PFun.GetOSi(Atts, Skills);
 
                 float kRou = PFun.gds.funRou.Value((float)Rou);
                 

@@ -1,4 +1,5 @@
 ﻿using Common;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -9,18 +10,19 @@ namespace NTR_Db
 namespace NTR_Db
 {
 }
-namespace NTR_Db {
+namespace NTR_Db
+{
 
-    public partial class NTR_SquadDb 
+    public partial class NTR_SquadDb
     {
         partial class MatchDataDataTable
         {
         }
-    
+
         partial class MatchDataTable
         {
         }
-    
+
         public NTR_Common.GainDS GDS { get; set; }
 
         public void Invalidate()
@@ -55,11 +57,11 @@ namespace NTR_Db {
         {
             get
             {
-                if (_seasonsWithData == null) 
+                if (_seasonsWithData == null)
                 {
                     _seasonsWithData = new List<int>();
 
-                    foreach(var week in WeeksWithData)
+                    foreach (var week in WeeksWithData)
                     {
                         int season = TmWeek.GetSeasonFromWeek(week);
                         if (!_seasonsWithData.Contains(season))
@@ -76,9 +78,15 @@ namespace NTR_Db {
         partial class HistDataDataTable
         {
         }
-    
+
         public partial class HistDataRow
         {
+            public decimal TI
+            {
+                get { return _TI; }
+                set { _TI = value; }
+            }
+
             public decimal For
             {
                 get { return _For; }
@@ -189,13 +197,18 @@ namespace NTR_Db {
                 get { return _Dis; }
                 set { _Dis = value; }
             }
+
+            public DateTime Date
+            {
+                get { return TmWeek.TmWeekToDate(Week); }
+            }
         }
 
-       partial class ScoutReviewDataTable
+        partial class ScoutReviewDataTable
         {
         }
-    
-        public partial class PlayerRow: global::System.Data.DataRow
+
+        public partial class PlayerRow : global::System.Data.DataRow
         {
             //[global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             //[global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -215,7 +228,7 @@ namespace NTR_Db {
 
             // Find the closest week to the input week
             int closestWeek = -1;
-            foreach(int week in this.WeeksWithData)
+            foreach (int week in this.WeeksWithData)
             {
                 if (week >= newWeek) continue;
 
@@ -226,7 +239,7 @@ namespace NTR_Db {
             if (closestWeek == -1)
                 return;
 
-            foreach(PlayerRow playerRow in content.squadDB.Player)
+            foreach (PlayerRow playerRow in content.squadDB.Player)
             {
                 int idPlayer = playerRow.PlayerID;
 
@@ -237,10 +250,10 @@ namespace NTR_Db {
                 if (oldRow == null)
                     continue;
 
-                int numSkillToUpdate = (playerRow.FPn == 0)?11:14;
-                for (int i = 0; i < numSkillToUpdate ; i++)
+                int numSkillToUpdate = (playerRow.FPn == 0) ? 11 : 14;
+                for (int i = 0; i < numSkillToUpdate; i++)
                 {
-                    int trainStep = Tm_Training.TrCode2ToTrValue(newRow.Training, (Tm_Training.eTrainingType)(i+1));
+                    int trainStep = Tm_Training.TrCode2ToTrValue(newRow.Training, (Tm_Training.eTrainingType)(i + 1));
 
                     if (trainStep == 1)
                         newRow[4 + i] = (decimal)oldRow[4 + i] + 0.1M;

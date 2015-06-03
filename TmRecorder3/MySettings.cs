@@ -151,11 +151,17 @@ namespace TmRecorder3
             sb.Def("DebugFunction", 0);
             sb.Def("FirstInstallation", true);
             sb.Def("YourTeamLeft", true);
-            
+            sb.Def("PlayerFormPosition", "0,0,500,400");
+
             // Always the last settings
             sb.Def("SettsRelease", 1);
         }
 
+        public System.Drawing.Rectangle PlayerFormPosition
+        {
+            get { return Common.Utility.StringToRect((string)sb["PlayerFormPosition"]); }
+            set { sb["PlayerFormPosition"] = Common.Utility.RectToString(value); }
+        }
         public bool YourTeamLeft
         {
             get { return (bool)sb["YourTeamLeft"]; }

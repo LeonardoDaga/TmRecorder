@@ -1103,6 +1103,10 @@ namespace NTR_Db
             Number = thisWeek.PlayerRow.No;
             FPn = thisWeek.PlayerRow.FPn;
             wBorn = thisWeek.PlayerRow.wBorn;
+
+            if (!thisWeek.PlayerRow.IswBloomDataNull())
+                wBloomData = thisWeek.PlayerRow.wBloomData;
+
             Nationality = thisWeek.PlayerRow.Nationality;            
 
             NTR_SquadDb.TempDataRow tdr = DB.TempData.FindByPlayerID(thisWeek.PlayerID);
@@ -1110,6 +1114,11 @@ namespace NTR_Db
             if (tdr != null)
             {
                 Rou = tdr.Rou;
+
+                if (!tdr.IsNoteNull())
+                    Note = tdr.Note;
+                else
+                    Note = "";
 
                 if (!tdr.IsWageNull())
                 {
@@ -1226,6 +1235,150 @@ namespace NTR_Db
 
         public intvar TI { get; set; }
         public int Wage { get; private set; }
+        public string Note { get; private set; }
+
+        #region BloomValues
+
+        public string wBloomData { get; private set; }
+
+        int _bloomStart = -1;
+        public int wBloomStart
+        {
+            get
+            {
+                if (_bloomStart == -1)
+                {
+                    ParseBloomValues();
+                }
+                return _bloomStart;
+            }
+            set
+            {
+                _bloomStart = value;
+                SetBloomValues();
+            }
+        }
+
+        decimal _beforeExplTI = -100M;
+        public decimal BeforeExplTI
+        {
+            get
+            {
+                if (_beforeExplTI == -100M)
+                {
+                    ParseBloomValues();
+                    if (_beforeExplTI == -100M) return 0M;
+                }
+                return _beforeExplTI;
+            }
+            set
+            {
+                _beforeExplTI = value;
+                SetBloomValues();
+            }
+        }
+
+        decimal _explosionTI = -100M;
+        public decimal ExplosionTI
+        {
+            get
+            {
+                if (_explosionTI == -100M)
+                {
+                    ParseBloomValues();
+                    if (_explosionTI == -100M) return 0M;
+                }
+                return _explosionTI;
+            }
+            set
+            {
+                _explosionTI = value;
+                SetBloomValues();
+            }
+        }
+
+        decimal _afterBloomTI = -100M;
+        public decimal AfterBloomTI
+        {
+            get
+            {
+                if (_afterBloomTI == -100M)
+                {
+                    ParseBloomValues();
+                    if (_afterBloomTI == -100M) return 0M;
+                }
+                return _afterBloomTI;
+            }
+            set
+            {
+                _afterBloomTI = value;
+                SetBloomValues();
+            }
+        }
+
+        decimal _asi30 = -100M;
+        public decimal Asi30
+        {
+            get
+            {
+                if (_asi30 == -100M)
+                {
+                    ParseBloomValues();
+                    if (_asi30 == -100M) return 0M;
+                }
+                return _asi30;
+            }
+            set
+            {
+                _asi30 = value;
+                SetBloomValues();
+            }
+        }
+
+        decimal _asi25 = -100M;
+        public decimal Asi25
+        {
+            get
+            {
+                if (_asi25 == -100M)
+                {
+                    ParseBloomValues();
+                    if (_asi25 == -100M) return 0M;
+                }
+                return _asi25;
+            }
+            set
+            {
+                _asi25 = value;
+                SetBloomValues();
+            }
+        }
+
+        public bool isBloomDataDirty { get; set; }
+
+        private void ParseBloomValues()
+        {
+            if (wBloomData == null) return;
+            string[] split = wBloomData.Split(';');
+            if (split.Length > 0) _bloomStart = int.Parse(split[0]);
+            if (split.Length > 1) _beforeExplTI = decimal.Parse(split[1]);
+            if (split.Length > 2) _explosionTI = decimal.Parse(split[2]);
+            if (split.Length > 3) _afterBloomTI = decimal.Parse(split[3]);
+            if (split.Length > 4) _asi30 = decimal.Parse(split[4]);
+            if (split.Length > 5) _asi25 = decimal.Parse(split[5]);
+        }
+
+        private void SetBloomValues()
+        {
+            wBloomData = _bloomStart.ToString();
+            wBloomData += ";" + _beforeExplTI.ToString();
+            wBloomData += ";" + _explosionTI.ToString();
+            wBloomData += ";" + _afterBloomTI.ToString();
+            wBloomData += ";" + _asi30.ToString();
+            wBloomData += ";" + _asi25.ToString();
+        }
+        #endregion
+
     }
 
     public class MatchData

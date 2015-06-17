@@ -366,6 +366,8 @@ namespace Common
                 case 21: return new int[] { 2, 5 };
                 case 22: return new int[] { 1, 4 };
                 case 25: return new int[] { 0, 6 };
+                case 26: return new int[] { 2, 8 };
+                case 27: return new int[] { 1, 7 };
                 case 30: return new int[] { 3, -1 };
                 case 31: return new int[] { 3, 5 };
                 case 32: return new int[] { 3, 4 };
@@ -422,6 +424,10 @@ namespace Common
                 case "DR/DMR": return 22;
                 case "DC/MC": return 25;
                 case "MC/DC": return 25;
+                case "DL/ML": return 26;
+                case "ML/DL": return 26;
+                case "DR/MR": return 27;
+                case "MR/DR": return 27;
                 case "DMC": return 30;
                 case "DMC/DML": return 31;
                 case "DMC/DMR": return 32;
@@ -489,6 +495,8 @@ namespace Common
                 case 21: return "DL/DML";
                 case 22: return "DMR/DR";
                 case 25: return "DC/MC";
+                case 26: return "DL/ML";
+                case 27: return "DR/MR";
                 case 30: return "DMC";
                 case 31: return "DMC/DML";
                 case 32: return "DMC/DMR";

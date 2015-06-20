@@ -386,6 +386,9 @@ namespace Common
                 case 60: return new int[] { 6, 9 };
                 case 61: return new int[] { 8, 11 };
                 case 62: return new int[] { 7, 10 };
+                case 65: return new int[] { 6, 12 };
+                case 66: return new int[] { 8, 12 };
+                case 67: return new int[] { 7, 12 };
                 case 70: return new int[] { 9, -1 };
                 case 71: return new int[] { 9, 11 };
                 case 72: return new int[] { 9, 10 };
@@ -458,6 +461,12 @@ namespace Common
                 case "OML/ML": return 61;
                 case "MR/OMR": return 62;
                 case "OMR/MR": return 62;
+                case "MC/FC": return 65;
+                case "FC/MC": return 65;
+                case "ML/FC": return 66;
+                case "FC/ML": return 66;
+                case "MR/FC": return 67;
+                case "FC/MR": return 67;
                 case "OMC": return 70;
                 case "OMC/OML": return 71;
                 case "OML/OMC": return 71;
@@ -515,6 +524,9 @@ namespace Common
                 case 60: return "MC/OMC";
                 case 61: return "ML/OML";
                 case 62: return "MR/OMR";
+                case 65: return "MC/FC";
+                case 66: return "ML/FC";
+                case 67: return "MR/FC";
                 case 70: return "OMC";
                 case 71: return "OMC/OML";
                 case 72: return "OMC/OMR";

@@ -1208,7 +1208,7 @@ namespace TMRecorder
             row.MoM = int.Parse(data["mom"]);
             row.Cards = int.Parse(data["cards"]);
 
-            row.Rec = int.Parse(data["rec"]);
+            row.Rec = decimal.Parse(data["rec"]) / 2.0M;
             row.Squalificato = int.Parse(data["ban_points"]);
 
             int retire = 0;

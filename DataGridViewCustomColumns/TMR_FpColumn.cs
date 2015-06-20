@@ -288,6 +288,8 @@ namespace DataGridViewCustomColumns
                 case 21: return "DL/DML";
                 case 22: return "DMR/DR";
                 case 25: return "DC/MC";
+                case 26: return "DL/ML";
+                case 27: return "DR/MR";
                 case 30: return "DMC";
                 case 31: return "DMC/DML";
                 case 32: return "DMC/DMR";
@@ -306,6 +308,9 @@ namespace DataGridViewCustomColumns
                 case 60: return "MC/OMC";
                 case 61: return "ML/OML";
                 case 62: return "MR/OMR";
+                case 65: return "MC/FC";
+                case 66: return "ML/FC";
+                case 67: return "MR/FC";
                 case 70: return "OMC";
                 case 71: return "OMC/OML";
                 case 72: return "OMC/OMR";

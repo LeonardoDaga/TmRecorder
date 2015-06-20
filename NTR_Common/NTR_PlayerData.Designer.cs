@@ -1,4 +1,4 @@
-namespace TransferManager
+namespace NTR_Common
 {
     partial class NTR_PlayerData
     {
@@ -58,7 +58,6 @@ namespace TransferManager
             this.lblPasCapt = new System.Windows.Forms.Label();
             this.lblStaCapt = new System.Windows.Forms.Label();
             this.lblStrCapt = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.lblAge = new System.Windows.Forms.Label();
             this.lblASI = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -76,129 +75,134 @@ namespace TransferManager
             this.label10 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.lblProfessionalism = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
+            this.lblName = new System.Windows.Forms.Label();
             this.lblFP2 = new System.Windows.Forms.Label();
             this.lblFP1 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
+            this.lblSOi = new System.Windows.Forms.Label();
+            this.lblSsd = new System.Windows.Forms.Label();
+            this.lblCRec = new System.Windows.Forms.Label();
+            this.lblRec = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.flagImgList = new System.Windows.Forms.ImageList(this.components);
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictFlag = new System.Windows.Forms.PictureBox();
             this.label21 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
+            this.lblReRec1 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.label22 = new System.Windows.Forms.Label();
+            this.lblRouEff1 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
+            this.lblReRec2 = new System.Windows.Forms.Label();
+            this.lblRouEff2 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
+            this.lblRatPure1 = new System.Windows.Forms.Label();
+            this.lblRatPure2 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.lblBlooming = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.pictFlag)).BeginInit();
             this.SuspendLayout();
             // 
             // lblCP
             // 
             this.lblCP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.lblCP.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblCP.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCP.Location = new System.Drawing.Point(100, 162);
+            this.lblCP.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCP.Location = new System.Drawing.Point(96, 186);
             this.lblCP.Name = "lblCP";
             this.lblCP.Size = new System.Drawing.Size(32, 17);
             this.lblCP.TabIndex = 19;
-            this.lblCP.Text = "0";
+            this.lblCP.Text = "15.9";
             this.lblCP.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblPos
             // 
             this.lblPos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.lblPos.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblPos.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPos.Location = new System.Drawing.Point(32, 162);
+            this.lblPos.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPos.Location = new System.Drawing.Point(30, 186);
             this.lblPos.Name = "lblPos";
             this.lblPos.Size = new System.Drawing.Size(32, 17);
             this.lblPos.TabIndex = 20;
-            this.lblPos.Text = "0";
+            this.lblPos.Text = "12.3";
             this.lblPos.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblDis
             // 
             this.lblDis.BackColor = System.Drawing.Color.MistyRose;
             this.lblDis.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblDis.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDis.Location = new System.Drawing.Point(100, 145);
+            this.lblDis.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDis.Location = new System.Drawing.Point(96, 169);
             this.lblDis.Name = "lblDis";
             this.lblDis.Size = new System.Drawing.Size(32, 17);
             this.lblDis.TabIndex = 21;
-            this.lblDis.Text = "0";
+            this.lblDis.Text = "15.9";
             this.lblDis.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblImp
             // 
             this.lblImp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.lblImp.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblImp.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblImp.Location = new System.Drawing.Point(32, 145);
+            this.lblImp.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblImp.Location = new System.Drawing.Point(30, 169);
             this.lblImp.Name = "lblImp";
             this.lblImp.Size = new System.Drawing.Size(32, 17);
             this.lblImp.TabIndex = 18;
-            this.lblImp.Text = "0";
+            this.lblImp.Text = "12.3";
             this.lblImp.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblTes
             // 
             this.lblTes.BackColor = System.Drawing.Color.MistyRose;
             this.lblTes.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblTes.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTes.Location = new System.Drawing.Point(100, 111);
+            this.lblTes.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTes.Location = new System.Drawing.Point(96, 135);
             this.lblTes.Name = "lblTes";
             this.lblTes.Size = new System.Drawing.Size(32, 17);
             this.lblTes.TabIndex = 15;
-            this.lblTes.Text = "0";
+            this.lblTes.Text = "15.9";
             this.lblTes.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblMar
             // 
             this.lblMar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.lblMar.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblMar.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMar.Location = new System.Drawing.Point(32, 111);
+            this.lblMar.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMar.Location = new System.Drawing.Point(30, 135);
             this.lblMar.Name = "lblMar";
             this.lblMar.Size = new System.Drawing.Size(32, 17);
             this.lblMar.TabIndex = 16;
-            this.lblMar.Text = "0";
+            this.lblMar.Text = "12.3";
             this.lblMar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblCro
             // 
             this.lblCro.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.lblCro.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblCro.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCro.Location = new System.Drawing.Point(100, 77);
+            this.lblCro.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCro.Location = new System.Drawing.Point(96, 101);
             this.lblCro.Name = "lblCro";
             this.lblCro.Size = new System.Drawing.Size(32, 17);
             this.lblCro.TabIndex = 17;
-            this.lblCro.Text = "0";
+            this.lblCro.Text = "15.9";
             this.lblCro.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblRes
             // 
             this.lblRes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.lblRes.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblRes.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRes.Location = new System.Drawing.Point(32, 77);
+            this.lblRes.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRes.Location = new System.Drawing.Point(30, 101);
             this.lblRes.Name = "lblRes";
             this.lblRes.Size = new System.Drawing.Size(32, 17);
             this.lblRes.TabIndex = 26;
-            this.lblRes.Text = "0";
+            this.lblRes.Text = "12.3";
             this.lblRes.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblSetCapt
@@ -206,7 +210,7 @@ namespace TransferManager
             this.lblSetCapt.AutoSize = true;
             this.lblSetCapt.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSetCapt.ForeColor = System.Drawing.Color.Black;
-            this.lblSetCapt.Location = new System.Drawing.Point(73, 163);
+            this.lblSetCapt.Location = new System.Drawing.Point(69, 187);
             this.lblSetCapt.Name = "lblSetCapt";
             this.lblSetCapt.Size = new System.Drawing.Size(27, 16);
             this.lblSetCapt.TabIndex = 27;
@@ -217,7 +221,7 @@ namespace TransferManager
             this.lblPosCapt.AutoSize = true;
             this.lblPosCapt.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPosCapt.ForeColor = System.Drawing.Color.Black;
-            this.lblPosCapt.Location = new System.Drawing.Point(3, 164);
+            this.lblPosCapt.Location = new System.Drawing.Point(1, 188);
             this.lblPosCapt.Name = "lblPosCapt";
             this.lblPosCapt.Size = new System.Drawing.Size(28, 16);
             this.lblPosCapt.TabIndex = 28;
@@ -227,24 +231,24 @@ namespace TransferManager
             // 
             this.lblFin.BackColor = System.Drawing.Color.MistyRose;
             this.lblFin.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblFin.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFin.Location = new System.Drawing.Point(100, 128);
+            this.lblFin.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFin.Location = new System.Drawing.Point(96, 152);
             this.lblFin.Name = "lblFin";
             this.lblFin.Size = new System.Drawing.Size(32, 17);
             this.lblFin.TabIndex = 25;
-            this.lblFin.Text = "0";
+            this.lblFin.Text = "15.9";
             this.lblFin.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblCon
             // 
             this.lblCon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.lblCon.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblCon.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCon.Location = new System.Drawing.Point(32, 128);
+            this.lblCon.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCon.Location = new System.Drawing.Point(30, 152);
             this.lblCon.Name = "lblCon";
             this.lblCon.Size = new System.Drawing.Size(32, 17);
             this.lblCon.TabIndex = 22;
-            this.lblCon.Text = "0";
+            this.lblCon.Text = "12.3";
             this.lblCon.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblLonCapt
@@ -252,7 +256,7 @@ namespace TransferManager
             this.lblLonCapt.AutoSize = true;
             this.lblLonCapt.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLonCapt.ForeColor = System.Drawing.Color.Black;
-            this.lblLonCapt.Location = new System.Drawing.Point(71, 146);
+            this.lblLonCapt.Location = new System.Drawing.Point(67, 170);
             this.lblLonCapt.Name = "lblLonCapt";
             this.lblLonCapt.Size = new System.Drawing.Size(28, 16);
             this.lblLonCapt.TabIndex = 23;
@@ -263,7 +267,7 @@ namespace TransferManager
             this.lblWorCapt.AutoSize = true;
             this.lblWorCapt.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWorCapt.ForeColor = System.Drawing.Color.Black;
-            this.lblWorCapt.Location = new System.Drawing.Point(1, 147);
+            this.lblWorCapt.Location = new System.Drawing.Point(-1, 171);
             this.lblWorCapt.Name = "lblWorCapt";
             this.lblWorCapt.Size = new System.Drawing.Size(32, 16);
             this.lblWorCapt.TabIndex = 24;
@@ -273,24 +277,24 @@ namespace TransferManager
             // 
             this.lblTec.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.lblTec.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblTec.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTec.Location = new System.Drawing.Point(100, 94);
+            this.lblTec.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTec.Location = new System.Drawing.Point(96, 118);
             this.lblTec.Name = "lblTec";
             this.lblTec.Size = new System.Drawing.Size(32, 17);
             this.lblTec.TabIndex = 5;
-            this.lblTec.Text = "0";
+            this.lblTec.Text = "15.9";
             this.lblTec.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblVel
             // 
             this.lblVel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.lblVel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblVel.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVel.Location = new System.Drawing.Point(32, 94);
+            this.lblVel.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVel.Location = new System.Drawing.Point(30, 118);
             this.lblVel.Name = "lblVel";
             this.lblVel.Size = new System.Drawing.Size(32, 17);
             this.lblVel.TabIndex = 6;
-            this.lblVel.Text = "0";
+            this.lblVel.Text = "12.3";
             this.lblVel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblHeaCapt
@@ -298,7 +302,7 @@ namespace TransferManager
             this.lblHeaCapt.AutoSize = true;
             this.lblHeaCapt.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHeaCapt.ForeColor = System.Drawing.Color.Black;
-            this.lblHeaCapt.Location = new System.Drawing.Point(69, 112);
+            this.lblHeaCapt.Location = new System.Drawing.Point(65, 136);
             this.lblHeaCapt.Name = "lblHeaCapt";
             this.lblHeaCapt.Size = new System.Drawing.Size(30, 16);
             this.lblHeaCapt.TabIndex = 7;
@@ -309,7 +313,7 @@ namespace TransferManager
             this.lblMarCapt.AutoSize = true;
             this.lblMarCapt.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMarCapt.ForeColor = System.Drawing.Color.Black;
-            this.lblMarCapt.Location = new System.Drawing.Point(3, 113);
+            this.lblMarCapt.Location = new System.Drawing.Point(1, 137);
             this.lblMarCapt.Name = "lblMarCapt";
             this.lblMarCapt.Size = new System.Drawing.Size(30, 16);
             this.lblMarCapt.TabIndex = 4;
@@ -320,7 +324,7 @@ namespace TransferManager
             this.lblFinCapt.AutoSize = true;
             this.lblFinCapt.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFinCapt.ForeColor = System.Drawing.Color.Black;
-            this.lblFinCapt.Location = new System.Drawing.Point(75, 129);
+            this.lblFinCapt.Location = new System.Drawing.Point(71, 153);
             this.lblFinCapt.Name = "lblFinCapt";
             this.lblFinCapt.Size = new System.Drawing.Size(25, 16);
             this.lblFinCapt.TabIndex = 1;
@@ -331,7 +335,7 @@ namespace TransferManager
             this.lblTakCapt.AutoSize = true;
             this.lblTakCapt.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTakCapt.ForeColor = System.Drawing.Color.Black;
-            this.lblTakCapt.Location = new System.Drawing.Point(2, 130);
+            this.lblTakCapt.Location = new System.Drawing.Point(0, 154);
             this.lblTakCapt.Name = "lblTakCapt";
             this.lblTakCapt.Size = new System.Drawing.Size(29, 16);
             this.lblTakCapt.TabIndex = 2;
@@ -341,12 +345,12 @@ namespace TransferManager
             // 
             this.lblPas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.lblPas.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblPas.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPas.Location = new System.Drawing.Point(100, 60);
+            this.lblPas.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPas.Location = new System.Drawing.Point(96, 84);
             this.lblPas.Name = "lblPas";
             this.lblPas.Size = new System.Drawing.Size(32, 17);
             this.lblPas.TabIndex = 3;
-            this.lblPas.Text = "0";
+            this.lblPas.Text = "15.9";
             this.lblPas.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblTecCapt
@@ -354,7 +358,7 @@ namespace TransferManager
             this.lblTecCapt.AutoSize = true;
             this.lblTecCapt.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTecCapt.ForeColor = System.Drawing.Color.Black;
-            this.lblTecCapt.Location = new System.Drawing.Point(70, 95);
+            this.lblTecCapt.Location = new System.Drawing.Point(66, 119);
             this.lblTecCapt.Name = "lblTecCapt";
             this.lblTecCapt.Size = new System.Drawing.Size(29, 16);
             this.lblTecCapt.TabIndex = 12;
@@ -364,12 +368,12 @@ namespace TransferManager
             // 
             this.lblFor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.lblFor.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblFor.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFor.Location = new System.Drawing.Point(32, 60);
+            this.lblFor.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFor.Location = new System.Drawing.Point(30, 84);
             this.lblFor.Name = "lblFor";
             this.lblFor.Size = new System.Drawing.Size(32, 17);
             this.lblFor.TabIndex = 13;
-            this.lblFor.Text = "0";
+            this.lblFor.Text = "12.3";
             this.lblFor.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblCroCapt
@@ -377,7 +381,7 @@ namespace TransferManager
             this.lblCroCapt.AutoSize = true;
             this.lblCroCapt.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCroCapt.ForeColor = System.Drawing.Color.Black;
-            this.lblCroCapt.Location = new System.Drawing.Point(73, 78);
+            this.lblCroCapt.Location = new System.Drawing.Point(69, 102);
             this.lblCroCapt.Name = "lblCroCapt";
             this.lblCroCapt.Size = new System.Drawing.Size(28, 16);
             this.lblCroCapt.TabIndex = 14;
@@ -388,7 +392,7 @@ namespace TransferManager
             this.lblPacCapt.AutoSize = true;
             this.lblPacCapt.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPacCapt.ForeColor = System.Drawing.Color.Black;
-            this.lblPacCapt.Location = new System.Drawing.Point(2, 96);
+            this.lblPacCapt.Location = new System.Drawing.Point(0, 120);
             this.lblPacCapt.Name = "lblPacCapt";
             this.lblPacCapt.Size = new System.Drawing.Size(28, 16);
             this.lblPacCapt.TabIndex = 11;
@@ -399,7 +403,7 @@ namespace TransferManager
             this.lblPasCapt.AutoSize = true;
             this.lblPasCapt.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPasCapt.ForeColor = System.Drawing.Color.Black;
-            this.lblPasCapt.Location = new System.Drawing.Point(71, 62);
+            this.lblPasCapt.Location = new System.Drawing.Point(67, 86);
             this.lblPasCapt.Name = "lblPasCapt";
             this.lblPasCapt.Size = new System.Drawing.Size(28, 16);
             this.lblPasCapt.TabIndex = 8;
@@ -410,7 +414,7 @@ namespace TransferManager
             this.lblStaCapt.AutoSize = true;
             this.lblStaCapt.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStaCapt.ForeColor = System.Drawing.Color.Black;
-            this.lblStaCapt.Location = new System.Drawing.Point(5, 79);
+            this.lblStaCapt.Location = new System.Drawing.Point(3, 103);
             this.lblStaCapt.Name = "lblStaCapt";
             this.lblStaCapt.Size = new System.Drawing.Size(27, 16);
             this.lblStaCapt.TabIndex = 9;
@@ -421,43 +425,31 @@ namespace TransferManager
             this.lblStrCapt.AutoSize = true;
             this.lblStrCapt.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStrCapt.ForeColor = System.Drawing.Color.Black;
-            this.lblStrCapt.Location = new System.Drawing.Point(8, 62);
+            this.lblStrCapt.Location = new System.Drawing.Point(6, 86);
             this.lblStrCapt.Name = "lblStrCapt";
             this.lblStrCapt.Size = new System.Drawing.Size(25, 16);
             this.lblStrCapt.TabIndex = 10;
             this.lblStrCapt.Text = "Str";
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.label8.Location = new System.Drawing.Point(146, 72);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(30, 16);
-            this.label8.TabIndex = 10;
-            this.label8.Text = "Age";
-            // 
             // lblAge
             // 
-            this.lblAge.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.lblAge.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblAge.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAge.Location = new System.Drawing.Point(147, 88);
+            this.lblAge.BackColor = System.Drawing.Color.Transparent;
+            this.lblAge.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAge.Location = new System.Drawing.Point(39, 43);
             this.lblAge.Name = "lblAge";
-            this.lblAge.Size = new System.Drawing.Size(65, 17);
+            this.lblAge.Size = new System.Drawing.Size(73, 17);
             this.lblAge.TabIndex = 13;
             this.lblAge.Text = "0";
-            this.lblAge.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblAge.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblASI
             // 
             this.lblASI.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lblASI.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblASI.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblASI.Location = new System.Drawing.Point(147, 120);
+            this.lblASI.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblASI.Location = new System.Drawing.Point(142, 98);
             this.lblASI.Name = "lblASI";
-            this.lblASI.Size = new System.Drawing.Size(65, 17);
+            this.lblASI.Size = new System.Drawing.Size(57, 17);
             this.lblASI.TabIndex = 29;
             this.lblASI.Text = "0";
             this.lblASI.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -467,7 +459,7 @@ namespace TransferManager
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.label7.Location = new System.Drawing.Point(146, 104);
+            this.label7.Location = new System.Drawing.Point(141, 82);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(28, 16);
             this.label7.TabIndex = 30;
@@ -478,7 +470,7 @@ namespace TransferManager
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.label1.Location = new System.Drawing.Point(-1, 42);
+            this.label1.Location = new System.Drawing.Point(-1, 63);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(131, 16);
             this.label1.TabIndex = 10;
@@ -489,20 +481,20 @@ namespace TransferManager
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.label2.Location = new System.Drawing.Point(-1, 250);
+            this.label2.Location = new System.Drawing.Point(109, 217);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(139, 16);
+            this.label2.Size = new System.Drawing.Size(143, 16);
             this.label2.TabIndex = 31;
-            this.label2.Text = "         R2RATING         ";
+            this.label2.Text = "          R2RATING         ";
             // 
             // lblWage
             // 
             this.lblWage.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lblWage.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblWage.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWage.Location = new System.Drawing.Point(147, 152);
+            this.lblWage.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWage.Location = new System.Drawing.Point(142, 130);
             this.lblWage.Name = "lblWage";
-            this.lblWage.Size = new System.Drawing.Size(65, 17);
+            this.lblWage.Size = new System.Drawing.Size(57, 17);
             this.lblWage.TabIndex = 32;
             this.lblWage.Text = "0";
             this.lblWage.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -512,7 +504,7 @@ namespace TransferManager
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.label4.Location = new System.Drawing.Point(146, 136);
+            this.label4.Location = new System.Drawing.Point(141, 114);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(41, 16);
             this.label4.TabIndex = 33;
@@ -523,7 +515,7 @@ namespace TransferManager
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.label3.Location = new System.Drawing.Point(146, 168);
+            this.label3.Location = new System.Drawing.Point(141, 146);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(51, 16);
             this.label3.TabIndex = 33;
@@ -533,10 +525,10 @@ namespace TransferManager
             // 
             this.lblRou.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lblRou.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblRou.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRou.Location = new System.Drawing.Point(147, 184);
+            this.lblRou.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRou.Location = new System.Drawing.Point(142, 162);
             this.lblRou.Name = "lblRou";
-            this.lblRou.Size = new System.Drawing.Size(65, 17);
+            this.lblRou.Size = new System.Drawing.Size(57, 17);
             this.lblRou.TabIndex = 32;
             this.lblRou.Text = "0";
             this.lblRou.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -545,124 +537,129 @@ namespace TransferManager
             // 
             this.lblAda.BackColor = System.Drawing.Color.DarkKhaki;
             this.lblAda.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblAda.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAda.Location = new System.Drawing.Point(147, 223);
+            this.lblAda.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAda.Location = new System.Drawing.Point(203, 98);
             this.lblAda.Name = "lblAda";
-            this.lblAda.Size = new System.Drawing.Size(65, 17);
+            this.lblAda.Size = new System.Drawing.Size(44, 17);
             this.lblAda.TabIndex = 32;
             this.lblAda.Text = "0";
             this.lblAda.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.toolTip1.SetToolTip(this.lblAda, "Adaptability");
             // 
             // lblAdaCapt
             // 
             this.lblAdaCapt.AutoSize = true;
             this.lblAdaCapt.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAdaCapt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.lblAdaCapt.Location = new System.Drawing.Point(146, 207);
+            this.lblAdaCapt.Location = new System.Drawing.Point(202, 82);
             this.lblAdaCapt.Name = "lblAdaCapt";
-            this.lblAdaCapt.Size = new System.Drawing.Size(74, 16);
+            this.lblAdaCapt.Size = new System.Drawing.Size(45, 16);
             this.lblAdaCapt.TabIndex = 33;
-            this.lblAdaCapt.Text = "Adaptability";
+            this.lblAdaCapt.Text = "Adapt.";
             // 
             // lblAggression
             // 
             this.lblAggression.BackColor = System.Drawing.Color.DarkKhaki;
             this.lblAggression.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblAggression.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAggression.Location = new System.Drawing.Point(147, 255);
+            this.lblAggression.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAggression.Location = new System.Drawing.Point(203, 130);
             this.lblAggression.Name = "lblAggression";
-            this.lblAggression.Size = new System.Drawing.Size(65, 17);
+            this.lblAggression.Size = new System.Drawing.Size(44, 17);
             this.lblAggression.TabIndex = 34;
             this.lblAggression.Text = "0";
             this.lblAggression.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.toolTip1.SetToolTip(this.lblAggression, "Aggression");
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label6.Location = new System.Drawing.Point(146, 239);
+            this.label6.Location = new System.Drawing.Point(202, 114);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(71, 16);
+            this.label6.Size = new System.Drawing.Size(39, 16);
             this.label6.TabIndex = 35;
-            this.label6.Text = "Aggression";
+            this.label6.Text = "Aggr.";
             // 
             // lblInjuryPro
             // 
             this.lblInjuryPro.BackColor = System.Drawing.Color.DarkKhaki;
             this.lblInjuryPro.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblInjuryPro.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInjuryPro.Location = new System.Drawing.Point(147, 287);
+            this.lblInjuryPro.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInjuryPro.Location = new System.Drawing.Point(203, 162);
             this.lblInjuryPro.Name = "lblInjuryPro";
-            this.lblInjuryPro.Size = new System.Drawing.Size(65, 17);
+            this.lblInjuryPro.Size = new System.Drawing.Size(44, 17);
             this.lblInjuryPro.TabIndex = 36;
             this.lblInjuryPro.Text = "0";
             this.lblInjuryPro.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.toolTip1.SetToolTip(this.lblInjuryPro, "Injuty Proneness");
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label10.Location = new System.Drawing.Point(146, 271);
+            this.label10.Location = new System.Drawing.Point(202, 146);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(68, 16);
+            this.label10.Size = new System.Drawing.Size(41, 16);
             this.label10.TabIndex = 37;
-            this.label10.Text = "Injury Pro.";
+            this.label10.Text = "Injury";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label5.Location = new System.Drawing.Point(146, 303);
+            this.label5.Location = new System.Drawing.Point(202, 178);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(71, 16);
+            this.label5.Size = new System.Drawing.Size(48, 16);
             this.label5.TabIndex = 37;
-            this.label5.Text = "Profession.";
+            this.label5.Text = "Profes.";
             // 
             // lblProfessionalism
             // 
             this.lblProfessionalism.BackColor = System.Drawing.Color.DarkKhaki;
             this.lblProfessionalism.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblProfessionalism.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProfessionalism.Location = new System.Drawing.Point(147, 319);
+            this.lblProfessionalism.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProfessionalism.Location = new System.Drawing.Point(203, 194);
             this.lblProfessionalism.Name = "lblProfessionalism";
-            this.lblProfessionalism.Size = new System.Drawing.Size(65, 17);
+            this.lblProfessionalism.Size = new System.Drawing.Size(44, 17);
             this.lblProfessionalism.TabIndex = 36;
             this.lblProfessionalism.Text = "0";
             this.lblProfessionalism.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label11
+            // lblName
             // 
-            this.label11.BackColor = System.Drawing.Color.Transparent;
-            this.label11.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(1, 4);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(164, 37);
-            this.label11.TabIndex = 38;
-            this.label11.Text = "Ignazio Mosconi Vinciguerra";
+            this.lblName.BackColor = System.Drawing.Color.Transparent;
+            this.lblName.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblName.Location = new System.Drawing.Point(1, 4);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(206, 39);
+            this.lblName.TabIndex = 38;
+            this.lblName.Text = "Ignazio Mosconi Vinciguerra Sherpenzeel";
             // 
             // lblFP2
             // 
             this.lblFP2.BackColor = System.Drawing.Color.Yellow;
             this.lblFP2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblFP2.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFP2.Location = new System.Drawing.Point(168, 48);
+            this.lblFP2.Font = new System.Drawing.Font("Verdana", 10F);
+            this.lblFP2.Location = new System.Drawing.Point(205, 41);
+            this.lblFP2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblFP2.Name = "lblFP2";
-            this.lblFP2.Size = new System.Drawing.Size(48, 22);
+            this.lblFP2.Size = new System.Drawing.Size(44, 19);
             this.lblFP2.TabIndex = 39;
-            this.lblFP2.Text = "ML";
+            this.lblFP2.Text = "OML";
             this.lblFP2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblFP1
             // 
             this.lblFP1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.lblFP1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblFP1.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFP1.Location = new System.Drawing.Point(168, 26);
+            this.lblFP1.Font = new System.Drawing.Font("Verdana", 10F);
+            this.lblFP1.Location = new System.Drawing.Point(205, 21);
+            this.lblFP1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblFP1.Name = "lblFP1";
-            this.lblFP1.Size = new System.Drawing.Size(48, 22);
+            this.lblFP1.Size = new System.Drawing.Size(44, 19);
             this.lblFP1.TabIndex = 40;
             this.lblFP1.Text = "DML";
             this.lblFP1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -672,107 +669,111 @@ namespace TransferManager
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.label12.Location = new System.Drawing.Point(-1, 188);
+            this.label12.Location = new System.Drawing.Point(2, 212);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(132, 16);
+            this.label12.Size = new System.Drawing.Size(100, 16);
             this.label12.TabIndex = 41;
-            this.label12.Text = "          RATING          ";
+            this.label12.Text = "      RATING      ";
             // 
-            // label13
+            // lblSOi
             // 
-            this.label13.BackColor = System.Drawing.Color.Lavender;
-            this.label13.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label13.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(100, 225);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(32, 17);
-            this.label13.TabIndex = 43;
-            this.label13.Text = "0";
-            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.toolTip1.SetToolTip(this.label13, "Skill Optimization Index");
+            this.lblSOi.BackColor = System.Drawing.Color.Lavender;
+            this.lblSOi.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblSOi.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSOi.Location = new System.Drawing.Point(56, 281);
+            this.lblSOi.Name = "lblSOi";
+            this.lblSOi.Size = new System.Drawing.Size(37, 17);
+            this.lblSOi.TabIndex = 43;
+            this.lblSOi.Text = "0";
+            this.lblSOi.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.toolTip1.SetToolTip(this.lblSOi, "Skill Optimization Index");
             // 
-            // label14
+            // lblSsd
             // 
-            this.label14.BackColor = System.Drawing.Color.Lavender;
-            this.label14.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label14.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(100, 208);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(32, 17);
-            this.label14.TabIndex = 45;
-            this.label14.Text = "0";
-            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.toolTip1.SetToolTip(this.label14, "Skill Sum Deviation");
+            this.lblSsd.BackColor = System.Drawing.Color.Lavender;
+            this.lblSsd.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblSsd.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSsd.Location = new System.Drawing.Point(56, 264);
+            this.lblSsd.Name = "lblSsd";
+            this.lblSsd.Size = new System.Drawing.Size(37, 17);
+            this.lblSsd.TabIndex = 45;
+            this.lblSsd.Text = "0";
+            this.lblSsd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.toolTip1.SetToolTip(this.lblSsd, "Skill Sum Deviation");
             // 
-            // label15
+            // lblCRec
             // 
-            this.label15.BackColor = System.Drawing.Color.Lavender;
-            this.label15.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label15.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(35, 225);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(32, 17);
-            this.label15.TabIndex = 44;
-            this.label15.Text = "0";
-            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.toolTip1.SetToolTip(this.label15, "TM Recorder Recommendation");
+            this.lblCRec.BackColor = System.Drawing.Color.Lavender;
+            this.lblCRec.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblCRec.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCRec.Location = new System.Drawing.Point(56, 247);
+            this.lblCRec.Name = "lblCRec";
+            this.lblCRec.Size = new System.Drawing.Size(37, 17);
+            this.lblCRec.TabIndex = 44;
+            this.lblCRec.Text = "0";
+            this.lblCRec.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.toolTip1.SetToolTip(this.lblCRec, "TM Recorder Recommendation");
             // 
-            // label16
+            // lblRec
             // 
-            this.label16.BackColor = System.Drawing.Color.Lavender;
-            this.label16.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label16.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(35, 208);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(32, 17);
-            this.label16.TabIndex = 42;
-            this.label16.Text = "0";
-            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.toolTip1.SetToolTip(this.label16, "TM Recommendation");
+            this.lblRec.BackColor = System.Drawing.Color.Lavender;
+            this.lblRec.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblRec.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRec.Location = new System.Drawing.Point(56, 230);
+            this.lblRec.Name = "lblRec";
+            this.lblRec.Size = new System.Drawing.Size(37, 17);
+            this.lblRec.TabIndex = 42;
+            this.lblRec.Text = "0";
+            this.lblRec.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.toolTip1.SetToolTip(this.lblRec, "TM Recommendation");
             // 
             // label17
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.ForeColor = System.Drawing.Color.Black;
-            this.label17.Location = new System.Drawing.Point(73, 226);
+            this.label17.Location = new System.Drawing.Point(25, 282);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(28, 16);
             this.label17.TabIndex = 48;
             this.label17.Text = "SOi";
+            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label18
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label18.ForeColor = System.Drawing.Color.Black;
-            this.label18.Location = new System.Drawing.Point(1, 227);
+            this.label18.Location = new System.Drawing.Point(16, 249);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(37, 16);
             this.label18.TabIndex = 49;
             this.label18.Text = "CRec";
+            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label19
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.ForeColor = System.Drawing.Color.Black;
-            this.label19.Location = new System.Drawing.Point(71, 209);
+            this.label19.Location = new System.Drawing.Point(24, 265);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(29, 16);
             this.label19.TabIndex = 46;
             this.label19.Text = "Ssd";
+            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label20
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label20.ForeColor = System.Drawing.Color.Black;
-            this.label20.Location = new System.Drawing.Point(1, 210);
+            this.label20.Location = new System.Drawing.Point(24, 232);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(29, 16);
             this.label20.TabIndex = 47;
             this.label20.Text = "Rec";
+            this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // flagImgList
             // 
@@ -904,125 +905,129 @@ namespace TransferManager
             this.flagImgList.Images.SetKeyName(123, "wa.png");
             this.flagImgList.Images.SetKeyName(124, "za.png");
             // 
-            // pictureBox1
+            // pictFlag
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(177, 4);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(27, 18);
-            this.pictureBox1.TabIndex = 50;
-            this.pictureBox1.TabStop = false;
+            this.pictFlag.Location = new System.Drawing.Point(216, 3);
+            this.pictFlag.Name = "pictFlag";
+            this.pictFlag.Size = new System.Drawing.Size(24, 15);
+            this.pictFlag.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictFlag.TabIndex = 50;
+            this.pictFlag.TabStop = false;
             // 
             // label21
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label21.ForeColor = System.Drawing.Color.Black;
-            this.label21.Location = new System.Drawing.Point(1, 283);
+            this.label21.Location = new System.Drawing.Point(127, 249);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(44, 16);
             this.label21.TabIndex = 47;
             this.label21.Text = "ReRec";
+            this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label25
+            // lblReRec1
             // 
-            this.label25.BackColor = System.Drawing.Color.Lavender;
-            this.label25.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label25.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(57, 282);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(36, 17);
-            this.label25.TabIndex = 42;
-            this.label25.Text = "0";
-            this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblReRec1.BackColor = System.Drawing.Color.Lavender;
+            this.lblReRec1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblReRec1.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReRec1.Location = new System.Drawing.Point(171, 247);
+            this.lblReRec1.Name = "lblReRec1";
+            this.lblReRec1.Size = new System.Drawing.Size(36, 17);
+            this.lblReRec1.TabIndex = 42;
+            this.lblReRec1.Text = "0";
+            this.lblReRec1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label22
+            // lblRouEff1
             // 
-            this.label22.BackColor = System.Drawing.Color.Lavender;
-            this.label22.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label22.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(57, 299);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(36, 17);
-            this.label22.TabIndex = 51;
-            this.label22.Text = "0";
-            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblRouEff1.BackColor = System.Drawing.Color.Lavender;
+            this.lblRouEff1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblRouEff1.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRouEff1.Location = new System.Drawing.Point(171, 264);
+            this.lblRouEff1.Name = "lblRouEff1";
+            this.lblRouEff1.Size = new System.Drawing.Size(36, 17);
+            this.lblRouEff1.TabIndex = 51;
+            this.lblRouEff1.Text = "0";
+            this.lblRouEff1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label23
             // 
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label23.ForeColor = System.Drawing.Color.Black;
-            this.label23.Location = new System.Drawing.Point(1, 299);
+            this.label23.Location = new System.Drawing.Point(122, 265);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(49, 16);
             this.label23.TabIndex = 47;
             this.label23.Text = "Rou.Eff";
+            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label24
+            // lblReRec2
             // 
-            this.label24.BackColor = System.Drawing.Color.Lavender;
-            this.label24.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label24.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(95, 282);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(36, 17);
-            this.label24.TabIndex = 42;
-            this.label24.Text = "0";
-            this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblReRec2.BackColor = System.Drawing.Color.Lavender;
+            this.lblReRec2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblReRec2.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReRec2.Location = new System.Drawing.Point(209, 247);
+            this.lblReRec2.Name = "lblReRec2";
+            this.lblReRec2.Size = new System.Drawing.Size(36, 17);
+            this.lblReRec2.TabIndex = 42;
+            this.lblReRec2.Text = "0";
+            this.lblReRec2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label26
+            // lblRouEff2
             // 
-            this.label26.BackColor = System.Drawing.Color.Lavender;
-            this.label26.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label26.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.Location = new System.Drawing.Point(95, 299);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(36, 17);
-            this.label26.TabIndex = 51;
-            this.label26.Text = "0";
-            this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblRouEff2.BackColor = System.Drawing.Color.Lavender;
+            this.lblRouEff2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblRouEff2.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRouEff2.Location = new System.Drawing.Point(209, 264);
+            this.lblRouEff2.Name = "lblRouEff2";
+            this.lblRouEff2.Size = new System.Drawing.Size(36, 17);
+            this.lblRouEff2.TabIndex = 51;
+            this.lblRouEff2.Text = "0";
+            this.lblRouEff2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label27
             // 
             this.label27.AutoSize = true;
             this.label27.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label27.ForeColor = System.Drawing.Color.Black;
-            this.label27.Location = new System.Drawing.Point(1, 315);
+            this.label27.Location = new System.Drawing.Point(114, 281);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(57, 16);
             this.label27.TabIndex = 47;
             this.label27.Text = "Rat.Pure";
+            this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label28
+            // lblRatPure1
             // 
-            this.label28.BackColor = System.Drawing.Color.Lavender;
-            this.label28.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label28.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label28.Location = new System.Drawing.Point(57, 316);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(36, 17);
-            this.label28.TabIndex = 42;
-            this.label28.Text = "0";
-            this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblRatPure1.BackColor = System.Drawing.Color.Lavender;
+            this.lblRatPure1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblRatPure1.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRatPure1.Location = new System.Drawing.Point(171, 281);
+            this.lblRatPure1.Name = "lblRatPure1";
+            this.lblRatPure1.Size = new System.Drawing.Size(36, 17);
+            this.lblRatPure1.TabIndex = 42;
+            this.lblRatPure1.Text = "0";
+            this.lblRatPure1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label29
+            // lblRatPure2
             // 
-            this.label29.BackColor = System.Drawing.Color.Lavender;
-            this.label29.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label29.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.Location = new System.Drawing.Point(95, 316);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(36, 17);
-            this.label29.TabIndex = 51;
-            this.label29.Text = "0";
-            this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblRatPure2.BackColor = System.Drawing.Color.Lavender;
+            this.lblRatPure2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblRatPure2.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRatPure2.Location = new System.Drawing.Point(209, 281);
+            this.lblRatPure2.Name = "lblRatPure2";
+            this.lblRatPure2.Size = new System.Drawing.Size(36, 17);
+            this.lblRatPure2.TabIndex = 51;
+            this.lblRatPure2.Text = "0";
+            this.lblRatPure2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label30
             // 
             this.label30.AutoSize = true;
             this.label30.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label30.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.label30.Location = new System.Drawing.Point(60, 266);
+            this.label30.Location = new System.Drawing.Point(174, 232);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(33, 16);
             this.label30.TabIndex = 31;
@@ -1033,28 +1038,85 @@ namespace TransferManager
             this.label31.AutoSize = true;
             this.label31.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label31.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.label31.Location = new System.Drawing.Point(97, 266);
+            this.label31.Location = new System.Drawing.Point(211, 232);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(33, 16);
             this.label31.TabIndex = 31;
             this.label31.Text = "OML";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.DarkSlateGray;
+            this.label9.Location = new System.Drawing.Point(134, 67);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(67, 16);
+            this.label9.TabIndex = 10;
+            this.label9.Text = "   EXTRA  ";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.DarkSlateGray;
+            this.label8.Location = new System.Drawing.Point(141, 178);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(60, 16);
+            this.label8.TabIndex = 33;
+            this.label8.Text = "Blooming";
+            // 
+            // lblBlooming
+            // 
+            this.lblBlooming.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.lblBlooming.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblBlooming.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBlooming.Location = new System.Drawing.Point(142, 194);
+            this.lblBlooming.Name = "lblBlooming";
+            this.lblBlooming.Size = new System.Drawing.Size(57, 17);
+            this.lblBlooming.TabIndex = 32;
+            this.lblBlooming.Text = "0";
+            this.lblBlooming.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.DarkSlateGray;
+            this.label11.Location = new System.Drawing.Point(5, 43);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(28, 18);
+            this.label11.TabIndex = 8;
+            this.label11.Text = "Age";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.label14.Location = new System.Drawing.Point(200, 67);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(51, 16);
+            this.label14.TabIndex = 10;
+            this.label14.Text = "HIDDEN";
             // 
             // NTR_PlayerData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.Controls.Add(this.label29);
-            this.Controls.Add(this.label26);
-            this.Controls.Add(this.label22);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.label13);
-            this.Controls.Add(this.label28);
-            this.Controls.Add(this.label14);
-            this.Controls.Add(this.label24);
-            this.Controls.Add(this.label25);
-            this.Controls.Add(this.label15);
-            this.Controls.Add(this.label16);
+            this.Controls.Add(this.lblAge);
+            this.Controls.Add(this.pictFlag);
+            this.Controls.Add(this.lblRatPure2);
+            this.Controls.Add(this.lblRouEff2);
+            this.Controls.Add(this.lblRouEff1);
+            this.Controls.Add(this.lblSOi);
+            this.Controls.Add(this.lblRatPure1);
+            this.Controls.Add(this.lblSsd);
+            this.Controls.Add(this.lblReRec2);
+            this.Controls.Add(this.lblReRec1);
+            this.Controls.Add(this.lblCRec);
+            this.Controls.Add(this.lblRec);
             this.Controls.Add(this.label27);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.label23);
@@ -1065,7 +1127,7 @@ namespace TransferManager
             this.Controls.Add(this.label12);
             this.Controls.Add(this.lblFP2);
             this.Controls.Add(this.lblFP1);
-            this.Controls.Add(this.label11);
+            this.Controls.Add(this.lblName);
             this.Controls.Add(this.lblProfessionalism);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.lblInjuryPro);
@@ -1073,7 +1135,9 @@ namespace TransferManager
             this.Controls.Add(this.lblAggression);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.lblAda);
+            this.Controls.Add(this.lblBlooming);
             this.Controls.Add(this.lblRou);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.lblAdaCapt);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lblWage);
@@ -1082,7 +1146,6 @@ namespace TransferManager
             this.Controls.Add(this.label30);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblASI);
-            this.Controls.Add(this.lblAge);
             this.Controls.Add(this.lblCP);
             this.Controls.Add(this.lblDis);
             this.Controls.Add(this.lblTes);
@@ -1109,15 +1172,17 @@ namespace TransferManager
             this.Controls.Add(this.lblTecCapt);
             this.Controls.Add(this.lblCroCapt);
             this.Controls.Add(this.lblPacCapt);
+            this.Controls.Add(this.label11);
             this.Controls.Add(this.lblPasCapt);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.label8);
             this.Controls.Add(this.lblStaCapt);
             this.Controls.Add(this.lblStrCapt);
             this.Name = "NTR_PlayerData";
-            this.Size = new System.Drawing.Size(219, 340);
+            this.Size = new System.Drawing.Size(255, 301);
             this.Load += new System.EventHandler(this.NTR_PlayerData_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictFlag)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1153,7 +1218,6 @@ namespace TransferManager
         private System.Windows.Forms.Label lblPasCapt;
         private System.Windows.Forms.Label lblStaCapt;
         private System.Windows.Forms.Label lblStrCapt;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label lblAge;
         private System.Windows.Forms.Label lblASI;
         private System.Windows.Forms.Label label7;
@@ -1171,31 +1235,36 @@ namespace TransferManager
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lblProfessionalism;
-        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Label lblFP2;
         private System.Windows.Forms.Label lblFP1;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label lblSOi;
+        private System.Windows.Forms.Label lblSsd;
+        private System.Windows.Forms.Label lblCRec;
+        private System.Windows.Forms.Label lblRec;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
         public System.Windows.Forms.ImageList flagImgList;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictFlag;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label lblReRec1;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label lblRouEff1;
         private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label lblReRec2;
+        private System.Windows.Forms.Label lblRouEff2;
         private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Label lblRatPure1;
+        private System.Windows.Forms.Label lblRatPure2;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblBlooming;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label14;
     }
 }

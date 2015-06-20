@@ -119,6 +119,7 @@ namespace TmRecorder3
             this.tagsBarPhy = new Common.TagsBar();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.PlayerAge = new DataGridViewCustomColumns.TMR_AgeColumn(this.components);
             this.trainingBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabPlayerBrowser = new System.Windows.Forms.TabPage();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
@@ -199,25 +200,6 @@ namespace TmRecorder3
             this.scoutsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.extraDS = new Common.ExtraDS();
             this.ReportAnalysis = new Common.ReportAnalysis();
-            this.PlayerAge = new DataGridViewCustomColumns.TMR_AgeColumn(this.components);
-            this.absWeekDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_DateColumn(this.components);
-            this.forDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_ArrowColumn(this.components);
-            this.resDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_ArrowColumn(this.components);
-            this.velDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_ArrowColumn(this.components);
-            this.marDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_ArrowColumn(this.components);
-            this.conDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_ArrowColumn(this.components);
-            this.worDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_ArrowColumn(this.components);
-            this.posDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_ArrowColumn(this.components);
-            this.pasDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_ArrowColumn(this.components);
-            this.croDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_ArrowColumn(this.components);
-            this.tecDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_ArrowColumn(this.components);
-            this.tesDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_ArrowColumn(this.components);
-            this.finDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_ArrowColumn(this.components);
-            this.tirDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_ArrowColumn(this.components);
-            this.calDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_ArrowColumn(this.components);
-            this.tIDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.trainerNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.programDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_TrainSkillColumn(this.components);
             this.tabControl1.SuspendLayout();
             this.tabSkills.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -256,7 +238,6 @@ namespace TmRecorder3
             this.toolStripContainer1.SuspendLayout();
             this.tsBrowsePlayers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scoutsDataTableBindingSource1)).BeginInit();
-            this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -1684,25 +1665,7 @@ namespace TmRecorder3
             this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.PlayerAge,
-            this.absWeekDataGridViewTextBoxColumn,
-            this.forDataGridViewTextBoxColumn,
-            this.resDataGridViewTextBoxColumn,
-            this.velDataGridViewTextBoxColumn,
-            this.marDataGridViewTextBoxColumn,
-            this.conDataGridViewTextBoxColumn,
-            this.worDataGridViewTextBoxColumn,
-            this.posDataGridViewTextBoxColumn,
-            this.pasDataGridViewTextBoxColumn,
-            this.croDataGridViewTextBoxColumn,
-            this.tecDataGridViewTextBoxColumn,
-            this.tesDataGridViewTextBoxColumn,
-            this.finDataGridViewTextBoxColumn,
-            this.tirDataGridViewTextBoxColumn,
-            this.calDataGridViewTextBoxColumn,
-            this.tIDataGridViewTextBoxColumn,
-            this.trainerNameDataGridViewTextBoxColumn,
-            this.programDataGridViewTextBoxColumn});
+            this.PlayerAge});
             this.dataGridView1.DataSource = this.trainingBindingSource;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(3, 3);
@@ -1714,6 +1677,16 @@ namespace TmRecorder3
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(682, 516);
             this.dataGridView1.TabIndex = 0;
+            // 
+            // PlayerAge
+            // 
+            this.PlayerAge.DataPropertyName = "Age";
+            this.PlayerAge.HeaderText = "Age";
+            this.PlayerAge.Name = "PlayerAge";
+            this.PlayerAge.ReadOnly = true;
+            this.PlayerAge.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.PlayerAge.When = new System.DateTime(2015, 4, 19, 18, 31, 41, 824);
+            this.PlayerAge.Width = 40;
             // 
             // tabPlayerBrowser
             // 
@@ -1883,6 +1856,14 @@ namespace TmRecorder3
             this.txtNotes.Size = new System.Drawing.Size(239, 88);
             this.txtNotes.TabIndex = 6;
             this.txtNotes.TextChanged += new System.EventHandler(this.txtNotes_TextChanged);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Location = new System.Drawing.Point(9, 110);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(200, 100);
+            this.groupBox1.TabIndex = 10;
+            this.groupBox1.TabStop = false;
             // 
             // lblBloomAge
             // 
@@ -2439,195 +2420,7 @@ namespace TmRecorder3
             this.ReportAnalysis.DataSetName = "ReportAnalysis";
             this.ReportAnalysis.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // PlayerAge
-            // 
-            this.PlayerAge.DataPropertyName = "Age";
-            this.PlayerAge.HeaderText = "Age";
-            this.PlayerAge.Name = "PlayerAge";
-            this.PlayerAge.ReadOnly = true;
-            this.PlayerAge.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.PlayerAge.When = new System.DateTime(2015, 4, 19, 18, 31, 41, 824);
-            this.PlayerAge.Width = 40;
-            // 
-            // absWeekDataGridViewTextBoxColumn
-            // 
-            this.absWeekDataGridViewTextBoxColumn.DataPropertyName = "absWeek";
-            this.absWeekDataGridViewTextBoxColumn.HeaderText = "Week";
-            this.absWeekDataGridViewTextBoxColumn.Name = "absWeekDataGridViewTextBoxColumn";
-            this.absWeekDataGridViewTextBoxColumn.ReadOnly = true;
-            this.absWeekDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.absWeekDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.absWeekDataGridViewTextBoxColumn.Width = 40;
-            // 
-            // forDataGridViewTextBoxColumn
-            // 
-            this.forDataGridViewTextBoxColumn.DataPropertyName = "For";
-            this.forDataGridViewTextBoxColumn.HeaderText = "Str";
-            this.forDataGridViewTextBoxColumn.Name = "forDataGridViewTextBoxColumn";
-            this.forDataGridViewTextBoxColumn.ReadOnly = true;
-            this.forDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.forDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.forDataGridViewTextBoxColumn.Width = 24;
-            // 
-            // resDataGridViewTextBoxColumn
-            // 
-            this.resDataGridViewTextBoxColumn.DataPropertyName = "Res";
-            this.resDataGridViewTextBoxColumn.HeaderText = "Res";
-            this.resDataGridViewTextBoxColumn.Name = "resDataGridViewTextBoxColumn";
-            this.resDataGridViewTextBoxColumn.ReadOnly = true;
-            this.resDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.resDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.resDataGridViewTextBoxColumn.Width = 24;
-            // 
-            // velDataGridViewTextBoxColumn
-            // 
-            this.velDataGridViewTextBoxColumn.DataPropertyName = "Vel";
-            this.velDataGridViewTextBoxColumn.HeaderText = "Pac";
-            this.velDataGridViewTextBoxColumn.Name = "velDataGridViewTextBoxColumn";
-            this.velDataGridViewTextBoxColumn.ReadOnly = true;
-            this.velDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.velDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.velDataGridViewTextBoxColumn.Width = 24;
-            // 
-            // marDataGridViewTextBoxColumn
-            // 
-            this.marDataGridViewTextBoxColumn.DataPropertyName = "Mar";
-            this.marDataGridViewTextBoxColumn.HeaderText = "Mar";
-            this.marDataGridViewTextBoxColumn.Name = "marDataGridViewTextBoxColumn";
-            this.marDataGridViewTextBoxColumn.ReadOnly = true;
-            this.marDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.marDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.marDataGridViewTextBoxColumn.Width = 24;
-            // 
-            // conDataGridViewTextBoxColumn
-            // 
-            this.conDataGridViewTextBoxColumn.DataPropertyName = "Con";
-            this.conDataGridViewTextBoxColumn.HeaderText = "Tak";
-            this.conDataGridViewTextBoxColumn.Name = "conDataGridViewTextBoxColumn";
-            this.conDataGridViewTextBoxColumn.ReadOnly = true;
-            this.conDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.conDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.conDataGridViewTextBoxColumn.Width = 24;
-            // 
-            // worDataGridViewTextBoxColumn
-            // 
-            this.worDataGridViewTextBoxColumn.DataPropertyName = "Wor";
-            this.worDataGridViewTextBoxColumn.HeaderText = "Wor";
-            this.worDataGridViewTextBoxColumn.Name = "worDataGridViewTextBoxColumn";
-            this.worDataGridViewTextBoxColumn.ReadOnly = true;
-            this.worDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.worDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.worDataGridViewTextBoxColumn.Width = 24;
-            // 
-            // posDataGridViewTextBoxColumn
-            // 
-            this.posDataGridViewTextBoxColumn.DataPropertyName = "Pos";
-            this.posDataGridViewTextBoxColumn.HeaderText = "Pos";
-            this.posDataGridViewTextBoxColumn.Name = "posDataGridViewTextBoxColumn";
-            this.posDataGridViewTextBoxColumn.ReadOnly = true;
-            this.posDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.posDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.posDataGridViewTextBoxColumn.Width = 24;
-            // 
-            // pasDataGridViewTextBoxColumn
-            // 
-            this.pasDataGridViewTextBoxColumn.DataPropertyName = "Pas";
-            this.pasDataGridViewTextBoxColumn.HeaderText = "Pas";
-            this.pasDataGridViewTextBoxColumn.Name = "pasDataGridViewTextBoxColumn";
-            this.pasDataGridViewTextBoxColumn.ReadOnly = true;
-            this.pasDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.pasDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.pasDataGridViewTextBoxColumn.Width = 24;
-            // 
-            // croDataGridViewTextBoxColumn
-            // 
-            this.croDataGridViewTextBoxColumn.DataPropertyName = "Cro";
-            this.croDataGridViewTextBoxColumn.HeaderText = "Cro";
-            this.croDataGridViewTextBoxColumn.Name = "croDataGridViewTextBoxColumn";
-            this.croDataGridViewTextBoxColumn.ReadOnly = true;
-            this.croDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.croDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.croDataGridViewTextBoxColumn.Width = 24;
-            // 
-            // tecDataGridViewTextBoxColumn
-            // 
-            this.tecDataGridViewTextBoxColumn.DataPropertyName = "Tec";
-            this.tecDataGridViewTextBoxColumn.HeaderText = "Tec";
-            this.tecDataGridViewTextBoxColumn.Name = "tecDataGridViewTextBoxColumn";
-            this.tecDataGridViewTextBoxColumn.ReadOnly = true;
-            this.tecDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.tecDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.tecDataGridViewTextBoxColumn.Width = 24;
-            // 
-            // tesDataGridViewTextBoxColumn
-            // 
-            this.tesDataGridViewTextBoxColumn.DataPropertyName = "Tes";
-            this.tesDataGridViewTextBoxColumn.HeaderText = "Hea";
-            this.tesDataGridViewTextBoxColumn.Name = "tesDataGridViewTextBoxColumn";
-            this.tesDataGridViewTextBoxColumn.ReadOnly = true;
-            this.tesDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.tesDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.tesDataGridViewTextBoxColumn.Width = 24;
-            // 
-            // finDataGridViewTextBoxColumn
-            // 
-            this.finDataGridViewTextBoxColumn.DataPropertyName = "Fin";
-            this.finDataGridViewTextBoxColumn.HeaderText = "Fin";
-            this.finDataGridViewTextBoxColumn.Name = "finDataGridViewTextBoxColumn";
-            this.finDataGridViewTextBoxColumn.ReadOnly = true;
-            this.finDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.finDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.finDataGridViewTextBoxColumn.Width = 24;
-            // 
-            // tirDataGridViewTextBoxColumn
-            // 
-            this.tirDataGridViewTextBoxColumn.DataPropertyName = "Tir";
-            this.tirDataGridViewTextBoxColumn.HeaderText = "Lon";
-            this.tirDataGridViewTextBoxColumn.Name = "tirDataGridViewTextBoxColumn";
-            this.tirDataGridViewTextBoxColumn.ReadOnly = true;
-            this.tirDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.tirDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.tirDataGridViewTextBoxColumn.Width = 23;
-            // 
-            // calDataGridViewTextBoxColumn
-            // 
-            this.calDataGridViewTextBoxColumn.DataPropertyName = "Cal";
-            this.calDataGridViewTextBoxColumn.HeaderText = "Set";
-            this.calDataGridViewTextBoxColumn.Name = "calDataGridViewTextBoxColumn";
-            this.calDataGridViewTextBoxColumn.ReadOnly = true;
-            this.calDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.calDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.calDataGridViewTextBoxColumn.Width = 23;
-            // 
-            // tIDataGridViewTextBoxColumn
-            // 
-            this.tIDataGridViewTextBoxColumn.DataPropertyName = "TI";
-            this.tIDataGridViewTextBoxColumn.HeaderText = "TI";
-            this.tIDataGridViewTextBoxColumn.Name = "tIDataGridViewTextBoxColumn";
-            this.tIDataGridViewTextBoxColumn.ReadOnly = true;
-            this.tIDataGridViewTextBoxColumn.Width = 30;
-            // 
-            // trainerNameDataGridViewTextBoxColumn
-            // 
-            this.trainerNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.trainerNameDataGridViewTextBoxColumn.DataPropertyName = "TrainerName";
-            this.trainerNameDataGridViewTextBoxColumn.HeaderText = "Training";
-            this.trainerNameDataGridViewTextBoxColumn.Name = "trainerNameDataGridViewTextBoxColumn";
-            this.trainerNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.trainerNameDataGridViewTextBoxColumn.Width = 62;
-            // 
-            // programDataGridViewTextBoxColumn
-            // 
-            this.programDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.programDataGridViewTextBoxColumn.DataPropertyName = "Program";
-            this.programDataGridViewTextBoxColumn.HeaderText = "Training Program";
-            this.programDataGridViewTextBoxColumn.Name = "programDataGridViewTextBoxColumn";
-            this.programDataGridViewTextBoxColumn.ReadOnly = true;
-            this.programDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.programDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.programDataGridViewTextBoxColumn.Width = 91;
-            // 
-            // PlayerForm
+            // TR3_PlayerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -2646,7 +2439,7 @@ namespace TmRecorder3
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.toolStrip1);
-            this.Name = "PlayerForm";
+            this.Name = "TR3_PlayerForm";
             this.Text = "Player History";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PlayerForm_FormClosing);
             this.Load += new System.EventHandler(this.PlayerForm_Load);
@@ -2699,8 +2492,6 @@ namespace TmRecorder3
             this.tsBrowsePlayers.ResumeLayout(false);
             this.tsBrowsePlayers.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scoutsDataTableBindingSource1)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);

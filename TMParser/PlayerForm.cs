@@ -12,6 +12,7 @@ using Common;
 using System.IO;
 using Languages;
 using SendFileTo;
+using NTR_Common;
 
 namespace TMRecorder
 {
@@ -35,47 +36,12 @@ namespace TMRecorder
 
         public int Wage
         {
-            set { lblWage.Text = value.ToString(); }
+            set { playerData.Wage = value; }
         }
-
-        public string Age
-        {
-            set { lblAge.Text = value; }
-        }
-
-        public int ASI
-        {
-            set { lblASI.Text = value.ToString(); }
-        }
-
-        public string PlayerName
-        {
-            set
-            {
-                string val = System.Convert.ToString(value);
-                lblName.Text = val.Split('|')[0];
-            }
-        }
-
-        public string PrefPos
-        {
-            set { lblPrefPos.Text = value; }
-        }
-
-        public decimal RoutineView
-        {
-            set { lblRoutine.Text = value.ToString(); }
-        }
-
+        
         public decimal BloomAgeView
         {
-            set 
-            {
-                if (value == -1M)
-                    lblBloomAge.Text = "-";
-                else
-                    lblBloomAge.Text = value.ToString(); 
-            }
+            set {playerData.BloomAge = value; }
         }
 
         public PlayerForm(ExtTMDataSet.GiocatoriNSkillDataTable gdt,
@@ -145,8 +111,6 @@ namespace TMRecorder
             ExtTMDataSet.PlayerHistoryDataTable table = History.GetPlayerHistory(playerDatarow.PlayerID);
 
             FillBaseData(playerDatarow);
-
-            FillPlayerData((ExtTMDataSet.PlayerHistoryRow)table.Rows[table.Rows.Count - 1]);
 
             FillSkillGraph(table);
 
@@ -1149,15 +1113,6 @@ namespace TMRecorder
         private void FillBaseData(ExtTMDataSet.GiocatoriNSkillRow playerDatarow)
         {
             ExtraDS.GiocatoriRow gRow = History.PlayersDS.Giocatori.FindByPlayerID(playerDatarow.PlayerID);
-            PlayerName = gRow.Nome;
-
-            if ((gRow.IswBornNull()) || (gRow.wBorn == -9999))
-                Age = playerDatarow.Età.ToString() + "y -m";
-            else
-            {
-                TmWeek tmw = new TmWeek(gRow.wBorn);
-                Age = tmw.ToAge(DateTime.Now);
-            }
 
             if (!gRow.IsWageNull())
                 Wage = gRow.Wage;
@@ -1166,26 +1121,7 @@ namespace TMRecorder
             else
                 Wage = playerDatarow.Wage;
 
-            UpdatePlayerRoutine();
-
-            if (!gRow.IsRoutineNull())
-                RoutineView = gRow.Routine;
-            else
-                RoutineView = 0;
-
-            PrefPos = playerDatarow.FP;
-        }
-
-        private void UpdatePlayerRoutine()
-        {
-
-        }
-
-        private void FillPlayerData(ExtTMDataSet.PlayerHistoryRow dataRow)
-        {
-            this.playerData1.PlayerRow = dataRow;
-
-            ASI = dataRow.ASI;
+            playerData.PlayerRow = teamDS.GiocatoriNSkill.FromExtraDSGiocatoriRow(playerDatarow);
         }
 
         internal void FillSkillGraph(ExtTMDataSet.PlayerHistoryDataTable table)

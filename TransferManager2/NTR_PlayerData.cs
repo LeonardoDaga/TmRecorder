@@ -120,5 +120,10 @@ namespace TransferManager
                 }
             }
         }
+
+        private void NTR_PlayerData_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

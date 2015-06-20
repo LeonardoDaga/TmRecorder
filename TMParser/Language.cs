@@ -317,12 +317,6 @@ namespace TMRecorder
             this.dataGridViewTextBoxColumn16.HeaderText = Current.Language.Trainer;
             this.dataGridViewTextBoxColumn17.HeaderText = Current.Language.Program;
             this.dataGridViewTextBoxColumn18.HeaderText = "%";
-            this.label2.Text = "Pref. Pos.";
-            this.lblPrefPos.Text = "OC/OML";
-            this.label6.Text = "ASI";
-            this.lblASI.Text = "9891";
-            this.label8.Text = Current.Language.Age;
-            this.lblAge.Text = "27";
             this.tabSkills.Text = Current.Language.Skills;
             this.tabPage1.Text = "ASI";
             this.linkLabel1.Text = "Delta ASI - By FS Paystu";
@@ -337,8 +331,6 @@ namespace TMRecorder
             this.btnGetVotenSkillAuto.Text = Current.Language.GetAutomatically;
             this.tabPage6.Text = Current.Language.PlayerTraining;
             this.label5.Text = Current.Language.Notes;
-            this.groupBox1.Text = Current.Language.PlayerSkills;
-            this.label24.Text = Current.Language.Routine;
             this.groupBox2.Text = Current.Language.PlayerInfo;
             this.toolStripLabel2.Text = Current.Language.Browse;
             this.toolStripButton1.Text = Current.Language.PrevPlayer;
@@ -347,7 +339,6 @@ namespace TMRecorder
             this.toolStripButton4.Text = Current.Language.ExplorePlayer;
             this.toolStripButton3.Text = Current.Language.ExportHistoryToExcel;
             this.tsbComputeGrowth.Text = Current.Language.ComputeGrowth;
-            this.label1.Text = Current.Language.Wage;
             this.Text = Current.Language.PlayerHistory;
         }
     }

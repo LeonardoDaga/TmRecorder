@@ -378,6 +378,51 @@ namespace NTR_Common
 
                 return this[0].PlayerID;
             }
+
+            public GiocatoriNSkillRow FromExtraDSGiocatoriRow(ExtTMDataSet.GiocatoriNSkillRow gRow)
+            {
+                GiocatoriNSkillRow gr = this.NewGiocatoriNSkillRow();
+
+                gr.Nome = gRow.Nome.Split('|')[0];
+                gr.FP = gRow.FP;
+                gr.FPn = gRow.FPn;
+                gr.wBorn = gRow.wBorn;
+
+                gr.Ada = gRow.Ada;
+
+                gr.For = gRow.For;
+                gr.Res = gRow.Res;
+                gr.Vel = gRow.Vel;
+                gr.Mar = gRow.Mar;
+                gr.Con = gRow.Con;
+                gr.Wor = gRow.Wor;
+                gr.Pos = gRow.Pos;
+                gr.Pas = gRow.Pas;
+                gr.Cro = gRow.Cro;
+                gr.Tec = gRow.Tec;
+                gr.Tes = gRow.Tes;
+                gr.Fin = gRow.Fin;
+                gr.Dis = gRow.Tir;
+                gr.Cal = gRow.Cal;
+
+                gr.ASI = gRow.ASI;
+
+                gr.OSi = gRow.OSi;
+
+                gr.Rou = gRow.Rou;
+
+                gr.SSD = Tm_Utility.ASItoSkSum((decimal)gRow.ASI, false) - gRow.SkillSum;
+
+                gr.CStr = gRow.CStr;
+
+                gr.Nationality = gRow.Nationality;
+
+                if (!gRow.IsRecNull())
+                    gr.Rec = gRow.Rec;
+
+                return gr;
+            }
+
         }
 
         partial class GiocatoriNSkillRow

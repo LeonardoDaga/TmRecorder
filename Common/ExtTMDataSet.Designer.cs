@@ -471,6 +471,8 @@ namespace Common {
             
             private global::System.Data.DataColumn columnTI;
             
+            private global::System.Data.DataColumn columnRec;
+            
             private global::System.Data.DataColumn columnCStr;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -716,6 +718,14 @@ namespace Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn RecColumn {
+                get {
+                    return this.columnRec;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn CStrColumn {
                 get {
                     return this.columnCStr;
@@ -786,6 +796,7 @@ namespace Common {
                         int Wage, 
                         decimal Rou, 
                         decimal TI, 
+                        decimal Rec, 
                         decimal CStr) {
                 PortieriNSkillRow rowPortieriNSkillRow = ((PortieriNSkillRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
@@ -815,6 +826,7 @@ namespace Common {
                         Wage,
                         Rou,
                         TI,
+                        Rec,
                         CStr};
                 rowPortieriNSkillRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowPortieriNSkillRow);
@@ -871,6 +883,7 @@ namespace Common {
                 this.columnWage = base.Columns["Wage"];
                 this.columnRou = base.Columns["Rou"];
                 this.columnTI = base.Columns["TI"];
+                this.columnRec = base.Columns["Rec"];
                 this.columnCStr = base.Columns["CStr"];
             }
             
@@ -929,6 +942,8 @@ namespace Common {
                 base.Columns.Add(this.columnRou);
                 this.columnTI = new global::System.Data.DataColumn("TI", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTI);
+                this.columnRec = new global::System.Data.DataColumn("Rec", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRec);
                 this.columnCStr = new global::System.Data.DataColumn("CStr", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCStr);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint2", new global::System.Data.DataColumn[] {
@@ -1135,6 +1150,8 @@ namespace Common {
             private global::System.Data.DataColumn columnFC;
             
             private global::System.Data.DataColumn columnOSi;
+            
+            private global::System.Data.DataColumn columnRec;
             
             private global::System.Data.DataColumn columnInFormazione;
             
@@ -1417,6 +1434,14 @@ namespace Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn RecColumn {
+                get {
+                    return this.columnRec;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn InFormazioneColumn {
                 get {
                     return this.columnInFormazione;
@@ -1507,6 +1532,7 @@ namespace Common {
                         float OML, 
                         float FC, 
                         float OSi, 
+                        decimal Rec, 
                         bool InFormazione, 
                         int Infortunato, 
                         int Squalificato) {
@@ -1542,6 +1568,7 @@ namespace Common {
                         OML,
                         FC,
                         OSi,
+                        Rec,
                         InFormazione,
                         Infortunato,
                         Squalificato};
@@ -1604,6 +1631,7 @@ namespace Common {
                 this.columnOML = base.Columns["OML"];
                 this.columnFC = base.Columns["FC"];
                 this.columnOSi = base.Columns["OSi"];
+                this.columnRec = base.Columns["Rec"];
                 this.columnInFormazione = base.Columns["InFormazione"];
                 this.columnInfortunato = base.Columns["Infortunato"];
                 this.columnSqualificato = base.Columns["Squalificato"];
@@ -1672,6 +1700,8 @@ namespace Common {
                 base.Columns.Add(this.columnFC);
                 this.columnOSi = new global::System.Data.DataColumn("OSi", typeof(float), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnOSi);
+                this.columnRec = new global::System.Data.DataColumn("Rec", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRec);
                 this.columnInFormazione = new global::System.Data.DataColumn("InFormazione", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnInFormazione);
                 this.columnInfortunato = new global::System.Data.DataColumn("Infortunato", typeof(int), null, global::System.Data.MappingType.Element);
@@ -1869,6 +1899,8 @@ namespace Common {
             
             private global::System.Data.DataColumn columnOSi;
             
+            private global::System.Data.DataColumn columnRec;
+            
             private global::System.Data.DataColumn columnInFormazione;
             
             private global::System.Data.DataColumn columnInfortunato;
@@ -2030,6 +2062,14 @@ namespace Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn RecColumn {
+                get {
+                    return this.columnRec;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn InFormazioneColumn {
                 get {
                     return this.columnInFormazione;
@@ -2105,6 +2145,7 @@ namespace Common {
                         int ASI, 
                         float PO, 
                         float OSi, 
+                        decimal Rec, 
                         bool InFormazione, 
                         int Infortunato, 
                         int Squalificato) {
@@ -2125,6 +2166,7 @@ namespace Common {
                         ASI,
                         PO,
                         OSi,
+                        Rec,
                         InFormazione,
                         Infortunato,
                         Squalificato};
@@ -2172,6 +2214,7 @@ namespace Common {
                 this.columnASI = base.Columns["ASI"];
                 this.columnPO = base.Columns["PO"];
                 this.columnOSi = base.Columns["OSi"];
+                this.columnRec = base.Columns["Rec"];
                 this.columnInFormazione = base.Columns["InFormazione"];
                 this.columnInfortunato = base.Columns["Infortunato"];
                 this.columnSqualificato = base.Columns["Squalificato"];
@@ -2210,6 +2253,8 @@ namespace Common {
                 base.Columns.Add(this.columnPO);
                 this.columnOSi = new global::System.Data.DataColumn("OSi", typeof(float), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnOSi);
+                this.columnRec = new global::System.Data.DataColumn("Rec", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRec);
                 this.columnInFormazione = new global::System.Data.DataColumn("InFormazione", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnInFormazione);
                 this.columnInfortunato = new global::System.Data.DataColumn("Infortunato", typeof(int), null, global::System.Data.MappingType.Element);
@@ -2695,6 +2740,8 @@ namespace Common {
             
             private global::System.Data.DataColumn columnTI;
             
+            private global::System.Data.DataColumn columnRec;
+            
             private global::System.Data.DataColumn columnCStr;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3092,6 +3139,14 @@ namespace Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn RecColumn {
+                get {
+                    return this.columnRec;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn CStrColumn {
                 get {
                     return this.columnCStr;
@@ -3181,6 +3236,7 @@ namespace Common {
                         int FPn, 
                         decimal Rou, 
                         decimal TI, 
+                        decimal Rec, 
                         decimal CStr) {
                 GiocatoriNSkillRow rowGiocatoriNSkillRow = ((GiocatoriNSkillRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
@@ -3229,6 +3285,7 @@ namespace Common {
                         FPn,
                         Rou,
                         TI,
+                        Rec,
                         CStr};
                 rowGiocatoriNSkillRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowGiocatoriNSkillRow);
@@ -3304,6 +3361,7 @@ namespace Common {
                 this.columnFPn = base.Columns["FPn"];
                 this.columnRou = base.Columns["Rou"];
                 this.columnTI = base.Columns["TI"];
+                this.columnRec = base.Columns["Rec"];
                 this.columnCStr = base.Columns["CStr"];
             }
             
@@ -3400,6 +3458,8 @@ namespace Common {
                 base.Columns.Add(this.columnRou);
                 this.columnTI = new global::System.Data.DataColumn("TI", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTI);
+                this.columnRec = new global::System.Data.DataColumn("Rec", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRec);
                 this.columnCStr = new global::System.Data.DataColumn("CStr", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCStr);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint2", new global::System.Data.DataColumn[] {
@@ -3986,6 +4046,22 @@ namespace Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal Rec {
+                get {
+                    try {
+                        return ((decimal)(this[this.tablePortieriNSkill.RecColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Rec\' in table \'PortieriNSkill\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePortieriNSkill.RecColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public decimal CStr {
                 get {
                     try {
@@ -4286,6 +4362,18 @@ namespace Common {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetTINull() {
                 this[this.tablePortieriNSkill.TIColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsRecNull() {
+                return this.IsNull(this.tablePortieriNSkill.RecColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetRecNull() {
+                this[this.tablePortieriNSkill.RecColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4792,6 +4880,22 @@ namespace Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal Rec {
+                get {
+                    try {
+                        return ((decimal)(this[this.tablePlayerHistory.RecColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Rec\' in table \'PlayerHistory\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePlayerHistory.RecColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool InFormazione {
                 get {
                     try {
@@ -5188,6 +5292,18 @@ namespace Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsRecNull() {
+                return this.IsNull(this.tablePlayerHistory.RecColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetRecNull() {
+                this[this.tablePlayerHistory.RecColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsInFormazioneNull() {
                 return this.IsNull(this.tablePlayerHistory.InFormazioneColumn);
             }
@@ -5474,6 +5590,22 @@ namespace Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal Rec {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableGKHistory.RecColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Rec\' in table \'GKHistory\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGKHistory.RecColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool InFormazione {
                 get {
                     try {
@@ -5686,6 +5818,18 @@ namespace Common {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetOSiNull() {
                 this[this.tableGKHistory.OSiColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsRecNull() {
+                return this.IsNull(this.tableGKHistory.RecColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetRecNull() {
+                this[this.tableGKHistory.RecColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6494,6 +6638,22 @@ namespace Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal Rec {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableGiocatoriNSkill.RecColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Rec\' in table \'GiocatoriNSkill\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGiocatoriNSkill.RecColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public decimal CStr {
                 get {
                     try {
@@ -7022,6 +7182,18 @@ namespace Common {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetTINull() {
                 this[this.tableGiocatoriNSkill.TIColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsRecNull() {
+                return this.IsNull(this.tableGiocatoriNSkill.RecColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetRecNull() {
+                this[this.tableGiocatoriNSkill.RecColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

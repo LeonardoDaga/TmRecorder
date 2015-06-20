@@ -820,6 +820,7 @@ namespace Common {
                     }
 
                     edsRow.SetFP(fun);
+                    edsRow.Rec = tdsRow.Rec;
 
                     if (isNew) this.GiocatoriNSkill.Rows.Add(edsRow);
                 }

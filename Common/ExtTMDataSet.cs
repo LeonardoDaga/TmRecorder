@@ -125,6 +125,7 @@ namespace Common {
                 edsRow.InFormazione = tdsRow.InFormazione;
                 edsRow.Infortunato = tdsRow.Infortunato;
                 edsRow.Squalificato = tdsRow.Squalificato;
+                edsRow.Rec = tdsRow.Rec;
 
                 tds.Giocatori.AddGiocatoriRow(edsRow);
             }
@@ -155,6 +156,7 @@ namespace Common {
                 edsRow.InFormazione = pnsRow.InFormazione;
                 edsRow.Infortunato = pnsRow.Infortunato;
                 edsRow.Squalificato = pnsRow.Squalificato;
+                edsRow.Rec = pnsRow.Rec;
 
                 tds.Portieri.AddPortieriRow(edsRow);
             }
@@ -467,6 +469,8 @@ namespace Common {
                     edsRow.Infortunato = tdsRow.Infortunato;
                     edsRow.Squalificato = tdsRow.Squalificato;
 
+                    edsRow.Rec = tdsRow.Rec;
+
                     edsRow.SetFP(fun);
 
                     if (isNew) this.GiocatoriNSkill.Rows.Add(edsRow);
@@ -601,6 +605,8 @@ namespace Common {
                     edsRow.InFormazione = false;
                     edsRow.Infortunato = 0;
                     edsRow.Squalificato = 0;
+
+                    edsRow.Rec = tdsRow.Rec;
 
                     try
                     {
@@ -965,6 +971,7 @@ namespace Common {
                     }
 
                     edsRow.SetFP(fun);
+                    edsRow.Rec = tdsRow.Rec;
 
                     if (isNew) this.PortieriNSkill.Rows.Add(edsRow);
                 }
@@ -1439,6 +1446,11 @@ namespace Common {
                     edsRow.Vel = tdsRow.Vel;
                     edsRow.Wor = tdsRow.Wor;
 
+                    if (!tdsRow.IsRecNull())
+                        edsRow.Rec = tdsRow.Rec;
+                    else
+                        edsRow.Rec = 0M;
+
                     if (!plyDB.IsRoutineNull())
                         edsRow.Rou = plyDB.Routine;
                     else
@@ -1529,6 +1541,11 @@ namespace Common {
                     edsRow.Pre = tdsRow.Pre;
                     edsRow.Rif = tdsRow.Rif;
                     edsRow.Uno = tdsRow.Uno;
+
+                    if (!tdsRow.IsRecNull())
+                        edsRow.Rec = tdsRow.Rec;
+                    else
+                        edsRow.Rec = 0M;
 
                     if (!plyDB.IsRoutineNull())
                         edsRow.Rou = plyDB.Routine;

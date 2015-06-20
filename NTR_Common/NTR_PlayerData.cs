@@ -154,6 +154,13 @@ namespace NTR_Common
                         pictFlag.Image = flagImgList.Images[ix];
                     }
 
+                    if (!pr.IsProNull())
+                        lblProfessionalism.Text = pr.Pro.ToString();
+                    if (!pr.IsAggNull())
+                        lblAggression.Text = pr.Agg.ToString();
+                    //if (!pr.IsInfortunatoNull())
+                    //    lblInjuryPro.Text = pr.InjPro.ToString();
+
                     string FP = Tm_Utility.NumberToFP(pr.FPn);
 
                     string[] FPs = FP.Split('/');

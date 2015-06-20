@@ -1190,7 +1190,7 @@ namespace TMRecorder
                 }
 
                 // Evidenzia solo le colonne degli skills
-                for (int j = 25; j < 39; j++)
+                for (int j = 26; j < 40; j++)
                 {
                     object o = dgv[j, i].Value;
 
@@ -1239,7 +1239,7 @@ namespace TMRecorder
                 }
 
                 // Evidenzia solo le colonne degli skills
-                for (int j = 19; j < 21; j++)
+                for (int j = 21; j < 23; j++)
                 {
                     float f = (float)dataGridPortieri[j, i].Value;
                     if (f > 100) f = 100;

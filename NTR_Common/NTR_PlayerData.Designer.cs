@@ -92,21 +92,33 @@ namespace NTR_Common
             this.label21 = new System.Windows.Forms.Label();
             this.lblReRec1 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.label8 = new System.Windows.Forms.Label();
+            this.lblBlooming = new System.Windows.Forms.Label();
+            this.lblPot = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             this.lblRouEff1 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.lblReRec2 = new System.Windows.Forms.Label();
             this.lblRouEff2 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
-            this.lblRatPure1 = new System.Windows.Forms.Label();
-            this.lblRatPure2 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
+            this.lblR2Rat1 = new System.Windows.Forms.Label();
+            this.lblR2Rat2 = new System.Windows.Forms.Label();
+            this.lblRsSk1 = new System.Windows.Forms.Label();
+            this.lblRsSk2 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.lblBlooming = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
+            this.pctInj = new System.Windows.Forms.PictureBox();
+            this.lblInjDays = new System.Windows.Forms.Label();
+            this.pctBan = new System.Windows.Forms.PictureBox();
+            this.lblBanDays = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.lblLea = new System.Windows.Forms.Label();
+            this.pctRetiring = new System.Windows.Forms.PictureBox();
+            this.banImgList = new System.Windows.Forms.ImageList(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictFlag)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pctInj)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pctBan)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pctRetiring)).BeginInit();
             this.SuspendLayout();
             // 
             // lblCP
@@ -114,7 +126,7 @@ namespace NTR_Common
             this.lblCP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.lblCP.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblCP.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCP.Location = new System.Drawing.Point(96, 186);
+            this.lblCP.Location = new System.Drawing.Point(95, 186);
             this.lblCP.Name = "lblCP";
             this.lblCP.Size = new System.Drawing.Size(32, 17);
             this.lblCP.TabIndex = 19;
@@ -138,7 +150,7 @@ namespace NTR_Common
             this.lblDis.BackColor = System.Drawing.Color.MistyRose;
             this.lblDis.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblDis.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDis.Location = new System.Drawing.Point(96, 169);
+            this.lblDis.Location = new System.Drawing.Point(95, 169);
             this.lblDis.Name = "lblDis";
             this.lblDis.Size = new System.Drawing.Size(32, 17);
             this.lblDis.TabIndex = 21;
@@ -162,7 +174,7 @@ namespace NTR_Common
             this.lblTes.BackColor = System.Drawing.Color.MistyRose;
             this.lblTes.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblTes.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTes.Location = new System.Drawing.Point(96, 135);
+            this.lblTes.Location = new System.Drawing.Point(95, 135);
             this.lblTes.Name = "lblTes";
             this.lblTes.Size = new System.Drawing.Size(32, 17);
             this.lblTes.TabIndex = 15;
@@ -186,7 +198,7 @@ namespace NTR_Common
             this.lblCro.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.lblCro.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblCro.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCro.Location = new System.Drawing.Point(96, 101);
+            this.lblCro.Location = new System.Drawing.Point(95, 101);
             this.lblCro.Name = "lblCro";
             this.lblCro.Size = new System.Drawing.Size(32, 17);
             this.lblCro.TabIndex = 17;
@@ -210,7 +222,7 @@ namespace NTR_Common
             this.lblSetCapt.AutoSize = true;
             this.lblSetCapt.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSetCapt.ForeColor = System.Drawing.Color.Black;
-            this.lblSetCapt.Location = new System.Drawing.Point(69, 187);
+            this.lblSetCapt.Location = new System.Drawing.Point(68, 187);
             this.lblSetCapt.Name = "lblSetCapt";
             this.lblSetCapt.Size = new System.Drawing.Size(27, 16);
             this.lblSetCapt.TabIndex = 27;
@@ -232,7 +244,7 @@ namespace NTR_Common
             this.lblFin.BackColor = System.Drawing.Color.MistyRose;
             this.lblFin.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblFin.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFin.Location = new System.Drawing.Point(96, 152);
+            this.lblFin.Location = new System.Drawing.Point(95, 152);
             this.lblFin.Name = "lblFin";
             this.lblFin.Size = new System.Drawing.Size(32, 17);
             this.lblFin.TabIndex = 25;
@@ -256,7 +268,7 @@ namespace NTR_Common
             this.lblLonCapt.AutoSize = true;
             this.lblLonCapt.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLonCapt.ForeColor = System.Drawing.Color.Black;
-            this.lblLonCapt.Location = new System.Drawing.Point(67, 170);
+            this.lblLonCapt.Location = new System.Drawing.Point(66, 170);
             this.lblLonCapt.Name = "lblLonCapt";
             this.lblLonCapt.Size = new System.Drawing.Size(28, 16);
             this.lblLonCapt.TabIndex = 23;
@@ -278,7 +290,7 @@ namespace NTR_Common
             this.lblTec.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.lblTec.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblTec.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTec.Location = new System.Drawing.Point(96, 118);
+            this.lblTec.Location = new System.Drawing.Point(95, 118);
             this.lblTec.Name = "lblTec";
             this.lblTec.Size = new System.Drawing.Size(32, 17);
             this.lblTec.TabIndex = 5;
@@ -302,7 +314,7 @@ namespace NTR_Common
             this.lblHeaCapt.AutoSize = true;
             this.lblHeaCapt.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHeaCapt.ForeColor = System.Drawing.Color.Black;
-            this.lblHeaCapt.Location = new System.Drawing.Point(65, 136);
+            this.lblHeaCapt.Location = new System.Drawing.Point(64, 136);
             this.lblHeaCapt.Name = "lblHeaCapt";
             this.lblHeaCapt.Size = new System.Drawing.Size(30, 16);
             this.lblHeaCapt.TabIndex = 7;
@@ -324,7 +336,7 @@ namespace NTR_Common
             this.lblFinCapt.AutoSize = true;
             this.lblFinCapt.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFinCapt.ForeColor = System.Drawing.Color.Black;
-            this.lblFinCapt.Location = new System.Drawing.Point(71, 153);
+            this.lblFinCapt.Location = new System.Drawing.Point(70, 153);
             this.lblFinCapt.Name = "lblFinCapt";
             this.lblFinCapt.Size = new System.Drawing.Size(25, 16);
             this.lblFinCapt.TabIndex = 1;
@@ -346,7 +358,7 @@ namespace NTR_Common
             this.lblPas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.lblPas.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblPas.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPas.Location = new System.Drawing.Point(96, 84);
+            this.lblPas.Location = new System.Drawing.Point(95, 84);
             this.lblPas.Name = "lblPas";
             this.lblPas.Size = new System.Drawing.Size(32, 17);
             this.lblPas.TabIndex = 3;
@@ -358,7 +370,7 @@ namespace NTR_Common
             this.lblTecCapt.AutoSize = true;
             this.lblTecCapt.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTecCapt.ForeColor = System.Drawing.Color.Black;
-            this.lblTecCapt.Location = new System.Drawing.Point(66, 119);
+            this.lblTecCapt.Location = new System.Drawing.Point(65, 119);
             this.lblTecCapt.Name = "lblTecCapt";
             this.lblTecCapt.Size = new System.Drawing.Size(29, 16);
             this.lblTecCapt.TabIndex = 12;
@@ -381,7 +393,7 @@ namespace NTR_Common
             this.lblCroCapt.AutoSize = true;
             this.lblCroCapt.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCroCapt.ForeColor = System.Drawing.Color.Black;
-            this.lblCroCapt.Location = new System.Drawing.Point(69, 102);
+            this.lblCroCapt.Location = new System.Drawing.Point(68, 102);
             this.lblCroCapt.Name = "lblCroCapt";
             this.lblCroCapt.Size = new System.Drawing.Size(28, 16);
             this.lblCroCapt.TabIndex = 14;
@@ -403,7 +415,7 @@ namespace NTR_Common
             this.lblPasCapt.AutoSize = true;
             this.lblPasCapt.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPasCapt.ForeColor = System.Drawing.Color.Black;
-            this.lblPasCapt.Location = new System.Drawing.Point(67, 86);
+            this.lblPasCapt.Location = new System.Drawing.Point(66, 86);
             this.lblPasCapt.Name = "lblPasCapt";
             this.lblPasCapt.Size = new System.Drawing.Size(28, 16);
             this.lblPasCapt.TabIndex = 8;
@@ -435,11 +447,11 @@ namespace NTR_Common
             // 
             this.lblAge.BackColor = System.Drawing.Color.Transparent;
             this.lblAge.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAge.Location = new System.Drawing.Point(39, 43);
+            this.lblAge.Location = new System.Drawing.Point(31, 43);
             this.lblAge.Name = "lblAge";
-            this.lblAge.Size = new System.Drawing.Size(73, 17);
+            this.lblAge.Size = new System.Drawing.Size(52, 17);
             this.lblAge.TabIndex = 13;
-            this.lblAge.Text = "0";
+            this.lblAge.Text = "23y 10m";
             this.lblAge.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblASI
@@ -449,9 +461,9 @@ namespace NTR_Common
             this.lblASI.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblASI.Location = new System.Drawing.Point(142, 98);
             this.lblASI.Name = "lblASI";
-            this.lblASI.Size = new System.Drawing.Size(57, 17);
+            this.lblASI.Size = new System.Drawing.Size(60, 17);
             this.lblASI.TabIndex = 29;
-            this.lblASI.Text = "0";
+            this.lblASI.Text = "254656";
             this.lblASI.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label7
@@ -494,9 +506,9 @@ namespace NTR_Common
             this.lblWage.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWage.Location = new System.Drawing.Point(142, 130);
             this.lblWage.Name = "lblWage";
-            this.lblWage.Size = new System.Drawing.Size(57, 17);
+            this.lblWage.Size = new System.Drawing.Size(61, 17);
             this.lblWage.TabIndex = 32;
-            this.lblWage.Text = "0";
+            this.lblWage.Text = "2.234.567";
             this.lblWage.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label4
@@ -513,13 +525,14 @@ namespace NTR_Common
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.label3.Location = new System.Drawing.Point(141, 146);
+            this.label3.Location = new System.Drawing.Point(144, 146);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(51, 16);
+            this.label3.Size = new System.Drawing.Size(29, 18);
             this.label3.TabIndex = 33;
-            this.label3.Text = "Routine";
+            this.label3.Text = "Rou";
+            this.toolTip1.SetToolTip(this.label3, "Routine");
             // 
             // lblRou
             // 
@@ -528,21 +541,22 @@ namespace NTR_Common
             this.lblRou.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRou.Location = new System.Drawing.Point(142, 162);
             this.lblRou.Name = "lblRou";
-            this.lblRou.Size = new System.Drawing.Size(57, 17);
+            this.lblRou.Size = new System.Drawing.Size(33, 17);
             this.lblRou.TabIndex = 32;
-            this.lblRou.Text = "0";
+            this.lblRou.Text = "23.9";
             this.lblRou.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.toolTip1.SetToolTip(this.lblRou, "Routine");
             // 
             // lblAda
             // 
             this.lblAda.BackColor = System.Drawing.Color.DarkKhaki;
             this.lblAda.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblAda.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAda.Location = new System.Drawing.Point(203, 98);
+            this.lblAda.Location = new System.Drawing.Point(206, 98);
             this.lblAda.Name = "lblAda";
-            this.lblAda.Size = new System.Drawing.Size(44, 17);
+            this.lblAda.Size = new System.Drawing.Size(41, 17);
             this.lblAda.TabIndex = 32;
-            this.lblAda.Text = "0";
+            this.lblAda.Text = "20/20";
             this.lblAda.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.toolTip1.SetToolTip(this.lblAda, "Adaptability");
             // 
@@ -551,7 +565,7 @@ namespace NTR_Common
             this.lblAdaCapt.AutoSize = true;
             this.lblAdaCapt.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAdaCapt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.lblAdaCapt.Location = new System.Drawing.Point(202, 82);
+            this.lblAdaCapt.Location = new System.Drawing.Point(204, 82);
             this.lblAdaCapt.Name = "lblAdaCapt";
             this.lblAdaCapt.Size = new System.Drawing.Size(45, 16);
             this.lblAdaCapt.TabIndex = 33;
@@ -559,25 +573,25 @@ namespace NTR_Common
             // 
             // lblAggression
             // 
-            this.lblAggression.BackColor = System.Drawing.Color.DarkKhaki;
+            this.lblAggression.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(196)))), ((int)(((byte)(128)))));
             this.lblAggression.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblAggression.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAggression.Location = new System.Drawing.Point(203, 130);
+            this.lblAggression.Location = new System.Drawing.Point(212, 162);
             this.lblAggression.Name = "lblAggression";
-            this.lblAggression.Size = new System.Drawing.Size(44, 17);
+            this.lblAggression.Size = new System.Drawing.Size(35, 17);
             this.lblAggression.TabIndex = 34;
-            this.lblAggression.Text = "0";
+            this.lblAggression.Text = "5/10";
             this.lblAggression.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.toolTip1.SetToolTip(this.lblAggression, "Aggression");
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label6.Location = new System.Drawing.Point(202, 114);
+            this.label6.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(164)))), ((int)(((byte)(50)))), ((int)(((byte)(0)))));
+            this.label6.Location = new System.Drawing.Point(210, 146);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(39, 16);
+            this.label6.Size = new System.Drawing.Size(34, 18);
             this.label6.TabIndex = 35;
             this.label6.Text = "Aggr.";
             // 
@@ -586,11 +600,11 @@ namespace NTR_Common
             this.lblInjuryPro.BackColor = System.Drawing.Color.DarkKhaki;
             this.lblInjuryPro.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblInjuryPro.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInjuryPro.Location = new System.Drawing.Point(203, 162);
+            this.lblInjuryPro.Location = new System.Drawing.Point(206, 130);
             this.lblInjuryPro.Name = "lblInjuryPro";
-            this.lblInjuryPro.Size = new System.Drawing.Size(44, 17);
+            this.lblInjuryPro.Size = new System.Drawing.Size(41, 17);
             this.lblInjuryPro.TabIndex = 36;
-            this.lblInjuryPro.Text = "0";
+            this.lblInjuryPro.Text = "20/20";
             this.lblInjuryPro.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.toolTip1.SetToolTip(this.lblInjuryPro, "Injuty Proneness");
             // 
@@ -599,33 +613,33 @@ namespace NTR_Common
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label10.Location = new System.Drawing.Point(202, 146);
+            this.label10.Location = new System.Drawing.Point(202, 114);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(41, 16);
+            this.label10.Size = new System.Drawing.Size(50, 16);
             this.label10.TabIndex = 37;
-            this.label10.Text = "Injury";
+            this.label10.Text = "Inj.Pro.";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label5.Location = new System.Drawing.Point(202, 178);
+            this.label5.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(164)))), ((int)(((byte)(50)))), ((int)(((byte)(0)))));
+            this.label5.Location = new System.Drawing.Point(217, 178);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(48, 16);
+            this.label5.Size = new System.Drawing.Size(26, 18);
             this.label5.TabIndex = 37;
-            this.label5.Text = "Profes.";
+            this.label5.Text = "Pro";
             // 
             // lblProfessionalism
             // 
-            this.lblProfessionalism.BackColor = System.Drawing.Color.DarkKhaki;
+            this.lblProfessionalism.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(196)))), ((int)(((byte)(128)))));
             this.lblProfessionalism.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblProfessionalism.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProfessionalism.Location = new System.Drawing.Point(203, 194);
+            this.lblProfessionalism.Location = new System.Drawing.Point(212, 194);
             this.lblProfessionalism.Name = "lblProfessionalism";
-            this.lblProfessionalism.Size = new System.Drawing.Size(44, 17);
+            this.lblProfessionalism.Size = new System.Drawing.Size(36, 17);
             this.lblProfessionalism.TabIndex = 36;
-            this.lblProfessionalism.Text = "0";
+            this.lblProfessionalism.Text = "4/10";
             this.lblProfessionalism.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblName
@@ -634,7 +648,7 @@ namespace NTR_Common
             this.lblName.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblName.Location = new System.Drawing.Point(1, 4);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(206, 39);
+            this.lblName.Size = new System.Drawing.Size(202, 39);
             this.lblName.TabIndex = 38;
             this.lblName.Text = "Ignazio Mosconi Vinciguerra Sherpenzeel";
             // 
@@ -679,12 +693,12 @@ namespace NTR_Common
             // 
             this.lblSOi.BackColor = System.Drawing.Color.Lavender;
             this.lblSOi.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblSOi.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSOi.Location = new System.Drawing.Point(56, 281);
+            this.lblSOi.Font = new System.Drawing.Font("Trebuchet MS", 9F);
+            this.lblSOi.Location = new System.Drawing.Point(43, 281);
             this.lblSOi.Name = "lblSOi";
-            this.lblSOi.Size = new System.Drawing.Size(37, 17);
+            this.lblSOi.Size = new System.Drawing.Size(57, 17);
             this.lblSOi.TabIndex = 43;
-            this.lblSOi.Text = "0";
+            this.lblSOi.Text = "99.2/100";
             this.lblSOi.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.toolTip1.SetToolTip(this.lblSOi, "Skill Optimization Index");
             // 
@@ -692,10 +706,10 @@ namespace NTR_Common
             // 
             this.lblSsd.BackColor = System.Drawing.Color.Lavender;
             this.lblSsd.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblSsd.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSsd.Location = new System.Drawing.Point(56, 264);
+            this.lblSsd.Font = new System.Drawing.Font("Trebuchet MS", 9F);
+            this.lblSsd.Location = new System.Drawing.Point(43, 264);
             this.lblSsd.Name = "lblSsd";
-            this.lblSsd.Size = new System.Drawing.Size(37, 17);
+            this.lblSsd.Size = new System.Drawing.Size(38, 17);
             this.lblSsd.TabIndex = 45;
             this.lblSsd.Text = "0";
             this.lblSsd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -705,12 +719,12 @@ namespace NTR_Common
             // 
             this.lblCRec.BackColor = System.Drawing.Color.Lavender;
             this.lblCRec.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblCRec.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCRec.Location = new System.Drawing.Point(56, 247);
+            this.lblCRec.Font = new System.Drawing.Font("Trebuchet MS", 9F);
+            this.lblCRec.Location = new System.Drawing.Point(43, 247);
             this.lblCRec.Name = "lblCRec";
-            this.lblCRec.Size = new System.Drawing.Size(37, 17);
+            this.lblCRec.Size = new System.Drawing.Size(38, 17);
             this.lblCRec.TabIndex = 44;
-            this.lblCRec.Text = "0";
+            this.lblCRec.Text = "5.0/5";
             this.lblCRec.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.toolTip1.SetToolTip(this.lblCRec, "TM Recorder Recommendation");
             // 
@@ -718,12 +732,12 @@ namespace NTR_Common
             // 
             this.lblRec.BackColor = System.Drawing.Color.Lavender;
             this.lblRec.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblRec.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRec.Location = new System.Drawing.Point(56, 230);
+            this.lblRec.Font = new System.Drawing.Font("Trebuchet MS", 9F);
+            this.lblRec.Location = new System.Drawing.Point(43, 230);
             this.lblRec.Name = "lblRec";
-            this.lblRec.Size = new System.Drawing.Size(37, 17);
+            this.lblRec.Size = new System.Drawing.Size(38, 17);
             this.lblRec.TabIndex = 42;
-            this.lblRec.Text = "0";
+            this.lblRec.Text = "5.0/5";
             this.lblRec.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.toolTip1.SetToolTip(this.lblRec, "TM Recommendation");
             // 
@@ -732,7 +746,7 @@ namespace NTR_Common
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.ForeColor = System.Drawing.Color.Black;
-            this.label17.Location = new System.Drawing.Point(25, 282);
+            this.label17.Location = new System.Drawing.Point(12, 282);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(28, 16);
             this.label17.TabIndex = 48;
@@ -744,7 +758,7 @@ namespace NTR_Common
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label18.ForeColor = System.Drawing.Color.Black;
-            this.label18.Location = new System.Drawing.Point(16, 249);
+            this.label18.Location = new System.Drawing.Point(3, 249);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(37, 16);
             this.label18.TabIndex = 49;
@@ -756,7 +770,7 @@ namespace NTR_Common
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.ForeColor = System.Drawing.Color.Black;
-            this.label19.Location = new System.Drawing.Point(24, 265);
+            this.label19.Location = new System.Drawing.Point(11, 265);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(29, 16);
             this.label19.TabIndex = 46;
@@ -768,7 +782,7 @@ namespace NTR_Common
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label20.ForeColor = System.Drawing.Color.Black;
-            this.label20.Location = new System.Drawing.Point(24, 232);
+            this.label20.Location = new System.Drawing.Point(11, 232);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(29, 16);
             this.label20.TabIndex = 47;
@@ -938,6 +952,56 @@ namespace NTR_Common
             this.lblReRec1.Text = "0";
             this.lblReRec1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(164)))), ((int)(((byte)(50)))), ((int)(((byte)(0)))));
+            this.label8.Location = new System.Drawing.Point(146, 178);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(25, 18);
+            this.label8.TabIndex = 33;
+            this.label8.Text = "Blo";
+            this.toolTip1.SetToolTip(this.label8, "Blooming Start Age");
+            // 
+            // lblBlooming
+            // 
+            this.lblBlooming.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(196)))), ((int)(((byte)(128)))));
+            this.lblBlooming.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblBlooming.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBlooming.Location = new System.Drawing.Point(142, 194);
+            this.lblBlooming.Name = "lblBlooming";
+            this.lblBlooming.Size = new System.Drawing.Size(28, 17);
+            this.lblBlooming.TabIndex = 32;
+            this.lblBlooming.Text = "22y";
+            this.lblBlooming.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.toolTip1.SetToolTip(this.lblBlooming, "Blooming Start Age");
+            // 
+            // lblPot
+            // 
+            this.lblPot.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(196)))), ((int)(((byte)(128)))));
+            this.lblPot.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblPot.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPot.Location = new System.Drawing.Point(178, 162);
+            this.lblPot.Name = "lblPot";
+            this.lblPot.Size = new System.Drawing.Size(31, 17);
+            this.lblPot.TabIndex = 54;
+            this.lblPot.Text = "11";
+            this.lblPot.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.toolTip1.SetToolTip(this.lblPot, "Potential");
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(164)))), ((int)(((byte)(50)))), ((int)(((byte)(0)))));
+            this.label14.Location = new System.Drawing.Point(179, 146);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(26, 18);
+            this.label14.TabIndex = 55;
+            this.label14.Text = "Pot";
+            this.toolTip1.SetToolTip(this.label14, "Potential");
+            // 
             // lblRouEff1
             // 
             this.lblRouEff1.BackColor = System.Drawing.Color.Lavender;
@@ -993,56 +1057,58 @@ namespace NTR_Common
             this.label27.ForeColor = System.Drawing.Color.Black;
             this.label27.Location = new System.Drawing.Point(114, 281);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(57, 16);
+            this.label27.Size = new System.Drawing.Size(59, 16);
             this.label27.TabIndex = 47;
-            this.label27.Text = "Rat.Pure";
+            this.label27.Text = "R2Rating";
             this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // lblRatPure1
+            // lblR2Rat1
             // 
-            this.lblRatPure1.BackColor = System.Drawing.Color.Lavender;
-            this.lblRatPure1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblRatPure1.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRatPure1.Location = new System.Drawing.Point(171, 281);
-            this.lblRatPure1.Name = "lblRatPure1";
-            this.lblRatPure1.Size = new System.Drawing.Size(36, 17);
-            this.lblRatPure1.TabIndex = 42;
-            this.lblRatPure1.Text = "0";
-            this.lblRatPure1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblR2Rat1.BackColor = System.Drawing.Color.Lavender;
+            this.lblR2Rat1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblR2Rat1.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblR2Rat1.Location = new System.Drawing.Point(171, 281);
+            this.lblR2Rat1.Name = "lblR2Rat1";
+            this.lblR2Rat1.Size = new System.Drawing.Size(36, 17);
+            this.lblR2Rat1.TabIndex = 42;
+            this.lblR2Rat1.Text = "0";
+            this.lblR2Rat1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // lblRatPure2
+            // lblR2Rat2
             // 
-            this.lblRatPure2.BackColor = System.Drawing.Color.Lavender;
-            this.lblRatPure2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblRatPure2.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRatPure2.Location = new System.Drawing.Point(209, 281);
-            this.lblRatPure2.Name = "lblRatPure2";
-            this.lblRatPure2.Size = new System.Drawing.Size(36, 17);
-            this.lblRatPure2.TabIndex = 51;
-            this.lblRatPure2.Text = "0";
-            this.lblRatPure2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblR2Rat2.BackColor = System.Drawing.Color.Lavender;
+            this.lblR2Rat2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblR2Rat2.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblR2Rat2.Location = new System.Drawing.Point(209, 281);
+            this.lblR2Rat2.Name = "lblR2Rat2";
+            this.lblR2Rat2.Size = new System.Drawing.Size(36, 17);
+            this.lblR2Rat2.TabIndex = 51;
+            this.lblR2Rat2.Text = "0";
+            this.lblR2Rat2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label30
+            // lblRsSk1
             // 
-            this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.label30.Location = new System.Drawing.Point(174, 232);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(33, 16);
-            this.label30.TabIndex = 31;
-            this.label30.Text = "OML";
+            this.lblRsSk1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblRsSk1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRsSk1.ForeColor = System.Drawing.Color.Black;
+            this.lblRsSk1.Location = new System.Drawing.Point(171, 232);
+            this.lblRsSk1.Name = "lblRsSk1";
+            this.lblRsSk1.Size = new System.Drawing.Size(36, 16);
+            this.lblRsSk1.TabIndex = 31;
+            this.lblRsSk1.Text = "OML";
+            this.lblRsSk1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label31
+            // lblRsSk2
             // 
-            this.label31.AutoSize = true;
-            this.label31.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.label31.Location = new System.Drawing.Point(211, 232);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(33, 16);
-            this.label31.TabIndex = 31;
-            this.label31.Text = "OML";
+            this.lblRsSk2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblRsSk2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRsSk2.ForeColor = System.Drawing.Color.Black;
+            this.lblRsSk2.Location = new System.Drawing.Point(209, 232);
+            this.lblRsSk2.Name = "lblRsSk2";
+            this.lblRsSk2.Size = new System.Drawing.Size(36, 16);
+            this.lblRsSk2.TabIndex = 31;
+            this.lblRsSk2.Text = "OML";
+            this.lblRsSk2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label9
             // 
@@ -1051,32 +1117,9 @@ namespace NTR_Common
             this.label9.ForeColor = System.Drawing.Color.DarkSlateGray;
             this.label9.Location = new System.Drawing.Point(134, 67);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(67, 16);
+            this.label9.Size = new System.Drawing.Size(119, 16);
             this.label9.TabIndex = 10;
-            this.label9.Text = "   EXTRA  ";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.label8.Location = new System.Drawing.Point(141, 178);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(60, 16);
-            this.label8.TabIndex = 33;
-            this.label8.Text = "Blooming";
-            // 
-            // lblBlooming
-            // 
-            this.lblBlooming.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.lblBlooming.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblBlooming.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBlooming.Location = new System.Drawing.Point(142, 194);
-            this.lblBlooming.Name = "lblBlooming";
-            this.lblBlooming.Size = new System.Drawing.Size(57, 17);
-            this.lblBlooming.TabIndex = 32;
-            this.lblBlooming.Text = "0";
-            this.lblBlooming.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label9.Text = "         EXTRA         ";
             // 
             // label11
             // 
@@ -1089,29 +1132,120 @@ namespace NTR_Common
             this.label11.TabIndex = 8;
             this.label11.Text = "Age";
             // 
-            // label14
+            // pctInj
             // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label14.Location = new System.Drawing.Point(200, 67);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(51, 16);
-            this.label14.TabIndex = 10;
-            this.label14.Text = "HIDDEN";
+            this.pctInj.Image = ((System.Drawing.Image)(resources.GetObject("pctInj.Image")));
+            this.pctInj.InitialImage = null;
+            this.pctInj.Location = new System.Drawing.Point(88, 44);
+            this.pctInj.Name = "pctInj";
+            this.pctInj.Size = new System.Drawing.Size(16, 16);
+            this.pctInj.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pctInj.TabIndex = 52;
+            this.pctInj.TabStop = false;
+            // 
+            // lblInjDays
+            // 
+            this.lblInjDays.BackColor = System.Drawing.Color.Transparent;
+            this.lblInjDays.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInjDays.Location = new System.Drawing.Point(103, 43);
+            this.lblInjDays.Name = "lblInjDays";
+            this.lblInjDays.Size = new System.Drawing.Size(13, 17);
+            this.lblInjDays.TabIndex = 53;
+            this.lblInjDays.Text = "2";
+            this.lblInjDays.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // pctBan
+            // 
+            this.pctBan.Image = ((System.Drawing.Image)(resources.GetObject("pctBan.Image")));
+            this.pctBan.InitialImage = null;
+            this.pctBan.Location = new System.Drawing.Point(117, 44);
+            this.pctBan.Name = "pctBan";
+            this.pctBan.Size = new System.Drawing.Size(16, 16);
+            this.pctBan.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pctBan.TabIndex = 52;
+            this.pctBan.TabStop = false;
+            // 
+            // lblBanDays
+            // 
+            this.lblBanDays.BackColor = System.Drawing.Color.Transparent;
+            this.lblBanDays.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBanDays.Location = new System.Drawing.Point(132, 43);
+            this.lblBanDays.Name = "lblBanDays";
+            this.lblBanDays.Size = new System.Drawing.Size(13, 17);
+            this.lblBanDays.TabIndex = 53;
+            this.lblBanDays.Text = "2";
+            this.lblBanDays.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(164)))), ((int)(((byte)(50)))), ((int)(((byte)(0)))));
+            this.label16.Location = new System.Drawing.Point(179, 178);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(27, 18);
+            this.label16.TabIndex = 33;
+            this.label16.Text = "Lea";
+            // 
+            // lblLea
+            // 
+            this.lblLea.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(196)))), ((int)(((byte)(128)))));
+            this.lblLea.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblLea.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLea.Location = new System.Drawing.Point(174, 194);
+            this.lblLea.Name = "lblLea";
+            this.lblLea.Size = new System.Drawing.Size(35, 17);
+            this.lblLea.TabIndex = 32;
+            this.lblLea.Text = "3/10";
+            this.lblLea.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // pctRetiring
+            // 
+            this.pctRetiring.Image = ((System.Drawing.Image)(resources.GetObject("pctRetiring.Image")));
+            this.pctRetiring.InitialImage = null;
+            this.pctRetiring.Location = new System.Drawing.Point(146, 44);
+            this.pctRetiring.Name = "pctRetiring";
+            this.pctRetiring.Size = new System.Drawing.Size(16, 16);
+            this.pctRetiring.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pctRetiring.TabIndex = 52;
+            this.pctRetiring.TabStop = false;
+            // 
+            // banImgList
+            // 
+            this.banImgList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("banImgList.ImageStream")));
+            this.banImgList.TransparentColor = System.Drawing.Color.Transparent;
+            this.banImgList.Images.SetKeyName(0, "Green.png");
+            this.banImgList.Images.SetKeyName(1, "Yellow.png");
+            this.banImgList.Images.SetKeyName(2, "Red.png");
             // 
             // NTR_PlayerData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
+            this.Controls.Add(this.lblPot);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.lblProfessionalism);
+            this.Controls.Add(this.lblInjuryPro);
+            this.Controls.Add(this.lblAggression);
+            this.Controls.Add(this.lblAda);
+            this.Controls.Add(this.lblLea);
+            this.Controls.Add(this.lblBlooming);
+            this.Controls.Add(this.lblRou);
+            this.Controls.Add(this.lblWage);
+            this.Controls.Add(this.lblASI);
+            this.Controls.Add(this.pctInj);
+            this.Controls.Add(this.pctRetiring);
+            this.Controls.Add(this.pctBan);
+            this.Controls.Add(this.lblBanDays);
+            this.Controls.Add(this.lblInjDays);
             this.Controls.Add(this.lblAge);
             this.Controls.Add(this.pictFlag);
-            this.Controls.Add(this.lblRatPure2);
+            this.Controls.Add(this.lblR2Rat2);
             this.Controls.Add(this.lblRouEff2);
             this.Controls.Add(this.lblRouEff1);
             this.Controls.Add(this.lblSOi);
-            this.Controls.Add(this.lblRatPure1);
+            this.Controls.Add(this.lblR2Rat1);
             this.Controls.Add(this.lblSsd);
             this.Controls.Add(this.lblReRec2);
             this.Controls.Add(this.lblReRec1);
@@ -1128,24 +1262,17 @@ namespace NTR_Common
             this.Controls.Add(this.lblFP2);
             this.Controls.Add(this.lblFP1);
             this.Controls.Add(this.lblName);
-            this.Controls.Add(this.lblProfessionalism);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.lblInjuryPro);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.lblAggression);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.lblAda);
-            this.Controls.Add(this.lblBlooming);
-            this.Controls.Add(this.lblRou);
+            this.Controls.Add(this.label16);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.lblAdaCapt);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.lblWage);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.label31);
-            this.Controls.Add(this.label30);
+            this.Controls.Add(this.lblRsSk2);
+            this.Controls.Add(this.lblRsSk1);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.lblASI);
             this.Controls.Add(this.lblCP);
             this.Controls.Add(this.lblDis);
             this.Controls.Add(this.lblTes);
@@ -1174,15 +1301,17 @@ namespace NTR_Common
             this.Controls.Add(this.lblPacCapt);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.lblPasCapt);
-            this.Controls.Add(this.label14);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblStaCapt);
             this.Controls.Add(this.lblStrCapt);
             this.Name = "NTR_PlayerData";
-            this.Size = new System.Drawing.Size(255, 301);
+            this.Size = new System.Drawing.Size(254, 301);
             this.Load += new System.EventHandler(this.NTR_PlayerData_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictFlag)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pctInj)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pctBan)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pctRetiring)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1257,14 +1386,23 @@ namespace NTR_Common
         private System.Windows.Forms.Label lblReRec2;
         private System.Windows.Forms.Label lblRouEff2;
         private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.Label lblRatPure1;
-        private System.Windows.Forms.Label lblRatPure2;
-        private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Label lblR2Rat1;
+        private System.Windows.Forms.Label lblR2Rat2;
+        private System.Windows.Forms.Label lblRsSk1;
+        private System.Windows.Forms.Label lblRsSk2;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label lblBlooming;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.PictureBox pctInj;
+        private System.Windows.Forms.Label lblInjDays;
+        private System.Windows.Forms.PictureBox pctBan;
+        private System.Windows.Forms.Label lblBanDays;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label lblLea;
+        private System.Windows.Forms.PictureBox pctRetiring;
+        private System.Windows.Forms.ImageList banImgList;
+        private System.Windows.Forms.Label lblPot;
         private System.Windows.Forms.Label label14;
     }
 }

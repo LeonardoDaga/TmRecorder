@@ -82,7 +82,7 @@ namespace NTR_Common
                         lblImp.Text = pr.Wor.ToString();
                         lblCP.Text = pr.Cal.ToString();
 
-                        lblAda.Text = pr.Ada.ToString();
+                        lblAda.Text = pr.Ada.ToString() + "/20";
                     }
                     else
                     {
@@ -129,22 +129,74 @@ namespace NTR_Common
                     TmWeek born = new TmWeek(pr.wBorn);
                     lblAge.Text = born.ToAge(DateTime.Today);
 
-                    lblSOi.Text = pr.OSi.ToString();
+                    lblSOi.Text = pr.OSi.ToString("N1") + "/100";
 
                     if (!pr.IsSSDNull())
-                        lblSsd.Text = pr.SSD.ToString();
+                        lblSsd.Text = pr.SSD.ToString("N2");
                     else
                         lblSsd.Text = "-";
 
-                    lblName.Text = pr.Nome;
+                    lblName.Text = pr.Nome.Split('|')[0];
+
+                    int injWeeks = int.Parse(pr.Nome.Split('|')[1]);
+                    int banWeeks = int.Parse(pr.Nome.Split('|')[2]);
+                    int retiring = int.Parse(pr.Nome.Split('|')[3]);
+
+                    if (injWeeks == 0)
+                    {
+                        pctInj.Visible = false;
+                        lblInjDays.Visible = false;
+                    }
+                    else
+                    {
+                        pctInj.Visible = true;
+                        lblInjDays.Visible = true;
+                        lblInjDays.Text = injWeeks.ToString();
+                    }
+
+                    if (banWeeks == 0)
+                    {
+                        pctBan.Visible = false;
+                        lblBanDays.Visible = false;
+                    }
+                    else if (banWeeks < 3)
+                    {
+                        pctBan.Visible = true;
+                        lblBanDays.Visible = true;
+
+                        int ix = banImgList.Images.IndexOfKey("Green.png");
+                        pctBan.Image = banImgList.Images[ix];
+
+                        lblBanDays.Text = banWeeks.ToString();
+                    }
+                    else if (banWeeks == 3)
+                    {
+                        pctBan.Visible = true;
+                        lblBanDays.Visible = false;
+
+                        int ix = banImgList.Images.IndexOfKey("Yellow.png");
+                        pctBan.Image = banImgList.Images[ix];
+                    }
+                    else
+                    {
+                        pctBan.Visible = true;
+                        lblBanDays.Visible = true;
+
+                        int ix = banImgList.Images.IndexOfKey("Red.png");
+                        pctBan.Image = banImgList.Images[ix];
+
+                        lblBanDays.Text = (banWeeks - 3).ToString();
+                    }
+
+                    pctRetiring.Visible = (retiring != 0);
 
                     if (!pr.IsCStrNull())
-                        lblCRec.Text = pr.CStr.ToString();
+                        lblCRec.Text = pr.CStr.ToString("N1") + "/5";
                     else
                         lblCRec.Text = "-";
 
                     if (!pr.IsRecNull())
-                        lblRec.Text = pr.Rec.ToString();
+                        lblRec.Text = pr.Rec.ToString("N1") + "/5";
                     else
                         lblRec.Text = "-";
 
@@ -155,11 +207,29 @@ namespace NTR_Common
                     }
 
                     if (!pr.IsProNull())
-                        lblProfessionalism.Text = pr.Pro.ToString();
+                        lblProfessionalism.Text = pr.Pro.ToString() + "/10";
+                    else
+                        lblProfessionalism.Text = "-";
+
                     if (!pr.IsAggNull())
-                        lblAggression.Text = pr.Agg.ToString();
-                    //if (!pr.IsInfortunatoNull())
-                    //    lblInjuryPro.Text = pr.InjPro.ToString();
+                        lblAggression.Text = pr.Agg.ToString() + "/10";
+                    else
+                        lblAggression.Text = "-";
+
+                    if (!pr.IsLeaNull())
+                        lblLea.Text = pr.Lea.ToString() + "/10";
+                    else
+                        lblLea.Text = "-";
+
+                    if (!pr.IsPotNull())
+                        lblPot.Text = pr.Pot.ToString();
+                    else
+                        lblPot.Text = "-";
+
+                    if (!pr.IsInjPronNull())
+                        lblInjuryPro.Text = pr.InjPron.ToString() + "/20";
+                    else
+                        lblInjuryPro.Text = "-";
 
                     string FP = Tm_Utility.NumberToFP(pr.FPn);
 
@@ -179,6 +249,29 @@ namespace NTR_Common
                         lblFP2.Visible = true;
                     }
 
+                    RatingR2 R2 = RatingR2.CalculateREREC(pr);
+
+                    int[] FPv = Tm_Utility.FPnToFPvector(pr.FPn);
+
+                    lblR2Rat1.Text = R2.ratingR2[FPv[0]].ToString("N1");
+                    lblReRec1.Text = R2.rec[FPv[0]].ToString("N2");
+                    lblRouEff1.Text = (R2.ratingR2[FPv[0]] - R2.ratingR[FPv[0]]).ToString("N1");
+                    lblRsSk1.Text = FPs[0];
+                    SetLabelBack(lblRsSk1, FPs[0]);
+
+                    lblR2Rat2.Visible = (FPv[1] != -1);
+                    lblReRec2.Visible = (FPv[1] != -1);
+                    lblRouEff2.Visible = (FPv[1] != -1);
+                    lblRsSk2.Visible = (FPv[1] != -1);
+
+                    if (FPv[1] != -1)
+                    {
+                        lblR2Rat2.Text = R2.ratingR2[FPv[1]].ToString("N1");
+                        lblReRec2.Text = R2.rec[FPv[1]].ToString("N2");
+                        lblRouEff2.Text = (R2.ratingR2[FPv[1]] - R2.ratingR[FPv[1]]).ToString("N1");
+                        lblRsSk2.Text = FPs[1];
+                        SetLabelBack(lblRsSk2, FPs[1]);
+                    }
                 }
                 catch(Exception e)
                 { }
@@ -220,6 +313,40 @@ namespace NTR_Common
             }
         }
 
+        private void SetLabelFore(Label lblFP, string FP)
+        {
+            int FPn = Tm_Utility.FPToNumber(FP);
+
+            switch (FPn)
+            {
+                case 0:
+                    lblFP.ForeColor = Color.Blue;
+                    break;
+                case 10:
+                case 13:
+                case 15:
+                    lblFP.ForeColor = Color.FromArgb(0, 192, 192);
+                    break;
+                case 30:
+                case 33:
+                case 35:
+                    lblFP.ForeColor = Color.FromArgb(160, 192, 124);
+                    break;
+                case 50:
+                case 53:
+                case 55:
+                    lblFP.ForeColor = Color.FromArgb(192, 192, 2);
+                    break;
+                case 70:
+                case 73:
+                case 75:
+                    lblFP.ForeColor = Color.FromArgb(192, 81, 2);
+                    break;
+                case 90:
+                    lblFP.ForeColor = Color.FromArgb(255, 0, 0);
+                    break;
+            }
+        }
         private void NTR_PlayerData_Load(object sender, EventArgs e)
         {
 

@@ -86,6 +86,8 @@
               <xs:element name="InTeam" msprop:Generator_ColumnVarNameInTable="columnInTeam" msprop:Generator_ColumnPropNameInRow="InTeam" msprop:Generator_ColumnPropNameInTable="InTeamColumn" msprop:Generator_UserColumnName="InTeam" type="xs:int" default="0" minOccurs="0" />
               <xs:element name="CStr" msprop:Generator_ColumnVarNameInTable="columnCStr" msprop:Generator_ColumnPropNameInRow="CStr" msprop:Generator_ColumnPropNameInTable="CStrColumn" msprop:Generator_UserColumnName="CStr" type="xs:decimal" minOccurs="0" />
               <xs:element name="TeamID" msprop:Generator_ColumnVarNameInTable="columnTeamID" msprop:Generator_ColumnPropNameInRow="TeamID" msprop:Generator_ColumnPropNameInTable="TeamIDColumn" msprop:Generator_UserColumnName="TeamID" type="xs:int" minOccurs="0" />
+              <xs:element name="Pot" msprop:Generator_ColumnVarNameInTable="columnPot" msprop:Generator_ColumnPropNameInRow="Pot" msprop:Generator_ColumnPropNameInTable="PotColumn" msprop:Generator_UserColumnName="Pot" type="xs:decimal" minOccurs="0" />
+              <xs:element name="InjPron" msprop:Generator_ColumnVarNameInTable="columnInjPron" msprop:Generator_ColumnPropNameInRow="InjPron" msprop:Generator_ColumnPropNameInTable="InjPronColumn" msprop:Generator_UserColumnName="InjPron" type="xs:decimal" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

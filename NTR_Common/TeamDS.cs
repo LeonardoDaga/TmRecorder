@@ -379,50 +379,64 @@ namespace NTR_Common
                 return this[0].PlayerID;
             }
 
-            public GiocatoriNSkillRow FromExtraDSGiocatoriRow(ExtTMDataSet.GiocatoriNSkillRow gRow)
+            public GiocatoriNSkillRow FromExtraDSGiocatoriRow(ExtTMDataSet.GiocatoriNSkillRow gnsRow, ExtraDS.GiocatoriRow egRow)
             {
                 GiocatoriNSkillRow gr = this.NewGiocatoriNSkillRow();
 
-                gr.Nome = gRow.Nome.Split('|')[0];
-                gr.FP = gRow.FP;
-                gr.FPn = gRow.FPn;
-                gr.wBorn = gRow.wBorn;
+                gr.Nome = gnsRow.Nome;
+                gr.FP = gnsRow.FP;
+                gr.FPn = gnsRow.FPn;
+                gr.wBorn = gnsRow.wBorn;
 
-                gr.Ada = gRow.Ada;
+                gr.Ada = gnsRow.Ada;
 
-                gr.For = gRow.For;
-                gr.Res = gRow.Res;
-                gr.Vel = gRow.Vel;
-                gr.Mar = gRow.Mar;
-                gr.Con = gRow.Con;
-                gr.Wor = gRow.Wor;
-                gr.Pos = gRow.Pos;
-                gr.Pas = gRow.Pas;
-                gr.Cro = gRow.Cro;
-                gr.Tec = gRow.Tec;
-                gr.Tes = gRow.Tes;
-                gr.Fin = gRow.Fin;
-                gr.Dis = gRow.Tir;
-                gr.Cal = gRow.Cal;
+                gr.For = gnsRow.For;
+                gr.Res = gnsRow.Res;
+                gr.Vel = gnsRow.Vel;
+                gr.Mar = gnsRow.Mar;
+                gr.Con = gnsRow.Con;
+                gr.Wor = gnsRow.Wor;
+                gr.Pos = gnsRow.Pos;
+                gr.Pas = gnsRow.Pas;
+                gr.Cro = gnsRow.Cro;
+                gr.Tec = gnsRow.Tec;
+                gr.Tes = gnsRow.Tes;
+                gr.Fin = gnsRow.Fin;
+                gr.Dis = gnsRow.Tir;
+                gr.Cal = gnsRow.Cal;
 
-                gr.ASI = gRow.ASI;
+                gr.ASI = gnsRow.ASI;
 
-                gr.OSi = gRow.OSi;
+                gr.OSi = gnsRow.OSi;
 
-                gr.Rou = gRow.Rou;
+                gr.Rou = gnsRow.Rou;
 
-                gr.SSD = Tm_Utility.ASItoSkSum((decimal)gRow.ASI, false) - gRow.SkillSum;
+                gr.SSD = Tm_Utility.ASItoSkSum((decimal)gnsRow.ASI, false) - gnsRow.SkillSum;
 
-                gr.CStr = gRow.CStr;
+                gr.CStr = gnsRow.CStr;
 
-                gr.Nationality = gRow.Nationality;
+                gr.Nationality = gnsRow.Nationality;
 
-                if (!gRow.IsRecNull())
-                    gr.Rec = gRow.Rec;
+                if (!gnsRow.IsRecNull())
+                    gr.Rec = gnsRow.Rec;
+
+                if (!egRow.IsProfessionalismNull())
+                    gr.Pro = egRow.Professionalism;
+
+                if (!egRow.IsLeadershipNull())
+                    gr.Lea = egRow.Leadership;
+
+                if (!egRow.IsAggressivityNull())
+                    gr.Agg = egRow.Aggressivity;
+
+                if (!egRow.IsAbilityNull())
+                    gr.Pot = (decimal)egRow.Ability;
+
+                if (!egRow.IsInjPronNull())
+                    gr.InjPron = egRow.InjPron;
 
                 return gr;
             }
-
         }
 
         partial class GiocatoriNSkillRow

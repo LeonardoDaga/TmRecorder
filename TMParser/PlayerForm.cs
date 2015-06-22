@@ -1121,7 +1121,7 @@ namespace TMRecorder
             else
                 Wage = playerDatarow.Wage;
 
-            playerData.PlayerRow = teamDS.GiocatoriNSkill.FromExtraDSGiocatoriRow(playerDatarow);
+            playerData.PlayerRow = teamDS.GiocatoriNSkill.FromExtraDSGiocatoriRow(playerDatarow, gRow);
         }
 
         internal void FillSkillGraph(ExtTMDataSet.PlayerHistoryDataTable table)

@@ -3028,6 +3028,7 @@ namespace TMRecorder
             if (plRow.IsAggressivityNull()) plRow.Aggressivity = 0;
             if (plRow.IsLeadershipNull()) plRow.Leadership = 0;
             if (plRow.IsAbilityNull()) plRow.Ability = 0;
+            if (plRow.IsInjPronNull()) plRow.InjPron = 0;
 
             ped.dialogBag.Properties.Add(new PropertySpec("Adaptability", typeof(decimal),
                 "Player Info", "Adaptability of the player: it'I a value from 0 (min adaptability) to 20 (max)",
@@ -3053,14 +3054,17 @@ namespace TMRecorder
                 plRow.ExplosionTI));
 
             ped.dialogBag.Properties.Add(new PropertySpec("Professionalism", typeof(float),
-                "Hidden skills", "Hidden skills (1=Low, 20=High), as resulting from the scouts report",
+                "Hidden skills", "Hidden skills (1=Low, 10=High), multiply by 2 the value of the scouts report",
                 plRow.Professionalism));
             ped.dialogBag.Properties.Add(new PropertySpec("Aggressivity", typeof(float),
-                "Hidden skills", "Hidden skills (1=Low, 20=High), as resulting from the scouts report",
+                "Hidden skills", "Hidden skills (1=Low, 10=High), multiply by 2 the value of the scouts report",
                 plRow.Aggressivity));
             ped.dialogBag.Properties.Add(new PropertySpec("Leadership", typeof(float),
-                "Hidden skills", "Hidden skills (1=Low, 20=High), as resulting from the scouts report",
+                "Hidden skills", "Hidden skills (1=Low, 10=High), multiply by 2 the value of the scouts report",
                 plRow.Leadership));
+            ped.dialogBag.Properties.Add(new PropertySpec("InjuryProneness", typeof(decimal),
+                "Hidden skills", "Hidden skills (1=Low, 10=High), take the value from hidden skills, if you know it",
+                plRow.InjPron));
             ped.dialogBag.Properties.Add(new PropertySpec("Potential", typeof(float),
                 "Hidden skills", "Hidden skills (1=Low, 20=High), as resulting from the scouts report" +
                 "\nThis skill indicate the potential of the player",
@@ -3102,6 +3106,7 @@ namespace TMRecorder
                     e.Value = AgeStartOfBloom;
                     break;
                 case "Professionalism": e.Value = editingPlayerRow.Professionalism; break;
+                case "InjuryProneness": e.Value = editingPlayerRow.InjPron; break;
                 case "Leadership": e.Value = editingPlayerRow.Leadership; break;
                 case "Aggressivity": e.Value = editingPlayerRow.Aggressivity; break;
                 case "Potential": e.Value = editingPlayerRow.Ability; break;
@@ -3148,6 +3153,7 @@ namespace TMRecorder
                     editingPlayerRow.wBloomStart = editingPlayerRow.wBorn + AgeStartOfBloom * 12;
                     break;
                 case "Professionalism": editingPlayerRow.Professionalism = (float)e.Value; break;
+                case "InjuryProneness": editingPlayerRow.InjPron = (decimal)e.Value; break;
                 case "Leadership": editingPlayerRow.Leadership = (float)e.Value; break;
                 case "Aggressivity": editingPlayerRow.Aggressivity = (float)e.Value; break;
                 case "Potential": editingPlayerRow.Ability = (float)e.Value; break;

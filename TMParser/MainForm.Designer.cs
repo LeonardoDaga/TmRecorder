@@ -32,41 +32,6 @@ namespace TMRecorder
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle74 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -178,50 +143,45 @@ namespace TMRecorder
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle143 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle144 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle145 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabATeamPage = new System.Windows.Forms.TabPage();
             this.dataGridGiocatori = new NTR_Controls.AeroDataGrid();
-            this.dataGridViewTextBoxColumn56 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn57 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn58 = new DataGridViewCustomColumns.TMR_FpColumn(this.components);
-            this.dataGridViewTextBoxColumn59 = new DataGridViewCustomColumns.TMR_NameInjurySqColumn(this.components);
-            this.dataGridViewTextBoxColumn60 = new DataGridViewCustomColumns.TMR_AgeColumn(this.components);
-            this.Nationality = new DataGridViewCustomColumns.TMR_NationColumn(this.components);
-            this.dataGridViewTextBoxColumn61 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
-            this.dataGridViewTextBoxColumn62 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn63 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
-            this.dataGridViewTextBoxColumn64 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
-            this.dataGridViewTextBoxColumn65 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
-            this.dataGridViewTextBoxColumn66 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
-            this.dataGridViewTextBoxColumn67 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
-            this.dataGridViewTextBoxColumn68 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
-            this.dataGridViewTextBoxColumn69 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
-            this.dataGridViewTextBoxColumn70 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
-            this.dataGridViewTextBoxColumn71 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
-            this.dataGridViewTextBoxColumn72 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
-            this.dataGridViewTextBoxColumn73 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
-            this.dataGridViewTextBoxColumn74 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
-            this.dataGridViewTextBoxColumn75 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
-            this.dataGridViewTextBoxColumn76 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
-            this.Rou = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CStrA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Rec = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TI = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn77 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn78 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn79 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn80 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn81 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn82 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn83 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn84 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn85 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn86 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn87 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn88 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn89 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn90 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.movePlayerToATeamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.movePlayerToBTeamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -424,7 +384,6 @@ namespace TMRecorder
             this.panel4 = new System.Windows.Forms.Panel();
             this.oppsTeamLineup = new FieldFormationControl.LineupListItem();
             this.yourTeamLineup = new FieldFormationControl.LineupListItem();
-            this.matchStats = new TMRecorder.MatchStats();
             this.label4 = new System.Windows.Forms.Label();
             this.tabBrowser = new System.Windows.Forms.TabPage();
             this.toolStripContainer3 = new System.Windows.Forms.ToolStripContainer();
@@ -446,6 +405,42 @@ namespace TMRecorder
             this.tsbMatchSquadB = new TMR_CostumControls.TMR_ToolStripButton();
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbImport = new TMR_CostumControls.TMR_ToolStripButton();
+            this.tsBrowseMatches = new System.Windows.Forms.ToolStrip();
+            this.toolStripLabel7 = new System.Windows.Forms.ToolStripLabel();
+            this.btnPrevMatch = new System.Windows.Forms.ToolStripButton();
+            this.btnNextMatch = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel8 = new System.Windows.Forms.ToolStripLabel();
+            this.tsbMatches = new System.Windows.Forms.ToolStripDropDownButton();
+            this.tsbMatches0 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsbMatches1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsbMatches2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsbMatches3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsbMatches4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsbMatches5 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
+            this.lblMatchStored = new System.Windows.Forms.ToolStripLabel();
+            this.tsbMatchNavigationType = new System.Windows.Forms.ToolStripDropDownButton();
+            this.tsbNavigateMainTeamMatches = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsbNavigateReservesMatches = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsBrowsePlayers = new System.Windows.Forms.ToolStrip();
+            this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
+            this.tsbPrevPlayer = new System.Windows.Forms.ToolStripButton();
+            this.tsbNextPlayer = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel9 = new System.Windows.Forms.ToolStripLabel();
+            this.tsbPlayers = new System.Windows.Forms.ToolStripDropDownButton();
+            this.gKToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dDefendersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dMDefenderMidfieldersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mMidfieldersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.oMOffenderMidfieldersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fForwardsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbNumberOfReviews = new System.Windows.Forms.ToolStripLabel();
+            this.tsbNavigationType = new System.Windows.Forms.ToolStripDropDownButton();
+            this.navigateProfilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.navigateReportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsBrowserMain = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel10 = new System.Windows.Forms.ToolStripLabel();
             this.tsbPrev = new System.Windows.Forms.ToolStripButton();
@@ -466,42 +461,6 @@ namespace TMRecorder
             this.tsbProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.tsbProgressText = new System.Windows.Forms.ToolStripLabel();
             this.tbTxtAddress = new System.Windows.Forms.ToolStripTextBox();
-            this.tsBrowsePlayers = new System.Windows.Forms.ToolStrip();
-            this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
-            this.tsbPrevPlayer = new System.Windows.Forms.ToolStripButton();
-            this.tsbNextPlayer = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabel9 = new System.Windows.Forms.ToolStripLabel();
-            this.tsbPlayers = new System.Windows.Forms.ToolStripDropDownButton();
-            this.gKToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dDefendersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dMDefenderMidfieldersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mMidfieldersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.oMOffenderMidfieldersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fForwardsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsbNumberOfReviews = new System.Windows.Forms.ToolStripLabel();
-            this.tsbNavigationType = new System.Windows.Forms.ToolStripDropDownButton();
-            this.navigateProfilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.navigateReportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsBrowseMatches = new System.Windows.Forms.ToolStrip();
-            this.toolStripLabel7 = new System.Windows.Forms.ToolStripLabel();
-            this.btnPrevMatch = new System.Windows.Forms.ToolStripButton();
-            this.btnNextMatch = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabel8 = new System.Windows.Forms.ToolStripLabel();
-            this.tsbMatches = new System.Windows.Forms.ToolStripDropDownButton();
-            this.tsbMatches0 = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsbMatches1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsbMatches2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsbMatches3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsbMatches4 = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsbMatches5 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
-            this.lblMatchStored = new System.Windows.Forms.ToolStripLabel();
-            this.tsbMatchNavigationType = new System.Windows.Forms.ToolStripDropDownButton();
-            this.tsbNavigateMainTeamMatches = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsbNavigateReservesMatches = new System.Windows.Forms.ToolStripMenuItem();
             this.plyStatsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.PlayerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Num = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -623,6 +582,47 @@ namespace TMRecorder
             this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
             this.toolStripContainer2 = new System.Windows.Forms.ToolStripContainer();
+            this.matchStats = new TMRecorder.MatchStats();
+            this.dataGridViewTextBoxColumn56 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn57 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn58 = new DataGridViewCustomColumns.TMR_FpColumn(this.components);
+            this.dataGridViewTextBoxColumn59 = new DataGridViewCustomColumns.TMR_NameInjurySqColumn(this.components);
+            this.dataGridViewTextBoxColumn60 = new DataGridViewCustomColumns.TMR_AgeColumn(this.components);
+            this.Nationality = new DataGridViewCustomColumns.TMR_NationColumn(this.components);
+            this.dataGridViewTextBoxColumn61 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
+            this.dataGridViewTextBoxColumn62 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn63 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
+            this.dataGridViewTextBoxColumn64 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
+            this.dataGridViewTextBoxColumn65 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
+            this.dataGridViewTextBoxColumn66 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
+            this.dataGridViewTextBoxColumn67 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
+            this.dataGridViewTextBoxColumn68 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
+            this.dataGridViewTextBoxColumn69 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
+            this.dataGridViewTextBoxColumn70 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
+            this.dataGridViewTextBoxColumn71 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
+            this.dataGridViewTextBoxColumn72 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
+            this.dataGridViewTextBoxColumn73 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
+            this.dataGridViewTextBoxColumn74 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
+            this.dataGridViewTextBoxColumn75 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
+            this.dataGridViewTextBoxColumn76 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
+            this.Rou = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CStrA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Rec = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TI = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn77 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn78 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn79 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn80 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn81 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn82 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn83 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn84 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn85 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn86 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn87 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn88 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn89 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn90 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabATeamPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridGiocatori)).BeginInit();
@@ -671,9 +671,9 @@ namespace TMRecorder
             this.toolStripContainer3.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer3.SuspendLayout();
             this.tsBrowserImport.SuspendLayout();
-            this.tsBrowserMain.SuspendLayout();
-            this.tsBrowsePlayers.SuspendLayout();
             this.tsBrowseMatches.SuspendLayout();
+            this.tsBrowsePlayers.SuspendLayout();
+            this.tsBrowserMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.plyStatsBindingSource1)).BeginInit();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
@@ -805,491 +805,6 @@ namespace TMRecorder
             this.dataGridGiocatori.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridGiocatori_ColumnHeaderMouseClick);
             this.dataGridGiocatori.Sorted += new System.EventHandler(this.dataGridGiocatori_Sorted);
             // 
-            // dataGridViewTextBoxColumn56
-            // 
-            this.dataGridViewTextBoxColumn56.DataPropertyName = "PlayerID";
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.dataGridViewTextBoxColumn56.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridViewTextBoxColumn56.FillWeight = 30F;
-            this.dataGridViewTextBoxColumn56.Frozen = true;
-            this.dataGridViewTextBoxColumn56.HeaderText = "ID";
-            this.dataGridViewTextBoxColumn56.Name = "dataGridViewTextBoxColumn56";
-            this.dataGridViewTextBoxColumn56.ReadOnly = true;
-            this.dataGridViewTextBoxColumn56.Visible = false;
-            this.dataGridViewTextBoxColumn56.Width = 30;
-            // 
-            // dataGridViewTextBoxColumn57
-            // 
-            this.dataGridViewTextBoxColumn57.DataPropertyName = "Numero";
-            this.dataGridViewTextBoxColumn57.Frozen = true;
-            this.dataGridViewTextBoxColumn57.HeaderText = "N";
-            this.dataGridViewTextBoxColumn57.Name = "dataGridViewTextBoxColumn57";
-            this.dataGridViewTextBoxColumn57.ReadOnly = true;
-            this.dataGridViewTextBoxColumn57.Width = 20;
-            // 
-            // dataGridViewTextBoxColumn58
-            // 
-            this.dataGridViewTextBoxColumn58.DataPropertyName = "FPn";
-            this.dataGridViewTextBoxColumn58.Frozen = true;
-            this.dataGridViewTextBoxColumn58.HeaderText = "FP";
-            this.dataGridViewTextBoxColumn58.Name = "dataGridViewTextBoxColumn58";
-            this.dataGridViewTextBoxColumn58.ReadOnly = true;
-            this.dataGridViewTextBoxColumn58.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn58.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn58.Width = 42;
-            // 
-            // dataGridViewTextBoxColumn59
-            // 
-            this.dataGridViewTextBoxColumn59.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dataGridViewTextBoxColumn59.DataPropertyName = "Nome";
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            this.dataGridViewTextBoxColumn59.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridViewTextBoxColumn59.Frozen = true;
-            this.dataGridViewTextBoxColumn59.HeaderText = "Name";
-            this.dataGridViewTextBoxColumn59.Name = "dataGridViewTextBoxColumn59";
-            this.dataGridViewTextBoxColumn59.ReadOnly = true;
-            this.dataGridViewTextBoxColumn59.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn59.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn59.Width = 60;
-            // 
-            // dataGridViewTextBoxColumn60
-            // 
-            this.dataGridViewTextBoxColumn60.DataPropertyName = "wBorn";
-            this.dataGridViewTextBoxColumn60.Frozen = true;
-            this.dataGridViewTextBoxColumn60.HeaderText = "Age";
-            this.dataGridViewTextBoxColumn60.Name = "dataGridViewTextBoxColumn60";
-            this.dataGridViewTextBoxColumn60.ReadOnly = true;
-            this.dataGridViewTextBoxColumn60.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn60.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn60.When = new System.DateTime(2015, 6, 21, 1, 2, 9, 894);
-            this.dataGridViewTextBoxColumn60.Width = 32;
-            // 
-            // Nationality
-            // 
-            this.Nationality.DataPropertyName = "Nationality";
-            this.Nationality.Frozen = true;
-            this.Nationality.HeaderText = "Nat";
-            this.Nationality.MinimumWidth = 30;
-            this.Nationality.Name = "Nationality";
-            this.Nationality.ReadOnly = true;
-            this.Nationality.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Nationality.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Nationality.ToolTipText = "Nationality";
-            this.Nationality.Width = 30;
-            // 
-            // dataGridViewTextBoxColumn61
-            // 
-            this.dataGridViewTextBoxColumn61.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dataGridViewTextBoxColumn61.DataPropertyName = "ASI";
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            this.dataGridViewTextBoxColumn61.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dataGridViewTextBoxColumn61.Frozen = true;
-            this.dataGridViewTextBoxColumn61.HeaderText = "ASI";
-            this.dataGridViewTextBoxColumn61.Name = "dataGridViewTextBoxColumn61";
-            this.dataGridViewTextBoxColumn61.ReadOnly = true;
-            this.dataGridViewTextBoxColumn61.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn61.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn61.Width = 49;
-            // 
-            // dataGridViewTextBoxColumn62
-            // 
-            this.dataGridViewTextBoxColumn62.DataPropertyName = "Ada";
-            this.dataGridViewTextBoxColumn62.HeaderText = "Ada";
-            this.dataGridViewTextBoxColumn62.Name = "dataGridViewTextBoxColumn62";
-            this.dataGridViewTextBoxColumn62.ReadOnly = true;
-            this.dataGridViewTextBoxColumn62.ToolTipText = "Adaptability of the player";
-            this.dataGridViewTextBoxColumn62.Visible = false;
-            this.dataGridViewTextBoxColumn62.Width = 30;
-            // 
-            // dataGridViewTextBoxColumn63
-            // 
-            this.dataGridViewTextBoxColumn63.DataPropertyName = "For";
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.LightYellow;
-            this.dataGridViewTextBoxColumn63.DefaultCellStyle = dataGridViewCellStyle5;
-            this.dataGridViewTextBoxColumn63.HeaderText = "Str";
-            this.dataGridViewTextBoxColumn63.Name = "dataGridViewTextBoxColumn63";
-            this.dataGridViewTextBoxColumn63.ReadOnly = true;
-            this.dataGridViewTextBoxColumn63.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn63.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn63.Width = 23;
-            // 
-            // dataGridViewTextBoxColumn64
-            // 
-            this.dataGridViewTextBoxColumn64.DataPropertyName = "Res";
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.LightYellow;
-            this.dataGridViewTextBoxColumn64.DefaultCellStyle = dataGridViewCellStyle6;
-            this.dataGridViewTextBoxColumn64.HeaderText = "Sta";
-            this.dataGridViewTextBoxColumn64.Name = "dataGridViewTextBoxColumn64";
-            this.dataGridViewTextBoxColumn64.ReadOnly = true;
-            this.dataGridViewTextBoxColumn64.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn64.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn64.Width = 23;
-            // 
-            // dataGridViewTextBoxColumn65
-            // 
-            this.dataGridViewTextBoxColumn65.DataPropertyName = "Vel";
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.LightYellow;
-            this.dataGridViewTextBoxColumn65.DefaultCellStyle = dataGridViewCellStyle7;
-            this.dataGridViewTextBoxColumn65.HeaderText = "Pac";
-            this.dataGridViewTextBoxColumn65.Name = "dataGridViewTextBoxColumn65";
-            this.dataGridViewTextBoxColumn65.ReadOnly = true;
-            this.dataGridViewTextBoxColumn65.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn65.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn65.Width = 23;
-            // 
-            // dataGridViewTextBoxColumn66
-            // 
-            this.dataGridViewTextBoxColumn66.DataPropertyName = "Mar";
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(255)))), ((int)(((byte)(224)))));
-            this.dataGridViewTextBoxColumn66.DefaultCellStyle = dataGridViewCellStyle8;
-            this.dataGridViewTextBoxColumn66.HeaderText = "Mar";
-            this.dataGridViewTextBoxColumn66.Name = "dataGridViewTextBoxColumn66";
-            this.dataGridViewTextBoxColumn66.ReadOnly = true;
-            this.dataGridViewTextBoxColumn66.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn66.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn66.Width = 23;
-            // 
-            // dataGridViewTextBoxColumn67
-            // 
-            this.dataGridViewTextBoxColumn67.DataPropertyName = "Con";
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(255)))), ((int)(((byte)(224)))));
-            this.dataGridViewTextBoxColumn67.DefaultCellStyle = dataGridViewCellStyle9;
-            this.dataGridViewTextBoxColumn67.HeaderText = "Tac";
-            this.dataGridViewTextBoxColumn67.Name = "dataGridViewTextBoxColumn67";
-            this.dataGridViewTextBoxColumn67.ReadOnly = true;
-            this.dataGridViewTextBoxColumn67.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn67.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn67.Width = 23;
-            // 
-            // dataGridViewTextBoxColumn68
-            // 
-            this.dataGridViewTextBoxColumn68.DataPropertyName = "Wor";
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(255)))), ((int)(((byte)(224)))));
-            this.dataGridViewTextBoxColumn68.DefaultCellStyle = dataGridViewCellStyle10;
-            this.dataGridViewTextBoxColumn68.HeaderText = "Wor";
-            this.dataGridViewTextBoxColumn68.Name = "dataGridViewTextBoxColumn68";
-            this.dataGridViewTextBoxColumn68.ReadOnly = true;
-            this.dataGridViewTextBoxColumn68.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn68.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn68.Width = 23;
-            // 
-            // dataGridViewTextBoxColumn69
-            // 
-            this.dataGridViewTextBoxColumn69.DataPropertyName = "Pos";
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridViewTextBoxColumn69.DefaultCellStyle = dataGridViewCellStyle11;
-            this.dataGridViewTextBoxColumn69.HeaderText = "Pos";
-            this.dataGridViewTextBoxColumn69.Name = "dataGridViewTextBoxColumn69";
-            this.dataGridViewTextBoxColumn69.ReadOnly = true;
-            this.dataGridViewTextBoxColumn69.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn69.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn69.Width = 23;
-            // 
-            // dataGridViewTextBoxColumn70
-            // 
-            this.dataGridViewTextBoxColumn70.DataPropertyName = "Pas";
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridViewTextBoxColumn70.DefaultCellStyle = dataGridViewCellStyle12;
-            this.dataGridViewTextBoxColumn70.HeaderText = "Pas";
-            this.dataGridViewTextBoxColumn70.Name = "dataGridViewTextBoxColumn70";
-            this.dataGridViewTextBoxColumn70.ReadOnly = true;
-            this.dataGridViewTextBoxColumn70.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn70.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn70.Width = 23;
-            // 
-            // dataGridViewTextBoxColumn71
-            // 
-            this.dataGridViewTextBoxColumn71.DataPropertyName = "Cro";
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridViewTextBoxColumn71.DefaultCellStyle = dataGridViewCellStyle13;
-            this.dataGridViewTextBoxColumn71.HeaderText = "Cro";
-            this.dataGridViewTextBoxColumn71.Name = "dataGridViewTextBoxColumn71";
-            this.dataGridViewTextBoxColumn71.ReadOnly = true;
-            this.dataGridViewTextBoxColumn71.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn71.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn71.Width = 23;
-            // 
-            // dataGridViewTextBoxColumn72
-            // 
-            this.dataGridViewTextBoxColumn72.DataPropertyName = "Tec";
-            dataGridViewCellStyle14.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridViewTextBoxColumn72.DefaultCellStyle = dataGridViewCellStyle14;
-            this.dataGridViewTextBoxColumn72.HeaderText = "Tec";
-            this.dataGridViewTextBoxColumn72.Name = "dataGridViewTextBoxColumn72";
-            this.dataGridViewTextBoxColumn72.ReadOnly = true;
-            this.dataGridViewTextBoxColumn72.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn72.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn72.Width = 23;
-            // 
-            // dataGridViewTextBoxColumn73
-            // 
-            this.dataGridViewTextBoxColumn73.DataPropertyName = "Tes";
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
-            this.dataGridViewTextBoxColumn73.DefaultCellStyle = dataGridViewCellStyle15;
-            this.dataGridViewTextBoxColumn73.HeaderText = "Hea";
-            this.dataGridViewTextBoxColumn73.Name = "dataGridViewTextBoxColumn73";
-            this.dataGridViewTextBoxColumn73.ReadOnly = true;
-            this.dataGridViewTextBoxColumn73.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn73.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn73.Width = 23;
-            // 
-            // dataGridViewTextBoxColumn74
-            // 
-            this.dataGridViewTextBoxColumn74.DataPropertyName = "Fin";
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
-            this.dataGridViewTextBoxColumn74.DefaultCellStyle = dataGridViewCellStyle16;
-            this.dataGridViewTextBoxColumn74.HeaderText = "Fin";
-            this.dataGridViewTextBoxColumn74.Name = "dataGridViewTextBoxColumn74";
-            this.dataGridViewTextBoxColumn74.ReadOnly = true;
-            this.dataGridViewTextBoxColumn74.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn74.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn74.Width = 23;
-            // 
-            // dataGridViewTextBoxColumn75
-            // 
-            this.dataGridViewTextBoxColumn75.DataPropertyName = "Tir";
-            dataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
-            this.dataGridViewTextBoxColumn75.DefaultCellStyle = dataGridViewCellStyle17;
-            this.dataGridViewTextBoxColumn75.HeaderText = "Lon";
-            this.dataGridViewTextBoxColumn75.Name = "dataGridViewTextBoxColumn75";
-            this.dataGridViewTextBoxColumn75.ReadOnly = true;
-            this.dataGridViewTextBoxColumn75.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn75.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn75.Width = 23;
-            // 
-            // dataGridViewTextBoxColumn76
-            // 
-            this.dataGridViewTextBoxColumn76.DataPropertyName = "Cal";
-            dataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
-            this.dataGridViewTextBoxColumn76.DefaultCellStyle = dataGridViewCellStyle18;
-            this.dataGridViewTextBoxColumn76.HeaderText = "Set";
-            this.dataGridViewTextBoxColumn76.Name = "dataGridViewTextBoxColumn76";
-            this.dataGridViewTextBoxColumn76.ReadOnly = true;
-            this.dataGridViewTextBoxColumn76.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn76.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn76.Width = 23;
-            // 
-            // Rou
-            // 
-            this.Rou.DataPropertyName = "Rou";
-            dataGridViewCellStyle19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle19.Format = "N1";
-            dataGridViewCellStyle19.NullValue = "-";
-            this.Rou.DefaultCellStyle = dataGridViewCellStyle19;
-            this.Rou.HeaderText = "Rou";
-            this.Rou.Name = "Rou";
-            this.Rou.ReadOnly = true;
-            this.Rou.ToolTipText = "Routine";
-            this.Rou.Width = 30;
-            // 
-            // CStrA
-            // 
-            this.CStrA.DataPropertyName = "CStr";
-            dataGridViewCellStyle20.Format = "N2";
-            dataGridViewCellStyle20.NullValue = "-";
-            this.CStrA.DefaultCellStyle = dataGridViewCellStyle20;
-            this.CStrA.HeaderText = "CRec";
-            this.CStrA.Name = "CStrA";
-            this.CStrA.ReadOnly = true;
-            this.CStrA.ToolTipText = "TmRecorder Computed Recommendation";
-            this.CStrA.Width = 34;
-            // 
-            // Rec
-            // 
-            this.Rec.DataPropertyName = "Rec";
-            dataGridViewCellStyle21.Format = "N1";
-            dataGridViewCellStyle21.NullValue = "-";
-            this.Rec.DefaultCellStyle = dataGridViewCellStyle21;
-            this.Rec.HeaderText = "Rec";
-            this.Rec.Name = "Rec";
-            this.Rec.ReadOnly = true;
-            this.Rec.ToolTipText = "Trophy Manager Recommendation (Stars)";
-            this.Rec.Width = 30;
-            // 
-            // TI
-            // 
-            this.TI.DataPropertyName = "TI";
-            dataGridViewCellStyle22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle22.Format = "N1";
-            dataGridViewCellStyle22.NullValue = "-";
-            this.TI.DefaultCellStyle = dataGridViewCellStyle22;
-            this.TI.HeaderText = "TI";
-            this.TI.Name = "TI";
-            this.TI.ReadOnly = true;
-            this.TI.ToolTipText = "Training Indicator";
-            this.TI.Width = 30;
-            // 
-            // dataGridViewTextBoxColumn77
-            // 
-            this.dataGridViewTextBoxColumn77.DataPropertyName = "DC";
-            dataGridViewCellStyle23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle23.Format = "N1";
-            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn77.DefaultCellStyle = dataGridViewCellStyle23;
-            this.dataGridViewTextBoxColumn77.HeaderText = "DC";
-            this.dataGridViewTextBoxColumn77.Name = "dataGridViewTextBoxColumn77";
-            this.dataGridViewTextBoxColumn77.ReadOnly = true;
-            this.dataGridViewTextBoxColumn77.Width = 30;
-            // 
-            // dataGridViewTextBoxColumn78
-            // 
-            this.dataGridViewTextBoxColumn78.DataPropertyName = "DR";
-            dataGridViewCellStyle24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle24.Format = "N1";
-            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn78.DefaultCellStyle = dataGridViewCellStyle24;
-            this.dataGridViewTextBoxColumn78.HeaderText = "DR";
-            this.dataGridViewTextBoxColumn78.Name = "dataGridViewTextBoxColumn78";
-            this.dataGridViewTextBoxColumn78.ReadOnly = true;
-            this.dataGridViewTextBoxColumn78.Width = 30;
-            // 
-            // dataGridViewTextBoxColumn79
-            // 
-            this.dataGridViewTextBoxColumn79.DataPropertyName = "DL";
-            dataGridViewCellStyle25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle25.Format = "N1";
-            dataGridViewCellStyle25.NullValue = null;
-            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn79.DefaultCellStyle = dataGridViewCellStyle25;
-            this.dataGridViewTextBoxColumn79.HeaderText = "DL";
-            this.dataGridViewTextBoxColumn79.Name = "dataGridViewTextBoxColumn79";
-            this.dataGridViewTextBoxColumn79.ReadOnly = true;
-            this.dataGridViewTextBoxColumn79.Width = 30;
-            // 
-            // dataGridViewTextBoxColumn80
-            // 
-            this.dataGridViewTextBoxColumn80.DataPropertyName = "DMC";
-            dataGridViewCellStyle26.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle26.Format = "N1";
-            dataGridViewCellStyle26.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn80.DefaultCellStyle = dataGridViewCellStyle26;
-            this.dataGridViewTextBoxColumn80.HeaderText = "DMC";
-            this.dataGridViewTextBoxColumn80.Name = "dataGridViewTextBoxColumn80";
-            this.dataGridViewTextBoxColumn80.ReadOnly = true;
-            this.dataGridViewTextBoxColumn80.Width = 30;
-            // 
-            // dataGridViewTextBoxColumn81
-            // 
-            this.dataGridViewTextBoxColumn81.DataPropertyName = "DMR";
-            dataGridViewCellStyle27.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle27.Format = "N1";
-            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn81.DefaultCellStyle = dataGridViewCellStyle27;
-            this.dataGridViewTextBoxColumn81.HeaderText = "DMR";
-            this.dataGridViewTextBoxColumn81.Name = "dataGridViewTextBoxColumn81";
-            this.dataGridViewTextBoxColumn81.ReadOnly = true;
-            this.dataGridViewTextBoxColumn81.Width = 30;
-            // 
-            // dataGridViewTextBoxColumn82
-            // 
-            this.dataGridViewTextBoxColumn82.DataPropertyName = "DML";
-            dataGridViewCellStyle28.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle28.Format = "N1";
-            dataGridViewCellStyle28.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn82.DefaultCellStyle = dataGridViewCellStyle28;
-            this.dataGridViewTextBoxColumn82.HeaderText = "DML";
-            this.dataGridViewTextBoxColumn82.Name = "dataGridViewTextBoxColumn82";
-            this.dataGridViewTextBoxColumn82.ReadOnly = true;
-            this.dataGridViewTextBoxColumn82.Width = 30;
-            // 
-            // dataGridViewTextBoxColumn83
-            // 
-            this.dataGridViewTextBoxColumn83.DataPropertyName = "MC";
-            dataGridViewCellStyle29.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle29.Format = "N1";
-            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn83.DefaultCellStyle = dataGridViewCellStyle29;
-            this.dataGridViewTextBoxColumn83.HeaderText = "MC";
-            this.dataGridViewTextBoxColumn83.Name = "dataGridViewTextBoxColumn83";
-            this.dataGridViewTextBoxColumn83.ReadOnly = true;
-            this.dataGridViewTextBoxColumn83.Width = 30;
-            // 
-            // dataGridViewTextBoxColumn84
-            // 
-            this.dataGridViewTextBoxColumn84.DataPropertyName = "MR";
-            dataGridViewCellStyle30.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle30.Format = "N1";
-            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn84.DefaultCellStyle = dataGridViewCellStyle30;
-            this.dataGridViewTextBoxColumn84.HeaderText = "MR";
-            this.dataGridViewTextBoxColumn84.Name = "dataGridViewTextBoxColumn84";
-            this.dataGridViewTextBoxColumn84.ReadOnly = true;
-            this.dataGridViewTextBoxColumn84.Width = 30;
-            // 
-            // dataGridViewTextBoxColumn85
-            // 
-            this.dataGridViewTextBoxColumn85.DataPropertyName = "ML";
-            dataGridViewCellStyle31.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle31.Format = "N1";
-            dataGridViewCellStyle31.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn85.DefaultCellStyle = dataGridViewCellStyle31;
-            this.dataGridViewTextBoxColumn85.HeaderText = "ML";
-            this.dataGridViewTextBoxColumn85.Name = "dataGridViewTextBoxColumn85";
-            this.dataGridViewTextBoxColumn85.ReadOnly = true;
-            this.dataGridViewTextBoxColumn85.Width = 30;
-            // 
-            // dataGridViewTextBoxColumn86
-            // 
-            this.dataGridViewTextBoxColumn86.DataPropertyName = "OMC";
-            dataGridViewCellStyle32.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle32.Format = "N1";
-            dataGridViewCellStyle32.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn86.DefaultCellStyle = dataGridViewCellStyle32;
-            this.dataGridViewTextBoxColumn86.HeaderText = "OMC";
-            this.dataGridViewTextBoxColumn86.Name = "dataGridViewTextBoxColumn86";
-            this.dataGridViewTextBoxColumn86.ReadOnly = true;
-            this.dataGridViewTextBoxColumn86.Width = 30;
-            // 
-            // dataGridViewTextBoxColumn87
-            // 
-            this.dataGridViewTextBoxColumn87.DataPropertyName = "OMR";
-            dataGridViewCellStyle33.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle33.Format = "N1";
-            dataGridViewCellStyle33.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn87.DefaultCellStyle = dataGridViewCellStyle33;
-            this.dataGridViewTextBoxColumn87.HeaderText = "OMR";
-            this.dataGridViewTextBoxColumn87.Name = "dataGridViewTextBoxColumn87";
-            this.dataGridViewTextBoxColumn87.ReadOnly = true;
-            this.dataGridViewTextBoxColumn87.Width = 30;
-            // 
-            // dataGridViewTextBoxColumn88
-            // 
-            this.dataGridViewTextBoxColumn88.DataPropertyName = "OML";
-            dataGridViewCellStyle34.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle34.Format = "N1";
-            dataGridViewCellStyle34.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn88.DefaultCellStyle = dataGridViewCellStyle34;
-            this.dataGridViewTextBoxColumn88.HeaderText = "OML";
-            this.dataGridViewTextBoxColumn88.Name = "dataGridViewTextBoxColumn88";
-            this.dataGridViewTextBoxColumn88.ReadOnly = true;
-            this.dataGridViewTextBoxColumn88.Width = 30;
-            // 
-            // dataGridViewTextBoxColumn89
-            // 
-            this.dataGridViewTextBoxColumn89.DataPropertyName = "FC";
-            dataGridViewCellStyle35.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle35.Format = "N1";
-            dataGridViewCellStyle35.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn89.DefaultCellStyle = dataGridViewCellStyle35;
-            this.dataGridViewTextBoxColumn89.HeaderText = "FC";
-            this.dataGridViewTextBoxColumn89.Name = "dataGridViewTextBoxColumn89";
-            this.dataGridViewTextBoxColumn89.ReadOnly = true;
-            this.dataGridViewTextBoxColumn89.Width = 30;
-            // 
-            // dataGridViewTextBoxColumn90
-            // 
-            this.dataGridViewTextBoxColumn90.DataPropertyName = "OSi";
-            dataGridViewCellStyle36.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle36.Format = "N2";
-            dataGridViewCellStyle36.NullValue = null;
-            dataGridViewCellStyle36.SelectionBackColor = System.Drawing.Color.Teal;
-            this.dataGridViewTextBoxColumn90.DefaultCellStyle = dataGridViewCellStyle36;
-            this.dataGridViewTextBoxColumn90.HeaderText = "SOi";
-            this.dataGridViewTextBoxColumn90.Name = "dataGridViewTextBoxColumn90";
-            this.dataGridViewTextBoxColumn90.ReadOnly = true;
-            this.dataGridViewTextBoxColumn90.Width = 35;
-            // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1355,7 +870,7 @@ namespace TMRecorder
             this.tabBTeamPage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabBTeamPage.Name = "tabBTeamPage";
             this.tabBTeamPage.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tabBTeamPage.Size = new System.Drawing.Size(1092, 503);
+            this.tabBTeamPage.Size = new System.Drawing.Size(1092, 505);
             this.tabBTeamPage.TabIndex = 4;
             this.tabBTeamPage.Text = "B-Team Players";
             this.tabBTeamPage.UseVisualStyleBackColor = true;
@@ -1435,7 +950,7 @@ namespace TMRecorder
             this.dataGridGiocatoriB.ReadOnly = true;
             this.dataGridGiocatoriB.RowHeadersWidth = 20;
             this.dataGridGiocatoriB.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridGiocatoriB.Size = new System.Drawing.Size(1086, 495);
+            this.dataGridGiocatoriB.Size = new System.Drawing.Size(1086, 497);
             this.dataGridGiocatoriB.TabIndex = 2;
             this.dataGridGiocatoriB.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridPlayersInfo_CellDoubleClick);
             this.dataGridGiocatoriB.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridGiocatori_ColumnHeaderMouseClick);
@@ -1932,7 +1447,7 @@ namespace TMRecorder
             this.tabGK.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabGK.Name = "tabGK";
             this.tabGK.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tabGK.Size = new System.Drawing.Size(1092, 503);
+            this.tabGK.Size = new System.Drawing.Size(1092, 505);
             this.tabGK.TabIndex = 1;
             this.tabGK.Text = "GoalKeepers";
             this.tabGK.UseVisualStyleBackColor = true;
@@ -1996,7 +1511,7 @@ namespace TMRecorder
             this.dataGridPortieri.ReadOnly = true;
             this.dataGridPortieri.RowHeadersWidth = 20;
             this.dataGridPortieri.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridPortieri.Size = new System.Drawing.Size(1086, 495);
+            this.dataGridPortieri.Size = new System.Drawing.Size(1086, 497);
             this.dataGridPortieri.TabIndex = 0;
             this.dataGridPortieri.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridPortieri_CellDoubleClick);
             this.dataGridPortieri.Sorted += new System.EventHandler(this.dataGridPortieri_Sorted);
@@ -2395,6 +1910,7 @@ namespace TMRecorder
             this.playerIDDataGridViewTextBoxColumn.Name = "playerIDDataGridViewTextBoxColumn";
             this.playerIDDataGridViewTextBoxColumn.ReadOnly = true;
             this.playerIDDataGridViewTextBoxColumn.Visible = false;
+            this.playerIDDataGridViewTextBoxColumn.Width = 45;
             // 
             // dataGridViewTextBoxColumn2
             // 
@@ -2699,7 +2215,7 @@ namespace TMRecorder
             this.changePlayerPropertiesToolStripMenuItem,
             this.setPlayerBloominAgeToolStripMenuItem});
             this.contextMenuPlInfo.Name = "contextMenuPlInfo";
-            this.contextMenuPlInfo.Size = new System.Drawing.Size(215, 114);
+            this.contextMenuPlInfo.Size = new System.Drawing.Size(215, 92);
             this.contextMenuPlInfo.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuPlInfo_Opening);
             // 
             // openPlayersWebPagesToolStripMenuItem
@@ -2891,7 +2407,7 @@ namespace TMRecorder
             this.tabInfoMain.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabInfoMain.Name = "tabInfoMain";
             this.tabInfoMain.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tabInfoMain.Size = new System.Drawing.Size(1092, 503);
+            this.tabInfoMain.Size = new System.Drawing.Size(1092, 505);
             this.tabInfoMain.TabIndex = 5;
             this.tabInfoMain.Text = "Team Matches";
             this.tabInfoMain.UseVisualStyleBackColor = true;
@@ -2909,7 +2425,7 @@ namespace TMRecorder
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1086, 495);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1086, 497);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // panel1
@@ -2927,7 +2443,7 @@ namespace TMRecorder
             this.panel1.Location = new System.Drawing.Point(3, 4);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(504, 487);
+            this.panel1.Size = new System.Drawing.Size(504, 489);
             this.panel1.TabIndex = 0;
             // 
             // groupBox4
@@ -3120,7 +2636,7 @@ namespace TMRecorder
             // 
             this.txtMatchStart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMatchStart.Location = new System.Drawing.Point(3, 423);
+            this.txtMatchStart.Location = new System.Drawing.Point(3, 425);
             this.txtMatchStart.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtMatchStart.Multiline = true;
             this.txtMatchStart.Name = "txtMatchStart";
@@ -3145,7 +2661,7 @@ namespace TMRecorder
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(3, 404);
+            this.label5.Location = new System.Drawing.Point(3, 406);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(73, 13);
             this.label5.TabIndex = 0;
@@ -3199,7 +2715,7 @@ namespace TMRecorder
             this.dgMatches.ReadOnly = true;
             this.dgMatches.RowHeadersWidth = 20;
             this.dgMatches.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgMatches.Size = new System.Drawing.Size(500, 332);
+            this.dgMatches.Size = new System.Drawing.Size(500, 334);
             this.dgMatches.TabIndex = 1;
             this.dgMatches.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgMatches_CellMouseDoubleClick);
             this.dgMatches.SelectionChanged += new System.EventHandler(this.dgMatches_SelectionChanged);
@@ -3427,8 +2943,8 @@ namespace TMRecorder
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.panel4);
-            this.splitContainer1.Size = new System.Drawing.Size(570, 487);
-            this.splitContainer1.SplitterDistance = 292;
+            this.splitContainer1.Size = new System.Drawing.Size(570, 489);
+            this.splitContainer1.SplitterDistance = 293;
             this.splitContainer1.TabIndex = 1;
             // 
             // tableLayoutPanel2
@@ -3444,7 +2960,7 @@ namespace TMRecorder
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(570, 292);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(570, 293);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // panel2
@@ -3455,7 +2971,7 @@ namespace TMRecorder
             this.panel2.Location = new System.Drawing.Point(3, 4);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(283, 284);
+            this.panel2.Size = new System.Drawing.Size(283, 285);
             this.panel2.TabIndex = 0;
             // 
             // dataGridView2
@@ -3484,7 +3000,7 @@ namespace TMRecorder
             this.dataGridView2.ReadOnly = true;
             this.dataGridView2.RowHeadersWidth = 4;
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(279, 265);
+            this.dataGridView2.Size = new System.Drawing.Size(279, 266);
             this.dataGridView2.TabIndex = 1;
             // 
             // nameDataGridViewTextBoxColumn
@@ -3559,6 +3075,7 @@ namespace TMRecorder
             this.Analysis.Name = "Analysis";
             this.Analysis.ReadOnly = true;
             this.Analysis.Visible = false;
+            this.Analysis.Width = 50;
             // 
             // yourTeamPerfBindingSource
             // 
@@ -3588,7 +3105,7 @@ namespace TMRecorder
             this.panel3.Location = new System.Drawing.Point(292, 4);
             this.panel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(275, 284);
+            this.panel3.Size = new System.Drawing.Size(275, 285);
             this.panel3.TabIndex = 1;
             // 
             // label3
@@ -3626,7 +3143,7 @@ namespace TMRecorder
             this.dataGridView3.ReadOnly = true;
             this.dataGridView3.RowHeadersWidth = 4;
             this.dataGridView3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView3.Size = new System.Drawing.Size(275, 265);
+            this.dataGridView3.Size = new System.Drawing.Size(275, 266);
             this.dataGridView3.TabIndex = 1;
             // 
             // nameDataGridViewTextBoxColumn1
@@ -3708,7 +3225,7 @@ namespace TMRecorder
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(570, 191);
+            this.panel4.Size = new System.Drawing.Size(570, 192);
             this.panel4.TabIndex = 0;
             // 
             // oppsTeamLineup
@@ -3748,17 +3265,6 @@ namespace TMRecorder
             this.yourTeamLineup.Size = new System.Drawing.Size(61, 77);
             this.yourTeamLineup.TabIndex = 2;
             // 
-            // matchStats
-            // 
-            this.matchStats.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.matchStats.Location = new System.Drawing.Point(0, 32);
-            this.matchStats.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.matchStats.Name = "matchStats";
-            this.matchStats.Size = new System.Drawing.Size(567, 166);
-            this.matchStats.TabIndex = 1;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -3776,7 +3282,7 @@ namespace TMRecorder
             this.tabBrowser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabBrowser.Name = "tabBrowser";
             this.tabBrowser.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tabBrowser.Size = new System.Drawing.Size(1092, 503);
+            this.tabBrowser.Size = new System.Drawing.Size(1092, 505);
             this.tabBrowser.TabIndex = 8;
             this.tabBrowser.Text = "Trophy Browser";
             this.tabBrowser.UseVisualStyleBackColor = true;
@@ -3788,7 +3294,7 @@ namespace TMRecorder
             // 
             this.toolStripContainer3.ContentPanel.Controls.Add(this.webBrowser);
             this.toolStripContainer3.ContentPanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.toolStripContainer3.ContentPanel.Size = new System.Drawing.Size(993, 470);
+            this.toolStripContainer3.ContentPanel.Size = new System.Drawing.Size(993, 472);
             this.toolStripContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
             // 
             // toolStripContainer3.LeftToolStripPanel
@@ -3797,7 +3303,7 @@ namespace TMRecorder
             this.toolStripContainer3.Location = new System.Drawing.Point(3, 4);
             this.toolStripContainer3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.toolStripContainer3.Name = "toolStripContainer3";
-            this.toolStripContainer3.Size = new System.Drawing.Size(1086, 495);
+            this.toolStripContainer3.Size = new System.Drawing.Size(1086, 497);
             this.toolStripContainer3.TabIndex = 0;
             this.toolStripContainer3.Text = "toolStripContainer3";
             // 
@@ -3815,7 +3321,7 @@ namespace TMRecorder
             this.webBrowser.MinimumSize = new System.Drawing.Size(23, 23);
             this.webBrowser.Name = "webBrowser";
             this.webBrowser.ScriptErrorsSuppressed = true;
-            this.webBrowser.Size = new System.Drawing.Size(993, 470);
+            this.webBrowser.Size = new System.Drawing.Size(993, 472);
             this.webBrowser.TabIndex = 1;
             this.webBrowser.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser_DocumentCompleted_1);
             this.webBrowser.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.webBrowser_Navigating);
@@ -4046,6 +3552,326 @@ namespace TMRecorder
             this.tsbImport.UnderText = "Page";
             this.tsbImport.Click += new System.EventHandler(this.tsbImport_Click);
             // 
+            // tsBrowseMatches
+            // 
+            this.tsBrowseMatches.Dock = System.Windows.Forms.DockStyle.None;
+            this.tsBrowseMatches.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel7,
+            this.btnPrevMatch,
+            this.btnNextMatch,
+            this.toolStripSeparator13,
+            this.toolStripLabel8,
+            this.tsbMatches,
+            this.toolStripSeparator14,
+            this.lblMatchStored,
+            this.tsbMatchNavigationType});
+            this.tsBrowseMatches.Location = new System.Drawing.Point(3, 0);
+            this.tsBrowseMatches.Name = "tsBrowseMatches";
+            this.tsBrowseMatches.Size = new System.Drawing.Size(790, 25);
+            this.tsBrowseMatches.TabIndex = 2;
+            this.tsBrowseMatches.Text = "toolStrip2";
+            this.tsBrowseMatches.Visible = false;
+            // 
+            // toolStripLabel7
+            // 
+            this.toolStripLabel7.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripLabel7.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.toolStripLabel7.Name = "toolStripLabel7";
+            this.toolStripLabel7.Size = new System.Drawing.Size(99, 22);
+            this.toolStripLabel7.Text = "Browse Matches";
+            // 
+            // btnPrevMatch
+            // 
+            this.btnPrevMatch.Image = ((System.Drawing.Image)(resources.GetObject("btnPrevMatch.Image")));
+            this.btnPrevMatch.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnPrevMatch.Name = "btnPrevMatch";
+            this.btnPrevMatch.Size = new System.Drawing.Size(50, 22);
+            this.btnPrevMatch.Text = "Prev";
+            this.btnPrevMatch.Click += new System.EventHandler(this.btnPrevMatch_Click);
+            // 
+            // btnNextMatch
+            // 
+            this.btnNextMatch.Image = ((System.Drawing.Image)(resources.GetObject("btnNextMatch.Image")));
+            this.btnNextMatch.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnNextMatch.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnNextMatch.Name = "btnNextMatch";
+            this.btnNextMatch.Size = new System.Drawing.Size(51, 22);
+            this.btnNextMatch.Text = "Next";
+            this.btnNextMatch.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnNextMatch.Click += new System.EventHandler(this.btnNextMatch_Click);
+            // 
+            // toolStripSeparator13
+            // 
+            this.toolStripSeparator13.Name = "toolStripSeparator13";
+            this.toolStripSeparator13.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripLabel8
+            // 
+            this.toolStripLabel8.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripLabel8.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.toolStripLabel8.Name = "toolStripLabel8";
+            this.toolStripLabel8.Size = new System.Drawing.Size(42, 22);
+            this.toolStripLabel8.Text = "Match";
+            // 
+            // tsbMatches
+            // 
+            this.tsbMatches.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbMatches0,
+            this.tsbMatches1,
+            this.tsbMatches2,
+            this.tsbMatches3,
+            this.tsbMatches4,
+            this.tsbMatches5});
+            this.tsbMatches.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsbMatches.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.tsbMatches.Image = ((System.Drawing.Image)(resources.GetObject("tsbMatches.Image")));
+            this.tsbMatches.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbMatches.Name = "tsbMatches";
+            this.tsbMatches.Size = new System.Drawing.Size(237, 22);
+            this.tsbMatches.Text = "[Ca] Atletico Granata - JampalOOza";
+            // 
+            // tsbMatches0
+            // 
+            this.tsbMatches0.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.tsbMatches0.Name = "tsbMatches0";
+            this.tsbMatches0.Size = new System.Drawing.Size(149, 22);
+            this.tsbMatches0.Text = "[Ca] Matches";
+            // 
+            // tsbMatches1
+            // 
+            this.tsbMatches1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.tsbMatches1.Name = "tsbMatches1";
+            this.tsbMatches1.Size = new System.Drawing.Size(149, 22);
+            this.tsbMatches1.Text = "[FL] Matches";
+            // 
+            // tsbMatches2
+            // 
+            this.tsbMatches2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.tsbMatches2.Name = "tsbMatches2";
+            this.tsbMatches2.Size = new System.Drawing.Size(149, 22);
+            this.tsbMatches2.Text = "[F] Matches";
+            // 
+            // tsbMatches3
+            // 
+            this.tsbMatches3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.tsbMatches3.Name = "tsbMatches3";
+            this.tsbMatches3.Size = new System.Drawing.Size(149, 22);
+            this.tsbMatches3.Text = "[Co] Matches";
+            // 
+            // tsbMatches4
+            // 
+            this.tsbMatches4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.tsbMatches4.Name = "tsbMatches4";
+            this.tsbMatches4.Size = new System.Drawing.Size(149, 22);
+            this.tsbMatches4.Text = "[Co] Matches";
+            // 
+            // tsbMatches5
+            // 
+            this.tsbMatches5.ForeColor = System.Drawing.Color.Blue;
+            this.tsbMatches5.Name = "tsbMatches5";
+            this.tsbMatches5.Size = new System.Drawing.Size(149, 22);
+            this.tsbMatches5.Text = "[Co] Matches";
+            // 
+            // toolStripSeparator14
+            // 
+            this.toolStripSeparator14.Name = "toolStripSeparator14";
+            this.toolStripSeparator14.Size = new System.Drawing.Size(6, 25);
+            // 
+            // lblMatchStored
+            // 
+            this.lblMatchStored.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.lblMatchStored.Image = ((System.Drawing.Image)(resources.GetObject("lblMatchStored.Image")));
+            this.lblMatchStored.Name = "lblMatchStored";
+            this.lblMatchStored.Size = new System.Drawing.Size(94, 22);
+            this.lblMatchStored.Text = "Match Stored";
+            // 
+            // tsbMatchNavigationType
+            // 
+            this.tsbMatchNavigationType.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbNavigateMainTeamMatches,
+            this.tsbNavigateReservesMatches});
+            this.tsbMatchNavigationType.Image = ((System.Drawing.Image)(resources.GetObject("tsbMatchNavigationType.Image")));
+            this.tsbMatchNavigationType.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbMatchNavigationType.Name = "tsbMatchNavigationType";
+            this.tsbMatchNavigationType.Size = new System.Drawing.Size(193, 22);
+            this.tsbMatchNavigationType.Text = "Navigate Main Team Matches";
+            // 
+            // tsbNavigateMainTeamMatches
+            // 
+            this.tsbNavigateMainTeamMatches.Image = ((System.Drawing.Image)(resources.GetObject("tsbNavigateMainTeamMatches.Image")));
+            this.tsbNavigateMainTeamMatches.Name = "tsbNavigateMainTeamMatches";
+            this.tsbNavigateMainTeamMatches.Size = new System.Drawing.Size(231, 22);
+            this.tsbNavigateMainTeamMatches.Text = "Navigate Main Team Matches";
+            this.tsbNavigateMainTeamMatches.Click += new System.EventHandler(this.tsbNavigateMainTeamMatches_Click);
+            // 
+            // tsbNavigateReservesMatches
+            // 
+            this.tsbNavigateReservesMatches.Image = ((System.Drawing.Image)(resources.GetObject("tsbNavigateReservesMatches.Image")));
+            this.tsbNavigateReservesMatches.Name = "tsbNavigateReservesMatches";
+            this.tsbNavigateReservesMatches.Size = new System.Drawing.Size(231, 22);
+            this.tsbNavigateReservesMatches.Text = "Navigate Reserves Matches";
+            this.tsbNavigateReservesMatches.Click += new System.EventHandler(this.tsbNavigateReservesMatches_Click);
+            // 
+            // tsBrowsePlayers
+            // 
+            this.tsBrowsePlayers.Dock = System.Windows.Forms.DockStyle.None;
+            this.tsBrowsePlayers.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel6,
+            this.tsbPrevPlayer,
+            this.tsbNextPlayer,
+            this.toolStripSeparator10,
+            this.toolStripLabel9,
+            this.tsbPlayers,
+            this.toolStripSeparator12,
+            this.tsbNumberOfReviews,
+            this.tsbNavigationType});
+            this.tsBrowsePlayers.Location = new System.Drawing.Point(3, 0);
+            this.tsBrowsePlayers.Name = "tsBrowsePlayers";
+            this.tsBrowsePlayers.Size = new System.Drawing.Size(788, 25);
+            this.tsBrowsePlayers.TabIndex = 2;
+            this.tsBrowsePlayers.Text = "toolStrip2";
+            this.tsBrowsePlayers.Visible = false;
+            // 
+            // toolStripLabel6
+            // 
+            this.toolStripLabel6.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripLabel6.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.toolStripLabel6.Name = "toolStripLabel6";
+            this.toolStripLabel6.Size = new System.Drawing.Size(93, 22);
+            this.toolStripLabel6.Text = "Browse Players";
+            // 
+            // tsbPrevPlayer
+            // 
+            this.tsbPrevPlayer.Image = ((System.Drawing.Image)(resources.GetObject("tsbPrevPlayer.Image")));
+            this.tsbPrevPlayer.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbPrevPlayer.Name = "tsbPrevPlayer";
+            this.tsbPrevPlayer.Size = new System.Drawing.Size(50, 22);
+            this.tsbPrevPlayer.Text = "Prev";
+            this.tsbPrevPlayer.Click += new System.EventHandler(this.tsbPrevPlayer_Click);
+            // 
+            // tsbNextPlayer
+            // 
+            this.tsbNextPlayer.Image = ((System.Drawing.Image)(resources.GetObject("tsbNextPlayer.Image")));
+            this.tsbNextPlayer.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbNextPlayer.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbNextPlayer.Name = "tsbNextPlayer";
+            this.tsbNextPlayer.Size = new System.Drawing.Size(51, 22);
+            this.tsbNextPlayer.Text = "Next";
+            this.tsbNextPlayer.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.tsbNextPlayer.Click += new System.EventHandler(this.tsbNextPlayer_Click);
+            // 
+            // toolStripSeparator10
+            // 
+            this.toolStripSeparator10.Name = "toolStripSeparator10";
+            this.toolStripSeparator10.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripLabel9
+            // 
+            this.toolStripLabel9.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripLabel9.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.toolStripLabel9.Name = "toolStripLabel9";
+            this.toolStripLabel9.Size = new System.Drawing.Size(43, 22);
+            this.toolStripLabel9.Text = "Player";
+            // 
+            // tsbPlayers
+            // 
+            this.tsbPlayers.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.gKToolStripMenuItem,
+            this.dDefendersToolStripMenuItem,
+            this.dMDefenderMidfieldersToolStripMenuItem,
+            this.mMidfieldersToolStripMenuItem,
+            this.oMOffenderMidfieldersToolStripMenuItem,
+            this.fForwardsToolStripMenuItem});
+            this.tsbPlayers.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsbPlayers.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.tsbPlayers.Image = ((System.Drawing.Image)(resources.GetObject("tsbPlayers.Image")));
+            this.tsbPlayers.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbPlayers.Name = "tsbPlayers";
+            this.tsbPlayers.Size = new System.Drawing.Size(254, 22);
+            this.tsbPlayers.Text = "[FC] Robert \"O Baixinho\" Scherpenzeel";
+            // 
+            // gKToolStripMenuItem
+            // 
+            this.gKToolStripMenuItem.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.gKToolStripMenuItem.Name = "gKToolStripMenuItem";
+            this.gKToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
+            this.gKToolStripMenuItem.Text = "GK - Goalkeepers";
+            // 
+            // dDefendersToolStripMenuItem
+            // 
+            this.dDefendersToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.dDefendersToolStripMenuItem.Name = "dDefendersToolStripMenuItem";
+            this.dDefendersToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
+            this.dDefendersToolStripMenuItem.Text = "D - Defenders";
+            // 
+            // dMDefenderMidfieldersToolStripMenuItem
+            // 
+            this.dMDefenderMidfieldersToolStripMenuItem.ForeColor = System.Drawing.Color.Lime;
+            this.dMDefenderMidfieldersToolStripMenuItem.Name = "dMDefenderMidfieldersToolStripMenuItem";
+            this.dMDefenderMidfieldersToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
+            this.dMDefenderMidfieldersToolStripMenuItem.Text = "DM - Defender/Midfielders";
+            // 
+            // mMidfieldersToolStripMenuItem
+            // 
+            this.mMidfieldersToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.mMidfieldersToolStripMenuItem.Name = "mMidfieldersToolStripMenuItem";
+            this.mMidfieldersToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
+            this.mMidfieldersToolStripMenuItem.Text = "M - Midfielders";
+            // 
+            // oMOffenderMidfieldersToolStripMenuItem
+            // 
+            this.oMOffenderMidfieldersToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.oMOffenderMidfieldersToolStripMenuItem.Name = "oMOffenderMidfieldersToolStripMenuItem";
+            this.oMOffenderMidfieldersToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
+            this.oMOffenderMidfieldersToolStripMenuItem.Text = "OM - Offender/Midfielders";
+            // 
+            // fForwardsToolStripMenuItem
+            // 
+            this.fForwardsToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.fForwardsToolStripMenuItem.Name = "fForwardsToolStripMenuItem";
+            this.fForwardsToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
+            this.fForwardsToolStripMenuItem.Text = "F - Forwards";
+            // 
+            // toolStripSeparator12
+            // 
+            this.toolStripSeparator12.Name = "toolStripSeparator12";
+            this.toolStripSeparator12.Size = new System.Drawing.Size(6, 25);
+            // 
+            // tsbNumberOfReviews
+            // 
+            this.tsbNumberOfReviews.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.tsbNumberOfReviews.Image = ((System.Drawing.Image)(resources.GetObject("tsbNumberOfReviews.Image")));
+            this.tsbNumberOfReviews.Name = "tsbNumberOfReviews";
+            this.tsbNumberOfReviews.Size = new System.Drawing.Size(148, 22);
+            this.tsbNumberOfReviews.Text = "2 Scouts Reviews stored";
+            // 
+            // tsbNavigationType
+            // 
+            this.tsbNavigationType.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.navigateProfilesToolStripMenuItem,
+            this.navigateReportsToolStripMenuItem});
+            this.tsbNavigationType.Image = ((System.Drawing.Image)(resources.GetObject("tsbNavigationType.Image")));
+            this.tsbNavigationType.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbNavigationType.Name = "tsbNavigationType";
+            this.tsbNavigationType.Size = new System.Drawing.Size(125, 22);
+            this.tsbNavigationType.Text = "Navigate Profiles";
+            // 
+            // navigateProfilesToolStripMenuItem
+            // 
+            this.navigateProfilesToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("navigateProfilesToolStripMenuItem.Image")));
+            this.navigateProfilesToolStripMenuItem.Name = "navigateProfilesToolStripMenuItem";
+            this.navigateProfilesToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.navigateProfilesToolStripMenuItem.Text = "Navigate Profiles";
+            this.navigateProfilesToolStripMenuItem.Click += new System.EventHandler(this.navigateProfilesToolStripMenuItem_Click);
+            // 
+            // navigateReportsToolStripMenuItem
+            // 
+            this.navigateReportsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("navigateReportsToolStripMenuItem.Image")));
+            this.navigateReportsToolStripMenuItem.Name = "navigateReportsToolStripMenuItem";
+            this.navigateReportsToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.navigateReportsToolStripMenuItem.Text = "Navigate Reports";
+            this.navigateReportsToolStripMenuItem.Click += new System.EventHandler(this.navigateReportsToolStripMenuItem_Click);
+            // 
             // tsBrowserMain
             // 
             this.tsBrowserMain.Dock = System.Windows.Forms.DockStyle.None;
@@ -4212,326 +4038,6 @@ namespace TMRecorder
             this.tbTxtAddress.Name = "tbTxtAddress";
             this.tbTxtAddress.ReadOnly = true;
             this.tbTxtAddress.Size = new System.Drawing.Size(400, 25);
-            // 
-            // tsBrowsePlayers
-            // 
-            this.tsBrowsePlayers.Dock = System.Windows.Forms.DockStyle.None;
-            this.tsBrowsePlayers.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripLabel6,
-            this.tsbPrevPlayer,
-            this.tsbNextPlayer,
-            this.toolStripSeparator10,
-            this.toolStripLabel9,
-            this.tsbPlayers,
-            this.toolStripSeparator12,
-            this.tsbNumberOfReviews,
-            this.tsbNavigationType});
-            this.tsBrowsePlayers.Location = new System.Drawing.Point(3, 0);
-            this.tsBrowsePlayers.Name = "tsBrowsePlayers";
-            this.tsBrowsePlayers.Size = new System.Drawing.Size(788, 25);
-            this.tsBrowsePlayers.TabIndex = 2;
-            this.tsBrowsePlayers.Text = "toolStrip2";
-            this.tsBrowsePlayers.Visible = false;
-            // 
-            // toolStripLabel6
-            // 
-            this.toolStripLabel6.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripLabel6.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.toolStripLabel6.Name = "toolStripLabel6";
-            this.toolStripLabel6.Size = new System.Drawing.Size(93, 22);
-            this.toolStripLabel6.Text = "Browse Players";
-            // 
-            // tsbPrevPlayer
-            // 
-            this.tsbPrevPlayer.Image = ((System.Drawing.Image)(resources.GetObject("tsbPrevPlayer.Image")));
-            this.tsbPrevPlayer.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbPrevPlayer.Name = "tsbPrevPlayer";
-            this.tsbPrevPlayer.Size = new System.Drawing.Size(50, 22);
-            this.tsbPrevPlayer.Text = "Prev";
-            this.tsbPrevPlayer.Click += new System.EventHandler(this.tsbPrevPlayer_Click);
-            // 
-            // tsbNextPlayer
-            // 
-            this.tsbNextPlayer.Image = ((System.Drawing.Image)(resources.GetObject("tsbNextPlayer.Image")));
-            this.tsbNextPlayer.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbNextPlayer.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbNextPlayer.Name = "tsbNextPlayer";
-            this.tsbNextPlayer.Size = new System.Drawing.Size(51, 22);
-            this.tsbNextPlayer.Text = "Next";
-            this.tsbNextPlayer.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.tsbNextPlayer.Click += new System.EventHandler(this.tsbNextPlayer_Click);
-            // 
-            // toolStripSeparator10
-            // 
-            this.toolStripSeparator10.Name = "toolStripSeparator10";
-            this.toolStripSeparator10.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripLabel9
-            // 
-            this.toolStripLabel9.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripLabel9.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.toolStripLabel9.Name = "toolStripLabel9";
-            this.toolStripLabel9.Size = new System.Drawing.Size(43, 22);
-            this.toolStripLabel9.Text = "Player";
-            // 
-            // tsbPlayers
-            // 
-            this.tsbPlayers.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.gKToolStripMenuItem,
-            this.dDefendersToolStripMenuItem,
-            this.dMDefenderMidfieldersToolStripMenuItem,
-            this.mMidfieldersToolStripMenuItem,
-            this.oMOffenderMidfieldersToolStripMenuItem,
-            this.fForwardsToolStripMenuItem});
-            this.tsbPlayers.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsbPlayers.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.tsbPlayers.Image = ((System.Drawing.Image)(resources.GetObject("tsbPlayers.Image")));
-            this.tsbPlayers.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbPlayers.Name = "tsbPlayers";
-            this.tsbPlayers.Size = new System.Drawing.Size(254, 22);
-            this.tsbPlayers.Text = "[FC] Robert \"O Baixinho\" Scherpenzeel";
-            // 
-            // gKToolStripMenuItem
-            // 
-            this.gKToolStripMenuItem.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.gKToolStripMenuItem.Name = "gKToolStripMenuItem";
-            this.gKToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
-            this.gKToolStripMenuItem.Text = "GK - Goalkeepers";
-            // 
-            // dDefendersToolStripMenuItem
-            // 
-            this.dDefendersToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.dDefendersToolStripMenuItem.Name = "dDefendersToolStripMenuItem";
-            this.dDefendersToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
-            this.dDefendersToolStripMenuItem.Text = "D - Defenders";
-            // 
-            // dMDefenderMidfieldersToolStripMenuItem
-            // 
-            this.dMDefenderMidfieldersToolStripMenuItem.ForeColor = System.Drawing.Color.Lime;
-            this.dMDefenderMidfieldersToolStripMenuItem.Name = "dMDefenderMidfieldersToolStripMenuItem";
-            this.dMDefenderMidfieldersToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
-            this.dMDefenderMidfieldersToolStripMenuItem.Text = "DM - Defender/Midfielders";
-            // 
-            // mMidfieldersToolStripMenuItem
-            // 
-            this.mMidfieldersToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.mMidfieldersToolStripMenuItem.Name = "mMidfieldersToolStripMenuItem";
-            this.mMidfieldersToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
-            this.mMidfieldersToolStripMenuItem.Text = "M - Midfielders";
-            // 
-            // oMOffenderMidfieldersToolStripMenuItem
-            // 
-            this.oMOffenderMidfieldersToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.oMOffenderMidfieldersToolStripMenuItem.Name = "oMOffenderMidfieldersToolStripMenuItem";
-            this.oMOffenderMidfieldersToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
-            this.oMOffenderMidfieldersToolStripMenuItem.Text = "OM - Offender/Midfielders";
-            // 
-            // fForwardsToolStripMenuItem
-            // 
-            this.fForwardsToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.fForwardsToolStripMenuItem.Name = "fForwardsToolStripMenuItem";
-            this.fForwardsToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
-            this.fForwardsToolStripMenuItem.Text = "F - Forwards";
-            // 
-            // toolStripSeparator12
-            // 
-            this.toolStripSeparator12.Name = "toolStripSeparator12";
-            this.toolStripSeparator12.Size = new System.Drawing.Size(6, 25);
-            // 
-            // tsbNumberOfReviews
-            // 
-            this.tsbNumberOfReviews.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.tsbNumberOfReviews.Image = ((System.Drawing.Image)(resources.GetObject("tsbNumberOfReviews.Image")));
-            this.tsbNumberOfReviews.Name = "tsbNumberOfReviews";
-            this.tsbNumberOfReviews.Size = new System.Drawing.Size(148, 22);
-            this.tsbNumberOfReviews.Text = "2 Scouts Reviews stored";
-            // 
-            // tsbNavigationType
-            // 
-            this.tsbNavigationType.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.navigateProfilesToolStripMenuItem,
-            this.navigateReportsToolStripMenuItem});
-            this.tsbNavigationType.Image = ((System.Drawing.Image)(resources.GetObject("tsbNavigationType.Image")));
-            this.tsbNavigationType.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbNavigationType.Name = "tsbNavigationType";
-            this.tsbNavigationType.Size = new System.Drawing.Size(125, 22);
-            this.tsbNavigationType.Text = "Navigate Profiles";
-            // 
-            // navigateProfilesToolStripMenuItem
-            // 
-            this.navigateProfilesToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("navigateProfilesToolStripMenuItem.Image")));
-            this.navigateProfilesToolStripMenuItem.Name = "navigateProfilesToolStripMenuItem";
-            this.navigateProfilesToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.navigateProfilesToolStripMenuItem.Text = "Navigate Profiles";
-            this.navigateProfilesToolStripMenuItem.Click += new System.EventHandler(this.navigateProfilesToolStripMenuItem_Click);
-            // 
-            // navigateReportsToolStripMenuItem
-            // 
-            this.navigateReportsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("navigateReportsToolStripMenuItem.Image")));
-            this.navigateReportsToolStripMenuItem.Name = "navigateReportsToolStripMenuItem";
-            this.navigateReportsToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.navigateReportsToolStripMenuItem.Text = "Navigate Reports";
-            this.navigateReportsToolStripMenuItem.Click += new System.EventHandler(this.navigateReportsToolStripMenuItem_Click);
-            // 
-            // tsBrowseMatches
-            // 
-            this.tsBrowseMatches.Dock = System.Windows.Forms.DockStyle.None;
-            this.tsBrowseMatches.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripLabel7,
-            this.btnPrevMatch,
-            this.btnNextMatch,
-            this.toolStripSeparator13,
-            this.toolStripLabel8,
-            this.tsbMatches,
-            this.toolStripSeparator14,
-            this.lblMatchStored,
-            this.tsbMatchNavigationType});
-            this.tsBrowseMatches.Location = new System.Drawing.Point(3, 0);
-            this.tsBrowseMatches.Name = "tsBrowseMatches";
-            this.tsBrowseMatches.Size = new System.Drawing.Size(790, 25);
-            this.tsBrowseMatches.TabIndex = 2;
-            this.tsBrowseMatches.Text = "toolStrip2";
-            this.tsBrowseMatches.Visible = false;
-            // 
-            // toolStripLabel7
-            // 
-            this.toolStripLabel7.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripLabel7.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.toolStripLabel7.Name = "toolStripLabel7";
-            this.toolStripLabel7.Size = new System.Drawing.Size(99, 22);
-            this.toolStripLabel7.Text = "Browse Matches";
-            // 
-            // btnPrevMatch
-            // 
-            this.btnPrevMatch.Image = ((System.Drawing.Image)(resources.GetObject("btnPrevMatch.Image")));
-            this.btnPrevMatch.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnPrevMatch.Name = "btnPrevMatch";
-            this.btnPrevMatch.Size = new System.Drawing.Size(50, 22);
-            this.btnPrevMatch.Text = "Prev";
-            this.btnPrevMatch.Click += new System.EventHandler(this.btnPrevMatch_Click);
-            // 
-            // btnNextMatch
-            // 
-            this.btnNextMatch.Image = ((System.Drawing.Image)(resources.GetObject("btnNextMatch.Image")));
-            this.btnNextMatch.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnNextMatch.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnNextMatch.Name = "btnNextMatch";
-            this.btnNextMatch.Size = new System.Drawing.Size(51, 22);
-            this.btnNextMatch.Text = "Next";
-            this.btnNextMatch.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.btnNextMatch.Click += new System.EventHandler(this.btnNextMatch_Click);
-            // 
-            // toolStripSeparator13
-            // 
-            this.toolStripSeparator13.Name = "toolStripSeparator13";
-            this.toolStripSeparator13.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripLabel8
-            // 
-            this.toolStripLabel8.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripLabel8.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.toolStripLabel8.Name = "toolStripLabel8";
-            this.toolStripLabel8.Size = new System.Drawing.Size(42, 22);
-            this.toolStripLabel8.Text = "Match";
-            // 
-            // tsbMatches
-            // 
-            this.tsbMatches.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbMatches0,
-            this.tsbMatches1,
-            this.tsbMatches2,
-            this.tsbMatches3,
-            this.tsbMatches4,
-            this.tsbMatches5});
-            this.tsbMatches.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsbMatches.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.tsbMatches.Image = ((System.Drawing.Image)(resources.GetObject("tsbMatches.Image")));
-            this.tsbMatches.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbMatches.Name = "tsbMatches";
-            this.tsbMatches.Size = new System.Drawing.Size(237, 22);
-            this.tsbMatches.Text = "[Ca] Atletico Granata - JampalOOza";
-            // 
-            // tsbMatches0
-            // 
-            this.tsbMatches0.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.tsbMatches0.Name = "tsbMatches0";
-            this.tsbMatches0.Size = new System.Drawing.Size(149, 22);
-            this.tsbMatches0.Text = "[Ca] Matches";
-            // 
-            // tsbMatches1
-            // 
-            this.tsbMatches1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.tsbMatches1.Name = "tsbMatches1";
-            this.tsbMatches1.Size = new System.Drawing.Size(149, 22);
-            this.tsbMatches1.Text = "[FL] Matches";
-            // 
-            // tsbMatches2
-            // 
-            this.tsbMatches2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.tsbMatches2.Name = "tsbMatches2";
-            this.tsbMatches2.Size = new System.Drawing.Size(149, 22);
-            this.tsbMatches2.Text = "[F] Matches";
-            // 
-            // tsbMatches3
-            // 
-            this.tsbMatches3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.tsbMatches3.Name = "tsbMatches3";
-            this.tsbMatches3.Size = new System.Drawing.Size(149, 22);
-            this.tsbMatches3.Text = "[Co] Matches";
-            // 
-            // tsbMatches4
-            // 
-            this.tsbMatches4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.tsbMatches4.Name = "tsbMatches4";
-            this.tsbMatches4.Size = new System.Drawing.Size(149, 22);
-            this.tsbMatches4.Text = "[Co] Matches";
-            // 
-            // tsbMatches5
-            // 
-            this.tsbMatches5.ForeColor = System.Drawing.Color.Blue;
-            this.tsbMatches5.Name = "tsbMatches5";
-            this.tsbMatches5.Size = new System.Drawing.Size(149, 22);
-            this.tsbMatches5.Text = "[Co] Matches";
-            // 
-            // toolStripSeparator14
-            // 
-            this.toolStripSeparator14.Name = "toolStripSeparator14";
-            this.toolStripSeparator14.Size = new System.Drawing.Size(6, 25);
-            // 
-            // lblMatchStored
-            // 
-            this.lblMatchStored.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblMatchStored.Image = ((System.Drawing.Image)(resources.GetObject("lblMatchStored.Image")));
-            this.lblMatchStored.Name = "lblMatchStored";
-            this.lblMatchStored.Size = new System.Drawing.Size(94, 22);
-            this.lblMatchStored.Text = "Match Stored";
-            // 
-            // tsbMatchNavigationType
-            // 
-            this.tsbMatchNavigationType.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbNavigateMainTeamMatches,
-            this.tsbNavigateReservesMatches});
-            this.tsbMatchNavigationType.Image = ((System.Drawing.Image)(resources.GetObject("tsbMatchNavigationType.Image")));
-            this.tsbMatchNavigationType.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbMatchNavigationType.Name = "tsbMatchNavigationType";
-            this.tsbMatchNavigationType.Size = new System.Drawing.Size(193, 22);
-            this.tsbMatchNavigationType.Text = "Navigate Main Team Matches";
-            // 
-            // tsbNavigateMainTeamMatches
-            // 
-            this.tsbNavigateMainTeamMatches.Image = ((System.Drawing.Image)(resources.GetObject("tsbNavigateMainTeamMatches.Image")));
-            this.tsbNavigateMainTeamMatches.Name = "tsbNavigateMainTeamMatches";
-            this.tsbNavigateMainTeamMatches.Size = new System.Drawing.Size(231, 22);
-            this.tsbNavigateMainTeamMatches.Text = "Navigate Main Team Matches";
-            this.tsbNavigateMainTeamMatches.Click += new System.EventHandler(this.tsbNavigateMainTeamMatches_Click);
-            // 
-            // tsbNavigateReservesMatches
-            // 
-            this.tsbNavigateReservesMatches.Image = ((System.Drawing.Image)(resources.GetObject("tsbNavigateReservesMatches.Image")));
-            this.tsbNavigateReservesMatches.Name = "tsbNavigateReservesMatches";
-            this.tsbNavigateReservesMatches.Size = new System.Drawing.Size(231, 22);
-            this.tsbNavigateReservesMatches.Text = "Navigate Reserves Matches";
-            this.tsbNavigateReservesMatches.Click += new System.EventHandler(this.tsbNavigateReservesMatches_Click);
             // 
             // plyStatsBindingSource1
             // 
@@ -4718,7 +4224,7 @@ namespace TMRecorder
             dataGridViewCellStyle130.NullValue = null;
             dataGridViewCellStyle130.SelectionBackColor = System.Drawing.Color.Teal;
             this.OSi.DefaultCellStyle = dataGridViewCellStyle130;
-            this.OSi.HeaderText = "OSi";
+            this.OSi.HeaderText = "SOi";
             this.OSi.Name = "OSi";
             this.OSi.Width = 35;
             // 
@@ -5690,6 +5196,503 @@ namespace TMRecorder
             this.toolStripContainer2.TabIndex = 0;
             this.toolStripContainer2.Text = "toolStripContainer2";
             // 
+            // matchStats
+            // 
+            this.matchStats.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.matchStats.Location = new System.Drawing.Point(0, 32);
+            this.matchStats.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.matchStats.Name = "matchStats";
+            this.matchStats.Size = new System.Drawing.Size(567, 167);
+            this.matchStats.TabIndex = 1;
+            // 
+            // dataGridViewTextBoxColumn56
+            // 
+            this.dataGridViewTextBoxColumn56.DataPropertyName = "PlayerID";
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.dataGridViewTextBoxColumn56.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridViewTextBoxColumn56.FillWeight = 30F;
+            this.dataGridViewTextBoxColumn56.Frozen = true;
+            this.dataGridViewTextBoxColumn56.HeaderText = "ID";
+            this.dataGridViewTextBoxColumn56.Name = "dataGridViewTextBoxColumn56";
+            this.dataGridViewTextBoxColumn56.ReadOnly = true;
+            this.dataGridViewTextBoxColumn56.Visible = false;
+            this.dataGridViewTextBoxColumn56.Width = 30;
+            // 
+            // dataGridViewTextBoxColumn57
+            // 
+            this.dataGridViewTextBoxColumn57.DataPropertyName = "Numero";
+            this.dataGridViewTextBoxColumn57.Frozen = true;
+            this.dataGridViewTextBoxColumn57.HeaderText = "N";
+            this.dataGridViewTextBoxColumn57.Name = "dataGridViewTextBoxColumn57";
+            this.dataGridViewTextBoxColumn57.ReadOnly = true;
+            this.dataGridViewTextBoxColumn57.Width = 20;
+            // 
+            // dataGridViewTextBoxColumn58
+            // 
+            this.dataGridViewTextBoxColumn58.DataPropertyName = "FPn";
+            this.dataGridViewTextBoxColumn58.Frozen = true;
+            this.dataGridViewTextBoxColumn58.HeaderText = "FP";
+            this.dataGridViewTextBoxColumn58.Name = "dataGridViewTextBoxColumn58";
+            this.dataGridViewTextBoxColumn58.ReadOnly = true;
+            this.dataGridViewTextBoxColumn58.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn58.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn58.Width = 42;
+            // 
+            // dataGridViewTextBoxColumn59
+            // 
+            this.dataGridViewTextBoxColumn59.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewTextBoxColumn59.DataPropertyName = "Nome";
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            this.dataGridViewTextBoxColumn59.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridViewTextBoxColumn59.Frozen = true;
+            this.dataGridViewTextBoxColumn59.HeaderText = "Name";
+            this.dataGridViewTextBoxColumn59.Name = "dataGridViewTextBoxColumn59";
+            this.dataGridViewTextBoxColumn59.ReadOnly = true;
+            this.dataGridViewTextBoxColumn59.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn59.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn59.Width = 60;
+            // 
+            // dataGridViewTextBoxColumn60
+            // 
+            this.dataGridViewTextBoxColumn60.DataPropertyName = "wBorn";
+            this.dataGridViewTextBoxColumn60.Frozen = true;
+            this.dataGridViewTextBoxColumn60.HeaderText = "Age";
+            this.dataGridViewTextBoxColumn60.Name = "dataGridViewTextBoxColumn60";
+            this.dataGridViewTextBoxColumn60.ReadOnly = true;
+            this.dataGridViewTextBoxColumn60.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn60.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn60.When = new System.DateTime(2015, 6, 23, 22, 35, 48, 997);
+            this.dataGridViewTextBoxColumn60.Width = 32;
+            // 
+            // Nationality
+            // 
+            this.Nationality.DataPropertyName = "Nationality";
+            this.Nationality.Frozen = true;
+            this.Nationality.HeaderText = "Nat";
+            this.Nationality.MinimumWidth = 30;
+            this.Nationality.Name = "Nationality";
+            this.Nationality.ReadOnly = true;
+            this.Nationality.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Nationality.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Nationality.ToolTipText = "Nationality";
+            this.Nationality.Width = 30;
+            // 
+            // dataGridViewTextBoxColumn61
+            // 
+            this.dataGridViewTextBoxColumn61.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewTextBoxColumn61.DataPropertyName = "ASI";
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            this.dataGridViewTextBoxColumn61.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dataGridViewTextBoxColumn61.Frozen = true;
+            this.dataGridViewTextBoxColumn61.HeaderText = "ASI";
+            this.dataGridViewTextBoxColumn61.Name = "dataGridViewTextBoxColumn61";
+            this.dataGridViewTextBoxColumn61.ReadOnly = true;
+            this.dataGridViewTextBoxColumn61.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn61.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn61.Width = 49;
+            // 
+            // dataGridViewTextBoxColumn62
+            // 
+            this.dataGridViewTextBoxColumn62.DataPropertyName = "Ada";
+            this.dataGridViewTextBoxColumn62.HeaderText = "Ada";
+            this.dataGridViewTextBoxColumn62.Name = "dataGridViewTextBoxColumn62";
+            this.dataGridViewTextBoxColumn62.ReadOnly = true;
+            this.dataGridViewTextBoxColumn62.ToolTipText = "Adaptability of the player";
+            this.dataGridViewTextBoxColumn62.Visible = false;
+            this.dataGridViewTextBoxColumn62.Width = 30;
+            // 
+            // dataGridViewTextBoxColumn63
+            // 
+            this.dataGridViewTextBoxColumn63.DataPropertyName = "For";
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridViewTextBoxColumn63.DefaultCellStyle = dataGridViewCellStyle5;
+            this.dataGridViewTextBoxColumn63.HeaderText = "Str";
+            this.dataGridViewTextBoxColumn63.Name = "dataGridViewTextBoxColumn63";
+            this.dataGridViewTextBoxColumn63.ReadOnly = true;
+            this.dataGridViewTextBoxColumn63.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn63.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn63.Width = 23;
+            // 
+            // dataGridViewTextBoxColumn64
+            // 
+            this.dataGridViewTextBoxColumn64.DataPropertyName = "Res";
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridViewTextBoxColumn64.DefaultCellStyle = dataGridViewCellStyle6;
+            this.dataGridViewTextBoxColumn64.HeaderText = "Sta";
+            this.dataGridViewTextBoxColumn64.Name = "dataGridViewTextBoxColumn64";
+            this.dataGridViewTextBoxColumn64.ReadOnly = true;
+            this.dataGridViewTextBoxColumn64.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn64.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn64.Width = 23;
+            // 
+            // dataGridViewTextBoxColumn65
+            // 
+            this.dataGridViewTextBoxColumn65.DataPropertyName = "Vel";
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridViewTextBoxColumn65.DefaultCellStyle = dataGridViewCellStyle7;
+            this.dataGridViewTextBoxColumn65.HeaderText = "Pac";
+            this.dataGridViewTextBoxColumn65.Name = "dataGridViewTextBoxColumn65";
+            this.dataGridViewTextBoxColumn65.ReadOnly = true;
+            this.dataGridViewTextBoxColumn65.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn65.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn65.Width = 23;
+            // 
+            // dataGridViewTextBoxColumn66
+            // 
+            this.dataGridViewTextBoxColumn66.DataPropertyName = "Mar";
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(255)))), ((int)(((byte)(224)))));
+            this.dataGridViewTextBoxColumn66.DefaultCellStyle = dataGridViewCellStyle8;
+            this.dataGridViewTextBoxColumn66.HeaderText = "Mar";
+            this.dataGridViewTextBoxColumn66.Name = "dataGridViewTextBoxColumn66";
+            this.dataGridViewTextBoxColumn66.ReadOnly = true;
+            this.dataGridViewTextBoxColumn66.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn66.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn66.Width = 23;
+            // 
+            // dataGridViewTextBoxColumn67
+            // 
+            this.dataGridViewTextBoxColumn67.DataPropertyName = "Con";
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(255)))), ((int)(((byte)(224)))));
+            this.dataGridViewTextBoxColumn67.DefaultCellStyle = dataGridViewCellStyle9;
+            this.dataGridViewTextBoxColumn67.HeaderText = "Tac";
+            this.dataGridViewTextBoxColumn67.Name = "dataGridViewTextBoxColumn67";
+            this.dataGridViewTextBoxColumn67.ReadOnly = true;
+            this.dataGridViewTextBoxColumn67.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn67.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn67.Width = 23;
+            // 
+            // dataGridViewTextBoxColumn68
+            // 
+            this.dataGridViewTextBoxColumn68.DataPropertyName = "Wor";
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(255)))), ((int)(((byte)(224)))));
+            this.dataGridViewTextBoxColumn68.DefaultCellStyle = dataGridViewCellStyle10;
+            this.dataGridViewTextBoxColumn68.HeaderText = "Wor";
+            this.dataGridViewTextBoxColumn68.Name = "dataGridViewTextBoxColumn68";
+            this.dataGridViewTextBoxColumn68.ReadOnly = true;
+            this.dataGridViewTextBoxColumn68.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn68.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn68.Width = 23;
+            // 
+            // dataGridViewTextBoxColumn69
+            // 
+            this.dataGridViewTextBoxColumn69.DataPropertyName = "Pos";
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridViewTextBoxColumn69.DefaultCellStyle = dataGridViewCellStyle11;
+            this.dataGridViewTextBoxColumn69.HeaderText = "Pos";
+            this.dataGridViewTextBoxColumn69.Name = "dataGridViewTextBoxColumn69";
+            this.dataGridViewTextBoxColumn69.ReadOnly = true;
+            this.dataGridViewTextBoxColumn69.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn69.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn69.Width = 23;
+            // 
+            // dataGridViewTextBoxColumn70
+            // 
+            this.dataGridViewTextBoxColumn70.DataPropertyName = "Pas";
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridViewTextBoxColumn70.DefaultCellStyle = dataGridViewCellStyle12;
+            this.dataGridViewTextBoxColumn70.HeaderText = "Pas";
+            this.dataGridViewTextBoxColumn70.Name = "dataGridViewTextBoxColumn70";
+            this.dataGridViewTextBoxColumn70.ReadOnly = true;
+            this.dataGridViewTextBoxColumn70.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn70.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn70.Width = 23;
+            // 
+            // dataGridViewTextBoxColumn71
+            // 
+            this.dataGridViewTextBoxColumn71.DataPropertyName = "Cro";
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridViewTextBoxColumn71.DefaultCellStyle = dataGridViewCellStyle13;
+            this.dataGridViewTextBoxColumn71.HeaderText = "Cro";
+            this.dataGridViewTextBoxColumn71.Name = "dataGridViewTextBoxColumn71";
+            this.dataGridViewTextBoxColumn71.ReadOnly = true;
+            this.dataGridViewTextBoxColumn71.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn71.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn71.Width = 23;
+            // 
+            // dataGridViewTextBoxColumn72
+            // 
+            this.dataGridViewTextBoxColumn72.DataPropertyName = "Tec";
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridViewTextBoxColumn72.DefaultCellStyle = dataGridViewCellStyle14;
+            this.dataGridViewTextBoxColumn72.HeaderText = "Tec";
+            this.dataGridViewTextBoxColumn72.Name = "dataGridViewTextBoxColumn72";
+            this.dataGridViewTextBoxColumn72.ReadOnly = true;
+            this.dataGridViewTextBoxColumn72.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn72.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn72.Width = 23;
+            // 
+            // dataGridViewTextBoxColumn73
+            // 
+            this.dataGridViewTextBoxColumn73.DataPropertyName = "Tes";
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
+            this.dataGridViewTextBoxColumn73.DefaultCellStyle = dataGridViewCellStyle15;
+            this.dataGridViewTextBoxColumn73.HeaderText = "Hea";
+            this.dataGridViewTextBoxColumn73.Name = "dataGridViewTextBoxColumn73";
+            this.dataGridViewTextBoxColumn73.ReadOnly = true;
+            this.dataGridViewTextBoxColumn73.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn73.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn73.Width = 23;
+            // 
+            // dataGridViewTextBoxColumn74
+            // 
+            this.dataGridViewTextBoxColumn74.DataPropertyName = "Fin";
+            dataGridViewCellStyle16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
+            this.dataGridViewTextBoxColumn74.DefaultCellStyle = dataGridViewCellStyle16;
+            this.dataGridViewTextBoxColumn74.HeaderText = "Fin";
+            this.dataGridViewTextBoxColumn74.Name = "dataGridViewTextBoxColumn74";
+            this.dataGridViewTextBoxColumn74.ReadOnly = true;
+            this.dataGridViewTextBoxColumn74.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn74.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn74.Width = 23;
+            // 
+            // dataGridViewTextBoxColumn75
+            // 
+            this.dataGridViewTextBoxColumn75.DataPropertyName = "Tir";
+            dataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
+            this.dataGridViewTextBoxColumn75.DefaultCellStyle = dataGridViewCellStyle17;
+            this.dataGridViewTextBoxColumn75.HeaderText = "Lon";
+            this.dataGridViewTextBoxColumn75.Name = "dataGridViewTextBoxColumn75";
+            this.dataGridViewTextBoxColumn75.ReadOnly = true;
+            this.dataGridViewTextBoxColumn75.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn75.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn75.Width = 23;
+            // 
+            // dataGridViewTextBoxColumn76
+            // 
+            this.dataGridViewTextBoxColumn76.DataPropertyName = "Cal";
+            dataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
+            this.dataGridViewTextBoxColumn76.DefaultCellStyle = dataGridViewCellStyle18;
+            this.dataGridViewTextBoxColumn76.HeaderText = "Set";
+            this.dataGridViewTextBoxColumn76.Name = "dataGridViewTextBoxColumn76";
+            this.dataGridViewTextBoxColumn76.ReadOnly = true;
+            this.dataGridViewTextBoxColumn76.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn76.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn76.Width = 23;
+            // 
+            // Rou
+            // 
+            this.Rou.DataPropertyName = "Rou";
+            dataGridViewCellStyle19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle19.Format = "N1";
+            dataGridViewCellStyle19.NullValue = "-";
+            this.Rou.DefaultCellStyle = dataGridViewCellStyle19;
+            this.Rou.HeaderText = "Rou";
+            this.Rou.Name = "Rou";
+            this.Rou.ReadOnly = true;
+            this.Rou.ToolTipText = "Routine";
+            this.Rou.Width = 30;
+            // 
+            // CStrA
+            // 
+            this.CStrA.DataPropertyName = "CStr";
+            dataGridViewCellStyle20.Format = "N2";
+            dataGridViewCellStyle20.NullValue = "-";
+            this.CStrA.DefaultCellStyle = dataGridViewCellStyle20;
+            this.CStrA.HeaderText = "CRec";
+            this.CStrA.Name = "CStrA";
+            this.CStrA.ReadOnly = true;
+            this.CStrA.ToolTipText = "TmRecorder Computed Recommendation";
+            this.CStrA.Width = 34;
+            // 
+            // Rec
+            // 
+            this.Rec.DataPropertyName = "Rec";
+            dataGridViewCellStyle21.Format = "N1";
+            dataGridViewCellStyle21.NullValue = "-";
+            this.Rec.DefaultCellStyle = dataGridViewCellStyle21;
+            this.Rec.HeaderText = "Rec";
+            this.Rec.Name = "Rec";
+            this.Rec.ReadOnly = true;
+            this.Rec.ToolTipText = "Trophy Manager Recommendation (Stars)";
+            this.Rec.Width = 30;
+            // 
+            // TI
+            // 
+            this.TI.DataPropertyName = "TI";
+            dataGridViewCellStyle22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle22.Format = "N1";
+            dataGridViewCellStyle22.NullValue = "-";
+            this.TI.DefaultCellStyle = dataGridViewCellStyle22;
+            this.TI.HeaderText = "TI";
+            this.TI.Name = "TI";
+            this.TI.ReadOnly = true;
+            this.TI.ToolTipText = "Training Indicator";
+            this.TI.Width = 30;
+            // 
+            // dataGridViewTextBoxColumn77
+            // 
+            this.dataGridViewTextBoxColumn77.DataPropertyName = "DC";
+            dataGridViewCellStyle23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle23.Format = "N1";
+            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn77.DefaultCellStyle = dataGridViewCellStyle23;
+            this.dataGridViewTextBoxColumn77.HeaderText = "DC";
+            this.dataGridViewTextBoxColumn77.Name = "dataGridViewTextBoxColumn77";
+            this.dataGridViewTextBoxColumn77.ReadOnly = true;
+            this.dataGridViewTextBoxColumn77.Width = 30;
+            // 
+            // dataGridViewTextBoxColumn78
+            // 
+            this.dataGridViewTextBoxColumn78.DataPropertyName = "DR";
+            dataGridViewCellStyle24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle24.Format = "N1";
+            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn78.DefaultCellStyle = dataGridViewCellStyle24;
+            this.dataGridViewTextBoxColumn78.HeaderText = "DR";
+            this.dataGridViewTextBoxColumn78.Name = "dataGridViewTextBoxColumn78";
+            this.dataGridViewTextBoxColumn78.ReadOnly = true;
+            this.dataGridViewTextBoxColumn78.Width = 30;
+            // 
+            // dataGridViewTextBoxColumn79
+            // 
+            this.dataGridViewTextBoxColumn79.DataPropertyName = "DL";
+            dataGridViewCellStyle25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle25.Format = "N1";
+            dataGridViewCellStyle25.NullValue = null;
+            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn79.DefaultCellStyle = dataGridViewCellStyle25;
+            this.dataGridViewTextBoxColumn79.HeaderText = "DL";
+            this.dataGridViewTextBoxColumn79.Name = "dataGridViewTextBoxColumn79";
+            this.dataGridViewTextBoxColumn79.ReadOnly = true;
+            this.dataGridViewTextBoxColumn79.Width = 30;
+            // 
+            // dataGridViewTextBoxColumn80
+            // 
+            this.dataGridViewTextBoxColumn80.DataPropertyName = "DMC";
+            dataGridViewCellStyle26.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle26.Format = "N1";
+            dataGridViewCellStyle26.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn80.DefaultCellStyle = dataGridViewCellStyle26;
+            this.dataGridViewTextBoxColumn80.HeaderText = "DMC";
+            this.dataGridViewTextBoxColumn80.Name = "dataGridViewTextBoxColumn80";
+            this.dataGridViewTextBoxColumn80.ReadOnly = true;
+            this.dataGridViewTextBoxColumn80.Width = 30;
+            // 
+            // dataGridViewTextBoxColumn81
+            // 
+            this.dataGridViewTextBoxColumn81.DataPropertyName = "DMR";
+            dataGridViewCellStyle27.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle27.Format = "N1";
+            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn81.DefaultCellStyle = dataGridViewCellStyle27;
+            this.dataGridViewTextBoxColumn81.HeaderText = "DMR";
+            this.dataGridViewTextBoxColumn81.Name = "dataGridViewTextBoxColumn81";
+            this.dataGridViewTextBoxColumn81.ReadOnly = true;
+            this.dataGridViewTextBoxColumn81.Width = 30;
+            // 
+            // dataGridViewTextBoxColumn82
+            // 
+            this.dataGridViewTextBoxColumn82.DataPropertyName = "DML";
+            dataGridViewCellStyle28.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle28.Format = "N1";
+            dataGridViewCellStyle28.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn82.DefaultCellStyle = dataGridViewCellStyle28;
+            this.dataGridViewTextBoxColumn82.HeaderText = "DML";
+            this.dataGridViewTextBoxColumn82.Name = "dataGridViewTextBoxColumn82";
+            this.dataGridViewTextBoxColumn82.ReadOnly = true;
+            this.dataGridViewTextBoxColumn82.Width = 30;
+            // 
+            // dataGridViewTextBoxColumn83
+            // 
+            this.dataGridViewTextBoxColumn83.DataPropertyName = "MC";
+            dataGridViewCellStyle29.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle29.Format = "N1";
+            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn83.DefaultCellStyle = dataGridViewCellStyle29;
+            this.dataGridViewTextBoxColumn83.HeaderText = "MC";
+            this.dataGridViewTextBoxColumn83.Name = "dataGridViewTextBoxColumn83";
+            this.dataGridViewTextBoxColumn83.ReadOnly = true;
+            this.dataGridViewTextBoxColumn83.Width = 30;
+            // 
+            // dataGridViewTextBoxColumn84
+            // 
+            this.dataGridViewTextBoxColumn84.DataPropertyName = "MR";
+            dataGridViewCellStyle30.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle30.Format = "N1";
+            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn84.DefaultCellStyle = dataGridViewCellStyle30;
+            this.dataGridViewTextBoxColumn84.HeaderText = "MR";
+            this.dataGridViewTextBoxColumn84.Name = "dataGridViewTextBoxColumn84";
+            this.dataGridViewTextBoxColumn84.ReadOnly = true;
+            this.dataGridViewTextBoxColumn84.Width = 30;
+            // 
+            // dataGridViewTextBoxColumn85
+            // 
+            this.dataGridViewTextBoxColumn85.DataPropertyName = "ML";
+            dataGridViewCellStyle31.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle31.Format = "N1";
+            dataGridViewCellStyle31.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn85.DefaultCellStyle = dataGridViewCellStyle31;
+            this.dataGridViewTextBoxColumn85.HeaderText = "ML";
+            this.dataGridViewTextBoxColumn85.Name = "dataGridViewTextBoxColumn85";
+            this.dataGridViewTextBoxColumn85.ReadOnly = true;
+            this.dataGridViewTextBoxColumn85.Width = 30;
+            // 
+            // dataGridViewTextBoxColumn86
+            // 
+            this.dataGridViewTextBoxColumn86.DataPropertyName = "OMC";
+            dataGridViewCellStyle32.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle32.Format = "N1";
+            dataGridViewCellStyle32.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn86.DefaultCellStyle = dataGridViewCellStyle32;
+            this.dataGridViewTextBoxColumn86.HeaderText = "OMC";
+            this.dataGridViewTextBoxColumn86.Name = "dataGridViewTextBoxColumn86";
+            this.dataGridViewTextBoxColumn86.ReadOnly = true;
+            this.dataGridViewTextBoxColumn86.Width = 30;
+            // 
+            // dataGridViewTextBoxColumn87
+            // 
+            this.dataGridViewTextBoxColumn87.DataPropertyName = "OMR";
+            dataGridViewCellStyle33.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle33.Format = "N1";
+            dataGridViewCellStyle33.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn87.DefaultCellStyle = dataGridViewCellStyle33;
+            this.dataGridViewTextBoxColumn87.HeaderText = "OMR";
+            this.dataGridViewTextBoxColumn87.Name = "dataGridViewTextBoxColumn87";
+            this.dataGridViewTextBoxColumn87.ReadOnly = true;
+            this.dataGridViewTextBoxColumn87.Width = 30;
+            // 
+            // dataGridViewTextBoxColumn88
+            // 
+            this.dataGridViewTextBoxColumn88.DataPropertyName = "OML";
+            dataGridViewCellStyle34.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle34.Format = "N1";
+            dataGridViewCellStyle34.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn88.DefaultCellStyle = dataGridViewCellStyle34;
+            this.dataGridViewTextBoxColumn88.HeaderText = "OML";
+            this.dataGridViewTextBoxColumn88.Name = "dataGridViewTextBoxColumn88";
+            this.dataGridViewTextBoxColumn88.ReadOnly = true;
+            this.dataGridViewTextBoxColumn88.Width = 30;
+            // 
+            // dataGridViewTextBoxColumn89
+            // 
+            this.dataGridViewTextBoxColumn89.DataPropertyName = "FC";
+            dataGridViewCellStyle35.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle35.Format = "N1";
+            dataGridViewCellStyle35.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn89.DefaultCellStyle = dataGridViewCellStyle35;
+            this.dataGridViewTextBoxColumn89.HeaderText = "FC";
+            this.dataGridViewTextBoxColumn89.Name = "dataGridViewTextBoxColumn89";
+            this.dataGridViewTextBoxColumn89.ReadOnly = true;
+            this.dataGridViewTextBoxColumn89.Width = 30;
+            // 
+            // dataGridViewTextBoxColumn90
+            // 
+            this.dataGridViewTextBoxColumn90.DataPropertyName = "OSi";
+            dataGridViewCellStyle36.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle36.Format = "N2";
+            dataGridViewCellStyle36.NullValue = null;
+            dataGridViewCellStyle36.SelectionBackColor = System.Drawing.Color.Teal;
+            this.dataGridViewTextBoxColumn90.DefaultCellStyle = dataGridViewCellStyle36;
+            this.dataGridViewTextBoxColumn90.HeaderText = "SOi";
+            this.dataGridViewTextBoxColumn90.Name = "dataGridViewTextBoxColumn90";
+            this.dataGridViewTextBoxColumn90.ReadOnly = true;
+            this.dataGridViewTextBoxColumn90.ToolTipText = "Skill Optimization Index";
+            this.dataGridViewTextBoxColumn90.Width = 35;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -5765,12 +5768,12 @@ namespace TMRecorder
             this.toolStripContainer3.PerformLayout();
             this.tsBrowserImport.ResumeLayout(false);
             this.tsBrowserImport.PerformLayout();
-            this.tsBrowserMain.ResumeLayout(false);
-            this.tsBrowserMain.PerformLayout();
-            this.tsBrowsePlayers.ResumeLayout(false);
-            this.tsBrowsePlayers.PerformLayout();
             this.tsBrowseMatches.ResumeLayout(false);
             this.tsBrowseMatches.PerformLayout();
+            this.tsBrowsePlayers.ResumeLayout(false);
+            this.tsBrowsePlayers.PerformLayout();
+            this.tsBrowserMain.ResumeLayout(false);
+            this.tsBrowserMain.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.plyStatsBindingSource1)).EndInit();
             this.toolStripContainer1.ContentPanel.ResumeLayout(false);
             this.toolStripContainer1.TopToolStripPanel.ResumeLayout(false);
@@ -6114,46 +6117,6 @@ namespace TMRecorder
         private TMR_CostumControls.TMR_ToolStripButton tsbScouts;
         private System.Windows.Forms.ToolStripMenuItem structuresEconomyToolStripMenuItem;
         private System.Windows.Forms.ToolStripTextBox tbTxtAddress;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn56;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn57;
-        private DataGridViewCustomColumns.TMR_FpColumn dataGridViewTextBoxColumn58;
-        private DataGridViewCustomColumns.TMR_NameInjurySqColumn dataGridViewTextBoxColumn59;
-        private DataGridViewCustomColumns.TMR_AgeColumn dataGridViewTextBoxColumn60;
-        private DataGridViewCustomColumns.TMR_NationColumn Nationality;
-        private DataGridViewCustomColumns.TMR_NumDecColumn dataGridViewTextBoxColumn61;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn62;
-        private DataGridViewCustomColumns.TMR_NumDecColumn dataGridViewTextBoxColumn63;
-        private DataGridViewCustomColumns.TMR_NumDecColumn dataGridViewTextBoxColumn64;
-        private DataGridViewCustomColumns.TMR_NumDecColumn dataGridViewTextBoxColumn65;
-        private DataGridViewCustomColumns.TMR_NumDecColumn dataGridViewTextBoxColumn66;
-        private DataGridViewCustomColumns.TMR_NumDecColumn dataGridViewTextBoxColumn67;
-        private DataGridViewCustomColumns.TMR_NumDecColumn dataGridViewTextBoxColumn68;
-        private DataGridViewCustomColumns.TMR_NumDecColumn dataGridViewTextBoxColumn69;
-        private DataGridViewCustomColumns.TMR_NumDecColumn dataGridViewTextBoxColumn70;
-        private DataGridViewCustomColumns.TMR_NumDecColumn dataGridViewTextBoxColumn71;
-        private DataGridViewCustomColumns.TMR_NumDecColumn dataGridViewTextBoxColumn72;
-        private DataGridViewCustomColumns.TMR_NumDecColumn dataGridViewTextBoxColumn73;
-        private DataGridViewCustomColumns.TMR_NumDecColumn dataGridViewTextBoxColumn74;
-        private DataGridViewCustomColumns.TMR_NumDecColumn dataGridViewTextBoxColumn75;
-        private DataGridViewCustomColumns.TMR_NumDecColumn dataGridViewTextBoxColumn76;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Rou;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CStrA;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Rec;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TI;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn77;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn78;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn79;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn80;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn81;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn82;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn83;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn84;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn85;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn86;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn87;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn88;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn89;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn90;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private DataGridViewCustomColumns.TMR_FpColumn dataGridViewTextBoxColumn5;
@@ -6241,5 +6204,45 @@ namespace TMRecorder
         private System.Windows.Forms.DataGridViewTextBoxColumn Leadership;
         private System.Windows.Forms.DataGridViewTextBoxColumn Aggressivity;
         private System.Windows.Forms.DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn56;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn57;
+        private DataGridViewCustomColumns.TMR_FpColumn dataGridViewTextBoxColumn58;
+        private DataGridViewCustomColumns.TMR_NameInjurySqColumn dataGridViewTextBoxColumn59;
+        private DataGridViewCustomColumns.TMR_AgeColumn dataGridViewTextBoxColumn60;
+        private DataGridViewCustomColumns.TMR_NationColumn Nationality;
+        private DataGridViewCustomColumns.TMR_NumDecColumn dataGridViewTextBoxColumn61;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn62;
+        private DataGridViewCustomColumns.TMR_NumDecColumn dataGridViewTextBoxColumn63;
+        private DataGridViewCustomColumns.TMR_NumDecColumn dataGridViewTextBoxColumn64;
+        private DataGridViewCustomColumns.TMR_NumDecColumn dataGridViewTextBoxColumn65;
+        private DataGridViewCustomColumns.TMR_NumDecColumn dataGridViewTextBoxColumn66;
+        private DataGridViewCustomColumns.TMR_NumDecColumn dataGridViewTextBoxColumn67;
+        private DataGridViewCustomColumns.TMR_NumDecColumn dataGridViewTextBoxColumn68;
+        private DataGridViewCustomColumns.TMR_NumDecColumn dataGridViewTextBoxColumn69;
+        private DataGridViewCustomColumns.TMR_NumDecColumn dataGridViewTextBoxColumn70;
+        private DataGridViewCustomColumns.TMR_NumDecColumn dataGridViewTextBoxColumn71;
+        private DataGridViewCustomColumns.TMR_NumDecColumn dataGridViewTextBoxColumn72;
+        private DataGridViewCustomColumns.TMR_NumDecColumn dataGridViewTextBoxColumn73;
+        private DataGridViewCustomColumns.TMR_NumDecColumn dataGridViewTextBoxColumn74;
+        private DataGridViewCustomColumns.TMR_NumDecColumn dataGridViewTextBoxColumn75;
+        private DataGridViewCustomColumns.TMR_NumDecColumn dataGridViewTextBoxColumn76;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Rou;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CStrA;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Rec;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TI;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn77;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn78;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn79;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn80;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn81;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn82;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn83;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn84;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn85;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn86;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn87;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn88;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn89;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn90;
     }
 }

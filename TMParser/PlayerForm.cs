@@ -2011,6 +2011,7 @@ namespace TMRecorder
             ExtraDS.GiocatoriRow gRow = History.PlayersDS.Giocatori.FindByPlayerID(playerDatarow.PlayerID);
 
             ExtraDS.ParsePlayerPage_NewTM(page, ref gRow, History.reportParser);
+            ExtraDS.ParsePlayerPage_Extras(webBrowser.Document, ref gRow, History.reportParser);
 
             // Aggiorna i dati di basi
             playerDatarow.FP = gRow.FP;

@@ -120,7 +120,7 @@ namespace TMRecorder
             this.dataGridViewTextBoxColumn87.HeaderText = "OMR";
             this.dataGridViewTextBoxColumn88.HeaderText = "OML";
             this.dataGridViewTextBoxColumn89.HeaderText = "FC";
-            this.dataGridViewTextBoxColumn90.HeaderText = "OSi";
+            this.dataGridViewTextBoxColumn90.HeaderText = "SOi";
             this.dataGridViewTextBoxColumn3.HeaderText = "ID";
             this.dataGridViewTextBoxColumn4.HeaderText = "N";
             this.dataGridViewTextBoxColumn5.HeaderText = "FP";
@@ -156,7 +156,7 @@ namespace TMRecorder
             this.dataGridViewTextBoxColumn52.HeaderText = "OMR";
             this.dataGridViewTextBoxColumn53.HeaderText = "OML";
             this.dataGridViewTextBoxColumn54.HeaderText = "FC";
-            this.dataGridViewTextBoxColumn55.HeaderText = "OSi";
+            this.dataGridViewTextBoxColumn55.HeaderText = "SOi";
             this.ID.HeaderText = "ID";
             this.numeroDataGridViewTextBoxColumn1.HeaderText = "N";
             this.nomeDataGridViewTextBoxColumn1.HeaderText = Current.Language.Name;
@@ -226,7 +226,7 @@ namespace TMRecorder
             this.OMR.HeaderText = "OMR";
             this.OML.HeaderText = "OML";
             this.FC.HeaderText = "FC";
-            this.OSi.HeaderText = "OSi";
+            this.OSi.HeaderText = "SOi";
             this.squalificatoDataGridViewCheckBoxColumn.HeaderText = "Sql";
             this.infortunatoDataGridViewCheckBoxColumn.HeaderText = "Rou";
             this.calDataGridViewTextBoxColumn.HeaderText = Current.Language.Set;

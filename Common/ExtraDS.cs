@@ -805,13 +805,17 @@ namespace Common {
 
                 }
 
-                SetProfessionalismNull();
-                SetLeadershipNull();
-                SetAggressivityNull();
+                if (IsHiddenRevealedNull() || !HiddenRevealed)
+                {
+                    SetProfessionalismNull();
+                    SetAggressivityNull();
+                    if (f_Pro != 0) Professionalism = Pro / f_Pro * 2;
+                    if (f_Agg != 0) Aggressivity = Agg / f_Agg * 2;
+                }
 
-                if (f_Pro != 0) Professionalism = Pro / f_Pro * 2;
+                SetLeadershipNull();
+
                 if (f_Lea != 0) Leadership = Lea / f_Lea * 2;
-                if (f_Agg != 0) Aggressivity = Agg / f_Agg * 2;
                 if (f_Phy != 0) Physics = (decimal)(Phy / f_Phy) * 5;
                 if (f_Tec != 0) Technics = (decimal)(Tec / f_Tec) * 5;
                 if (f_Tac != 0) Tactics = (decimal)(Tac / f_Tac) * 5;
@@ -1783,9 +1787,7 @@ namespace Common {
                     if (physique != 0) giudizio += "Phy=" + physique + ";";
                     if (technics != 0) giudizio += "Tec=" + technics + ";";
                     if (tactics != 0) giudizio += "Tac=" + tactics + ";";
-                    if (aggressivity != 0) giudizio += "Agg=" + aggressivity + ";";
                     if (leadership != 0) giudizio += "Lea=" + leadership + ";";
-                    if (professionalism != 0) giudizio += "Pro=" + professionalism + ";";
                     if (blooming_status != 0) giudizio += "BlS=" + blooming_status + ";";
                     if (blooming != 0) giudizio += "Blo=" + blooming + ";";
                     if (dev_status != 0) giudizio += "Dev=" + dev_status + ";";
@@ -1795,6 +1797,9 @@ namespace Common {
                         gRow.ScoutGiudizio = gRow.ScoutGiudizio + "|" + giudizio.TrimEnd(',');
                     else
                         gRow.ScoutGiudizio = giudizio.TrimEnd(',');
+
+                    if (aggressivity != 0) giudizio += "Agg=" + aggressivity + ";";
+                    if (professionalism != 0) giudizio += "Pro=" + professionalism + ";";
                 }
             }
             else if (page.Contains("active_tab\" id=\"tabplayer_history_new"))
@@ -2160,10 +2165,6 @@ namespace Common {
                         hdSum = hdSum + res;
                     }
 
-                    // Aggressivity
-                    if ((hdSum.Agg != 0) && (wSum.Agg != 0))
-                        gr.Aggressivity = (float)(hdSum.Agg / wSum.Agg);
-
                     // Ability
                     if ((hdSum.Abi != 0) && (wSum.Abi != 0))
                         gr.Ability = (float)(hdSum.Abi / wSum.Abi);
@@ -2176,9 +2177,16 @@ namespace Common {
                     if ((hdSum.Lea != 0) && (wSum.Lea != 0))
                         gr.Leadership = (float)(hdSum.Lea / wSum.Lea);
 
-                    // Professionalism
-                    if ((hdSum.Pro != 0) && (wSum.Pro != 0))
-                        gr.Professionalism = (float)(hdSum.Pro / wSum.Pro);
+                    if (gr.IsHiddenRevealedNull() || !gr.HiddenRevealed)
+                    {
+                        // Aggressivity
+                        if ((hdSum.Agg != 0) && (wSum.Agg != 0))
+                            gr.Aggressivity = (float)(hdSum.Agg / wSum.Agg);
+
+                        // Professionalism
+                        if ((hdSum.Pro != 0) && (wSum.Pro != 0))
+                            gr.Professionalism = (float)(hdSum.Pro / wSum.Pro);
+                    }
 
                     // Physics
                     if ((hdSum.Phy != 0) && (wSum.Phy != 0))
@@ -2278,6 +2286,78 @@ namespace Common {
                         Giocatori.AddGiocatoriRow(nnr);
                     }
                 }
+            }
+        }
+
+        public static void ParsePlayerPage_Extras(HtmlDocument htmlDocument, ref GiocatoriRow gRow, ReportParser reportParser)
+        {
+            //{
+            //    HtmlElement hidden = htmlDocument.GetElementById("player_scout_new");
+
+            //    HtmlElementCollection element = hidden.GetElementsByTagName("div");
+
+            //    for (var i = 0; i < element.Count; i++)
+            //    {
+            //        for (var n = 0; n < element[i].Children.Count; n++)
+            //        {
+            //            var child = element[i].Children[n];
+            //            int blooming_status = 0;
+            //            int blooming = 0;
+   
+            //            gRow.ScoutVoto = "";
+            //            switch(n)
+            //            {
+            //                case 0:
+            //                    // Name of the scout, date
+            //                    gRow.ScoutName = child.Children[0].InnerText;
+            //                    gRow.ScoutDate = child.Children[1].InnerText.TrimStart('(').TrimEnd(')');
+            //                    break;
+            //                case 1:
+            //                    // recommendation
+            //                    float vote = 0;
+            //                    foreach (HtmlElement star in child.Children)
+            //                    {
+            //                        string spanRec = star.OuterHtml;
+            //                        if (spanRec.Contains("megastar recomendation"))
+            //                            vote += 2;
+            //                        else if (spanRec.Contains("megastar potential_half"))
+            //                            vote += 1;
+            //                        else if (spanRec.Contains("megastar potential"))
+            //                            vote += 2;
+            //                    }
+            //                    gRow.ScoutVoto += vote.ToString() + "|";
+            //                    break;
+            //                }
+            //            }
+            //        }
+            //    }
+            //}
+
+            {
+                HtmlElement hidden = htmlDocument.GetElementById("hidden_skill_table");
+                HtmlElementCollection element = hidden.GetElementsByTagName("td");
+
+                for (var i = 0; i < 4; i++)
+                {
+                    string tooltip = element[i].GetAttribute("tooltip");
+
+                    if (tooltip == "")
+                        return;
+
+                    string field = HTML_Parser.GetField(tooltip, "<strong>", "/");
+
+                    int val = int.Parse(field);
+
+                    switch (i)
+                    {
+                        case 0: gRow.InjPron = val; break;
+                        case 1: gRow.Aggressivity = val; break;
+                        case 2: gRow.Professionalism = val; break;
+                        case 3: gRow.Ada = val; break;
+                    }
+                }
+
+                gRow.HiddenRevealed = true;
             }
         }
     }

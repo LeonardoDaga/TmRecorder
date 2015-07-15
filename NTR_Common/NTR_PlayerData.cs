@@ -185,7 +185,7 @@ namespace NTR_Common
                         int ix = banImgList.Images.IndexOfKey("Red.png");
                         pctBan.Image = banImgList.Images[ix];
 
-                        lblBanDays.Text = (banWeeks - 3).ToString();
+                        lblBanDays.Text = (banWeeks - 4).ToString();
                     }
 
                     pctRetiring.Visible = (retiring != 0);
@@ -207,12 +207,12 @@ namespace NTR_Common
                     }
 
                     if (!pr.IsProNull())
-                        lblProfessionalism.Text = pr.Pro.ToString() + "/10";
+                        lblProfessionalism.Text = pr.Pro.ToString() + "/20";
                     else
                         lblProfessionalism.Text = "-";
 
                     if (!pr.IsAggNull())
-                        lblAggression.Text = pr.Agg.ToString() + "/10";
+                        lblAggression.Text = pr.Agg.ToString() + "/20";
                     else
                         lblAggression.Text = "-";
 

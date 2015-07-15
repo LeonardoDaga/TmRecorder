@@ -146,8 +146,24 @@ namespace TMRecorder
             ReportAnalysisFile = Path.Combine(_datafilePath, @"ReportAnalysisFileEN.xml");
             TacticsDBFilename = Path.Combine(_datafilePath, @"TacticsFile.xml");
             MatchAnalysisFile = Path.Combine(_datafilePath, @"MatchAnalysisFile.EN.xml");
+
+            // Correct bad paths
+            FileInfo fi = new FileInfo(ReportParsingFile);
+            if (!fi.Exists)
+            {
+                ReportParsingFile = Path.Combine(_datafilePath, fi.Name);
+            }
+
+            fi = new FileInfo(GainSet);
+            if (!fi.Exists)
+            {
+                GainSet = Path.Combine(_datafilePath, fi.Name);
+            }
         }
 
+        /// <summary>
+        /// This function sets only the missing values
+        /// </summary>
         private void SetDefault()
         {
             FileInfo fi = new FileInfo(sb.SettingsFilename);

@@ -66,13 +66,13 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <UpdateUrl>http://www.insyde.it/publish/</UpdateUrl>
-    <SupportUrl>http://tmrecorder.insyde.it</SupportUrl>
+    <SupportUrl>http://tmr.insyde.it</SupportUrl>
     <TargetCulture>en</TargetCulture>
     <ProductName>TM Recorder</ProductName>
     <PublisherName>INSYDE</PublisherName>
     <DisallowUrlActivation>true</DisallowUrlActivation>
-    <ApplicationRevision>6</ApplicationRevision>
-    <ApplicationVersion>2.7.1.6</ApplicationVersion>
+    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationVersion>2.8.0.2</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -367,6 +367,7 @@
     <Compile Include="TeamHistory.cs" />
     <Compile Include="TeamStats.cs">
       <DependentUpon>TeamStats.xsd</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="TeamStats.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -388,6 +389,7 @@
     </Compile>
     <Compile Include="Trading.cs">
       <DependentUpon>Trading.xsd</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Trading.Designer.cs">
       <AutoGen>True</AutoGen>

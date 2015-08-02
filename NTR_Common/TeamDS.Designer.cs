@@ -436,6 +436,8 @@ namespace NTR_Common {
             
             private global::System.Data.DataColumn columnInjPron;
             
+            private global::System.Data.DataColumn columnSpecialities;
+            
             private static System.DateTime columnEnds_defaultValue = global::System.DateTime.Parse("2008-02-03T00:00:00");
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -961,6 +963,14 @@ namespace NTR_Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SpecialitiesColumn {
+                get {
+                    return this.columnSpecialities;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1057,7 +1067,8 @@ namespace NTR_Common {
                         decimal CStr, 
                         int TeamID, 
                         decimal Pot, 
-                        decimal InjPron) {
+                        decimal InjPron, 
+                        string Specialities) {
                 GiocatoriNSkillRow rowGiocatoriNSkillRow = ((GiocatoriNSkillRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         PlayerID,
@@ -1120,7 +1131,8 @@ namespace NTR_Common {
                         CStr,
                         TeamID,
                         Pot,
-                        InjPron};
+                        InjPron,
+                        Specialities};
                 rowGiocatoriNSkillRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowGiocatoriNSkillRow);
                 return rowGiocatoriNSkillRow;
@@ -1211,6 +1223,7 @@ namespace NTR_Common {
                 this.columnTeamID = base.Columns["TeamID"];
                 this.columnPot = base.Columns["Pot"];
                 this.columnInjPron = base.Columns["InjPron"];
+                this.columnSpecialities = base.Columns["Specialities"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1354,6 +1367,8 @@ namespace NTR_Common {
                 base.Columns.Add(this.columnPot);
                 this.columnInjPron = new global::System.Data.DataColumn("InjPron", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnInjPron);
+                this.columnSpecialities = new global::System.Data.DataColumn("Specialities", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSpecialities);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint2", new global::System.Data.DataColumn[] {
                                 this.columnPlayerID}, true));
                 this.columnPlayerID.AllowDBNull = false;
@@ -2747,6 +2762,22 @@ namespace NTR_Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Specialities {
+                get {
+                    try {
+                        return ((string)(this[this.tableGiocatoriNSkill.SpecialitiesColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Specialities\' in table \'GiocatoriNSkill\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGiocatoriNSkill.SpecialitiesColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsNumeroNull() {
                 return this.IsNull(this.tableGiocatoriNSkill.NumeroColumn);
             }
@@ -3463,6 +3494,18 @@ namespace NTR_Common {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetInjPronNull() {
                 this[this.tableGiocatoriNSkill.InjPronColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsSpecialitiesNull() {
+                return this.IsNull(this.tableGiocatoriNSkill.SpecialitiesColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetSpecialitiesNull() {
+                this[this.tableGiocatoriNSkill.SpecialitiesColumn] = global::System.Convert.DBNull;
             }
         }
         

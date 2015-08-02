@@ -12,9 +12,31 @@ namespace NTR_Common
 {
     public partial class NTR_PlayerData : UserControl
     {
+        List<Label> phyLabels = new List<Label>();
+        List<Label> tacLabels = new List<Label>();
+        List<Label> tecLabels = new List<Label>();
+
         public NTR_PlayerData()
         {
             InitializeComponent();
+
+            // Create the labels lists
+            phyLabels.Add(lblStrCapt);
+            phyLabels.Add(lblStaCapt);
+            phyLabels.Add(lblPacCapt);
+            phyLabels.Add(lblHeaCapt);
+
+            tacLabels.Add(lblMarCapt);
+            tacLabels.Add(lblTakCapt);
+            tacLabels.Add(lblWorCapt);
+            tacLabels.Add(lblPosCapt);
+
+            tacLabels.Add(lblPasCapt);
+            tecLabels.Add(lblCroCapt);
+            tecLabels.Add(lblTecCapt);
+            tecLabels.Add(lblFinCapt);
+            tecLabels.Add(lblLonCapt);
+            tecLabels.Add(lblSetCapt);
         }
 
         public decimal BloomAge
@@ -82,7 +104,10 @@ namespace NTR_Common
                         lblImp.Text = pr.Wor.ToString();
                         lblCP.Text = pr.Cal.ToString();
 
-                        lblAda.Text = pr.Ada.ToString() + "/20";
+                        if (pr.Ada > 0)
+                            lblAda.Text = pr.Ada.ToString() + "/20";
+                        else
+                            lblAda.Text = "- ";
                     }
                     else
                     {
@@ -140,7 +165,7 @@ namespace NTR_Common
 
                     int injWeeks = int.Parse(pr.Nome.Split('|')[1]);
                     int banWeeks = int.Parse(pr.Nome.Split('|')[2]);
-                    int retiring = int.Parse(pr.Nome.Split('|')[3]);
+                    int teamB = int.Parse(pr.Nome.Split('|')[3]);
 
                     if (injWeeks == 0)
                     {
@@ -188,7 +213,8 @@ namespace NTR_Common
                         lblBanDays.Text = (banWeeks - 4).ToString();
                     }
 
-                    pctRetiring.Visible = (retiring != 0);
+                    pctTeamB.Visible = (teamB != 0);
+                    pctRetiring.Visible = false; // TODO!!
 
                     if (!pr.IsCStrNull())
                         lblCRec.Text = pr.CStr.ToString("N1") + "/5";
@@ -217,7 +243,7 @@ namespace NTR_Common
                         lblAggression.Text = "-";
 
                     if (!pr.IsLeaNull())
-                        lblLea.Text = pr.Lea.ToString() + "/10";
+                        lblLea.Text = pr.Lea.ToString() + "/20";
                     else
                         lblLea.Text = "-";
 
@@ -271,6 +297,67 @@ namespace NTR_Common
                         lblRouEff2.Text = (R2.ratingR2[FPv[1]] - R2.ratingR[FPv[1]]).ToString("N1");
                         lblRsSk2.Text = FPs[1];
                         SetLabelBack(lblRsSk2, FPs[1]);
+                    }
+
+                    Color labelColor;
+                    if (!pr.IsSpecialitiesNull())
+                    {
+                        Dictionary<string,string> specialities = HTML_Parser.String2Dictionary(pr.Specialities);
+
+                        labelColor = Utility.GradeColor(float.Parse(specialities["Phy"]), 20f);
+                        foreach (Label label in phyLabels)
+                        {
+                            label.ForeColor = labelColor;
+                            if (label.Text == specialities["Spe"])
+                                label.Font = new Font(label.Font, FontStyle.Bold | FontStyle.Underline);
+                            else if (label.Font.Bold)
+                                label.Font = new Font(label.Font, FontStyle.Regular);
+                        }
+
+                        labelColor = Utility.GradeColor(float.Parse(specialities["Tec"]), 20f);
+                        foreach (Label label in tecLabels)
+                        {
+                            label.ForeColor = labelColor;
+                            if (label.Text == specialities["Spe"])
+                                label.Font = new Font(label.Font, FontStyle.Bold | FontStyle.Underline);
+                            else if (label.Font.Bold)
+                                label.Font = new Font(label.Font, FontStyle.Regular);
+
+                        }
+
+                        labelColor = Utility.GradeColor(float.Parse(specialities["Tac"]), 20f);
+                        foreach (Label label in tacLabels)
+                        {
+                            label.ForeColor = labelColor;
+                            if (label.Text == specialities["Spe"])
+                                label.Font = new Font(label.Font, FontStyle.Bold | FontStyle.Underline);
+                            else if (label.Font.Bold)
+                                label.Font = new Font(label.Font, FontStyle.Regular);
+
+                        }
+                    }
+                    else
+                    {
+                        foreach (Label label in phyLabels)
+                        {
+                            label.ForeColor = Color.Gainsboro;
+                            if (label.Font.Bold)
+                                label.Font = new Font(label.Font, FontStyle.Regular);
+                        }
+
+                        foreach (Label label in tecLabels)
+                        {
+                            label.ForeColor = Color.Gainsboro;
+                            if (label.Font.Bold)
+                                label.Font = new Font(label.Font, FontStyle.Regular);
+                        }
+
+                        foreach (Label label in tacLabels)
+                        {
+                            label.ForeColor = Color.Gainsboro;
+                            if (label.Font.Bold)
+                                label.Font = new Font(label.Font, FontStyle.Regular);
+                        }
                     }
                 }
                 catch(Exception e)

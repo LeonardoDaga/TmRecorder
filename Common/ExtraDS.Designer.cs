@@ -421,6 +421,8 @@ namespace Common {
             
             private global::System.Data.DataColumn columnGameTable;
             
+            private global::System.Data.DataColumn columnPotential;
+            
             private global::System.Data.DataColumn columnHiddenRevealed;
             
             private static System.DateTime columnFirstData_defaultValue = global::System.DateTime.Parse("2070-01-01T00:00:00");
@@ -750,6 +752,14 @@ namespace Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn PotentialColumn {
+                get {
+                    return this.columnPotential;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn HiddenRevealedColumn {
                 get {
                     return this.columnHiddenRevealed;
@@ -830,6 +840,7 @@ namespace Common {
                         int FPn, 
                         string Speciality, 
                         string GameTable, 
+                        float Potential, 
                         bool HiddenRevealed) {
                 GiocatoriRow rowGiocatoriRow = ((GiocatoriRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
@@ -869,6 +880,7 @@ namespace Common {
                         FPn,
                         Speciality,
                         GameTable,
+                        Potential,
                         HiddenRevealed};
                 rowGiocatoriRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowGiocatoriRow);
@@ -935,6 +947,7 @@ namespace Common {
                 this.columnFPn = base.Columns["FPn"];
                 this.columnSpeciality = base.Columns["Speciality"];
                 this.columnGameTable = base.Columns["GameTable"];
+                this.columnPotential = base.Columns["Potential"];
                 this.columnHiddenRevealed = base.Columns["HiddenRevealed"];
             }
             
@@ -1013,6 +1026,8 @@ namespace Common {
                 base.Columns.Add(this.columnSpeciality);
                 this.columnGameTable = new global::System.Data.DataColumn("GameTable", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnGameTable);
+                this.columnPotential = new global::System.Data.DataColumn("Potential", typeof(float), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPotential);
                 this.columnHiddenRevealed = new global::System.Data.DataColumn("HiddenRevealed", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnHiddenRevealed);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint2", new global::System.Data.DataColumn[] {
@@ -2421,6 +2436,22 @@ namespace Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public float Potential {
+                get {
+                    try {
+                        return ((float)(this[this.tableGiocatori.PotentialColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Potential\' in table \'Giocatori\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGiocatori.PotentialColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool HiddenRevealed {
                 get {
                     try {
@@ -2841,6 +2872,18 @@ namespace Common {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetGameTableNull() {
                 this[this.tableGiocatori.GameTableColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsPotentialNull() {
+                return this.IsNull(this.tableGiocatori.PotentialColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetPotentialNull() {
+                this[this.tableGiocatori.PotentialColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

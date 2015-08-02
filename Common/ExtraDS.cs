@@ -735,7 +735,7 @@ namespace Common {
                 SetTI(dt, training);
             }
 
-            public void SetAddedSkill(ScoutsNReviews snr, ReportParser reportParser)
+            public void ParseReviewsToSpecialities(ScoutsNReviews snr, ReportParser reportParser)
             {
                 float Tec = 0; float f_Tec = 0;
                 float Tac = 0; float f_Tac = 0;
@@ -743,6 +743,7 @@ namespace Common {
                 float Lea = 0; float f_Lea = 0;
                 float Agg = 0; float f_Agg = 0;
                 float Phy = 0; float f_Phy = 0;
+                float Pot = 0; float f_Pot = 0;
 
                 // Reset professionality
                 for (int i = 0; i < ScoutNames.Length; i++)
@@ -757,6 +758,7 @@ namespace Common {
                         sr.Tactical = 5;
                         sr.Psychology = 5;
                         sr.Physical = 5;
+                        sr.Development = 5;
                     }
 
 
@@ -764,6 +766,11 @@ namespace Common {
                     {
                         Tec += float.Parse(dict["Tec"]) * (float)sr.Technical;
                         f_Tec += (float)sr.Technical;
+                    }
+                    if (dict.ContainsKey("Pot"))
+                    {
+                        Pot += float.Parse(dict["Pot"]) * (float)sr.Development;
+                        f_Pot += (float)sr.Development;
                     }
                     if (dict.ContainsKey("Tac"))
                     {
@@ -809,16 +816,17 @@ namespace Common {
                 {
                     SetProfessionalismNull();
                     SetAggressivityNull();
-                    if (f_Pro != 0) Professionalism = Pro / f_Pro * 2;
-                    if (f_Agg != 0) Aggressivity = Agg / f_Agg * 2;
+                    if (f_Pro != 0) Professionalism = (Pro / f_Pro - 1) * 5;
+                    if (f_Agg != 0) Aggressivity = (Agg / f_Agg - 1) * 5;
                 }
 
                 SetLeadershipNull();
 
-                if (f_Lea != 0) Leadership = Lea / f_Lea * 2;
-                if (f_Phy != 0) Physics = (decimal)(Phy / f_Phy) * 5;
-                if (f_Tec != 0) Technics = (decimal)(Tec / f_Tec) * 5;
-                if (f_Tac != 0) Tactics = (decimal)(Tac / f_Tac) * 5;
+                if (f_Lea != 0) Leadership = (Lea / f_Lea - 1) * 5;
+                if (f_Phy != 0) Physics = (decimal)(Phy / f_Phy - 1) * 6.66M;
+                if (f_Tec != 0) Technics = (decimal)(Tec / f_Tec - 1) * 6.66M;
+                if (f_Tac != 0) Tactics = (decimal)(Tac / f_Tac - 1) * 6.66M;
+                if (f_Pot != 0) Potential = Pot / f_Pot;
             }
 
             public void ComputeBloomingFromGiudizio(ScoutsNReviews snr)
@@ -1727,6 +1735,7 @@ namespace Common {
                     int professionalism = 0;
                     int leadership = 0;
                     int aggressivity = 0;
+                    int potential = 0;
 
                     for (; i < divs.Length; i++)
                     {
@@ -1734,7 +1743,13 @@ namespace Common {
                         {
                             string field = HTML_Parser.CleanTagsWithRest(divs[i]);
 
-                            if (field.Contains(reportParser.Dict["Keys"][(int)ReportParser.Keys.BloomStatus]))
+                            if (field.Contains(reportParser.Dict["Keys"][(int)ReportParser.Keys.Potential]))
+                            {
+                                // It's the potential
+                                string potential_string = HTML_Parser.GetFirstNumberInString(divs[i]);
+                                giudizio += "Pot=" + potential_string + ";";
+                            }
+                            else if (field.Contains(reportParser.Dict["Keys"][(int)ReportParser.Keys.BloomStatus]))
                             {
                                 // It's the bloom status
                                 string[] blooms = field.Split(":-".ToCharArray());
@@ -1792,14 +1807,13 @@ namespace Common {
                     if (blooming != 0) giudizio += "Blo=" + blooming + ";";
                     if (dev_status != 0) giudizio += "Dev=" + dev_status + ";";
                     if (speciality != 0) giudizio += "Spe=" + speciality + ";";
+                    if (aggressivity != 0) giudizio += "Agg=" + aggressivity + ";";
+                    if (professionalism != 0) giudizio += "Pro=" + professionalism + ";";
 
                     if (gRow.ScoutGiudizio != "")
                         gRow.ScoutGiudizio = gRow.ScoutGiudizio + "|" + giudizio.TrimEnd(',');
                     else
                         gRow.ScoutGiudizio = giudizio.TrimEnd(',');
-
-                    if (aggressivity != 0) giudizio += "Agg=" + aggressivity + ";";
-                    if (professionalism != 0) giudizio += "Pro=" + professionalism + ";";
                 }
             }
             else if (page.Contains("active_tab\" id=\"tabplayer_history_new"))

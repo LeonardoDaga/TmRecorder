@@ -55,7 +55,7 @@ Vote	English	Translation
 3	OK (3/5) leadership ability	OK (3/5) leadership ability
 4	Good (4/5) leadership ability	Good (4/5) leadership ability
 5	Superb (5/5) leadership ability	Superb (5/5) leadership ability
-		
+
 List	Professionalism	
 Vote	English	Translation
 1	bad (1/5) professionalism	bad (1/5) professionalism
@@ -63,7 +63,7 @@ Vote	English	Translation
 3	OK (3/5) professionalism	OK (3/5) professionalism
 4	Good (4/5) professionalism	Good (4/5) professionalism
 5	Superb (5/5) professionalism	Superb (5/5) professionalism
-		
+
 List	GK_Skill	
 Vote	English	Translation
 1	Strength	Strength
@@ -96,7 +96,9 @@ Vote	English	Translation
 14	Set Pieces	Set Pieces
 
 List	Keys	
-Vote		
+Vote	English	Translation
 1	Bloom status	Bloom status
 2	Development status	Development status
 3	Specialty	Specialty
+4	potential	potential
+5	Age	Age

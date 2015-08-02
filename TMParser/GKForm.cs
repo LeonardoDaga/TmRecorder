@@ -1411,7 +1411,7 @@ namespace TMRecorder
             ExtTMDataSet.GKHistoryDataTable table = History.GetGKHistory(playerDatarow.PlayerID);
             FillTIGraph(table);
 
-            gRow.SetAddedSkill(scoutsNReviews, History.reportParser);
+            gRow.ParseReviewsToSpecialities(scoutsNReviews, History.reportParser);
 
             FillPlayerInfo(false);
 

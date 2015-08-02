@@ -185,6 +185,7 @@
               <xs:element name="Rou" msprop:Generator_ColumnVarNameInTable="columnRou" msprop:Generator_ColumnPropNameInRow="Rou" msprop:Generator_ColumnPropNameInTable="RouColumn" msprop:Generator_UserColumnName="Rou" type="xs:decimal" default="0" minOccurs="0" />
               <xs:element name="TI" msprop:Generator_ColumnVarNameInTable="columnTI" msprop:Generator_ColumnPropNameInRow="TI" msprop:Generator_ColumnPropNameInTable="TIColumn" msprop:Generator_UserColumnName="TI" type="xs:decimal" default="0" minOccurs="0" />
               <xs:element name="Rec" msprop:Generator_ColumnVarNameInTable="columnRec" msprop:Generator_ColumnPropNameInRow="Rec" msprop:Generator_ColumnPropNameInTable="RecColumn" msprop:Generator_UserColumnName="Rec" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Hid" msdata:Caption="CStr" msprop:Generator_ColumnVarNameInTable="columnHid" msprop:Generator_ColumnPropNameInRow="Hid" msprop:Generator_ColumnPropNameInTable="HidColumn" msprop:Generator_UserColumnName="Hid" type="xs:decimal" minOccurs="0" />
               <xs:element name="CStr" msprop:Generator_ColumnVarNameInTable="columnCStr" msprop:Generator_ColumnPropNameInRow="CStr" msprop:Generator_ColumnPropNameInTable="CStrColumn" msprop:Generator_UserColumnName="CStr" type="xs:decimal" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>

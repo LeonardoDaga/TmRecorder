@@ -88,8 +88,10 @@ namespace Common
             return b;
         }
 
-        public static Color GradeColor(float grade)
+        public static Color GradeColor(float grade, float scale = 100f)
         {
+            grade = grade / scale * 100f;
+
             if (grade < 20)
                 return Color.RoyalBlue;
             else if (grade < 30)

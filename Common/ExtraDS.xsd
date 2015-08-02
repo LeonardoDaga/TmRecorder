@@ -63,6 +63,7 @@
               <xs:element name="FPn" msprop:Generator_ColumnVarNameInTable="columnFPn" msprop:Generator_ColumnPropNameInRow="FPn" msprop:Generator_ColumnPropNameInTable="FPnColumn" msprop:Generator_UserColumnName="FPn" type="xs:int" minOccurs="0" />
               <xs:element name="Speciality" msprop:Generator_ColumnVarNameInTable="columnSpeciality" msprop:Generator_ColumnPropNameInRow="Speciality" msprop:Generator_ColumnPropNameInTable="SpecialityColumn" msprop:Generator_UserColumnName="Speciality" type="xs:string" minOccurs="0" />
               <xs:element name="GameTable" msprop:Generator_ColumnVarNameInTable="columnGameTable" msprop:Generator_ColumnPropNameInRow="GameTable" msprop:Generator_ColumnPropNameInTable="GameTableColumn" msprop:Generator_UserColumnName="GameTable" type="xs:string" minOccurs="0" />
+              <xs:element name="Potential" msprop:Generator_ColumnVarNameInTable="columnPotential" msprop:Generator_ColumnPropNameInRow="Potential" msprop:Generator_ColumnPropNameInTable="PotentialColumn" msprop:Generator_UserColumnName="Potential" type="xs:float" minOccurs="0" />
               <xs:element name="HiddenRevealed" msprop:Generator_ColumnVarNameInTable="columnHiddenRevealed" msprop:Generator_ColumnPropNameInRow="HiddenRevealed" msprop:Generator_ColumnPropNameInTable="HiddenRevealedColumn" msprop:Generator_UserColumnName="HiddenRevealed" type="xs:boolean" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>

@@ -85,6 +85,9 @@ namespace TMRecorder
             Initialize();            
 
             chkNormalized_CheckedChanged(null, EventArgs.Empty);
+
+            tsbNavigationType.Text = navigateReportsToolStripMenuItem.Text;
+            tsbNavigationType.Image = navigateReportsToolStripMenuItem.Image;
         }
 
         public void Initialize(int playerID)
@@ -156,19 +159,24 @@ namespace TMRecorder
             SetTagBar(reportParser, tagsBarAgg, "Aggressivity");
             SetTagBar(reportParser, tagsBarPro, "Professionalism");
             SetTagBar(reportParser, tagsBarLea, "Charisma");
-            SetTagBar(reportParser, tagsBarPhy, "Physique");
-            SetTagBar(reportParser, tagsBarTac, "Tactics");
-            SetTagBar(reportParser, tagsBarTec, "Technics");
+            SetTagBar(reportParser, tagsBarPhy, "Physique", 0, 20);
+            SetTagBar(reportParser, tagsBarTac, "Tactics", 0, 20);
+            SetTagBar(reportParser, tagsBarTec, "Technics", 0, 20);
         }
 
-        private void SetTagBar(ReportParser reportParser, TagsBar tagsBar, string report)
+        private void SetTagBar(ReportParser reportParser, TagsBar tagsBar, string report, decimal min = 1M, decimal max = -1M)
         {
             tagsBar.Tags = new List<string>();
             if (!reportParser.Dict.ContainsKey(report))
                 return;
             int cnt = reportParser.Dict[report].Count;
-            tagsBar.Min = 1;
-            tagsBar.Max = cnt;
+            tagsBar.Min = min;
+            
+            if (max == -1M)
+                tagsBar.Max = cnt;
+            else
+                tagsBar.Max = max;
+
             foreach (KeyValuePair<int, string> key in reportParser.Dict[report])
             {
                 tagsBar.Tags.Add(key.Value);
@@ -732,23 +740,23 @@ namespace TMRecorder
             }
 
             if (!gRow.IsAggressivityNull())
-                tagsBarAgg.Value = (decimal)gRow.Aggressivity / 2M;
+                tagsBarAgg.Value = (decimal)gRow.Aggressivity / 5M + 1;
             else
                 tagsBarAgg.Value = 0;
 
             if (!gRow.IsProfessionalismNull())
-                tagsBarPro.Value = (decimal)gRow.Professionalism / 2M;
+                tagsBarPro.Value = (decimal)gRow.Professionalism / 5M + 1;
             else
                 tagsBarPro.Value = 0;
 
             if (!gRow.IsLeadershipNull())
-                tagsBarLea.Value = (decimal)gRow.Leadership / 2M;
+                tagsBarLea.Value = (decimal)gRow.Leadership / 5M + 1;
             else
                 tagsBarLea.Value = 0;
 
-            tagsBarPhy.Value = (decimal)gRow.Physics / 5M;
-            tagsBarTac.Value = (decimal)gRow.Tactics / 5M;
-            tagsBarTec.Value = (decimal)gRow.Technics / 5M;
+            tagsBarPhy.Value = (decimal)gRow.Physics;
+            tagsBarTac.Value = (decimal)gRow.Tactics;
+            tagsBarTec.Value = (decimal)gRow.Technics;
 
             string gameTable = "";
             if (!gRow.IsGameTableNull())
@@ -1920,7 +1928,7 @@ namespace TMRecorder
             NavigateReports
         }
 
-        NavigationType navigationType = NavigationType.NavigateProfiles;
+        NavigationType navigationType = NavigationType.NavigateReports;
         int lastBarPlayer = 0;
         private void ChangePlayer_Click(object sender, EventArgs e)
         {
@@ -2017,17 +2025,17 @@ namespace TMRecorder
             playerDatarow.FP = gRow.FP;
             gRow.FPn = Tm_Utility.FPToNumber(gRow.FP);
             playerDatarow.FPn = gRow.FPn;
-            FillBaseData(playerDatarow);
 
             isDirty = true;
 
             ExtTMDataSet.PlayerHistoryDataTable table = History.GetPlayerHistory(playerDatarow.PlayerID);
             // FillTIGraph(table);
 
-            gRow.SetAddedSkill(scoutsNReviews, History.reportParser);
+            gRow.ParseReviewsToSpecialities(scoutsNReviews, History.reportParser);
 
             gRow.ComputeBloomingFromGiudizio(scoutsNReviews);
 
+            FillBaseData(playerDatarow);
             FillPlayerInfo(false);
 
             SetTraining();

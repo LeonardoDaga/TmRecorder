@@ -88,6 +88,7 @@
               <xs:element name="TeamID" msprop:Generator_ColumnVarNameInTable="columnTeamID" msprop:Generator_ColumnPropNameInRow="TeamID" msprop:Generator_ColumnPropNameInTable="TeamIDColumn" msprop:Generator_UserColumnName="TeamID" type="xs:int" minOccurs="0" />
               <xs:element name="Pot" msprop:Generator_ColumnVarNameInTable="columnPot" msprop:Generator_ColumnPropNameInRow="Pot" msprop:Generator_ColumnPropNameInTable="PotColumn" msprop:Generator_UserColumnName="Pot" type="xs:decimal" minOccurs="0" />
               <xs:element name="InjPron" msprop:Generator_ColumnVarNameInTable="columnInjPron" msprop:Generator_ColumnPropNameInRow="InjPron" msprop:Generator_ColumnPropNameInTable="InjPronColumn" msprop:Generator_UserColumnName="InjPron" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Specialities" msprop:Generator_ColumnVarNameInTable="columnSpecialities" msprop:Generator_ColumnPropNameInRow="Specialities" msprop:Generator_ColumnPropNameInTable="SpecialitiesColumn" msprop:Generator_UserColumnName="Specialities" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

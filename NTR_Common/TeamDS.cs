@@ -388,7 +388,10 @@ namespace NTR_Common
                 gr.FPn = gnsRow.FPn;
                 gr.wBorn = gnsRow.wBorn;
 
-                gr.Ada = gnsRow.Ada;
+                if ((gnsRow.Ada != 0) || (egRow.IsAdaNull()))
+                    gr.Ada = gnsRow.Ada;
+                else
+                    gr.Ada = egRow.Ada;
 
                 gr.For = gnsRow.For;
                 gr.Res = gnsRow.Res;
@@ -429,11 +432,19 @@ namespace NTR_Common
                 if (!egRow.IsAggressivityNull())
                     gr.Agg = egRow.Aggressivity;
 
-                if (!egRow.IsAbilityNull())
-                    gr.Pot = (decimal)egRow.Ability;
+                if (!egRow.IsPotentialNull())
+                    gr.Pot = (decimal)egRow.Potential;
 
                 if (!egRow.IsInjPronNull())
                     gr.InjPron = egRow.InjPron;
+
+                if (!egRow.IsTrainingAbilitiesNull())
+                {
+                    gr.Specialities = "Spe=" + egRow.Speciality;
+                    gr.Specialities += ";Phy=" + egRow.Physics;
+                    gr.Specialities += ";Tac=" + egRow.Tactics;
+                    gr.Specialities += ";Tec=" + egRow.Technics;
+                }
 
                 return gr;
             }

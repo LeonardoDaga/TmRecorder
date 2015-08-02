@@ -1209,7 +1209,11 @@ namespace TMRecorder
             row.Cards = int.Parse(data["cards"]);
 
             row.Rec = decimal.Parse(data["rec"]) / 2.0M;
-            row.Squalificato = int.Parse(data["ban_points"]);
+
+            if (data["ban"][0] != 'r')
+                row.Squalificato = int.Parse(data["ban_points"]);
+            else
+                row.Squalificato = 4 + int.Parse(data["ban"].Substring(1));
 
             int retire = 0;
             int.TryParse(data["retire"], out retire);
@@ -1332,7 +1336,11 @@ namespace TMRecorder
             row.TIs = data["TIs"].Replace(",", ";");
 
             row.Rec = int.Parse(data["rec"]);
-            row.Squalificato = int.Parse(data["ban_points"]);
+
+            if (data["ban"][0] != 'r')
+                row.Squalificato = int.Parse(data["ban_points"]);
+            else
+                row.Squalificato = 4 + int.Parse(data["ban"].Substring(1));
 
             if (data["retire"] == "")
                 row.Retire = 0;

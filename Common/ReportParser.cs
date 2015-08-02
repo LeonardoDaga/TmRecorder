@@ -16,6 +16,8 @@ namespace Common
             BloomStatus = 1,
             DevStatus = 2,
             Speciality = 3,
+            Potential = 4,
+            Age = 5,
         }
 
         public ReportParser(string filename)

@@ -89,11 +89,35 @@ namespace NTR_Controls
         {
             try
             {
-                decimal Pro = 2M;
-                decimal Lea = 13M;
+                Dictionary<string, string> values;
 
-                decimal Agg = 5M;
-                decimal Inj = 18M;
+                string strValue = (string)value;
+
+                try
+                {
+                    if ((strValue == null) || (strValue == "") || (strValue == "0"))
+                        values = null;
+                    else
+                        values = HTML_Parser.String2Dictionary((string)value);
+                }
+                catch
+                {
+                    values = null;
+                }
+
+                decimal Pro = -1M;
+                decimal Lea = -1M;
+
+                decimal Agg = -1M;
+                decimal Inj = -1M;
+
+                if (values != null)
+                {
+                    Pro = decimal.Parse(values["Pro"]);
+                    Lea = decimal.Parse(values["Lea"]);
+                    Inj = decimal.Parse(values["Inj"]);
+                    Agg = decimal.Parse(values["Agg"]);
+                }
 
                 Brush fbr = null, bbr = null;
                 Pen gbr = null;
@@ -197,23 +221,23 @@ namespace NTR_Controls
             }
         }
 
-        protected override object GetFormattedValue(object value, int rowIndex, 
-                                            ref DataGridViewCellStyle cellStyle, 
-                                            TypeConverter valueTypeConverter, 
-                                            TypeConverter formattedValueTypeConverter, 
-                                            DataGridViewDataErrorContexts context)
-        {
-            string colName = this.OwningColumn.DataPropertyName;
+        //protected override object GetFormattedValue(object value, int rowIndex, 
+        //                                    ref DataGridViewCellStyle cellStyle, 
+        //                                    TypeConverter valueTypeConverter, 
+        //                                    TypeConverter formattedValueTypeConverter, 
+        //                                    DataGridViewDataErrorContexts context)
+        //{
+        //    string colName = this.OwningColumn.DataPropertyName;
 
-            NTR_HiddenSkillColumn repCol = (NTR_HiddenSkillColumn)OwningColumn;
+        //    NTR_HiddenSkillColumn repCol = (NTR_HiddenSkillColumn)OwningColumn;
 
-            DataGridViewCellStyle cs = new DataGridViewCellStyle(cellStyle);
+        //    DataGridViewCellStyle cs = new DataGridViewCellStyle(cellStyle);
 
-            if (value == null)
-                return "";
+        //    if (value == null)
+        //        return "";
 
-            return base.GetFormattedValue(value, rowIndex, ref cellStyle, valueTypeConverter, formattedValueTypeConverter, context);
-        }
+        //    return base.GetFormattedValue(value, rowIndex, ref cellStyle, valueTypeConverter, formattedValueTypeConverter, context);
+        //}
     }
 
     class NTR_HiddenSkillColumnControl : TextBox, IDataGridViewEditingControl

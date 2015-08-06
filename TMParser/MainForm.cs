@@ -1842,7 +1842,7 @@ namespace TMRecorder
                 if (!grow.IsInjPronNull()) egrow.InjPron = grow.InjPron;
                 if (!grow.IsAdaNull()) egrow.Ada = grow.Ada;
                 if (!grow.IsPotentialNull()) egrow.Potential = grow.Potential;
-
+                
                 grow.isDirty = false;
             }
 

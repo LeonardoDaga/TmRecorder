@@ -30,43 +30,9 @@ namespace TMRecorder
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle74 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -125,6 +91,19 @@ namespace TMRecorder
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle92 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle94 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle108 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle95 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle96 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle97 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle98 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle99 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle100 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle101 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle102 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle103 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle104 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle105 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle106 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle107 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle109 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle115 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle110 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -134,7 +113,6 @@ namespace TMRecorder
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle114 = new System.Windows.Forms.DataGridViewCellStyle();
             Common.Formation formation1 = new Common.Formation();
             Common.Formation formation2 = new Common.Formation();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle116 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle117 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle118 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -165,70 +143,105 @@ namespace TMRecorder
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle143 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle144 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle145 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle95 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle96 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle97 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle98 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle99 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle100 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle101 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle102 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle103 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle104 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle105 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle106 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle107 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabATeamPage = new System.Windows.Forms.TabPage();
-            this.dataGridGiocatori = new NTR_Controls.AeroDataGrid();
-            this.dataGridViewTextBoxColumn56 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn57 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn58 = new DataGridViewCustomColumns.TMR_FpColumn(this.components);
-            this.dataGridViewTextBoxColumn59 = new DataGridViewCustomColumns.TMR_NameInjurySqColumn(this.components);
-            this.dataGridViewTextBoxColumn60 = new DataGridViewCustomColumns.TMR_AgeColumn(this.components);
-            this.Nationality = new DataGridViewCustomColumns.TMR_NationColumn(this.components);
-            this.dataGridViewTextBoxColumn61 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
-            this.dataGridViewTextBoxColumn62 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn63 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
-            this.dataGridViewTextBoxColumn64 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
-            this.dataGridViewTextBoxColumn65 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
-            this.dataGridViewTextBoxColumn66 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
-            this.dataGridViewTextBoxColumn67 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
-            this.dataGridViewTextBoxColumn68 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
-            this.dataGridViewTextBoxColumn69 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
-            this.dataGridViewTextBoxColumn70 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
-            this.dataGridViewTextBoxColumn71 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
-            this.dataGridViewTextBoxColumn72 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
-            this.dataGridViewTextBoxColumn73 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
-            this.dataGridViewTextBoxColumn74 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
-            this.dataGridViewTextBoxColumn75 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
-            this.dataGridViewTextBoxColumn76 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
-            this.Rou = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CStrA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Rec = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TI = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn77 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn78 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn79 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn80 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn81 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn82 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn83 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn84 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn85 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn86 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn87 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn88 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn89 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn90 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ada = new NTR_Controls.NTR_HiddenSkillColumn(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.movePlayerToATeamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.movePlayerToBTeamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.evidenceSkillsForGainsMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.openPlayersWebPagesToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.openPlayersScoutWebPagesToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStripGK = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.evidenceSkillsForGainsMenuItemGK = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem17 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem18 = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuPlInfo = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.openPlayersWebPagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openPlayersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.changePlayerPropertiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.setPlayerBloominAgeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.setAgeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem15 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem16 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem19 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem20 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem21 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem22 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem23 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem24 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem25 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem26 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem27 = new System.Windows.Forms.ToolStripMenuItem();
+            this.setPhaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.miNotBloomedUToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mi1stYearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mi2ndYearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mi3rdYearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.miCompletelyBloomedEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.matchesMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.gotoMatchReportPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteSelectedMatchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showMatchActionsListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.parseMatchForMentalityAndAttackingStylesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.analyzeMatchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.pasteSelectedMatchFromFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.matchBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.champDSBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.champDS = new Common.ChampDS();
+            this.plyStatsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.inFormazioneDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.squalificatoDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.infortunatoDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.zedGraphControl1 = new ZedGraph.ZedGraphControl();
+            this.zedGraphControl2 = new ZedGraph.ZedGraphControl();
+            this.plyStatsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStrip3 = new System.Windows.Forms.ToolStrip();
+            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripContainer2 = new System.Windows.Forms.ToolStripContainer();
+            this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabATeamPage = new System.Windows.Forms.TabPage();
+            this.dataGridGiocatori = new NTR_Controls.AeroDataGrid();
             this.giocatoriNSkillBindingSourceB = new System.Windows.Forms.BindingSource(this.components);
             this.extTMDataSet = new Common.ExtTMDataSet();
             this.tabBTeamPage = new System.Windows.Forms.TabPage();
@@ -298,36 +311,34 @@ namespace TMRecorder
             this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contextMenuStripGK = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.evidenceSkillsForGainsMenuItemGK = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem17 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem18 = new System.Windows.Forms.ToolStripMenuItem();
             this.portieriNSkillBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabInfo = new System.Windows.Forms.TabPage();
             this.dataGridPlayersInfo = new NTR_Controls.AeroDataGrid();
-            this.contextMenuPlInfo = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.openPlayersWebPagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openPlayersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.changePlayerPropertiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.setPlayerBloominAgeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.setAgeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem15 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem16 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem19 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem20 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem21 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem22 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem23 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem24 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem25 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem26 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem27 = new System.Windows.Forms.ToolStripMenuItem();
-            this.setPhaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.miNotBloomedUToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mi1stYearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mi2ndYearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mi3rdYearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.miCompletelyBloomedEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.playerIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nomeDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nationalityDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_NationColumn(this.components);
+            this.Et‡ = new DataGridViewCustomColumns.TMR_AgeColumn(this.components);
+            this.Wage = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ASI = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BloomingPhase = new DataGridViewCustomColumns.TMR_BloomColumn(this.components);
+            this.Asi25 = new DataGridViewCustomColumns.TMR_BloomColumn(this.components);
+            this.Asi30 = new DataGridViewCustomColumns.TMR_BloomColumn(this.components);
+            this.AvRating = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AvTI = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MediaVoto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fPDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_FpColumn(this.components);
+            this.adaDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.scoutVotoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Routine = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ability = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.InjPron = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Speciality = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Professionalism = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Leadership = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Aggressivity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HiddenRevealed = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.noteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.giocatoriBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.extraDS = new Common.ExtraDS();
             this.tabInfoMain = new System.Windows.Forms.TabPage();
@@ -351,28 +362,39 @@ namespace TMRecorder
             this.btnHelp = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.dgMatches = new NTR_Controls.AeroDataGrid();
-            this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.homeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.scoreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.awayDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.matchTypeDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_MatchTypeColumn(this.components);
             this.Crowd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.reportDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.YourMentality = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.YourAttackingStyle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OppsMentality = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OppsAttackingStyle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.matchesMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.gotoMatchReportPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteSelectedMatchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.showMatchActionsListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.parseMatchForMentalityAndAttackingStylesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.analyzeMatchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.pasteSelectedMatchFromFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.matchBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.champDSBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.champDS = new Common.ChampDS();
+            this.matchIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.homeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.awayDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.scoreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.matchTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.oppsClubNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.oppsClubIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.yourFormationDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.oppsFormationDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.crowdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stadiumDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.initDesciptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.yourStatsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.oppsStatsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.reportDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.isHomeDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.cardsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isReservesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.analyzedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.yourNickDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.oppsNickDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.yourMentalityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.yourAttackingStyleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.oppsMentalityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.oppsAttackingStyleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pitchDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.weatherDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -443,24 +465,6 @@ namespace TMRecorder
             this.tsbProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.tsbProgressText = new System.Windows.Forms.ToolStripLabel();
             this.tbTxtAddress = new System.Windows.Forms.ToolStripTextBox();
-            this.tsBrowsePlayers = new System.Windows.Forms.ToolStrip();
-            this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
-            this.tsbPrevPlayer = new System.Windows.Forms.ToolStripButton();
-            this.tsbNextPlayer = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabel9 = new System.Windows.Forms.ToolStripLabel();
-            this.tsbPlayers = new System.Windows.Forms.ToolStripDropDownButton();
-            this.gKToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dDefendersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dMDefenderMidfieldersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mMidfieldersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.oMOffenderMidfieldersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fForwardsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsbNumberOfReviews = new System.Windows.Forms.ToolStripLabel();
-            this.tsbNavigationType = new System.Windows.Forms.ToolStripDropDownButton();
-            this.navigateProfilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.navigateReportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsBrowseMatches = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel7 = new System.Windows.Forms.ToolStripLabel();
             this.btnPrevMatch = new System.Windows.Forms.ToolStripButton();
@@ -479,26 +483,24 @@ namespace TMRecorder
             this.tsbMatchNavigationType = new System.Windows.Forms.ToolStripDropDownButton();
             this.tsbNavigateMainTeamMatches = new System.Windows.Forms.ToolStripMenuItem();
             this.tsbNavigateReservesMatches = new System.Windows.Forms.ToolStripMenuItem();
-            this.plyStatsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.PlayerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Num = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DR = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DL = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DMC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DMR = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DML = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MR = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ML = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OMC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OMR = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OML = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OSi = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
+            this.tsBrowsePlayers = new System.Windows.Forms.ToolStrip();
+            this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
+            this.tsbPrevPlayer = new System.Windows.Forms.ToolStripButton();
+            this.tsbNextPlayer = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel9 = new System.Windows.Forms.ToolStripLabel();
+            this.tsbPlayers = new System.Windows.Forms.ToolStripDropDownButton();
+            this.gKToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dDefendersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dMDefenderMidfieldersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mMidfieldersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.oMOffenderMidfieldersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fForwardsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbNumberOfReviews = new System.Windows.Forms.ToolStripLabel();
+            this.tsbNavigationType = new System.Windows.Forms.ToolStripDropDownButton();
+            this.navigateProfilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.navigateReportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -563,9 +565,28 @@ namespace TMRecorder
             this.toolStripMenuItem13 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsbShortListTool = new System.Windows.Forms.ToolStripButton();
             this.tsbFacebook = new System.Windows.Forms.ToolStripButton();
-            this.inFormazioneDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.squalificatoDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.infortunatoDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.giocatoriBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.db_TrophyDataSet = new Common.Db_TrophyDataSet();
+            this.portieriBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.actionAnalysis = new Common.ActionAnalysis();
+            this.giocatoriNSkillBindingSourceA = new System.Windows.Forms.BindingSource(this.components);
+            this.PlayerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Num = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DL = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DMC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DMR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DML = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ML = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OMC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OMR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OML = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OSi = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.calDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tirDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.finDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -583,63 +604,75 @@ namespace TMRecorder
             this.adaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.et‡DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nomeDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
-            this.zedGraphControl1 = new ZedGraph.ZedGraphControl();
-            this.zedGraphControl2 = new ZedGraph.ZedGraphControl();
-            this.plyStatsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.Age = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.giocatoriBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.db_TrophyDataSet = new Common.Db_TrophyDataSet();
-            this.portieriBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.actionAnalysis = new Common.ActionAnalysis();
-            this.giocatoriNSkillBindingSourceA = new System.Windows.Forms.BindingSource(this.components);
-            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStrip3 = new System.Windows.Forms.ToolStrip();
-            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripContainer2 = new System.Windows.Forms.ToolStripContainer();
-            this.playerIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nomeDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nationalityDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_NationColumn(this.components);
-            this.Et‡ = new DataGridViewCustomColumns.TMR_AgeColumn(this.components);
-            this.Wage = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ASI = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BloomingPhase = new DataGridViewCustomColumns.TMR_BloomColumn(this.components);
-            this.Asi25 = new DataGridViewCustomColumns.TMR_BloomColumn(this.components);
-            this.Asi30 = new DataGridViewCustomColumns.TMR_BloomColumn(this.components);
-            this.AvRating = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AvTI = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MediaVoto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fPDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_FpColumn(this.components);
-            this.adaDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.scoutVotoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Routine = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ability = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.InjPron = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Speciality = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Professionalism = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Leadership = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Aggressivity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Hr = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.noteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn56 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn57 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn58 = new DataGridViewCustomColumns.TMR_FpColumn(this.components);
+            this.dataGridViewTextBoxColumn59 = new DataGridViewCustomColumns.TMR_NameInjurySqColumn(this.components);
+            this.dataGridViewTextBoxColumn60 = new DataGridViewCustomColumns.TMR_AgeColumn(this.components);
+            this.Nationality = new DataGridViewCustomColumns.TMR_NationColumn(this.components);
+            this.dataGridViewTextBoxColumn61 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
+            this.dataGridViewTextBoxColumn62 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn63 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
+            this.dataGridViewTextBoxColumn64 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
+            this.dataGridViewTextBoxColumn65 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
+            this.dataGridViewTextBoxColumn66 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
+            this.dataGridViewTextBoxColumn67 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
+            this.dataGridViewTextBoxColumn68 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
+            this.dataGridViewTextBoxColumn69 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
+            this.dataGridViewTextBoxColumn70 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
+            this.dataGridViewTextBoxColumn71 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
+            this.dataGridViewTextBoxColumn72 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
+            this.dataGridViewTextBoxColumn73 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
+            this.dataGridViewTextBoxColumn74 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
+            this.dataGridViewTextBoxColumn75 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
+            this.dataGridViewTextBoxColumn76 = new DataGridViewCustomColumns.TMR_NumDecColumn(this.components);
+            this.Rou = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CStrA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Rec = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TI = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn77 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn78 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn79 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn80 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn81 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn82 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn83 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn84 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn85 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn86 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn87 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn88 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn89 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn90 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HidSk = new NTR_Controls.NTR_HiddenSkillColumn(this.components);
+            this.contextMenuStrip1.SuspendLayout();
+            this.contextMenuStripGK.SuspendLayout();
+            this.contextMenuPlInfo.SuspendLayout();
+            this.matchesMenuStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.matchBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.champDSBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.champDS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.plyStatsBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.plyStatsBindingSource)).BeginInit();
+            this.toolStrip3.SuspendLayout();
+            this.toolStripContainer2.SuspendLayout();
+            this.toolStripContainer1.ContentPanel.SuspendLayout();
+            this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
+            this.toolStripContainer1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabATeamPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridGiocatori)).BeginInit();
-            this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.giocatoriNSkillBindingSourceB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.extTMDataSet)).BeginInit();
             this.tabBTeamPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridGiocatoriB)).BeginInit();
             this.tabGK.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridPortieri)).BeginInit();
-            this.contextMenuStripGK.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.portieriNSkillBindingSource)).BeginInit();
             this.tabInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridPlayersInfo)).BeginInit();
-            this.contextMenuPlInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.giocatoriBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.extraDS)).BeginInit();
             this.tabInfoMain.SuspendLayout();
@@ -650,10 +683,6 @@ namespace TMRecorder
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgMatches)).BeginInit();
-            this.matchesMenuStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.matchBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.champDSBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.champDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -674,26 +703,568 @@ namespace TMRecorder
             this.toolStripContainer3.SuspendLayout();
             this.tsBrowserImport.SuspendLayout();
             this.tsBrowserMain.SuspendLayout();
-            this.tsBrowsePlayers.SuspendLayout();
             this.tsBrowseMatches.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.plyStatsBindingSource1)).BeginInit();
-            this.toolStripContainer1.ContentPanel.SuspendLayout();
-            this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
-            this.toolStripContainer1.SuspendLayout();
+            this.tsBrowsePlayers.SuspendLayout();
             this.toolStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.plyStatsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.giocatoriBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.db_TrophyDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.portieriBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.actionAnalysis)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.giocatoriNSkillBindingSourceA)).BeginInit();
-            this.toolStrip3.SuspendLayout();
-            this.toolStripContainer2.SuspendLayout();
             this.SuspendLayout();
             // 
             // openFileDialog
             // 
             this.openFileDialog.FileName = "openFileDialog";
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.movePlayerToATeamToolStripMenuItem,
+            this.movePlayerToBTeamToolStripMenuItem,
+            this.evidenceSkillsForGainsMenuItem2,
+            this.openPlayersWebPagesToolStripMenuItem2,
+            this.openPlayersScoutWebPagesToolStripMenuItem2});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(215, 114);
+            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
+            // 
+            // movePlayerToATeamToolStripMenuItem
+            // 
+            this.movePlayerToATeamToolStripMenuItem.Name = "movePlayerToATeamToolStripMenuItem";
+            this.movePlayerToATeamToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.movePlayerToATeamToolStripMenuItem.Text = "Move Player To A Team";
+            this.movePlayerToATeamToolStripMenuItem.Click += new System.EventHandler(this.movePlayerToATeamToolStripMenuItem_Click);
+            // 
+            // movePlayerToBTeamToolStripMenuItem
+            // 
+            this.movePlayerToBTeamToolStripMenuItem.Name = "movePlayerToBTeamToolStripMenuItem";
+            this.movePlayerToBTeamToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.movePlayerToBTeamToolStripMenuItem.Text = "Move Player To B Team";
+            this.movePlayerToBTeamToolStripMenuItem.Click += new System.EventHandler(this.movePlayerToBTeamToolStripMenuItem_Click);
+            // 
+            // evidenceSkillsForGainsMenuItem2
+            // 
+            this.evidenceSkillsForGainsMenuItem2.Name = "evidenceSkillsForGainsMenuItem2";
+            this.evidenceSkillsForGainsMenuItem2.Size = new System.Drawing.Size(214, 22);
+            this.evidenceSkillsForGainsMenuItem2.Text = "Evidence Skills for Gains";
+            this.evidenceSkillsForGainsMenuItem2.Click += new System.EventHandler(this.evidenceSkillsForGainsToolStripMenuItem_Click);
+            // 
+            // openPlayersWebPagesToolStripMenuItem2
+            // 
+            this.openPlayersWebPagesToolStripMenuItem2.Name = "openPlayersWebPagesToolStripMenuItem2";
+            this.openPlayersWebPagesToolStripMenuItem2.Size = new System.Drawing.Size(214, 22);
+            this.openPlayersWebPagesToolStripMenuItem2.Text = "Open Players Profile Pages";
+            this.openPlayersWebPagesToolStripMenuItem2.Click += new System.EventHandler(this.openPlayersWebPagesToolStripMenuItem_Click);
+            // 
+            // openPlayersScoutWebPagesToolStripMenuItem2
+            // 
+            this.openPlayersScoutWebPagesToolStripMenuItem2.Name = "openPlayersScoutWebPagesToolStripMenuItem2";
+            this.openPlayersScoutWebPagesToolStripMenuItem2.Size = new System.Drawing.Size(214, 22);
+            this.openPlayersScoutWebPagesToolStripMenuItem2.Text = "Open Players Scout Pages";
+            this.openPlayersScoutWebPagesToolStripMenuItem2.Click += new System.EventHandler(this.openPlayersToolStripMenuItem_Click);
+            // 
+            // contextMenuStripGK
+            // 
+            this.contextMenuStripGK.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.evidenceSkillsForGainsMenuItemGK,
+            this.toolStripMenuItem17,
+            this.toolStripMenuItem18});
+            this.contextMenuStripGK.Name = "contextMenuStrip1";
+            this.contextMenuStripGK.Size = new System.Drawing.Size(215, 70);
+            // 
+            // evidenceSkillsForGainsMenuItemGK
+            // 
+            this.evidenceSkillsForGainsMenuItemGK.Name = "evidenceSkillsForGainsMenuItemGK";
+            this.evidenceSkillsForGainsMenuItemGK.Size = new System.Drawing.Size(214, 22);
+            this.evidenceSkillsForGainsMenuItemGK.Text = "Evidence Skills for Gains";
+            this.evidenceSkillsForGainsMenuItemGK.Click += new System.EventHandler(this.evidenceSkillsForGainsToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem17
+            // 
+            this.toolStripMenuItem17.Name = "toolStripMenuItem17";
+            this.toolStripMenuItem17.Size = new System.Drawing.Size(214, 22);
+            this.toolStripMenuItem17.Text = "Open Players Profile Pages";
+            this.toolStripMenuItem17.Click += new System.EventHandler(this.openPlayersWebPagesToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem18
+            // 
+            this.toolStripMenuItem18.Name = "toolStripMenuItem18";
+            this.toolStripMenuItem18.Size = new System.Drawing.Size(214, 22);
+            this.toolStripMenuItem18.Text = "Open Players Scout Pages";
+            this.toolStripMenuItem18.Click += new System.EventHandler(this.openPlayersToolStripMenuItem_Click);
+            // 
+            // contextMenuPlInfo
+            // 
+            this.contextMenuPlInfo.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openPlayersWebPagesToolStripMenuItem,
+            this.openPlayersToolStripMenuItem,
+            this.changePlayerPropertiesToolStripMenuItem,
+            this.setPlayerBloominAgeToolStripMenuItem});
+            this.contextMenuPlInfo.Name = "contextMenuPlInfo";
+            this.contextMenuPlInfo.Size = new System.Drawing.Size(215, 92);
+            this.contextMenuPlInfo.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuPlInfo_Opening);
+            // 
+            // openPlayersWebPagesToolStripMenuItem
+            // 
+            this.openPlayersWebPagesToolStripMenuItem.Name = "openPlayersWebPagesToolStripMenuItem";
+            this.openPlayersWebPagesToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.openPlayersWebPagesToolStripMenuItem.Text = "Open Players Profile Pages";
+            this.openPlayersWebPagesToolStripMenuItem.Click += new System.EventHandler(this.openPlayersWebPagesToolStripMenuItem_Click);
+            // 
+            // openPlayersToolStripMenuItem
+            // 
+            this.openPlayersToolStripMenuItem.Name = "openPlayersToolStripMenuItem";
+            this.openPlayersToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.openPlayersToolStripMenuItem.Text = "Open Players Scout Pages";
+            this.openPlayersToolStripMenuItem.Click += new System.EventHandler(this.openPlayersToolStripMenuItem_Click);
+            // 
+            // changePlayerPropertiesToolStripMenuItem
+            // 
+            this.changePlayerPropertiesToolStripMenuItem.Name = "changePlayerPropertiesToolStripMenuItem";
+            this.changePlayerPropertiesToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.changePlayerPropertiesToolStripMenuItem.Text = "Change Player Properties";
+            this.changePlayerPropertiesToolStripMenuItem.Click += new System.EventHandler(this.changePlayerPropertiesToolStripMenuItem_Click);
+            // 
+            // setPlayerBloominAgeToolStripMenuItem
+            // 
+            this.setPlayerBloominAgeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.setAgeToolStripMenuItem,
+            this.setPhaseToolStripMenuItem});
+            this.setPlayerBloominAgeToolStripMenuItem.Name = "setPlayerBloominAgeToolStripMenuItem";
+            this.setPlayerBloominAgeToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.setPlayerBloominAgeToolStripMenuItem.Text = "Set Player\'s Bloomin\'";
+            // 
+            // setAgeToolStripMenuItem
+            // 
+            this.setAgeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem15,
+            this.toolStripMenuItem16,
+            this.toolStripMenuItem19,
+            this.toolStripMenuItem20,
+            this.toolStripMenuItem21,
+            this.toolStripMenuItem22,
+            this.toolStripMenuItem23,
+            this.toolStripMenuItem24,
+            this.toolStripMenuItem25,
+            this.toolStripMenuItem26,
+            this.toolStripMenuItem27});
+            this.setAgeToolStripMenuItem.Name = "setAgeToolStripMenuItem";
+            this.setAgeToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.setAgeToolStripMenuItem.Text = "Set Age";
+            // 
+            // toolStripMenuItem15
+            // 
+            this.toolStripMenuItem15.Name = "toolStripMenuItem15";
+            this.toolStripMenuItem15.Size = new System.Drawing.Size(86, 22);
+            this.toolStripMenuItem15.Text = "16";
+            this.toolStripMenuItem15.Click += new System.EventHandler(this.toolStripMenu_SetBloomingAge_Click);
+            // 
+            // toolStripMenuItem16
+            // 
+            this.toolStripMenuItem16.Name = "toolStripMenuItem16";
+            this.toolStripMenuItem16.Size = new System.Drawing.Size(86, 22);
+            this.toolStripMenuItem16.Text = "17";
+            this.toolStripMenuItem16.Click += new System.EventHandler(this.toolStripMenu_SetBloomingAge_Click);
+            // 
+            // toolStripMenuItem19
+            // 
+            this.toolStripMenuItem19.Name = "toolStripMenuItem19";
+            this.toolStripMenuItem19.Size = new System.Drawing.Size(86, 22);
+            this.toolStripMenuItem19.Text = "18";
+            this.toolStripMenuItem19.Click += new System.EventHandler(this.toolStripMenu_SetBloomingAge_Click);
+            // 
+            // toolStripMenuItem20
+            // 
+            this.toolStripMenuItem20.Name = "toolStripMenuItem20";
+            this.toolStripMenuItem20.Size = new System.Drawing.Size(86, 22);
+            this.toolStripMenuItem20.Text = "19";
+            this.toolStripMenuItem20.Click += new System.EventHandler(this.toolStripMenu_SetBloomingAge_Click);
+            // 
+            // toolStripMenuItem21
+            // 
+            this.toolStripMenuItem21.Name = "toolStripMenuItem21";
+            this.toolStripMenuItem21.Size = new System.Drawing.Size(86, 22);
+            this.toolStripMenuItem21.Text = "20";
+            this.toolStripMenuItem21.Click += new System.EventHandler(this.toolStripMenu_SetBloomingAge_Click);
+            // 
+            // toolStripMenuItem22
+            // 
+            this.toolStripMenuItem22.Name = "toolStripMenuItem22";
+            this.toolStripMenuItem22.Size = new System.Drawing.Size(86, 22);
+            this.toolStripMenuItem22.Text = "21";
+            this.toolStripMenuItem22.Click += new System.EventHandler(this.toolStripMenu_SetBloomingAge_Click);
+            // 
+            // toolStripMenuItem23
+            // 
+            this.toolStripMenuItem23.Name = "toolStripMenuItem23";
+            this.toolStripMenuItem23.Size = new System.Drawing.Size(86, 22);
+            this.toolStripMenuItem23.Text = "22";
+            this.toolStripMenuItem23.Click += new System.EventHandler(this.toolStripMenu_SetBloomingAge_Click);
+            // 
+            // toolStripMenuItem24
+            // 
+            this.toolStripMenuItem24.Name = "toolStripMenuItem24";
+            this.toolStripMenuItem24.Size = new System.Drawing.Size(86, 22);
+            this.toolStripMenuItem24.Text = "23";
+            this.toolStripMenuItem24.Click += new System.EventHandler(this.toolStripMenu_SetBloomingAge_Click);
+            // 
+            // toolStripMenuItem25
+            // 
+            this.toolStripMenuItem25.Name = "toolStripMenuItem25";
+            this.toolStripMenuItem25.Size = new System.Drawing.Size(86, 22);
+            this.toolStripMenuItem25.Text = "24";
+            this.toolStripMenuItem25.Click += new System.EventHandler(this.toolStripMenu_SetBloomingAge_Click);
+            // 
+            // toolStripMenuItem26
+            // 
+            this.toolStripMenuItem26.Name = "toolStripMenuItem26";
+            this.toolStripMenuItem26.Size = new System.Drawing.Size(86, 22);
+            this.toolStripMenuItem26.Text = "25";
+            this.toolStripMenuItem26.Click += new System.EventHandler(this.toolStripMenu_SetBloomingAge_Click);
+            // 
+            // toolStripMenuItem27
+            // 
+            this.toolStripMenuItem27.Name = "toolStripMenuItem27";
+            this.toolStripMenuItem27.Size = new System.Drawing.Size(86, 22);
+            this.toolStripMenuItem27.Text = "26";
+            this.toolStripMenuItem27.Click += new System.EventHandler(this.toolStripMenu_SetBloomingAge_Click);
+            // 
+            // setPhaseToolStripMenuItem
+            // 
+            this.setPhaseToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.miNotBloomedUToolStripMenuItem,
+            this.mi1stYearToolStripMenuItem,
+            this.mi2ndYearToolStripMenuItem,
+            this.mi3rdYearToolStripMenuItem,
+            this.miCompletelyBloomedEToolStripMenuItem});
+            this.setPhaseToolStripMenuItem.Name = "setPhaseToolStripMenuItem";
+            this.setPhaseToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.setPhaseToolStripMenuItem.Text = "Set Phase";
+            // 
+            // miNotBloomedUToolStripMenuItem
+            // 
+            this.miNotBloomedUToolStripMenuItem.Name = "miNotBloomedUToolStripMenuItem";
+            this.miNotBloomedUToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.miNotBloomedUToolStripMenuItem.Text = "Not Bloomed (U)";
+            this.miNotBloomedUToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenu_SetBloomingPhase_Click);
+            // 
+            // mi1stYearToolStripMenuItem
+            // 
+            this.mi1stYearToolStripMenuItem.Name = "mi1stYearToolStripMenuItem";
+            this.mi1stYearToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.mi1stYearToolStripMenuItem.Text = "1st Year (1)";
+            this.mi1stYearToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenu_SetBloomingPhase_Click);
+            // 
+            // mi2ndYearToolStripMenuItem
+            // 
+            this.mi2ndYearToolStripMenuItem.Name = "mi2ndYearToolStripMenuItem";
+            this.mi2ndYearToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.mi2ndYearToolStripMenuItem.Text = "2nd Year (2)";
+            this.mi2ndYearToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenu_SetBloomingPhase_Click);
+            // 
+            // mi3rdYearToolStripMenuItem
+            // 
+            this.mi3rdYearToolStripMenuItem.Name = "mi3rdYearToolStripMenuItem";
+            this.mi3rdYearToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.mi3rdYearToolStripMenuItem.Text = "3rd Year (3)";
+            this.mi3rdYearToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenu_SetBloomingPhase_Click);
+            // 
+            // miCompletelyBloomedEToolStripMenuItem
+            // 
+            this.miCompletelyBloomedEToolStripMenuItem.Name = "miCompletelyBloomedEToolStripMenuItem";
+            this.miCompletelyBloomedEToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.miCompletelyBloomedEToolStripMenuItem.Text = "Completely Bloomed (E)";
+            this.miCompletelyBloomedEToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenu_SetBloomingPhase_Click);
+            // 
+            // matchesMenuStrip
+            // 
+            this.matchesMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.gotoMatchReportPageToolStripMenuItem,
+            this.deleteSelectedMatchToolStripMenuItem,
+            this.showMatchActionsListToolStripMenuItem,
+            this.parseMatchForMentalityAndAttackingStylesToolStripMenuItem,
+            this.analyzeMatchToolStripMenuItem,
+            this.toolStripSeparator4,
+            this.pasteSelectedMatchFromFileToolStripMenuItem});
+            this.matchesMenuStrip.Name = "matchesMenuStrip";
+            this.matchesMenuStrip.Size = new System.Drawing.Size(326, 142);
+            // 
+            // gotoMatchReportPageToolStripMenuItem
+            // 
+            this.gotoMatchReportPageToolStripMenuItem.Name = "gotoMatchReportPageToolStripMenuItem";
+            this.gotoMatchReportPageToolStripMenuItem.Size = new System.Drawing.Size(325, 22);
+            this.gotoMatchReportPageToolStripMenuItem.Text = "Open Match Report page in the Trophy Browser";
+            this.gotoMatchReportPageToolStripMenuItem.Click += new System.EventHandler(this.gotoMatchReportPageToolStripMenuItem_Click);
+            // 
+            // deleteSelectedMatchToolStripMenuItem
+            // 
+            this.deleteSelectedMatchToolStripMenuItem.Name = "deleteSelectedMatchToolStripMenuItem";
+            this.deleteSelectedMatchToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
+            this.deleteSelectedMatchToolStripMenuItem.Size = new System.Drawing.Size(325, 22);
+            this.deleteSelectedMatchToolStripMenuItem.Text = "Delete Selected Match";
+            this.deleteSelectedMatchToolStripMenuItem.Click += new System.EventHandler(this.deleteSelectedMatchToolStripMenuItem_Click);
+            // 
+            // showMatchActionsListToolStripMenuItem
+            // 
+            this.showMatchActionsListToolStripMenuItem.Name = "showMatchActionsListToolStripMenuItem";
+            this.showMatchActionsListToolStripMenuItem.Size = new System.Drawing.Size(325, 22);
+            this.showMatchActionsListToolStripMenuItem.Text = "Show Match Actions List";
+            this.showMatchActionsListToolStripMenuItem.Click += new System.EventHandler(this.showMatchActionsListToolStripMenuItem_Click);
+            // 
+            // parseMatchForMentalityAndAttackingStylesToolStripMenuItem
+            // 
+            this.parseMatchForMentalityAndAttackingStylesToolStripMenuItem.Name = "parseMatchForMentalityAndAttackingStylesToolStripMenuItem";
+            this.parseMatchForMentalityAndAttackingStylesToolStripMenuItem.Size = new System.Drawing.Size(325, 22);
+            this.parseMatchForMentalityAndAttackingStylesToolStripMenuItem.Text = "Parse match for Mentality and Attacking styles";
+            this.parseMatchForMentalityAndAttackingStylesToolStripMenuItem.Click += new System.EventHandler(this.parseMatchForMentalityAndAttackingStylesToolStripMenuItem_Click);
+            // 
+            // analyzeMatchToolStripMenuItem
+            // 
+            this.analyzeMatchToolStripMenuItem.Name = "analyzeMatchToolStripMenuItem";
+            this.analyzeMatchToolStripMenuItem.Size = new System.Drawing.Size(325, 22);
+            this.analyzeMatchToolStripMenuItem.Text = "Analyze Match";
+            this.analyzeMatchToolStripMenuItem.Click += new System.EventHandler(this.analyzeMatchToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(322, 6);
+            // 
+            // pasteSelectedMatchFromFileToolStripMenuItem
+            // 
+            this.pasteSelectedMatchFromFileToolStripMenuItem.Name = "pasteSelectedMatchFromFileToolStripMenuItem";
+            this.pasteSelectedMatchFromFileToolStripMenuItem.Size = new System.Drawing.Size(325, 22);
+            this.pasteSelectedMatchFromFileToolStripMenuItem.Text = "Paste Selected Match from File";
+            this.pasteSelectedMatchFromFileToolStripMenuItem.Click += new System.EventHandler(this.caricaFileSquadraToolStripMenuItem_Click);
+            // 
+            // matchBindingSource
+            // 
+            this.matchBindingSource.DataMember = "Match";
+            this.matchBindingSource.DataSource = this.champDSBindingSource;
+            this.matchBindingSource.Sort = "Date";
+            // 
+            // champDSBindingSource
+            // 
+            this.champDSBindingSource.DataSource = this.champDS;
+            this.champDSBindingSource.Position = 0;
+            // 
+            // champDS
+            // 
+            this.champDS.DataSetName = "ChampDS";
+            this.champDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // plyStatsBindingSource1
+            // 
+            this.plyStatsBindingSource1.DataMember = "PlyStats";
+            this.plyStatsBindingSource1.DataSource = this.champDSBindingSource;
+            // 
+            // inFormazioneDataGridViewCheckBoxColumn
+            // 
+            this.inFormazioneDataGridViewCheckBoxColumn.DataPropertyName = "InFormazione";
+            this.inFormazioneDataGridViewCheckBoxColumn.HeaderText = "Ply";
+            this.inFormazioneDataGridViewCheckBoxColumn.Name = "inFormazioneDataGridViewCheckBoxColumn";
+            this.inFormazioneDataGridViewCheckBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.inFormazioneDataGridViewCheckBoxColumn.Width = 25;
+            // 
+            // squalificatoDataGridViewCheckBoxColumn
+            // 
+            this.squalificatoDataGridViewCheckBoxColumn.DataPropertyName = "Squalificato";
+            this.squalificatoDataGridViewCheckBoxColumn.HeaderText = "Sql";
+            this.squalificatoDataGridViewCheckBoxColumn.Name = "squalificatoDataGridViewCheckBoxColumn";
+            this.squalificatoDataGridViewCheckBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.squalificatoDataGridViewCheckBoxColumn.Width = 25;
+            // 
+            // infortunatoDataGridViewCheckBoxColumn
+            // 
+            this.infortunatoDataGridViewCheckBoxColumn.DataPropertyName = "Infortunato";
+            this.infortunatoDataGridViewCheckBoxColumn.HeaderText = "Inj";
+            this.infortunatoDataGridViewCheckBoxColumn.Name = "infortunatoDataGridViewCheckBoxColumn";
+            this.infortunatoDataGridViewCheckBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.infortunatoDataGridViewCheckBoxColumn.Width = 25;
+            // 
+            // zedGraphControl1
+            // 
+            this.zedGraphControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.zedGraphControl1.EditButtons = System.Windows.Forms.MouseButtons.Left;
+            this.zedGraphControl1.EditModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.None)));
+            this.zedGraphControl1.ForeColor = System.Drawing.Color.White;
+            this.zedGraphControl1.IsAutoScrollRange = false;
+            this.zedGraphControl1.IsEnableHEdit = false;
+            this.zedGraphControl1.IsEnableHPan = true;
+            this.zedGraphControl1.IsEnableHZoom = true;
+            this.zedGraphControl1.IsEnableVEdit = false;
+            this.zedGraphControl1.IsEnableVPan = true;
+            this.zedGraphControl1.IsEnableVZoom = true;
+            this.zedGraphControl1.IsPrintFillPage = true;
+            this.zedGraphControl1.IsPrintKeepAspectRatio = true;
+            this.zedGraphControl1.IsScrollY2 = false;
+            this.zedGraphControl1.IsShowContextMenu = true;
+            this.zedGraphControl1.IsShowCopyMessage = true;
+            this.zedGraphControl1.IsShowCursorValues = false;
+            this.zedGraphControl1.IsShowHScrollBar = false;
+            this.zedGraphControl1.IsShowPointValues = false;
+            this.zedGraphControl1.IsShowVScrollBar = false;
+            this.zedGraphControl1.IsSynchronizeXAxes = false;
+            this.zedGraphControl1.IsSynchronizeYAxes = false;
+            this.zedGraphControl1.IsZoomOnMouseCenter = false;
+            this.zedGraphControl1.LinkButtons = System.Windows.Forms.MouseButtons.Left;
+            this.zedGraphControl1.LinkModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.None)));
+            this.zedGraphControl1.Location = new System.Drawing.Point(0, 0);
+            this.zedGraphControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.zedGraphControl1.Name = "zedGraphControl1";
+            this.zedGraphControl1.PanButtons = System.Windows.Forms.MouseButtons.Left;
+            this.zedGraphControl1.PanButtons2 = System.Windows.Forms.MouseButtons.Middle;
+            this.zedGraphControl1.PanModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.None)));
+            this.zedGraphControl1.PanModifierKeys2 = System.Windows.Forms.Keys.None;
+            this.zedGraphControl1.PointDateFormat = "g";
+            this.zedGraphControl1.PointValueFormat = "G";
+            this.zedGraphControl1.ScrollMaxX = 0D;
+            this.zedGraphControl1.ScrollMaxY = 0D;
+            this.zedGraphControl1.ScrollMaxY2 = 0D;
+            this.zedGraphControl1.ScrollMinX = 0D;
+            this.zedGraphControl1.ScrollMinY = 0D;
+            this.zedGraphControl1.ScrollMinY2 = 0D;
+            this.zedGraphControl1.Size = new System.Drawing.Size(538, 334);
+            this.zedGraphControl1.TabIndex = 0;
+            this.zedGraphControl1.ZoomButtons = System.Windows.Forms.MouseButtons.Left;
+            this.zedGraphControl1.ZoomButtons2 = System.Windows.Forms.MouseButtons.None;
+            this.zedGraphControl1.ZoomModifierKeys = System.Windows.Forms.Keys.None;
+            this.zedGraphControl1.ZoomModifierKeys2 = System.Windows.Forms.Keys.None;
+            this.zedGraphControl1.ZoomStepFraction = 0.1D;
+            // 
+            // zedGraphControl2
+            // 
+            this.zedGraphControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.zedGraphControl2.EditButtons = System.Windows.Forms.MouseButtons.Left;
+            this.zedGraphControl2.EditModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.None)));
+            this.zedGraphControl2.IsAutoScrollRange = false;
+            this.zedGraphControl2.IsEnableHEdit = false;
+            this.zedGraphControl2.IsEnableHPan = true;
+            this.zedGraphControl2.IsEnableHZoom = true;
+            this.zedGraphControl2.IsEnableVEdit = false;
+            this.zedGraphControl2.IsEnableVPan = true;
+            this.zedGraphControl2.IsEnableVZoom = true;
+            this.zedGraphControl2.IsPrintFillPage = true;
+            this.zedGraphControl2.IsPrintKeepAspectRatio = true;
+            this.zedGraphControl2.IsScrollY2 = false;
+            this.zedGraphControl2.IsShowContextMenu = true;
+            this.zedGraphControl2.IsShowCopyMessage = true;
+            this.zedGraphControl2.IsShowCursorValues = false;
+            this.zedGraphControl2.IsShowHScrollBar = false;
+            this.zedGraphControl2.IsShowPointValues = false;
+            this.zedGraphControl2.IsShowVScrollBar = false;
+            this.zedGraphControl2.IsSynchronizeXAxes = false;
+            this.zedGraphControl2.IsSynchronizeYAxes = false;
+            this.zedGraphControl2.IsZoomOnMouseCenter = false;
+            this.zedGraphControl2.LinkButtons = System.Windows.Forms.MouseButtons.Left;
+            this.zedGraphControl2.LinkModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.None)));
+            this.zedGraphControl2.Location = new System.Drawing.Point(0, 0);
+            this.zedGraphControl2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.zedGraphControl2.Name = "zedGraphControl2";
+            this.zedGraphControl2.PanButtons = System.Windows.Forms.MouseButtons.Left;
+            this.zedGraphControl2.PanButtons2 = System.Windows.Forms.MouseButtons.Middle;
+            this.zedGraphControl2.PanModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.None)));
+            this.zedGraphControl2.PanModifierKeys2 = System.Windows.Forms.Keys.None;
+            this.zedGraphControl2.PointDateFormat = "g";
+            this.zedGraphControl2.PointValueFormat = "G";
+            this.zedGraphControl2.ScrollMaxX = 0D;
+            this.zedGraphControl2.ScrollMaxY = 0D;
+            this.zedGraphControl2.ScrollMaxY2 = 0D;
+            this.zedGraphControl2.ScrollMinX = 0D;
+            this.zedGraphControl2.ScrollMinY = 0D;
+            this.zedGraphControl2.ScrollMinY2 = 0D;
+            this.zedGraphControl2.Size = new System.Drawing.Size(553, 334);
+            this.zedGraphControl2.TabIndex = 1;
+            this.zedGraphControl2.ZoomButtons = System.Windows.Forms.MouseButtons.Left;
+            this.zedGraphControl2.ZoomButtons2 = System.Windows.Forms.MouseButtons.None;
+            this.zedGraphControl2.ZoomModifierKeys = System.Windows.Forms.Keys.None;
+            this.zedGraphControl2.ZoomModifierKeys2 = System.Windows.Forms.Keys.None;
+            this.zedGraphControl2.ZoomStepFraction = 0.1D;
+            // 
+            // plyStatsBindingSource
+            // 
+            this.plyStatsBindingSource.DataMember = "PlyStats";
+            this.plyStatsBindingSource.DataSource = this.champDSBindingSource;
+            // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStrip3
+            // 
+            this.toolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel3,
+            this.toolStripButton6,
+            this.toolStripSeparator9,
+            this.toolStripButton7});
+            this.toolStrip3.Location = new System.Drawing.Point(3, 3);
+            this.toolStrip3.Name = "toolStrip3";
+            this.toolStrip3.Size = new System.Drawing.Size(1055, 25);
+            this.toolStrip3.TabIndex = 0;
+            this.toolStrip3.Text = "toolStrip2";
+            // 
+            // toolStripLabel3
+            // 
+            this.toolStripLabel3.Name = "toolStripLabel3";
+            this.toolStripLabel3.Size = new System.Drawing.Size(112, 22);
+            this.toolStripLabel3.Text = "TM Pages Shortcuts";
+            // 
+            // toolStripButton6
+            // 
+            this.toolStripButton6.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.toolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton6.Image")));
+            this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton6.Name = "toolStripButton6";
+            this.toolStripButton6.Size = new System.Drawing.Size(55, 22);
+            this.toolStripButton6.Text = "Squad A";
+            // 
+            // toolStripButton7
+            // 
+            this.toolStripButton7.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.toolStripButton7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton7.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton7.Image")));
+            this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton7.Name = "toolStripButton7";
+            this.toolStripButton7.Size = new System.Drawing.Size(54, 22);
+            this.toolStripButton7.Text = "Squad B";
+            // 
+            // toolStripContainer2
+            // 
+            // 
+            // toolStripContainer2.ContentPanel
+            // 
+            this.toolStripContainer2.ContentPanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.toolStripContainer2.ContentPanel.Size = new System.Drawing.Size(1027, 531);
+            this.toolStripContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.toolStripContainer2.Location = new System.Drawing.Point(0, 0);
+            this.toolStripContainer2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.toolStripContainer2.Name = "toolStripContainer2";
+            this.toolStripContainer2.Size = new System.Drawing.Size(1027, 556);
+            this.toolStripContainer2.TabIndex = 0;
+            this.toolStripContainer2.Text = "toolStripContainer2";
+            // 
+            // toolStripContainer1
+            // 
+            // 
+            // toolStripContainer1.ContentPanel
+            // 
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.tabControl1);
+            this.toolStripContainer1.ContentPanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1027, 531);
+            this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
+            this.toolStripContainer1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.toolStripContainer1.Name = "toolStripContainer1";
+            this.toolStripContainer1.Size = new System.Drawing.Size(1027, 556);
+            this.toolStripContainer1.TabIndex = 2;
+            this.toolStripContainer1.Text = "toolStripContainer1";
+            // 
+            // toolStripContainer1.TopToolStripPanel
+            // 
+            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip1);
             // 
             // tabControl1
             // 
@@ -783,7 +1354,7 @@ namespace TMRecorder
             this.dataGridViewTextBoxColumn88,
             this.dataGridViewTextBoxColumn89,
             this.dataGridViewTextBoxColumn90,
-            this.Ada});
+            this.HidSk});
             this.dataGridGiocatori.ContextMenuStrip = this.contextMenuStrip1;
             this.dataGridGiocatori.DataCollection = null;
             this.dataGridGiocatori.DataSource = this.giocatoriNSkillBindingSourceB;
@@ -807,548 +1378,6 @@ namespace TMRecorder
             this.dataGridGiocatori.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridPlayersInfo_CellDoubleClick);
             this.dataGridGiocatori.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridGiocatori_ColumnHeaderMouseClick);
             this.dataGridGiocatori.Sorted += new System.EventHandler(this.dataGridGiocatori_Sorted);
-            // 
-            // dataGridViewTextBoxColumn56
-            // 
-            this.dataGridViewTextBoxColumn56.DataPropertyName = "PlayerID";
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.dataGridViewTextBoxColumn56.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridViewTextBoxColumn56.FillWeight = 30F;
-            this.dataGridViewTextBoxColumn56.Frozen = true;
-            this.dataGridViewTextBoxColumn56.HeaderText = "ID";
-            this.dataGridViewTextBoxColumn56.Name = "dataGridViewTextBoxColumn56";
-            this.dataGridViewTextBoxColumn56.ReadOnly = true;
-            this.dataGridViewTextBoxColumn56.Visible = false;
-            this.dataGridViewTextBoxColumn56.Width = 30;
-            // 
-            // dataGridViewTextBoxColumn57
-            // 
-            this.dataGridViewTextBoxColumn57.DataPropertyName = "Numero";
-            this.dataGridViewTextBoxColumn57.Frozen = true;
-            this.dataGridViewTextBoxColumn57.HeaderText = "N";
-            this.dataGridViewTextBoxColumn57.Name = "dataGridViewTextBoxColumn57";
-            this.dataGridViewTextBoxColumn57.ReadOnly = true;
-            this.dataGridViewTextBoxColumn57.Width = 20;
-            // 
-            // dataGridViewTextBoxColumn58
-            // 
-            this.dataGridViewTextBoxColumn58.DataPropertyName = "FPn";
-            this.dataGridViewTextBoxColumn58.Frozen = true;
-            this.dataGridViewTextBoxColumn58.HeaderText = "FP";
-            this.dataGridViewTextBoxColumn58.Name = "dataGridViewTextBoxColumn58";
-            this.dataGridViewTextBoxColumn58.ReadOnly = true;
-            this.dataGridViewTextBoxColumn58.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn58.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn58.Width = 42;
-            // 
-            // dataGridViewTextBoxColumn59
-            // 
-            this.dataGridViewTextBoxColumn59.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dataGridViewTextBoxColumn59.DataPropertyName = "Nome";
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            this.dataGridViewTextBoxColumn59.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridViewTextBoxColumn59.Frozen = true;
-            this.dataGridViewTextBoxColumn59.HeaderText = "Name";
-            this.dataGridViewTextBoxColumn59.Name = "dataGridViewTextBoxColumn59";
-            this.dataGridViewTextBoxColumn59.ReadOnly = true;
-            this.dataGridViewTextBoxColumn59.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn59.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn59.Width = 60;
-            // 
-            // dataGridViewTextBoxColumn60
-            // 
-            this.dataGridViewTextBoxColumn60.DataPropertyName = "wBorn";
-            this.dataGridViewTextBoxColumn60.Frozen = true;
-            this.dataGridViewTextBoxColumn60.HeaderText = "Age";
-            this.dataGridViewTextBoxColumn60.Name = "dataGridViewTextBoxColumn60";
-            this.dataGridViewTextBoxColumn60.ReadOnly = true;
-            this.dataGridViewTextBoxColumn60.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn60.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn60.When = new System.DateTime(2015, 8, 3, 0, 36, 4, 610);
-            this.dataGridViewTextBoxColumn60.Width = 32;
-            // 
-            // Nationality
-            // 
-            this.Nationality.DataPropertyName = "Nationality";
-            this.Nationality.Frozen = true;
-            this.Nationality.HeaderText = "Nat";
-            this.Nationality.MinimumWidth = 30;
-            this.Nationality.Name = "Nationality";
-            this.Nationality.ReadOnly = true;
-            this.Nationality.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Nationality.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Nationality.ToolTipText = "Nationality";
-            this.Nationality.Width = 30;
-            // 
-            // dataGridViewTextBoxColumn61
-            // 
-            this.dataGridViewTextBoxColumn61.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dataGridViewTextBoxColumn61.DataPropertyName = "ASI";
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            this.dataGridViewTextBoxColumn61.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dataGridViewTextBoxColumn61.Frozen = true;
-            this.dataGridViewTextBoxColumn61.HeaderText = "ASI";
-            this.dataGridViewTextBoxColumn61.Name = "dataGridViewTextBoxColumn61";
-            this.dataGridViewTextBoxColumn61.ReadOnly = true;
-            this.dataGridViewTextBoxColumn61.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn61.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn61.Width = 49;
-            // 
-            // dataGridViewTextBoxColumn62
-            // 
-            this.dataGridViewTextBoxColumn62.DataPropertyName = "Ada";
-            this.dataGridViewTextBoxColumn62.HeaderText = "Ada";
-            this.dataGridViewTextBoxColumn62.Name = "dataGridViewTextBoxColumn62";
-            this.dataGridViewTextBoxColumn62.ReadOnly = true;
-            this.dataGridViewTextBoxColumn62.ToolTipText = "Adaptability of the player";
-            this.dataGridViewTextBoxColumn62.Visible = false;
-            this.dataGridViewTextBoxColumn62.Width = 30;
-            // 
-            // dataGridViewTextBoxColumn63
-            // 
-            this.dataGridViewTextBoxColumn63.DataPropertyName = "For";
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.LightYellow;
-            this.dataGridViewTextBoxColumn63.DefaultCellStyle = dataGridViewCellStyle5;
-            this.dataGridViewTextBoxColumn63.HeaderText = "Str";
-            this.dataGridViewTextBoxColumn63.Name = "dataGridViewTextBoxColumn63";
-            this.dataGridViewTextBoxColumn63.ReadOnly = true;
-            this.dataGridViewTextBoxColumn63.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn63.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn63.Width = 23;
-            // 
-            // dataGridViewTextBoxColumn64
-            // 
-            this.dataGridViewTextBoxColumn64.DataPropertyName = "Res";
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.LightYellow;
-            this.dataGridViewTextBoxColumn64.DefaultCellStyle = dataGridViewCellStyle6;
-            this.dataGridViewTextBoxColumn64.HeaderText = "Sta";
-            this.dataGridViewTextBoxColumn64.Name = "dataGridViewTextBoxColumn64";
-            this.dataGridViewTextBoxColumn64.ReadOnly = true;
-            this.dataGridViewTextBoxColumn64.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn64.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn64.Width = 23;
-            // 
-            // dataGridViewTextBoxColumn65
-            // 
-            this.dataGridViewTextBoxColumn65.DataPropertyName = "Vel";
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.LightYellow;
-            this.dataGridViewTextBoxColumn65.DefaultCellStyle = dataGridViewCellStyle7;
-            this.dataGridViewTextBoxColumn65.HeaderText = "Pac";
-            this.dataGridViewTextBoxColumn65.Name = "dataGridViewTextBoxColumn65";
-            this.dataGridViewTextBoxColumn65.ReadOnly = true;
-            this.dataGridViewTextBoxColumn65.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn65.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn65.Width = 23;
-            // 
-            // dataGridViewTextBoxColumn66
-            // 
-            this.dataGridViewTextBoxColumn66.DataPropertyName = "Mar";
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(255)))), ((int)(((byte)(224)))));
-            this.dataGridViewTextBoxColumn66.DefaultCellStyle = dataGridViewCellStyle8;
-            this.dataGridViewTextBoxColumn66.HeaderText = "Mar";
-            this.dataGridViewTextBoxColumn66.Name = "dataGridViewTextBoxColumn66";
-            this.dataGridViewTextBoxColumn66.ReadOnly = true;
-            this.dataGridViewTextBoxColumn66.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn66.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn66.Width = 23;
-            // 
-            // dataGridViewTextBoxColumn67
-            // 
-            this.dataGridViewTextBoxColumn67.DataPropertyName = "Con";
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(255)))), ((int)(((byte)(224)))));
-            this.dataGridViewTextBoxColumn67.DefaultCellStyle = dataGridViewCellStyle9;
-            this.dataGridViewTextBoxColumn67.HeaderText = "Tac";
-            this.dataGridViewTextBoxColumn67.Name = "dataGridViewTextBoxColumn67";
-            this.dataGridViewTextBoxColumn67.ReadOnly = true;
-            this.dataGridViewTextBoxColumn67.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn67.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn67.Width = 23;
-            // 
-            // dataGridViewTextBoxColumn68
-            // 
-            this.dataGridViewTextBoxColumn68.DataPropertyName = "Wor";
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(255)))), ((int)(((byte)(224)))));
-            this.dataGridViewTextBoxColumn68.DefaultCellStyle = dataGridViewCellStyle10;
-            this.dataGridViewTextBoxColumn68.HeaderText = "Wor";
-            this.dataGridViewTextBoxColumn68.Name = "dataGridViewTextBoxColumn68";
-            this.dataGridViewTextBoxColumn68.ReadOnly = true;
-            this.dataGridViewTextBoxColumn68.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn68.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn68.Width = 23;
-            // 
-            // dataGridViewTextBoxColumn69
-            // 
-            this.dataGridViewTextBoxColumn69.DataPropertyName = "Pos";
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridViewTextBoxColumn69.DefaultCellStyle = dataGridViewCellStyle11;
-            this.dataGridViewTextBoxColumn69.HeaderText = "Pos";
-            this.dataGridViewTextBoxColumn69.Name = "dataGridViewTextBoxColumn69";
-            this.dataGridViewTextBoxColumn69.ReadOnly = true;
-            this.dataGridViewTextBoxColumn69.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn69.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn69.Width = 23;
-            // 
-            // dataGridViewTextBoxColumn70
-            // 
-            this.dataGridViewTextBoxColumn70.DataPropertyName = "Pas";
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridViewTextBoxColumn70.DefaultCellStyle = dataGridViewCellStyle12;
-            this.dataGridViewTextBoxColumn70.HeaderText = "Pas";
-            this.dataGridViewTextBoxColumn70.Name = "dataGridViewTextBoxColumn70";
-            this.dataGridViewTextBoxColumn70.ReadOnly = true;
-            this.dataGridViewTextBoxColumn70.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn70.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn70.Width = 23;
-            // 
-            // dataGridViewTextBoxColumn71
-            // 
-            this.dataGridViewTextBoxColumn71.DataPropertyName = "Cro";
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridViewTextBoxColumn71.DefaultCellStyle = dataGridViewCellStyle13;
-            this.dataGridViewTextBoxColumn71.HeaderText = "Cro";
-            this.dataGridViewTextBoxColumn71.Name = "dataGridViewTextBoxColumn71";
-            this.dataGridViewTextBoxColumn71.ReadOnly = true;
-            this.dataGridViewTextBoxColumn71.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn71.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn71.Width = 23;
-            // 
-            // dataGridViewTextBoxColumn72
-            // 
-            this.dataGridViewTextBoxColumn72.DataPropertyName = "Tec";
-            dataGridViewCellStyle14.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridViewTextBoxColumn72.DefaultCellStyle = dataGridViewCellStyle14;
-            this.dataGridViewTextBoxColumn72.HeaderText = "Tec";
-            this.dataGridViewTextBoxColumn72.Name = "dataGridViewTextBoxColumn72";
-            this.dataGridViewTextBoxColumn72.ReadOnly = true;
-            this.dataGridViewTextBoxColumn72.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn72.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn72.Width = 23;
-            // 
-            // dataGridViewTextBoxColumn73
-            // 
-            this.dataGridViewTextBoxColumn73.DataPropertyName = "Tes";
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
-            this.dataGridViewTextBoxColumn73.DefaultCellStyle = dataGridViewCellStyle15;
-            this.dataGridViewTextBoxColumn73.HeaderText = "Hea";
-            this.dataGridViewTextBoxColumn73.Name = "dataGridViewTextBoxColumn73";
-            this.dataGridViewTextBoxColumn73.ReadOnly = true;
-            this.dataGridViewTextBoxColumn73.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn73.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn73.Width = 23;
-            // 
-            // dataGridViewTextBoxColumn74
-            // 
-            this.dataGridViewTextBoxColumn74.DataPropertyName = "Fin";
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
-            this.dataGridViewTextBoxColumn74.DefaultCellStyle = dataGridViewCellStyle16;
-            this.dataGridViewTextBoxColumn74.HeaderText = "Fin";
-            this.dataGridViewTextBoxColumn74.Name = "dataGridViewTextBoxColumn74";
-            this.dataGridViewTextBoxColumn74.ReadOnly = true;
-            this.dataGridViewTextBoxColumn74.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn74.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn74.Width = 23;
-            // 
-            // dataGridViewTextBoxColumn75
-            // 
-            this.dataGridViewTextBoxColumn75.DataPropertyName = "Tir";
-            dataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
-            this.dataGridViewTextBoxColumn75.DefaultCellStyle = dataGridViewCellStyle17;
-            this.dataGridViewTextBoxColumn75.HeaderText = "Lon";
-            this.dataGridViewTextBoxColumn75.Name = "dataGridViewTextBoxColumn75";
-            this.dataGridViewTextBoxColumn75.ReadOnly = true;
-            this.dataGridViewTextBoxColumn75.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn75.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn75.Width = 23;
-            // 
-            // dataGridViewTextBoxColumn76
-            // 
-            this.dataGridViewTextBoxColumn76.DataPropertyName = "Cal";
-            dataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
-            this.dataGridViewTextBoxColumn76.DefaultCellStyle = dataGridViewCellStyle18;
-            this.dataGridViewTextBoxColumn76.HeaderText = "Set";
-            this.dataGridViewTextBoxColumn76.Name = "dataGridViewTextBoxColumn76";
-            this.dataGridViewTextBoxColumn76.ReadOnly = true;
-            this.dataGridViewTextBoxColumn76.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn76.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn76.Width = 23;
-            // 
-            // Rou
-            // 
-            this.Rou.DataPropertyName = "Rou";
-            dataGridViewCellStyle19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle19.Format = "N1";
-            dataGridViewCellStyle19.NullValue = "-";
-            this.Rou.DefaultCellStyle = dataGridViewCellStyle19;
-            this.Rou.HeaderText = "Rou";
-            this.Rou.Name = "Rou";
-            this.Rou.ReadOnly = true;
-            this.Rou.ToolTipText = "Routine";
-            this.Rou.Width = 30;
-            // 
-            // CStrA
-            // 
-            this.CStrA.DataPropertyName = "CStr";
-            dataGridViewCellStyle20.Format = "N2";
-            dataGridViewCellStyle20.NullValue = "-";
-            this.CStrA.DefaultCellStyle = dataGridViewCellStyle20;
-            this.CStrA.HeaderText = "CRec";
-            this.CStrA.Name = "CStrA";
-            this.CStrA.ReadOnly = true;
-            this.CStrA.ToolTipText = "TmRecorder Computed Recommendation";
-            this.CStrA.Width = 34;
-            // 
-            // Rec
-            // 
-            this.Rec.DataPropertyName = "Rec";
-            dataGridViewCellStyle21.Format = "N1";
-            dataGridViewCellStyle21.NullValue = "-";
-            this.Rec.DefaultCellStyle = dataGridViewCellStyle21;
-            this.Rec.HeaderText = "Rec";
-            this.Rec.Name = "Rec";
-            this.Rec.ReadOnly = true;
-            this.Rec.ToolTipText = "Trophy Manager Recommendation (Stars)";
-            this.Rec.Width = 30;
-            // 
-            // TI
-            // 
-            this.TI.DataPropertyName = "TI";
-            dataGridViewCellStyle22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle22.Format = "N1";
-            dataGridViewCellStyle22.NullValue = "-";
-            this.TI.DefaultCellStyle = dataGridViewCellStyle22;
-            this.TI.HeaderText = "TI";
-            this.TI.Name = "TI";
-            this.TI.ReadOnly = true;
-            this.TI.ToolTipText = "Training Indicator";
-            this.TI.Width = 30;
-            // 
-            // dataGridViewTextBoxColumn77
-            // 
-            this.dataGridViewTextBoxColumn77.DataPropertyName = "DC";
-            dataGridViewCellStyle23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle23.Format = "N1";
-            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn77.DefaultCellStyle = dataGridViewCellStyle23;
-            this.dataGridViewTextBoxColumn77.HeaderText = "DC";
-            this.dataGridViewTextBoxColumn77.Name = "dataGridViewTextBoxColumn77";
-            this.dataGridViewTextBoxColumn77.ReadOnly = true;
-            this.dataGridViewTextBoxColumn77.Width = 30;
-            // 
-            // dataGridViewTextBoxColumn78
-            // 
-            this.dataGridViewTextBoxColumn78.DataPropertyName = "DR";
-            dataGridViewCellStyle24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle24.Format = "N1";
-            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn78.DefaultCellStyle = dataGridViewCellStyle24;
-            this.dataGridViewTextBoxColumn78.HeaderText = "DR";
-            this.dataGridViewTextBoxColumn78.Name = "dataGridViewTextBoxColumn78";
-            this.dataGridViewTextBoxColumn78.ReadOnly = true;
-            this.dataGridViewTextBoxColumn78.Width = 30;
-            // 
-            // dataGridViewTextBoxColumn79
-            // 
-            this.dataGridViewTextBoxColumn79.DataPropertyName = "DL";
-            dataGridViewCellStyle25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle25.Format = "N1";
-            dataGridViewCellStyle25.NullValue = null;
-            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn79.DefaultCellStyle = dataGridViewCellStyle25;
-            this.dataGridViewTextBoxColumn79.HeaderText = "DL";
-            this.dataGridViewTextBoxColumn79.Name = "dataGridViewTextBoxColumn79";
-            this.dataGridViewTextBoxColumn79.ReadOnly = true;
-            this.dataGridViewTextBoxColumn79.Width = 30;
-            // 
-            // dataGridViewTextBoxColumn80
-            // 
-            this.dataGridViewTextBoxColumn80.DataPropertyName = "DMC";
-            dataGridViewCellStyle26.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle26.Format = "N1";
-            dataGridViewCellStyle26.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn80.DefaultCellStyle = dataGridViewCellStyle26;
-            this.dataGridViewTextBoxColumn80.HeaderText = "DMC";
-            this.dataGridViewTextBoxColumn80.Name = "dataGridViewTextBoxColumn80";
-            this.dataGridViewTextBoxColumn80.ReadOnly = true;
-            this.dataGridViewTextBoxColumn80.Width = 30;
-            // 
-            // dataGridViewTextBoxColumn81
-            // 
-            this.dataGridViewTextBoxColumn81.DataPropertyName = "DMR";
-            dataGridViewCellStyle27.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle27.Format = "N1";
-            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn81.DefaultCellStyle = dataGridViewCellStyle27;
-            this.dataGridViewTextBoxColumn81.HeaderText = "DMR";
-            this.dataGridViewTextBoxColumn81.Name = "dataGridViewTextBoxColumn81";
-            this.dataGridViewTextBoxColumn81.ReadOnly = true;
-            this.dataGridViewTextBoxColumn81.Width = 30;
-            // 
-            // dataGridViewTextBoxColumn82
-            // 
-            this.dataGridViewTextBoxColumn82.DataPropertyName = "DML";
-            dataGridViewCellStyle28.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle28.Format = "N1";
-            dataGridViewCellStyle28.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn82.DefaultCellStyle = dataGridViewCellStyle28;
-            this.dataGridViewTextBoxColumn82.HeaderText = "DML";
-            this.dataGridViewTextBoxColumn82.Name = "dataGridViewTextBoxColumn82";
-            this.dataGridViewTextBoxColumn82.ReadOnly = true;
-            this.dataGridViewTextBoxColumn82.Width = 30;
-            // 
-            // dataGridViewTextBoxColumn83
-            // 
-            this.dataGridViewTextBoxColumn83.DataPropertyName = "MC";
-            dataGridViewCellStyle29.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle29.Format = "N1";
-            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn83.DefaultCellStyle = dataGridViewCellStyle29;
-            this.dataGridViewTextBoxColumn83.HeaderText = "MC";
-            this.dataGridViewTextBoxColumn83.Name = "dataGridViewTextBoxColumn83";
-            this.dataGridViewTextBoxColumn83.ReadOnly = true;
-            this.dataGridViewTextBoxColumn83.Width = 30;
-            // 
-            // dataGridViewTextBoxColumn84
-            // 
-            this.dataGridViewTextBoxColumn84.DataPropertyName = "MR";
-            dataGridViewCellStyle30.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle30.Format = "N1";
-            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn84.DefaultCellStyle = dataGridViewCellStyle30;
-            this.dataGridViewTextBoxColumn84.HeaderText = "MR";
-            this.dataGridViewTextBoxColumn84.Name = "dataGridViewTextBoxColumn84";
-            this.dataGridViewTextBoxColumn84.ReadOnly = true;
-            this.dataGridViewTextBoxColumn84.Width = 30;
-            // 
-            // dataGridViewTextBoxColumn85
-            // 
-            this.dataGridViewTextBoxColumn85.DataPropertyName = "ML";
-            dataGridViewCellStyle31.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle31.Format = "N1";
-            dataGridViewCellStyle31.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn85.DefaultCellStyle = dataGridViewCellStyle31;
-            this.dataGridViewTextBoxColumn85.HeaderText = "ML";
-            this.dataGridViewTextBoxColumn85.Name = "dataGridViewTextBoxColumn85";
-            this.dataGridViewTextBoxColumn85.ReadOnly = true;
-            this.dataGridViewTextBoxColumn85.Width = 30;
-            // 
-            // dataGridViewTextBoxColumn86
-            // 
-            this.dataGridViewTextBoxColumn86.DataPropertyName = "OMC";
-            dataGridViewCellStyle32.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle32.Format = "N1";
-            dataGridViewCellStyle32.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn86.DefaultCellStyle = dataGridViewCellStyle32;
-            this.dataGridViewTextBoxColumn86.HeaderText = "OMC";
-            this.dataGridViewTextBoxColumn86.Name = "dataGridViewTextBoxColumn86";
-            this.dataGridViewTextBoxColumn86.ReadOnly = true;
-            this.dataGridViewTextBoxColumn86.Width = 30;
-            // 
-            // dataGridViewTextBoxColumn87
-            // 
-            this.dataGridViewTextBoxColumn87.DataPropertyName = "OMR";
-            dataGridViewCellStyle33.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle33.Format = "N1";
-            dataGridViewCellStyle33.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn87.DefaultCellStyle = dataGridViewCellStyle33;
-            this.dataGridViewTextBoxColumn87.HeaderText = "OMR";
-            this.dataGridViewTextBoxColumn87.Name = "dataGridViewTextBoxColumn87";
-            this.dataGridViewTextBoxColumn87.ReadOnly = true;
-            this.dataGridViewTextBoxColumn87.Width = 30;
-            // 
-            // dataGridViewTextBoxColumn88
-            // 
-            this.dataGridViewTextBoxColumn88.DataPropertyName = "OML";
-            dataGridViewCellStyle34.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle34.Format = "N1";
-            dataGridViewCellStyle34.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn88.DefaultCellStyle = dataGridViewCellStyle34;
-            this.dataGridViewTextBoxColumn88.HeaderText = "OML";
-            this.dataGridViewTextBoxColumn88.Name = "dataGridViewTextBoxColumn88";
-            this.dataGridViewTextBoxColumn88.ReadOnly = true;
-            this.dataGridViewTextBoxColumn88.Width = 30;
-            // 
-            // dataGridViewTextBoxColumn89
-            // 
-            this.dataGridViewTextBoxColumn89.DataPropertyName = "FC";
-            dataGridViewCellStyle35.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle35.Format = "N1";
-            dataGridViewCellStyle35.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.dataGridViewTextBoxColumn89.DefaultCellStyle = dataGridViewCellStyle35;
-            this.dataGridViewTextBoxColumn89.HeaderText = "FC";
-            this.dataGridViewTextBoxColumn89.Name = "dataGridViewTextBoxColumn89";
-            this.dataGridViewTextBoxColumn89.ReadOnly = true;
-            this.dataGridViewTextBoxColumn89.Width = 30;
-            // 
-            // dataGridViewTextBoxColumn90
-            // 
-            this.dataGridViewTextBoxColumn90.DataPropertyName = "OSi";
-            dataGridViewCellStyle36.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle36.Format = "N2";
-            dataGridViewCellStyle36.NullValue = null;
-            dataGridViewCellStyle36.SelectionBackColor = System.Drawing.Color.Teal;
-            this.dataGridViewTextBoxColumn90.DefaultCellStyle = dataGridViewCellStyle36;
-            this.dataGridViewTextBoxColumn90.HeaderText = "SOi";
-            this.dataGridViewTextBoxColumn90.Name = "dataGridViewTextBoxColumn90";
-            this.dataGridViewTextBoxColumn90.ReadOnly = true;
-            this.dataGridViewTextBoxColumn90.ToolTipText = "Skill Optimization Index";
-            this.dataGridViewTextBoxColumn90.Width = 35;
-            // 
-            // Ada
-            // 
-            this.Ada.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Ada.DataPropertyName = "Ada";
-            this.Ada.HeaderText = "Hid";
-            this.Ada.Name = "Ada";
-            this.Ada.ReadOnly = true;
-            this.Ada.Width = 21;
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.movePlayerToATeamToolStripMenuItem,
-            this.movePlayerToBTeamToolStripMenuItem,
-            this.evidenceSkillsForGainsMenuItem2,
-            this.openPlayersWebPagesToolStripMenuItem2,
-            this.openPlayersScoutWebPagesToolStripMenuItem2});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(215, 114);
-            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
-            // 
-            // movePlayerToATeamToolStripMenuItem
-            // 
-            this.movePlayerToATeamToolStripMenuItem.Name = "movePlayerToATeamToolStripMenuItem";
-            this.movePlayerToATeamToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
-            this.movePlayerToATeamToolStripMenuItem.Text = "Move Player To A Team";
-            this.movePlayerToATeamToolStripMenuItem.Click += new System.EventHandler(this.movePlayerToATeamToolStripMenuItem_Click);
-            // 
-            // movePlayerToBTeamToolStripMenuItem
-            // 
-            this.movePlayerToBTeamToolStripMenuItem.Name = "movePlayerToBTeamToolStripMenuItem";
-            this.movePlayerToBTeamToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
-            this.movePlayerToBTeamToolStripMenuItem.Text = "Move Player To B Team";
-            this.movePlayerToBTeamToolStripMenuItem.Click += new System.EventHandler(this.movePlayerToBTeamToolStripMenuItem_Click);
-            // 
-            // evidenceSkillsForGainsMenuItem2
-            // 
-            this.evidenceSkillsForGainsMenuItem2.Name = "evidenceSkillsForGainsMenuItem2";
-            this.evidenceSkillsForGainsMenuItem2.Size = new System.Drawing.Size(214, 22);
-            this.evidenceSkillsForGainsMenuItem2.Text = "Evidence Skills for Gains";
-            this.evidenceSkillsForGainsMenuItem2.Click += new System.EventHandler(this.evidenceSkillsForGainsToolStripMenuItem_Click);
-            // 
-            // openPlayersWebPagesToolStripMenuItem2
-            // 
-            this.openPlayersWebPagesToolStripMenuItem2.Name = "openPlayersWebPagesToolStripMenuItem2";
-            this.openPlayersWebPagesToolStripMenuItem2.Size = new System.Drawing.Size(214, 22);
-            this.openPlayersWebPagesToolStripMenuItem2.Text = "Open Players Profile Pages";
-            this.openPlayersWebPagesToolStripMenuItem2.Click += new System.EventHandler(this.openPlayersWebPagesToolStripMenuItem_Click);
-            // 
-            // openPlayersScoutWebPagesToolStripMenuItem2
-            // 
-            this.openPlayersScoutWebPagesToolStripMenuItem2.Name = "openPlayersScoutWebPagesToolStripMenuItem2";
-            this.openPlayersScoutWebPagesToolStripMenuItem2.Size = new System.Drawing.Size(214, 22);
-            this.openPlayersScoutWebPagesToolStripMenuItem2.Text = "Open Players Scout Pages";
-            this.openPlayersScoutWebPagesToolStripMenuItem2.Click += new System.EventHandler(this.openPlayersToolStripMenuItem_Click);
             // 
             // giocatoriNSkillBindingSourceB
             // 
@@ -2290,36 +2319,6 @@ namespace TMRecorder
             this.dataGridViewTextBoxColumn10.ToolTipText = "Skill Optimization Index";
             this.dataGridViewTextBoxColumn10.Width = 49;
             // 
-            // contextMenuStripGK
-            // 
-            this.contextMenuStripGK.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.evidenceSkillsForGainsMenuItemGK,
-            this.toolStripMenuItem17,
-            this.toolStripMenuItem18});
-            this.contextMenuStripGK.Name = "contextMenuStrip1";
-            this.contextMenuStripGK.Size = new System.Drawing.Size(215, 70);
-            // 
-            // evidenceSkillsForGainsMenuItemGK
-            // 
-            this.evidenceSkillsForGainsMenuItemGK.Name = "evidenceSkillsForGainsMenuItemGK";
-            this.evidenceSkillsForGainsMenuItemGK.Size = new System.Drawing.Size(214, 22);
-            this.evidenceSkillsForGainsMenuItemGK.Text = "Evidence Skills for Gains";
-            this.evidenceSkillsForGainsMenuItemGK.Click += new System.EventHandler(this.evidenceSkillsForGainsToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem17
-            // 
-            this.toolStripMenuItem17.Name = "toolStripMenuItem17";
-            this.toolStripMenuItem17.Size = new System.Drawing.Size(214, 22);
-            this.toolStripMenuItem17.Text = "Open Players Profile Pages";
-            this.toolStripMenuItem17.Click += new System.EventHandler(this.openPlayersWebPagesToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem18
-            // 
-            this.toolStripMenuItem18.Name = "toolStripMenuItem18";
-            this.toolStripMenuItem18.Size = new System.Drawing.Size(214, 22);
-            this.toolStripMenuItem18.Text = "Open Players Scout Pages";
-            this.toolStripMenuItem18.Click += new System.EventHandler(this.openPlayersToolStripMenuItem_Click);
-            // 
             // portieriNSkillBindingSource
             // 
             this.portieriNSkillBindingSource.DataMember = "PortieriNSkill";
@@ -2332,7 +2331,7 @@ namespace TMRecorder
             this.tabInfo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabInfo.Name = "tabInfo";
             this.tabInfo.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tabInfo.Size = new System.Drawing.Size(1019, 505);
+            this.tabInfo.Size = new System.Drawing.Size(1019, 503);
             this.tabInfo.TabIndex = 2;
             this.tabInfo.Text = "Players Info";
             this.tabInfo.UseVisualStyleBackColor = true;
@@ -2376,7 +2375,7 @@ namespace TMRecorder
             this.Professionalism,
             this.Leadership,
             this.Aggressivity,
-            this.Hr,
+            this.HiddenRevealed,
             this.noteDataGridViewTextBoxColumn});
             this.dataGridPlayersInfo.ContextMenuStrip = this.contextMenuPlInfo;
             this.dataGridPlayersInfo.DataCollection = null;
@@ -2395,193 +2394,324 @@ namespace TMRecorder
             this.dataGridPlayersInfo.Name = "dataGridPlayersInfo";
             this.dataGridPlayersInfo.RowHeadersWidth = 25;
             this.dataGridPlayersInfo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridPlayersInfo.Size = new System.Drawing.Size(1013, 497);
+            this.dataGridPlayersInfo.Size = new System.Drawing.Size(1013, 495);
             this.dataGridPlayersInfo.TabIndex = 0;
             this.dataGridPlayersInfo.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridPlayersInfo_CellDoubleClick);
             this.dataGridPlayersInfo.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridPlayersInfo_CellEndEdit);
             // 
-            // contextMenuPlInfo
+            // playerIDDataGridViewTextBoxColumn
             // 
-            this.contextMenuPlInfo.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openPlayersWebPagesToolStripMenuItem,
-            this.openPlayersToolStripMenuItem,
-            this.changePlayerPropertiesToolStripMenuItem,
-            this.setPlayerBloominAgeToolStripMenuItem});
-            this.contextMenuPlInfo.Name = "contextMenuPlInfo";
-            this.contextMenuPlInfo.Size = new System.Drawing.Size(215, 92);
-            this.contextMenuPlInfo.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuPlInfo_Opening);
+            this.playerIDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.playerIDDataGridViewTextBoxColumn.DataPropertyName = "PlayerID";
+            this.playerIDDataGridViewTextBoxColumn.HeaderText = "PlayerID";
+            this.playerIDDataGridViewTextBoxColumn.MinimumWidth = 45;
+            this.playerIDDataGridViewTextBoxColumn.Name = "playerIDDataGridViewTextBoxColumn";
+            this.playerIDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.playerIDDataGridViewTextBoxColumn.Visible = false;
             // 
-            // openPlayersWebPagesToolStripMenuItem
+            // dataGridViewTextBoxColumn2
             // 
-            this.openPlayersWebPagesToolStripMenuItem.Name = "openPlayersWebPagesToolStripMenuItem";
-            this.openPlayersWebPagesToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
-            this.openPlayersWebPagesToolStripMenuItem.Text = "Open Players Profile Pages";
-            this.openPlayersWebPagesToolStripMenuItem.Click += new System.EventHandler(this.openPlayersWebPagesToolStripMenuItem_Click);
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "Numero";
+            this.dataGridViewTextBoxColumn2.HeaderText = "No.";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 20;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 20;
             // 
-            // openPlayersToolStripMenuItem
+            // nomeDataGridViewTextBoxColumn2
             // 
-            this.openPlayersToolStripMenuItem.Name = "openPlayersToolStripMenuItem";
-            this.openPlayersToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
-            this.openPlayersToolStripMenuItem.Text = "Open Players Scout Pages";
-            this.openPlayersToolStripMenuItem.Click += new System.EventHandler(this.openPlayersToolStripMenuItem_Click);
+            this.nomeDataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.nomeDataGridViewTextBoxColumn2.DataPropertyName = "Nome";
+            this.nomeDataGridViewTextBoxColumn2.HeaderText = "Name";
+            this.nomeDataGridViewTextBoxColumn2.MinimumWidth = 60;
+            this.nomeDataGridViewTextBoxColumn2.Name = "nomeDataGridViewTextBoxColumn2";
+            this.nomeDataGridViewTextBoxColumn2.ReadOnly = true;
+            this.nomeDataGridViewTextBoxColumn2.Width = 60;
             // 
-            // changePlayerPropertiesToolStripMenuItem
+            // nationalityDataGridViewTextBoxColumn
             // 
-            this.changePlayerPropertiesToolStripMenuItem.Name = "changePlayerPropertiesToolStripMenuItem";
-            this.changePlayerPropertiesToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
-            this.changePlayerPropertiesToolStripMenuItem.Text = "Change Player Properties";
-            this.changePlayerPropertiesToolStripMenuItem.Click += new System.EventHandler(this.changePlayerPropertiesToolStripMenuItem_Click);
+            this.nationalityDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
+            this.nationalityDataGridViewTextBoxColumn.DataPropertyName = "Nationality";
+            this.nationalityDataGridViewTextBoxColumn.HeaderText = "Nat";
+            this.nationalityDataGridViewTextBoxColumn.MinimumWidth = 30;
+            this.nationalityDataGridViewTextBoxColumn.Name = "nationalityDataGridViewTextBoxColumn";
+            this.nationalityDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nationalityDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.nationalityDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.nationalityDataGridViewTextBoxColumn.ToolTipText = "Nationality";
+            this.nationalityDataGridViewTextBoxColumn.Width = 30;
             // 
-            // setPlayerBloominAgeToolStripMenuItem
+            // Et‡
             // 
-            this.setPlayerBloominAgeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.setAgeToolStripMenuItem,
-            this.setPhaseToolStripMenuItem});
-            this.setPlayerBloominAgeToolStripMenuItem.Name = "setPlayerBloominAgeToolStripMenuItem";
-            this.setPlayerBloominAgeToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
-            this.setPlayerBloominAgeToolStripMenuItem.Text = "Set Player\'s Bloomin\'";
+            this.Et‡.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
+            this.Et‡.DataPropertyName = "wBorn";
+            this.Et‡.HeaderText = "Age";
+            this.Et‡.MinimumWidth = 25;
+            this.Et‡.Name = "Et‡";
+            this.Et‡.ReadOnly = true;
+            this.Et‡.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Et‡.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Et‡.When = new System.DateTime(2015, 8, 4, 0, 28, 53, 359);
+            this.Et‡.Width = 25;
             // 
-            // setAgeToolStripMenuItem
+            // Wage
             // 
-            this.setAgeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem15,
-            this.toolStripMenuItem16,
-            this.toolStripMenuItem19,
-            this.toolStripMenuItem20,
-            this.toolStripMenuItem21,
-            this.toolStripMenuItem22,
-            this.toolStripMenuItem23,
-            this.toolStripMenuItem24,
-            this.toolStripMenuItem25,
-            this.toolStripMenuItem26,
-            this.toolStripMenuItem27});
-            this.setAgeToolStripMenuItem.Name = "setAgeToolStripMenuItem";
-            this.setAgeToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.setAgeToolStripMenuItem.Text = "Set Age";
+            this.Wage.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
+            this.Wage.DataPropertyName = "Wage";
+            dataGridViewCellStyle95.NullValue = "-";
+            this.Wage.DefaultCellStyle = dataGridViewCellStyle95;
+            this.Wage.HeaderText = "Wage";
+            this.Wage.MinimumWidth = 40;
+            this.Wage.Name = "Wage";
+            this.Wage.ReadOnly = true;
+            this.Wage.Width = 40;
             // 
-            // toolStripMenuItem15
+            // ASI
             // 
-            this.toolStripMenuItem15.Name = "toolStripMenuItem15";
-            this.toolStripMenuItem15.Size = new System.Drawing.Size(86, 22);
-            this.toolStripMenuItem15.Text = "16";
-            this.toolStripMenuItem15.Click += new System.EventHandler(this.toolStripMenu_SetBloomingAge_Click);
+            this.ASI.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.ASI.DataPropertyName = "ASI";
+            this.ASI.HeaderText = "ASI";
+            this.ASI.MinimumWidth = 40;
+            this.ASI.Name = "ASI";
+            this.ASI.ReadOnly = true;
+            this.ASI.Width = 40;
             // 
-            // toolStripMenuItem16
+            // BloomingPhase
             // 
-            this.toolStripMenuItem16.Name = "toolStripMenuItem16";
-            this.toolStripMenuItem16.Size = new System.Drawing.Size(86, 22);
-            this.toolStripMenuItem16.Text = "17";
-            this.toolStripMenuItem16.Click += new System.EventHandler(this.toolStripMenu_SetBloomingAge_Click);
+            this.BloomingPhase.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
+            this.BloomingPhase.DataPropertyName = "wBloomData";
+            this.BloomingPhase.HeaderText = "BPh";
+            this.BloomingPhase.MinimumWidth = 25;
+            this.BloomingPhase.Name = "BloomingPhase";
+            this.BloomingPhase.ReadOnly = true;
+            this.BloomingPhase.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.BloomingPhase.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.BloomingPhase.ToolTipText = "Blooming Phase";
+            this.BloomingPhase.Width = 25;
             // 
-            // toolStripMenuItem19
+            // Asi25
             // 
-            this.toolStripMenuItem19.Name = "toolStripMenuItem19";
-            this.toolStripMenuItem19.Size = new System.Drawing.Size(86, 22);
-            this.toolStripMenuItem19.Text = "18";
-            this.toolStripMenuItem19.Click += new System.EventHandler(this.toolStripMenu_SetBloomingAge_Click);
+            this.Asi25.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
+            this.Asi25.DataPropertyName = "wBloomData";
+            this.Asi25.HeaderText = "Asi25";
+            this.Asi25.MinimumWidth = 25;
+            this.Asi25.Name = "Asi25";
+            this.Asi25.ReadOnly = true;
+            this.Asi25.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Asi25.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Asi25.ToolTipText = "Estimated ASI when 25";
+            this.Asi25.Width = 25;
             // 
-            // toolStripMenuItem20
+            // Asi30
             // 
-            this.toolStripMenuItem20.Name = "toolStripMenuItem20";
-            this.toolStripMenuItem20.Size = new System.Drawing.Size(86, 22);
-            this.toolStripMenuItem20.Text = "19";
-            this.toolStripMenuItem20.Click += new System.EventHandler(this.toolStripMenu_SetBloomingAge_Click);
+            this.Asi30.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
+            this.Asi30.DataPropertyName = "wBloomData";
+            this.Asi30.HeaderText = "Asi30";
+            this.Asi30.MinimumWidth = 25;
+            this.Asi30.Name = "Asi30";
+            this.Asi30.ReadOnly = true;
+            this.Asi30.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Asi30.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Asi30.ToolTipText = "Estimated ASI when 30 (max)";
+            this.Asi30.Width = 25;
             // 
-            // toolStripMenuItem21
+            // AvRating
             // 
-            this.toolStripMenuItem21.Name = "toolStripMenuItem21";
-            this.toolStripMenuItem21.Size = new System.Drawing.Size(86, 22);
-            this.toolStripMenuItem21.Text = "20";
-            this.toolStripMenuItem21.Click += new System.EventHandler(this.toolStripMenu_SetBloomingAge_Click);
+            this.AvRating.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
+            this.AvRating.DataPropertyName = "AvRating";
+            dataGridViewCellStyle96.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(255)))), ((int)(((byte)(212)))));
+            dataGridViewCellStyle96.Format = "N1";
+            dataGridViewCellStyle96.NullValue = null;
+            this.AvRating.DefaultCellStyle = dataGridViewCellStyle96;
+            this.AvRating.HeaderText = "AvR";
+            this.AvRating.MinimumWidth = 30;
+            this.AvRating.Name = "AvRating";
+            this.AvRating.ReadOnly = true;
+            this.AvRating.ToolTipText = "Average Rating in this season";
+            this.AvRating.Width = 30;
             // 
-            // toolStripMenuItem22
+            // AvTI
             // 
-            this.toolStripMenuItem22.Name = "toolStripMenuItem22";
-            this.toolStripMenuItem22.Size = new System.Drawing.Size(86, 22);
-            this.toolStripMenuItem22.Text = "21";
-            this.toolStripMenuItem22.Click += new System.EventHandler(this.toolStripMenu_SetBloomingAge_Click);
+            this.AvTI.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
+            this.AvTI.DataPropertyName = "AvTSI";
+            dataGridViewCellStyle97.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(255)))), ((int)(((byte)(212)))));
+            dataGridViewCellStyle97.Format = "N2";
+            dataGridViewCellStyle97.NullValue = null;
+            this.AvTI.DefaultCellStyle = dataGridViewCellStyle97;
+            this.AvTI.HeaderText = "AvTI";
+            this.AvTI.MinimumWidth = 40;
+            this.AvTI.Name = "AvTI";
+            this.AvTI.ReadOnly = true;
+            this.AvTI.ToolTipText = "Average value of TI, in the last weeks";
+            this.AvTI.Width = 40;
             // 
-            // toolStripMenuItem23
+            // MediaVoto
             // 
-            this.toolStripMenuItem23.Name = "toolStripMenuItem23";
-            this.toolStripMenuItem23.Size = new System.Drawing.Size(86, 22);
-            this.toolStripMenuItem23.Text = "22";
-            this.toolStripMenuItem23.Click += new System.EventHandler(this.toolStripMenu_SetBloomingAge_Click);
+            this.MediaVoto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.MediaVoto.DataPropertyName = "MediaVoto";
+            dataGridViewCellStyle98.BackColor = System.Drawing.Color.PaleTurquoise;
+            dataGridViewCellStyle98.Format = "N1";
+            dataGridViewCellStyle98.NullValue = null;
+            this.MediaVoto.DefaultCellStyle = dataGridViewCellStyle98;
+            this.MediaVoto.HeaderText = "Av.Vote";
+            this.MediaVoto.MinimumWidth = 43;
+            this.MediaVoto.Name = "MediaVoto";
+            this.MediaVoto.ReadOnly = true;
+            this.MediaVoto.ToolTipText = "The weighted vote of the scouts and youth development, based on the ability of sc" +
+    "outs on measuring youth and senior and their development";
+            this.MediaVoto.Width = 43;
             // 
-            // toolStripMenuItem24
+            // fPDataGridViewTextBoxColumn
             // 
-            this.toolStripMenuItem24.Name = "toolStripMenuItem24";
-            this.toolStripMenuItem24.Size = new System.Drawing.Size(86, 22);
-            this.toolStripMenuItem24.Text = "23";
-            this.toolStripMenuItem24.Click += new System.EventHandler(this.toolStripMenu_SetBloomingAge_Click);
+            this.fPDataGridViewTextBoxColumn.DataPropertyName = "FPn";
+            this.fPDataGridViewTextBoxColumn.HeaderText = "FP";
+            this.fPDataGridViewTextBoxColumn.Name = "fPDataGridViewTextBoxColumn";
+            this.fPDataGridViewTextBoxColumn.ReadOnly = true;
+            this.fPDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.fPDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.fPDataGridViewTextBoxColumn.ToolTipText = "Preferred Position";
+            this.fPDataGridViewTextBoxColumn.Width = 42;
             // 
-            // toolStripMenuItem25
+            // adaDataGridViewTextBoxColumn1
             // 
-            this.toolStripMenuItem25.Name = "toolStripMenuItem25";
-            this.toolStripMenuItem25.Size = new System.Drawing.Size(86, 22);
-            this.toolStripMenuItem25.Text = "24";
-            this.toolStripMenuItem25.Click += new System.EventHandler(this.toolStripMenu_SetBloomingAge_Click);
+            this.adaDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
+            this.adaDataGridViewTextBoxColumn1.DataPropertyName = "Ada";
+            dataGridViewCellStyle99.BackColor = System.Drawing.Color.Moccasin;
+            this.adaDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle99;
+            this.adaDataGridViewTextBoxColumn1.HeaderText = "Ada";
+            this.adaDataGridViewTextBoxColumn1.MinimumWidth = 30;
+            this.adaDataGridViewTextBoxColumn1.Name = "adaDataGridViewTextBoxColumn1";
+            this.adaDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.adaDataGridViewTextBoxColumn1.ToolTipText = "Adaptability of the player";
+            this.adaDataGridViewTextBoxColumn1.Width = 30;
             // 
-            // toolStripMenuItem26
+            // scoutVotoDataGridViewTextBoxColumn
             // 
-            this.toolStripMenuItem26.Name = "toolStripMenuItem26";
-            this.toolStripMenuItem26.Size = new System.Drawing.Size(86, 22);
-            this.toolStripMenuItem26.Text = "25";
-            this.toolStripMenuItem26.Click += new System.EventHandler(this.toolStripMenu_SetBloomingAge_Click);
+            this.scoutVotoDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.scoutVotoDataGridViewTextBoxColumn.DataPropertyName = "ScoutVoto";
+            dataGridViewCellStyle100.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(255)))), ((int)(((byte)(224)))));
+            this.scoutVotoDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle100;
+            this.scoutVotoDataGridViewTextBoxColumn.HeaderText = "Votes";
+            this.scoutVotoDataGridViewTextBoxColumn.Name = "scoutVotoDataGridViewTextBoxColumn";
+            this.scoutVotoDataGridViewTextBoxColumn.ReadOnly = true;
+            this.scoutVotoDataGridViewTextBoxColumn.ToolTipText = "All votes from scouts";
+            this.scoutVotoDataGridViewTextBoxColumn.Width = 59;
             // 
-            // toolStripMenuItem27
+            // Routine
             // 
-            this.toolStripMenuItem27.Name = "toolStripMenuItem27";
-            this.toolStripMenuItem27.Size = new System.Drawing.Size(86, 22);
-            this.toolStripMenuItem27.Text = "26";
-            this.toolStripMenuItem27.Click += new System.EventHandler(this.toolStripMenu_SetBloomingAge_Click);
+            this.Routine.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.Routine.DataPropertyName = "Routine";
+            dataGridViewCellStyle101.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle101.Format = "N1";
+            dataGridViewCellStyle101.NullValue = "-";
+            this.Routine.DefaultCellStyle = dataGridViewCellStyle101;
+            this.Routine.HeaderText = "Rou";
+            this.Routine.MinimumWidth = 30;
+            this.Routine.Name = "Routine";
+            this.Routine.ReadOnly = true;
+            this.Routine.ToolTipText = "Routine";
+            this.Routine.Width = 30;
             // 
-            // setPhaseToolStripMenuItem
+            // Ability
             // 
-            this.setPhaseToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.miNotBloomedUToolStripMenuItem,
-            this.mi1stYearToolStripMenuItem,
-            this.mi2ndYearToolStripMenuItem,
-            this.mi3rdYearToolStripMenuItem,
-            this.miCompletelyBloomedEToolStripMenuItem});
-            this.setPhaseToolStripMenuItem.Name = "setPhaseToolStripMenuItem";
-            this.setPhaseToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.setPhaseToolStripMenuItem.Text = "Set Phase";
+            this.Ability.DataPropertyName = "Potential";
+            dataGridViewCellStyle102.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle102.NullValue = "-";
+            this.Ability.DefaultCellStyle = dataGridViewCellStyle102;
+            this.Ability.HeaderText = "Pot";
+            this.Ability.Name = "Ability";
+            this.Ability.ToolTipText = "Potential";
+            this.Ability.Width = 30;
             // 
-            // miNotBloomedUToolStripMenuItem
+            // InjPron
             // 
-            this.miNotBloomedUToolStripMenuItem.Name = "miNotBloomedUToolStripMenuItem";
-            this.miNotBloomedUToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
-            this.miNotBloomedUToolStripMenuItem.Text = "Not Bloomed (U)";
-            this.miNotBloomedUToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenu_SetBloomingPhase_Click);
+            this.InjPron.DataPropertyName = "InjPron";
+            dataGridViewCellStyle103.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle103.NullValue = "-";
+            this.InjPron.DefaultCellStyle = dataGridViewCellStyle103;
+            this.InjPron.HeaderText = "InjPr";
+            this.InjPron.Name = "InjPron";
+            this.InjPron.ToolTipText = "InjuryProneness";
+            this.InjPron.Width = 30;
             // 
-            // mi1stYearToolStripMenuItem
+            // Speciality
             // 
-            this.mi1stYearToolStripMenuItem.Name = "mi1stYearToolStripMenuItem";
-            this.mi1stYearToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
-            this.mi1stYearToolStripMenuItem.Text = "1st Year (1)";
-            this.mi1stYearToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenu_SetBloomingPhase_Click);
+            this.Speciality.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
+            this.Speciality.DataPropertyName = "Speciality";
+            dataGridViewCellStyle104.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle104.NullValue = "-";
+            this.Speciality.DefaultCellStyle = dataGridViewCellStyle104;
+            this.Speciality.HeaderText = "Spe";
+            this.Speciality.MinimumWidth = 30;
+            this.Speciality.Name = "Speciality";
+            this.Speciality.ReadOnly = true;
+            this.Speciality.ToolTipText = "Speciality";
+            this.Speciality.Width = 30;
             // 
-            // mi2ndYearToolStripMenuItem
+            // Professionalism
             // 
-            this.mi2ndYearToolStripMenuItem.Name = "mi2ndYearToolStripMenuItem";
-            this.mi2ndYearToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
-            this.mi2ndYearToolStripMenuItem.Text = "2nd Year (2)";
-            this.mi2ndYearToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenu_SetBloomingPhase_Click);
+            this.Professionalism.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
+            this.Professionalism.DataPropertyName = "Professionalism";
+            dataGridViewCellStyle105.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle105.Format = "N1";
+            dataGridViewCellStyle105.NullValue = "-";
+            this.Professionalism.DefaultCellStyle = dataGridViewCellStyle105;
+            this.Professionalism.HeaderText = "Pro";
+            this.Professionalism.MinimumWidth = 30;
+            this.Professionalism.Name = "Professionalism";
+            this.Professionalism.ReadOnly = true;
+            this.Professionalism.ToolTipText = "Professionalism";
+            this.Professionalism.Width = 30;
             // 
-            // mi3rdYearToolStripMenuItem
+            // Leadership
             // 
-            this.mi3rdYearToolStripMenuItem.Name = "mi3rdYearToolStripMenuItem";
-            this.mi3rdYearToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
-            this.mi3rdYearToolStripMenuItem.Text = "3rd Year (3)";
-            this.mi3rdYearToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenu_SetBloomingPhase_Click);
+            this.Leadership.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
+            this.Leadership.DataPropertyName = "Leadership";
+            dataGridViewCellStyle106.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle106.Format = "N1";
+            dataGridViewCellStyle106.NullValue = "-";
+            this.Leadership.DefaultCellStyle = dataGridViewCellStyle106;
+            this.Leadership.HeaderText = "Lea";
+            this.Leadership.MinimumWidth = 30;
+            this.Leadership.Name = "Leadership";
+            this.Leadership.ReadOnly = true;
+            this.Leadership.ToolTipText = "Leadership";
+            this.Leadership.Width = 30;
             // 
-            // miCompletelyBloomedEToolStripMenuItem
+            // Aggressivity
             // 
-            this.miCompletelyBloomedEToolStripMenuItem.Name = "miCompletelyBloomedEToolStripMenuItem";
-            this.miCompletelyBloomedEToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
-            this.miCompletelyBloomedEToolStripMenuItem.Text = "Completely Bloomed (E)";
-            this.miCompletelyBloomedEToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenu_SetBloomingPhase_Click);
+            this.Aggressivity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
+            this.Aggressivity.DataPropertyName = "Aggressivity";
+            dataGridViewCellStyle107.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle107.Format = "N1";
+            dataGridViewCellStyle107.NullValue = "-";
+            this.Aggressivity.DefaultCellStyle = dataGridViewCellStyle107;
+            this.Aggressivity.HeaderText = "Agg";
+            this.Aggressivity.MinimumWidth = 30;
+            this.Aggressivity.Name = "Aggressivity";
+            this.Aggressivity.ReadOnly = true;
+            this.Aggressivity.ToolTipText = "Aggressivity";
+            this.Aggressivity.Width = 30;
+            // 
+            // HiddenRevealed
+            // 
+            this.HiddenRevealed.DataPropertyName = "HiddenRevealed";
+            this.HiddenRevealed.HeaderText = "Hid";
+            this.HiddenRevealed.Name = "HiddenRevealed";
+            this.HiddenRevealed.ReadOnly = true;
+            this.HiddenRevealed.ToolTipText = "True if the Hidden Skills have been revealed";
+            this.HiddenRevealed.Width = 26;
+            // 
+            // noteDataGridViewTextBoxColumn
+            // 
+            this.noteDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.noteDataGridViewTextBoxColumn.DataPropertyName = "Note";
+            this.noteDataGridViewTextBoxColumn.HeaderText = "Notes";
+            this.noteDataGridViewTextBoxColumn.MinimumWidth = 80;
+            this.noteDataGridViewTextBoxColumn.Name = "noteDataGridViewTextBoxColumn";
+            this.noteDataGridViewTextBoxColumn.ReadOnly = true;
+            this.noteDataGridViewTextBoxColumn.ToolTipText = "Notes from the Player\'s page";
             // 
             // giocatoriBindingSource1
             // 
@@ -2600,7 +2730,7 @@ namespace TMRecorder
             this.tabInfoMain.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabInfoMain.Name = "tabInfoMain";
             this.tabInfoMain.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tabInfoMain.Size = new System.Drawing.Size(1019, 505);
+            this.tabInfoMain.Size = new System.Drawing.Size(1019, 503);
             this.tabInfoMain.TabIndex = 5;
             this.tabInfoMain.Text = "Team Matches";
             this.tabInfoMain.UseVisualStyleBackColor = true;
@@ -2618,7 +2748,7 @@ namespace TMRecorder
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1013, 497);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1013, 495);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // panel1
@@ -2636,7 +2766,7 @@ namespace TMRecorder
             this.panel1.Location = new System.Drawing.Point(3, 4);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(469, 489);
+            this.panel1.Size = new System.Drawing.Size(469, 487);
             this.panel1.TabIndex = 0;
             // 
             // groupBox4
@@ -2829,7 +2959,7 @@ namespace TMRecorder
             // 
             this.txtMatchStart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMatchStart.Location = new System.Drawing.Point(3, 425);
+            this.txtMatchStart.Location = new System.Drawing.Point(3, 423);
             this.txtMatchStart.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtMatchStart.Multiline = true;
             this.txtMatchStart.Name = "txtMatchStart";
@@ -2854,7 +2984,7 @@ namespace TMRecorder
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(3, 406);
+            this.label5.Location = new System.Drawing.Point(3, 404);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(73, 13);
             this.label5.TabIndex = 0;
@@ -2879,17 +3009,39 @@ namespace TMRecorder
             this.dgMatches.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle109;
             this.dgMatches.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgMatches.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dateDataGridViewTextBoxColumn,
-            this.homeDataGridViewTextBoxColumn,
-            this.scoreDataGridViewTextBoxColumn,
-            this.awayDataGridViewTextBoxColumn,
-            this.matchTypeDataGridViewTextBoxColumn,
             this.Crowd,
-            this.reportDataGridViewCheckBoxColumn,
             this.YourMentality,
             this.YourAttackingStyle,
             this.OppsMentality,
-            this.OppsAttackingStyle});
+            this.OppsAttackingStyle,
+            this.matchIDDataGridViewTextBoxColumn,
+            this.dateDataGridViewTextBoxColumn,
+            this.homeDataGridViewTextBoxColumn,
+            this.awayDataGridViewTextBoxColumn,
+            this.scoreDataGridViewTextBoxColumn,
+            this.matchTypeDataGridViewTextBoxColumn,
+            this.oppsClubNameDataGridViewTextBoxColumn,
+            this.oppsClubIDDataGridViewTextBoxColumn,
+            this.yourFormationDataGridViewTextBoxColumn,
+            this.oppsFormationDataGridViewTextBoxColumn,
+            this.crowdDataGridViewTextBoxColumn,
+            this.stadiumDataGridViewTextBoxColumn,
+            this.initDesciptionDataGridViewTextBoxColumn,
+            this.yourStatsDataGridViewTextBoxColumn,
+            this.oppsStatsDataGridViewTextBoxColumn,
+            this.reportDataGridViewCheckBoxColumn,
+            this.isHomeDataGridViewCheckBoxColumn,
+            this.cardsDataGridViewTextBoxColumn,
+            this.isReservesDataGridViewTextBoxColumn,
+            this.analyzedDataGridViewTextBoxColumn,
+            this.yourNickDataGridViewTextBoxColumn,
+            this.oppsNickDataGridViewTextBoxColumn,
+            this.yourMentalityDataGridViewTextBoxColumn,
+            this.yourAttackingStyleDataGridViewTextBoxColumn,
+            this.oppsMentalityDataGridViewTextBoxColumn,
+            this.oppsAttackingStyleDataGridViewTextBoxColumn,
+            this.pitchDataGridViewTextBoxColumn,
+            this.weatherDataGridViewTextBoxColumn});
             this.dgMatches.ContextMenuStrip = this.matchesMenuStrip;
             this.dgMatches.DataCollection = null;
             this.dgMatches.DataSource = this.matchBindingSource;
@@ -2908,58 +3060,10 @@ namespace TMRecorder
             this.dgMatches.ReadOnly = true;
             this.dgMatches.RowHeadersWidth = 20;
             this.dgMatches.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgMatches.Size = new System.Drawing.Size(465, 334);
+            this.dgMatches.Size = new System.Drawing.Size(465, 332);
             this.dgMatches.TabIndex = 1;
             this.dgMatches.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgMatches_CellMouseDoubleClick);
             this.dgMatches.SelectionChanged += new System.EventHandler(this.dgMatches_SelectionChanged);
-            // 
-            // dateDataGridViewTextBoxColumn
-            // 
-            this.dateDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dateDataGridViewTextBoxColumn.DataPropertyName = "Date";
-            this.dateDataGridViewTextBoxColumn.HeaderText = "Date";
-            this.dateDataGridViewTextBoxColumn.Name = "dateDataGridViewTextBoxColumn";
-            this.dateDataGridViewTextBoxColumn.ReadOnly = true;
-            this.dateDataGridViewTextBoxColumn.ToolTipText = "Date of the Match";
-            this.dateDataGridViewTextBoxColumn.Width = 55;
-            // 
-            // homeDataGridViewTextBoxColumn
-            // 
-            this.homeDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.homeDataGridViewTextBoxColumn.DataPropertyName = "Home";
-            this.homeDataGridViewTextBoxColumn.HeaderText = "Home";
-            this.homeDataGridViewTextBoxColumn.Name = "homeDataGridViewTextBoxColumn";
-            this.homeDataGridViewTextBoxColumn.ReadOnly = true;
-            this.homeDataGridViewTextBoxColumn.Width = 60;
-            // 
-            // scoreDataGridViewTextBoxColumn
-            // 
-            this.scoreDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.scoreDataGridViewTextBoxColumn.DataPropertyName = "Score";
-            this.scoreDataGridViewTextBoxColumn.HeaderText = "-";
-            this.scoreDataGridViewTextBoxColumn.Name = "scoreDataGridViewTextBoxColumn";
-            this.scoreDataGridViewTextBoxColumn.ReadOnly = true;
-            this.scoreDataGridViewTextBoxColumn.Width = 35;
-            // 
-            // awayDataGridViewTextBoxColumn
-            // 
-            this.awayDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.awayDataGridViewTextBoxColumn.DataPropertyName = "Away";
-            this.awayDataGridViewTextBoxColumn.HeaderText = "Away";
-            this.awayDataGridViewTextBoxColumn.Name = "awayDataGridViewTextBoxColumn";
-            this.awayDataGridViewTextBoxColumn.ReadOnly = true;
-            this.awayDataGridViewTextBoxColumn.Width = 58;
-            // 
-            // matchTypeDataGridViewTextBoxColumn
-            // 
-            this.matchTypeDataGridViewTextBoxColumn.DataPropertyName = "MatchType";
-            this.matchTypeDataGridViewTextBoxColumn.HeaderText = "Type";
-            this.matchTypeDataGridViewTextBoxColumn.MinimumWidth = 36;
-            this.matchTypeDataGridViewTextBoxColumn.Name = "matchTypeDataGridViewTextBoxColumn";
-            this.matchTypeDataGridViewTextBoxColumn.ReadOnly = true;
-            this.matchTypeDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.matchTypeDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.matchTypeDataGridViewTextBoxColumn.Width = 36;
             // 
             // Crowd
             // 
@@ -2971,16 +3075,6 @@ namespace TMRecorder
             this.Crowd.Name = "Crowd";
             this.Crowd.ReadOnly = true;
             this.Crowd.Width = 62;
-            // 
-            // reportDataGridViewCheckBoxColumn
-            // 
-            this.reportDataGridViewCheckBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.reportDataGridViewCheckBoxColumn.DataPropertyName = "Report";
-            this.reportDataGridViewCheckBoxColumn.HeaderText = "Dwnl";
-            this.reportDataGridViewCheckBoxColumn.Name = "reportDataGridViewCheckBoxColumn";
-            this.reportDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.reportDataGridViewCheckBoxColumn.ToolTipText = "If the box is checked, the match have been already downloaded";
-            this.reportDataGridViewCheckBoxColumn.Width = 37;
             // 
             // YourMentality
             // 
@@ -3034,82 +3128,201 @@ namespace TMRecorder
             this.OppsAttackingStyle.ToolTipText = "Attacking Style of the Opponent team";
             this.OppsAttackingStyle.Width = 10;
             // 
-            // matchesMenuStrip
+            // matchIDDataGridViewTextBoxColumn
             // 
-            this.matchesMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.gotoMatchReportPageToolStripMenuItem,
-            this.deleteSelectedMatchToolStripMenuItem,
-            this.showMatchActionsListToolStripMenuItem,
-            this.parseMatchForMentalityAndAttackingStylesToolStripMenuItem,
-            this.analyzeMatchToolStripMenuItem,
-            this.toolStripSeparator4,
-            this.pasteSelectedMatchFromFileToolStripMenuItem});
-            this.matchesMenuStrip.Name = "matchesMenuStrip";
-            this.matchesMenuStrip.Size = new System.Drawing.Size(326, 142);
+            this.matchIDDataGridViewTextBoxColumn.DataPropertyName = "MatchID";
+            this.matchIDDataGridViewTextBoxColumn.HeaderText = "MatchID";
+            this.matchIDDataGridViewTextBoxColumn.Name = "matchIDDataGridViewTextBoxColumn";
+            this.matchIDDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // gotoMatchReportPageToolStripMenuItem
+            // dateDataGridViewTextBoxColumn
             // 
-            this.gotoMatchReportPageToolStripMenuItem.Name = "gotoMatchReportPageToolStripMenuItem";
-            this.gotoMatchReportPageToolStripMenuItem.Size = new System.Drawing.Size(325, 22);
-            this.gotoMatchReportPageToolStripMenuItem.Text = "Open Match Report page in the Trophy Browser";
-            this.gotoMatchReportPageToolStripMenuItem.Click += new System.EventHandler(this.gotoMatchReportPageToolStripMenuItem_Click);
+            this.dateDataGridViewTextBoxColumn.DataPropertyName = "Date";
+            this.dateDataGridViewTextBoxColumn.HeaderText = "Date";
+            this.dateDataGridViewTextBoxColumn.Name = "dateDataGridViewTextBoxColumn";
+            this.dateDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // deleteSelectedMatchToolStripMenuItem
+            // homeDataGridViewTextBoxColumn
             // 
-            this.deleteSelectedMatchToolStripMenuItem.Name = "deleteSelectedMatchToolStripMenuItem";
-            this.deleteSelectedMatchToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.deleteSelectedMatchToolStripMenuItem.Size = new System.Drawing.Size(325, 22);
-            this.deleteSelectedMatchToolStripMenuItem.Text = "Delete Selected Match";
-            this.deleteSelectedMatchToolStripMenuItem.Click += new System.EventHandler(this.deleteSelectedMatchToolStripMenuItem_Click);
+            this.homeDataGridViewTextBoxColumn.DataPropertyName = "Home";
+            this.homeDataGridViewTextBoxColumn.HeaderText = "Home";
+            this.homeDataGridViewTextBoxColumn.Name = "homeDataGridViewTextBoxColumn";
+            this.homeDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // showMatchActionsListToolStripMenuItem
+            // awayDataGridViewTextBoxColumn
             // 
-            this.showMatchActionsListToolStripMenuItem.Name = "showMatchActionsListToolStripMenuItem";
-            this.showMatchActionsListToolStripMenuItem.Size = new System.Drawing.Size(325, 22);
-            this.showMatchActionsListToolStripMenuItem.Text = "Show Match Actions List";
-            this.showMatchActionsListToolStripMenuItem.Click += new System.EventHandler(this.showMatchActionsListToolStripMenuItem_Click);
+            this.awayDataGridViewTextBoxColumn.DataPropertyName = "Away";
+            this.awayDataGridViewTextBoxColumn.HeaderText = "Away";
+            this.awayDataGridViewTextBoxColumn.Name = "awayDataGridViewTextBoxColumn";
+            this.awayDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // parseMatchForMentalityAndAttackingStylesToolStripMenuItem
+            // scoreDataGridViewTextBoxColumn
             // 
-            this.parseMatchForMentalityAndAttackingStylesToolStripMenuItem.Name = "parseMatchForMentalityAndAttackingStylesToolStripMenuItem";
-            this.parseMatchForMentalityAndAttackingStylesToolStripMenuItem.Size = new System.Drawing.Size(325, 22);
-            this.parseMatchForMentalityAndAttackingStylesToolStripMenuItem.Text = "Parse match for Mentality and Attacking styles";
-            this.parseMatchForMentalityAndAttackingStylesToolStripMenuItem.Click += new System.EventHandler(this.parseMatchForMentalityAndAttackingStylesToolStripMenuItem_Click);
+            this.scoreDataGridViewTextBoxColumn.DataPropertyName = "Score";
+            this.scoreDataGridViewTextBoxColumn.HeaderText = "Score";
+            this.scoreDataGridViewTextBoxColumn.Name = "scoreDataGridViewTextBoxColumn";
+            this.scoreDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // analyzeMatchToolStripMenuItem
+            // matchTypeDataGridViewTextBoxColumn
             // 
-            this.analyzeMatchToolStripMenuItem.Name = "analyzeMatchToolStripMenuItem";
-            this.analyzeMatchToolStripMenuItem.Size = new System.Drawing.Size(325, 22);
-            this.analyzeMatchToolStripMenuItem.Text = "Analyze Match";
-            this.analyzeMatchToolStripMenuItem.Click += new System.EventHandler(this.analyzeMatchToolStripMenuItem_Click);
+            this.matchTypeDataGridViewTextBoxColumn.DataPropertyName = "MatchType";
+            this.matchTypeDataGridViewTextBoxColumn.HeaderText = "MatchType";
+            this.matchTypeDataGridViewTextBoxColumn.Name = "matchTypeDataGridViewTextBoxColumn";
+            this.matchTypeDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // toolStripSeparator4
+            // oppsClubNameDataGridViewTextBoxColumn
             // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(322, 6);
+            this.oppsClubNameDataGridViewTextBoxColumn.DataPropertyName = "OppsClubName";
+            this.oppsClubNameDataGridViewTextBoxColumn.HeaderText = "OppsClubName";
+            this.oppsClubNameDataGridViewTextBoxColumn.Name = "oppsClubNameDataGridViewTextBoxColumn";
+            this.oppsClubNameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // pasteSelectedMatchFromFileToolStripMenuItem
+            // oppsClubIDDataGridViewTextBoxColumn
             // 
-            this.pasteSelectedMatchFromFileToolStripMenuItem.Name = "pasteSelectedMatchFromFileToolStripMenuItem";
-            this.pasteSelectedMatchFromFileToolStripMenuItem.Size = new System.Drawing.Size(325, 22);
-            this.pasteSelectedMatchFromFileToolStripMenuItem.Text = "Paste Selected Match from File";
-            this.pasteSelectedMatchFromFileToolStripMenuItem.Click += new System.EventHandler(this.caricaFileSquadraToolStripMenuItem_Click);
+            this.oppsClubIDDataGridViewTextBoxColumn.DataPropertyName = "OppsClubID";
+            this.oppsClubIDDataGridViewTextBoxColumn.HeaderText = "OppsClubID";
+            this.oppsClubIDDataGridViewTextBoxColumn.Name = "oppsClubIDDataGridViewTextBoxColumn";
+            this.oppsClubIDDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // matchBindingSource
+            // yourFormationDataGridViewTextBoxColumn
             // 
-            this.matchBindingSource.DataMember = "Match";
-            this.matchBindingSource.DataSource = this.champDSBindingSource;
-            this.matchBindingSource.Sort = "Date";
+            this.yourFormationDataGridViewTextBoxColumn.DataPropertyName = "YourFormation";
+            this.yourFormationDataGridViewTextBoxColumn.HeaderText = "YourFormation";
+            this.yourFormationDataGridViewTextBoxColumn.Name = "yourFormationDataGridViewTextBoxColumn";
+            this.yourFormationDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // champDSBindingSource
+            // oppsFormationDataGridViewTextBoxColumn
             // 
-            this.champDSBindingSource.DataSource = this.champDS;
-            this.champDSBindingSource.Position = 0;
+            this.oppsFormationDataGridViewTextBoxColumn.DataPropertyName = "OppsFormation";
+            this.oppsFormationDataGridViewTextBoxColumn.HeaderText = "OppsFormation";
+            this.oppsFormationDataGridViewTextBoxColumn.Name = "oppsFormationDataGridViewTextBoxColumn";
+            this.oppsFormationDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // champDS
+            // crowdDataGridViewTextBoxColumn
             // 
-            this.champDS.DataSetName = "ChampDS";
-            this.champDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.crowdDataGridViewTextBoxColumn.DataPropertyName = "Crowd";
+            this.crowdDataGridViewTextBoxColumn.HeaderText = "Crowd";
+            this.crowdDataGridViewTextBoxColumn.Name = "crowdDataGridViewTextBoxColumn";
+            this.crowdDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // stadiumDataGridViewTextBoxColumn
+            // 
+            this.stadiumDataGridViewTextBoxColumn.DataPropertyName = "Stadium";
+            this.stadiumDataGridViewTextBoxColumn.HeaderText = "Stadium";
+            this.stadiumDataGridViewTextBoxColumn.Name = "stadiumDataGridViewTextBoxColumn";
+            this.stadiumDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // initDesciptionDataGridViewTextBoxColumn
+            // 
+            this.initDesciptionDataGridViewTextBoxColumn.DataPropertyName = "InitDesciption";
+            this.initDesciptionDataGridViewTextBoxColumn.HeaderText = "InitDesciption";
+            this.initDesciptionDataGridViewTextBoxColumn.Name = "initDesciptionDataGridViewTextBoxColumn";
+            this.initDesciptionDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // yourStatsDataGridViewTextBoxColumn
+            // 
+            this.yourStatsDataGridViewTextBoxColumn.DataPropertyName = "YourStats";
+            this.yourStatsDataGridViewTextBoxColumn.HeaderText = "YourStats";
+            this.yourStatsDataGridViewTextBoxColumn.Name = "yourStatsDataGridViewTextBoxColumn";
+            this.yourStatsDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // oppsStatsDataGridViewTextBoxColumn
+            // 
+            this.oppsStatsDataGridViewTextBoxColumn.DataPropertyName = "OppsStats";
+            this.oppsStatsDataGridViewTextBoxColumn.HeaderText = "OppsStats";
+            this.oppsStatsDataGridViewTextBoxColumn.Name = "oppsStatsDataGridViewTextBoxColumn";
+            this.oppsStatsDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // reportDataGridViewCheckBoxColumn
+            // 
+            this.reportDataGridViewCheckBoxColumn.DataPropertyName = "Report";
+            this.reportDataGridViewCheckBoxColumn.HeaderText = "Report";
+            this.reportDataGridViewCheckBoxColumn.Name = "reportDataGridViewCheckBoxColumn";
+            this.reportDataGridViewCheckBoxColumn.ReadOnly = true;
+            // 
+            // isHomeDataGridViewCheckBoxColumn
+            // 
+            this.isHomeDataGridViewCheckBoxColumn.DataPropertyName = "isHome";
+            this.isHomeDataGridViewCheckBoxColumn.HeaderText = "isHome";
+            this.isHomeDataGridViewCheckBoxColumn.Name = "isHomeDataGridViewCheckBoxColumn";
+            this.isHomeDataGridViewCheckBoxColumn.ReadOnly = true;
+            // 
+            // cardsDataGridViewTextBoxColumn
+            // 
+            this.cardsDataGridViewTextBoxColumn.DataPropertyName = "Cards";
+            this.cardsDataGridViewTextBoxColumn.HeaderText = "Cards";
+            this.cardsDataGridViewTextBoxColumn.Name = "cardsDataGridViewTextBoxColumn";
+            this.cardsDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // isReservesDataGridViewTextBoxColumn
+            // 
+            this.isReservesDataGridViewTextBoxColumn.DataPropertyName = "isReserves";
+            this.isReservesDataGridViewTextBoxColumn.HeaderText = "isReserves";
+            this.isReservesDataGridViewTextBoxColumn.Name = "isReservesDataGridViewTextBoxColumn";
+            this.isReservesDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // analyzedDataGridViewTextBoxColumn
+            // 
+            this.analyzedDataGridViewTextBoxColumn.DataPropertyName = "Analyzed";
+            this.analyzedDataGridViewTextBoxColumn.HeaderText = "Analyzed";
+            this.analyzedDataGridViewTextBoxColumn.Name = "analyzedDataGridViewTextBoxColumn";
+            this.analyzedDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // yourNickDataGridViewTextBoxColumn
+            // 
+            this.yourNickDataGridViewTextBoxColumn.DataPropertyName = "YourNick";
+            this.yourNickDataGridViewTextBoxColumn.HeaderText = "YourNick";
+            this.yourNickDataGridViewTextBoxColumn.Name = "yourNickDataGridViewTextBoxColumn";
+            this.yourNickDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // oppsNickDataGridViewTextBoxColumn
+            // 
+            this.oppsNickDataGridViewTextBoxColumn.DataPropertyName = "OppsNick";
+            this.oppsNickDataGridViewTextBoxColumn.HeaderText = "OppsNick";
+            this.oppsNickDataGridViewTextBoxColumn.Name = "oppsNickDataGridViewTextBoxColumn";
+            this.oppsNickDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // yourMentalityDataGridViewTextBoxColumn
+            // 
+            this.yourMentalityDataGridViewTextBoxColumn.DataPropertyName = "YourMentality";
+            this.yourMentalityDataGridViewTextBoxColumn.HeaderText = "YourMentality";
+            this.yourMentalityDataGridViewTextBoxColumn.Name = "yourMentalityDataGridViewTextBoxColumn";
+            this.yourMentalityDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // yourAttackingStyleDataGridViewTextBoxColumn
+            // 
+            this.yourAttackingStyleDataGridViewTextBoxColumn.DataPropertyName = "YourAttackingStyle";
+            this.yourAttackingStyleDataGridViewTextBoxColumn.HeaderText = "YourAttackingStyle";
+            this.yourAttackingStyleDataGridViewTextBoxColumn.Name = "yourAttackingStyleDataGridViewTextBoxColumn";
+            this.yourAttackingStyleDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // oppsMentalityDataGridViewTextBoxColumn
+            // 
+            this.oppsMentalityDataGridViewTextBoxColumn.DataPropertyName = "OppsMentality";
+            this.oppsMentalityDataGridViewTextBoxColumn.HeaderText = "OppsMentality";
+            this.oppsMentalityDataGridViewTextBoxColumn.Name = "oppsMentalityDataGridViewTextBoxColumn";
+            this.oppsMentalityDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // oppsAttackingStyleDataGridViewTextBoxColumn
+            // 
+            this.oppsAttackingStyleDataGridViewTextBoxColumn.DataPropertyName = "OppsAttackingStyle";
+            this.oppsAttackingStyleDataGridViewTextBoxColumn.HeaderText = "OppsAttackingStyle";
+            this.oppsAttackingStyleDataGridViewTextBoxColumn.Name = "oppsAttackingStyleDataGridViewTextBoxColumn";
+            this.oppsAttackingStyleDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // pitchDataGridViewTextBoxColumn
+            // 
+            this.pitchDataGridViewTextBoxColumn.DataPropertyName = "Pitch";
+            this.pitchDataGridViewTextBoxColumn.HeaderText = "Pitch";
+            this.pitchDataGridViewTextBoxColumn.Name = "pitchDataGridViewTextBoxColumn";
+            this.pitchDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // weatherDataGridViewTextBoxColumn
+            // 
+            this.weatherDataGridViewTextBoxColumn.DataPropertyName = "Weather";
+            this.weatherDataGridViewTextBoxColumn.HeaderText = "Weather";
+            this.weatherDataGridViewTextBoxColumn.Name = "weatherDataGridViewTextBoxColumn";
+            this.weatherDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // label1
             // 
@@ -3136,8 +3349,8 @@ namespace TMRecorder
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.panel4);
-            this.splitContainer1.Size = new System.Drawing.Size(532, 489);
-            this.splitContainer1.SplitterDistance = 292;
+            this.splitContainer1.Size = new System.Drawing.Size(532, 487);
+            this.splitContainer1.SplitterDistance = 289;
             this.splitContainer1.TabIndex = 1;
             // 
             // tableLayoutPanel2
@@ -3153,7 +3366,7 @@ namespace TMRecorder
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(532, 292);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(532, 289);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // panel2
@@ -3164,7 +3377,7 @@ namespace TMRecorder
             this.panel2.Location = new System.Drawing.Point(3, 4);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(263, 284);
+            this.panel2.Size = new System.Drawing.Size(263, 281);
             this.panel2.TabIndex = 0;
             // 
             // dataGridView2
@@ -3193,7 +3406,7 @@ namespace TMRecorder
             this.dataGridView2.ReadOnly = true;
             this.dataGridView2.RowHeadersWidth = 4;
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(259, 265);
+            this.dataGridView2.Size = new System.Drawing.Size(259, 262);
             this.dataGridView2.TabIndex = 1;
             // 
             // nameDataGridViewTextBoxColumn
@@ -3297,7 +3510,7 @@ namespace TMRecorder
             this.panel3.Location = new System.Drawing.Point(272, 4);
             this.panel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(257, 284);
+            this.panel3.Size = new System.Drawing.Size(257, 281);
             this.panel3.TabIndex = 1;
             // 
             // label3
@@ -3335,7 +3548,7 @@ namespace TMRecorder
             this.dataGridView3.ReadOnly = true;
             this.dataGridView3.RowHeadersWidth = 4;
             this.dataGridView3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView3.Size = new System.Drawing.Size(257, 265);
+            this.dataGridView3.Size = new System.Drawing.Size(257, 262);
             this.dataGridView3.TabIndex = 1;
             // 
             // nameDataGridViewTextBoxColumn1
@@ -3417,7 +3630,7 @@ namespace TMRecorder
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(532, 193);
+            this.panel4.Size = new System.Drawing.Size(532, 194);
             this.panel4.TabIndex = 0;
             // 
             // oppsTeamLineup
@@ -3465,7 +3678,7 @@ namespace TMRecorder
             this.matchStats.Location = new System.Drawing.Point(0, 32);
             this.matchStats.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.matchStats.Name = "matchStats";
-            this.matchStats.Size = new System.Drawing.Size(529, 168);
+            this.matchStats.Size = new System.Drawing.Size(529, 169);
             this.matchStats.TabIndex = 1;
             // 
             // label4
@@ -3512,8 +3725,8 @@ namespace TMRecorder
             // 
             // toolStripContainer3.TopToolStripPanel
             // 
-            this.toolStripContainer3.TopToolStripPanel.Controls.Add(this.tsBrowseMatches);
             this.toolStripContainer3.TopToolStripPanel.Controls.Add(this.tsBrowsePlayers);
+            this.toolStripContainer3.TopToolStripPanel.Controls.Add(this.tsBrowseMatches);
             this.toolStripContainer3.TopToolStripPanel.Controls.Add(this.tsBrowserMain);
             // 
             // webBrowser
@@ -3922,166 +4135,6 @@ namespace TMRecorder
             this.tbTxtAddress.ReadOnly = true;
             this.tbTxtAddress.Size = new System.Drawing.Size(400, 25);
             // 
-            // tsBrowsePlayers
-            // 
-            this.tsBrowsePlayers.Dock = System.Windows.Forms.DockStyle.None;
-            this.tsBrowsePlayers.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripLabel6,
-            this.tsbPrevPlayer,
-            this.tsbNextPlayer,
-            this.toolStripSeparator10,
-            this.toolStripLabel9,
-            this.tsbPlayers,
-            this.toolStripSeparator12,
-            this.tsbNumberOfReviews,
-            this.tsbNavigationType});
-            this.tsBrowsePlayers.Location = new System.Drawing.Point(3, 0);
-            this.tsBrowsePlayers.Name = "tsBrowsePlayers";
-            this.tsBrowsePlayers.Size = new System.Drawing.Size(788, 25);
-            this.tsBrowsePlayers.TabIndex = 2;
-            this.tsBrowsePlayers.Text = "toolStrip2";
-            this.tsBrowsePlayers.Visible = false;
-            // 
-            // toolStripLabel6
-            // 
-            this.toolStripLabel6.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripLabel6.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.toolStripLabel6.Name = "toolStripLabel6";
-            this.toolStripLabel6.Size = new System.Drawing.Size(93, 22);
-            this.toolStripLabel6.Text = "Browse Players";
-            // 
-            // tsbPrevPlayer
-            // 
-            this.tsbPrevPlayer.Image = ((System.Drawing.Image)(resources.GetObject("tsbPrevPlayer.Image")));
-            this.tsbPrevPlayer.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbPrevPlayer.Name = "tsbPrevPlayer";
-            this.tsbPrevPlayer.Size = new System.Drawing.Size(50, 22);
-            this.tsbPrevPlayer.Text = "Prev";
-            this.tsbPrevPlayer.Click += new System.EventHandler(this.tsbPrevPlayer_Click);
-            // 
-            // tsbNextPlayer
-            // 
-            this.tsbNextPlayer.Image = ((System.Drawing.Image)(resources.GetObject("tsbNextPlayer.Image")));
-            this.tsbNextPlayer.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbNextPlayer.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbNextPlayer.Name = "tsbNextPlayer";
-            this.tsbNextPlayer.Size = new System.Drawing.Size(51, 22);
-            this.tsbNextPlayer.Text = "Next";
-            this.tsbNextPlayer.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.tsbNextPlayer.Click += new System.EventHandler(this.tsbNextPlayer_Click);
-            // 
-            // toolStripSeparator10
-            // 
-            this.toolStripSeparator10.Name = "toolStripSeparator10";
-            this.toolStripSeparator10.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripLabel9
-            // 
-            this.toolStripLabel9.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripLabel9.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.toolStripLabel9.Name = "toolStripLabel9";
-            this.toolStripLabel9.Size = new System.Drawing.Size(43, 22);
-            this.toolStripLabel9.Text = "Player";
-            // 
-            // tsbPlayers
-            // 
-            this.tsbPlayers.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.gKToolStripMenuItem,
-            this.dDefendersToolStripMenuItem,
-            this.dMDefenderMidfieldersToolStripMenuItem,
-            this.mMidfieldersToolStripMenuItem,
-            this.oMOffenderMidfieldersToolStripMenuItem,
-            this.fForwardsToolStripMenuItem});
-            this.tsbPlayers.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsbPlayers.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.tsbPlayers.Image = ((System.Drawing.Image)(resources.GetObject("tsbPlayers.Image")));
-            this.tsbPlayers.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbPlayers.Name = "tsbPlayers";
-            this.tsbPlayers.Size = new System.Drawing.Size(254, 22);
-            this.tsbPlayers.Text = "[FC] Robert \"O Baixinho\" Scherpenzeel";
-            // 
-            // gKToolStripMenuItem
-            // 
-            this.gKToolStripMenuItem.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.gKToolStripMenuItem.Name = "gKToolStripMenuItem";
-            this.gKToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
-            this.gKToolStripMenuItem.Text = "GK - Goalkeepers";
-            // 
-            // dDefendersToolStripMenuItem
-            // 
-            this.dDefendersToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.dDefendersToolStripMenuItem.Name = "dDefendersToolStripMenuItem";
-            this.dDefendersToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
-            this.dDefendersToolStripMenuItem.Text = "D - Defenders";
-            // 
-            // dMDefenderMidfieldersToolStripMenuItem
-            // 
-            this.dMDefenderMidfieldersToolStripMenuItem.ForeColor = System.Drawing.Color.Lime;
-            this.dMDefenderMidfieldersToolStripMenuItem.Name = "dMDefenderMidfieldersToolStripMenuItem";
-            this.dMDefenderMidfieldersToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
-            this.dMDefenderMidfieldersToolStripMenuItem.Text = "DM - Defender/Midfielders";
-            // 
-            // mMidfieldersToolStripMenuItem
-            // 
-            this.mMidfieldersToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.mMidfieldersToolStripMenuItem.Name = "mMidfieldersToolStripMenuItem";
-            this.mMidfieldersToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
-            this.mMidfieldersToolStripMenuItem.Text = "M - Midfielders";
-            // 
-            // oMOffenderMidfieldersToolStripMenuItem
-            // 
-            this.oMOffenderMidfieldersToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.oMOffenderMidfieldersToolStripMenuItem.Name = "oMOffenderMidfieldersToolStripMenuItem";
-            this.oMOffenderMidfieldersToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
-            this.oMOffenderMidfieldersToolStripMenuItem.Text = "OM - Offender/Midfielders";
-            // 
-            // fForwardsToolStripMenuItem
-            // 
-            this.fForwardsToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.fForwardsToolStripMenuItem.Name = "fForwardsToolStripMenuItem";
-            this.fForwardsToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
-            this.fForwardsToolStripMenuItem.Text = "F - Forwards";
-            // 
-            // toolStripSeparator12
-            // 
-            this.toolStripSeparator12.Name = "toolStripSeparator12";
-            this.toolStripSeparator12.Size = new System.Drawing.Size(6, 25);
-            // 
-            // tsbNumberOfReviews
-            // 
-            this.tsbNumberOfReviews.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.tsbNumberOfReviews.Image = ((System.Drawing.Image)(resources.GetObject("tsbNumberOfReviews.Image")));
-            this.tsbNumberOfReviews.Name = "tsbNumberOfReviews";
-            this.tsbNumberOfReviews.Size = new System.Drawing.Size(148, 22);
-            this.tsbNumberOfReviews.Text = "2 Scouts Reviews stored";
-            // 
-            // tsbNavigationType
-            // 
-            this.tsbNavigationType.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.navigateProfilesToolStripMenuItem,
-            this.navigateReportsToolStripMenuItem});
-            this.tsbNavigationType.Image = ((System.Drawing.Image)(resources.GetObject("tsbNavigationType.Image")));
-            this.tsbNavigationType.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbNavigationType.Name = "tsbNavigationType";
-            this.tsbNavigationType.Size = new System.Drawing.Size(125, 22);
-            this.tsbNavigationType.Text = "Navigate Profiles";
-            // 
-            // navigateProfilesToolStripMenuItem
-            // 
-            this.navigateProfilesToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("navigateProfilesToolStripMenuItem.Image")));
-            this.navigateProfilesToolStripMenuItem.Name = "navigateProfilesToolStripMenuItem";
-            this.navigateProfilesToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.navigateProfilesToolStripMenuItem.Text = "Navigate Profiles";
-            this.navigateProfilesToolStripMenuItem.Click += new System.EventHandler(this.navigateProfilesToolStripMenuItem_Click);
-            // 
-            // navigateReportsToolStripMenuItem
-            // 
-            this.navigateReportsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("navigateReportsToolStripMenuItem.Image")));
-            this.navigateReportsToolStripMenuItem.Name = "navigateReportsToolStripMenuItem";
-            this.navigateReportsToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.navigateReportsToolStripMenuItem.Text = "Navigate Reports";
-            this.navigateReportsToolStripMenuItem.Click += new System.EventHandler(this.navigateReportsToolStripMenuItem_Click);
-            // 
             // tsBrowseMatches
             // 
             this.tsBrowseMatches.Dock = System.Windows.Forms.DockStyle.None;
@@ -4242,214 +4295,165 @@ namespace TMRecorder
             this.tsbNavigateReservesMatches.Text = "Navigate Reserves Matches";
             this.tsbNavigateReservesMatches.Click += new System.EventHandler(this.tsbNavigateReservesMatches_Click);
             // 
-            // plyStatsBindingSource1
+            // tsBrowsePlayers
             // 
-            this.plyStatsBindingSource1.DataMember = "PlyStats";
-            this.plyStatsBindingSource1.DataSource = this.champDSBindingSource;
+            this.tsBrowsePlayers.Dock = System.Windows.Forms.DockStyle.None;
+            this.tsBrowsePlayers.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel6,
+            this.tsbPrevPlayer,
+            this.tsbNextPlayer,
+            this.toolStripSeparator10,
+            this.toolStripLabel9,
+            this.tsbPlayers,
+            this.toolStripSeparator12,
+            this.tsbNumberOfReviews,
+            this.tsbNavigationType});
+            this.tsBrowsePlayers.Location = new System.Drawing.Point(3, 0);
+            this.tsBrowsePlayers.Name = "tsBrowsePlayers";
+            this.tsBrowsePlayers.Size = new System.Drawing.Size(788, 25);
+            this.tsBrowsePlayers.TabIndex = 2;
+            this.tsBrowsePlayers.Text = "toolStrip2";
+            this.tsBrowsePlayers.Visible = false;
             // 
-            // PlayerID
+            // toolStripLabel6
             // 
-            this.PlayerID.DataPropertyName = "PlayerID";
-            dataGridViewCellStyle116.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.PlayerID.DefaultCellStyle = dataGridViewCellStyle116;
-            this.PlayerID.FillWeight = 30F;
-            this.PlayerID.Frozen = true;
-            this.PlayerID.HeaderText = "ID";
-            this.PlayerID.Name = "PlayerID";
-            this.PlayerID.Visible = false;
-            this.PlayerID.Width = 30;
+            this.toolStripLabel6.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripLabel6.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.toolStripLabel6.Name = "toolStripLabel6";
+            this.toolStripLabel6.Size = new System.Drawing.Size(93, 22);
+            this.toolStripLabel6.Text = "Browse Players";
             // 
-            // Num
+            // tsbPrevPlayer
             // 
-            this.Num.DataPropertyName = "Numero";
-            this.Num.Frozen = true;
-            this.Num.HeaderText = "N";
-            this.Num.Name = "Num";
-            this.Num.Width = 30;
+            this.tsbPrevPlayer.Image = ((System.Drawing.Image)(resources.GetObject("tsbPrevPlayer.Image")));
+            this.tsbPrevPlayer.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbPrevPlayer.Name = "tsbPrevPlayer";
+            this.tsbPrevPlayer.Size = new System.Drawing.Size(50, 22);
+            this.tsbPrevPlayer.Text = "Prev";
+            this.tsbPrevPlayer.Click += new System.EventHandler(this.tsbPrevPlayer_Click);
             // 
-            // FP
+            // tsbNextPlayer
             // 
-            this.FP.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.FP.DataPropertyName = "FP";
-            this.FP.Frozen = true;
-            this.FP.HeaderText = "FP";
-            this.FP.Name = "FP";
+            this.tsbNextPlayer.Image = ((System.Drawing.Image)(resources.GetObject("tsbNextPlayer.Image")));
+            this.tsbNextPlayer.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbNextPlayer.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbNextPlayer.Name = "tsbNextPlayer";
+            this.tsbNextPlayer.Size = new System.Drawing.Size(51, 22);
+            this.tsbNextPlayer.Text = "Next";
+            this.tsbNextPlayer.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.tsbNextPlayer.Click += new System.EventHandler(this.tsbNextPlayer_Click);
             // 
-            // DC
+            // toolStripSeparator10
             // 
-            this.DC.DataPropertyName = "DC";
-            dataGridViewCellStyle117.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle117.Format = "N1";
-            dataGridViewCellStyle117.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.DC.DefaultCellStyle = dataGridViewCellStyle117;
-            this.DC.HeaderText = "DC";
-            this.DC.Name = "DC";
-            this.DC.Width = 30;
+            this.toolStripSeparator10.Name = "toolStripSeparator10";
+            this.toolStripSeparator10.Size = new System.Drawing.Size(6, 25);
             // 
-            // DR
+            // toolStripLabel9
             // 
-            this.DR.DataPropertyName = "DR";
-            dataGridViewCellStyle118.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle118.Format = "N1";
-            dataGridViewCellStyle118.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.DR.DefaultCellStyle = dataGridViewCellStyle118;
-            this.DR.HeaderText = "DR";
-            this.DR.Name = "DR";
-            this.DR.Width = 30;
+            this.toolStripLabel9.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripLabel9.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.toolStripLabel9.Name = "toolStripLabel9";
+            this.toolStripLabel9.Size = new System.Drawing.Size(43, 22);
+            this.toolStripLabel9.Text = "Player";
             // 
-            // DL
+            // tsbPlayers
             // 
-            this.DL.DataPropertyName = "DL";
-            dataGridViewCellStyle119.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle119.Format = "N1";
-            dataGridViewCellStyle119.NullValue = null;
-            dataGridViewCellStyle119.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.DL.DefaultCellStyle = dataGridViewCellStyle119;
-            this.DL.HeaderText = "DL";
-            this.DL.Name = "DL";
-            this.DL.Width = 30;
+            this.tsbPlayers.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.gKToolStripMenuItem,
+            this.dDefendersToolStripMenuItem,
+            this.dMDefenderMidfieldersToolStripMenuItem,
+            this.mMidfieldersToolStripMenuItem,
+            this.oMOffenderMidfieldersToolStripMenuItem,
+            this.fForwardsToolStripMenuItem});
+            this.tsbPlayers.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsbPlayers.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.tsbPlayers.Image = ((System.Drawing.Image)(resources.GetObject("tsbPlayers.Image")));
+            this.tsbPlayers.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbPlayers.Name = "tsbPlayers";
+            this.tsbPlayers.Size = new System.Drawing.Size(254, 22);
+            this.tsbPlayers.Text = "[FC] Robert \"O Baixinho\" Scherpenzeel";
             // 
-            // DMC
+            // gKToolStripMenuItem
             // 
-            this.DMC.DataPropertyName = "DMC";
-            dataGridViewCellStyle120.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle120.Format = "N1";
-            dataGridViewCellStyle120.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.DMC.DefaultCellStyle = dataGridViewCellStyle120;
-            this.DMC.HeaderText = "DMC";
-            this.DMC.Name = "DMC";
-            this.DMC.Width = 30;
+            this.gKToolStripMenuItem.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.gKToolStripMenuItem.Name = "gKToolStripMenuItem";
+            this.gKToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
+            this.gKToolStripMenuItem.Text = "GK - Goalkeepers";
             // 
-            // DMR
+            // dDefendersToolStripMenuItem
             // 
-            this.DMR.DataPropertyName = "DMR";
-            dataGridViewCellStyle121.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle121.Format = "N1";
-            dataGridViewCellStyle121.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.DMR.DefaultCellStyle = dataGridViewCellStyle121;
-            this.DMR.HeaderText = "DMR";
-            this.DMR.Name = "DMR";
-            this.DMR.Width = 30;
+            this.dDefendersToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.dDefendersToolStripMenuItem.Name = "dDefendersToolStripMenuItem";
+            this.dDefendersToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
+            this.dDefendersToolStripMenuItem.Text = "D - Defenders";
             // 
-            // DML
+            // dMDefenderMidfieldersToolStripMenuItem
             // 
-            this.DML.DataPropertyName = "DML";
-            dataGridViewCellStyle122.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle122.Format = "N1";
-            dataGridViewCellStyle122.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.DML.DefaultCellStyle = dataGridViewCellStyle122;
-            this.DML.HeaderText = "DML";
-            this.DML.Name = "DML";
-            this.DML.Width = 30;
+            this.dMDefenderMidfieldersToolStripMenuItem.ForeColor = System.Drawing.Color.Lime;
+            this.dMDefenderMidfieldersToolStripMenuItem.Name = "dMDefenderMidfieldersToolStripMenuItem";
+            this.dMDefenderMidfieldersToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
+            this.dMDefenderMidfieldersToolStripMenuItem.Text = "DM - Defender/Midfielders";
             // 
-            // MC
+            // mMidfieldersToolStripMenuItem
             // 
-            this.MC.DataPropertyName = "MC";
-            dataGridViewCellStyle123.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle123.Format = "N1";
-            dataGridViewCellStyle123.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.MC.DefaultCellStyle = dataGridViewCellStyle123;
-            this.MC.HeaderText = "MC";
-            this.MC.Name = "MC";
-            this.MC.Width = 30;
+            this.mMidfieldersToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.mMidfieldersToolStripMenuItem.Name = "mMidfieldersToolStripMenuItem";
+            this.mMidfieldersToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
+            this.mMidfieldersToolStripMenuItem.Text = "M - Midfielders";
             // 
-            // MR
+            // oMOffenderMidfieldersToolStripMenuItem
             // 
-            this.MR.DataPropertyName = "MR";
-            dataGridViewCellStyle124.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle124.Format = "N1";
-            dataGridViewCellStyle124.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.MR.DefaultCellStyle = dataGridViewCellStyle124;
-            this.MR.HeaderText = "MR";
-            this.MR.Name = "MR";
-            this.MR.Width = 30;
+            this.oMOffenderMidfieldersToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.oMOffenderMidfieldersToolStripMenuItem.Name = "oMOffenderMidfieldersToolStripMenuItem";
+            this.oMOffenderMidfieldersToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
+            this.oMOffenderMidfieldersToolStripMenuItem.Text = "OM - Offender/Midfielders";
             // 
-            // ML
+            // fForwardsToolStripMenuItem
             // 
-            this.ML.DataPropertyName = "ML";
-            dataGridViewCellStyle125.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle125.Format = "N1";
-            dataGridViewCellStyle125.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.ML.DefaultCellStyle = dataGridViewCellStyle125;
-            this.ML.HeaderText = "ML";
-            this.ML.Name = "ML";
-            this.ML.Width = 30;
+            this.fForwardsToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.fForwardsToolStripMenuItem.Name = "fForwardsToolStripMenuItem";
+            this.fForwardsToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
+            this.fForwardsToolStripMenuItem.Text = "F - Forwards";
             // 
-            // OMC
+            // toolStripSeparator12
             // 
-            this.OMC.DataPropertyName = "OMC";
-            dataGridViewCellStyle126.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle126.Format = "N1";
-            dataGridViewCellStyle126.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.OMC.DefaultCellStyle = dataGridViewCellStyle126;
-            this.OMC.HeaderText = "OMC";
-            this.OMC.Name = "OMC";
-            this.OMC.Width = 30;
+            this.toolStripSeparator12.Name = "toolStripSeparator12";
+            this.toolStripSeparator12.Size = new System.Drawing.Size(6, 25);
             // 
-            // OMR
+            // tsbNumberOfReviews
             // 
-            this.OMR.DataPropertyName = "OMR";
-            dataGridViewCellStyle127.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle127.Format = "N1";
-            dataGridViewCellStyle127.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.OMR.DefaultCellStyle = dataGridViewCellStyle127;
-            this.OMR.HeaderText = "OMR";
-            this.OMR.Name = "OMR";
-            this.OMR.Width = 30;
+            this.tsbNumberOfReviews.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.tsbNumberOfReviews.Image = ((System.Drawing.Image)(resources.GetObject("tsbNumberOfReviews.Image")));
+            this.tsbNumberOfReviews.Name = "tsbNumberOfReviews";
+            this.tsbNumberOfReviews.Size = new System.Drawing.Size(148, 22);
+            this.tsbNumberOfReviews.Text = "2 Scouts Reviews stored";
             // 
-            // OML
+            // tsbNavigationType
             // 
-            this.OML.DataPropertyName = "OML";
-            dataGridViewCellStyle128.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle128.Format = "N1";
-            dataGridViewCellStyle128.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.OML.DefaultCellStyle = dataGridViewCellStyle128;
-            this.OML.HeaderText = "OML";
-            this.OML.Name = "OML";
-            this.OML.Width = 30;
+            this.tsbNavigationType.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.navigateProfilesToolStripMenuItem,
+            this.navigateReportsToolStripMenuItem});
+            this.tsbNavigationType.Image = ((System.Drawing.Image)(resources.GetObject("tsbNavigationType.Image")));
+            this.tsbNavigationType.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbNavigationType.Name = "tsbNavigationType";
+            this.tsbNavigationType.Size = new System.Drawing.Size(125, 22);
+            this.tsbNavigationType.Text = "Navigate Profiles";
             // 
-            // FC
+            // navigateProfilesToolStripMenuItem
             // 
-            this.FC.DataPropertyName = "FC";
-            dataGridViewCellStyle129.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle129.Format = "N1";
-            dataGridViewCellStyle129.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.FC.DefaultCellStyle = dataGridViewCellStyle129;
-            this.FC.HeaderText = "FC";
-            this.FC.Name = "FC";
-            this.FC.Width = 30;
+            this.navigateProfilesToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("navigateProfilesToolStripMenuItem.Image")));
+            this.navigateProfilesToolStripMenuItem.Name = "navigateProfilesToolStripMenuItem";
+            this.navigateProfilesToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.navigateProfilesToolStripMenuItem.Text = "Navigate Profiles";
+            this.navigateProfilesToolStripMenuItem.Click += new System.EventHandler(this.navigateProfilesToolStripMenuItem_Click);
             // 
-            // OSi
+            // navigateReportsToolStripMenuItem
             // 
-            this.OSi.DataPropertyName = "OSi";
-            dataGridViewCellStyle130.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle130.Format = "N2";
-            dataGridViewCellStyle130.NullValue = null;
-            dataGridViewCellStyle130.SelectionBackColor = System.Drawing.Color.Teal;
-            this.OSi.DefaultCellStyle = dataGridViewCellStyle130;
-            this.OSi.HeaderText = "SOi";
-            this.OSi.Name = "OSi";
-            this.OSi.Width = 35;
-            // 
-            // toolStripContainer1
-            // 
-            // 
-            // toolStripContainer1.ContentPanel
-            // 
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.tabControl1);
-            this.toolStripContainer1.ContentPanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1027, 531);
-            this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
-            this.toolStripContainer1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.toolStripContainer1.Name = "toolStripContainer1";
-            this.toolStripContainer1.Size = new System.Drawing.Size(1027, 556);
-            this.toolStripContainer1.TabIndex = 2;
-            this.toolStripContainer1.Text = "toolStripContainer1";
-            // 
-            // toolStripContainer1.TopToolStripPanel
-            // 
-            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip1);
+            this.navigateReportsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("navigateReportsToolStripMenuItem.Image")));
+            this.navigateReportsToolStripMenuItem.Name = "navigateReportsToolStripMenuItem";
+            this.navigateReportsToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.navigateReportsToolStripMenuItem.Text = "Navigate Reports";
+            this.navigateReportsToolStripMenuItem.Click += new System.EventHandler(this.navigateReportsToolStripMenuItem_Click);
             // 
             // toolStrip1
             // 
@@ -5019,29 +5023,215 @@ namespace TMRecorder
             this.tsbFacebook.Text = "Shortlist Tool";
             this.tsbFacebook.Click += new System.EventHandler(this.tsbFacebook_Click);
             // 
-            // inFormazioneDataGridViewCheckBoxColumn
+            // giocatoriBindingSource
             // 
-            this.inFormazioneDataGridViewCheckBoxColumn.DataPropertyName = "InFormazione";
-            this.inFormazioneDataGridViewCheckBoxColumn.HeaderText = "Ply";
-            this.inFormazioneDataGridViewCheckBoxColumn.Name = "inFormazioneDataGridViewCheckBoxColumn";
-            this.inFormazioneDataGridViewCheckBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.inFormazioneDataGridViewCheckBoxColumn.Width = 25;
+            this.giocatoriBindingSource.DataMember = "Giocatori";
+            this.giocatoriBindingSource.DataSource = this.db_TrophyDataSet;
             // 
-            // squalificatoDataGridViewCheckBoxColumn
+            // db_TrophyDataSet
             // 
-            this.squalificatoDataGridViewCheckBoxColumn.DataPropertyName = "Squalificato";
-            this.squalificatoDataGridViewCheckBoxColumn.HeaderText = "Sql";
-            this.squalificatoDataGridViewCheckBoxColumn.Name = "squalificatoDataGridViewCheckBoxColumn";
-            this.squalificatoDataGridViewCheckBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.squalificatoDataGridViewCheckBoxColumn.Width = 25;
+            this.db_TrophyDataSet.DataSetName = "Db_TrophyDataSet";
+            this.db_TrophyDataSet.Date = new System.DateTime(2009, 12, 27, 0, 37, 43, 578);
+            this.db_TrophyDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // infortunatoDataGridViewCheckBoxColumn
+            // portieriBindingSource
             // 
-            this.infortunatoDataGridViewCheckBoxColumn.DataPropertyName = "Infortunato";
-            this.infortunatoDataGridViewCheckBoxColumn.HeaderText = "Inj";
-            this.infortunatoDataGridViewCheckBoxColumn.Name = "infortunatoDataGridViewCheckBoxColumn";
-            this.infortunatoDataGridViewCheckBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.infortunatoDataGridViewCheckBoxColumn.Width = 25;
+            this.portieriBindingSource.DataMember = "Portieri";
+            this.portieriBindingSource.DataSource = this.db_TrophyDataSet;
+            // 
+            // actionAnalysis
+            // 
+            this.actionAnalysis.DataSetName = "ActionAnalysis";
+            this.actionAnalysis.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // giocatoriNSkillBindingSourceA
+            // 
+            this.giocatoriNSkillBindingSourceA.DataMember = "GiocatoriNSkill";
+            this.giocatoriNSkillBindingSourceA.DataSource = this.extTMDataSet;
+            // 
+            // PlayerID
+            // 
+            this.PlayerID.DataPropertyName = "PlayerID";
+            dataGridViewCellStyle116.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.PlayerID.DefaultCellStyle = dataGridViewCellStyle116;
+            this.PlayerID.FillWeight = 30F;
+            this.PlayerID.Frozen = true;
+            this.PlayerID.HeaderText = "ID";
+            this.PlayerID.Name = "PlayerID";
+            this.PlayerID.Visible = false;
+            this.PlayerID.Width = 30;
+            // 
+            // Num
+            // 
+            this.Num.DataPropertyName = "Numero";
+            this.Num.Frozen = true;
+            this.Num.HeaderText = "N";
+            this.Num.Name = "Num";
+            this.Num.Width = 30;
+            // 
+            // FP
+            // 
+            this.FP.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.FP.DataPropertyName = "FP";
+            this.FP.Frozen = true;
+            this.FP.HeaderText = "FP";
+            this.FP.Name = "FP";
+            // 
+            // DC
+            // 
+            this.DC.DataPropertyName = "DC";
+            dataGridViewCellStyle117.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle117.Format = "N1";
+            dataGridViewCellStyle117.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.DC.DefaultCellStyle = dataGridViewCellStyle117;
+            this.DC.HeaderText = "DC";
+            this.DC.Name = "DC";
+            this.DC.Width = 30;
+            // 
+            // DR
+            // 
+            this.DR.DataPropertyName = "DR";
+            dataGridViewCellStyle118.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle118.Format = "N1";
+            dataGridViewCellStyle118.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.DR.DefaultCellStyle = dataGridViewCellStyle118;
+            this.DR.HeaderText = "DR";
+            this.DR.Name = "DR";
+            this.DR.Width = 30;
+            // 
+            // DL
+            // 
+            this.DL.DataPropertyName = "DL";
+            dataGridViewCellStyle119.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle119.Format = "N1";
+            dataGridViewCellStyle119.NullValue = null;
+            dataGridViewCellStyle119.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.DL.DefaultCellStyle = dataGridViewCellStyle119;
+            this.DL.HeaderText = "DL";
+            this.DL.Name = "DL";
+            this.DL.Width = 30;
+            // 
+            // DMC
+            // 
+            this.DMC.DataPropertyName = "DMC";
+            dataGridViewCellStyle120.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle120.Format = "N1";
+            dataGridViewCellStyle120.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.DMC.DefaultCellStyle = dataGridViewCellStyle120;
+            this.DMC.HeaderText = "DMC";
+            this.DMC.Name = "DMC";
+            this.DMC.Width = 30;
+            // 
+            // DMR
+            // 
+            this.DMR.DataPropertyName = "DMR";
+            dataGridViewCellStyle121.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle121.Format = "N1";
+            dataGridViewCellStyle121.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.DMR.DefaultCellStyle = dataGridViewCellStyle121;
+            this.DMR.HeaderText = "DMR";
+            this.DMR.Name = "DMR";
+            this.DMR.Width = 30;
+            // 
+            // DML
+            // 
+            this.DML.DataPropertyName = "DML";
+            dataGridViewCellStyle122.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle122.Format = "N1";
+            dataGridViewCellStyle122.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.DML.DefaultCellStyle = dataGridViewCellStyle122;
+            this.DML.HeaderText = "DML";
+            this.DML.Name = "DML";
+            this.DML.Width = 30;
+            // 
+            // MC
+            // 
+            this.MC.DataPropertyName = "MC";
+            dataGridViewCellStyle123.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle123.Format = "N1";
+            dataGridViewCellStyle123.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.MC.DefaultCellStyle = dataGridViewCellStyle123;
+            this.MC.HeaderText = "MC";
+            this.MC.Name = "MC";
+            this.MC.Width = 30;
+            // 
+            // MR
+            // 
+            this.MR.DataPropertyName = "MR";
+            dataGridViewCellStyle124.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle124.Format = "N1";
+            dataGridViewCellStyle124.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.MR.DefaultCellStyle = dataGridViewCellStyle124;
+            this.MR.HeaderText = "MR";
+            this.MR.Name = "MR";
+            this.MR.Width = 30;
+            // 
+            // ML
+            // 
+            this.ML.DataPropertyName = "ML";
+            dataGridViewCellStyle125.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle125.Format = "N1";
+            dataGridViewCellStyle125.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.ML.DefaultCellStyle = dataGridViewCellStyle125;
+            this.ML.HeaderText = "ML";
+            this.ML.Name = "ML";
+            this.ML.Width = 30;
+            // 
+            // OMC
+            // 
+            this.OMC.DataPropertyName = "OMC";
+            dataGridViewCellStyle126.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle126.Format = "N1";
+            dataGridViewCellStyle126.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.OMC.DefaultCellStyle = dataGridViewCellStyle126;
+            this.OMC.HeaderText = "OMC";
+            this.OMC.Name = "OMC";
+            this.OMC.Width = 30;
+            // 
+            // OMR
+            // 
+            this.OMR.DataPropertyName = "OMR";
+            dataGridViewCellStyle127.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle127.Format = "N1";
+            dataGridViewCellStyle127.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.OMR.DefaultCellStyle = dataGridViewCellStyle127;
+            this.OMR.HeaderText = "OMR";
+            this.OMR.Name = "OMR";
+            this.OMR.Width = 30;
+            // 
+            // OML
+            // 
+            this.OML.DataPropertyName = "OML";
+            dataGridViewCellStyle128.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle128.Format = "N1";
+            dataGridViewCellStyle128.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.OML.DefaultCellStyle = dataGridViewCellStyle128;
+            this.OML.HeaderText = "OML";
+            this.OML.Name = "OML";
+            this.OML.Width = 30;
+            // 
+            // FC
+            // 
+            this.FC.DataPropertyName = "FC";
+            dataGridViewCellStyle129.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle129.Format = "N1";
+            dataGridViewCellStyle129.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.FC.DefaultCellStyle = dataGridViewCellStyle129;
+            this.FC.HeaderText = "FC";
+            this.FC.Name = "FC";
+            this.FC.Width = 30;
+            // 
+            // OSi
+            // 
+            this.OSi.DataPropertyName = "OSi";
+            dataGridViewCellStyle130.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle130.Format = "N2";
+            dataGridViewCellStyle130.NullValue = null;
+            dataGridViewCellStyle130.SelectionBackColor = System.Drawing.Color.Teal;
+            this.OSi.DefaultCellStyle = dataGridViewCellStyle130;
+            this.OSi.HeaderText = "SOi";
+            this.OSi.Name = "OSi";
+            this.OSi.Width = 35;
             // 
             // calDataGridViewTextBoxColumn
             // 
@@ -5196,110 +5386,6 @@ namespace TMRecorder
             this.nomeDataGridViewTextBoxColumn3.HeaderText = "Name";
             this.nomeDataGridViewTextBoxColumn3.Name = "nomeDataGridViewTextBoxColumn3";
             // 
-            // zedGraphControl1
-            // 
-            this.zedGraphControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.zedGraphControl1.EditButtons = System.Windows.Forms.MouseButtons.Left;
-            this.zedGraphControl1.EditModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.None)));
-            this.zedGraphControl1.ForeColor = System.Drawing.Color.White;
-            this.zedGraphControl1.IsAutoScrollRange = false;
-            this.zedGraphControl1.IsEnableHEdit = false;
-            this.zedGraphControl1.IsEnableHPan = true;
-            this.zedGraphControl1.IsEnableHZoom = true;
-            this.zedGraphControl1.IsEnableVEdit = false;
-            this.zedGraphControl1.IsEnableVPan = true;
-            this.zedGraphControl1.IsEnableVZoom = true;
-            this.zedGraphControl1.IsPrintFillPage = true;
-            this.zedGraphControl1.IsPrintKeepAspectRatio = true;
-            this.zedGraphControl1.IsScrollY2 = false;
-            this.zedGraphControl1.IsShowContextMenu = true;
-            this.zedGraphControl1.IsShowCopyMessage = true;
-            this.zedGraphControl1.IsShowCursorValues = false;
-            this.zedGraphControl1.IsShowHScrollBar = false;
-            this.zedGraphControl1.IsShowPointValues = false;
-            this.zedGraphControl1.IsShowVScrollBar = false;
-            this.zedGraphControl1.IsSynchronizeXAxes = false;
-            this.zedGraphControl1.IsSynchronizeYAxes = false;
-            this.zedGraphControl1.IsZoomOnMouseCenter = false;
-            this.zedGraphControl1.LinkButtons = System.Windows.Forms.MouseButtons.Left;
-            this.zedGraphControl1.LinkModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.None)));
-            this.zedGraphControl1.Location = new System.Drawing.Point(0, 0);
-            this.zedGraphControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.zedGraphControl1.Name = "zedGraphControl1";
-            this.zedGraphControl1.PanButtons = System.Windows.Forms.MouseButtons.Left;
-            this.zedGraphControl1.PanButtons2 = System.Windows.Forms.MouseButtons.Middle;
-            this.zedGraphControl1.PanModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.None)));
-            this.zedGraphControl1.PanModifierKeys2 = System.Windows.Forms.Keys.None;
-            this.zedGraphControl1.PointDateFormat = "g";
-            this.zedGraphControl1.PointValueFormat = "G";
-            this.zedGraphControl1.ScrollMaxX = 0D;
-            this.zedGraphControl1.ScrollMaxY = 0D;
-            this.zedGraphControl1.ScrollMaxY2 = 0D;
-            this.zedGraphControl1.ScrollMinX = 0D;
-            this.zedGraphControl1.ScrollMinY = 0D;
-            this.zedGraphControl1.ScrollMinY2 = 0D;
-            this.zedGraphControl1.Size = new System.Drawing.Size(538, 334);
-            this.zedGraphControl1.TabIndex = 0;
-            this.zedGraphControl1.ZoomButtons = System.Windows.Forms.MouseButtons.Left;
-            this.zedGraphControl1.ZoomButtons2 = System.Windows.Forms.MouseButtons.None;
-            this.zedGraphControl1.ZoomModifierKeys = System.Windows.Forms.Keys.None;
-            this.zedGraphControl1.ZoomModifierKeys2 = System.Windows.Forms.Keys.None;
-            this.zedGraphControl1.ZoomStepFraction = 0.1D;
-            // 
-            // zedGraphControl2
-            // 
-            this.zedGraphControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.zedGraphControl2.EditButtons = System.Windows.Forms.MouseButtons.Left;
-            this.zedGraphControl2.EditModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.None)));
-            this.zedGraphControl2.IsAutoScrollRange = false;
-            this.zedGraphControl2.IsEnableHEdit = false;
-            this.zedGraphControl2.IsEnableHPan = true;
-            this.zedGraphControl2.IsEnableHZoom = true;
-            this.zedGraphControl2.IsEnableVEdit = false;
-            this.zedGraphControl2.IsEnableVPan = true;
-            this.zedGraphControl2.IsEnableVZoom = true;
-            this.zedGraphControl2.IsPrintFillPage = true;
-            this.zedGraphControl2.IsPrintKeepAspectRatio = true;
-            this.zedGraphControl2.IsScrollY2 = false;
-            this.zedGraphControl2.IsShowContextMenu = true;
-            this.zedGraphControl2.IsShowCopyMessage = true;
-            this.zedGraphControl2.IsShowCursorValues = false;
-            this.zedGraphControl2.IsShowHScrollBar = false;
-            this.zedGraphControl2.IsShowPointValues = false;
-            this.zedGraphControl2.IsShowVScrollBar = false;
-            this.zedGraphControl2.IsSynchronizeXAxes = false;
-            this.zedGraphControl2.IsSynchronizeYAxes = false;
-            this.zedGraphControl2.IsZoomOnMouseCenter = false;
-            this.zedGraphControl2.LinkButtons = System.Windows.Forms.MouseButtons.Left;
-            this.zedGraphControl2.LinkModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.None)));
-            this.zedGraphControl2.Location = new System.Drawing.Point(0, 0);
-            this.zedGraphControl2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.zedGraphControl2.Name = "zedGraphControl2";
-            this.zedGraphControl2.PanButtons = System.Windows.Forms.MouseButtons.Left;
-            this.zedGraphControl2.PanButtons2 = System.Windows.Forms.MouseButtons.Middle;
-            this.zedGraphControl2.PanModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.None)));
-            this.zedGraphControl2.PanModifierKeys2 = System.Windows.Forms.Keys.None;
-            this.zedGraphControl2.PointDateFormat = "g";
-            this.zedGraphControl2.PointValueFormat = "G";
-            this.zedGraphControl2.ScrollMaxX = 0D;
-            this.zedGraphControl2.ScrollMaxY = 0D;
-            this.zedGraphControl2.ScrollMaxY2 = 0D;
-            this.zedGraphControl2.ScrollMinX = 0D;
-            this.zedGraphControl2.ScrollMinY = 0D;
-            this.zedGraphControl2.ScrollMinY2 = 0D;
-            this.zedGraphControl2.Size = new System.Drawing.Size(553, 334);
-            this.zedGraphControl2.TabIndex = 1;
-            this.zedGraphControl2.ZoomButtons = System.Windows.Forms.MouseButtons.Left;
-            this.zedGraphControl2.ZoomButtons2 = System.Windows.Forms.MouseButtons.None;
-            this.zedGraphControl2.ZoomModifierKeys = System.Windows.Forms.Keys.None;
-            this.zedGraphControl2.ZoomModifierKeys2 = System.Windows.Forms.Keys.None;
-            this.zedGraphControl2.ZoomStepFraction = 0.1D;
-            // 
-            // plyStatsBindingSource
-            // 
-            this.plyStatsBindingSource.DataMember = "PlyStats";
-            this.plyStatsBindingSource.DataSource = this.champDSBindingSource;
-            // 
             // Age
             // 
             this.Age.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
@@ -5314,404 +5400,503 @@ namespace TMRecorder
             this.dataGridViewTextBoxColumn6.HeaderText = "ASI";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             // 
-            // giocatoriBindingSource
-            // 
-            this.giocatoriBindingSource.DataMember = "Giocatori";
-            this.giocatoriBindingSource.DataSource = this.db_TrophyDataSet;
-            // 
-            // db_TrophyDataSet
-            // 
-            this.db_TrophyDataSet.DataSetName = "Db_TrophyDataSet";
-            this.db_TrophyDataSet.Date = new System.DateTime(2009, 12, 27, 0, 37, 43, 578);
-            this.db_TrophyDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // portieriBindingSource
-            // 
-            this.portieriBindingSource.DataMember = "Portieri";
-            this.portieriBindingSource.DataSource = this.db_TrophyDataSet;
-            // 
-            // actionAnalysis
-            // 
-            this.actionAnalysis.DataSetName = "ActionAnalysis";
-            this.actionAnalysis.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // giocatoriNSkillBindingSourceA
-            // 
-            this.giocatoriNSkillBindingSourceA.DataMember = "GiocatoriNSkill";
-            this.giocatoriNSkillBindingSourceA.DataSource = this.extTMDataSet;
-            // 
-            // toolStripSeparator9
-            // 
-            this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStrip3
-            // 
-            this.toolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripLabel3,
-            this.toolStripButton6,
-            this.toolStripSeparator9,
-            this.toolStripButton7});
-            this.toolStrip3.Location = new System.Drawing.Point(3, 3);
-            this.toolStrip3.Name = "toolStrip3";
-            this.toolStrip3.Size = new System.Drawing.Size(1055, 25);
-            this.toolStrip3.TabIndex = 0;
-            this.toolStrip3.Text = "toolStrip2";
-            // 
-            // toolStripLabel3
-            // 
-            this.toolStripLabel3.Name = "toolStripLabel3";
-            this.toolStripLabel3.Size = new System.Drawing.Size(112, 22);
-            this.toolStripLabel3.Text = "TM Pages Shortcuts";
-            // 
-            // toolStripButton6
-            // 
-            this.toolStripButton6.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.toolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton6.Image")));
-            this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton6.Name = "toolStripButton6";
-            this.toolStripButton6.Size = new System.Drawing.Size(55, 22);
-            this.toolStripButton6.Text = "Squad A";
-            // 
-            // toolStripButton7
-            // 
-            this.toolStripButton7.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.toolStripButton7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton7.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton7.Image")));
-            this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton7.Name = "toolStripButton7";
-            this.toolStripButton7.Size = new System.Drawing.Size(54, 22);
-            this.toolStripButton7.Text = "Squad B";
-            // 
-            // toolStripContainer2
-            // 
-            // 
-            // toolStripContainer2.ContentPanel
-            // 
-            this.toolStripContainer2.ContentPanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.toolStripContainer2.ContentPanel.Size = new System.Drawing.Size(1027, 531);
-            this.toolStripContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.toolStripContainer2.Location = new System.Drawing.Point(0, 0);
-            this.toolStripContainer2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.toolStripContainer2.Name = "toolStripContainer2";
-            this.toolStripContainer2.Size = new System.Drawing.Size(1027, 556);
-            this.toolStripContainer2.TabIndex = 0;
-            this.toolStripContainer2.Text = "toolStripContainer2";
-            // 
-            // playerIDDataGridViewTextBoxColumn
-            // 
-            this.playerIDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-            this.playerIDDataGridViewTextBoxColumn.DataPropertyName = "PlayerID";
-            this.playerIDDataGridViewTextBoxColumn.HeaderText = "PlayerID";
-            this.playerIDDataGridViewTextBoxColumn.MinimumWidth = 45;
-            this.playerIDDataGridViewTextBoxColumn.Name = "playerIDDataGridViewTextBoxColumn";
-            this.playerIDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.playerIDDataGridViewTextBoxColumn.Visible = false;
-            this.playerIDDataGridViewTextBoxColumn.Width = 45;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "Numero";
-            this.dataGridViewTextBoxColumn2.HeaderText = "No.";
-            this.dataGridViewTextBoxColumn2.MinimumWidth = 20;
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 20;
-            // 
-            // nomeDataGridViewTextBoxColumn2
-            // 
-            this.nomeDataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-            this.nomeDataGridViewTextBoxColumn2.DataPropertyName = "Nome";
-            this.nomeDataGridViewTextBoxColumn2.HeaderText = "Name";
-            this.nomeDataGridViewTextBoxColumn2.MinimumWidth = 60;
-            this.nomeDataGridViewTextBoxColumn2.Name = "nomeDataGridViewTextBoxColumn2";
-            this.nomeDataGridViewTextBoxColumn2.ReadOnly = true;
-            this.nomeDataGridViewTextBoxColumn2.Width = 60;
-            // 
-            // nationalityDataGridViewTextBoxColumn
-            // 
-            this.nationalityDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
-            this.nationalityDataGridViewTextBoxColumn.DataPropertyName = "Nationality";
-            this.nationalityDataGridViewTextBoxColumn.HeaderText = "Nat";
-            this.nationalityDataGridViewTextBoxColumn.MinimumWidth = 30;
-            this.nationalityDataGridViewTextBoxColumn.Name = "nationalityDataGridViewTextBoxColumn";
-            this.nationalityDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nationalityDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.nationalityDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.nationalityDataGridViewTextBoxColumn.ToolTipText = "Nationality";
-            this.nationalityDataGridViewTextBoxColumn.Width = 30;
-            // 
-            // Et‡
-            // 
-            this.Et‡.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
-            this.Et‡.DataPropertyName = "wBorn";
-            this.Et‡.HeaderText = "Age";
-            this.Et‡.MinimumWidth = 25;
-            this.Et‡.Name = "Et‡";
-            this.Et‡.ReadOnly = true;
-            this.Et‡.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Et‡.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Et‡.When = new System.DateTime(2015, 8, 3, 1, 28, 26, 82);
-            this.Et‡.Width = 25;
-            // 
-            // Wage
-            // 
-            this.Wage.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
-            this.Wage.DataPropertyName = "Wage";
-            dataGridViewCellStyle95.NullValue = "-";
-            this.Wage.DefaultCellStyle = dataGridViewCellStyle95;
-            this.Wage.HeaderText = "Wage";
-            this.Wage.MinimumWidth = 40;
-            this.Wage.Name = "Wage";
-            this.Wage.ReadOnly = true;
-            this.Wage.Width = 40;
-            // 
-            // ASI
-            // 
-            this.ASI.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-            this.ASI.DataPropertyName = "ASI";
-            this.ASI.HeaderText = "ASI";
-            this.ASI.MinimumWidth = 40;
-            this.ASI.Name = "ASI";
-            this.ASI.ReadOnly = true;
-            this.ASI.Width = 40;
-            // 
-            // BloomingPhase
-            // 
-            this.BloomingPhase.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
-            this.BloomingPhase.DataPropertyName = "wBloomData";
-            this.BloomingPhase.HeaderText = "BPh";
-            this.BloomingPhase.MinimumWidth = 25;
-            this.BloomingPhase.Name = "BloomingPhase";
-            this.BloomingPhase.ReadOnly = true;
-            this.BloomingPhase.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.BloomingPhase.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.BloomingPhase.ToolTipText = "Blooming Phase";
-            this.BloomingPhase.Width = 25;
-            // 
-            // Asi25
-            // 
-            this.Asi25.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
-            this.Asi25.DataPropertyName = "wBloomData";
-            this.Asi25.HeaderText = "Asi25";
-            this.Asi25.MinimumWidth = 25;
-            this.Asi25.Name = "Asi25";
-            this.Asi25.ReadOnly = true;
-            this.Asi25.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Asi25.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Asi25.ToolTipText = "Estimated ASI when 25";
-            this.Asi25.Width = 25;
-            // 
-            // Asi30
-            // 
-            this.Asi30.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
-            this.Asi30.DataPropertyName = "wBloomData";
-            this.Asi30.HeaderText = "Asi30";
-            this.Asi30.MinimumWidth = 25;
-            this.Asi30.Name = "Asi30";
-            this.Asi30.ReadOnly = true;
-            this.Asi30.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Asi30.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Asi30.ToolTipText = "Estimated ASI when 30 (max)";
-            this.Asi30.Width = 25;
-            // 
-            // AvRating
-            // 
-            this.AvRating.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
-            this.AvRating.DataPropertyName = "AvRating";
-            dataGridViewCellStyle96.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(255)))), ((int)(((byte)(212)))));
-            dataGridViewCellStyle96.Format = "N1";
-            dataGridViewCellStyle96.NullValue = null;
-            this.AvRating.DefaultCellStyle = dataGridViewCellStyle96;
-            this.AvRating.HeaderText = "AvR";
-            this.AvRating.MinimumWidth = 30;
-            this.AvRating.Name = "AvRating";
-            this.AvRating.ReadOnly = true;
-            this.AvRating.ToolTipText = "Average Rating in this season";
-            this.AvRating.Width = 30;
-            // 
-            // AvTI
-            // 
-            this.AvTI.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
-            this.AvTI.DataPropertyName = "AvTSI";
-            dataGridViewCellStyle97.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(255)))), ((int)(((byte)(212)))));
-            dataGridViewCellStyle97.Format = "N2";
-            dataGridViewCellStyle97.NullValue = null;
-            this.AvTI.DefaultCellStyle = dataGridViewCellStyle97;
-            this.AvTI.HeaderText = "AvTI";
-            this.AvTI.MinimumWidth = 40;
-            this.AvTI.Name = "AvTI";
-            this.AvTI.ReadOnly = true;
-            this.AvTI.ToolTipText = "Average value of TI, in the last weeks";
-            this.AvTI.Width = 40;
-            // 
-            // MediaVoto
-            // 
-            this.MediaVoto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-            this.MediaVoto.DataPropertyName = "MediaVoto";
-            dataGridViewCellStyle98.BackColor = System.Drawing.Color.PaleTurquoise;
-            dataGridViewCellStyle98.Format = "N1";
-            dataGridViewCellStyle98.NullValue = null;
-            this.MediaVoto.DefaultCellStyle = dataGridViewCellStyle98;
-            this.MediaVoto.HeaderText = "Av.Vote";
-            this.MediaVoto.MinimumWidth = 43;
-            this.MediaVoto.Name = "MediaVoto";
-            this.MediaVoto.ReadOnly = true;
-            this.MediaVoto.ToolTipText = "The weighted vote of the scouts and youth development, based on the ability of sc" +
-    "outs on measuring youth and senior and their development";
-            this.MediaVoto.Width = 43;
-            // 
-            // fPDataGridViewTextBoxColumn
-            // 
-            this.fPDataGridViewTextBoxColumn.DataPropertyName = "FPn";
-            this.fPDataGridViewTextBoxColumn.HeaderText = "FP";
-            this.fPDataGridViewTextBoxColumn.Name = "fPDataGridViewTextBoxColumn";
-            this.fPDataGridViewTextBoxColumn.ReadOnly = true;
-            this.fPDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.fPDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.fPDataGridViewTextBoxColumn.ToolTipText = "Preferred Position";
-            this.fPDataGridViewTextBoxColumn.Width = 42;
-            // 
-            // adaDataGridViewTextBoxColumn1
-            // 
-            this.adaDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
-            this.adaDataGridViewTextBoxColumn1.DataPropertyName = "Ada";
-            dataGridViewCellStyle99.BackColor = System.Drawing.Color.Moccasin;
-            this.adaDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle99;
-            this.adaDataGridViewTextBoxColumn1.HeaderText = "Ada";
-            this.adaDataGridViewTextBoxColumn1.MinimumWidth = 30;
-            this.adaDataGridViewTextBoxColumn1.Name = "adaDataGridViewTextBoxColumn1";
-            this.adaDataGridViewTextBoxColumn1.ReadOnly = true;
-            this.adaDataGridViewTextBoxColumn1.ToolTipText = "Adaptability of the player";
-            this.adaDataGridViewTextBoxColumn1.Width = 30;
-            // 
-            // scoutVotoDataGridViewTextBoxColumn
-            // 
-            this.scoutVotoDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.scoutVotoDataGridViewTextBoxColumn.DataPropertyName = "ScoutVoto";
-            dataGridViewCellStyle100.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(255)))), ((int)(((byte)(224)))));
-            this.scoutVotoDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle100;
-            this.scoutVotoDataGridViewTextBoxColumn.HeaderText = "Votes";
-            this.scoutVotoDataGridViewTextBoxColumn.Name = "scoutVotoDataGridViewTextBoxColumn";
-            this.scoutVotoDataGridViewTextBoxColumn.ReadOnly = true;
-            this.scoutVotoDataGridViewTextBoxColumn.ToolTipText = "All votes from scouts";
-            this.scoutVotoDataGridViewTextBoxColumn.Width = 59;
-            // 
-            // Routine
-            // 
-            this.Routine.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-            this.Routine.DataPropertyName = "Routine";
-            dataGridViewCellStyle101.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle101.Format = "N1";
-            dataGridViewCellStyle101.NullValue = "-";
-            this.Routine.DefaultCellStyle = dataGridViewCellStyle101;
-            this.Routine.HeaderText = "Rou";
-            this.Routine.MinimumWidth = 30;
-            this.Routine.Name = "Routine";
-            this.Routine.ReadOnly = true;
-            this.Routine.ToolTipText = "Routine";
-            this.Routine.Width = 30;
-            // 
-            // Ability
-            // 
-            this.Ability.DataPropertyName = "Potential";
-            dataGridViewCellStyle102.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle102.NullValue = "-";
-            this.Ability.DefaultCellStyle = dataGridViewCellStyle102;
-            this.Ability.HeaderText = "Pot";
-            this.Ability.Name = "Ability";
-            this.Ability.ToolTipText = "Potential";
-            this.Ability.Width = 30;
-            // 
-            // InjPron
-            // 
-            this.InjPron.DataPropertyName = "InjPron";
-            dataGridViewCellStyle103.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle103.NullValue = "-";
-            this.InjPron.DefaultCellStyle = dataGridViewCellStyle103;
-            this.InjPron.HeaderText = "InjPr";
-            this.InjPron.Name = "InjPron";
-            this.InjPron.ToolTipText = "InjuryProneness";
-            this.InjPron.Width = 30;
-            // 
-            // Speciality
-            // 
-            this.Speciality.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
-            this.Speciality.DataPropertyName = "Speciality";
-            dataGridViewCellStyle104.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle104.NullValue = "-";
-            this.Speciality.DefaultCellStyle = dataGridViewCellStyle104;
-            this.Speciality.HeaderText = "Spe";
-            this.Speciality.MinimumWidth = 30;
-            this.Speciality.Name = "Speciality";
-            this.Speciality.ReadOnly = true;
-            this.Speciality.ToolTipText = "Speciality";
-            this.Speciality.Width = 30;
-            // 
-            // Professionalism
-            // 
-            this.Professionalism.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
-            this.Professionalism.DataPropertyName = "Professionalism";
-            dataGridViewCellStyle105.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle105.Format = "N1";
-            dataGridViewCellStyle105.NullValue = "-";
-            this.Professionalism.DefaultCellStyle = dataGridViewCellStyle105;
-            this.Professionalism.HeaderText = "Pro";
-            this.Professionalism.MinimumWidth = 30;
-            this.Professionalism.Name = "Professionalism";
-            this.Professionalism.ReadOnly = true;
-            this.Professionalism.ToolTipText = "Professionalism";
-            this.Professionalism.Width = 30;
-            // 
-            // Leadership
-            // 
-            this.Leadership.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
-            this.Leadership.DataPropertyName = "Leadership";
-            dataGridViewCellStyle106.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle106.Format = "N1";
-            dataGridViewCellStyle106.NullValue = "-";
-            this.Leadership.DefaultCellStyle = dataGridViewCellStyle106;
-            this.Leadership.HeaderText = "Lea";
-            this.Leadership.MinimumWidth = 30;
-            this.Leadership.Name = "Leadership";
-            this.Leadership.ReadOnly = true;
-            this.Leadership.ToolTipText = "Leadership";
-            this.Leadership.Width = 30;
-            // 
-            // Aggressivity
-            // 
-            this.Aggressivity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
-            this.Aggressivity.DataPropertyName = "Aggressivity";
-            dataGridViewCellStyle107.BackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle107.Format = "N1";
-            dataGridViewCellStyle107.NullValue = "-";
-            this.Aggressivity.DefaultCellStyle = dataGridViewCellStyle107;
-            this.Aggressivity.HeaderText = "Agg";
-            this.Aggressivity.MinimumWidth = 30;
-            this.Aggressivity.Name = "Aggressivity";
-            this.Aggressivity.ReadOnly = true;
-            this.Aggressivity.ToolTipText = "Aggressivity";
-            this.Aggressivity.Width = 30;
-            // 
-            // Hr
-            // 
-            this.Hr.DataPropertyName = "HiddenRevealed";
-            this.Hr.HeaderText = "HiddenRevealed";
-            this.Hr.Name = "Hr";
-            this.Hr.ReadOnly = true;
-            this.Hr.ToolTipText = "Hidden Skills Revealed";
-            // 
-            // noteDataGridViewTextBoxColumn
-            // 
-            this.noteDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.noteDataGridViewTextBoxColumn.DataPropertyName = "Note";
-            this.noteDataGridViewTextBoxColumn.HeaderText = "Notes";
-            this.noteDataGridViewTextBoxColumn.MinimumWidth = 80;
-            this.noteDataGridViewTextBoxColumn.Name = "noteDataGridViewTextBoxColumn";
-            this.noteDataGridViewTextBoxColumn.ReadOnly = true;
-            this.noteDataGridViewTextBoxColumn.ToolTipText = "Notes from the Player\'s page";
+            // dataGridViewTextBoxColumn56
+            // 
+            this.dataGridViewTextBoxColumn56.DataPropertyName = "PlayerID";
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.dataGridViewTextBoxColumn56.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridViewTextBoxColumn56.FillWeight = 30F;
+            this.dataGridViewTextBoxColumn56.Frozen = true;
+            this.dataGridViewTextBoxColumn56.HeaderText = "ID";
+            this.dataGridViewTextBoxColumn56.Name = "dataGridViewTextBoxColumn56";
+            this.dataGridViewTextBoxColumn56.ReadOnly = true;
+            this.dataGridViewTextBoxColumn56.Visible = false;
+            this.dataGridViewTextBoxColumn56.Width = 30;
+            // 
+            // dataGridViewTextBoxColumn57
+            // 
+            this.dataGridViewTextBoxColumn57.DataPropertyName = "Numero";
+            this.dataGridViewTextBoxColumn57.Frozen = true;
+            this.dataGridViewTextBoxColumn57.HeaderText = "N";
+            this.dataGridViewTextBoxColumn57.Name = "dataGridViewTextBoxColumn57";
+            this.dataGridViewTextBoxColumn57.ReadOnly = true;
+            this.dataGridViewTextBoxColumn57.Width = 20;
+            // 
+            // dataGridViewTextBoxColumn58
+            // 
+            this.dataGridViewTextBoxColumn58.DataPropertyName = "FPn";
+            this.dataGridViewTextBoxColumn58.Frozen = true;
+            this.dataGridViewTextBoxColumn58.HeaderText = "FP";
+            this.dataGridViewTextBoxColumn58.Name = "dataGridViewTextBoxColumn58";
+            this.dataGridViewTextBoxColumn58.ReadOnly = true;
+            this.dataGridViewTextBoxColumn58.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn58.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn58.Width = 42;
+            // 
+            // dataGridViewTextBoxColumn59
+            // 
+            this.dataGridViewTextBoxColumn59.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewTextBoxColumn59.DataPropertyName = "Nome";
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            this.dataGridViewTextBoxColumn59.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridViewTextBoxColumn59.Frozen = true;
+            this.dataGridViewTextBoxColumn59.HeaderText = "Name";
+            this.dataGridViewTextBoxColumn59.Name = "dataGridViewTextBoxColumn59";
+            this.dataGridViewTextBoxColumn59.ReadOnly = true;
+            this.dataGridViewTextBoxColumn59.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn59.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn59.Width = 60;
+            // 
+            // dataGridViewTextBoxColumn60
+            // 
+            this.dataGridViewTextBoxColumn60.DataPropertyName = "wBorn";
+            this.dataGridViewTextBoxColumn60.Frozen = true;
+            this.dataGridViewTextBoxColumn60.HeaderText = "Age";
+            this.dataGridViewTextBoxColumn60.Name = "dataGridViewTextBoxColumn60";
+            this.dataGridViewTextBoxColumn60.ReadOnly = true;
+            this.dataGridViewTextBoxColumn60.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn60.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn60.When = new System.DateTime(2015, 8, 6, 1, 32, 13, 634);
+            this.dataGridViewTextBoxColumn60.Width = 32;
+            // 
+            // Nationality
+            // 
+            this.Nationality.DataPropertyName = "Nationality";
+            this.Nationality.Frozen = true;
+            this.Nationality.HeaderText = "Nat";
+            this.Nationality.MinimumWidth = 30;
+            this.Nationality.Name = "Nationality";
+            this.Nationality.ReadOnly = true;
+            this.Nationality.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Nationality.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Nationality.ToolTipText = "Nationality";
+            this.Nationality.Width = 30;
+            // 
+            // dataGridViewTextBoxColumn61
+            // 
+            this.dataGridViewTextBoxColumn61.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewTextBoxColumn61.DataPropertyName = "ASI";
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            this.dataGridViewTextBoxColumn61.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dataGridViewTextBoxColumn61.Frozen = true;
+            this.dataGridViewTextBoxColumn61.HeaderText = "ASI";
+            this.dataGridViewTextBoxColumn61.Name = "dataGridViewTextBoxColumn61";
+            this.dataGridViewTextBoxColumn61.ReadOnly = true;
+            this.dataGridViewTextBoxColumn61.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn61.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn61.Width = 49;
+            // 
+            // dataGridViewTextBoxColumn62
+            // 
+            this.dataGridViewTextBoxColumn62.DataPropertyName = "Ada";
+            this.dataGridViewTextBoxColumn62.HeaderText = "Ada";
+            this.dataGridViewTextBoxColumn62.Name = "dataGridViewTextBoxColumn62";
+            this.dataGridViewTextBoxColumn62.ReadOnly = true;
+            this.dataGridViewTextBoxColumn62.ToolTipText = "Adaptability of the player";
+            this.dataGridViewTextBoxColumn62.Visible = false;
+            this.dataGridViewTextBoxColumn62.Width = 30;
+            // 
+            // dataGridViewTextBoxColumn63
+            // 
+            this.dataGridViewTextBoxColumn63.DataPropertyName = "For";
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridViewTextBoxColumn63.DefaultCellStyle = dataGridViewCellStyle5;
+            this.dataGridViewTextBoxColumn63.HeaderText = "Str";
+            this.dataGridViewTextBoxColumn63.Name = "dataGridViewTextBoxColumn63";
+            this.dataGridViewTextBoxColumn63.ReadOnly = true;
+            this.dataGridViewTextBoxColumn63.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn63.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn63.Width = 23;
+            // 
+            // dataGridViewTextBoxColumn64
+            // 
+            this.dataGridViewTextBoxColumn64.DataPropertyName = "Res";
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridViewTextBoxColumn64.DefaultCellStyle = dataGridViewCellStyle6;
+            this.dataGridViewTextBoxColumn64.HeaderText = "Sta";
+            this.dataGridViewTextBoxColumn64.Name = "dataGridViewTextBoxColumn64";
+            this.dataGridViewTextBoxColumn64.ReadOnly = true;
+            this.dataGridViewTextBoxColumn64.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn64.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn64.Width = 23;
+            // 
+            // dataGridViewTextBoxColumn65
+            // 
+            this.dataGridViewTextBoxColumn65.DataPropertyName = "Vel";
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridViewTextBoxColumn65.DefaultCellStyle = dataGridViewCellStyle7;
+            this.dataGridViewTextBoxColumn65.HeaderText = "Pac";
+            this.dataGridViewTextBoxColumn65.Name = "dataGridViewTextBoxColumn65";
+            this.dataGridViewTextBoxColumn65.ReadOnly = true;
+            this.dataGridViewTextBoxColumn65.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn65.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn65.Width = 23;
+            // 
+            // dataGridViewTextBoxColumn66
+            // 
+            this.dataGridViewTextBoxColumn66.DataPropertyName = "Mar";
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(255)))), ((int)(((byte)(224)))));
+            this.dataGridViewTextBoxColumn66.DefaultCellStyle = dataGridViewCellStyle8;
+            this.dataGridViewTextBoxColumn66.HeaderText = "Mar";
+            this.dataGridViewTextBoxColumn66.Name = "dataGridViewTextBoxColumn66";
+            this.dataGridViewTextBoxColumn66.ReadOnly = true;
+            this.dataGridViewTextBoxColumn66.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn66.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn66.Width = 23;
+            // 
+            // dataGridViewTextBoxColumn67
+            // 
+            this.dataGridViewTextBoxColumn67.DataPropertyName = "Con";
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(255)))), ((int)(((byte)(224)))));
+            this.dataGridViewTextBoxColumn67.DefaultCellStyle = dataGridViewCellStyle9;
+            this.dataGridViewTextBoxColumn67.HeaderText = "Tac";
+            this.dataGridViewTextBoxColumn67.Name = "dataGridViewTextBoxColumn67";
+            this.dataGridViewTextBoxColumn67.ReadOnly = true;
+            this.dataGridViewTextBoxColumn67.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn67.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn67.Width = 23;
+            // 
+            // dataGridViewTextBoxColumn68
+            // 
+            this.dataGridViewTextBoxColumn68.DataPropertyName = "Wor";
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(255)))), ((int)(((byte)(224)))));
+            this.dataGridViewTextBoxColumn68.DefaultCellStyle = dataGridViewCellStyle10;
+            this.dataGridViewTextBoxColumn68.HeaderText = "Wor";
+            this.dataGridViewTextBoxColumn68.Name = "dataGridViewTextBoxColumn68";
+            this.dataGridViewTextBoxColumn68.ReadOnly = true;
+            this.dataGridViewTextBoxColumn68.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn68.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn68.Width = 23;
+            // 
+            // dataGridViewTextBoxColumn69
+            // 
+            this.dataGridViewTextBoxColumn69.DataPropertyName = "Pos";
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridViewTextBoxColumn69.DefaultCellStyle = dataGridViewCellStyle11;
+            this.dataGridViewTextBoxColumn69.HeaderText = "Pos";
+            this.dataGridViewTextBoxColumn69.Name = "dataGridViewTextBoxColumn69";
+            this.dataGridViewTextBoxColumn69.ReadOnly = true;
+            this.dataGridViewTextBoxColumn69.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn69.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn69.Width = 23;
+            // 
+            // dataGridViewTextBoxColumn70
+            // 
+            this.dataGridViewTextBoxColumn70.DataPropertyName = "Pas";
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridViewTextBoxColumn70.DefaultCellStyle = dataGridViewCellStyle12;
+            this.dataGridViewTextBoxColumn70.HeaderText = "Pas";
+            this.dataGridViewTextBoxColumn70.Name = "dataGridViewTextBoxColumn70";
+            this.dataGridViewTextBoxColumn70.ReadOnly = true;
+            this.dataGridViewTextBoxColumn70.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn70.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn70.Width = 23;
+            // 
+            // dataGridViewTextBoxColumn71
+            // 
+            this.dataGridViewTextBoxColumn71.DataPropertyName = "Cro";
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridViewTextBoxColumn71.DefaultCellStyle = dataGridViewCellStyle13;
+            this.dataGridViewTextBoxColumn71.HeaderText = "Cro";
+            this.dataGridViewTextBoxColumn71.Name = "dataGridViewTextBoxColumn71";
+            this.dataGridViewTextBoxColumn71.ReadOnly = true;
+            this.dataGridViewTextBoxColumn71.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn71.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn71.Width = 23;
+            // 
+            // dataGridViewTextBoxColumn72
+            // 
+            this.dataGridViewTextBoxColumn72.DataPropertyName = "Tec";
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridViewTextBoxColumn72.DefaultCellStyle = dataGridViewCellStyle14;
+            this.dataGridViewTextBoxColumn72.HeaderText = "Tec";
+            this.dataGridViewTextBoxColumn72.Name = "dataGridViewTextBoxColumn72";
+            this.dataGridViewTextBoxColumn72.ReadOnly = true;
+            this.dataGridViewTextBoxColumn72.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn72.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn72.Width = 23;
+            // 
+            // dataGridViewTextBoxColumn73
+            // 
+            this.dataGridViewTextBoxColumn73.DataPropertyName = "Tes";
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
+            this.dataGridViewTextBoxColumn73.DefaultCellStyle = dataGridViewCellStyle15;
+            this.dataGridViewTextBoxColumn73.HeaderText = "Hea";
+            this.dataGridViewTextBoxColumn73.Name = "dataGridViewTextBoxColumn73";
+            this.dataGridViewTextBoxColumn73.ReadOnly = true;
+            this.dataGridViewTextBoxColumn73.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn73.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn73.Width = 23;
+            // 
+            // dataGridViewTextBoxColumn74
+            // 
+            this.dataGridViewTextBoxColumn74.DataPropertyName = "Fin";
+            dataGridViewCellStyle16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
+            this.dataGridViewTextBoxColumn74.DefaultCellStyle = dataGridViewCellStyle16;
+            this.dataGridViewTextBoxColumn74.HeaderText = "Fin";
+            this.dataGridViewTextBoxColumn74.Name = "dataGridViewTextBoxColumn74";
+            this.dataGridViewTextBoxColumn74.ReadOnly = true;
+            this.dataGridViewTextBoxColumn74.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn74.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn74.Width = 23;
+            // 
+            // dataGridViewTextBoxColumn75
+            // 
+            this.dataGridViewTextBoxColumn75.DataPropertyName = "Tir";
+            dataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
+            this.dataGridViewTextBoxColumn75.DefaultCellStyle = dataGridViewCellStyle17;
+            this.dataGridViewTextBoxColumn75.HeaderText = "Lon";
+            this.dataGridViewTextBoxColumn75.Name = "dataGridViewTextBoxColumn75";
+            this.dataGridViewTextBoxColumn75.ReadOnly = true;
+            this.dataGridViewTextBoxColumn75.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn75.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn75.Width = 23;
+            // 
+            // dataGridViewTextBoxColumn76
+            // 
+            this.dataGridViewTextBoxColumn76.DataPropertyName = "Cal";
+            dataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
+            this.dataGridViewTextBoxColumn76.DefaultCellStyle = dataGridViewCellStyle18;
+            this.dataGridViewTextBoxColumn76.HeaderText = "Set";
+            this.dataGridViewTextBoxColumn76.Name = "dataGridViewTextBoxColumn76";
+            this.dataGridViewTextBoxColumn76.ReadOnly = true;
+            this.dataGridViewTextBoxColumn76.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn76.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn76.Width = 23;
+            // 
+            // Rou
+            // 
+            this.Rou.DataPropertyName = "Rou";
+            dataGridViewCellStyle19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle19.Format = "N1";
+            dataGridViewCellStyle19.NullValue = "-";
+            this.Rou.DefaultCellStyle = dataGridViewCellStyle19;
+            this.Rou.HeaderText = "Rou";
+            this.Rou.Name = "Rou";
+            this.Rou.ReadOnly = true;
+            this.Rou.ToolTipText = "Routine";
+            this.Rou.Width = 30;
+            // 
+            // CStrA
+            // 
+            this.CStrA.DataPropertyName = "CStr";
+            dataGridViewCellStyle20.Format = "N2";
+            dataGridViewCellStyle20.NullValue = "-";
+            this.CStrA.DefaultCellStyle = dataGridViewCellStyle20;
+            this.CStrA.HeaderText = "CRec";
+            this.CStrA.Name = "CStrA";
+            this.CStrA.ReadOnly = true;
+            this.CStrA.ToolTipText = "TmRecorder Computed Recommendation";
+            this.CStrA.Width = 34;
+            // 
+            // Rec
+            // 
+            this.Rec.DataPropertyName = "Rec";
+            dataGridViewCellStyle21.Format = "N1";
+            dataGridViewCellStyle21.NullValue = "-";
+            this.Rec.DefaultCellStyle = dataGridViewCellStyle21;
+            this.Rec.HeaderText = "Rec";
+            this.Rec.Name = "Rec";
+            this.Rec.ReadOnly = true;
+            this.Rec.ToolTipText = "Trophy Manager Recommendation (Stars)";
+            this.Rec.Width = 30;
+            // 
+            // TI
+            // 
+            this.TI.DataPropertyName = "TI";
+            dataGridViewCellStyle22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle22.Format = "N1";
+            dataGridViewCellStyle22.NullValue = "-";
+            this.TI.DefaultCellStyle = dataGridViewCellStyle22;
+            this.TI.HeaderText = "TI";
+            this.TI.Name = "TI";
+            this.TI.ReadOnly = true;
+            this.TI.ToolTipText = "Training Indicator";
+            this.TI.Width = 30;
+            // 
+            // dataGridViewTextBoxColumn77
+            // 
+            this.dataGridViewTextBoxColumn77.DataPropertyName = "DC";
+            dataGridViewCellStyle23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle23.Format = "N1";
+            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn77.DefaultCellStyle = dataGridViewCellStyle23;
+            this.dataGridViewTextBoxColumn77.HeaderText = "DC";
+            this.dataGridViewTextBoxColumn77.Name = "dataGridViewTextBoxColumn77";
+            this.dataGridViewTextBoxColumn77.ReadOnly = true;
+            this.dataGridViewTextBoxColumn77.Width = 30;
+            // 
+            // dataGridViewTextBoxColumn78
+            // 
+            this.dataGridViewTextBoxColumn78.DataPropertyName = "DR";
+            dataGridViewCellStyle24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle24.Format = "N1";
+            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn78.DefaultCellStyle = dataGridViewCellStyle24;
+            this.dataGridViewTextBoxColumn78.HeaderText = "DR";
+            this.dataGridViewTextBoxColumn78.Name = "dataGridViewTextBoxColumn78";
+            this.dataGridViewTextBoxColumn78.ReadOnly = true;
+            this.dataGridViewTextBoxColumn78.Width = 30;
+            // 
+            // dataGridViewTextBoxColumn79
+            // 
+            this.dataGridViewTextBoxColumn79.DataPropertyName = "DL";
+            dataGridViewCellStyle25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle25.Format = "N1";
+            dataGridViewCellStyle25.NullValue = null;
+            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn79.DefaultCellStyle = dataGridViewCellStyle25;
+            this.dataGridViewTextBoxColumn79.HeaderText = "DL";
+            this.dataGridViewTextBoxColumn79.Name = "dataGridViewTextBoxColumn79";
+            this.dataGridViewTextBoxColumn79.ReadOnly = true;
+            this.dataGridViewTextBoxColumn79.Width = 30;
+            // 
+            // dataGridViewTextBoxColumn80
+            // 
+            this.dataGridViewTextBoxColumn80.DataPropertyName = "DMC";
+            dataGridViewCellStyle26.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle26.Format = "N1";
+            dataGridViewCellStyle26.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn80.DefaultCellStyle = dataGridViewCellStyle26;
+            this.dataGridViewTextBoxColumn80.HeaderText = "DMC";
+            this.dataGridViewTextBoxColumn80.Name = "dataGridViewTextBoxColumn80";
+            this.dataGridViewTextBoxColumn80.ReadOnly = true;
+            this.dataGridViewTextBoxColumn80.Width = 30;
+            // 
+            // dataGridViewTextBoxColumn81
+            // 
+            this.dataGridViewTextBoxColumn81.DataPropertyName = "DMR";
+            dataGridViewCellStyle27.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle27.Format = "N1";
+            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn81.DefaultCellStyle = dataGridViewCellStyle27;
+            this.dataGridViewTextBoxColumn81.HeaderText = "DMR";
+            this.dataGridViewTextBoxColumn81.Name = "dataGridViewTextBoxColumn81";
+            this.dataGridViewTextBoxColumn81.ReadOnly = true;
+            this.dataGridViewTextBoxColumn81.Width = 30;
+            // 
+            // dataGridViewTextBoxColumn82
+            // 
+            this.dataGridViewTextBoxColumn82.DataPropertyName = "DML";
+            dataGridViewCellStyle28.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle28.Format = "N1";
+            dataGridViewCellStyle28.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn82.DefaultCellStyle = dataGridViewCellStyle28;
+            this.dataGridViewTextBoxColumn82.HeaderText = "DML";
+            this.dataGridViewTextBoxColumn82.Name = "dataGridViewTextBoxColumn82";
+            this.dataGridViewTextBoxColumn82.ReadOnly = true;
+            this.dataGridViewTextBoxColumn82.Width = 30;
+            // 
+            // dataGridViewTextBoxColumn83
+            // 
+            this.dataGridViewTextBoxColumn83.DataPropertyName = "MC";
+            dataGridViewCellStyle29.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle29.Format = "N1";
+            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn83.DefaultCellStyle = dataGridViewCellStyle29;
+            this.dataGridViewTextBoxColumn83.HeaderText = "MC";
+            this.dataGridViewTextBoxColumn83.Name = "dataGridViewTextBoxColumn83";
+            this.dataGridViewTextBoxColumn83.ReadOnly = true;
+            this.dataGridViewTextBoxColumn83.Width = 30;
+            // 
+            // dataGridViewTextBoxColumn84
+            // 
+            this.dataGridViewTextBoxColumn84.DataPropertyName = "MR";
+            dataGridViewCellStyle30.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle30.Format = "N1";
+            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn84.DefaultCellStyle = dataGridViewCellStyle30;
+            this.dataGridViewTextBoxColumn84.HeaderText = "MR";
+            this.dataGridViewTextBoxColumn84.Name = "dataGridViewTextBoxColumn84";
+            this.dataGridViewTextBoxColumn84.ReadOnly = true;
+            this.dataGridViewTextBoxColumn84.Width = 30;
+            // 
+            // dataGridViewTextBoxColumn85
+            // 
+            this.dataGridViewTextBoxColumn85.DataPropertyName = "ML";
+            dataGridViewCellStyle31.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle31.Format = "N1";
+            dataGridViewCellStyle31.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn85.DefaultCellStyle = dataGridViewCellStyle31;
+            this.dataGridViewTextBoxColumn85.HeaderText = "ML";
+            this.dataGridViewTextBoxColumn85.Name = "dataGridViewTextBoxColumn85";
+            this.dataGridViewTextBoxColumn85.ReadOnly = true;
+            this.dataGridViewTextBoxColumn85.Width = 30;
+            // 
+            // dataGridViewTextBoxColumn86
+            // 
+            this.dataGridViewTextBoxColumn86.DataPropertyName = "OMC";
+            dataGridViewCellStyle32.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle32.Format = "N1";
+            dataGridViewCellStyle32.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn86.DefaultCellStyle = dataGridViewCellStyle32;
+            this.dataGridViewTextBoxColumn86.HeaderText = "OMC";
+            this.dataGridViewTextBoxColumn86.Name = "dataGridViewTextBoxColumn86";
+            this.dataGridViewTextBoxColumn86.ReadOnly = true;
+            this.dataGridViewTextBoxColumn86.Width = 30;
+            // 
+            // dataGridViewTextBoxColumn87
+            // 
+            this.dataGridViewTextBoxColumn87.DataPropertyName = "OMR";
+            dataGridViewCellStyle33.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle33.Format = "N1";
+            dataGridViewCellStyle33.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn87.DefaultCellStyle = dataGridViewCellStyle33;
+            this.dataGridViewTextBoxColumn87.HeaderText = "OMR";
+            this.dataGridViewTextBoxColumn87.Name = "dataGridViewTextBoxColumn87";
+            this.dataGridViewTextBoxColumn87.ReadOnly = true;
+            this.dataGridViewTextBoxColumn87.Width = 30;
+            // 
+            // dataGridViewTextBoxColumn88
+            // 
+            this.dataGridViewTextBoxColumn88.DataPropertyName = "OML";
+            dataGridViewCellStyle34.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle34.Format = "N1";
+            dataGridViewCellStyle34.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn88.DefaultCellStyle = dataGridViewCellStyle34;
+            this.dataGridViewTextBoxColumn88.HeaderText = "OML";
+            this.dataGridViewTextBoxColumn88.Name = "dataGridViewTextBoxColumn88";
+            this.dataGridViewTextBoxColumn88.ReadOnly = true;
+            this.dataGridViewTextBoxColumn88.Width = 30;
+            // 
+            // dataGridViewTextBoxColumn89
+            // 
+            this.dataGridViewTextBoxColumn89.DataPropertyName = "FC";
+            dataGridViewCellStyle35.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle35.Format = "N1";
+            dataGridViewCellStyle35.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dataGridViewTextBoxColumn89.DefaultCellStyle = dataGridViewCellStyle35;
+            this.dataGridViewTextBoxColumn89.HeaderText = "FC";
+            this.dataGridViewTextBoxColumn89.Name = "dataGridViewTextBoxColumn89";
+            this.dataGridViewTextBoxColumn89.ReadOnly = true;
+            this.dataGridViewTextBoxColumn89.Width = 30;
+            // 
+            // dataGridViewTextBoxColumn90
+            // 
+            this.dataGridViewTextBoxColumn90.DataPropertyName = "OSi";
+            dataGridViewCellStyle36.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle36.Format = "N2";
+            dataGridViewCellStyle36.NullValue = null;
+            dataGridViewCellStyle36.SelectionBackColor = System.Drawing.Color.Teal;
+            this.dataGridViewTextBoxColumn90.DefaultCellStyle = dataGridViewCellStyle36;
+            this.dataGridViewTextBoxColumn90.HeaderText = "SOi";
+            this.dataGridViewTextBoxColumn90.Name = "dataGridViewTextBoxColumn90";
+            this.dataGridViewTextBoxColumn90.ReadOnly = true;
+            this.dataGridViewTextBoxColumn90.ToolTipText = "Skill Optimization Index";
+            this.dataGridViewTextBoxColumn90.Width = 35;
+            // 
+            // HidSk
+            // 
+            this.HidSk.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.HidSk.DataPropertyName = "HidSk";
+            this.HidSk.HeaderText = "Hid";
+            this.HidSk.Name = "HidSk";
+            this.HidSk.ReadOnly = true;
+            this.HidSk.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.HidSk.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.HidSk.ToolTipText = "The Hidden skills of the player";
+            this.HidSk.Width = 26;
             // 
             // MainForm
             // 
@@ -5729,21 +5914,36 @@ namespace TMRecorder
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Shown += new System.EventHandler(this.MainForm_Shown);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.MainForm_Paint);
+            this.contextMenuStrip1.ResumeLayout(false);
+            this.contextMenuStripGK.ResumeLayout(false);
+            this.contextMenuPlInfo.ResumeLayout(false);
+            this.matchesMenuStrip.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.matchBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.champDSBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.champDS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.plyStatsBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.plyStatsBindingSource)).EndInit();
+            this.toolStrip3.ResumeLayout(false);
+            this.toolStrip3.PerformLayout();
+            this.toolStripContainer2.ResumeLayout(false);
+            this.toolStripContainer2.PerformLayout();
+            this.toolStripContainer1.ContentPanel.ResumeLayout(false);
+            this.toolStripContainer1.TopToolStripPanel.ResumeLayout(false);
+            this.toolStripContainer1.TopToolStripPanel.PerformLayout();
+            this.toolStripContainer1.ResumeLayout(false);
+            this.toolStripContainer1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabATeamPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridGiocatori)).EndInit();
-            this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.giocatoriNSkillBindingSourceB)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.extTMDataSet)).EndInit();
             this.tabBTeamPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridGiocatoriB)).EndInit();
             this.tabGK.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridPortieri)).EndInit();
-            this.contextMenuStripGK.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.portieriNSkillBindingSource)).EndInit();
             this.tabInfo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridPlayersInfo)).EndInit();
-            this.contextMenuPlInfo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.giocatoriBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.extraDS)).EndInit();
             this.tabInfoMain.ResumeLayout(false);
@@ -5758,10 +5958,6 @@ namespace TMRecorder
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgMatches)).EndInit();
-            this.matchesMenuStrip.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.matchBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.champDSBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.champDS)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -5790,28 +5986,17 @@ namespace TMRecorder
             this.tsBrowserImport.PerformLayout();
             this.tsBrowserMain.ResumeLayout(false);
             this.tsBrowserMain.PerformLayout();
-            this.tsBrowsePlayers.ResumeLayout(false);
-            this.tsBrowsePlayers.PerformLayout();
             this.tsBrowseMatches.ResumeLayout(false);
             this.tsBrowseMatches.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.plyStatsBindingSource1)).EndInit();
-            this.toolStripContainer1.ContentPanel.ResumeLayout(false);
-            this.toolStripContainer1.TopToolStripPanel.ResumeLayout(false);
-            this.toolStripContainer1.TopToolStripPanel.PerformLayout();
-            this.toolStripContainer1.ResumeLayout(false);
-            this.toolStripContainer1.PerformLayout();
+            this.tsBrowsePlayers.ResumeLayout(false);
+            this.tsBrowsePlayers.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.plyStatsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.giocatoriBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.db_TrophyDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.portieriBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.actionAnalysis)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.giocatoriNSkillBindingSourceA)).EndInit();
-            this.toolStrip3.ResumeLayout(false);
-            this.toolStrip3.PerformLayout();
-            this.toolStripContainer2.ResumeLayout(false);
-            this.toolStripContainer2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -6112,7 +6297,6 @@ namespace TMRecorder
         private System.Windows.Forms.DataGridViewTextBoxColumn homeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn scoreDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn awayDataGridViewTextBoxColumn;
-        private DataGridViewCustomColumns.TMR_MatchTypeColumn matchTypeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Crowd;
         private System.Windows.Forms.DataGridViewCheckBoxColumn reportDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn YourMentality;
@@ -6200,6 +6384,54 @@ namespace TMRecorder
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
         private System.Windows.Forms.DataGridViewTextBoxColumn PO;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn playerIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nomeDataGridViewTextBoxColumn2;
+        private DataGridViewCustomColumns.TMR_NationColumn nationalityDataGridViewTextBoxColumn;
+        private DataGridViewCustomColumns.TMR_AgeColumn Et‡;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Wage;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ASI;
+        private DataGridViewCustomColumns.TMR_BloomColumn BloomingPhase;
+        private DataGridViewCustomColumns.TMR_BloomColumn Asi25;
+        private DataGridViewCustomColumns.TMR_BloomColumn Asi30;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AvRating;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AvTI;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MediaVoto;
+        private DataGridViewCustomColumns.TMR_FpColumn fPDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn adaDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn scoutVotoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Routine;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Ability;
+        private System.Windows.Forms.DataGridViewTextBoxColumn InjPron;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Speciality;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Professionalism;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Leadership;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Aggressivity;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn HiddenRevealed;
+        private System.Windows.Forms.DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn matchIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn oppsClubNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn oppsClubIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn yourFormationDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn oppsFormationDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn crowdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stadiumDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn initDesciptionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn yourStatsDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn oppsStatsDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn isHomeDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cardsDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn isReservesDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn analyzedDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn yourNickDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn oppsNickDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn yourMentalityDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn yourAttackingStyleDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn oppsMentalityDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn oppsAttackingStyleDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pitchDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn weatherDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn matchTypeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn56;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn57;
         private DataGridViewCustomColumns.TMR_FpColumn dataGridViewTextBoxColumn58;
@@ -6240,31 +6472,6 @@ namespace TMRecorder
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn88;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn89;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn90;
-        private NTR_Controls.NTR_HiddenSkillColumn Ada;
-        private System.Windows.Forms.DataGridViewTextBoxColumn playerIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nomeDataGridViewTextBoxColumn2;
-        private DataGridViewCustomColumns.TMR_NationColumn nationalityDataGridViewTextBoxColumn;
-        private DataGridViewCustomColumns.TMR_AgeColumn Et‡;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Wage;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ASI;
-        private DataGridViewCustomColumns.TMR_BloomColumn BloomingPhase;
-        private DataGridViewCustomColumns.TMR_BloomColumn Asi25;
-        private DataGridViewCustomColumns.TMR_BloomColumn Asi30;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AvRating;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AvTI;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MediaVoto;
-        private DataGridViewCustomColumns.TMR_FpColumn fPDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn adaDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn scoutVotoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Routine;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Ability;
-        private System.Windows.Forms.DataGridViewTextBoxColumn InjPron;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Speciality;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Professionalism;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Leadership;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Aggressivity;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Hr;
-        private System.Windows.Forms.DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn;
+        private NTR_Controls.NTR_HiddenSkillColumn HidSk;
     }
 }

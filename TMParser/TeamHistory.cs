@@ -6,13 +6,13 @@ using System.Windows.Forms;
 using TMRecorder.Properties;
 using System.Globalization;
 using Common;
-using SendFileTo;   
+using SendFileTo;
 using Languages;
 using System.Diagnostics;
 using NTR_Common;
 
 namespace TMRecorder
-{ 
+{
     public class TDSComparer : IComparer<ExtTMDataSet>
     {
         public int Compare(ExtTMDataSet x, ExtTMDataSet y)
@@ -288,7 +288,7 @@ namespace TMRecorder
                 ExtTMDataSet eds = this[ix];
 
                 if (ix > 0)
-                    eds.FillWithDb_TrophyDataSet(PlayersDS, db_TrophyDataSet, PFun, this[ix - 1], 
+                    eds.FillWithDb_TrophyDataSet(PlayersDS, db_TrophyDataSet, PFun, this[ix - 1],
                         isReserves, Program.Setts.TeamDataFolder);
                 else
                     eds.FillWithDb_TrophyDataSet(PlayersDS, db_TrophyDataSet, PFun, null,
@@ -398,6 +398,28 @@ namespace TMRecorder
 
                         row.Nome = grow.Nome + "|" + row.Infortunato.ToString() + "|" + row.Squalificato.ToString()
                                     + "|" + grow.isYoungTeam.ToString();
+
+                        decimal professionalism = -1;
+                        if (!grow.IsProfessionalismNull())
+                            professionalism = (decimal)grow.Professionalism;
+
+                        decimal leadership = -1;
+                        if (!grow.IsLeadershipNull())
+                            leadership = (decimal)grow.Leadership;
+
+                        decimal injury = -1;
+                        if (!grow.IsInjPronNull())
+                            injury = grow.InjPron;
+
+                        decimal aggressivity = -1;
+                        if (!grow.IsAggressivityNull())
+                            aggressivity = (decimal)grow.Aggressivity;
+
+                        row.HidSk = "Pro=" + professionalism +
+                            ";Lea=" + leadership +
+                            ";Inj=" + injury +
+                            ";Agg=" + aggressivity;
+
                         continue;
                     }
 
@@ -443,7 +465,27 @@ namespace TMRecorder
                             row.wBorn = TmWeek.GetBornWeekFromAge(tds.Date, 0, grow.Età);
                         }
 
-                        
+                        decimal professionalism = -1;
+                        if (!grow.IsProfessionalismNull())
+                            professionalism = (decimal)grow.Professionalism;
+
+                        decimal leadership = -1;
+                        if (!grow.IsLeadershipNull())
+                            leadership = (decimal)grow.Leadership;
+
+                        decimal injury = -1;
+                        if (!grow.IsInjPronNull())
+                            injury = grow.InjPron;
+
+                        decimal aggressivity = -1;
+                        if (!grow.IsAggressivityNull())
+                            aggressivity = (decimal)grow.Aggressivity;
+
+                        row.HidSk = "Pro=" + professionalism +
+                            ";Lea=" + leadership +
+                            ";Inj=" + injury +
+                            ";Agg=" + aggressivity;
+
                         continue;
                     }
 
@@ -456,7 +498,7 @@ namespace TMRecorder
                         prow.TI = grow.LastTI;
                         prow.Nome = grow.Nome + "|" + prow.Infortunato.ToString() + "|" + prow.Squalificato.ToString()
                                     + "|" + grow.isYoungTeam.ToString();
-                        
+
                         int wDiff = TmWeek.GetTmAbsWk(DateTime.Now) - TmWeek.GetTmAbsWk(tds.Date);
                         if (!grow.IswBornNull())
                             prow.wBorn = grow.wBorn + wDiff;
@@ -589,7 +631,7 @@ namespace TMRecorder
             DefaultTraceListener tracer = new DefaultTraceListener();
             tracer.LogFileName = "./tmrecorderlog.txt";
 
-            
+
             DirectoryInfo di = null;
 
             try
@@ -727,7 +769,7 @@ namespace TMRecorder
             if ((ix < this.Count) && (this[ix].Date == db_TrophyDataSet.Date))
             {
                 DialogResult res = MessageBox.Show("There is already a data set with this the same date (previous:" +
-                    this[ix].fiSource.Name +", new:" + db_TrophyDataSet.fiSource.Name +
+                    this[ix].fiSource.Name + ", new:" + db_TrophyDataSet.fiSource.Name +
                     "): substitute?\n(Yes->Delete the prev file, No->Delete the new file, Cancel->Use the old file and do not cancel anything)", "Data set load", MessageBoxButtons.YesNoCancel);
                 if (res == DialogResult.No)
                 {
@@ -736,7 +778,7 @@ namespace TMRecorder
                 }
                 else if (res == DialogResult.Yes)
                 {
-                    File.Move(this[ix].fiSource.FullName, this[ix].fiSource.FullName + "."+ix.ToString()+".bkp");
+                    File.Move(this[ix].fiSource.FullName, this[ix].fiSource.FullName + "." + ix.ToString() + ".bkp");
                     this.RemoveAt(ix);
                     sorted = false;
                 }
@@ -1063,7 +1105,7 @@ namespace TMRecorder
                         TrainingDataSet.GiocatoriRow row = (TrainingDataSet.GiocatoriRow)trainingDataSet.Giocatori.NewRow();
 
                         if (!TM_Parser.ParsePlayerTraining_NewTM2(ref row, plRow))
-                                continue;
+                            continue;
 
                         trainingDataSet.Giocatori.AddGiocatoriRow(row);
                     }
@@ -1155,7 +1197,7 @@ namespace TMRecorder
                 {
                     str = HTML_Parser.GetTag(plRows[0], "td");
                     str = HTML_Parser.CleanTags(str);
-                    MessageBox.Show(str + "\n"+Current.Language.YouCannotPasteARunningTrainingYouMustWaitTheEndOfTheTraining,
+                    MessageBox.Show(str + "\n" + Current.Language.YouCannotPasteARunningTrainingYouMustWaitTheEndOfTheTraining,
                         Current.Language.TrainingPasteError);
                     return;
                 }
@@ -1591,7 +1633,7 @@ namespace TMRecorder
                             count++;
                             continue;
                         }
-                        
+
                         TrainingDataSet.PortieriRow pr = tds.Portieri.FindByPlayerID(id);
                         if (pr != null)
                         {
@@ -1817,7 +1859,7 @@ namespace TMRecorder
                     isReserves = 1;
 
                 squad = HTML_Parser.ConvertHTML_Text(squad);
-               
+
                 db_TrophyDataSet = new Db_TrophyDataSet();
                 db_TrophyDataSet.Date = dt;
                 db_TrophyDataSet.Giocatori.Clear();
@@ -2143,7 +2185,7 @@ namespace TMRecorder
                 if (item[0].Trim(' ') == "No") break;
                 if (line.Length < 18) continue;
 
-                string Name = item[2].Trim(' ').Trim((char)0xa0);;
+                string Name = item[2].Trim(' ').Trim((char)0xa0); ;
                 if (Name == "") continue;
 
                 int plID = 0;

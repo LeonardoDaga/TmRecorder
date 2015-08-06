@@ -92,7 +92,9 @@ namespace Common
         {
             grade = grade / scale * 100f;
 
-            if (grade < 20)
+            if (grade < 0)
+                return Color.FromArgb(64,64,64);
+            else if (grade < 20)
                 return Color.RoyalBlue;
             else if (grade < 30)
                 return Color.Cyan;

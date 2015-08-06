@@ -1473,6 +1473,27 @@ namespace Common {
 
                     edsRow.SetFP(fun);
 
+                    decimal professionalism = -1;
+                    if (!plyDB.IsProfessionalismNull())
+                        professionalism = (decimal)plyDB.Professionalism;
+
+                    decimal leadership = -1;
+                    if (!plyDB.IsLeadershipNull())
+                        leadership = (decimal)plyDB.Leadership;
+
+                    decimal injury = -1;
+                    if (!plyDB.IsInjPronNull())
+                        injury = plyDB.InjPron;
+
+                    decimal aggressivity = -1;
+                    if (!plyDB.IsAggressivityNull())
+                        aggressivity = (decimal)plyDB.Aggressivity;
+
+                    edsRow.HidSk = "Pro=" + professionalism +
+                        ";Lea=" + leadership +
+                        ";Inj=" + injury +
+                        ";Agg=" + aggressivity;
+
                     this.GiocatoriNSkill.Rows.Add(edsRow);
                 }
                 catch (Exception e)

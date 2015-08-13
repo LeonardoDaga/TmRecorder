@@ -8,7 +8,8 @@ using System.Net.Mail;
 using SendFileTo;
 using Languages;
 
-namespace Common {
+namespace Common
+{
 
 
     partial class ExtraDS
@@ -16,7 +17,7 @@ namespace Common {
         partial class GiocatoriDataTable
         {
         }
-    
+
         public string[] specs = new string[] { "DC", "DR", "DL", "DMC", "DMR", "DML", "MC", "MR", "ML", "OMC", "OMR", "OML", "FC" };
 
         public partial class ScoutsDataTable
@@ -73,18 +74,18 @@ namespace Common {
 
             public int numReview
             {
-                get 
+                get
                 {
                     if (ScoutVoto == "0")
                         return 0;
                     else
-                        return this.ScoutVoto.Split('|').Length; 
+                        return this.ScoutVoto.Split('|').Length;
                 }
             }
 
             public int[] ScoutVotes
             {
-                get 
+                get
                 {
                     string[] svotes = ScoutVoto.Split('|');
                     int n = svotes.Length;
@@ -96,7 +97,7 @@ namespace Common {
                         int.TryParse(svotes[i], out votes[i]);
                     }
 
-                    return votes; 
+                    return votes;
                 }
             }
 
@@ -192,7 +193,7 @@ namespace Common {
                 // Create a scructure based on the actual TI string that contains the
                 // TI history
                 WeekHistorical whTI = null;
-                
+
                 if (this.IsTSINull())
                     whTI = new WeekHistorical();
                 else
@@ -750,7 +751,13 @@ namespace Common {
                 {
                     Dictionary<string, string> dict = HTML_Parser.String2Dictionary(ScoutReviews[i]);
 
-                    ScoutsNReviews.ScoutsRow sr = snr.Scouts.FindByName(ScoutNames[i]);
+                    ScoutsNReviews.ScoutsRow sr = null;
+                    foreach (ScoutsNReviews.ScoutsRow srix in snr.Scouts)
+                    {
+                        if (srix.Name.Contains(ScoutNames[i]))
+                            sr = srix;
+                    }
+
                     if (sr == null)
                     {
                         sr = snr.Scouts.NewScoutsRow();
@@ -797,13 +804,13 @@ namespace Common {
                         Phy += float.Parse(dict["Phy"]) * (float)sr.Physical;
                         f_Phy += (float)sr.Physical;
                     }
-                    if (dict.ContainsKey("Spe")) 
+                    if (dict.ContainsKey("Spe"))
                     {
                         int spec = int.Parse(dict["Spe"]);
                         string skill = reportParser.Dict["Player_Skill"][spec];
                         Speciality = skill.Substring(0, 3);
                     }
-                    
+
                     //if (dict.ContainsKey("Dev")) rrow.Development = short.Parse(dict["Dev"]);
                     //if (dict.ContainsKey("Blo")) rrow.Blooming = short.Parse(dict["Blo"]);
                     //if (dict.ContainsKey("BlS")) rrow.BloomingStatus = short.Parse(dict["BlS"]);
@@ -838,7 +845,7 @@ namespace Common {
                 {
                     Dictionary<string, string> dict = HTML_Parser.String2Dictionary(ScoutReviews[i]);
 
-                    ScoutsNReviews.ScoutsRow sr = null; 
+                    ScoutsNReviews.ScoutsRow sr = null;
 
                     for (int s = 0; s < snr.Scouts.Count; s++)
                     {
@@ -912,10 +919,10 @@ namespace Common {
                     }
 
                     float competence = 0;
-                    if (age < 17) 
+                    if (age < 17)
                         competence = sr.Youth;
                     else if (age < 21)
-                        competence = (sr.Youth * (21 - age) + sr.Senior * (age - 17))/4;
+                        competence = (sr.Youth * (21 - age) + sr.Senior * (age - 17)) / 4;
                     else
                         competence = sr.Senior;
 
@@ -939,8 +946,8 @@ namespace Common {
                 get
                 {
                     return (this.Strength + this.Stamina + this.Pace +
-                        this.Marking + this.Takling + this.WorkRate + 
-                        this.Passage + this.Positioning + this.Cross + 
+                        this.Marking + this.Takling + this.WorkRate +
+                        this.Passage + this.Positioning + this.Cross +
                         this.Technics + this.Heading + this.Finalization + this.SetPieces);
                 }
             }
@@ -1214,7 +1221,7 @@ namespace Common {
                         else
                             gRow.Routine = 0;
                     }
-                    
+
                     if (gRow.FirstData >= (DateTime)tds.WeekNoData[0][0])
                     {
                         gRow.FirstData = (DateTime)tds.WeekNoData[0][0];
@@ -1309,6 +1316,9 @@ namespace Common {
                     gRow.Età = gr.Età;
                     gRow.ASI = gr.ASI;
 
+                    if (!gr.IsRecNull())
+                        gRow.Rec = gr.Rec;
+
                     gRow.SetTI(tds.Date, gr.TIs);
 
                     gRow.Note = gr.Note;
@@ -1323,7 +1333,7 @@ namespace Common {
                     else
                         gRow.Routine = 0;
                     gRow.isYoungTeam = gr.IsReserve;
-                    
+
                     TmWeek age = TmWeek.GetAge(gRow.wBorn, DateTime.Now);
 
                     Giocatori.AddGiocatoriRow(gRow);
@@ -1348,6 +1358,9 @@ namespace Common {
                         gRow.ASI = gr.ASI;
                         gRow.Nationality = gr.Nationality;
                         gRow.isYoungTeam = gr.IsReserve;
+
+                        if (!gr.IsRecNull())
+                            gRow.Rec = gr.Rec;
 
                         if (!gr.IsRoutineNull())
                             gRow.Routine = gr.Routine;
@@ -1403,6 +1416,9 @@ namespace Common {
                     else
                         gRow.Routine = 0;
 
+                    if (!gr.IsRecNull())
+                        gRow.Rec = gr.Rec;
+
                     if (gRow.IsGameTableNull())
                         gRow.GameTable = GameTable.UpdateGameTableString(TmWeek.GetSeason(gRow.LastData), "", gr);
                     else
@@ -1437,6 +1453,9 @@ namespace Common {
                             gRow.Routine = gr.Routine;
                         else
                             gRow.Routine = 0;
+
+                        if (!gr.IsRecNull())
+                            gRow.Rec = gr.Rec;
 
                         if (gRow.IsGameTableNull())
                             gRow.GameTable = GameTable.UpdateGameTableString(TmWeek.GetSeason(gRow.LastData), "", gr);
@@ -1546,7 +1565,7 @@ namespace Common {
                 if (gr.IsASINull()) continue;
                 if ((gr.ASI < minASI) || (gr.ASI > maxASI)) continue;
 
-                for (int i=0; i<specs.Length ; i++)
+                for (int i = 0; i < specs.Length; i++)
                 {
                     if (gr.FP.Contains(specs[i]))
                         SpecStats[i]++;
@@ -1612,10 +1631,10 @@ namespace Common {
                 idEnd = playerpage.IndexOf("&", idSt);
             }
 
-            int playerID = int.Parse(playerpage.Substring(idSt, idEnd-idSt));
+            int playerID = int.Parse(playerpage.Substring(idSt, idEnd - idSt));
 
             GiocatoriRow gRow = Giocatori.FindByPlayerID(playerID);
-            if (gRow == null) return; 
+            if (gRow == null) return;
 
             if (!playerpage.Contains("scouts.php"))
             {
@@ -1634,7 +1653,7 @@ namespace Common {
 
                     string Names = "", Reviews = "", Votes = "", Dates = "";
 
-                    for (int i=0; i<trs.Count; i++)
+                    for (int i = 0; i < trs.Count; i++)
                     {
                         string tr = trs[i];
 
@@ -1700,19 +1719,19 @@ namespace Common {
                     // Moving to recommendations
                     i++;
 
-                    List<string> spanRecs = HTML_Parser.GetFullTags(divs[i], "span");
-                    float vote = 0;
-                    foreach (string spanRec in spanRecs)
-                    {
-                        if (spanRec.Contains("megastar recomendation"))
-                            vote += 2;
-                        else if (spanRec.Contains("megastar potential_half"))
-                            vote += 1;
-                        else if (spanRec.Contains("megastar potential"))
-                            vote += 2;
-                    }
+                    //List<string> spanRecs = HTML_Parser.GetFullTags(divs[i], "span");
+                    //float vote = 0;
+                    //foreach (string spanRec in spanRecs)
+                    //{
+                    //    if (spanRec.Contains("megastar recomendation"))
+                    //        vote += 2;
+                    //    else if (spanRec.Contains("megastar potential_half"))
+                    //        vote += 1;
+                    //    else if (spanRec.Contains("megastar potential"))
+                    //        vote += 2;
+                    //}
 
-                    gRow.ScoutVoto += vote.ToString() + "|";
+                    //gRow.ScoutVoto += vote.ToString() + "|";
 
                     // Moving to recommendation age
                     i++;
@@ -1748,6 +1767,8 @@ namespace Common {
                                 // It's the potential
                                 string potential_string = HTML_Parser.GetFirstNumberInString(divs[i]);
                                 giudizio += "Pot=" + potential_string + ";";
+
+                                gRow.ScoutVoto += potential_string + "|";
                             }
                             else if (field.Contains(reportParser.Dict["Keys"][(int)ReportParser.Keys.BloomStatus]))
                             {
@@ -1925,7 +1946,7 @@ namespace Common {
             // It's a base page
             string[] pagelines = page.Split('\n');
 
-            for (int ix = 0; ix < pagelines.Length; ix++) 
+            for (int ix = 0; ix < pagelines.Length; ix++)
             {
                 string line = pagelines[ix];
 
@@ -2223,12 +2244,12 @@ namespace Common {
 
                 pform.CodeClose();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 string info = "";
                 string swRelease = "Sw Release:" + Application.ProductName + "("
                     + Application.ProductVersion + ")";
-                info =  "Nome:" + grCopy.Nome +
+                info = "Nome:" + grCopy.Nome +
                     "\r\nPlayerID:" + grCopy.PlayerID +
                     "\r\nReview:" + grCopy.numReview +
                     "\r\nScoutName:" + grCopy.ScoutName +
@@ -2247,7 +2268,7 @@ namespace Common {
 
         public void LoadPlayer_New(object dt, string page)
         {
-            
+
         }
 
         public string GetTabbedList()
@@ -2317,7 +2338,7 @@ namespace Common {
             //            var child = element[i].Children[n];
             //            int blooming_status = 0;
             //            int blooming = 0;
-   
+
             //            gRow.ScoutVoto = "";
             //            switch(n)
             //            {

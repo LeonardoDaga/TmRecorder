@@ -1839,6 +1839,7 @@ namespace TMRecorder
                 if (!grow.IsLeadershipNull()) egrow.Leadership = grow.Leadership;
                 if (!grow.IsSpecialityNull()) egrow.Speciality = grow.Speciality;
                 if (!grow.IsHiddenRevealedNull()) egrow.HiddenRevealed = grow.HiddenRevealed;
+                if (!grow.IsRecNull()) egrow.Rec = grow.Rec;
                 if (!grow.IsInjPronNull()) egrow.InjPron = grow.InjPron;
                 if (!grow.IsAdaNull()) egrow.Ada = grow.Ada;
                 if (!grow.IsPotentialNull()) egrow.Potential = grow.Potential;

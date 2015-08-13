@@ -2121,12 +2121,17 @@ namespace TMRecorder
 
                 if (startnavigationAddress.Contains("trophymanager.com/players/"))
                 {
-
-                    lastBarPlayer = int.Parse(HTML_Parser.GetNumberAfter(startnavigationAddress, "trophymanager.com/players/"));
-
-                    if (lastBarPlayer != -1)
-                        FillPlayerBar(lastBarPlayer);
-                    tsBrowsePlayers.Visible = true;
+                    try
+                    {
+                        lastBarPlayer = int.Parse(HTML_Parser.GetNumberAfter(startnavigationAddress, "trophymanager.com/players/"));
+                        if (lastBarPlayer != -1)
+                            FillPlayerBar(lastBarPlayer);
+                        tsBrowsePlayers.Visible = true;
+                    }
+                    catch
+                    {
+                        tsBrowsePlayers.Visible = false;
+                    }
                 }
                 else
                 {

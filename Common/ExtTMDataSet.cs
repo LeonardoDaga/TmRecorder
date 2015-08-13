@@ -1448,6 +1448,8 @@ namespace Common {
 
                     if (!tdsRow.IsRecNull())
                         edsRow.Rec = tdsRow.Rec;
+                    else if (!plyDB.IsRecNull())
+                        edsRow.Rec = plyDB.Rec;
                     else
                         edsRow.Rec = 0M;
 
@@ -1565,6 +1567,8 @@ namespace Common {
 
                     if (!tdsRow.IsRecNull())
                         edsRow.Rec = tdsRow.Rec;
+                    else if (!plyDB.IsRecNull())
+                        edsRow.Rec = plyDB.Rec;
                     else
                         edsRow.Rec = 0M;
 

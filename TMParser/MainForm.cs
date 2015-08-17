@@ -1798,6 +1798,8 @@ namespace TMRecorder
                 pf.ShowDialog();
 
                 if (pf.isDirty) isDirty = true;
+
+                pf.Dispose();
             }
             else
             {
@@ -1806,6 +1808,8 @@ namespace TMRecorder
                 pf.ShowDialog();
 
                 if (pf.isDirty) isDirty = true;
+
+                pf.Dispose();
             }
 
             History.UpdateDirtyPlayers();

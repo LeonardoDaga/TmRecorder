@@ -1148,6 +1148,30 @@ namespace Common
                     return 0;
                 }
             }
+
+            internal string GetHidSkString()
+            {
+                decimal professionalism = -1;
+                if (!IsProfessionalismNull())
+                    professionalism = (decimal)Professionalism;
+
+                decimal leadership = -1;
+                if (!IsLeadershipNull())
+                    leadership = (decimal)Leadership;
+
+                decimal injury = -1;
+                if (!IsInjPronNull())
+                    injury = InjPron;
+
+                decimal aggressivity = -1;
+                if (!IsAggressivityNull())
+                    aggressivity = (decimal)Aggressivity;
+
+                return "Pro=" + professionalism +
+                    ";Lea=" + leadership +
+                    ";Inj=" + injury +
+                    ";Agg=" + aggressivity;
+            }
         }
 
         public void FillWithActualPlayers(ExtraDS eds, DateTime dt)
@@ -1679,12 +1703,25 @@ namespace Common
             }
         }
 
-        public static void ParsePlayerPage_NewTM(string page, ref GiocatoriRow gRow, ReportParser reportParser)
+        public static bool ParsePlayerPage_NewTM(HtmlDocument htmlDocument, string page, ref GiocatoriRow gRow, ReportParser reportParser)
         {
+            HtmlElement element = htmlDocument.GetElementById("player_scout_new");
+            HtmlElementCollection elementCollection = element.GetElementsByTagName("tr");
+
+            foreach(HtmlElement row in elementCollection)
+            {
+                string strRow = row.InnerText;
+
+                HtmlElementCollection tds = row.GetElementsByTagName("td");
+
+                if (tds.Count == 9)
+                {
+                    // This is the row that contains the levels of the scout
+                }
+            }
+
             // Import only the report to analyze it
             string str = HTML_Parser.CutBefore(page, "player_scout_new");
-            str = HTML_Parser.CutAfter(str, "player_interested_new");
-            str = str.Replace("</div>", "</div>\n").Replace("</table>", "</table>\n").Replace("<br>", "\n");
 
             int i = 0;
             if (page.Contains("active_tab\" id=\"tabplayer_scout_new"))
@@ -1694,83 +1731,56 @@ namespace Common
                 gRow.ScoutVoto = "";
                 gRow.ScoutGiudizio = "";
 
-                string[] divs = str.Split('\n');
-
-                while (i < divs.Length)
+                foreach (HtmlElement child in element.Children)
                 {
-                    for (; i < divs.Length; i++)
+                    if (child.InnerHtml.Contains("report_header"))
                     {
-                        if (divs[i].Contains("megastar recomendation"))
+                        HtmlElementCollection div = child.GetElementsByTagName("div");
+
+                        gRow.ScoutName += HTML_Parser.GetTag(div[0].InnerHtml, "strong") + "|";
+
+                        string date = HTML_Parser.GetTag(div[0].InnerHtml, "span").TrimStart('(').TrimEnd(')');
+                        DateTime dt = DateTime.Parse(date);
+                        gRow.ScoutDate += TmWeek.ToSWDString(dt) + "|";
+
+                        string age = HTML_Parser.GetFirstNumberInString(div[2].InnerText);
+
+                        string giudizio = "";
+                        giudizio += "Age=" + age + ";";
+
+                        int blooming_status = 0;
+                        int blooming = 0;
+                        int dev_status = 0;
+                        int speciality = 0;
+                        int physique = 0;
+                        int technics = 0;
+                        int tactics = 0;
+                        int professionalism = 0;
+                        int leadership = 0;
+                        int aggressivity = 0;
+                        int potential = 0;
+
+                        string field = div[3].InnerText;
+                        if (field.Contains(reportParser.Dict["Keys"][(int)ReportParser.Keys.Potential]))
                         {
-                            i--; // go to the previous row to take the name of the scout
-                            break;
+                            // It's the potential
+                            string potential_string = HTML_Parser.GetFirstNumberInString(field);
+                            giudizio += "Pot=" + potential_string + ";";
+
+                            gRow.ScoutVoto += potential_string + "|";
                         }
-                    }
-
-                    if (i == divs.Length) break;
-
-                    // Getting scout names and date of scouting
-                    gRow.ScoutName += HTML_Parser.GetTag(divs[i], "strong") + "|";
-
-                    string date = HTML_Parser.GetTag(divs[i], "span").TrimStart('(').TrimEnd(')');
-                    DateTime dt = DateTime.Parse(date);
-                    gRow.ScoutDate += TmWeek.ToSWDString(dt) + "|";
-
-                    // Moving to recommendations
-                    i++;
-
-                    //List<string> spanRecs = HTML_Parser.GetFullTags(divs[i], "span");
-                    //float vote = 0;
-                    //foreach (string spanRec in spanRecs)
-                    //{
-                    //    if (spanRec.Contains("megastar recomendation"))
-                    //        vote += 2;
-                    //    else if (spanRec.Contains("megastar potential_half"))
-                    //        vote += 1;
-                    //    else if (spanRec.Contains("megastar potential"))
-                    //        vote += 2;
-                    //}
-
-                    //gRow.ScoutVoto += vote.ToString() + "|";
-
-                    // Moving to recommendation age
-                    i++;
-
-                    string age = HTML_Parser.GetFirstNumberInString(divs[i]);
-
-                    string giudizio = "";
-                    giudizio += "Age=" + age + ";";
-
-                    // Other field
-                    i++;
-
-                    int blooming_status = 0;
-                    int blooming = 0;
-                    int dev_status = 0;
-                    int speciality = 0;
-                    int physique = 0;
-                    int technics = 0;
-                    int tactics = 0;
-                    int professionalism = 0;
-                    int leadership = 0;
-                    int aggressivity = 0;
-                    int potential = 0;
-
-                    for (; i < divs.Length; i++)
-                    {
-                        if (divs[i].Contains(":"))
+                        else
                         {
-                            string field = HTML_Parser.CleanTagsWithRest(divs[i]);
+                            string message = string.Format("Cannot translate Scout reports: check if your language is properly configured in the options. Filename used: {0}",
+                                reportParser.UsedFilename);
+                            MessageBox.Show(message);
+                            return false;
+                        }
 
-                            if (field.Contains(reportParser.Dict["Keys"][(int)ReportParser.Keys.Potential]))
-                            {
-                                // It's the potential
-                                string potential_string = HTML_Parser.GetFirstNumberInString(divs[i]);
-                                giudizio += "Pot=" + potential_string + ";";
-
-                                gRow.ScoutVoto += potential_string + "|";
-                            }
-                            else if (field.Contains(reportParser.Dict["Keys"][(int)ReportParser.Keys.BloomStatus]))
+                        if (div.Count > 5)
+                        {
+                            field = div[4].InnerText;
+                            if (field.Contains(reportParser.Dict["Keys"][(int)ReportParser.Keys.BloomStatus]))
                             {
                                 // It's the bloom status
                                 string[] blooms = field.Split(":-".ToCharArray());
@@ -1784,13 +1794,17 @@ namespace Common
                                     blooming = reportParser.find("Blooming", blooms[2]);
                                 }
                             }
-                            else if (field.Contains(reportParser.Dict["Keys"][(int)ReportParser.Keys.DevStatus]))
+
+                            field = div[5].InnerText;
+                            if (field.Contains(reportParser.Dict["Keys"][(int)ReportParser.Keys.DevStatus]))
                             {
                                 // It's the DevStatus
                                 string[] devstats = field.Split(':');
                                 dev_status = reportParser.find("Development", devstats[1]);
                             }
-                            else if (field.Contains(reportParser.Dict["Keys"][(int)ReportParser.Keys.Speciality]))
+
+                            field = div[6].InnerText;
+                            if (field.Contains(reportParser.Dict["Keys"][(int)ReportParser.Keys.Speciality]))
                             {
                                 // It's the Speciality
                                 string[] spectats = field.Split(':');
@@ -1802,40 +1816,39 @@ namespace Common
                                 {
                                     speciality = reportParser.find("Player_Skill", spectats[1]);
                                 }
-
                             }
+
+                            field = child.InnerText;
+                            if (field.Contains("Should Develop:"))
+                            {
+                                physique = reportParser.find("Physique", field, physique);
+                                technics = reportParser.find("Technics", field, technics);
+                                tactics = reportParser.find("Tactics", field, tactics);
+                                aggressivity = reportParser.find("Aggressivity", field, aggressivity);
+                                leadership = reportParser.find("Charisma", field, leadership);
+                                professionalism = reportParser.find("Professionalism", field, professionalism);
+                            }
+
+                            if (physique != 0) giudizio += "Phy=" + physique + ";";
+                            if (technics != 0) giudizio += "Tec=" + technics + ";";
+                            if (tactics != 0) giudizio += "Tac=" + tactics + ";";
+                            if (leadership != 0) giudizio += "Lea=" + leadership + ";";
+                            if (blooming_status != 0) giudizio += "BlS=" + blooming_status + ";";
+                            if (blooming != 0) giudizio += "Blo=" + blooming + ";";
+                            if (dev_status != 0) giudizio += "Dev=" + dev_status + ";";
+                            if (speciality != 0) giudizio += "Spe=" + speciality + ";";
+                            if (aggressivity != 0) giudizio += "Agg=" + aggressivity + ";";
+                            if (professionalism != 0) giudizio += "Pro=" + professionalism + ";";
                         }
-                        else if (divs[i].Contains(" - "))
-                        {
-                            physique = reportParser.find("Physique", divs[i], physique);
-                            technics = reportParser.find("Technics", divs[i], technics);
-                            tactics = reportParser.find("Tactics", divs[i], tactics);
-                            aggressivity = reportParser.find("Aggressivity", divs[i], aggressivity);
-                            leadership = reportParser.find("Charisma", divs[i], leadership);
-                            professionalism = reportParser.find("Professionalism", divs[i], professionalism);
-                        }
+
+                        if (gRow.ScoutGiudizio != "")
+                            gRow.ScoutGiudizio = gRow.ScoutGiudizio + "|" + giudizio.TrimEnd(',');
                         else
-                        {
-                            break;
-                        }
+                            gRow.ScoutGiudizio = giudizio.TrimEnd(',');
+
                     }
-
-                    if (physique != 0) giudizio += "Phy=" + physique + ";";
-                    if (technics != 0) giudizio += "Tec=" + technics + ";";
-                    if (tactics != 0) giudizio += "Tac=" + tactics + ";";
-                    if (leadership != 0) giudizio += "Lea=" + leadership + ";";
-                    if (blooming_status != 0) giudizio += "BlS=" + blooming_status + ";";
-                    if (blooming != 0) giudizio += "Blo=" + blooming + ";";
-                    if (dev_status != 0) giudizio += "Dev=" + dev_status + ";";
-                    if (speciality != 0) giudizio += "Spe=" + speciality + ";";
-                    if (aggressivity != 0) giudizio += "Agg=" + aggressivity + ";";
-                    if (professionalism != 0) giudizio += "Pro=" + professionalism + ";";
-
-                    if (gRow.ScoutGiudizio != "")
-                        gRow.ScoutGiudizio = gRow.ScoutGiudizio + "|" + giudizio.TrimEnd(',');
-                    else
-                        gRow.ScoutGiudizio = giudizio.TrimEnd(',');
                 }
+
             }
             else if (page.Contains("active_tab\" id=\"tabplayer_history_new"))
             {
@@ -1928,6 +1941,8 @@ namespace Common
             gRow.ScoutName = gRow.ScoutName.TrimEnd('|');
             gRow.ScoutDate = gRow.ScoutDate.TrimEnd('|');
             gRow.ScoutVoto = gRow.ScoutVoto.TrimEnd('|');
+
+            return true;
         }
 
         public static void ParsePlayerPage(string page, ref GiocatoriRow gRow)

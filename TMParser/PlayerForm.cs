@@ -2018,7 +2018,8 @@ namespace TMRecorder
             ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[iActualPlayer];
             ExtraDS.GiocatoriRow gRow = History.PlayersDS.Giocatori.FindByPlayerID(playerDatarow.PlayerID);
 
-            ExtraDS.ParsePlayerPage_NewTM(page, ref gRow, History.reportParser);
+            if (!ExtraDS.ParsePlayerPage_NewTM(webBrowser.Document, page, ref gRow, History.reportParser))
+                return;
             ExtraDS.ParsePlayerPage_Extras(webBrowser.Document, ref gRow, History.reportParser);
 
             // Aggiorna i dati di basi
@@ -2103,6 +2104,8 @@ namespace TMRecorder
 
             // this.Text = "TMR Browser - Navigation Complete";
             tsbProgressBar.ForeColor = Color.Green;
+
+            System.GC.Collect();
         }
 
         private void webBrowser_Navigating(object sender, WebBrowserNavigatingEventArgs e)
@@ -2284,6 +2287,13 @@ namespace TMRecorder
             Rectangle pos = new Rectangle(DesktopBounds.X, DesktopBounds.Y, DesktopBounds.Width, DesktopBounds.Height);
             Program.Setts.PlayerFormPosition = pos;
             Program.Setts.Save();
+
+            webBrowser.Stop();
+            this.SuspendLayout();
+            this.Controls.Remove(this.webBrowser);
+            this.ResumeLayout(false);
+            webBrowser.Dispose();
+            webBrowser = null;
         }
 
         private void reviewDataTableBindingSource_CurrentChanged(object sender, EventArgs e)

@@ -471,6 +471,8 @@ namespace Common {
 
                     edsRow.Rec = tdsRow.Rec;
 
+                    edsRow.HidSk = plyDB.GetHidSkString();
+
                     edsRow.SetFP(fun);
 
                     if (isNew) this.GiocatoriNSkill.Rows.Add(edsRow);
@@ -823,10 +825,12 @@ namespace Common {
                     {
                         plyDB.Wage = tdsRow.Wage;
                         plyDB.AvRating = (float)tdsRow.Rating;
+                        edsRow.HidSk = plyDB.GetHidSkString();
                     }
 
                     edsRow.SetFP(fun);
                     edsRow.Rec = tdsRow.Rec;
+
 
                     if (isNew) this.GiocatoriNSkill.Rows.Add(edsRow);
                 }
@@ -1458,7 +1462,6 @@ namespace Common {
                     else
                         edsRow.Rou = 0;
 
-
                     edsRow.TI = plyDB.LastTI;
 
                     int wDiff = TmWeek.GetTmAbsWk(DateTime.Now) - TmWeek.GetTmAbsWk(this.Date);
@@ -1475,26 +1478,7 @@ namespace Common {
 
                     edsRow.SetFP(fun);
 
-                    decimal professionalism = -1;
-                    if (!plyDB.IsProfessionalismNull())
-                        professionalism = (decimal)plyDB.Professionalism;
-
-                    decimal leadership = -1;
-                    if (!plyDB.IsLeadershipNull())
-                        leadership = (decimal)plyDB.Leadership;
-
-                    decimal injury = -1;
-                    if (!plyDB.IsInjPronNull())
-                        injury = plyDB.InjPron;
-
-                    decimal aggressivity = -1;
-                    if (!plyDB.IsAggressivityNull())
-                        aggressivity = (decimal)plyDB.Aggressivity;
-
-                    edsRow.HidSk = "Pro=" + professionalism +
-                        ";Lea=" + leadership +
-                        ";Inj=" + injury +
-                        ";Agg=" + aggressivity;
+                    edsRow.HidSk = plyDB.GetHidSkString();
 
                     this.GiocatoriNSkill.Rows.Add(edsRow);
                 }

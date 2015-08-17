@@ -438,7 +438,7 @@ namespace NTR_Common
                 if (!egRow.IsInjPronNull())
                     gr.InjPron = egRow.InjPron;
 
-                if (!egRow.IsTrainingAbilitiesNull())
+                if (!egRow.IsSpecialityNull())
                 {
                     gr.Specialities = "Spe=" + egRow.Speciality;
                     gr.Specialities += ";Phy=" + egRow.Physics;

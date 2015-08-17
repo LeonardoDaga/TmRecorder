@@ -10,6 +10,7 @@ namespace Common
     public class ReportParser
     {
         public Dictionary<string, Dictionary<int, string>> Dict = new Dictionary<string, Dictionary<int, string>>();
+        public string UsedFilename;
 
         public enum Keys
         {
@@ -28,6 +29,8 @@ namespace Common
                 MessageBox.Show("The Scout Report is not available in your language, or the file " + filename + " has been deleted");
                 return;
             }
+
+            UsedFilename = fi.Name;
 
             StreamReader sr = new StreamReader(fi.FullName);
             string text = sr.ReadToEnd();

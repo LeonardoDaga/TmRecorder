@@ -1400,7 +1400,7 @@ namespace TMRecorder
             ExtTMDataSet.PortieriNSkillRow playerDatarow = (ExtTMDataSet.PortieriNSkillRow)GDT.Rows[iActualPlayer];
             ExtraDS.GiocatoriRow gRow = History.PlayersDS.Giocatori.FindByPlayerID(playerDatarow.PlayerID);
 
-            ExtraDS.ParsePlayerPage_NewTM(page, ref gRow, History.reportParser);
+            ExtraDS.ParsePlayerPage_NewTM(webBrowser.Document, page, ref gRow, History.reportParser);
 
             // Aggiorna i dati di basi
             gRow.FPn = Tm_Utility.FPToNumber(gRow.FP);

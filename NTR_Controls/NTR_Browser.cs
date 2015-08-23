@@ -35,11 +35,18 @@ namespace NTR_Controls
         public NTR_Browser()
         {
             InitializeComponent();
+            LoadControl();
         }
 
         private void NTR_Browser_Load(object sender, EventArgs e)
         {
-            TheBrowser = new Browser(webBrowser);
+            LoadControl();
+        }
+
+        private void LoadControl()
+        {
+            if (TheBrowser == null)
+                TheBrowser = new Browser(webBrowser);
             TheBrowser.DefaultDirectory = this.DefaultDirectory;
         }
 
@@ -60,7 +67,7 @@ namespace NTR_Controls
 
         private void gotoAdobeFlashplayerPageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            TheBrowser.Goto(Browser.Pages.AdobeFlashplayer);
+            this.Goto(Browser.Pages.AdobeFlashplayer);
         }
 
         public void Goto(string address)

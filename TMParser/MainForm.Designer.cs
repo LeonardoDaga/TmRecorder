@@ -447,7 +447,11 @@ namespace TMRecorder
             this.label4 = new System.Windows.Forms.Label();
             this.tabBrowser = new System.Windows.Forms.TabPage();
             this.toolStripContainer3 = new System.Windows.Forms.ToolStripContainer();
+            this.ntrBrowser = new NTR_Controls.NTR_Browser();
             this.tsBrowserImport = new System.Windows.Forms.ToolStrip();
+            this.tsbExtraTeam = new System.Windows.Forms.ToolStripDropDownButton();
+            this.addExtraTeamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsbChangeToConfiguredExtraTeam = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripLabel13 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
@@ -604,10 +608,6 @@ namespace TMRecorder
             this.nomeDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Age = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tsbExtraTeam = new System.Windows.Forms.ToolStripDropDownButton();
-            this.addExtraTeamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsbChangeToConfiguredExtraTeam = new System.Windows.Forms.ToolStripMenuItem();
-            this.ntrBrowser = new NTR_Controls.NTR_Browser();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStripGK.SuspendLayout();
             this.contextMenuPlInfo.SuspendLayout();
@@ -3516,7 +3516,7 @@ namespace TMRecorder
             this.dgMatches.ReadOnly = true;
             this.dgMatches.RowHeadersWidth = 20;
             this.dgMatches.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgMatches.Size = new System.Drawing.Size(507, 433);
+            this.dgMatches.Size = new System.Drawing.Size(507, 332);
             this.dgMatches.TabIndex = 1;
             this.dgMatches.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgMatches_CellMouseDoubleClick);
             this.dgMatches.SelectionChanged += new System.EventHandler(this.dgMatches_SelectionChanged);
@@ -4046,6 +4046,19 @@ namespace TMRecorder
             this.toolStripContainer3.TopToolStripPanel.Controls.Add(this.tsBrowseMatches);
             this.toolStripContainer3.TopToolStripPanel.Controls.Add(this.tsBrowsePlayers);
             // 
+            // ntrBrowser
+            // 
+            this.ntrBrowser.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ntrBrowser.DefaultDirectory = "";
+            this.ntrBrowser.Location = new System.Drawing.Point(3, -1);
+            this.ntrBrowser.Name = "ntrBrowser";
+            this.ntrBrowser.Size = new System.Drawing.Size(1000, 500);
+            this.ntrBrowser.SourceDB = null;
+            this.ntrBrowser.TabIndex = 0;
+            this.ntrBrowser.ImportedContent += new NTR_Controls.ImportedContentHandler(this.ntrBrowser_ImportedContent);
+            // 
             // tsBrowserImport
             // 
             this.tsBrowserImport.Dock = System.Windows.Forms.DockStyle.None;
@@ -4069,9 +4082,34 @@ namespace TMRecorder
             this.toolStripSeparator11});
             this.tsBrowserImport.Location = new System.Drawing.Point(0, 3);
             this.tsBrowserImport.Name = "tsBrowserImport";
-            this.tsBrowserImport.Size = new System.Drawing.Size(98, 378);
+            this.tsBrowserImport.Size = new System.Drawing.Size(98, 342);
             this.tsBrowserImport.TabIndex = 1;
             this.tsBrowserImport.Text = "toolStrip4";
+            // 
+            // tsbExtraTeam
+            // 
+            this.tsbExtraTeam.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addExtraTeamToolStripMenuItem,
+            this.tsbChangeToConfiguredExtraTeam});
+            this.tsbExtraTeam.Image = ((System.Drawing.Image)(resources.GetObject("tsbExtraTeam.Image")));
+            this.tsbExtraTeam.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbExtraTeam.Name = "tsbExtraTeam";
+            this.tsbExtraTeam.Size = new System.Drawing.Size(96, 24);
+            this.tsbExtraTeam.Text = "Extra Team";
+            // 
+            // addExtraTeamToolStripMenuItem
+            // 
+            this.addExtraTeamToolStripMenuItem.Name = "addExtraTeamToolStripMenuItem";
+            this.addExtraTeamToolStripMenuItem.Size = new System.Drawing.Size(261, 22);
+            this.addExtraTeamToolStripMenuItem.Text = "Add Extra Team";
+            this.addExtraTeamToolStripMenuItem.Click += new System.EventHandler(this.addExtraTeamToolStripMenuItem_Click_1);
+            // 
+            // tsbChangeToConfiguredExtraTeam
+            // 
+            this.tsbChangeToConfiguredExtraTeam.Name = "tsbChangeToConfiguredExtraTeam";
+            this.tsbChangeToConfiguredExtraTeam.Size = new System.Drawing.Size(261, 22);
+            this.tsbChangeToConfiguredExtraTeam.Text = "Change Browser to the actual Team";
+            this.tsbChangeToConfiguredExtraTeam.Click += new System.EventHandler(this.tsbChangeToConfiguredExtraTeam_Click);
             // 
             // toolStripLabel13
             // 
@@ -4430,7 +4468,7 @@ namespace TMRecorder
             this.tsbMatchNavigationType});
             this.tsBrowseMatches.Location = new System.Drawing.Point(3, 0);
             this.tsBrowseMatches.Name = "tsBrowseMatches";
-            this.tsBrowseMatches.Size = new System.Drawing.Size(837, 27);
+            this.tsBrowseMatches.Size = new System.Drawing.Size(806, 27);
             this.tsBrowseMatches.TabIndex = 2;
             this.tsBrowseMatches.Text = "toolStrip2";
             this.tsBrowseMatches.Visible = false;
@@ -5520,43 +5558,6 @@ namespace TMRecorder
             this.dataGridViewTextBoxColumn6.DataPropertyName = "ASI";
             this.dataGridViewTextBoxColumn6.HeaderText = "ASI";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            // 
-            // tsbExtraTeam
-            // 
-            this.tsbExtraTeam.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addExtraTeamToolStripMenuItem,
-            this.tsbChangeToConfiguredExtraTeam});
-            this.tsbExtraTeam.Image = ((System.Drawing.Image)(resources.GetObject("tsbExtraTeam.Image")));
-            this.tsbExtraTeam.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbExtraTeam.Name = "tsbExtraTeam";
-            this.tsbExtraTeam.Size = new System.Drawing.Size(96, 24);
-            this.tsbExtraTeam.Text = "Extra Team";
-            // 
-            // addExtraTeamToolStripMenuItem
-            // 
-            this.addExtraTeamToolStripMenuItem.Name = "addExtraTeamToolStripMenuItem";
-            this.addExtraTeamToolStripMenuItem.Size = new System.Drawing.Size(261, 22);
-            this.addExtraTeamToolStripMenuItem.Text = "Add Extra Team";
-            this.addExtraTeamToolStripMenuItem.Click += new System.EventHandler(this.addExtraTeamToolStripMenuItem_Click_1);
-            // 
-            // tsbChangeToConfiguredExtraTeam
-            // 
-            this.tsbChangeToConfiguredExtraTeam.Name = "tsbChangeToConfiguredExtraTeam";
-            this.tsbChangeToConfiguredExtraTeam.Size = new System.Drawing.Size(261, 22);
-            this.tsbChangeToConfiguredExtraTeam.Text = "Change Browser to the actual Team";
-            this.tsbChangeToConfiguredExtraTeam.Click += new System.EventHandler(this.tsbChangeToConfiguredExtraTeam_Click);
-            // 
-            // ntrBrowser
-            // 
-            this.ntrBrowser.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ntrBrowser.DefaultDirectory = "";
-            this.ntrBrowser.Location = new System.Drawing.Point(3, -1);
-            this.ntrBrowser.Name = "ntrBrowser";
-            this.ntrBrowser.Size = new System.Drawing.Size(1000, 500);
-            this.ntrBrowser.SourceDB = null;
-            this.ntrBrowser.TabIndex = 0;
             // 
             // MainForm
             // 

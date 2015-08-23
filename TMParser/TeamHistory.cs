@@ -1950,8 +1950,10 @@ namespace TMRecorder
             }
         }
 
-        internal void LoadSquad_NewTm(DateTime dt, string squad)
+        internal void LoadSquad_NewTm(NTR_Db.Content content)
         {
+            DateTime dt = DateTime.Now;
+            string squad = "";
             string originalSquadString = squad;
             Db_TrophyDataSet db_TrophyDataSet = null;
             short isReserves = 0;
@@ -1961,30 +1963,39 @@ namespace TMRecorder
             {
                 if (Program.Setts.MainSquadID <= 0)
                 {
-                    int Id = 0;
-                    int.TryParse(HTML_Parser.GetNumberAfter(originalSquadString, "A_team="), out Id);
-                    Program.Setts.MainSquadID = Id;
+                    Program.Setts.MainSquadID = content.MainSquadID;
                     Program.Setts.Save();
                 }
                 if (Program.Setts.ReserveSquadID <= 0)
                 {
-                    int Id = 0;
-                    int.TryParse(HTML_Parser.GetNumberAfter(originalSquadString, "B_team="), out Id);
-                    Program.Setts.ReserveSquadID = Id;
+                    Program.Setts.ReserveSquadID = content.ReserveSquadID;
                     Program.Setts.Save();
                 }
-
-                // squad = HTML_Parser.ConvertHTML_Text(squad);
-                squad = HTML_Parser.ConvertUnicodes_Text(squad);
-                squad = HTML_Parser.ConvertUnicodes_MoreText(squad);
 
                 db_TrophyDataSet = new Db_TrophyDataSet();
                 db_TrophyDataSet.Date = dt;
                 db_TrophyDataSet.Giocatori.Clear();
                 db_TrophyDataSet.Portieri.Clear();
 
-                string[] plRows = squad.Split('\n');
+                foreach(NTR_Db.NTR_SquadDb.HistDataRow historyRow in content.squadDB.HistData)
+                {
+                    if (historyRow.PlayerRow.FPn == 0)
+                    {
+                        Db_TrophyDataSet.PortieriRow row = (Db_TrophyDataSet.PortieriRow)db_TrophyDataSet.Portieri.NewRow();
 
+                        string strrow = plRows[player].Trim(';');
+                        TM_Parser.ParseGK_NewTM(ref row, strrow);
+
+                        if (row != null)
+                            db_TrophyDataSet.Portieri.AddPortieriRow(row);
+                    }
+                    else
+                    {
+
+                    }
+                }
+
+                string[] plRows = squad.Split('\n');
                 // Row 0 is the table header
                 for (player = 0; player < plRows.Length; player++)
                 {

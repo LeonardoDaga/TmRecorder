@@ -3581,7 +3581,7 @@ namespace TMRecorder
 
             champDS.UpdateSeason(cmbSeason);
 
-            UpdateBrowserImportPanel();
+            UpdateBrowserNavigationPanel();
         }
 
         //private string GetWebBrowserContent(string startnavigationAddress)
@@ -4561,11 +4561,11 @@ namespace TMRecorder
         {
             if (e.TabPage == tabBrowser)
             {
-                UpdateBrowserImportPanel();
+                UpdateBrowserNavigationPanel();
             }
         }
 
-        public void UpdateBrowserImportPanel()
+        public void UpdateBrowserNavigationPanel()
         {
             int thisWeek = TmWeek.thisWeek().absweek;
             ExtTMDataSet eds = History.LastTeam();
@@ -4887,5 +4887,17 @@ namespace TMRecorder
             Program.Setts.Save();
         }
 
+        private void ntrBrowser_ImportedContent(Content content)
+        {
+            History.LoadSquad_NewTm(content);
+
+            SetDatesList();
+
+            UpdateBrowserNavigationPanel();
+        }
+
+        private void SetDatesList()
+        {
+        }
     }
 }

@@ -547,27 +547,6 @@ namespace TMRecorder
             form.FillMatchStatsGraph(champDS.PlyStats);
         }
 
-        public static void TestLoadSquad()
-        {
-            Program.Setts.Initialize();
-            TeamHistory History = new TeamHistory();
-
-            History.PlayersDS = new ExtraDS();
-            History.PlayersDS.ReadXml(@"C:\Temp\PlayersDS.xml");
-
-            DB_TrophyDataSet2 tds = new DB_TrophyDataSet2();
-            tds.ReadXml(@"C:\Temp\TDS.xml");
-
-            StreamReader file = new StreamReader(@"C:\Temp\Squad.txt");
-            string page = file.ReadToEnd();
-            file.Close();
-
-            string[] args = new string[0];
-            MainForm form = new MainForm(args);
-
-            History.LoadSquad_NewTm(DateTime.Now, page);        
-        }
-
         public static void TestFillPLTrainingTable()
         {
             Program.Setts.Initialize();

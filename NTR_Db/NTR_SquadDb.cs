@@ -202,6 +202,11 @@ namespace NTR_Db
             {
                 get { return TmWeek.TmWeekToDate(Week); }
             }
+
+            public string TIs()
+            {
+                return "";
+            }
         }
 
         partial class ScoutReviewDataTable
@@ -220,6 +225,21 @@ namespace NTR_Db
             //    }
             //}
 
+            public int Age()
+            {
+                return TmWeek.GetAge(wBorn, DateTime.Now).Years;
+            }
+
+            public SeasonDataRow GetThisSeasonRow()
+            {
+                SeasonDataRow[] rows = GetSeasonDataRows();
+                int season = TmWeek.GetSeason(DateTime.Now);
+
+                SeasonDataRow seasonRow = (from row in rows
+                                     where row.SeasonID == season
+                                     select row).Single();
+                return seasonRow;
+            }
         }
 
         internal void UpdateDecimals(Content content)

@@ -906,12 +906,13 @@ namespace NTR_Db
                 squadDB.HistData.AddHistDataRow(histRow);
             }
 
-            NTR_SquadDb.TempDataRow tempRow = squadDB.TempData.FindByPlayerID(playerID);
-            if (tempRow == null)
+            NTR_SquadDb.SeasonDataRow seasonRow = squadDB.SeasonData.FindByPlayerID(playerID);
+            if (seasonRow == null)
             {
-                tempRow = squadDB.TempData.NewTempDataRow();
-                tempRow.PlayerID = playerID;
-                squadDB.TempData.AddTempDataRow(tempRow);
+                seasonRow = squadDB.SeasonData.NewSeasonDataRow();
+                seasonRow.PlayerID = playerID;
+                seasonRow.SeasonID = TmWeek.GetSeason(DateTime.Now);
+                squadDB.SeasonData.AddSeasonDataRow(seasonRow);
             }
 
             histRow.Inj = 0;
@@ -929,6 +930,7 @@ namespace NTR_Db
             playerRow.wBorn = TmWeek.GetBornWeekFromAgeString(data["age"]);
             playerRow.FP = TM_Compatible.ConvertNewFP(data["fp"]);
             playerRow.FPn = Tm_Utility.FPToNumber(playerRow.FP);
+            playerRow.TIs = data["TIs"];
 
             if (playerRow.FPn > 0)
             {
@@ -968,14 +970,23 @@ namespace NTR_Db
 
             DateTime dateOfImportWeek = (new TmWeek(this.Week)).ToDate();
 
-            if (tempRow.IsUpdateDateNull())
-                tempRow.UpdateDate = dateOfImportWeek;
+            if (seasonRow.IsUpdateDateNull())
+                seasonRow.UpdateDate = dateOfImportWeek;
 
-            if (tempRow.UpdateDate <= dateOfImportWeek)
+            if (seasonRow.UpdateDate <= dateOfImportWeek)
             {
-                tempRow.UpdateDate = dateOfImportWeek;
-                tempRow.Rou = decimal.Parse(data["routine"], Common.CommGlobal.ciUs);
-            }            
+                seasonRow.UpdateDate = dateOfImportWeek;
+                seasonRow.Rou = decimal.Parse(data["routine"], Common.CommGlobal.ciUs);
+            }
+
+            seasonRow.Assists = int.Parse(data["assists"]);
+            seasonRow.Goals = int.Parse(data["goals"]);
+            seasonRow.Gp = int.Parse(data["gp"]);
+            seasonRow.Cards = int.Parse(data["cards"]);
+            seasonRow.MoM = int.Parse(data["mom"]);
+            seasonRow.Retire = int.Parse(data["retire"]);
+            seasonRow.Wage = int.Parse(data["wage"]);
+            seasonRow.Rec = int.Parse(data["rec"]);
         }
     }
 }

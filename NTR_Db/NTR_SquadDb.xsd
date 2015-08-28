@@ -43,9 +43,9 @@
               <xs:element name="FPn" msprop:Generator_ColumnVarNameInTable="columnFPn" msprop:Generator_ColumnPropNameInRow="FPn" msprop:Generator_ColumnPropNameInTable="FPnColumn" msprop:Generator_UserColumnName="FPn" type="xs:int" minOccurs="0" />
               <xs:element name="Calc" msdata:ReadOnly="true" msdata:Expression="PlayerID + Ada" msprop:Generator_ColumnVarNameInTable="columnCalc" msprop:Generator_ColumnPropNameInRow="Calc" msprop:Generator_ColumnPropNameInTable="CalcColumn" msprop:Generator_UserColumnName="Calc" type="xs:int" minOccurs="0" />
               <xs:element name="BTeam" msprop:Generator_ColumnVarNameInTable="columnBTeam" msprop:Generator_ColumnPropNameInRow="BTeam" msprop:Generator_ColumnPropNameInTable="BTeamColumn" msprop:Generator_UserColumnName="BTeam" type="xs:boolean" minOccurs="0" />
+              <xs:element name="TIs" msprop:Generator_ColumnVarNameInTable="columnTIs" msprop:Generator_ColumnPropNameInRow="TIs" msprop:Generator_ColumnPropNameInTable="TIsColumn" msprop:Generator_UserColumnName="TIs" type="xs:string" minOccurs="0" />
               <xs:element name="TeamID" msprop:Generator_ColumnVarNameInTable="columnTeamID" msprop:Generator_ColumnPropNameInRow="TeamID" msprop:Generator_ColumnPropNameInTable="TeamIDColumn" msprop:Generator_UserColumnName="TeamID" type="xs:int" minOccurs="0" />
               <xs:element name="ForceInTeam" msprop:Generator_ColumnVarNameInTable="columnForceInTeam" msprop:Generator_ColumnPropNameInRow="ForceInTeam" msprop:Generator_ColumnPropNameInTable="ForceInTeamColumn" msprop:Generator_UserColumnName="ForceInTeam" type="xs:boolean" minOccurs="0" />
-              <xs:element name="TIs" msprop:Generator_ColumnVarNameInTable="columnTIs" msprop:Generator_ColumnPropNameInRow="TIs" msprop:Generator_ColumnPropNameInTable="TIsColumn" msprop:Generator_UserColumnName="TIs" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

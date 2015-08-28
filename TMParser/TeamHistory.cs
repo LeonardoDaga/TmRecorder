@@ -1983,8 +1983,7 @@ namespace TMRecorder
                     {
                         Db_TrophyDataSet.PortieriRow row = (Db_TrophyDataSet.PortieriRow)db_TrophyDataSet.Portieri.NewRow();
 
-                        string strrow = plRows[player].Trim(';');
-                        TM_Parser.ParseGK_NewTM(ref row, strrow);
+                        ImportContentInPortieriRow(row, historyRow);
 
                         if (row != null)
                             db_TrophyDataSet.Portieri.AddPortieriRow(row);
@@ -2062,6 +2061,46 @@ namespace TMRecorder
                 MessageBox.Show(Current.Language.SorryTheImportingProcessHasFailedIfYouClickedOkTheInfoOfTheErrorHave +
                     Current.Language.BeenSentToLedLennonThatWillRemoveThisBugAsSoonAsPossible);
             }
+        }
+
+        private void ImportContentInPortieriRow(Db_TrophyDataSet.PortieriRow row, NTR_Db.NTR_SquadDb.HistDataRow historyRow)
+        {
+            row.Aer = historyRow.Aer;
+            row.ASI = historyRow.ASI;
+            row.Com = historyRow.Com;
+            row.Ele = historyRow.Ele;
+            row.For = historyRow.For;
+            row.Infortunato = historyRow.Inj;
+            row.Lan = historyRow.Lan;
+            row.Pre = historyRow.Pre;
+            row.Res = historyRow.Res;
+            row.Rif = historyRow.Rif;
+            row.Tir = historyRow.Tir;
+            row.Uno = historyRow.Uno;
+            row.Vel = historyRow.Vel;
+
+            var playerRow = historyRow.PlayerRow;
+            row.Età = playerRow.Age();
+            row.Nationality = playerRow.Nationality;
+            row.Nome = playerRow.Name;
+            row.Note = playerRow.Notes;
+            row.Numero = playerRow.No;
+            row.PlayerID = playerRow.PlayerID;
+            row.Squalificato = historyRow.Ban;
+            row.TIs = playerRow.TIs;
+
+            var seasonRow = historyRow.PlayerRow.GetThisSeasonRow();
+
+            row.Cards = seasonRow.Cards;
+            row.Assist = seasonRow.Assists;
+            row.Goals = seasonRow.Goals;
+            row.MoM = seasonRow.MoM;
+            row.GP = seasonRow.Gp;
+            //row.Rating = seasonRow.Rating;
+            row.Rec = seasonRow.Rec;
+            row.Retire = (int)seasonRow.Retire;
+            row.Routine = seasonRow.Rou;
+            row.Wage = seasonRow.Wage;
         }
 
         internal bool LoadGains(string gainSetName)

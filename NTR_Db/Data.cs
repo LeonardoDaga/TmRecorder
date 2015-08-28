@@ -140,8 +140,8 @@ namespace NTR_Db
                 fi = new FileInfo(Path.Combine(dirPath, "Scout.5.xml"));
                 squadDB.Scout.ReadXml(fi.FullName);
 
-                fi = new FileInfo(Path.Combine(dirPath, "TempData.5.xml"));
-                squadDB.TempData.ReadXml(fi.FullName);
+                fi = new FileInfo(Path.Combine(dirPath, "SeasonData.5.xml"));
+                squadDB.SeasonData.ReadXml(fi.FullName);
 
                 fi = new FileInfo(Path.Combine(dirPath, "Team.5.xml"));
                 squadDB.Team.ReadXml(fi.FullName);
@@ -670,12 +670,12 @@ namespace NTR_Db
                     if (!gr.IsLeadershipNull())
                         pr.Lea = gr.Leadership;                    
 
-                    NTR_SquadDb.TempDataRow tdr = squadDB.TempData.FindByPlayerID(gr.PlayerID);
+                    NTR_SquadDb.SeasonDataRow tdr = squadDB.SeasonData.FindByPlayerID(gr.PlayerID);
                     if(tdr == null)
                     {
-                        tdr = squadDB.TempData.NewTempDataRow();
+                        tdr = squadDB.SeasonData.NewSeasonDataRow();
                         tdr.PlayerID = gr.PlayerID;
-                        squadDB.TempData.AddTempDataRow(tdr);
+                        squadDB.SeasonData.AddSeasonDataRow(tdr);
                     }
 
                     if (!gr.IsRoutineNull())
@@ -769,8 +769,8 @@ namespace NTR_Db
             fi = new FileInfo(Path.Combine(dirPath, "Scout.5.xml"));
             squadDB.Scout.WriteXml(fi.FullName);
 
-            fi = new FileInfo(Path.Combine(dirPath, "TempData.5.xml"));
-            squadDB.TempData.WriteXml(fi.FullName);
+            fi = new FileInfo(Path.Combine(dirPath, "SeasonData.5.xml"));
+            squadDB.SeasonData.WriteXml(fi.FullName);
 
             fi = new FileInfo(Path.Combine(dirPath, "Team.5.xml"));
             squadDB.Team.WriteXml(fi.FullName);
@@ -1109,7 +1109,7 @@ namespace NTR_Db
 
             Nationality = thisWeek.PlayerRow.Nationality;            
 
-            NTR_SquadDb.TempDataRow tdr = DB.TempData.FindByPlayerID(thisWeek.PlayerID);
+            NTR_SquadDb.SeasonDataRow tdr = DB.SeasonData.FindByPlayerID(thisWeek.PlayerID);
 
             if (tdr != null)
             {

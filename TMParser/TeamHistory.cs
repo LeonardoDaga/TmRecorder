@@ -1985,27 +1985,7 @@ namespace TMRecorder
 
                         ImportContentInPortieriRow(row, historyRow);
 
-                        if (row != null)
-                            db_TrophyDataSet.Portieri.AddPortieriRow(row);
-                    }
-                    else
-                    {
-
-                    }
-                }
-
-                string[] plRows = squad.Split('\n');
-                // Row 0 is the table header
-                for (player = 0; player < plRows.Length; player++)
-                {
-                    if (!plRows[player].Contains("id=")) continue;
-
-                    if (plRows[player].Contains("fp=GK"))
-                    {
-                        Db_TrophyDataSet.PortieriRow row = (Db_TrophyDataSet.PortieriRow)db_TrophyDataSet.Portieri.NewRow();
-
-                        string strrow = plRows[player].Trim(';');
-                        TM_Parser.ParseGK_NewTM(ref row, strrow);
+                        row.IsReserve = (short)((historyRow.PlayerRow.TeamID == content.MainSquadID) ? 0 : 1);
 
                         if (row != null)
                             db_TrophyDataSet.Portieri.AddPortieriRow(row);
@@ -2014,8 +1994,10 @@ namespace TMRecorder
                     {
                         Db_TrophyDataSet.GiocatoriRow row = (Db_TrophyDataSet.GiocatoriRow)db_TrophyDataSet.Giocatori.NewRow();
 
-                        string strrow = plRows[player].Trim(';');
-                        TM_Parser.ParsePlayer_NewTM(ref row, strrow);
+                        ImportContentInGiocatoriRow(row, historyRow);
+
+                        row.IsReserve = (short)((historyRow.PlayerRow.TeamID == content.MainSquadID) ? 0 : 1);
+                        row.FP = historyRow.PlayerRow.FP;
 
                         if (row != null)
                             db_TrophyDataSet.Giocatori.AddGiocatoriRow(row);
@@ -2081,6 +2063,7 @@ namespace TMRecorder
 
             var playerRow = historyRow.PlayerRow;
             row.Età = playerRow.Age();
+            row.Mesi = TmWeek.GetAge(playerRow.wBorn, DateTime.Now).Months;
             row.Nationality = playerRow.Nationality;
             row.Nome = playerRow.Name;
             row.Note = playerRow.Notes;
@@ -2088,6 +2071,7 @@ namespace TMRecorder
             row.PlayerID = playerRow.PlayerID;
             row.Squalificato = historyRow.Ban;
             row.TIs = playerRow.TIs;
+            row.InFormazione = false;
 
             var seasonRow = historyRow.PlayerRow.GetThisSeasonRow();
 
@@ -2101,6 +2085,54 @@ namespace TMRecorder
             row.Retire = (int)seasonRow.Retire;
             row.Routine = seasonRow.Rou;
             row.Wage = seasonRow.Wage;
+            row.Rating = seasonRow.Rating;
+        }
+
+        private void ImportContentInGiocatoriRow(Db_TrophyDataSet.GiocatoriRow row, NTR_Db.NTR_SquadDb.HistDataRow historyRow)
+        {
+            row.ASI = historyRow.ASI;
+            row.Cal = historyRow.Cal;
+            row.Con = historyRow.Con;
+            row.Cro = historyRow.Cro;
+            row.Fin = historyRow.Fin;
+            row.For = historyRow.For;
+            row.Infortunato = historyRow.Inj;
+            row.Mar = historyRow.Mar;
+            row.Pas = historyRow.Pas;
+            row.Pos = historyRow.Pos;
+            row.Res = historyRow.Res;
+            row.Tec = historyRow.Tec;
+            row.Tes = historyRow.Tes;
+            row.Tir = historyRow.Tir;
+            row.Vel = historyRow.Vel;
+            row.Wor = historyRow.Wor;
+
+            var playerRow = historyRow.PlayerRow;
+            row.Ada = (int)playerRow.Ada;
+            row.Età = playerRow.Age();
+            row.Mesi = TmWeek.GetAge(playerRow.wBorn, DateTime.Now).Months;
+            row.Nationality = playerRow.Nationality;
+            row.Nome = playerRow.Name;
+            row.Note = playerRow.Notes;
+            row.Numero = playerRow.No;
+            row.PlayerID = playerRow.PlayerID;
+            row.Squalificato = historyRow.Ban;
+            row.TIs = playerRow.TIs;
+            row.InFormazione = false;
+
+            var seasonRow = historyRow.PlayerRow.GetThisSeasonRow();
+
+            row.Cards = seasonRow.Cards;
+            row.Assist = seasonRow.Assists;
+            row.Goals = seasonRow.Goals;
+            row.MoM = seasonRow.MoM;
+            row.GP = seasonRow.Gp;
+            //row.Rating = seasonRow.Rating;
+            row.Rec = seasonRow.Rec;
+            row.Retire = (int)seasonRow.Retire;
+            row.Routine = seasonRow.Rou;
+            row.Wage = seasonRow.Wage;
+            row.Rating = seasonRow.Rating;
         }
 
         internal bool LoadGains(string gainSetName)

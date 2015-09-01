@@ -2522,7 +2522,7 @@ namespace NTR_Db {
                         int Assists, 
                         int MoM, 
                         int Cards, 
-                        string Rating, 
+                        decimal Rating, 
                         int Gp, 
                         int Retire) {
                 SeasonDataRow rowSeasonDataRow = ((SeasonDataRow)(this.NewRow()));
@@ -2622,7 +2622,7 @@ namespace NTR_Db {
                 base.Columns.Add(this.columnMoM);
                 this.columnCards = new global::System.Data.DataColumn("Cards", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCards);
-                this.columnRating = new global::System.Data.DataColumn("Rating", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnRating = new global::System.Data.DataColumn("Rating", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRating);
                 this.columnGp = new global::System.Data.DataColumn("Gp", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnGp);
@@ -7294,10 +7294,10 @@ namespace NTR_Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Rating {
+            public decimal Rating {
                 get {
                     try {
-                        return ((string)(this[this.tableSeasonData.RatingColumn]));
+                        return ((decimal)(this[this.tableSeasonData.RatingColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'Rating\' in table \'SeasonData\' is DBNull.", e);

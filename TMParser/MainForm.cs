@@ -1382,25 +1382,26 @@ namespace TMRecorder
 
         private void SelectGainColor(float f, DataGridViewCellStyle Style)
         {
-            float grade = (float)(f * 10f);
+            //float grade = (float)(f * 10f);
 
-            if (grade < 15)
-                Style.BackColor = Color.FromArgb(255, 255, 255);
-            else if (grade < 32)
-                Style.BackColor = Color.FromArgb(255, 255, 192);
-            else if (grade < 60)
-                Style.BackColor = Color.FromArgb(255, 255, 0);
-            else if (grade < 75)
-                Style.BackColor = Color.FromArgb(255, 192, 0);
-            else if (grade < 90)
-                Style.BackColor = Color.FromArgb(255, 128, 0);
-            else
-                Style.BackColor = Color.FromArgb(255, 0, 0);
+            //if (grade < 15)
+            //    Style.BackColor = Color.FromArgb(255, 255, 255);
+            //else if (grade < 32)
+            //    Style.BackColor = Color.FromArgb(255, 255, 192);
+            //else if (grade < 60)
+            //    Style.BackColor = Color.FromArgb(255, 255, 0);
+            //else if (grade < 75)
+            //    Style.BackColor = Color.FromArgb(255, 192, 0);
+            //else if (grade < 90)
+            //    Style.BackColor = Color.FromArgb(255, 128, 0);
+            //else
+            //    Style.BackColor = Color.FromArgb(255, 0, 0);
 
-            Style.SelectionBackColor = Style.BackColor;
+            //Style.SelectionBackColor = Style.BackColor;
 
-            Style.ForeColor = Color.Black;
-            Style.SelectionForeColor = Color.Blue;
+            //Style.ForeColor = Color.Black;
+            //Style.SelectionForeColor = Color.Blue;
+            ColorUtilities.SelectGainColor(f, ref Style);
         }
 
         /// <summary>
@@ -4894,6 +4895,24 @@ namespace TMRecorder
             SetDatesList();
 
             UpdateBrowserNavigationPanel();
+
+            champDS.UpdateSeason(cmbSeason);
+
+            InvalidateGrids();
+            UpdateShownGrid();
+
+            History.actualDts = History.LastTeam();
+
+            if (History.actualDts != null)
+            {
+                dataGridGiocatori.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'A'");
+                dataGridGiocatoriB.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'B'");
+                dataGridPortieri.DataSource = History.actualDts.PortieriNSkill;
+            }
+
+            isDirty = true;
+
+            SetLastTeam();
         }
 
         private void SetDatesList()

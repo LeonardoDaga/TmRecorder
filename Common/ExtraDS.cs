@@ -146,7 +146,7 @@ namespace Common
 
                     try
                     {
-                        if (splTI.Length > 1)
+                        if ((splTI.Length > 1) && (splTI[splTI.Length - 1] != ""))
                             return decimal.Parse(splTI[splTI.Length - 1], Common.CommGlobal.ciUs);
                         else
                             return 0M;
@@ -1602,7 +1602,8 @@ namespace Common
         public void SetSquad(int ID, string squad)
         {
             GiocatoriRow gr = Giocatori.FindByPlayerID(ID);
-            gr.Team = squad;
+            if (gr != null)
+                gr.Team = squad;
         }
 
         public void GetDataFromPrivatePages(string dataDirectory)

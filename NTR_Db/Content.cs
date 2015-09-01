@@ -931,6 +931,7 @@ namespace NTR_Db
             playerRow.FP = TM_Compatible.ConvertNewFP(data["fp"]);
             playerRow.FPn = Tm_Utility.FPToNumber(playerRow.FP);
             playerRow.TIs = data["TIs"];
+            playerRow.TeamID = int.Parse(data["club"]);
 
             if (playerRow.FPn > 0)
             {
@@ -987,6 +988,7 @@ namespace NTR_Db
             seasonRow.Retire = int.Parse(data["retire"]);
             seasonRow.Wage = int.Parse(data["wage"]);
             seasonRow.Rec = int.Parse(data["rec"]);
+            seasonRow.Rating = decimal.Parse(data["rat"]);
         }
     }
 }

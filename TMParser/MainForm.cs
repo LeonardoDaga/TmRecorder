@@ -1340,7 +1340,7 @@ namespace TMRecorder
                 {
                     DataGridViewCellStyle Style = new DataGridViewCellStyle();
 
-                    SelectGainColor(gains[j], Style);
+                    ColorUtilities.SelectGainColor(gains[j], ref Style);
 
                     dgv[j + 8, i].Style = Style;
                 }
@@ -1369,34 +1369,11 @@ namespace TMRecorder
                 {
                     DataGridViewCellStyle Style = new DataGridViewCellStyle();
 
-                    SelectGainColor(History.GD.K_GK(j) / 1.5f, Style);
+                    ColorUtilities.SelectGainColor(History.GD.K_GK(j) / 1.5f, ref Style);
 
                     dataGridPortieri[j + 6, i].Style = Style;
                 }
             }
-        }
-
-        private void SelectGainColor(float f, DataGridViewCellStyle Style)
-        {
-            float grade = (float)(f * 10f);
-
-            if (grade < 15)
-                Style.BackColor = Color.FromArgb(255, 255, 255);
-            else if (grade < 32)
-                Style.BackColor = Color.FromArgb(255, 255, 192);
-            else if (grade < 60)
-                Style.BackColor = Color.FromArgb(255, 255, 0);
-            else if (grade < 75)
-                Style.BackColor = Color.FromArgb(255, 192, 0);
-            else if (grade < 90)
-                Style.BackColor = Color.FromArgb(255, 128, 0);
-            else
-                Style.BackColor = Color.FromArgb(255, 0, 0);
-
-            Style.SelectionBackColor = Style.BackColor;
-
-            Style.ForeColor = Color.Black;
-            Style.SelectionForeColor = Color.Blue;
         }
 
         /// <summary>

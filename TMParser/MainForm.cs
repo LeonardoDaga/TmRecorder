@@ -67,11 +67,14 @@ namespace TMRecorder
             if (args.Length > 0)
                 thisIsExtraTeam = true;
 
+            Program.Setts.Initialize(args);
+
+            BrowserEmulationVersion currentEmulationVersion = InternetExplorerBrowserEmulation.GetBrowserEmulationVersion();
+            InternetExplorerBrowserEmulation.SetBrowserEmulationVersion(currentEmulationVersion);
+
             InitializeComponent();
 
             InvalidateGrids();
-
-            Program.Setts.Initialize(args);
 
             LoadLanguage();
 
@@ -4032,7 +4035,7 @@ namespace TMRecorder
             LoadHTMLfile_newPage(page, false);
         }
 
-        private void LoadHTMLfile_newPage(string page, bool specifyDate)
+        private void LoadHTMLfile_newPage(string page, bool specifyDate, int importWeek = -1)
         {
             if ((page.Contains("NewTM - Staff_trainers")) ||
                 (page.Contains("Navigation Address: http://trophymanager.com/coaches/")))
@@ -4134,9 +4137,12 @@ namespace TMRecorder
                 return;
             }
 
-            DateTime dt = DateTime.Today;
+            DateTime dt = DateTime.Now;
 
-            if (specifyDate)
+            if (!specifyDate)
+                dt = DateTime.Now;
+            else if (specifyDate && (importWeek == -1))
+            {
                 if (MessageBox.Show(Current.Language.IsThisFileRelativeToToday, Current.Language.LoadHTMData,
                                     MessageBoxButtons.YesNo) == DialogResult.No)
                 {
@@ -4151,6 +4157,11 @@ namespace TMRecorder
                         return;
                     }
                 }
+            }
+            else
+            {
+                dt = (new TmWeek(importWeek)).ToDate();
+            }
 
             if (page.Contains("NewTM - Scouts"))
             {
@@ -4168,8 +4179,26 @@ namespace TMRecorder
                 string[] stringSeparators = new string[] { "\n\r\n" };
                 string[] pages = page.Split(stringSeparators, StringSplitOptions.None);
 
-                if (((pages.Length < 2) && (Program.Setts.PlayerType == 2)) ||
-                    ((pages.Length < 1) && (Program.Setts.PlayerType != 2)))
+                if ((pages.Length < 2) && (Program.Setts.PlayerType == 2))
+                {
+                    try
+                    {
+                        History.LoadSquad_NewTm(dt, pages[0]);
+                        isDirty = true;
+                        InvalidateGrids();
+                        UpdateShownGrid();
+                    }
+                    catch (Exception)
+                    {
+
+                        string swRelease = "Sw Release:" + Application.ProductName + "(" + Application.ProductVersion + ")";
+                        page = "Navigation Address: " + startnavigationAddress + "\n" + page;
+
+                        string message = "Error retrieving data from the players page";
+                        SendFileTo.ErrorReport.SendPage(message, page, Environment.StackTrace, swRelease);
+                    }
+                }
+                else if ((pages.Length < 1) && (Program.Setts.PlayerType != 2))
                 {
                     string swRelease = "Sw Release:" + Application.ProductName + "("  + Application.ProductVersion + ")";
                     page = "Navigation Address: " + startnavigationAddress + "\n" + page;
@@ -4287,7 +4316,7 @@ namespace TMRecorder
                 tabControl1.SelectedTab = tabBrowser;
 
             }
-            navigationAddress = "http://trophymanager.com/club/";
+            navigationAddress = "http://tmr.insyde.it/";
             webBrowser.Navigate(navigationAddress);
             startnavigationAddress = navigationAddress;
         }
@@ -5081,5 +5110,189 @@ namespace TMRecorder
             Program.Setts.Save();
         }
 
+        private void reloadAllTheImportedPagesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("This operation will overwrite your history with the content of the imported pages." +
+                "It's an operation that is advised just if you lost a lot of data for any reason" +
+                " (see in the web site http://tmr.inside.it/ for more info: Losted pages)") == System.Windows.Forms.DialogResult.Cancel)
+                return;
+
+            folderBrowserDialog.SelectedPath = Program.Setts.DefaultDirectory;
+            folderBrowserDialog.Description = "Select the folder with saved pages";
+
+            if (folderBrowserDialog.ShowDialog(this) == System.Windows.Forms.DialogResult.Cancel)
+            {
+                return;
+            }
+
+            DirectoryInfo di = new DirectoryInfo(folderBrowserDialog.SelectedPath);
+            LoadSavedPagesRecursively(di);
+
+            UpdateTeamDateList();
+
+            History.ClearAllDecimals();
+
+            History.ReapplyTrainings(extraDS);
+
+            SetLastTeam();
+        }
+
+        private void LoadSavedPagesRecursively(DirectoryInfo di)
+        {
+            LoadSavedPages(di.FullName);
+
+            foreach (DirectoryInfo directory in di.GetDirectories())
+                LoadSavedPagesRecursively(directory);
+        }
+
+        private void LoadSavedPages(string folder)
+        {
+            try
+            {
+                LoadSavedPages(folder, ref sf, (Program.Setts.Trace > 0));
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        public void LoadSavedPages(string dirPath, ref Common.SplashForm sf, bool trace)
+        {
+            // Select first all the team files
+            // Name template: NF-players-S37-W10-D6.2.htm
+            DirectoryInfo di = new DirectoryInfo(dirPath);
+
+            sf = new SplashForm("TM - Team Recorder",
+                    "Release " + Application.ProductVersion,
+                    "Starting Application...");
+
+            sf.UpdateStatusMessage(0, "Loading Players From the saved pages...");
+
+            sf.Show();
+
+            FileInfo[] fis = di.GetFiles("NF-players-*.2.htm*");
+            int fisTot = fis.Length;
+            int cnt = 0;
+            foreach (FileInfo fi in fis)
+            {
+                StreamReader file = new StreamReader(fi.FullName);
+
+                string playersPage = file.ReadToEnd();
+
+                file.Close();
+
+                string[] str = fi.FullName.Split('-');
+                string dateString = str[2] + "-" + str[3] + "-" + str[4];
+                int importWeek = TmWeek.SWDtoTmWeek(dateString).absweek;
+
+                LoadHTMLfile_newPage(playersPage, true, importWeek);
+
+                sf.progressvalue = (cnt * 100) / fisTot;
+                sf.Refresh();
+                sf.UpdateStatusMessage(0, string.Format("Loading Players Data {0} of {1}", cnt, fisTot));
+
+                cnt++;
+                //content.ParsePage(playersPage, "http://trophymanager.com/players/", importWeek);
+            }
+
+            // Select first all the team files
+            // Name template: NF-fixturesclub3350340-S37-W10-D6.2.htm
+            di = new DirectoryInfo(dirPath);
+
+            sf.UpdateStatusMessage(0, "Loading Fixtures From the saved pages...");
+
+            fis = di.GetFiles("NF-fixturesclub*.2.htm*");
+            fisTot = fis.Length;
+            cnt = 0;
+
+            foreach (FileInfo fi in fis)
+            {
+                StreamReader file = new StreamReader(fi.FullName);
+
+                string fixturesPage = file.ReadToEnd();
+
+                file.Close();
+
+                string[] str = fi.FullName.Split('-');
+                string dateString = str[2] + "-" + str[3] + "-" + str[4];
+                int importWeek = TmWeek.SWDtoTmWeek(dateString).absweek;
+
+                string clubId = HTML_Parser.GetNumberAfter(fi.FullName, "NF-fixturesclub");
+
+                LoadHTMLfile_newPage(fixturesPage, true, importWeek);
+
+                sf.progressvalue = (cnt * 100) / fisTot;
+                sf.Refresh();
+                sf.UpdateStatusMessage(0, string.Format("Loading Fixtures {0} of {1}", cnt, fisTot));
+
+                cnt++;
+                // content.ParsePage(fixturesPage, "http://trophymanager.com/fixtures/club/" + clubId + "//", importWeek);
+            }
+
+            // Select the matches files
+            // Name template: NF-matches79252194-S37-W10-D6.2.htm
+            di = new DirectoryInfo(dirPath);
+
+            sf.UpdateStatusMessage(0, "Loading Matches From the saved pages...");
+
+            fis = di.GetFiles("NF-matches*.2.htm*");
+            fisTot = fis.Length;
+            cnt = 0;
+            foreach (FileInfo fi in di.GetFiles("NF-matches*.2.htm*"))
+            {
+                StreamReader file = new StreamReader(fi.FullName);
+
+                string matchPage = file.ReadToEnd();
+
+                file.Close();
+
+                string[] str = fi.FullName.Split('-');
+                string dateString = str[2] + "-" + str[3] + "-" + str[4];
+                int importWeek = TmWeek.SWDtoTmWeek(dateString).absweek;
+
+                string matchId = HTML_Parser.GetNumberAfter(fi.FullName, "NF-matches");
+
+                LoadHTMLfile_newPage(matchPage, true, importWeek);
+
+                sf.progressvalue = (cnt * 100) / fisTot;
+                sf.Refresh();
+                sf.UpdateStatusMessage(0, string.Format("Loading Matches {0} of {1}", cnt, fisTot));
+
+                cnt++;
+                // content.ParsePage(matchPage, "http://trophymanager.com/matches/" + matchId + "//", importWeek);
+            }
+
+            Invalidate();
+        }
+
+        #region IE_Emulation Code
+        private void RemoveWebBrowser()
+        {
+            if (webBrowser != null)
+            {
+                if (webBrowser.Parent != null)
+                {
+                    webBrowser.Parent.Controls.Remove(webBrowser);
+                }
+
+                webBrowser.Dispose();
+                webBrowser = null;
+            }
+        }
+
+        private void UpdatePreview(BrowserEmulationVersion version)
+        {
+            this.RemoveWebBrowser();
+
+            webBrowser = new WebBrowser
+            {
+                Dock = DockStyle.Fill
+            };
+
+            // previewGroupBox.Controls.Add(webBrowser);
+
+            webBrowser.Navigate(new Uri("http://cyotek.com/"));
+        }
+        #endregion
     }
 }

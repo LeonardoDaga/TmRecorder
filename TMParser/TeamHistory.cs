@@ -1056,6 +1056,9 @@ namespace TMRecorder
 
         internal void LoadTraining_NewTM2(DateTime dt, string squad)
         {
+            if (squad.StartsWith("GBC error:"))
+                return;
+
             try
             {
                 TrainingDataSet trainingDataSet = new TrainingDataSet();

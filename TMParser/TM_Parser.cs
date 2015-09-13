@@ -1210,7 +1210,7 @@ namespace TMRecorder
 
             row.Rec = decimal.Parse(data["rec"]) / 2.0M;
 
-            if (data["ban"][0] != 'r')
+            if (!data.ContainsKey("ban") || (data["ban"][0] != 'r'))
                 row.Squalificato = int.Parse(data["ban_points"]);
             else
                 row.Squalificato = 4 + int.Parse(data["ban"].Substring(1));
@@ -1337,7 +1337,7 @@ namespace TMRecorder
 
             row.Rec = int.Parse(data["rec"]);
 
-            if (data["ban"][0] != 'r')
+            if (!data.ContainsKey("ban") || (data["ban"][0] != 'r'))
                 row.Squalificato = int.Parse(data["ban_points"]);
             else
                 row.Squalificato = 4 + int.Parse(data["ban"].Substring(1));

@@ -222,7 +222,7 @@ namespace TMRecorder
             sb.Def("DebugFunction", 0);
 
             sb.Def("ReportParsingFile", Path.Combine(_datafilePath, @"ReportParsingFile.EN.txt"));
-            
+
             // Always the last settings
             sb.Def("SettsRelease", 1);
 

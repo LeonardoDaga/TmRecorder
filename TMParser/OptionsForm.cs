@@ -63,7 +63,7 @@ namespace TMRecorder
 
         public int PlayerType
         {
-            get 
+            get
             {
                 if (rbPro.Checked)
                     return 2;
@@ -72,8 +72,8 @@ namespace TMRecorder
                 else
                     return 0;
             }
-            
-            set 
+
+            set
             {
                 if (value == 0)
                 {
@@ -95,7 +95,7 @@ namespace TMRecorder
 
         public int ShowMatchOptions
         {
-            get 
+            get
             {
                 if ((chkShowMainMatches.Checked) && (!chkShowReservesMatches.Checked))
                     return 1;
@@ -104,7 +104,7 @@ namespace TMRecorder
                 else // ((chkShowMainMatches.Checked == 0) && (chkShowReservesMatches == 0))
                     return 0;
             }
-            set 
+            set
             {
                 if (value == 1)
                 {
@@ -207,12 +207,12 @@ namespace TMRecorder
         DirectoryInfo diGains = null;
         public string GainSet
         {
-            get 
+            get
             {
                 FileInfo fi = new FileInfo(Path.Combine(diGains.Name, (string)lbGainSet.SelectedItem));
-                return fi.FullName; 
+                return fi.FullName;
             }
-            set 
+            set
             {
                 FileInfo fiSelected = new FileInfo(value);
                 diGains = new DirectoryInfo(fiSelected.DirectoryName);
@@ -262,7 +262,7 @@ namespace TMRecorder
         public string UsedLanguage
         {
             get { return cmbLanguage.SelectedItem.ToString().Split(';')[1]; }
-            set 
+            set
             {
                 foreach (string item in cmbLanguage.Items)
                 {
@@ -446,9 +446,9 @@ namespace TMRecorder
 
         private void whatToDoHereToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Fill this cells with the phrases that scouts uses to review your players and the numeric\n"+
+            MessageBox.Show("Fill this cells with the phrases that scouts uses to review your players and the numeric\n" +
                 "value (in a scale from 1 to 10) relative to each phrase (i.e He has a strong feeling that Antonio is\n" +
-                "a normal bloomer (vote 2, review = “normal bloomer”) and has most of his development ahead of him. Fabio also \n"+
+                "a normal bloomer (vote 2, review = “normal bloomer”) and has most of his development ahead of him. Fabio also \n" +
                 "noticed that Antonio demonstrates superb leadership ability (vote 9, review = “superb leadership ability”).");
         }
 
@@ -479,8 +479,25 @@ namespace TMRecorder
 
         }
 
+        private void FillCmbIEVersions()
+        {
+            int x;
+            int y;
+            BrowserEmulationVersion currentEmulationVersion;
+
+            currentEmulationVersion = InternetExplorerBrowserEmulation.GetBrowserEmulationVersion();
+
+            foreach (BrowserEmulationVersion version in Enum.GetValues(typeof(BrowserEmulationVersion)))
+            {
+                cmbIEVersions.Items.Add(version);
+            }
+
+            cmbIEVersions.SelectedItem = currentEmulationVersion;
+        }
+
         private void OptionsForm_Load(object sender, EventArgs e)
         {
+            FillCmbIEVersions();
         }
 
         private void btnSaveMatchAnalysisFile_Click(object sender, EventArgs e)
@@ -504,6 +521,31 @@ namespace TMRecorder
         private void btnOpenReportFile_Click(object sender, EventArgs e)
         {
             Process.Start(ReportParsingFile);
+        }
+
+        private void OptionsForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+        }
+
+        private void cmbIEVersions_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BrowserEmulationVersion version;
+
+            version = (BrowserEmulationVersion)cmbIEVersions.SelectedItem;
+
+            if (InternetExplorerBrowserEmulation.GetBrowserEmulationVersion() != version)
+            {
+                if (MessageBox.Show("The IE version used will change only after the restart of TmRecorder. Continue?", "TmRecorder: Change internal Browser version", MessageBoxButtons.YesNo) == DialogResult.No)
+                    return;
+
+                // apply the new emulation version
+                if (!InternetExplorerBrowserEmulation.SetBrowserEmulationVersion(version))
+                {
+                    MessageBox.Show("Failed to update browser emulation version.", "TmRecorder: Change internal Browser version", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+            }
+
         }
     }
 }

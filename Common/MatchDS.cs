@@ -672,8 +672,14 @@ namespace Common
 
                 this.clubNick = matchRow.YourNick;
 
-                matchRow.Stadium = match_info["stadium"];
-                matchRow.Crowd = int.Parse(match_info["attendance"]);
+                if (match_info.ContainsKey("stadium"))
+                    matchRow.Stadium = match_info["stadium"];
+                else
+                    matchRow.Stadium = "undefined";
+
+                int crowd = 0;
+                if (int.TryParse(match_info["attendance"], out crowd))
+                    matchRow.Crowd = crowd;
 
                 if (matchRow.isHome)
                 {
@@ -691,12 +697,20 @@ namespace Common
                 }
 
                 // Getting pitch and weather data
-                matchRow.Pitch = match_info["sprinklers"] + ";" +
-                     match_info["draining"] + ";" +
-                     match_info["heating"] + ";" +
-                     match_info["pitch_condition"] + ";" +
-                     match_info["pitchcover"];
-                matchRow.Weather = match_info["weather"];
+                if (match_info.ContainsKey("sprinklers"))
+                {
+                    matchRow.Pitch = match_info["sprinklers"] + ";" +
+                         match_info["draining"] + ";" +
+                         match_info["heating"] + ";" +
+                         match_info["pitch_condition"] + ";" +
+                         match_info["pitchcover"];
+                    matchRow.Weather = match_info["weather"];
+                }
+                else
+                {
+                    matchRow.Pitch = "0;0;0;0;0";
+                    matchRow.Weather = "undf";
+                }
 
                 HomeID = int.Parse(match_info["home_id"]);
                 AwayID = int.Parse(match_info["away_id"]);
@@ -840,8 +854,18 @@ namespace Common
                     matchRow.OppsFormation = formation;
                 }
 
-                matchRow.InitDesciption = "In " + match_info["city"] + " at stadium " + match_info["stadium"];
-                matchRow.InitDesciption += " there is a crowd of " + match_info["attendance"];
+                if (match_info.ContainsKey("city"))
+                {
+                    matchRow.InitDesciption = "In " + match_info["city"] + " at stadium " + match_info["stadium"];
+                    matchRow.InitDesciption += " there is a crowd of " + match_info["attendance"];
+                }
+                else
+                {
+                    matchRow.InitDesciption = "Initial description not available";
+                }
+
+                if (!report.Contains("MIN"))
+                    return true;
 
                 List<string> mins = HTML_Parser.GetTags(report, "MIN");
 

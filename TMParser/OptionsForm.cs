@@ -547,5 +547,10 @@ namespace TMRecorder
             }
 
         }
+
+        private void btnResetWindows_Click(object sender, EventArgs e)
+        {
+            Program.Setts.ResetPositions();
+        }
     }
 }

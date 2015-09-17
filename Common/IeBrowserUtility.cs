@@ -70,6 +70,9 @@ namespace Common
 
         private const string InternetExplorerRootKey = @"Software\Microsoft\Internet Explorer";
 
+        private const string FeatureControBranch = InternetExplorerRootKey + @"\Main\FeatureControl\";
+        private const string FeatureBrowserEmulationBranch = InternetExplorerRootKey + @"\Main\FeatureControl\FEATURE_BROWSER_EMULATION";
+
         private const string BrowserEmulationKey = InternetExplorerRootKey + @"\Main\FeatureControl\FEATURE_BROWSER_EMULATION";
 
         #endregion
@@ -188,6 +191,12 @@ namespace Common
             try
             {
                 RegistryKey key;
+
+                if (Registry.CurrentUser.OpenSubKey(BrowserEmulationKey, true) == null)
+                {
+                    Registry.CurrentUser.CreateSubKey(FeatureControBranch); //Tree
+                    Registry.CurrentUser.CreateSubKey(FeatureBrowserEmulationBranch); //Branch
+                }
 
                 key = Registry.CurrentUser.OpenSubKey(BrowserEmulationKey, true);
 

@@ -70,6 +70,8 @@ namespace TMRecorder
             Program.Setts.Initialize(args);
 
             BrowserEmulationVersion currentEmulationVersion = InternetExplorerBrowserEmulation.GetBrowserEmulationVersion();
+            if (currentEmulationVersion == BrowserEmulationVersion.Default)
+                currentEmulationVersion = BrowserEmulationVersion.Version8;
             InternetExplorerBrowserEmulation.SetBrowserEmulationVersion(currentEmulationVersion);
 
             InitializeComponent();
@@ -1564,12 +1566,12 @@ namespace TMRecorder
                 for (; ix < table.Rows.Count; ix++)
                 {
                     ExtTMDataSet.PlayerHistoryRow pl = (ExtTMDataSet.PlayerHistoryRow)table.Rows[ix];
-                    if (pl.Date == dt) break;
+                    if (pl.Date.Date == dt) break;
                 }
 
                 TmWeek tmwActual = new TmWeek(dt);
 
-                if (ix == table.Rows.Count) continue;
+                //if (ix == table.Rows.Count) continue;
                 if (ix == 0) continue;
 
                 int ixlast = ix;

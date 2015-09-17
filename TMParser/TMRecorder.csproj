@@ -71,8 +71,8 @@
     <ProductName>TM Recorder</ProductName>
     <PublisherName>INSYDE</PublisherName>
     <DisallowUrlActivation>true</DisallowUrlActivation>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>2.9.2.0</ApplicationVersion>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>2.9.3.1</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -367,7 +367,6 @@
     <Compile Include="TeamHistory.cs" />
     <Compile Include="TeamStats.cs">
       <DependentUpon>TeamStats.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="TeamStats.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -389,7 +388,6 @@
     </Compile>
     <Compile Include="Trading.cs">
       <DependentUpon>Trading.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Trading.Designer.cs">
       <AutoGen>True</AutoGen>

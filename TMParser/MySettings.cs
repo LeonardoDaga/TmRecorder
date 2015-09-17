@@ -51,7 +51,11 @@ namespace TMRecorder
                 _datafilePath = Path.Combine(Environment.CurrentDirectory, "Datafiles\\");
                 
                 string settsFilename = "";
-                if (args.Length > 0)
+                if ((args.Length > 0) && (args[0] == "--resetWindowsPosition"))
+                {
+                    ResetPositions();
+                }
+                else if (args.Length > 0)
                 {
                     exTeamId = args[0];
                     settsFilename = Path.Combine(Path.Combine(_baseDataFolderPath, exTeamId), "TmRecorderSettings.tmcnf");
@@ -521,6 +525,26 @@ namespace TMRecorder
             string[] part = fi.FullName.Split(':');
 
             return disk + ":" + part[1];
+        }
+
+        internal void ResetPositions()
+        {
+            var position = GKFormPosition;
+            position.X = 0;
+            position.Y = 0;
+            GKFormPosition = position;
+
+            position = MainFormPosition;
+            position.X = 0;
+            position.Y = 0;
+            MainFormPosition = position;
+
+            position = PlayerFormPosition;
+            position.X = 0;
+            position.Y = 0;
+            PlayerFormPosition = position;
+
+            Save();
         }
         #endregion // Private functions
     }

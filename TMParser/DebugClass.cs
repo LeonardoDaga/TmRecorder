@@ -468,7 +468,7 @@ namespace TMRecorder
             }
         }
 
-        public static void Test4()
+        public static void LoadTrainingNew()
         {
             DateTime dt = DateTime.Now;
             TrainersSkills ts = new TrainersSkills();
@@ -590,5 +590,25 @@ namespace TMRecorder
             History.FillPLTrainingTable(new PlayerTraining(), 55762883);
         }
 
+        public static void TestLoadSquadShort()
+        {
+            Program.Setts.Initialize();
+            TeamHistory History = new TeamHistory();
+
+            History.PlayersDS = new ExtraDS();
+            History.PlayersDS.ReadXml(@"H:\Documents\TmRecorder.debug\PlayersDS.xml");
+
+            DB_TrophyDataSet2 tds = new DB_TrophyDataSet2();
+            tds.ReadXml(@"H:\Documents\TmRecorder.debug\TDS.xml");
+
+            //StreamReader file = new StreamReader(@"C:\Temp\Squad.txt");
+            //string page = file.ReadToEnd();
+            //file.Close();
+
+            //string[] args = new string[0];
+            //MainForm form = new MainForm(args);
+
+            //History.LoadSquad_NewTm(DateTime.Now, page);
+        }
     }
 }

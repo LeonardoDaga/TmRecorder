@@ -154,7 +154,6 @@
   <ItemGroup>
     <Compile Include="ActionAnalysis.cs">
       <DependentUpon>ActionAnalysis.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="ActionAnalysis.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -170,7 +169,6 @@
     </Compile>
     <Compile Include="ChampDS.cs">
       <DependentUpon>ChampDS.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="ChampDS.Designer.cs">
       <DependentUpon>ChampDS.xsd</DependentUpon>
@@ -185,7 +183,6 @@
     </Compile>
     <Compile Include="Db_TrophyDataSet.cs">
       <DependentUpon>Db_TrophyDataSet.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Db_TrophyDataSet.Designer.cs">
       <DependentUpon>Db_TrophyDataSet.xsd</DependentUpon>
@@ -194,7 +191,6 @@
     </Compile>
     <Compile Include="DB_TrophyDataSet2.cs">
       <DependentUpon>DB_TrophyDataSet2.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="DB_TrophyDataSet2.Designer.cs">
       <DependentUpon>DB_TrophyDataSet2.xsd</DependentUpon>
@@ -203,7 +199,6 @@
     </Compile>
     <Compile Include="ExtraDS.cs">
       <DependentUpon>ExtraDS.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="ExtraDS.Designer.cs">
       <DependentUpon>ExtraDS.xsd</DependentUpon>
@@ -212,12 +207,17 @@
     </Compile>
     <Compile Include="ExtTMDataSet.cs">
       <DependentUpon>ExtTMDataSet.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="ExtTMDataSet.Designer.cs">
       <DependentUpon>ExtTMDataSet.xsd</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="ExtTMDataSet2.cs">
+      <DependentUpon>ExtTMDataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ExtTMDataSet2.Designer.cs">
+      <DependentUpon>ExtTMDataSet2.cs</DependentUpon>
     </Compile>
     <Compile Include="FillInfoMessageBox.cs">
       <SubType>Form</SubType>
@@ -228,7 +228,6 @@
     <Compile Include="Formation.cs" />
     <Compile Include="FormationDS.cs">
       <DependentUpon>FormationDS.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="FormationDS.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -238,7 +237,6 @@
     <Compile Include="Functions.cs" />
     <Compile Include="GainDS.cs">
       <DependentUpon>GainDS.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="GainDS.Designer.cs">
       <DependentUpon>GainDS.xsd</DependentUpon>
@@ -254,7 +252,6 @@
     </Compile>
     <Compile Include="GameTable.cs">
       <DependentUpon>GameTable.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="GameTable.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -268,7 +265,6 @@
     <Compile Include="intvar.cs" />
     <Compile Include="MatchAnalysis.cs">
       <DependentUpon>MatchAnalysis.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="MatchAnalysis.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -277,7 +273,6 @@
     </Compile>
     <Compile Include="MatchDS.cs">
       <DependentUpon>MatchDS.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="MatchDS.Designer.cs">
       <DependentUpon>MatchDS.xsd</DependentUpon>
@@ -286,7 +281,6 @@
     </Compile>
     <Compile Include="MatchList.cs">
       <DependentUpon>MatchList.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="MatchList.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -296,7 +290,6 @@
     <Compile Include="MySettings.cs" />
     <Compile Include="NationsDS.cs">
       <DependentUpon>NationsDS.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="NationsDS.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -326,7 +319,6 @@
     </Compile>
     <Compile Include="ReportAnalysis.cs">
       <DependentUpon>ReportAnalysis.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportAnalysis.Designer.cs">
       <DependentUpon>ReportAnalysis.xsd</DependentUpon>
@@ -337,7 +329,6 @@
     <Compile Include="ScoutReview.cs" />
     <Compile Include="ScoutsNReviews.cs">
       <DependentUpon>ScoutsNReviews.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="ScoutsNReviews.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -367,7 +358,6 @@
     <Compile Include="Tactics.cs" />
     <Compile Include="TacticsDS.cs">
       <DependentUpon>TacticsDS.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="TacticsDS.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -382,7 +372,6 @@
     </Compile>
     <Compile Include="TrainersSkills.cs">
       <DependentUpon>TrainersSkills.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="TrainersSkills.Designer.cs">
       <DependentUpon>TrainersSkills.xsd</DependentUpon>
@@ -391,7 +380,6 @@
     </Compile>
     <Compile Include="TrainingDataSet.cs">
       <DependentUpon>TrainingDataSet.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="TrainingDataSet.Designer.cs">
       <DependentUpon>TrainingDataSet.xsd</DependentUpon>
@@ -400,7 +388,6 @@
     </Compile>
     <Compile Include="Userdata.cs">
       <DependentUpon>Userdata.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Userdata.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -410,7 +397,6 @@
     <Compile Include="Utility.cs" />
     <Compile Include="YouthDev.cs">
       <DependentUpon>YouthDev.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="YouthDev.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -485,6 +471,17 @@
     </None>
     <None Include="ExtTMDataSet.xss">
       <DependentUpon>ExtTMDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ExtTMDataSet2.xsc">
+      <DependentUpon>ExtTMDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="ExtTMDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ExtTMDataSet21.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ExtTMDataSet2.xss">
+      <DependentUpon>ExtTMDataSet2.xsd</DependentUpon>
     </None>
     <None Include="FormationDS.xsc">
       <DependentUpon>FormationDS.xsd</DependentUpon>

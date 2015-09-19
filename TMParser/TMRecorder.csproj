@@ -244,6 +244,12 @@
     <Compile Include="NTR_PlayerForm.Designer.cs">
       <DependentUpon>NTR_PlayerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PlayerForm2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PlayerForm2.Designer.cs">
+      <DependentUpon>PlayerForm2.cs</DependentUpon>
+    </Compile>
     <Compile Include="PlayerTraining.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -267,6 +273,7 @@
     <Compile Include="StartInfoBox.Designer.cs">
       <DependentUpon>StartInfoBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="TeamHistory2.cs" />
     <Compile Include="TraderEditInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -367,7 +374,6 @@
     <Compile Include="TeamHistory.cs" />
     <Compile Include="TeamStats.cs">
       <DependentUpon>TeamStats.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="TeamStats.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -389,7 +395,6 @@
     </Compile>
     <Compile Include="Trading.cs">
       <DependentUpon>Trading.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Trading.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -476,6 +481,10 @@
     <EmbeddedResource Include="PlayerData.resx">
       <SubType>Designer</SubType>
       <DependentUpon>PlayerData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PlayerForm2.resx">
+      <DependentUpon>PlayerForm2.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="PlayerForm.resx">
       <SubType>Designer</SubType>

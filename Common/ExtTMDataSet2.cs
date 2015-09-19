@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Common
 {
-    partial class ExtTMDataSet
+    partial class ExtTMDataSet2
     {
         public FileInfo fiSource;
 
@@ -97,69 +97,71 @@ namespace Common
 
             tds.Date = this.Date;
 
-            foreach (ExtTMDataSet.GiocatoriNSkillRow tdsRow in this.GiocatoriNSkill)
+            foreach (ExtTMDataSet2.GiocatoriNSkillRow tdsRow in this.GiocatoriNSkill)
             {
-                Db_TrophyDataSet.GiocatoriRow edsRow = tds.Giocatori.NewGiocatoriRow();
+                if (tdsRow.FPn == 0)
+                {
+                    Db_TrophyDataSet.GiocatoriRow edsRow = tds.Giocatori.NewGiocatoriRow();
 
-                edsRow.PlayerID = tdsRow.PlayerID;
-                edsRow.Numero = tdsRow.Numero;
-                edsRow.Nationality = tdsRow.Nationality;
-                edsRow.Nome = tdsRow.Nome;
-                edsRow.Età = tdsRow.Età;
-                edsRow.FP = tdsRow.FP;
-                edsRow.Ada = 0;
-                edsRow.ASI = tdsRow.ASI;
-                edsRow.Cal = tdsRow.Cal;
-                edsRow.Con = tdsRow.Con;
-                edsRow.Cro = tdsRow.Cro;
-                edsRow.Fin = tdsRow.Fin;
-                edsRow.For = tdsRow.For;
-                edsRow.Mar = tdsRow.Mar;
-                edsRow.Pas = tdsRow.Pas;
-                edsRow.Pos = tdsRow.Pos;
-                edsRow.Res = tdsRow.Res;
-                edsRow.Tec = tdsRow.Tec;
-                edsRow.Tes = tdsRow.Tes;
-                edsRow.Tir = tdsRow.Tir;
-                edsRow.Vel = tdsRow.Vel;
-                edsRow.Wor = tdsRow.Wor;
-                edsRow.InFormazione = tdsRow.InFormazione;
-                edsRow.Infortunato = tdsRow.Infortunato;
-                edsRow.Squalificato = tdsRow.Squalificato;
-                edsRow.Rec = tdsRow.Rec;
+                    edsRow.PlayerID = tdsRow.PlayerID;
+                    edsRow.Numero = tdsRow.Numero;
+                    edsRow.Nationality = tdsRow.Nationality;
+                    edsRow.Nome = tdsRow.Nome;
+                    edsRow.Età = tdsRow.Età;
+                    edsRow.FP = tdsRow.FP;
+                    edsRow.Ada = 0;
+                    edsRow.ASI = tdsRow.ASI;
+                    edsRow.Cal = tdsRow.Set;
+                    edsRow.Con = tdsRow.Con_Uno;
+                    edsRow.Cro = tdsRow.Cro_Com;
+                    edsRow.Fin = tdsRow.Fin;
+                    edsRow.For = tdsRow.For;
+                    edsRow.Mar = tdsRow.Mar_Pre;
+                    edsRow.Pas = tdsRow.Pas_Ele;
+                    edsRow.Pos = tdsRow.Pos_Aer;
+                    edsRow.Res = tdsRow.Res;
+                    edsRow.Tec = tdsRow.Tec_Tir;
+                    edsRow.Tes = tdsRow.Tes_Lan;
+                    edsRow.Tir = tdsRow.Lon;
+                    edsRow.Vel = tdsRow.Vel;
+                    edsRow.Wor = tdsRow.Wor_Rif;
+                    edsRow.InFormazione = tdsRow.InFormazione;
+                    edsRow.Infortunato = tdsRow.Infortunato;
+                    edsRow.Squalificato = tdsRow.Squalificato;
+                    edsRow.Rec = tdsRow.Rec;
 
-                tds.Giocatori.AddGiocatoriRow(edsRow);
-            }
+                    tds.Giocatori.AddGiocatoriRow(edsRow);
+                }
+                else
+                {
+                    Db_TrophyDataSet.PortieriRow edsRow = tds.Portieri.NewPortieriRow();
 
-            foreach (ExtTMDataSet.PortieriNSkillRow pnsRow in this.PortieriNSkill)
-            {
-                Db_TrophyDataSet.PortieriRow edsRow = tds.Portieri.NewPortieriRow();
+                    edsRow.PlayerID = tdsRow.PlayerID;
+                    edsRow.Numero = tdsRow.Numero;
+                    edsRow.Nationality = tdsRow.Nationality;
+                    edsRow.Nome = tdsRow.Nome;
+                    edsRow.Età = tdsRow.Età;
+                    edsRow.ASI = tdsRow.ASI;
 
-                edsRow.PlayerID = pnsRow.PlayerID;
-                edsRow.Numero = pnsRow.Numero;
-                edsRow.Nationality = pnsRow.Nationality;
-                edsRow.Nome = pnsRow.Nome;
-                edsRow.Età = pnsRow.Età;
-                edsRow.ASI = pnsRow.ASI;
+                    edsRow.For = tdsRow.For;
+                    edsRow.Res = tdsRow.Res;
+                    edsRow.Vel = tdsRow.Vel;
+                    edsRow.Tir = tdsRow.Tec_Tir;
+                    edsRow.Aer = tdsRow.Pos_Aer;
+                    edsRow.Com = tdsRow.Cro_Com;
+                    edsRow.Ele = tdsRow.Pas_Ele;
+                    edsRow.Lan = tdsRow.Tes_Lan;
+                    edsRow.Pre = tdsRow.Mar_Pre;
+                    edsRow.Rif = tdsRow.Wor_Rif;
+                    edsRow.Uno = tdsRow.Con_Uno;
 
-                edsRow.For = pnsRow.For;
-                edsRow.Res = pnsRow.Res;
-                edsRow.Tir = pnsRow.Tir;
-                edsRow.Vel = pnsRow.Vel;
-                edsRow.Aer = pnsRow.Aer;
-                edsRow.Com = pnsRow.Com;
-                edsRow.Ele = pnsRow.Ele;
-                edsRow.Lan = pnsRow.Lan;
-                edsRow.Pre = pnsRow.Pre;
-                edsRow.Rif = pnsRow.Rif;
-                edsRow.Uno = pnsRow.Uno;
+                    edsRow.InFormazione = tdsRow.InFormazione;
+                    edsRow.Infortunato = tdsRow.Infortunato;
+                    edsRow.Squalificato = tdsRow.Squalificato;
+                    edsRow.Rec = tdsRow.Rec;
 
-                edsRow.InFormazione = pnsRow.InFormazione;
-                edsRow.Infortunato = pnsRow.Infortunato;
-                edsRow.Squalificato = pnsRow.Squalificato;
-                edsRow.Rec = pnsRow.Rec;
-
-                tds.Portieri.AddPortieriRow(edsRow);
+                    tds.Portieri.AddPortieriRow(edsRow);
+                }
             }
 
             return tds;
@@ -182,53 +184,32 @@ namespace Common
         }
 
         public void IncSkill_TrainingDataSet(TrainingDataSet tds,
-                                                ExtTMDataSet extTMDataSet)
+                                                ExtTMDataSet2 extTMDataSet)
         {
             foreach (TrainingDataSet.GiocatoriRow tdsRow in tds.Giocatori)
             {
-                ExtTMDataSet.GiocatoriNSkillRow edsRow = this.GiocatoriNSkill.FindByPlayerID(tdsRow.PlayerID);
-                ExtTMDataSet.GiocatoriNSkillRow refRow = extTMDataSet.GiocatoriNSkill.FindByPlayerID(tdsRow.PlayerID);
+                ExtTMDataSet2.GiocatoriNSkillRow edsRow = this.GiocatoriNSkill.FindByPlayerID(tdsRow.PlayerID);
+                ExtTMDataSet2.GiocatoriNSkillRow refRow = extTMDataSet.GiocatoriNSkill.FindByPlayerID(tdsRow.PlayerID);
 
                 if (edsRow == null) continue;
                 if (refRow == null) continue;
 
                 // Bisogna aggiungere ad ogni skill (byte alto) il contributo legato alla crescita
                 // in modo che possa essere facilmente estratto e immesso senza che si creino sovrapposizioni
-                edsRow.Cal = trInc(edsRow.Cal, tdsRow.Cal, refRow.Cal);
-                edsRow.Con = trInc(edsRow.Con, tdsRow.Con, refRow.Con);
-                edsRow.Cro = trInc(edsRow.Cro, tdsRow.Cro, refRow.Cro);
+                edsRow.Set = trInc(edsRow.Set, tdsRow.Cal, refRow.Set);
+                edsRow.Con_Uno = trInc(edsRow.Con_Uno, tdsRow.Con, refRow.Con_Uno);
+                edsRow.Cro_Com = trInc(edsRow.Cro_Com, tdsRow.Cro, refRow.Cro_Com);
                 edsRow.Fin = trInc(edsRow.Fin, tdsRow.Fin, refRow.Fin);
                 edsRow.For = trInc(edsRow.For, tdsRow.For, refRow.For);
-                edsRow.Mar = trInc(edsRow.Mar, tdsRow.Mar, refRow.Mar);
-                edsRow.Pas = trInc(edsRow.Pas, tdsRow.Pas, refRow.Pas);
-                edsRow.Pos = trInc(edsRow.Pos, tdsRow.Pos, refRow.Pos);
+                edsRow.Mar_Pre = trInc(edsRow.Mar_Pre, tdsRow.Mar, refRow.Mar_Pre);
+                edsRow.Pas_Ele = trInc(edsRow.Pas_Ele, tdsRow.Pas, refRow.Pas_Ele);
+                edsRow.Pos_Aer = trInc(edsRow.Pos_Aer, tdsRow.Pos, refRow.Pos_Aer);
                 edsRow.Res = trInc(edsRow.Res, tdsRow.Res, refRow.Res);
-                edsRow.Tec = trInc(edsRow.Tec, tdsRow.Tec, refRow.Tec);
-                edsRow.Tes = trInc(edsRow.Tes, tdsRow.Tes, refRow.Tes);
-                edsRow.Tir = trInc(edsRow.Tir, tdsRow.Tir, refRow.Tir);
+                edsRow.Tec_Tir = trInc(edsRow.Tec_Tir, tdsRow.Tec, refRow.Tec_Tir);
+                edsRow.Tes_Lan = trInc(edsRow.Tes_Lan, tdsRow.Tes, refRow.Tes_Lan);
+                edsRow.Lon = trInc(edsRow.Lon, tdsRow.Tir, refRow.Lon);
                 edsRow.Vel = trInc(edsRow.Vel, tdsRow.Vel, refRow.Vel);
-                edsRow.Wor = trInc(edsRow.Wor, tdsRow.Wor, refRow.Wor);
-            }
-
-            foreach (TrainingDataSet.PortieriRow tdsRow in tds.Portieri)
-            {
-                ExtTMDataSet.PortieriNSkillRow edsRow = this.PortieriNSkill.FindByPlayerID(tdsRow.PlayerID);
-                ExtTMDataSet.PortieriNSkillRow refRow = extTMDataSet.PortieriNSkill.FindByPlayerID(tdsRow.PlayerID);
-
-                if (edsRow == null) continue;
-                if (refRow == null) continue;
-
-                edsRow.For = trInc(edsRow.For, tdsRow.For, refRow.For);
-                edsRow.Res = trInc(edsRow.Res, tdsRow.Res, refRow.Res);
-                edsRow.Tir = trInc(edsRow.Tir, tdsRow.Tir, refRow.Tir);
-                edsRow.Vel = trInc(edsRow.Vel, tdsRow.Vel, refRow.Vel);
-                edsRow.Aer = trInc(edsRow.Aer, tdsRow.Aer, refRow.Aer);
-                edsRow.Com = trInc(edsRow.Com, tdsRow.Com, refRow.Com);
-                edsRow.Ele = trInc(edsRow.Ele, tdsRow.Ele, refRow.Ele);
-                edsRow.Lan = trInc(edsRow.Lan, tdsRow.Lan, refRow.Lan);
-                edsRow.Pre = trInc(edsRow.Pre, tdsRow.Pre, refRow.Pre);
-                edsRow.Rif = trInc(edsRow.Rif, tdsRow.Rif, refRow.Rif);
-                edsRow.Uno = trInc(edsRow.Uno, tdsRow.Uno, refRow.Uno);
+                edsRow.Wor_Rif = trInc(edsRow.Wor_Rif, tdsRow.Wor, refRow.Wor_Rif);
             }
         }
 
@@ -248,53 +229,32 @@ namespace Common
         }
 
         public void DecSkill_TrainingDataSet(TrainingDataSet tds,
-                                                ExtTMDataSet extTMDataSet)
+                                                ExtTMDataSet2 extTMDataSet)
         {
             foreach (TrainingDataSet.GiocatoriRow tdsRow in tds.Giocatori)
             {
-                ExtTMDataSet.GiocatoriNSkillRow edsRow = this.GiocatoriNSkill.FindByPlayerID(tdsRow.PlayerID);
-                ExtTMDataSet.GiocatoriNSkillRow refRow = extTMDataSet.GiocatoriNSkill.FindByPlayerID(tdsRow.PlayerID);
+                ExtTMDataSet2.GiocatoriNSkillRow edsRow = this.GiocatoriNSkill.FindByPlayerID(tdsRow.PlayerID);
+                ExtTMDataSet2.GiocatoriNSkillRow refRow = extTMDataSet.GiocatoriNSkill.FindByPlayerID(tdsRow.PlayerID);
 
                 if (edsRow == null) continue;
                 if (refRow == null) continue;
 
                 // Bisogna aggiungere ad ogni skill (byte alto) il contributo legato alla crescita
                 // in modo che possa essere facilmente estratto e immesso senza che si creino sovrapposizioni
-                edsRow.Cal = trDec(edsRow.Cal, tdsRow.Cal, refRow.Cal);
-                edsRow.Con = trDec(edsRow.Con, tdsRow.Con, refRow.Con);
-                edsRow.Cro = trDec(edsRow.Cro, tdsRow.Cro, refRow.Cro);
+                edsRow.Set = trDec(edsRow.Set, tdsRow.Cal, refRow.Set);
+                edsRow.Con_Uno = trDec(edsRow.Con_Uno, tdsRow.Con, refRow.Con_Uno);
+                edsRow.Cro_Com = trDec(edsRow.Cro_Com, tdsRow.Cro, refRow.Cro_Com);
                 edsRow.Fin = trDec(edsRow.Fin, tdsRow.Fin, refRow.Fin);
                 edsRow.For = trDec(edsRow.For, tdsRow.For, refRow.For);
-                edsRow.Mar = trDec(edsRow.Mar, tdsRow.Mar, refRow.Mar);
-                edsRow.Pas = trDec(edsRow.Pas, tdsRow.Pas, refRow.Pas);
-                edsRow.Pos = trDec(edsRow.Pos, tdsRow.Pos, refRow.Pos);
+                edsRow.Mar_Pre = trDec(edsRow.Mar_Pre, tdsRow.Mar, refRow.Mar_Pre);
+                edsRow.Pas_Ele = trDec(edsRow.Pas_Ele, tdsRow.Pas, refRow.Pas_Ele);
+                edsRow.Pos_Aer = trDec(edsRow.Pos_Aer, tdsRow.Pos, refRow.Pos_Aer);
                 edsRow.Res = trDec(edsRow.Res, tdsRow.Res, refRow.Res);
-                edsRow.Tec = trDec(edsRow.Tec, tdsRow.Tec, refRow.Tec);
-                edsRow.Tes = trDec(edsRow.Tes, tdsRow.Tes, refRow.Tes);
-                edsRow.Tir = trDec(edsRow.Tir, tdsRow.Tir, refRow.Tir);
+                edsRow.Tec_Tir = trDec(edsRow.Tec_Tir, tdsRow.Tec, refRow.Tec_Tir);
+                edsRow.Tes_Lan = trDec(edsRow.Tes_Lan, tdsRow.Tes, refRow.Tes_Lan);
+                edsRow.Lon = trDec(edsRow.Lon, tdsRow.Tir, refRow.Lon);
                 edsRow.Vel = trDec(edsRow.Vel, tdsRow.Vel, refRow.Vel);
-                edsRow.Wor = trDec(edsRow.Wor, tdsRow.Wor, refRow.Wor);
-            }
-
-            foreach (TrainingDataSet.PortieriRow tdsRow in tds.Portieri)
-            {
-                ExtTMDataSet.PortieriNSkillRow edsRow = this.PortieriNSkill.FindByPlayerID(tdsRow.PlayerID);
-                ExtTMDataSet.PortieriNSkillRow refRow = extTMDataSet.PortieriNSkill.FindByPlayerID(tdsRow.PlayerID);
-
-                if (edsRow == null) continue;
-                if (refRow == null) continue;
-
-                edsRow.For = trDec(edsRow.For, tdsRow.For, refRow.For);
-                edsRow.Res = trDec(edsRow.Res, tdsRow.Res, refRow.Res);
-                edsRow.Tir = trDec(edsRow.Tir, tdsRow.Tir, refRow.Tir);
-                edsRow.Vel = trDec(edsRow.Vel, tdsRow.Vel, refRow.Vel);
-                edsRow.Aer = trDec(edsRow.Aer, tdsRow.Aer, refRow.Aer);
-                edsRow.Com = trDec(edsRow.Com, tdsRow.Com, refRow.Com);
-                edsRow.Ele = trDec(edsRow.Ele, tdsRow.Ele, refRow.Ele);
-                edsRow.Lan = trDec(edsRow.Lan, tdsRow.Lan, refRow.Lan);
-                edsRow.Pre = trDec(edsRow.Pre, tdsRow.Pre, refRow.Pre);
-                edsRow.Rif = trDec(edsRow.Rif, tdsRow.Rif, refRow.Rif);
-                edsRow.Uno = trDec(edsRow.Uno, tdsRow.Uno, refRow.Uno);
+                edsRow.Wor_Rif = trDec(edsRow.Wor_Rif, tdsRow.Wor, refRow.Wor_Rif);
             }
         }
 
@@ -309,7 +269,7 @@ namespace Common
         public void FillWithDb_TrophyDataSet(ExtraDS PlayersDS,
                                                 Db_TrophyDataSet tds,
                                                 Gain_Function fun,
-                                                ExtTMDataSet prevDS,
+                                                ExtTMDataSet2 prevDS,
                                                 short isReserves,
                                                 string ApplicationFolder)
         {
@@ -322,7 +282,7 @@ namespace Common
                 {
                     isNew = false;
 
-                    ExtTMDataSet.GiocatoriNSkillRow edsRow = this.GiocatoriNSkill.FindByPlayerID(tdsRow.PlayerID);
+                    ExtTMDataSet2.GiocatoriNSkillRow edsRow = this.GiocatoriNSkill.FindByPlayerID(tdsRow.PlayerID);
 
                     if (edsRow == null)
                     {
@@ -331,7 +291,7 @@ namespace Common
                         isNew = true;
                     }
 
-                    ExtTMDataSet.GiocatoriNSkillRow pdsRow = null;
+                    ExtTMDataSet2.GiocatoriNSkillRow pdsRow = null;
                     if (prevDS != null) pdsRow = prevDS.GiocatoriNSkill.FindByPlayerID(tdsRow.PlayerID);
 
                     ExtraDS.GiocatoriRow plyDB = null;
@@ -433,37 +393,37 @@ namespace Common
 
                     if (pdsRow != null)
                     {
-                        edsRow.Cal = setDec(tdsRow.Cal, pdsRow.Cal);
-                        edsRow.Con = setDec(tdsRow.Con, pdsRow.Con);
-                        edsRow.Cro = setDec(tdsRow.Cro, pdsRow.Cro);
+                        edsRow.Set = setDec(tdsRow.Cal, pdsRow.Set);
+                        edsRow.Con_Uno = setDec(tdsRow.Con, pdsRow.Con_Uno);
+                        edsRow.Cro_Com = setDec(tdsRow.Cro, pdsRow.Cro_Com);
                         edsRow.Fin = setDec(tdsRow.Fin, pdsRow.Fin);
                         edsRow.For = setDec(tdsRow.For, pdsRow.For);
-                        edsRow.Mar = setDec(tdsRow.Mar, pdsRow.Mar);
-                        edsRow.Pas = setDec(tdsRow.Pas, pdsRow.Pas);
-                        edsRow.Pos = setDec(tdsRow.Pos, pdsRow.Pos);
+                        edsRow.Mar_Pre = setDec(tdsRow.Mar, pdsRow.Mar_Pre);
+                        edsRow.Pas_Ele = setDec(tdsRow.Pas, pdsRow.Pas_Ele);
+                        edsRow.Pos_Aer = setDec(tdsRow.Pos, pdsRow.Pos_Aer);
                         edsRow.Res = setDec(tdsRow.Res, pdsRow.Res);
-                        edsRow.Tec = setDec(tdsRow.Tec, pdsRow.Tec);
-                        edsRow.Tes = setDec(tdsRow.Tes, pdsRow.Tes);
-                        edsRow.Tir = setDec(tdsRow.Tir, pdsRow.Tir);
+                        edsRow.Tec_Tir = setDec(tdsRow.Tec, pdsRow.Tec_Tir);
+                        edsRow.Tes_Lan = setDec(tdsRow.Tes, pdsRow.Tes_Lan);
+                        edsRow.Lon = setDec(tdsRow.Tir, pdsRow.Lon);
                         edsRow.Vel = setDec(tdsRow.Vel, pdsRow.Vel);
-                        edsRow.Wor = setDec(tdsRow.Wor, pdsRow.Wor);
+                        edsRow.Wor_Rif = setDec(tdsRow.Wor, pdsRow.Wor_Rif);
                     }
                     else
                     {
-                        edsRow.Cal = tdsRow.Cal;
-                        edsRow.Con = tdsRow.Con;
-                        edsRow.Cro = tdsRow.Cro;
+                        edsRow.Set = tdsRow.Cal;
+                        edsRow.Con_Uno = tdsRow.Con;
+                        edsRow.Cro_Com = tdsRow.Cro;
                         edsRow.Fin = tdsRow.Fin;
                         edsRow.For = tdsRow.For;
-                        edsRow.Mar = tdsRow.Mar;
-                        edsRow.Pas = tdsRow.Pas;
-                        edsRow.Pos = tdsRow.Pos;
+                        edsRow.Mar_Pre = tdsRow.Mar;
+                        edsRow.Pas_Ele = tdsRow.Pas;
+                        edsRow.Pos_Aer = tdsRow.Pos;
                         edsRow.Res = tdsRow.Res;
-                        edsRow.Tec = tdsRow.Tec;
-                        edsRow.Tes = tdsRow.Tes;
-                        edsRow.Tir = tdsRow.Tir;
+                        edsRow.Tec_Tir = tdsRow.Tec;
+                        edsRow.Tes_Lan = tdsRow.Tes;
+                        edsRow.Lon = tdsRow.Tir;
                         edsRow.Vel = tdsRow.Vel;
-                        edsRow.Wor = tdsRow.Wor;
+                        edsRow.Wor_Rif = tdsRow.Wor;
                     }
 
                     edsRow.InFormazione = tdsRow.InFormazione;
@@ -483,11 +443,11 @@ namespace Common
                 {
                     isNew = false;
 
-                    ExtTMDataSet.PortieriNSkillRow edsRow = this.PortieriNSkill.FindByPlayerID(tdsRow.PlayerID);
+                    ExtTMDataSet2.GiocatoriNSkillRow edsRow = this.GiocatoriNSkill.FindByPlayerID(tdsRow.PlayerID);
 
                     if (edsRow == null)
                     {
-                        edsRow = this.PortieriNSkill.NewPortieriNSkillRow();
+                        edsRow = this.GiocatoriNSkill.NewGiocatoriNSkillRow();
                         edsRow.PlayerID = tdsRow.PlayerID;
                         isNew = true;
                     }
@@ -498,8 +458,8 @@ namespace Common
                         plyDB = PlayersDS.Giocatori.FindByPlayerID(edsRow.PlayerID);
                     }
 
-                    ExtTMDataSet.PortieriNSkillRow pdsRow = null;
-                    if (prevDS != null) pdsRow = prevDS.PortieriNSkill.FindByPlayerID(tdsRow.PlayerID);
+                    ExtTMDataSet2.GiocatoriNSkillRow pdsRow = null;
+                    if (prevDS != null) pdsRow = prevDS.GiocatoriNSkill.FindByPlayerID(tdsRow.PlayerID);
 
                     edsRow.Numero = tdsRow.Numero;
                     edsRow.Nationality = tdsRow.Nationality;
@@ -520,7 +480,6 @@ namespace Common
                     {
                         edsRow.Nome = tdsRow.Nome.Replace("\r\n", "").Replace(" ", "").Replace(".", ". ");
                     }
-
 
                     if (plyDB != null)
                     {
@@ -580,29 +539,27 @@ namespace Common
                     {
                         edsRow.For = setDec(tdsRow.For, pdsRow.For);
                         edsRow.Res = setDec(tdsRow.Res, pdsRow.Res);
-                        edsRow.Tir = setDec(tdsRow.Tir, pdsRow.Tir);
                         edsRow.Vel = setDec(tdsRow.Vel, pdsRow.Vel);
-                        edsRow.Aer = setDec(tdsRow.Aer, pdsRow.Aer);
-                        edsRow.Com = setDec(tdsRow.Com, pdsRow.Com);
-                        edsRow.Ele = setDec(tdsRow.Ele, pdsRow.Ele);
-                        edsRow.Lan = setDec(tdsRow.Lan, pdsRow.Lan);
-                        edsRow.Pre = setDec(tdsRow.Pre, pdsRow.Pre);
-                        edsRow.Rif = setDec(tdsRow.Rif, pdsRow.Rif);
-                        edsRow.Uno = setDec(tdsRow.Uno, pdsRow.Uno);
+                        edsRow.Pos_Aer = setDec(tdsRow.Aer, pdsRow.Pos_Aer);
+                        edsRow.Cro_Com = setDec(tdsRow.Com, pdsRow.Cro_Com);
+                        edsRow.Pas_Ele = setDec(tdsRow.Ele, pdsRow.Pas_Ele);
+                        edsRow.Tes_Lan = setDec(tdsRow.Lan, pdsRow.Tes_Lan);
+                        edsRow.Mar_Pre = setDec(tdsRow.Pre, pdsRow.Mar_Pre);
+                        edsRow.Wor_Rif = setDec(tdsRow.Rif, pdsRow.Wor_Rif);
+                        edsRow.Con_Uno = setDec(tdsRow.Uno, pdsRow.Con_Uno);
                     }
                     else
                     {
                         edsRow.For = tdsRow.For;
                         edsRow.Res = tdsRow.Res;
-                        edsRow.Tir = tdsRow.Tir;
                         edsRow.Vel = tdsRow.Vel;
-                        edsRow.Aer = tdsRow.Aer;
-                        edsRow.Com = tdsRow.Com;
-                        edsRow.Ele = tdsRow.Ele;
-                        edsRow.Lan = tdsRow.Lan;
-                        edsRow.Pre = tdsRow.Pre;
-                        edsRow.Rif = tdsRow.Rif;
-                        edsRow.Uno = tdsRow.Uno;
+                        edsRow.Pos_Aer = tdsRow.Aer;
+                        edsRow.Cro_Com = tdsRow.Com;
+                        edsRow.Pas_Ele = tdsRow.Ele;
+                        edsRow.Tes_Lan = tdsRow.Lan;
+                        edsRow.Mar_Pre = tdsRow.Pre;
+                        edsRow.Wor_Rif = tdsRow.Rif;
+                        edsRow.Con_Uno = tdsRow.Uno;
                     }
 
                     edsRow.InFormazione = false;
@@ -623,7 +580,7 @@ namespace Common
 
                     edsRow.SetFP(fun);
 
-                    if (isNew) this.PortieriNSkill.Rows.Add(edsRow);
+                    if (isNew) this.GiocatoriNSkill.Rows.Add(edsRow);
                 }
             }
             catch (Exception e)
@@ -675,7 +632,7 @@ namespace Common
         public void FillWithDb_TrophyDataSet_NewTM(ExtraDS PlayersDS,
                                                 Db_TrophyDataSet tds,
                                                 Gain_Function fun,
-                                                ExtTMDataSet prevDS,
+                                                ExtTMDataSet2 prevDS,
                                                 string ApplicationFolder)
         {
             try
@@ -687,7 +644,7 @@ namespace Common
                 {
                     isNew = false;
 
-                    ExtTMDataSet.GiocatoriNSkillRow edsRow = this.GiocatoriNSkill.FindByPlayerID(tdsRow.PlayerID);
+                    ExtTMDataSet2.GiocatoriNSkillRow edsRow = this.GiocatoriNSkill.FindByPlayerID(tdsRow.PlayerID);
 
                     if (edsRow == null)
                     {
@@ -696,7 +653,7 @@ namespace Common
                         isNew = true;
                     }
 
-                    ExtTMDataSet.GiocatoriNSkillRow pdsRow = null;
+                    ExtTMDataSet2.GiocatoriNSkillRow pdsRow = null;
                     if (prevDS != null) pdsRow = prevDS.GiocatoriNSkill.FindByPlayerID(tdsRow.PlayerID);
 
                     ExtraDS.GiocatoriRow plyDB = null;
@@ -784,37 +741,37 @@ namespace Common
 
                     if (pdsRow != null)
                     {
-                        edsRow.Cal = setDec(tdsRow.Cal, pdsRow.Cal);
-                        edsRow.Con = setDec(tdsRow.Con, pdsRow.Con);
-                        edsRow.Cro = setDec(tdsRow.Cro, pdsRow.Cro);
+                        edsRow.Set = setDec(tdsRow.Cal, pdsRow.Set);
+                        edsRow.Con_Uno = setDec(tdsRow.Con, pdsRow.Con_Uno);
+                        edsRow.Cro_Com = setDec(tdsRow.Cro, pdsRow.Cro_Com);
                         edsRow.Fin = setDec(tdsRow.Fin, pdsRow.Fin);
                         edsRow.For = setDec(tdsRow.For, pdsRow.For);
-                        edsRow.Mar = setDec(tdsRow.Mar, pdsRow.Mar);
-                        edsRow.Pas = setDec(tdsRow.Pas, pdsRow.Pas);
-                        edsRow.Pos = setDec(tdsRow.Pos, pdsRow.Pos);
+                        edsRow.Mar_Pre = setDec(tdsRow.Mar, pdsRow.Mar_Pre);
+                        edsRow.Pas_Ele = setDec(tdsRow.Pas, pdsRow.Pas_Ele);
+                        edsRow.Pos_Aer = setDec(tdsRow.Pos, pdsRow.Pos_Aer);
                         edsRow.Res = setDec(tdsRow.Res, pdsRow.Res);
-                        edsRow.Tec = setDec(tdsRow.Tec, pdsRow.Tec);
-                        edsRow.Tes = setDec(tdsRow.Tes, pdsRow.Tes);
-                        edsRow.Tir = setDec(tdsRow.Tir, pdsRow.Tir);
+                        edsRow.Tec_Tir = setDec(tdsRow.Tec, pdsRow.Tec_Tir);
+                        edsRow.Tes_Lan = setDec(tdsRow.Tes, pdsRow.Tes_Lan);
+                        edsRow.Lon = setDec(tdsRow.Tir, pdsRow.Lon);
                         edsRow.Vel = setDec(tdsRow.Vel, pdsRow.Vel);
-                        edsRow.Wor = setDec(tdsRow.Wor, pdsRow.Wor);
+                        edsRow.Wor_Rif = setDec(tdsRow.Wor, pdsRow.Wor_Rif);
                     }
                     else
                     {
-                        edsRow.Cal = tdsRow.Cal;
-                        edsRow.Con = tdsRow.Con;
-                        edsRow.Cro = tdsRow.Cro;
+                        edsRow.Set = tdsRow.Cal;
+                        edsRow.Con_Uno = tdsRow.Con;
+                        edsRow.Cro_Com = tdsRow.Cro;
                         edsRow.Fin = tdsRow.Fin;
                         edsRow.For = tdsRow.For;
-                        edsRow.Mar = tdsRow.Mar;
-                        edsRow.Pas = tdsRow.Pas;
-                        edsRow.Pos = tdsRow.Pos;
+                        edsRow.Mar_Pre = tdsRow.Mar;
+                        edsRow.Pas_Ele = tdsRow.Pas;
+                        edsRow.Pos_Aer = tdsRow.Pos;
                         edsRow.Res = tdsRow.Res;
-                        edsRow.Tec = tdsRow.Tec;
-                        edsRow.Tes = tdsRow.Tes;
-                        edsRow.Tir = tdsRow.Tir;
+                        edsRow.Tec_Tir = tdsRow.Tec;
+                        edsRow.Tes_Lan = tdsRow.Tes;
+                        edsRow.Lon = tdsRow.Tir;
                         edsRow.Vel = tdsRow.Vel;
-                        edsRow.Wor = tdsRow.Wor;
+                        edsRow.Wor_Rif = tdsRow.Wor;
                     }
 
                     edsRow.InFormazione = tdsRow.InFormazione;
@@ -840,11 +797,11 @@ namespace Common
                 {
                     isNew = false;
 
-                    ExtTMDataSet.PortieriNSkillRow edsRow = this.PortieriNSkill.FindByPlayerID(tdsRow.PlayerID);
+                    ExtTMDataSet2.GiocatoriNSkillRow edsRow = this.GiocatoriNSkill.FindByPlayerID(tdsRow.PlayerID);
 
                     if (edsRow == null)
                     {
-                        edsRow = this.PortieriNSkill.NewPortieriNSkillRow();
+                        edsRow = this.GiocatoriNSkill.NewGiocatoriNSkillRow();
                         edsRow.PlayerID = tdsRow.PlayerID;
                         isNew = true;
                     }
@@ -855,8 +812,8 @@ namespace Common
                         plyDB = PlayersDS.Giocatori.FindByPlayerID(edsRow.PlayerID);
                     }
 
-                    ExtTMDataSet.PortieriNSkillRow pdsRow = null;
-                    if (prevDS != null) pdsRow = prevDS.PortieriNSkill.FindByPlayerID(tdsRow.PlayerID);
+                    ExtTMDataSet2.GiocatoriNSkillRow pdsRow = null;
+                    if (prevDS != null) pdsRow = prevDS.GiocatoriNSkill.FindByPlayerID(tdsRow.PlayerID);
 
                     edsRow.Numero = tdsRow.Numero;
                     edsRow.Nationality = tdsRow.Nationality;
@@ -929,29 +886,29 @@ namespace Common
                     {
                         edsRow.For = setDec(tdsRow.For, pdsRow.For);
                         edsRow.Res = setDec(tdsRow.Res, pdsRow.Res);
-                        edsRow.Tir = setDec(tdsRow.Tir, pdsRow.Tir);
+                        edsRow.Lon = setDec(tdsRow.Tir, pdsRow.Lon);
                         edsRow.Vel = setDec(tdsRow.Vel, pdsRow.Vel);
-                        edsRow.Aer = setDec(tdsRow.Aer, pdsRow.Aer);
-                        edsRow.Com = setDec(tdsRow.Com, pdsRow.Com);
-                        edsRow.Ele = setDec(tdsRow.Ele, pdsRow.Ele);
-                        edsRow.Lan = setDec(tdsRow.Lan, pdsRow.Lan);
-                        edsRow.Pre = setDec(tdsRow.Pre, pdsRow.Pre);
-                        edsRow.Rif = setDec(tdsRow.Rif, pdsRow.Rif);
-                        edsRow.Uno = setDec(tdsRow.Uno, pdsRow.Uno);
+                        edsRow.Pos_Aer = setDec(tdsRow.Aer, pdsRow.Pos_Aer);
+                        edsRow.Cro_Com = setDec(tdsRow.Com, pdsRow.Cro_Com);
+                        edsRow.Pas_Ele = setDec(tdsRow.Ele, pdsRow.Pas_Ele);
+                        edsRow.Tes_Lan = setDec(tdsRow.Lan, pdsRow.Tes_Lan);
+                        edsRow.Mar_Pre = setDec(tdsRow.Pre, pdsRow.Mar_Pre);
+                        edsRow.Wor_Rif = setDec(tdsRow.Rif, pdsRow.Wor_Rif);
+                        edsRow.Con_Uno = setDec(tdsRow.Uno, pdsRow.Con_Uno);
                     }
                     else
                     {
                         edsRow.For = tdsRow.For;
                         edsRow.Res = tdsRow.Res;
-                        edsRow.Tir = tdsRow.Tir;
+                        edsRow.Lon = tdsRow.Tir;
                         edsRow.Vel = tdsRow.Vel;
-                        edsRow.Aer = tdsRow.Aer;
-                        edsRow.Com = tdsRow.Com;
-                        edsRow.Ele = tdsRow.Ele;
-                        edsRow.Lan = tdsRow.Lan;
-                        edsRow.Pre = tdsRow.Pre;
-                        edsRow.Rif = tdsRow.Rif;
-                        edsRow.Uno = tdsRow.Uno;
+                        edsRow.Pos_Aer = tdsRow.Aer;
+                        edsRow.Cro_Com = tdsRow.Com;
+                        edsRow.Pas_Ele = tdsRow.Ele;
+                        edsRow.Tes_Lan = tdsRow.Lan;
+                        edsRow.Mar_Pre = tdsRow.Pre;
+                        edsRow.Wor_Rif = tdsRow.Rif;
+                        edsRow.Con_Uno = tdsRow.Uno;
                     }
 
                     edsRow.Wage = tdsRow.Wage;
@@ -978,7 +935,7 @@ namespace Common
                     edsRow.SetFP(fun);
                     edsRow.Rec = tdsRow.Rec;
 
-                    if (isNew) this.PortieriNSkill.Rows.Add(edsRow);
+                    if (isNew) this.GiocatoriNSkill.Rows.Add(edsRow);
                 }
             }
             catch (Exception e)
@@ -1040,7 +997,7 @@ namespace Common
                                         {1.000f,1.000f,1.000f,1.164f,1.000f,1.000f,1.336f,1.000f,1.000f,1.498f,1.167f,1.167f,1.668f}};
 
             // Skill FP Gain
-            float[,] K = new float[,] { {4.000f,3.000f,3.000f,2.880f,3.000f,3.000f,2.000f,1.560f,1.560f,1.910f,2.630f,2.630f,4.240f},
+            float[,] K_Pl = new float[,] { {4.000f,3.000f,3.000f,2.880f,3.000f,3.000f,2.000f,1.560f,1.560f,1.910f,2.630f,2.630f,4.240f},
                                         {0.330f,0.430f,0.430f,1.680f,0.430f,0.430f,2.000f,1.560f,1.560f,0.270f,2.630f,2.630f,2.470f},
                                         {4.000f,5.140f,5.140f,1.680f,5.140f,5.140f,0.290f,2.670f,2.670f,0.270f,4.500f,4.500f,2.470f},
                                         {4.000f,5.140f,5.140f,2.880f,5.140f,5.140f,3.430f,2.670f,2.670f,1.910f,0.380f,0.380f,0.350f},
@@ -1055,7 +1012,35 @@ namespace Common
                                         {0.330f,0.430f,0.430f,0.240f,0.430f,0.430f,0.290f,0.220f,0.220f,3.270f,2.630f,2.630f,4.240f},
                                         {0.000f,0.000f,0.000f,0.000f,0.000f,0.000f,0.000f,0.000f,0.000f,0.000f,0.000f,0.000f,0.000f}};
 
-            int[] skillCol = new int[] { 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 };
+            float[,] K_Gk = new float[,] { { 6.3636f, 0f, 6.3636f, 11.8181f, 6.3636f, 10.9090f, 6.3636f, 6.3636f, 0f, 0f, 0f } };
+
+            float[,] K
+            {
+                get
+                {
+                    if (FPn == 0)
+                        return K_Gk;
+                    else
+                        return K_Pl;
+                }
+            }
+
+
+
+            int[] skillCol_Pl = new int[] { 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 };
+
+            int[] skillCol_Gk = new int[] { 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 };
+
+            int[] skillCol
+            {
+                get
+                {
+                    if (FPn == 0)
+                        return skillCol_Gk;
+                    else
+                        return skillCol_Pl;
+                }
+            }
 
             public float[] Skills
             {
@@ -1077,7 +1062,7 @@ namespace Common
                 {
                     float[] f = new float[13];
 
-                    f[0] = DC;
+                    f[0] = DC_GK;
                     f[1] = DR;
                     f[2] = DL;
                     f[3] = DMC;
@@ -1097,7 +1082,7 @@ namespace Common
                 {
                     float[] f = value;
 
-                    DC = f[0];
+                    DC_GK = f[0];
                     DR = f[1];
                     DL = f[2];
                     DMC = f[3];
@@ -1118,7 +1103,7 @@ namespace Common
                 float max = 0;
                 max = (DL > max) ? DL : max;
                 max = (DR > max) ? DR : max;
-                max = (DC > max) ? DC : max;
+                max = (DC_GK > max) ? DC_GK : max;
                 max = (DML > max) ? DML : max;
                 max = (DMR > max) ? DMR : max;
                 max = (DMC > max) ? DMC : max;
@@ -1159,10 +1144,110 @@ namespace Common
             {
                 get
                 {
-                    return For + Res + Vel + Mar + Con + Wor + Pas + Pos + Cro +
-                        Tec + Tes + Fin + Cal + Tir;
+                    return For + Res + Vel + Mar_Pre + Con_Uno + Wor_Rif + Pas_Ele + Pos_Aer + Cro_Com +
+                        Tec_Tir + Tes_Lan + Fin + Set + Lon;
                 }
             }
+
+            public decimal Mar
+            {
+                get { return Mar_Pre; }
+                set { Mar_Pre = value; }
+            }
+
+            #region redefinition skills
+
+            public decimal Pre
+            {
+                get { return Mar_Pre; }
+                set { Mar_Pre = value; }
+            }
+
+            public decimal Con
+            {
+                get { return Con_Uno; }
+                set { Con_Uno = value; }
+            }
+
+            public decimal Uno
+            {
+                get { return Con_Uno; }
+                set { Con_Uno = value; }
+            }
+
+            public decimal Wor
+            {
+                get { return Wor_Rif; }
+                set { Wor_Rif = value; }
+            }
+
+            public decimal Rif
+            {
+                get { return Wor_Rif; }
+                set { Wor_Rif = value; }
+            }
+
+            public decimal Pas
+            {
+                get { return Pas_Ele; }
+                set { Pas_Ele = value; }
+            }
+
+            public decimal Ele
+            {
+                get { return Pas_Ele; }
+                set { Pas_Ele = value; }
+            }
+
+            public decimal Pos
+            {
+                get { return Pos_Aer; }
+                set { Pos_Aer = value; }
+            }
+
+            public decimal Aer
+            {
+                get { return Pos_Aer; }
+                set { Pos_Aer = value; }
+            }
+
+            public decimal Cro
+            {
+                get { return Cro_Com; }
+                set { Cro_Com = value; }
+            }
+
+            public decimal Com
+            {
+                get { return Cro_Com; }
+                set { Cro_Com = value; }
+            }
+
+            public decimal Tec
+            {
+                get { return Tec_Tir; }
+                set { Tec_Tir = value; }
+            }
+
+            public decimal Tir
+            {
+                get { return Tec_Tir; }
+                set { Tec_Tir = value; }
+            }
+
+            public decimal Tes
+            {
+                get { return Tes_Lan; }
+                set { Tes_Lan = value; }
+            }
+
+            public decimal Lan
+            {
+                get { return Tes_Lan; }
+                set { Tes_Lan = value; }
+            }
+
+            #endregion
 
             public string ToExcelString()
             {
@@ -1183,7 +1268,7 @@ namespace Common
                 string p3 = (position.Length > 2) ? position.Substring(0, 3) : p2;
 
                 return
-                (p2 == "DC") ? DC :
+                (p2 == "DC_GK") ? DC_GK :
                 (p2 == "DL") ? DL :
                 (p2 == "DR") ? DR :
                 (p2 == "MC") ? MC :
@@ -1199,111 +1284,14 @@ namespace Common
             }
         }
 
-        partial class PortieriNSkillRow : System.Data.DataRow
-        {
-            bool isDirty = false;
-
-            // Skill FP Gain
-            float[] K = new float[] { 6.3636f, 0f, 6.3636f, 11.8181f, 6.3636f, 10.9090f, 6.3636f, 6.3636f, 0f, 0f, 0f };
-
-            int[] skillCol = new int[] { 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 };
-
-            public float[] Skills
-            {
-                get
-                {
-                    float[] f = new float[11];
-
-                    for (int i = 0; i < 11; i++)
-                    {
-                        f[i] = (float)((decimal)this[skillCol[i]]);
-                    }
-
-                    return f;
-                }
-            }
-            public float[] Atts
-            {
-                get
-                {
-                    float[] f = new float[1];
-
-                    f[0] = PO;
-
-                    return f;
-                }
-                set
-                {
-                    float[] f = value;
-
-                    PO = f[0];
-                }
-            }
-
-            public float MaxAtts()
-            {
-                return PO / 5;
-            }
-
-            public float MaxAttsToStar(float a)
-            {
-                return (a - 2.0f) / 3.0f;
-            }
-
-            public void SetFP(Gain_Function PFun)
-            {
-                float[] f = new float[11];
-                f = Skills;
-                Atts = PFun.GetAttitude(f, "GK", (float)this.Rou, 0.0f);
-                OSi = PFun.GetOSi(Atts, Skills);
-
-                float kRou = PFun.gds.funRou.Value((float)Rou);
-
-                decimal SSD = Tm_Utility.ASItoSkSum((decimal)this.ASI, true) - this.SkillSum;
-                CStr = (decimal)MaxAttsToStar(MaxAtts() / kRou * (float)((SkillSum + SSD) / SkillSum));
-            }
-
-            public decimal SkillSum
-            {
-                get
-                {
-                    return For + Res + Vel + Aer + Com + Tir +
-                        Ele + Lan + Pre + Rif + Uno;
-                }
-            }
-
-            public string ToExcelString()
-            {
-                string row = "";
-
-                for (int i = 0; i < 17; i++)
-                {
-                    row += this[i].ToString() + "\t";
-                }
-
-                return row;
-            }
-
-            public bool IsPPASINull()
-            {
-                throw new NotImplementedException();
-            }
-
-            public bool IsStartOfBloomAgeNull()
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-
         public void RecalculateSpecData(Gain_Function fun)
         {
-            foreach (ExtTMDataSet.GiocatoriNSkillRow gnsRow in this.GiocatoriNSkill)
+            foreach (ExtTMDataSet2.GiocatoriNSkillRow gnsRow in this.GiocatoriNSkill)
             {
                 gnsRow.SetFP(fun);
             }
 
-            foreach (ExtTMDataSet.PortieriNSkillRow gnsRow in this.PortieriNSkill)
+            foreach (ExtTMDataSet2.GiocatoriNSkillRow gnsRow in this.GiocatoriNSkill)
             {
                 gnsRow.SetFP(fun);
             }
@@ -1311,11 +1299,11 @@ namespace Common
 
         public void RecalculateSpecData(Gain_Function fun, int plyID)
         {
-            ExtTMDataSet.GiocatoriNSkillRow gnsRow = GiocatoriNSkill.FindByPlayerID(plyID);
+            ExtTMDataSet2.GiocatoriNSkillRow gnsRow = GiocatoriNSkill.FindByPlayerID(plyID);
             if (gnsRow != null)
                 gnsRow.SetFP(fun);
 
-            ExtTMDataSet.PortieriNSkillRow pnsRow = PortieriNSkill.FindByPlayerID(plyID);
+            ExtTMDataSet2.GiocatoriNSkillRow pnsRow = GiocatoriNSkill.FindByPlayerID(plyID);
             if (pnsRow != null)
                 pnsRow.SetFP(fun);
         }
@@ -1326,27 +1314,27 @@ namespace Common
 
             tds.Date = this.Date;
 
-            foreach (ExtTMDataSet.GiocatoriNSkillRow tdsRow in this.GiocatoriNSkill)
+            foreach (ExtTMDataSet2.GiocatoriNSkillRow tdsRow in this.GiocatoriNSkill)
             {
                 DB_TrophyDataSet2.GiocatoriRow edsRow = tds.Giocatori.NewGiocatoriRow();
 
                 edsRow.PlayerID = tdsRow.PlayerID;
                 edsRow.Età = tdsRow.Età;
                 edsRow.ASI = tdsRow.ASI;
-                edsRow.Cal = tdsRow.Cal;
-                edsRow.Con = tdsRow.Con;
-                edsRow.Cro = tdsRow.Cro;
+                edsRow.Cal = tdsRow.Set;
+                edsRow.Con = tdsRow.Con_Uno;
+                edsRow.Cro = tdsRow.Cro_Com;
                 edsRow.Fin = tdsRow.Fin;
                 edsRow.For = tdsRow.For;
-                edsRow.Mar = tdsRow.Mar;
-                edsRow.Pas = tdsRow.Pas;
-                edsRow.Pos = tdsRow.Pos;
+                edsRow.Mar = tdsRow.Mar_Pre;
+                edsRow.Pas = tdsRow.Pas_Ele;
+                edsRow.Pos = tdsRow.Pos_Aer;
                 edsRow.Res = tdsRow.Res;
-                edsRow.Tec = tdsRow.Tec;
-                edsRow.Tes = tdsRow.Tes;
-                edsRow.Tir = tdsRow.Tir;
+                edsRow.Tec = tdsRow.Tec_Tir;
+                edsRow.Tes = tdsRow.Tes_Lan;
+                edsRow.Tir = tdsRow.Lon;
                 edsRow.Vel = tdsRow.Vel;
-                edsRow.Wor = tdsRow.Wor;
+                edsRow.Wor = tdsRow.Wor_Rif;
                 edsRow.InFormazione = tdsRow.InFormazione;
                 edsRow.Infortunato = tdsRow.Infortunato;
                 edsRow.Squalificato = tdsRow.Squalificato;
@@ -1354,7 +1342,7 @@ namespace Common
                 tds.Giocatori.AddGiocatoriRow(edsRow);
             }
 
-            foreach (ExtTMDataSet.PortieriNSkillRow pnsRow in this.PortieriNSkill)
+            foreach (ExtTMDataSet2.GiocatoriNSkillRow pnsRow in this.GiocatoriNSkill)
             {
                 DB_TrophyDataSet2.PortieriRow edsRow = tds.Portieri.NewPortieriRow();
 
@@ -1364,15 +1352,15 @@ namespace Common
 
                 edsRow.For = pnsRow.For;
                 edsRow.Res = pnsRow.Res;
-                edsRow.Tir = pnsRow.Tir;
+                edsRow.Tir = pnsRow.Lon;
                 edsRow.Vel = pnsRow.Vel;
-                edsRow.Aer = pnsRow.Aer;
-                edsRow.Com = pnsRow.Com;
-                edsRow.Ele = pnsRow.Ele;
-                edsRow.Lan = pnsRow.Lan;
-                edsRow.Pre = pnsRow.Pre;
-                edsRow.Rif = pnsRow.Rif;
-                edsRow.Uno = pnsRow.Uno;
+                edsRow.Aer = pnsRow.Pos_Aer;
+                edsRow.Com = pnsRow.Cro_Com;
+                edsRow.Ele = pnsRow.Pas_Ele;
+                edsRow.Lan = pnsRow.Tes_Lan;
+                edsRow.Pre = pnsRow.Mar_Pre;
+                edsRow.Rif = pnsRow.Wor_Rif;
+                edsRow.Uno = pnsRow.Con_Uno;
 
                 edsRow.InFormazione = pnsRow.InFormazione;
                 edsRow.Infortunato = pnsRow.Infortunato;
@@ -1402,7 +1390,7 @@ namespace Common
             {
                 try
                 {
-                    ExtTMDataSet.GiocatoriNSkillRow edsRow = this.GiocatoriNSkill.NewGiocatoriNSkillRow();
+                    ExtTMDataSet2.GiocatoriNSkillRow edsRow = this.GiocatoriNSkill.NewGiocatoriNSkillRow();
                     edsRow.PlayerID = tdsRow.PlayerID;
 
                     ExtraDS.GiocatoriRow plyDB = PlayersDS.Giocatori.FindByPlayerID(edsRow.PlayerID);
@@ -1436,20 +1424,20 @@ namespace Common
                     edsRow.Wage = Tm_Utility.ASItoWage(edsRow.ASI);
 
                     edsRow.Età = tdsRow.Età;
-                    edsRow.Cal = tdsRow.Cal;
-                    edsRow.Con = tdsRow.Con;
-                    edsRow.Cro = tdsRow.Cro;
+                    edsRow.Set = tdsRow.Cal;
+                    edsRow.Con_Uno = tdsRow.Con;
+                    edsRow.Cro_Com = tdsRow.Cro;
                     edsRow.Fin = tdsRow.Fin;
                     edsRow.For = tdsRow.For;
-                    edsRow.Mar = tdsRow.Mar;
-                    edsRow.Pas = tdsRow.Pas;
-                    edsRow.Pos = tdsRow.Pos;
+                    edsRow.Mar_Pre = tdsRow.Mar;
+                    edsRow.Pas_Ele = tdsRow.Pas;
+                    edsRow.Pos_Aer = tdsRow.Pos;
                     edsRow.Res = tdsRow.Res;
-                    edsRow.Tec = tdsRow.Tec;
-                    edsRow.Tes = tdsRow.Tes;
-                    edsRow.Tir = tdsRow.Tir;
+                    edsRow.Tec_Tir = tdsRow.Tec;
+                    edsRow.Tes_Lan = tdsRow.Tes;
+                    edsRow.Lon = tdsRow.Tir;
                     edsRow.Vel = tdsRow.Vel;
-                    edsRow.Wor = tdsRow.Wor;
+                    edsRow.Wor_Rif = tdsRow.Wor;
 
                     if (!tdsRow.IsRecNull())
                         edsRow.Rec = tdsRow.Rec;
@@ -1517,7 +1505,7 @@ namespace Common
             {
                 try
                 {
-                    ExtTMDataSet.PortieriNSkillRow edsRow = this.PortieriNSkill.NewPortieriNSkillRow();
+                    ExtTMDataSet2.GiocatoriNSkillRow edsRow = this.GiocatoriNSkill.NewGiocatoriNSkillRow();
                     edsRow.PlayerID = tdsRow.PlayerID;
 
                     ExtraDS.GiocatoriRow plyDB = PlayersDS.Giocatori.FindByPlayerID(edsRow.PlayerID);
@@ -1540,15 +1528,15 @@ namespace Common
                     edsRow.Età = tdsRow.Età;
                     edsRow.For = tdsRow.For;
                     edsRow.Res = tdsRow.Res;
-                    edsRow.Tir = tdsRow.Tir;
+                    edsRow.Lon = tdsRow.Tir;
                     edsRow.Vel = tdsRow.Vel;
-                    edsRow.Aer = tdsRow.Aer;
-                    edsRow.Com = tdsRow.Com;
-                    edsRow.Ele = tdsRow.Ele;
-                    edsRow.Lan = tdsRow.Lan;
-                    edsRow.Pre = tdsRow.Pre;
-                    edsRow.Rif = tdsRow.Rif;
-                    edsRow.Uno = tdsRow.Uno;
+                    edsRow.Pos_Aer = tdsRow.Aer;
+                    edsRow.Cro_Com = tdsRow.Com;
+                    edsRow.Pas_Ele = tdsRow.Ele;
+                    edsRow.Tes_Lan = tdsRow.Lan;
+                    edsRow.Mar_Pre = tdsRow.Pre;
+                    edsRow.Wor_Rif = tdsRow.Rif;
+                    edsRow.Con_Uno = tdsRow.Uno;
 
                     if (!tdsRow.IsRecNull())
                         edsRow.Rec = tdsRow.Rec;
@@ -1577,7 +1565,7 @@ namespace Common
 
                     edsRow.SetFP(fun);
 
-                    this.PortieriNSkill.Rows.Add(edsRow);
+                    this.GiocatoriNSkill.Rows.Add(edsRow);
                 }
                 catch (Exception e)
                 {
@@ -1639,3 +1627,4 @@ namespace Common
     }
 
 }
+

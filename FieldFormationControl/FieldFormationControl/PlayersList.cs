@@ -53,7 +53,7 @@ namespace FieldFormationControl
 
         }
 
-        public void SetPlayers(ExtraDS.GiocatoriRow[] gr, ExtTMDataSet extTMDataSet)
+        public void SetPlayers(ExtraDS.GiocatoriRow[] gr, ExtTMDataSet2 extTMDataSet)
         {
             listplayers = new ListPlayer[gr.Length];
 
@@ -64,7 +64,7 @@ namespace FieldFormationControl
                 if (gr[i].FPn != 0)
                     listplayers[i].SetData(gr[i], extTMDataSet.GiocatoriNSkill.FindByPlayerID(gr[i].PlayerID));
                 else
-                    listplayers[i].SetData(gr[i], extTMDataSet.PortieriNSkill.FindByPlayerID(gr[i].PlayerID));
+                    listplayers[i].SetDataGk(gr[i], extTMDataSet.GiocatoriNSkill.FindByPlayerID(gr[i].PlayerID));
 
                 listplayers[i].MouseDown += PlayersList_MouseDown;
                 listplayers[i].MouseUp += PlayersList_MouseUp;

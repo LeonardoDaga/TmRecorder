@@ -977,6 +977,121 @@ namespace Common
             }
         }
 
+        partial class PlayerHistoryRow: System.Data.DataRow
+        {
+            #region redefinition skills
+
+            public decimal Pre
+            {
+                get { return Mar_Pre; }
+                set { Mar_Pre = value; }
+            }
+
+            public decimal Mar
+            {
+                get { return Mar_Pre; }
+                set { Mar_Pre = value; }
+            }
+
+            public decimal Con
+            {
+                get { return Con_Uno; }
+                set { Con_Uno = value; }
+            }
+
+            public decimal Uno
+            {
+                get { return Con_Uno; }
+                set { Con_Uno = value; }
+            }
+
+            public decimal Wor
+            {
+                get { return Wor_Rif; }
+                set { Wor_Rif = value; }
+            }
+
+            public decimal Rif
+            {
+                get { return Wor_Rif; }
+                set { Wor_Rif = value; }
+            }
+
+            public decimal Pas
+            {
+                get { return Pas_Ele; }
+                set { Pas_Ele = value; }
+            }
+
+            public decimal Ele
+            {
+                get { return Pas_Ele; }
+                set { Pas_Ele = value; }
+            }
+
+            public decimal Pos
+            {
+                get { return Pos_Aer; }
+                set { Pos_Aer = value; }
+            }
+
+            public decimal Aer
+            {
+                get { return Pos_Aer; }
+                set { Pos_Aer = value; }
+            }
+
+            public decimal Cro
+            {
+                get { return Cro_Com; }
+                set { Cro_Com = value; }
+            }
+
+            public decimal Com
+            {
+                get { return Cro_Com; }
+                set { Cro_Com = value; }
+            }
+
+            public decimal Tec
+            {
+                get { return Tec_Tir; }
+                set { Tec_Tir = value; }
+            }
+
+            public decimal Tir
+            {
+                get { return Tec_Tir; }
+                set { Tec_Tir = value; }
+            }
+
+            public decimal Tes
+            {
+                get { return Tes_Lan; }
+                set { Tes_Lan = value; }
+            }
+
+            public decimal Lan
+            {
+                get { return Tes_Lan; }
+                set { Tes_Lan = value; }
+            }
+
+            public float GK
+            {
+                get { return DC_GK; }
+                set { DC_GK = value; }
+            }
+
+            public float DC
+            {
+                get { return DC_GK; }
+                set { DC_GK = value; }
+            }
+
+            #endregion
+        }
+
         partial class GiocatoriNSkillRow : System.Data.DataRow
         {
             bool isDirty = false;
@@ -1029,7 +1144,7 @@ namespace Common
 
             int[] skillCol_Pl = new int[] { 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 };
 
-            int[] skillCol_Gk = new int[] { 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 };
+            int[] skillCol_Gk = new int[] { 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 17, 17, 17};
 
             int[] skillCol
             {
@@ -1042,18 +1157,19 @@ namespace Common
                 }
             }
 
+            float[] _skills = null;
             public float[] Skills
             {
                 get
                 {
-                    float[] f = new float[14];
+                    float[] _skills = new float[14];
 
                     for (int i = 0; i < 14; i++)
                     {
-                        f[i] = (float)((decimal)this[skillCol[i]]);
+                        _skills[i] = (float)((decimal)this[skillCol[i]]);
                     }
 
-                    return f;
+                    return _skills;
                 }
             }
             public float[] Atts
@@ -1124,7 +1240,19 @@ namespace Common
 
             public void SetFP(Gain_Function PosF)
             {
-                FPn = Tm_Utility.FPToNumber(FP);
+                if (!IsFPNull())
+                    FPn = Tm_Utility.FPToNumber(FP);
+                else
+                {
+                    FPn = 0;
+                    FP = "GK";
+                }
+
+                if (FPn == 0)
+                {
+                    SetFP_Gk(PosF);
+                    return;
+                }
 
                 if (IsAdaNull())
                     Ada = 0;
@@ -1140,11 +1268,26 @@ namespace Common
                 CStr = (decimal)MaxAttsToStar(MaxAtts() / kRou * (float)((SkillSum + SSD) / SkillSum));
             }
 
+            public void SetFP_Gk(Gain_Function PosF)
+            {
+                Atts = PosF.GetAttitude_GK(Skills, (float)this.Rou);
+                OSi = PosF.GetOSi_GK(Atts, Skills);
+
+                float kRou = PosF.gds.funRou.Value((float)Rou);
+
+                decimal SSD = Tm_Utility.ASItoSkSum((decimal)this.ASI, true) - this.SkillSum;
+                CStr = (decimal)MaxAttsToStar(MaxAtts() / kRou * (float)((SkillSum + SSD) / SkillSum));
+            }
+
             public decimal SkillSum
             {
                 get
                 {
-                    return For + Res + Vel + Mar_Pre + Con_Uno + Wor_Rif + Pas_Ele + Pos_Aer + Cro_Com +
+                    if (FPn == 0)
+                        return For + Res + Vel + Mar_Pre + Con_Uno + Wor_Rif + Pas_Ele + Pos_Aer + Cro_Com +
+                        Tec_Tir + Tes_Lan;
+                    else
+                        return For + Res + Vel + Mar_Pre + Con_Uno + Wor_Rif + Pas_Ele + Pos_Aer + Cro_Com +
                         Tec_Tir + Tes_Lan + Fin + Set + Lon;
                 }
             }
@@ -1247,6 +1390,24 @@ namespace Common
                 set { Tes_Lan = value; }
             }
 
+            public float GK
+            {
+                get { return DC_GK; }
+                set { DC_GK = value; }
+            }
+
+            public float DC
+            {
+                get { return DC_GK; }
+                set { DC_GK = value; }
+            }
+
+            public float PO
+            {
+                get { return DC_GK; }
+                set { DC_GK = value; }
+            }
+
             #endregion
 
             public string ToExcelString()
@@ -1290,11 +1451,6 @@ namespace Common
             {
                 gnsRow.SetFP(fun);
             }
-
-            foreach (ExtTMDataSet2.GiocatoriNSkillRow gnsRow in this.GiocatoriNSkill)
-            {
-                gnsRow.SetFP(fun);
-            }
         }
 
         public void RecalculateSpecData(Gain_Function fun, int plyID)
@@ -1302,10 +1458,6 @@ namespace Common
             ExtTMDataSet2.GiocatoriNSkillRow gnsRow = GiocatoriNSkill.FindByPlayerID(plyID);
             if (gnsRow != null)
                 gnsRow.SetFP(fun);
-
-            ExtTMDataSet2.GiocatoriNSkillRow pnsRow = GiocatoriNSkill.FindByPlayerID(plyID);
-            if (pnsRow != null)
-                pnsRow.SetFP(fun);
         }
 
         public DB_TrophyDataSet2 Get_TDS2()
@@ -1340,33 +1492,6 @@ namespace Common
                 edsRow.Squalificato = tdsRow.Squalificato;
 
                 tds.Giocatori.AddGiocatoriRow(edsRow);
-            }
-
-            foreach (ExtTMDataSet2.GiocatoriNSkillRow pnsRow in this.GiocatoriNSkill)
-            {
-                DB_TrophyDataSet2.PortieriRow edsRow = tds.Portieri.NewPortieriRow();
-
-                edsRow.PlayerID = pnsRow.PlayerID;
-                edsRow.Età = pnsRow.Età;
-                edsRow.ASI = pnsRow.ASI;
-
-                edsRow.For = pnsRow.For;
-                edsRow.Res = pnsRow.Res;
-                edsRow.Tir = pnsRow.Lon;
-                edsRow.Vel = pnsRow.Vel;
-                edsRow.Aer = pnsRow.Pos_Aer;
-                edsRow.Com = pnsRow.Cro_Com;
-                edsRow.Ele = pnsRow.Pas_Ele;
-                edsRow.Lan = pnsRow.Tes_Lan;
-                edsRow.Pre = pnsRow.Mar_Pre;
-                edsRow.Rif = pnsRow.Wor_Rif;
-                edsRow.Uno = pnsRow.Con_Uno;
-
-                edsRow.InFormazione = pnsRow.InFormazione;
-                edsRow.Infortunato = pnsRow.Infortunato;
-                edsRow.Squalificato = pnsRow.Squalificato;
-
-                tds.Portieri.AddPortieriRow(edsRow);
             }
 
             return tds;
@@ -1508,7 +1633,7 @@ namespace Common
                     ExtTMDataSet2.GiocatoriNSkillRow edsRow = this.GiocatoriNSkill.NewGiocatoriNSkillRow();
                     edsRow.PlayerID = tdsRow.PlayerID;
 
-                    ExtraDS.GiocatoriRow plyDB = PlayersDS.Giocatori.FindByPlayerID(edsRow.PlayerID);
+                    ExtraDS.GiocatoriRow plyDB = PlayersDS.Giocatori.FindByPlayerID(tdsRow.PlayerID);
                     if (plyDB == null) continue;
 
                     edsRow.Numero = plyDB.Numero;
@@ -1528,15 +1653,15 @@ namespace Common
                     edsRow.Età = tdsRow.Età;
                     edsRow.For = tdsRow.For;
                     edsRow.Res = tdsRow.Res;
-                    edsRow.Lon = tdsRow.Tir;
+                    edsRow.Tir = tdsRow.Tir;
                     edsRow.Vel = tdsRow.Vel;
-                    edsRow.Pos_Aer = tdsRow.Aer;
-                    edsRow.Cro_Com = tdsRow.Com;
-                    edsRow.Pas_Ele = tdsRow.Ele;
-                    edsRow.Tes_Lan = tdsRow.Lan;
-                    edsRow.Mar_Pre = tdsRow.Pre;
-                    edsRow.Wor_Rif = tdsRow.Rif;
-                    edsRow.Con_Uno = tdsRow.Uno;
+                    edsRow.Aer = tdsRow.Aer;
+                    edsRow.Com = tdsRow.Com;
+                    edsRow.Ele = tdsRow.Ele;
+                    edsRow.Lan = tdsRow.Lan;
+                    edsRow.Pre = tdsRow.Pre;
+                    edsRow.Rif = tdsRow.Rif;
+                    edsRow.Uno = tdsRow.Uno;
 
                     if (!tdsRow.IsRecNull())
                         edsRow.Rec = tdsRow.Rec;

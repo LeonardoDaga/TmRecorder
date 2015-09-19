@@ -475,7 +475,7 @@ namespace TMRecorder
             ts.ReadXml(@"C:\Temp\TrainersSkills.xml");
 
             Program.Setts.Initialize();
-            TeamHistory History = new TeamHistory();
+            TeamHistory2 History = new TeamHistory2();
             History.PlayersDS = new ExtraDS();
             History.PlayersDS.ReadXml(@"C:\Temp\PlayersDS.xml");
 
@@ -490,7 +490,7 @@ namespace TMRecorder
         {
             DateTime dt = DateTime.Now;
             Program.Setts.Initialize();
-            TeamHistory History = new TeamHistory();
+            TeamHistory2 History = new TeamHistory2();
 
             StreamReader file = new StreamReader(@"C:\Temp\LoadTIfromTrainingNew.txt");
             string page = file.ReadToEnd();
@@ -504,7 +504,7 @@ namespace TMRecorder
         public static void Test6()
         {
             Program.Setts.Initialize();
-            TeamHistory History = new TeamHistory();
+            TeamHistory2 History = new TeamHistory2();
 
             StreamReader file = new StreamReader(@"C:\Temp\LoadKampFromHTMLcode.tmreport.txt");
             string page = file.ReadToEnd();
@@ -533,15 +533,15 @@ namespace TMRecorder
         {
             Program.Setts.Initialize();
 
-            ExtTMDataSet eds = new ExtTMDataSet();
+            ExtTMDataSet2 eds = new ExtTMDataSet2();
             eds.GiocatoriNSkill.ReadXml(@"C:\Temp\ExtTmDataSet.xml");
 
-            TeamHistory History = new TeamHistory();
+            TeamHistory2 History = new TeamHistory2();
 
             ChampDS champDS = new ChampDS();
             champDS.ReadXml(@"C:\Temp\ChampDS.xml");
 
-            PlayerForm form = new PlayerForm(eds.GiocatoriNSkill, champDS.PlyStats);
+            PlayerForm2 form = new PlayerForm2(eds.GiocatoriNSkill, champDS.PlyStats);
 
 
             form.FillMatchStatsGraph(champDS.PlyStats);
@@ -550,7 +550,7 @@ namespace TMRecorder
         public static void TestLoadSquad()
         {
             Program.Setts.Initialize();
-            TeamHistory History = new TeamHistory();
+            TeamHistory2 History = new TeamHistory2();
 
             History.PlayersDS = new ExtraDS();
             History.PlayersDS.ReadXml(@"C:\Temp\PlayersDS.xml");
@@ -571,11 +571,11 @@ namespace TMRecorder
         public static void TestFillPLTrainingTable()
         {
             Program.Setts.Initialize();
-            TeamHistory History = new TeamHistory();
+            TeamHistory2 History = new TeamHistory2();
             History.PlayersDS = new ExtraDS();
             History.PlayersDS.ReadXml(@"C:\Temp\PlayersDS.xml");
 
-            ExtTMDataSet eds = new ExtTMDataSet();
+            ExtTMDataSet2 eds = new ExtTMDataSet2();
             eds.ReadXml(@"C:\temp\this_ix.txt");
             History.Add(eds);
 
@@ -593,7 +593,7 @@ namespace TMRecorder
         public static void TestLoadSquadShort()
         {
             Program.Setts.Initialize();
-            TeamHistory History = new TeamHistory();
+            TeamHistory2 History = new TeamHistory2();
 
             History.PlayersDS = new ExtraDS();
             History.PlayersDS.ReadXml(@"H:\Documents\TmRecorder.debug\PlayersDS.xml");

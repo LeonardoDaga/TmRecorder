@@ -458,7 +458,9 @@ namespace NTR_Common
                 gr.FPn = gnsRow.FPn;
                 gr.wBorn = gnsRow.wBorn;
 
-                if ((gnsRow.Ada != 0) || (egRow.IsAdaNull()))
+                if (gr.FPn == 0)
+                    gr.Ada = 0M;
+                else if ((egRow.IsAdaNull()) || (gnsRow.Ada != 0))
                     gr.Ada = gnsRow.Ada;
                 else
                     gr.Ada = egRow.Ada;
@@ -474,9 +476,13 @@ namespace NTR_Common
                 gr.Cro = gnsRow.Cro_Com;
                 gr.Tec = gnsRow.Tec_Tir;
                 gr.Tes = gnsRow.Tes_Lan;
-                gr.Fin = gnsRow.Fin;
-                gr.Dis = gnsRow.Lon;
-                gr.Cal = gnsRow.Set;
+
+                if (gr.FPn != 0)
+                {
+                    gr.Fin = gnsRow.Fin;
+                    gr.Dis = gnsRow.Lon;
+                    gr.Cal = gnsRow.Set;
+                }
 
                 gr.ASI = gnsRow.ASI;
 

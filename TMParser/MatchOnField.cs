@@ -17,7 +17,7 @@ namespace TMRecorder
         public ChampDS champDS = null;
         public MatchDS matchDS = null;
         public ExtraDS extraDS = null;
-        public TeamHistory History = null;
+        public TeamHistory2 History = null;
 
         private FieldPlayer[] fps = new FieldPlayer[6];
 
@@ -39,7 +39,7 @@ namespace TMRecorder
             }
         }
 
-        public MatchOnField(ChampDS champds, ExtraDS extrads, TeamHistory hist)
+        public MatchOnField(ChampDS champds, ExtraDS extrads, TeamHistory2 hist)
         {
             InitializeComponent();
 
@@ -86,7 +86,7 @@ namespace TMRecorder
                 lblTacticsComment.Text = "There is no team history to compute the tactics efficacy for this match";
             }
 
-            ExtTMDataSet extDS = History.DS_BeforeDate(mi.mr.Date);
+            ExtTMDataSet2 extDS = History.DS_BeforeDate(mi.mr.Date);
             if (extDS == null)
             {
                 // Non ci sono dati prima di questa data
@@ -102,7 +102,7 @@ namespace TMRecorder
 
                 if (pl == null) continue;
 
-                ExtTMDataSet.GiocatoriNSkillRow gr = extDS.GiocatoriNSkill.FindByPlayerID(row.PlayerID);
+                ExtTMDataSet2.GiocatoriNSkillRow gr = extDS.GiocatoriNSkill.FindByPlayerID(row.PlayerID);
                 if (gr != null)
                 {
                     float skVal = gr.GetSkVal(row.Position.ToUpper());
@@ -175,10 +175,10 @@ namespace TMRecorder
                     continue;
                 }
 
-                ExtTMDataSet.PortieriNSkillRow pr = extDS.PortieriNSkill.FindByPlayerID(row.PlayerID);
+                ExtTMDataSet2.GiocatoriNSkillRow pr = extDS.GiocatoriNSkill.FindByPlayerID(row.PlayerID);
                 if (pr != null)
                 {
-                    float skVal = pr.PO;
+                    float skVal = pr.GK;
 
                     // Compute the Balanced value
                     vBal += skVal;

@@ -19,8 +19,8 @@ namespace TMRecorder
             Application.SetCompatibleTextRenderingDefault(false);
 
             //DebugClass.TestLoadKampFromHTMLcode();
-            DebugClass.TestLoadSquadShort();
-            // Application.Run(new MainForm(args));
+            //DebugClass.TestLoadSquadShort();
+            Application.Run(new MainForm(args));
         }
     }
 }

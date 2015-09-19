@@ -205,7 +205,7 @@ namespace FieldFormationControl
             fpDR.Data = R;
         }
 
-        public void UpdateLPWithData(ExtraDS extraDS, ExtTMDataSet extTmDS)
+        public void UpdateLPWithData(ExtraDS extraDS, ExtTMDataSet2 extTmDS)
         {
             foreach (Control cnt in this.Controls)
             {
@@ -217,12 +217,12 @@ namespace FieldFormationControl
                     if (gr == null) continue;
                     if (gr.FPn == 0) // is a GK
                     {
-                        ExtTMDataSet.PortieriNSkillRow gnsr = extTmDS.PortieriNSkill.FindByPlayerID(lp.PlayerID);
-                        lp.SetData(gr, gnsr);
+                        ExtTMDataSet2.GiocatoriNSkillRow gnsr = extTmDS.GiocatoriNSkill.FindByPlayerID(lp.PlayerID);
+                        lp.SetDataGk(gr, gnsr);
                     }
                     else
                     {
-                        ExtTMDataSet.GiocatoriNSkillRow gnsr = extTmDS.GiocatoriNSkill.FindByPlayerID(lp.PlayerID);
+                        ExtTMDataSet2.GiocatoriNSkillRow gnsr = extTmDS.GiocatoriNSkill.FindByPlayerID(lp.PlayerID);
                         lp.SetData(gr, gnsr);
                     }
                 }
@@ -266,12 +266,12 @@ namespace FieldFormationControl
                     ExtraDS.GiocatoriRow gr = (ExtraDS.GiocatoriRow)lp.ExtraDsRow;
                     if (gr.FPn == 0) // it's a gk
                     {
-                        ExtTMDataSet.PortieriNSkillRow pnsr = (ExtTMDataSet.PortieriNSkillRow)player.PlayerDataRow;
+                        ExtTMDataSet2.GiocatoriNSkillRow pnsr = (ExtTMDataSet2.GiocatoriNSkillRow)player.PlayerDataRow;
                         lp.Value = pnsr.PO;
                     }
                     else
                     {
-                        ExtTMDataSet.GiocatoriNSkillRow gnsr = (ExtTMDataSet.GiocatoriNSkillRow)player.PlayerDataRow;
+                        ExtTMDataSet2.GiocatoriNSkillRow gnsr = (ExtTMDataSet2.GiocatoriNSkillRow)player.PlayerDataRow;
                         UpdateLineupPlayerWithGNSRow(lp, gnsr);
                     }
 
@@ -329,14 +329,14 @@ namespace FieldFormationControl
                     ExtraDS.GiocatoriRow gr = (ExtraDS.GiocatoriRow)lp.ExtraDsRow;
                     if (gr.FPn == 0) // it's a gk
                     {
-                        ExtTMDataSet.PortieriNSkillRow pnsr = (ExtTMDataSet.PortieriNSkillRow)lp.PlayerDataRow;
+                        ExtTMDataSet2.GiocatoriNSkillRow pnsr = (ExtTMDataSet2.GiocatoriNSkillRow)lp.PlayerDataRow;
                         lp.Value = pnsr.PO;
                     }
                     else
                     {
-                        ExtTMDataSet.GiocatoriNSkillRow gnsr = (ExtTMDataSet.GiocatoriNSkillRow)lp.PlayerDataRow;
+                        ExtTMDataSet2.GiocatoriNSkillRow gnsr = (ExtTMDataSet2.GiocatoriNSkillRow)lp.PlayerDataRow;
                         if (gnsr != null) UpdateLineupPlayerWithGNSRow(lp, gnsr);
-                        gnsr = (ExtTMDataSet.GiocatoriNSkillRow)player.PlayerDataRow;
+                        gnsr = (ExtTMDataSet2.GiocatoriNSkillRow)player.PlayerDataRow;
                         if (gnsr != null) UpdateLineupPlayerWithGNSRow(player, gnsr);
                     }
 
@@ -346,7 +346,7 @@ namespace FieldFormationControl
             }
         }
 
-        private void UpdateLineupPlayerWithGNSRow(LineupPlayer lp, ExtTMDataSet.GiocatoriNSkillRow gnsr)
+        private void UpdateLineupPlayerWithGNSRow(LineupPlayer lp, ExtTMDataSet2.GiocatoriNSkillRow gnsr)
         {
             if (lp == fpDC) lp.Value = gnsr.DC;
             if (lp == fpDCR) lp.Value = gnsr.DC;

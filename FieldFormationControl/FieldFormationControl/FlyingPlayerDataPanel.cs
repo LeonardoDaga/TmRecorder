@@ -105,7 +105,7 @@ namespace FieldFormationControl
                 //lbl18.Text = Tactics.Factor(Tactics.FactorType.Standard, gnsr, Tactics.Type.Through, 1).ToString("N1");
                 //lbl19.Text = Tactics.Factor(Tactics.FactorType.Standard, gnsr, Tactics.Type.Wings, 1).ToString("N1");
             }
-            else
+            else if (PlayerDataRow.GetType() == typeof(ExtTMDataSet.PortieriNSkillRow))
             {
                 Width = 169;
                 Height = 165;
@@ -148,6 +148,102 @@ namespace FieldFormationControl
                 lblASI.Text = gnsr.ASI.ToString();
                 lblFP.Text = "GK";
                 lblFP.ForeColor = Color.Blue;
+            }
+            else if (PlayerDataRow.GetType() == typeof(ExtTMDataSet2.GiocatoriNSkillRow))
+            {
+                Width = 260;
+                Height = 166;
+
+                SetLanguage(0);
+
+                ExtTMDataSet2.GiocatoriNSkillRow gnsr = (ExtTMDataSet2.GiocatoriNSkillRow)PlayerDataRow;
+                ExtraDS.GiocatoriRow gr = (ExtraDS.GiocatoriRow)ExtraDsRow;
+
+                if (gnsr.FPn != 0)
+                {
+                    lbl1.Text = gnsr.For.ToString("N0");
+                    lbl2.Text = gnsr.Res.ToString("N0");
+                    lbl3.Text = gnsr.Vel.ToString("N0");
+                    lbl4.Text = gnsr.Mar.ToString("N0");
+                    lbl5.Text = gnsr.Con.ToString("N0");
+                    lbl6.Text = gnsr.Wor.ToString("N0");
+                    lbl7.Text = gnsr.Pos.ToString("N0");
+                    lbl8.Text = gnsr.Pas.ToString("N0");
+                    lbl9.Text = gnsr.Cro.ToString("N0");
+                    lbl10.Text = gnsr.Tec.ToString("N0");
+                    lbl11.Text = gnsr.Tes.ToString("N0");
+                    lbl12.Text = gnsr.Fin.ToString("N0");
+                    lbl13.Text = gnsr.Lon.ToString("N0");
+                    lbl14.Text = gnsr.Set.ToString("N0");
+                    lbl15.Text = gnsr.Rou.ToString("N0");
+
+                    string nameNdata = gnsr.Nome;
+                    string[] toks = nameNdata.Split('|');
+                    lblName.Text = toks[0];
+
+                    TmWeek tmw = TmWeek.GetAge(gnsr.wBorn, DateTime.Now);
+                    lblAge.Text = tmw.ToAge(Current.Language);
+                    lblASI.Text = gnsr.ASI.ToString();
+                    lblFP.Text = gnsr.FP;
+                    lblFP.ForeColor = Color.Blue;
+
+                    gbGK.Visible = false;
+
+                    FillGrade(lblDL, gnsr.DL);
+                    FillGrade(lblDC, gnsr.DC);
+                    FillGrade(lblDR, gnsr.DR);
+
+                    FillGrade(lblDML, gnsr.DML);
+                    FillGrade(lblDMC, gnsr.DMC);
+                    FillGrade(lblDMR, gnsr.DMR);
+
+                    FillGrade(lblML, gnsr.ML);
+                    FillGrade(lblMC, gnsr.MC);
+                    FillGrade(lblMR, gnsr.MR);
+
+                    FillGrade(lblOML, gnsr.OML);
+                    FillGrade(lblOMC, gnsr.OMC);
+                    FillGrade(lblOMR, gnsr.OMR);
+
+                    FillGrade(lblFC, gnsr.FC);
+                }
+                else
+                {
+                    lbl1.Text = gnsr.For.ToString("N0");
+                    lbl2.Text = gnsr.Res.ToString("N0");
+                    lbl3.Text = gnsr.Vel.ToString("N0");
+                    lbl4.Text = gnsr.Pre.ToString("N0");
+                    lbl5.Text = gnsr.Uno.ToString("N0");
+                    lbl6.Text = gnsr.Rif.ToString("N0");
+                    lbl7.Text = gnsr.Aer.ToString("N0");
+                    lbl8.Text = gnsr.Ele.ToString("N0");
+                    lbl9.Text = gnsr.Com.ToString("N0");
+                    lbl10.Text = gnsr.Tir.ToString("N0");
+                    lbl11.Text = gnsr.Lan.ToString("N0");
+                    lbl12.Text = gnsr.Rou.ToString("N0");
+                    lbl13.Visible = false;
+                    lbl14.Visible = false;
+                    lbl15.Visible = false;
+
+                    gbD.Visible = false;
+                    gbDM.Visible = false;
+                    gbM.Visible = false;
+                    gbOM.Visible = false;
+                    gbF.Visible = false;
+                    gbGK.Visible = true;
+                    gbTactics.Visible = false;
+
+                    FillGrade(lblGK, gnsr.PO);
+
+                    string nameNdata = gnsr.Nome;
+                    string[] toks = nameNdata.Split('|');
+                    lblName.Text = toks[0];
+                    TmWeek tmw = TmWeek.GetAge(gnsr.wBorn, DateTime.Now);
+                    lblAge.Text = tmw.ToAge(Current.Language);
+                    lblASI.Text = gnsr.ASI.ToString();
+                    lblFP.Text = "GK";
+                    lblFP.ForeColor = Color.Blue;
+                }
             }
         }
 

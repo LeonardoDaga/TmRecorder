@@ -379,7 +379,7 @@ namespace Common
 
         public override float[] GetAttitude_GK(float[] skills, float Rou)
         {
-            float[] PO = new float[1];
+            float[] PO = new float[14];
 
             for (int skill = 0; skill < 11; skill++)
             {

@@ -201,9 +201,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BestPlayersDS.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Class1.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="ComputeBloom.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -280,18 +277,6 @@
     <Compile Include="TraderEditInfo.Designer.cs">
       <DependentUpon>TraderEditInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="GKData.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="GKData.Designer.cs">
-      <DependentUpon>GKData.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GKForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GKForm.Designer.cs">
-      <DependentUpon>GKForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="ISO8601Date.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -329,18 +314,6 @@
     <Compile Include="OptionsForm.Designer.cs">
       <DependentUpon>OptionsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="PlayerData.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PlayerData.Designer.cs">
-      <DependentUpon>PlayerData.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PlayerForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PlayerForm.Designer.cs">
-      <DependentUpon>PlayerForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="PlayerReview.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -371,7 +344,6 @@
     <Compile Include="StatisticsBox.Designer.cs">
       <DependentUpon>StatisticsBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="TeamHistory.cs" />
     <Compile Include="TeamStats.cs">
       <DependentUpon>TeamStats.xsd</DependentUpon>
     </Compile>
@@ -433,14 +405,6 @@
       <DependentUpon>LineUp.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="GKData.resx">
-      <DependentUpon>GKData.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GKForm.resx">
-      <DependentUpon>GKForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Languages.resx">
       <SubType>Designer</SubType>
       <Generator>ResXFileCodeGenerator</Generator>
@@ -478,17 +442,9 @@
       <SubType>Designer</SubType>
       <DependentUpon>OptionsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PlayerData.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>PlayerData.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="PlayerForm2.resx">
       <DependentUpon>PlayerForm2.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PlayerForm.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>PlayerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PlayerReview.resx">
       <SubType>Designer</SubType>

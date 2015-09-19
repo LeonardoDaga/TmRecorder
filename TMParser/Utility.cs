@@ -98,6 +98,29 @@ namespace TMRecorder
 
             return sv;
         }
+
+        public static SkillVariation Calc(ExtTMDataSet2.PlayerHistoryRow actual,
+                                          ExtTMDataSet2.PlayerHistoryRow last)
+        {
+            SkillVariation sv = new SkillVariation();
+            sv += SkillVariation.Calc(actual.For, last.For);
+            sv += SkillVariation.Calc(actual.Res, last.Res);
+            sv += SkillVariation.Calc(actual.Vel, last.Vel);
+            sv += SkillVariation.Calc(actual.Mar, last.Mar);
+            sv += SkillVariation.Calc(actual.Con, last.Con);
+            sv += SkillVariation.Calc(actual.Wor, last.Wor);
+            sv += SkillVariation.Calc(actual.Pos, last.Pos);
+            sv += SkillVariation.Calc(actual.Pas, last.Pas);
+            sv += SkillVariation.Calc(actual.Cro, last.Cro);
+            sv += SkillVariation.Calc(actual.Tec, last.Tec);
+            sv += SkillVariation.Calc(actual.Tes, last.Tes);
+            sv += SkillVariation.Calc(actual.Fin, last.Fin);
+            sv += SkillVariation.Calc(actual.Tir, last.Tir);
+            sv += SkillVariation.Calc(actual.Set, last.Set);
+
+            return sv;
+        }
+
     }
 
     class Utility

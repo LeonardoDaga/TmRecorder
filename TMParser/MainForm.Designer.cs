@@ -1607,7 +1607,7 @@ namespace TMRecorder
             // 
             // dataGridViewTextBoxColumn75
             // 
-            this.dataGridViewTextBoxColumn75.DataPropertyName = "Tir";
+            this.dataGridViewTextBoxColumn75.DataPropertyName = "Lon";
             dataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
             this.dataGridViewTextBoxColumn75.DefaultCellStyle = dataGridViewCellStyle17;
             this.dataGridViewTextBoxColumn75.HeaderText = "Lon";
@@ -1619,7 +1619,7 @@ namespace TMRecorder
             // 
             // dataGridViewTextBoxColumn76
             // 
-            this.dataGridViewTextBoxColumn76.DataPropertyName = "Cal";
+            this.dataGridViewTextBoxColumn76.DataPropertyName = "Set";
             dataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
             this.dataGridViewTextBoxColumn76.DefaultCellStyle = dataGridViewCellStyle18;
             this.dataGridViewTextBoxColumn76.HeaderText = "Set";
@@ -2207,7 +2207,7 @@ namespace TMRecorder
             // 
             // dataGridViewTextBoxColumn40
             // 
-            this.dataGridViewTextBoxColumn40.DataPropertyName = "Tir";
+            this.dataGridViewTextBoxColumn40.DataPropertyName = "Lon";
             dataGridViewCellStyle54.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
             this.dataGridViewTextBoxColumn40.DefaultCellStyle = dataGridViewCellStyle54;
             this.dataGridViewTextBoxColumn40.HeaderText = "Lon";
@@ -2219,7 +2219,7 @@ namespace TMRecorder
             // 
             // dataGridViewTextBoxColumn41
             // 
-            this.dataGridViewTextBoxColumn41.DataPropertyName = "Cal";
+            this.dataGridViewTextBoxColumn41.DataPropertyName = "Set";
             dataGridViewCellStyle55.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
             this.dataGridViewTextBoxColumn41.DefaultCellStyle = dataGridViewCellStyle55;
             this.dataGridViewTextBoxColumn41.HeaderText = "Set";
@@ -5577,7 +5577,7 @@ namespace TMRecorder
             // 
             // calDataGridViewTextBoxColumn
             // 
-            this.calDataGridViewTextBoxColumn.DataPropertyName = "Cal";
+            this.calDataGridViewTextBoxColumn.DataPropertyName = "Set";
             dataGridViewCellStyle131.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
             this.calDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle131;
             this.calDataGridViewTextBoxColumn.HeaderText = "Set";
@@ -5586,7 +5586,7 @@ namespace TMRecorder
             // 
             // tirDataGridViewTextBoxColumn
             // 
-            this.tirDataGridViewTextBoxColumn.DataPropertyName = "Tir";
+            this.tirDataGridViewTextBoxColumn.DataPropertyName = "Lon";
             dataGridViewCellStyle132.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
             this.tirDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle132;
             this.tirDataGridViewTextBoxColumn.HeaderText = "Lon";

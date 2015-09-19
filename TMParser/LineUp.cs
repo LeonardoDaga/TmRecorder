@@ -34,7 +34,7 @@ namespace TMRecorder
         public ChampDS champDS = null;
         public MatchDS matchDS = null;
         public ExtraDS extraDS = null;
-        public TeamHistory History = null;
+        public TeamHistory2 History = null;
         string isReservesFilter = "";
         string playerTypeFilter = "";
         bool browseLineup = false;
@@ -59,7 +59,7 @@ namespace TMRecorder
             }
         }
 
-        public LineUp(ChampDS champds, ExtraDS extrads, TeamHistory hist)
+        public LineUp(ChampDS champds, ExtraDS extrads, TeamHistory2 hist)
         {
             InitializeComponent();
 
@@ -149,13 +149,13 @@ namespace TMRecorder
 
                 if (gr.FPn == 0) // This is a GK
                 {
-                    ExtTMDataSet.PortieriNSkillRow gnsr = History.actualDts.PortieriNSkill.FindByPlayerID(pl.playerID);
+                    ExtTMDataSet2.GiocatoriNSkillRow gnsr = History.actualDts.GiocatoriNSkill.FindByPlayerID(pl.playerID);
 
                     vSquad += gnsr.PO;
                 }
                 else
                 {
-                    ExtTMDataSet.GiocatoriNSkillRow gnsr = History.actualDts.GiocatoriNSkill.FindByPlayerID(pl.playerID);
+                    ExtTMDataSet2.GiocatoriNSkillRow gnsr = History.actualDts.GiocatoriNSkill.FindByPlayerID(pl.playerID);
 
                     string pos = formation.GetPlayerPosition(pl);
                     vSquad += gnsr.GetSkVal(pos);
@@ -225,12 +225,12 @@ namespace TMRecorder
                 {
                     if (gr.FPn != 0)
                     {
-                        ExtTMDataSet.GiocatoriNSkillRow gnsr = History.actualDts.GiocatoriNSkill.FindByPlayerID(row.PlayerID);
+                        ExtTMDataSet2.GiocatoriNSkillRow gnsr = History.actualDts.GiocatoriNSkill.FindByPlayerID(row.PlayerID);
                         pl.value = gnsr.GetSkVal(f.GetPlayerPosition(pl));
                     }
                     else
                     {
-                        ExtTMDataSet.PortieriNSkillRow gnsr = History.actualDts.PortieriNSkill.FindByPlayerID(row.PlayerID);
+                        ExtTMDataSet2.GiocatoriNSkillRow gnsr = History.actualDts.GiocatoriNSkill.FindByPlayerID(row.PlayerID);
                         pl.value = gnsr.PO;
                     }
                 }

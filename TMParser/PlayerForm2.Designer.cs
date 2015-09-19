@@ -35,7 +35,7 @@ namespace TMRecorder
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabControlPlayerHistory = new System.Windows.Forms.TabControl();
             this.tabSkills = new System.Windows.Forms.TabPage();
             this.graphSkills = new ZedGraph.ZedGraphControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -55,7 +55,7 @@ namespace TMRecorder
             this.chkNormalized = new System.Windows.Forms.ToolStripButton();
             this.chkShowPosition = new System.Windows.Forms.ToolStripButton();
             this.graphPerf = new ZedGraph.ZedGraphControl();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.tabPageTrainingAndPotential = new System.Windows.Forms.TabPage();
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
             this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
             this.whatToDoHereToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -105,7 +105,7 @@ namespace TMRecorder
             this.tagsBarTac = new Common.TagsBar();
             this.tagsBarPhy = new Common.TagsBar();
             this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgTrainingHistory = new System.Windows.Forms.DataGridView();
             this.PlayerAge = new DataGridViewCustomColumns.TMR_AgeColumn(this.components);
             this.absWeekDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_DateColumn(this.components);
             this.forDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_ArrowColumn(this.components);
@@ -120,8 +120,8 @@ namespace TMRecorder
             this.tecDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_ArrowColumn(this.components);
             this.tesDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_ArrowColumn(this.components);
             this.finDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_ArrowColumn(this.components);
-            this.tirDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_ArrowColumn(this.components);
-            this.calDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_ArrowColumn(this.components);
+            this.lonDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_ArrowColumn(this.components);
+            this.setDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_ArrowColumn(this.components);
             this.tIDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.trainerNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.programDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_TrainSkillColumn(this.components);
@@ -258,7 +258,7 @@ namespace TMRecorder
             this.dataGridViewTextBoxColumn20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.playerData = new NTR_Common.NTR_PlayerData();
             this.teamDS = new NTR_Common.TeamDS();
-            this.tabControl1.SuspendLayout();
+            this.tabControlPlayerHistory.SuspendLayout();
             this.tabSkills.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
@@ -269,7 +269,7 @@ namespace TMRecorder
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.toolStrip2.SuspendLayout();
-            this.tabPage5.SuspendLayout();
+            this.tabPageTrainingAndPotential.SuspendLayout();
             this.toolStrip3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
@@ -288,7 +288,7 @@ namespace TMRecorder
             ((System.ComponentModel.ISupportInitialize)(this.scoutsNReviews)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgReviews)).BeginInit();
             this.tabPage6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgTrainingHistory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trainingBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.playerTraining)).BeginInit();
             this.tabPlayerBrowser.SuspendLayout();
@@ -317,26 +317,26 @@ namespace TMRecorder
             ((System.ComponentModel.ISupportInitialize)(this.teamDS)).BeginInit();
             this.SuspendLayout();
             // 
-            // tabControl1
+            // tabControlPlayerHistory
             // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.tabControlPlayerHistory.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl1.Controls.Add(this.tabSkills);
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Controls.Add(this.tabPage5);
-            this.tabControl1.Controls.Add(this.tabPlayerScouting);
-            this.tabControl1.Controls.Add(this.tabPage6);
-            this.tabControl1.Controls.Add(this.tabPlayerBrowser);
-            this.tabControl1.Location = new System.Drawing.Point(257, 28);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(696, 548);
-            this.tabControl1.TabIndex = 3;
-            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
+            this.tabControlPlayerHistory.Controls.Add(this.tabSkills);
+            this.tabControlPlayerHistory.Controls.Add(this.tabPage1);
+            this.tabControlPlayerHistory.Controls.Add(this.tabPage2);
+            this.tabControlPlayerHistory.Controls.Add(this.tabPage3);
+            this.tabControlPlayerHistory.Controls.Add(this.tabPage4);
+            this.tabControlPlayerHistory.Controls.Add(this.tabPageTrainingAndPotential);
+            this.tabControlPlayerHistory.Controls.Add(this.tabPlayerScouting);
+            this.tabControlPlayerHistory.Controls.Add(this.tabPage6);
+            this.tabControlPlayerHistory.Controls.Add(this.tabPlayerBrowser);
+            this.tabControlPlayerHistory.Location = new System.Drawing.Point(257, 28);
+            this.tabControlPlayerHistory.Name = "tabControlPlayerHistory";
+            this.tabControlPlayerHistory.SelectedIndex = 0;
+            this.tabControlPlayerHistory.Size = new System.Drawing.Size(696, 548);
+            this.tabControlPlayerHistory.TabIndex = 3;
+            this.tabControlPlayerHistory.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabSkills
             // 
@@ -779,18 +779,18 @@ namespace TMRecorder
             this.graphPerf.ZoomModifierKeys2 = System.Windows.Forms.Keys.None;
             this.graphPerf.ZoomStepFraction = 0.1D;
             // 
-            // tabPage5
+            // tabPageTrainingAndPotential
             // 
-            this.tabPage5.Controls.Add(this.toolStrip3);
-            this.tabPage5.Controls.Add(this.splitContainer3);
-            this.tabPage5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(688, 522);
-            this.tabPage5.TabIndex = 5;
-            this.tabPage5.Text = "Training & Potential";
-            this.tabPage5.UseVisualStyleBackColor = true;
+            this.tabPageTrainingAndPotential.Controls.Add(this.toolStrip3);
+            this.tabPageTrainingAndPotential.Controls.Add(this.splitContainer3);
+            this.tabPageTrainingAndPotential.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabPageTrainingAndPotential.Location = new System.Drawing.Point(4, 22);
+            this.tabPageTrainingAndPotential.Name = "tabPageTrainingAndPotential";
+            this.tabPageTrainingAndPotential.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageTrainingAndPotential.Size = new System.Drawing.Size(688, 522);
+            this.tabPageTrainingAndPotential.TabIndex = 5;
+            this.tabPageTrainingAndPotential.Text = "Training & Potential";
+            this.tabPageTrainingAndPotential.UseVisualStyleBackColor = true;
             // 
             // toolStrip3
             // 
@@ -1619,7 +1619,7 @@ namespace TMRecorder
             // 
             // tabPage6
             // 
-            this.tabPage6.Controls.Add(this.dataGridView1);
+            this.tabPage6.Controls.Add(this.dgTrainingHistory);
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
@@ -1628,14 +1628,14 @@ namespace TMRecorder
             this.tabPage6.Text = "Player Training";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // dgTrainingHistory
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToResizeColumns = false;
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgTrainingHistory.AllowUserToAddRows = false;
+            this.dgTrainingHistory.AllowUserToDeleteRows = false;
+            this.dgTrainingHistory.AllowUserToResizeColumns = false;
+            this.dgTrainingHistory.AutoGenerateColumns = false;
+            this.dgTrainingHistory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgTrainingHistory.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.PlayerAge,
             this.absWeekDataGridViewTextBoxColumn,
             this.forDataGridViewTextBoxColumn,
@@ -1650,22 +1650,22 @@ namespace TMRecorder
             this.tecDataGridViewTextBoxColumn,
             this.tesDataGridViewTextBoxColumn,
             this.finDataGridViewTextBoxColumn,
-            this.tirDataGridViewTextBoxColumn,
-            this.calDataGridViewTextBoxColumn,
+            this.lonDataGridViewTextBoxColumn,
+            this.setDataGridViewTextBoxColumn,
             this.tIDataGridViewTextBoxColumn,
             this.trainerNameDataGridViewTextBoxColumn,
             this.programDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.trainingBindingSource;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
-            this.dataGridView1.MultiSelect = false;
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersWidth = 20;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(682, 516);
-            this.dataGridView1.TabIndex = 0;
+            this.dgTrainingHistory.DataSource = this.trainingBindingSource;
+            this.dgTrainingHistory.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgTrainingHistory.Location = new System.Drawing.Point(3, 3);
+            this.dgTrainingHistory.Margin = new System.Windows.Forms.Padding(2);
+            this.dgTrainingHistory.MultiSelect = false;
+            this.dgTrainingHistory.Name = "dgTrainingHistory";
+            this.dgTrainingHistory.ReadOnly = true;
+            this.dgTrainingHistory.RowHeadersWidth = 20;
+            this.dgTrainingHistory.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgTrainingHistory.Size = new System.Drawing.Size(682, 516);
+            this.dgTrainingHistory.TabIndex = 0;
             // 
             // PlayerAge
             // 
@@ -1674,7 +1674,7 @@ namespace TMRecorder
             this.PlayerAge.Name = "PlayerAge";
             this.PlayerAge.ReadOnly = true;
             this.PlayerAge.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.PlayerAge.When = new System.DateTime(2015, 4, 19, 18, 31, 41, 824);
+            this.PlayerAge.When = new System.DateTime(2015, 9, 19, 14, 30, 34, 691);
             this.PlayerAge.Width = 40;
             // 
             // absWeekDataGridViewTextBoxColumn
@@ -1807,25 +1807,25 @@ namespace TMRecorder
             this.finDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.finDataGridViewTextBoxColumn.Width = 24;
             // 
-            // tirDataGridViewTextBoxColumn
+            // lonDataGridViewTextBoxColumn
             // 
-            this.tirDataGridViewTextBoxColumn.DataPropertyName = "Tir";
-            this.tirDataGridViewTextBoxColumn.HeaderText = "Lon";
-            this.tirDataGridViewTextBoxColumn.Name = "tirDataGridViewTextBoxColumn";
-            this.tirDataGridViewTextBoxColumn.ReadOnly = true;
-            this.tirDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.tirDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.tirDataGridViewTextBoxColumn.Width = 23;
+            this.lonDataGridViewTextBoxColumn.DataPropertyName = "Tir";
+            this.lonDataGridViewTextBoxColumn.HeaderText = "Lon";
+            this.lonDataGridViewTextBoxColumn.Name = "lonDataGridViewTextBoxColumn";
+            this.lonDataGridViewTextBoxColumn.ReadOnly = true;
+            this.lonDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.lonDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.lonDataGridViewTextBoxColumn.Width = 23;
             // 
-            // calDataGridViewTextBoxColumn
+            // setDataGridViewTextBoxColumn
             // 
-            this.calDataGridViewTextBoxColumn.DataPropertyName = "Cal";
-            this.calDataGridViewTextBoxColumn.HeaderText = "Set";
-            this.calDataGridViewTextBoxColumn.Name = "calDataGridViewTextBoxColumn";
-            this.calDataGridViewTextBoxColumn.ReadOnly = true;
-            this.calDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.calDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.calDataGridViewTextBoxColumn.Width = 23;
+            this.setDataGridViewTextBoxColumn.DataPropertyName = "Cal";
+            this.setDataGridViewTextBoxColumn.HeaderText = "Set";
+            this.setDataGridViewTextBoxColumn.Name = "setDataGridViewTextBoxColumn";
+            this.setDataGridViewTextBoxColumn.ReadOnly = true;
+            this.setDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.setDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.setDataGridViewTextBoxColumn.Width = 23;
             // 
             // tIDataGridViewTextBoxColumn
             // 
@@ -3082,7 +3082,7 @@ namespace TMRecorder
             this.ClientSize = new System.Drawing.Size(953, 577);
             this.Controls.Add(this.playerData);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.tabControlPlayerHistory);
             this.Controls.Add(this.toolStrip1);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "PlayerForm2";
@@ -3090,7 +3090,7 @@ namespace TMRecorder
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PlayerForm_FormClosing);
             this.Load += new System.EventHandler(this.PlayerForm_Load);
             this.SizeChanged += new System.EventHandler(this.PlayerForm_SizeChanged);
-            this.tabControl1.ResumeLayout(false);
+            this.tabControlPlayerHistory.ResumeLayout(false);
             this.tabSkills.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
@@ -3105,8 +3105,8 @@ namespace TMRecorder
             this.tabPage4.PerformLayout();
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
-            this.tabPage5.ResumeLayout(false);
-            this.tabPage5.PerformLayout();
+            this.tabPageTrainingAndPotential.ResumeLayout(false);
+            this.tabPageTrainingAndPotential.PerformLayout();
             this.toolStrip3.ResumeLayout(false);
             this.toolStrip3.PerformLayout();
             this.splitContainer3.Panel1.ResumeLayout(false);
@@ -3127,7 +3127,7 @@ namespace TMRecorder
             ((System.ComponentModel.ISupportInitialize)(this.scoutsNReviews)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgReviews)).EndInit();
             this.tabPage6.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgTrainingHistory)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trainingBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.playerTraining)).EndInit();
             this.tabPlayerBrowser.ResumeLayout(false);
@@ -3166,7 +3166,7 @@ namespace TMRecorder
 
         #endregion
 
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl tabControlPlayerHistory;
         private System.Windows.Forms.TabPage tabSkills;
         private ZedGraph.ZedGraphControl graphSkills;
         private System.Windows.Forms.TabPage tabPage2;
@@ -3194,7 +3194,7 @@ namespace TMRecorder
         private System.Windows.Forms.TabPage tabPage4;
         private ZedGraph.ZedGraphControl graphPerf;
         private System.Windows.Forms.ToolStripButton tsbComputeGrowth;
-        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.TabPage tabPageTrainingAndPotential;
         public System.Windows.Forms.BindingSource scoutsBindingSource;
         public ExtraDS extraDS;
         private System.Windows.Forms.ToolTip toolTip1;
@@ -3202,7 +3202,7 @@ namespace TMRecorder
         public ReportAnalysis ReportAnalysis;
         private PlayerTraining playerTraining;
         private System.Windows.Forms.TabPage tabPage6;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgTrainingHistory;
         private System.Windows.Forms.BindingSource trainingBindingSource;
         private DataGridViewCustomColumns.TMR_AgeColumn tmR_AgeColumn1;
         private DataGridViewCustomColumns.TMR_DateColumn tmR_DateColumn1;
@@ -3318,25 +3318,6 @@ namespace TMRecorder
         private System.Windows.Forms.DataGridViewTextBoxColumn cardsDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ratDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ratDevDataGridViewTextBoxColumn;
-        private DataGridViewCustomColumns.TMR_AgeColumn PlayerAge;
-        private DataGridViewCustomColumns.TMR_DateColumn absWeekDataGridViewTextBoxColumn;
-        private DataGridViewCustomColumns.TMR_ArrowColumn forDataGridViewTextBoxColumn;
-        private DataGridViewCustomColumns.TMR_ArrowColumn resDataGridViewTextBoxColumn;
-        private DataGridViewCustomColumns.TMR_ArrowColumn velDataGridViewTextBoxColumn;
-        private DataGridViewCustomColumns.TMR_ArrowColumn marDataGridViewTextBoxColumn;
-        private DataGridViewCustomColumns.TMR_ArrowColumn conDataGridViewTextBoxColumn;
-        private DataGridViewCustomColumns.TMR_ArrowColumn worDataGridViewTextBoxColumn;
-        private DataGridViewCustomColumns.TMR_ArrowColumn posDataGridViewTextBoxColumn;
-        private DataGridViewCustomColumns.TMR_ArrowColumn pasDataGridViewTextBoxColumn;
-        private DataGridViewCustomColumns.TMR_ArrowColumn croDataGridViewTextBoxColumn;
-        private DataGridViewCustomColumns.TMR_ArrowColumn tecDataGridViewTextBoxColumn;
-        private DataGridViewCustomColumns.TMR_ArrowColumn tesDataGridViewTextBoxColumn;
-        private DataGridViewCustomColumns.TMR_ArrowColumn finDataGridViewTextBoxColumn;
-        private DataGridViewCustomColumns.TMR_ArrowColumn tirDataGridViewTextBoxColumn;
-        private DataGridViewCustomColumns.TMR_ArrowColumn calDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tIDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn trainerNameDataGridViewTextBoxColumn;
-        private DataGridViewCustomColumns.TMR_TrainSkillColumn programDataGridViewTextBoxColumn;
         private NTR_Common.NTR_PlayerData playerData;
         private DataGridViewCustomColumns.TMR_ReportColumn tmR_ReportColumn1;
         private DataGridViewCustomColumns.TMR_ReportColumn tmR_ReportColumn2;
@@ -3395,5 +3376,24 @@ namespace TMRecorder
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn19;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn20;
         private NTR_Common.TeamDS teamDS;
+        private DataGridViewCustomColumns.TMR_AgeColumn PlayerAge;
+        private DataGridViewCustomColumns.TMR_DateColumn absWeekDataGridViewTextBoxColumn;
+        private DataGridViewCustomColumns.TMR_ArrowColumn forDataGridViewTextBoxColumn;
+        private DataGridViewCustomColumns.TMR_ArrowColumn resDataGridViewTextBoxColumn;
+        private DataGridViewCustomColumns.TMR_ArrowColumn velDataGridViewTextBoxColumn;
+        private DataGridViewCustomColumns.TMR_ArrowColumn marDataGridViewTextBoxColumn;
+        private DataGridViewCustomColumns.TMR_ArrowColumn conDataGridViewTextBoxColumn;
+        private DataGridViewCustomColumns.TMR_ArrowColumn worDataGridViewTextBoxColumn;
+        private DataGridViewCustomColumns.TMR_ArrowColumn posDataGridViewTextBoxColumn;
+        private DataGridViewCustomColumns.TMR_ArrowColumn pasDataGridViewTextBoxColumn;
+        private DataGridViewCustomColumns.TMR_ArrowColumn croDataGridViewTextBoxColumn;
+        private DataGridViewCustomColumns.TMR_ArrowColumn tecDataGridViewTextBoxColumn;
+        private DataGridViewCustomColumns.TMR_ArrowColumn tesDataGridViewTextBoxColumn;
+        private DataGridViewCustomColumns.TMR_ArrowColumn finDataGridViewTextBoxColumn;
+        private DataGridViewCustomColumns.TMR_ArrowColumn lonDataGridViewTextBoxColumn;
+        private DataGridViewCustomColumns.TMR_ArrowColumn setDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tIDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn trainerNameDataGridViewTextBoxColumn;
+        private DataGridViewCustomColumns.TMR_TrainSkillColumn programDataGridViewTextBoxColumn;
     }
 }

@@ -214,7 +214,7 @@ namespace NTR_Common
                     }
 
                     pctTeamB.Visible = (teamB != 0);
-                    pctRetiring.Visible = false; // TODO!!
+                    pctRetiring.Visible = false; 
 
                     if (!pr.IsCStrNull())
                         lblCRec.Text = pr.CStr.ToString("N1") + "/5";

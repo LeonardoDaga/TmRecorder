@@ -196,20 +196,22 @@ namespace Common
 
                 // Bisogna aggiungere ad ogni skill (byte alto) il contributo legato alla crescita
                 // in modo che possa essere facilmente estratto e immesso senza che si creino sovrapposizioni
-                edsRow.Set = trInc(edsRow.Set, tdsRow.Cal, refRow.Set);
+                edsRow.For = trInc(edsRow.For, tdsRow.For, refRow.For);
+                edsRow.Vel = trInc(edsRow.Vel, tdsRow.Vel, refRow.Vel);
+                edsRow.Res = trInc(edsRow.Res, tdsRow.Res, refRow.Res);
                 edsRow.Con_Uno = trInc(edsRow.Con_Uno, tdsRow.Con, refRow.Con_Uno);
                 edsRow.Cro_Com = trInc(edsRow.Cro_Com, tdsRow.Cro, refRow.Cro_Com);
-                edsRow.Fin = trInc(edsRow.Fin, tdsRow.Fin, refRow.Fin);
-                edsRow.For = trInc(edsRow.For, tdsRow.For, refRow.For);
                 edsRow.Mar_Pre = trInc(edsRow.Mar_Pre, tdsRow.Mar, refRow.Mar_Pre);
                 edsRow.Pas_Ele = trInc(edsRow.Pas_Ele, tdsRow.Pas, refRow.Pas_Ele);
                 edsRow.Pos_Aer = trInc(edsRow.Pos_Aer, tdsRow.Pos, refRow.Pos_Aer);
-                edsRow.Res = trInc(edsRow.Res, tdsRow.Res, refRow.Res);
                 edsRow.Tec_Tir = trInc(edsRow.Tec_Tir, tdsRow.Tec, refRow.Tec_Tir);
                 edsRow.Tes_Lan = trInc(edsRow.Tes_Lan, tdsRow.Tes, refRow.Tes_Lan);
-                edsRow.Lon = trInc(edsRow.Lon, tdsRow.Tir, refRow.Lon);
-                edsRow.Vel = trInc(edsRow.Vel, tdsRow.Vel, refRow.Vel);
                 edsRow.Wor_Rif = trInc(edsRow.Wor_Rif, tdsRow.Wor, refRow.Wor_Rif);
+
+                if (tdsRow.IsFinNull() || refRow.IsFinNull()) continue;
+                edsRow.Fin = trInc(edsRow.Fin, tdsRow.Fin, refRow.Fin);
+                edsRow.Lon = trInc(edsRow.Lon, tdsRow.Tir, refRow.Lon);
+                edsRow.Set = trInc(edsRow.Set, tdsRow.Cal, refRow.Set);
             }
         }
 
@@ -241,20 +243,22 @@ namespace Common
 
                 // Bisogna aggiungere ad ogni skill (byte alto) il contributo legato alla crescita
                 // in modo che possa essere facilmente estratto e immesso senza che si creino sovrapposizioni
-                edsRow.Set = trDec(edsRow.Set, tdsRow.Cal, refRow.Set);
+                edsRow.For = trDec(edsRow.For, tdsRow.For, refRow.For);
+                edsRow.Res = trDec(edsRow.Res, tdsRow.Res, refRow.Res);
+                edsRow.Vel = trDec(edsRow.Vel, tdsRow.Vel, refRow.Vel);
                 edsRow.Con_Uno = trDec(edsRow.Con_Uno, tdsRow.Con, refRow.Con_Uno);
                 edsRow.Cro_Com = trDec(edsRow.Cro_Com, tdsRow.Cro, refRow.Cro_Com);
-                edsRow.Fin = trDec(edsRow.Fin, tdsRow.Fin, refRow.Fin);
-                edsRow.For = trDec(edsRow.For, tdsRow.For, refRow.For);
                 edsRow.Mar_Pre = trDec(edsRow.Mar_Pre, tdsRow.Mar, refRow.Mar_Pre);
                 edsRow.Pas_Ele = trDec(edsRow.Pas_Ele, tdsRow.Pas, refRow.Pas_Ele);
                 edsRow.Pos_Aer = trDec(edsRow.Pos_Aer, tdsRow.Pos, refRow.Pos_Aer);
-                edsRow.Res = trDec(edsRow.Res, tdsRow.Res, refRow.Res);
                 edsRow.Tec_Tir = trDec(edsRow.Tec_Tir, tdsRow.Tec, refRow.Tec_Tir);
                 edsRow.Tes_Lan = trDec(edsRow.Tes_Lan, tdsRow.Tes, refRow.Tes_Lan);
-                edsRow.Lon = trDec(edsRow.Lon, tdsRow.Tir, refRow.Lon);
-                edsRow.Vel = trDec(edsRow.Vel, tdsRow.Vel, refRow.Vel);
                 edsRow.Wor_Rif = trDec(edsRow.Wor_Rif, tdsRow.Wor, refRow.Wor_Rif);
+
+                if (tdsRow.IsFinNull() || refRow.IsFinNull()) continue;
+                edsRow.Fin = trDec(edsRow.Fin, tdsRow.Fin, refRow.Fin);
+                edsRow.Lon = trDec(edsRow.Lon, tdsRow.Tir, refRow.Lon);
+                edsRow.Set = trDec(edsRow.Set, tdsRow.Cal, refRow.Set);
             }
         }
 
@@ -540,6 +544,7 @@ namespace Common
                         edsRow.For = setDec(tdsRow.For, pdsRow.For);
                         edsRow.Res = setDec(tdsRow.Res, pdsRow.Res);
                         edsRow.Vel = setDec(tdsRow.Vel, pdsRow.Vel);
+                        edsRow.Tec_Tir = setDec(tdsRow.Tir, pdsRow.Tec_Tir);
                         edsRow.Pos_Aer = setDec(tdsRow.Aer, pdsRow.Pos_Aer);
                         edsRow.Cro_Com = setDec(tdsRow.Com, pdsRow.Cro_Com);
                         edsRow.Pas_Ele = setDec(tdsRow.Ele, pdsRow.Pas_Ele);
@@ -553,6 +558,7 @@ namespace Common
                         edsRow.For = tdsRow.For;
                         edsRow.Res = tdsRow.Res;
                         edsRow.Vel = tdsRow.Vel;
+                        edsRow.Tec_Tir = tdsRow.Tir;
                         edsRow.Pos_Aer = tdsRow.Aer;
                         edsRow.Cro_Com = tdsRow.Com;
                         edsRow.Pas_Ele = tdsRow.Ele;
@@ -886,8 +892,8 @@ namespace Common
                     {
                         edsRow.For = setDec(tdsRow.For, pdsRow.For);
                         edsRow.Res = setDec(tdsRow.Res, pdsRow.Res);
-                        edsRow.Lon = setDec(tdsRow.Tir, pdsRow.Lon);
                         edsRow.Vel = setDec(tdsRow.Vel, pdsRow.Vel);
+                        edsRow.Tec_Tir = setDec(tdsRow.Tir, pdsRow.Tec_Tir);
                         edsRow.Pos_Aer = setDec(tdsRow.Aer, pdsRow.Pos_Aer);
                         edsRow.Cro_Com = setDec(tdsRow.Com, pdsRow.Cro_Com);
                         edsRow.Pas_Ele = setDec(tdsRow.Ele, pdsRow.Pas_Ele);
@@ -900,8 +906,8 @@ namespace Common
                     {
                         edsRow.For = tdsRow.For;
                         edsRow.Res = tdsRow.Res;
-                        edsRow.Lon = tdsRow.Tir;
                         edsRow.Vel = tdsRow.Vel;
+                        edsRow.Tec_Tir = tdsRow.Tir;
                         edsRow.Pos_Aer = tdsRow.Aer;
                         edsRow.Cro_Com = tdsRow.Com;
                         edsRow.Pas_Ele = tdsRow.Ele;
@@ -1473,10 +1479,9 @@ namespace Common
                 edsRow.PlayerID = tdsRow.PlayerID;
                 edsRow.Età = tdsRow.Età;
                 edsRow.ASI = tdsRow.ASI;
-                edsRow.Cal = tdsRow.Set;
+
                 edsRow.Con = tdsRow.Con_Uno;
                 edsRow.Cro = tdsRow.Cro_Com;
-                edsRow.Fin = tdsRow.Fin;
                 edsRow.For = tdsRow.For;
                 edsRow.Mar = tdsRow.Mar_Pre;
                 edsRow.Pas = tdsRow.Pas_Ele;
@@ -1484,9 +1489,16 @@ namespace Common
                 edsRow.Res = tdsRow.Res;
                 edsRow.Tec = tdsRow.Tec_Tir;
                 edsRow.Tes = tdsRow.Tes_Lan;
-                edsRow.Tir = tdsRow.Lon;
                 edsRow.Vel = tdsRow.Vel;
                 edsRow.Wor = tdsRow.Wor_Rif;
+
+                if (tdsRow.FPn != 0)
+                {
+                    edsRow.Tir = tdsRow.Lon;
+                    edsRow.Fin = tdsRow.Fin;
+                    edsRow.Cal = tdsRow.Set;
+                }
+
                 edsRow.InFormazione = tdsRow.InFormazione;
                 edsRow.Infortunato = tdsRow.Infortunato;
                 edsRow.Squalificato = tdsRow.Squalificato;

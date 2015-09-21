@@ -1181,7 +1181,7 @@ namespace TMRecorder
 
         private void EvidenceSkillsGiocatoriForQuality(DataGridView dgv, int plID)
         {
-            EvidenceSkillsGiocatoriForGains(dgv);
+            //EvidenceSkillsGiocatoriForGains(dgv);
 
             for (int i = 0; i < dgv.Rows.Count; i++)
             {
@@ -1572,6 +1572,9 @@ namespace TMRecorder
 
                 //if (ix == table.Rows.Count) continue;
                 if (ix == 0) continue;
+                ExtTMDataSet2.PlayerHistoryRow actual = (ExtTMDataSet2.PlayerHistoryRow)table.Rows[ix];
+
+                if (actual.IsFinNull()) continue;
 
                 int ixlast = ix;
                 for (; ixlast >= 0; ixlast--)
@@ -1583,7 +1586,6 @@ namespace TMRecorder
 
                 if (ixlast < 0) continue;
 
-                ExtTMDataSet2.PlayerHistoryRow actual = (ExtTMDataSet2.PlayerHistoryRow)table.Rows[ix];
                 ExtTMDataSet2.PlayerHistoryRow last = (ExtTMDataSet2.PlayerHistoryRow)table.Rows[ixlast];
 
                 EvidenceDiffForColumn(dgv, actual.ASI, last.ASI, i, 6);
@@ -1992,8 +1994,8 @@ namespace TMRecorder
                 History.PlayersDS.SetSquad(ID, "A");
             }
 
-            dataGridGiocatori.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'A'");
-            dataGridGiocatoriB.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'B'");
+            dataGridGiocatori.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'A' AND FPn > 0");
+            dataGridGiocatoriB.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'B' AND FPn > 0");
 
             FillForDifferenceGiocatori();
             EvidenceSkillsGiocatoriForQuality();
@@ -2010,8 +2012,8 @@ namespace TMRecorder
                 History.PlayersDS.SetSquad(ID, "B");
             }
 
-            dataGridGiocatori.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'A'");
-            dataGridGiocatoriB.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'B'");
+            dataGridGiocatori.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'A' AND FPn > 0");
+            dataGridGiocatoriB.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'B' AND FPn > 0");
 
             FillForDifferenceGiocatori();
             EvidenceSkillsGiocatoriForQuality();
@@ -2042,11 +2044,11 @@ namespace TMRecorder
 
             if (dgv == dataGridGiocatori)
             {
-                dataGridGiocatori.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'A'", property);
+                dataGridGiocatori.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'A' AND FPn > 0", property);
             }
             else
             {
-                dataGridGiocatoriB.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'B'", property);
+                dataGridGiocatoriB.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'B' AND FPn > 0", property);
             }
 
             FillForDifferenceGiocatori(dgv);

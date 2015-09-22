@@ -988,6 +988,10 @@
       <Project>{a62ab280-42d0-4639-8391-4bfa73269625}</Project>
       <Name>NTR_Controls</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NTR_Db\NTR_Db.csproj">
+      <Project>{df7d6401-1959-405f-8f35-65fd8ad320b7}</Project>
+      <Name>NTR_Db</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Profile\Profile.csproj">
       <Project>{089001B8-3BCE-42EC-ACB4-D68CF8705A46}</Project>
       <Name>Profile</Name>

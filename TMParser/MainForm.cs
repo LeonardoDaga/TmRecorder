@@ -14,6 +14,7 @@ using Common;
 using Profile;
 using Languages;
 using NTR_Common;
+using NTR_Db;
 
 using System.Reflection;
 using mshtml;
@@ -43,6 +44,7 @@ namespace TMRecorder
         string doctext = "";
         MatchAnalysis matchAnalysisDB = new MatchAnalysis();
         bool thisIsExtraTeam = false;
+        public EnumerableRowCollection<MatchData> ThisSeasonMatches;
 
         public enum e_GridTab : int
         {
@@ -295,10 +297,6 @@ namespace TMRecorder
             sf.UpdateStatusMessage(2, "Loading gains...");
             LoadGains();
 
-            dP[1] = 2;
-            sf.UpdateStatusMessage(3, "Loading match types...");
-            LoadMatchTypes();
-
             dP[1] = 3;
             sf.UpdateStatusMessage(5, "Loading History...");
             bool res = LoadHistory();
@@ -378,10 +376,6 @@ namespace TMRecorder
         {
             FileInfo fi = new FileInfo(Path.Combine(Program.Setts.DefaultDirectory, "SquadTrainers.xml"));
             dbTrainers.WriteXml(fi.FullName);
-        }
-
-        private void LoadMatchTypes()
-        {
         }
 
         private void LoadMatches()
@@ -560,8 +554,6 @@ namespace TMRecorder
 
             Program.Setts.Save();
 
-            LoadMatchTypes();
-
             return cnt;
         }
 
@@ -590,8 +582,6 @@ namespace TMRecorder
             Program.Setts.MatchTypes = str;
 
             Program.Setts.Save();
-
-            LoadMatchTypes();
 
             return cnt;
         }

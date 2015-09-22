@@ -1229,6 +1229,12 @@ namespace TMRecorder
             EvidenceSkillsPortieriForGains();
         }
 
+        private void EvidenceSkillsGiocatori(DataGridView dgGiocatori)
+        {
+            EvidenceSkillsGiocatoriForQuality(dgGiocatori, -1);
+            EvidenceSkillsGiocatoriForGains(dgGiocatori);
+        }
+
         private void EvidenceSkillsPortieriForQuality(int plID)
         {
             for (int i = 0; i < dataGridPortieri.Rows.Count; i++)
@@ -1998,7 +2004,8 @@ namespace TMRecorder
             dataGridGiocatoriB.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'B' AND FPn > 0");
 
             FillForDifferenceGiocatori();
-            EvidenceSkillsGiocatoriForQuality();
+            EvidenceSkillsGiocatori(dataGridGiocatori);
+            EvidenceSkillsGiocatori(dataGridGiocatoriB);
         }
 
         private void movePlayerToBTeamToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2016,7 +2023,8 @@ namespace TMRecorder
             dataGridGiocatoriB.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'B' AND FPn > 0");
 
             FillForDifferenceGiocatori();
-            EvidenceSkillsGiocatoriForQuality();
+            EvidenceSkillsGiocatori(dataGridGiocatori);
+            EvidenceSkillsGiocatori(dataGridGiocatoriB);
         }
 
         private void dataGridGiocatori_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -4950,7 +4958,7 @@ namespace TMRecorder
                 if (gridUpdateStatus[(int)e_GridTab.SQUAD_A])
                     return;
                 FillForDifferenceGiocatori(dataGridGiocatori);
-                EvidenceSkillsGiocatoriForQuality(dataGridGiocatori, -1);
+                EvidenceSkillsGiocatori(dataGridGiocatori);
                 gridUpdateStatus[(int)e_GridTab.SQUAD_A] = true;
             }
 
@@ -4959,7 +4967,7 @@ namespace TMRecorder
                 if (gridUpdateStatus[(int)e_GridTab.SQUAD_B])
                     return;
                 FillForDifferenceGiocatori(dataGridGiocatoriB);
-                EvidenceSkillsGiocatoriForQuality(dataGridGiocatoriB, -1);
+                EvidenceSkillsGiocatori(dataGridGiocatoriB);
                 gridUpdateStatus[(int)e_GridTab.SQUAD_B] = true;
             }
 
@@ -5264,6 +5272,9 @@ namespace TMRecorder
                 cnt++;
                 // content.ParsePage(matchPage, "http://trophymanager.com/matches/" + matchId + "//", importWeek);
             }
+
+            sf.Close();
+            sf.Dispose();
 
             Invalidate();
         }

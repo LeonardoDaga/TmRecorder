@@ -222,14 +222,15 @@ namespace Common
             AttMax = Math.Max(AttMax, FC);
 
             float skillsSum = 0.0f;
-            foreach (float skill in skills)
+            for (int i = 0; i < 14; i++)
             {
-                skillsSum += skill;
+                skillsSum += skills[i];
             }
 
 
             float OSi = (100f - (skillsSum * 5 - AttMax) / 10.0f) * AttMax / 50f;
-            return OSi * (OSi / 25f); 
+            float k = (AttMax * AttMax * AttMax) / (27000f + (AttMax * AttMax * AttMax));
+            return k * OSi * (OSi / 25f);
         }
 
         public override float GetOSi_GK(float[] atts, float[] skills)
@@ -237,13 +238,14 @@ namespace Common
             float GK = atts[0];
 
             float skillsSum = 0.0f;
-            foreach (float skill in skills)
+            for (int i = 0; i < 11; i++)
             {
-                skillsSum += skill;
+                skillsSum += skills[i];
             }
 
             float OSi = (100f - (skillsSum * 5 - GK) / 10.0f) * GK / 50f;
-            return OSi * (OSi / 25f); 
+            float k = (GK * GK * GK) / (27000f + (GK * GK * GK));
+            return k * OSi * (OSi / 50f);
         }
 
         #region Private Functions
@@ -416,9 +418,9 @@ namespace Common
             AttMax = Math.Max(AttMax, FC);
 
             float skillsSum = 0.0f;
-            foreach (float skill in skills)
+            for (int i= 0; i < 14; i++)
             {
-                skillsSum += skill;
+                skillsSum += skills[i];
             }
 
             float OSi = (100f - (skillsSum * 5 - AttMax) / 10.0f) * AttMax / 50f;
@@ -431,9 +433,9 @@ namespace Common
             float GK = atts[0];
 
             float SkS = 0.0f;
-            foreach (float skill in skills)
+            for (int i=0; i<11; i++)
             {
-                SkS += skill;
+                SkS += skills[i];
             }
 
             // return GK / (skillsSum / 110f);

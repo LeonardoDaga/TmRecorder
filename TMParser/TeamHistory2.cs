@@ -541,20 +541,24 @@ namespace TMRecorder
             {
                 foreach (ExtTMDataSet2.GiocatoriNSkillRow edsRow in eds.GiocatoriNSkill)
                 {
-                    edsRow.Set = (int)(edsRow.Set);
-                    edsRow.Con_Uno = (int)(edsRow.Con_Uno);
-                    edsRow.Cro_Com = (int)(edsRow.Cro_Com);
-                    edsRow.Fin = (int)(edsRow.Fin);
+                    edsRow.Con = (int)(edsRow.Con);
+                    edsRow.Cro = (int)(edsRow.Cro);
                     edsRow.For = (int)(edsRow.For);
-                    edsRow.Mar_Pre = (int)(edsRow.Mar_Pre);
-                    edsRow.Pas_Ele = (int)(edsRow.Pas_Ele);
-                    edsRow.Pos_Aer = (int)(edsRow.Pos_Aer);
+                    edsRow.Mar = (int)(edsRow.Mar);
+                    edsRow.Pas = (int)(edsRow.Pas);
+                    edsRow.Pos = (int)(edsRow.Pos);
                     edsRow.Res = (int)(edsRow.Res);
-                    edsRow.Tec_Tir = (int)(edsRow.Tec_Tir);
-                    edsRow.Tes_Lan = (int)(edsRow.Tes_Lan);
-                    edsRow.Lon = (int)(edsRow.Lon);
+                    edsRow.Tec = (int)(edsRow.Tec);
+                    edsRow.Tes = (int)(edsRow.Tes);
                     edsRow.Vel = (int)(edsRow.Vel);
-                    edsRow.Wor_Rif = (int)(edsRow.Wor_Rif);
+                    edsRow.Wor = (int)(edsRow.Wor);
+
+                    if (edsRow.FPn != 0)
+                    {
+                        edsRow.Lon = (int)(edsRow.Lon);
+                        edsRow.Fin = (int)(edsRow.Fin);
+                        edsRow.Set = (int)(edsRow.Set);
+                    }
                 }
             }
         }

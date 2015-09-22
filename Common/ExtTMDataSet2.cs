@@ -1266,7 +1266,7 @@ namespace Common
                     Ada = Ada + 0;
 
                 Atts = PosF.GetAttitude(Skills, this.FP, (float)this.Rou, (float)this.Ada);
-                OSi = PosF.GetOSi(Atts, Skills);
+                OSi = PosF.GetOSi_PL(Atts, Skills);
 
                 float kRou = PosF.gds.funRou.Value((float)Rou);
 
@@ -1561,20 +1561,24 @@ namespace Common
                     edsRow.Wage = Tm_Utility.ASItoWage(edsRow.ASI);
 
                     edsRow.Età = tdsRow.Età;
-                    edsRow.Set = tdsRow.Cal;
-                    edsRow.Con_Uno = tdsRow.Con;
-                    edsRow.Cro_Com = tdsRow.Cro;
-                    edsRow.Fin = tdsRow.Fin;
+                    edsRow.Con = tdsRow.Con;
+                    edsRow.Cro = tdsRow.Cro;
                     edsRow.For = tdsRow.For;
-                    edsRow.Mar_Pre = tdsRow.Mar;
-                    edsRow.Pas_Ele = tdsRow.Pas;
-                    edsRow.Pos_Aer = tdsRow.Pos;
+                    edsRow.Mar = tdsRow.Mar;
+                    edsRow.Pas = tdsRow.Pas;
+                    edsRow.Pos = tdsRow.Pos;
                     edsRow.Res = tdsRow.Res;
-                    edsRow.Tec_Tir = tdsRow.Tec;
-                    edsRow.Tes_Lan = tdsRow.Tes;
-                    edsRow.Lon = tdsRow.Tir;
+                    edsRow.Tec = tdsRow.Tec;
+                    edsRow.Tes = tdsRow.Tes;
                     edsRow.Vel = tdsRow.Vel;
-                    edsRow.Wor_Rif = tdsRow.Wor;
+                    edsRow.Wor = tdsRow.Wor;
+
+                    if (edsRow.FPn != 0)
+                    {
+                        edsRow.Set = tdsRow.Cal;
+                        edsRow.Lon = tdsRow.Tir;
+                        edsRow.Fin = tdsRow.Fin;
+                    }
 
                     if (!tdsRow.IsRecNull())
                         edsRow.Rec = tdsRow.Rec;

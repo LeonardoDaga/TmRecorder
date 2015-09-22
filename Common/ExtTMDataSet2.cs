@@ -1474,36 +1474,64 @@ namespace Common
 
             foreach (ExtTMDataSet2.GiocatoriNSkillRow tdsRow in this.GiocatoriNSkill)
             {
-                DB_TrophyDataSet2.GiocatoriRow edsRow = tds.Giocatori.NewGiocatoriRow();
-
-                edsRow.PlayerID = tdsRow.PlayerID;
-                edsRow.Età = tdsRow.Età;
-                edsRow.ASI = tdsRow.ASI;
-
-                edsRow.Con = tdsRow.Con_Uno;
-                edsRow.Cro = tdsRow.Cro_Com;
-                edsRow.For = tdsRow.For;
-                edsRow.Mar = tdsRow.Mar_Pre;
-                edsRow.Pas = tdsRow.Pas_Ele;
-                edsRow.Pos = tdsRow.Pos_Aer;
-                edsRow.Res = tdsRow.Res;
-                edsRow.Tec = tdsRow.Tec_Tir;
-                edsRow.Tes = tdsRow.Tes_Lan;
-                edsRow.Vel = tdsRow.Vel;
-                edsRow.Wor = tdsRow.Wor_Rif;
-
                 if (tdsRow.FPn != 0)
                 {
+                    // It's a player, not a goalkeeper
+                    DB_TrophyDataSet2.GiocatoriRow edsRow = tds.Giocatori.NewGiocatoriRow();
+
+                    edsRow.PlayerID = tdsRow.PlayerID;
+                    edsRow.Età = tdsRow.Età;
+                    edsRow.ASI = tdsRow.ASI;
+
+                    edsRow.Con = tdsRow.Con_Uno;
+                    edsRow.Cro = tdsRow.Cro_Com;
+                    edsRow.For = tdsRow.For;
+                    edsRow.Mar = tdsRow.Mar_Pre;
+                    edsRow.Pas = tdsRow.Pas_Ele;
+                    edsRow.Pos = tdsRow.Pos_Aer;
+                    edsRow.Res = tdsRow.Res;
+                    edsRow.Tec = tdsRow.Tec_Tir;
+                    edsRow.Tes = tdsRow.Tes_Lan;
+                    edsRow.Vel = tdsRow.Vel;
+                    edsRow.Wor = tdsRow.Wor_Rif;
+
                     edsRow.Tir = tdsRow.Lon;
                     edsRow.Fin = tdsRow.Fin;
                     edsRow.Cal = tdsRow.Set;
+
+                    edsRow.InFormazione = tdsRow.InFormazione;
+                    edsRow.Infortunato = tdsRow.Infortunato;
+                    edsRow.Squalificato = tdsRow.Squalificato;
+
+                    tds.Giocatori.AddGiocatoriRow(edsRow);
                 }
+                else // It's a GK
+                {
+                    // It's a player, not a goalkeeper
+                    DB_TrophyDataSet2.PortieriRow edsRow = tds.Portieri.NewPortieriRow();
 
-                edsRow.InFormazione = tdsRow.InFormazione;
-                edsRow.Infortunato = tdsRow.Infortunato;
-                edsRow.Squalificato = tdsRow.Squalificato;
+                    edsRow.PlayerID = tdsRow.PlayerID;
+                    edsRow.Età = tdsRow.Età;
+                    edsRow.ASI = tdsRow.ASI;
 
-                tds.Giocatori.AddGiocatoriRow(edsRow);
+                    edsRow.Uno = tdsRow.Con_Uno;
+                    edsRow.Com = tdsRow.Cro_Com;
+                    edsRow.For = tdsRow.For;
+                    edsRow.Pre = tdsRow.Mar_Pre;
+                    edsRow.Ele = tdsRow.Pas_Ele;
+                    edsRow.Aer = tdsRow.Pos_Aer;
+                    edsRow.Res = tdsRow.Res;
+                    edsRow.Tir = tdsRow.Tec_Tir;
+                    edsRow.Lan = tdsRow.Tes_Lan;
+                    edsRow.Vel = tdsRow.Vel;
+                    edsRow.Rif = tdsRow.Wor_Rif;
+
+                    edsRow.InFormazione = tdsRow.InFormazione;
+                    edsRow.Infortunato = tdsRow.Infortunato;
+                    edsRow.Squalificato = tdsRow.Squalificato;
+
+                    tds.Portieri.AddPortieriRow(edsRow);
+                }
             }
 
             return tds;

@@ -51,9 +51,10 @@ namespace TMRecorder
                 _datafilePath = Path.Combine(Environment.CurrentDirectory, "Datafiles\\");
                 
                 string settsFilename = "";
+                bool resetPosition = false;
                 if ((args.Length > 0) && (args[0] == "--resetWindowsPosition"))
                 {
-                    ResetPositions();
+                    resetPosition = true;
                 }
                 else if (args.Length > 0)
                 {
@@ -106,6 +107,9 @@ namespace TMRecorder
                     sb.SettingsFilename = settsFilename;
                     Load();
                 }
+
+                if (resetPosition)
+                    ResetPositions();
 
                 op++;
 

@@ -501,34 +501,6 @@ namespace TMRecorder
             History.LoadTIfromTrainingNew(dt, page);
         }
 
-        public static void Test6()
-        {
-            Program.Setts.Initialize();
-            TeamHistory History = new TeamHistory();
-
-            StreamReader file = new StreamReader(@"C:\Temp\LoadKampFromHTMLcode.tmreport.txt");
-            string page = file.ReadToEnd();
-            file.Close();
-
-            string[] args = new string[0];
-            MainForm form = new MainForm(args);
-
-            form.LoadKampFromHTMLcode(page);
-        }
-
-        public static void TestLoadKampFromHTMLcode()
-        {
-            Program.Setts.Initialize();
-            string[] args = new string[0];
-            MainForm form = new MainForm(args);
-            form.champDS.ReadXml(@"C:\temp\ChampsDS.txt");
-            StreamReader file = new StreamReader(@"C:\temp\kamp.txt");
-            string page = file.ReadToEnd();
-            file.Close();
-
-            form.LoadKampFromHTMLcode(page);
-        }
-
         public static void TestFillMatchStatsGraph()
         {
             Program.Setts.Initialize();

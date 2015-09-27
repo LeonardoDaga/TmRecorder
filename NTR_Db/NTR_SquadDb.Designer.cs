@@ -72,6 +72,8 @@ namespace NTR_Db {
         
         private global::System.Data.DataRelation relationTeam_OTeam;
         
+        private global::System.Data.DataRelation relationTeam_ReserveOf;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -500,6 +502,7 @@ namespace NTR_Db {
             this.relationTeam_TeamData = this.Relations["Team_TeamData"];
             this.relationTeam_YTeam = this.Relations["Team_YTeam"];
             this.relationTeam_OTeam = this.Relations["Team_OTeam"];
+            this.relationTeam_ReserveOf = this.Relations["Team_ReserveOf"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -582,6 +585,10 @@ namespace NTR_Db {
                         this.tableTeam.TeamIDColumn}, new global::System.Data.DataColumn[] {
                         this.tableMatch.OTeamIDColumn}, false);
             this.Relations.Add(this.relationTeam_OTeam);
+            this.relationTeam_ReserveOf = new global::System.Data.DataRelation("Team_ReserveOf", new global::System.Data.DataColumn[] {
+                        this.tableTeam.TeamIDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableTeam.ReserveOfColumn}, false);
+            this.Relations.Add(this.relationTeam_ReserveOf);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3000,7 +3007,7 @@ namespace NTR_Db {
             
             private global::System.Data.DataColumn columnNick;
             
-            private global::System.Data.DataColumn columnIsReserve;
+            private global::System.Data.DataColumn columnReserveOf;
             
             private global::System.Data.DataColumn columnOwner;
             
@@ -3071,9 +3078,9 @@ namespace NTR_Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn IsReserveColumn {
+            public global::System.Data.DataColumn ReserveOfColumn {
                 get {
-                    return this.columnIsReserve;
+                    return this.columnReserveOf;
                 }
             }
             
@@ -3122,15 +3129,18 @@ namespace NTR_Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TeamRow AddTeamRow(int TeamID, string Name, int Color, string Nick, bool IsReserve, bool Owner) {
+            public TeamRow AddTeamRow(int TeamID, string Name, int Color, string Nick, TeamRow parentTeamRowByTeam_ReserveOf, bool Owner) {
                 TeamRow rowTeamRow = ((TeamRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         TeamID,
                         Name,
                         Color,
                         Nick,
-                        IsReserve,
+                        null,
                         Owner};
+                if ((parentTeamRowByTeam_ReserveOf != null)) {
+                    columnValuesArray[4] = parentTeamRowByTeam_ReserveOf[0];
+                }
                 rowTeamRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTeamRow);
                 return rowTeamRow;
@@ -3164,7 +3174,7 @@ namespace NTR_Db {
                 this.columnName = base.Columns["Name"];
                 this.columnColor = base.Columns["Color"];
                 this.columnNick = base.Columns["Nick"];
-                this.columnIsReserve = base.Columns["IsReserve"];
+                this.columnReserveOf = base.Columns["ReserveOf"];
                 this.columnOwner = base.Columns["Owner"];
             }
             
@@ -3179,8 +3189,8 @@ namespace NTR_Db {
                 base.Columns.Add(this.columnColor);
                 this.columnNick = new global::System.Data.DataColumn("Nick", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNick);
-                this.columnIsReserve = new global::System.Data.DataColumn("IsReserve", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnIsReserve);
+                this.columnReserveOf = new global::System.Data.DataColumn("ReserveOf", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnReserveOf);
                 this.columnOwner = new global::System.Data.DataColumn("Owner", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnOwner);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint11", new global::System.Data.DataColumn[] {
@@ -7467,17 +7477,17 @@ namespace NTR_Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsReserve {
+            public int ReserveOf {
                 get {
                     try {
-                        return ((bool)(this[this.tableTeam.IsReserveColumn]));
+                        return ((int)(this[this.tableTeam.ReserveOfColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'IsReserve\' in table \'Team\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'ReserveOf\' in table \'Team\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableTeam.IsReserveColumn] = value;
+                    this[this.tableTeam.ReserveOfColumn] = value;
                 }
             }
             
@@ -7494,6 +7504,17 @@ namespace NTR_Db {
                 }
                 set {
                     this[this.tableTeam.OwnerColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public TeamRow TeamRowParent {
+                get {
+                    return ((TeamRow)(this.GetParentRow(this.Table.ParentRelations["Team_ReserveOf"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["Team_ReserveOf"]);
                 }
             }
             
@@ -7535,14 +7556,14 @@ namespace NTR_Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsIsReserveNull() {
-                return this.IsNull(this.tableTeam.IsReserveColumn);
+            public bool IsReserveOfNull() {
+                return this.IsNull(this.tableTeam.ReserveOfColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetIsReserveNull() {
-                this[this.tableTeam.IsReserveColumn] = global::System.Convert.DBNull;
+            public void SetReserveOfNull() {
+                this[this.tableTeam.ReserveOfColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7609,6 +7630,17 @@ namespace NTR_Db {
                 }
                 else {
                     return ((MatchRow[])(base.GetChildRows(this.Table.ChildRelations["Team_OTeam"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public TeamRow[] GetTeamRows() {
+                if ((this.Table.ChildRelations["Team_ReserveOf"] == null)) {
+                    return new TeamRow[0];
+                }
+                else {
+                    return ((TeamRow[])(base.GetChildRows(this.Table.ChildRelations["Team_ReserveOf"])));
                 }
             }
         }

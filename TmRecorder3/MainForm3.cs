@@ -23,7 +23,7 @@ namespace TmRecorder3
     {
         SplashForm sf = null;
         public EnumerableRowCollection<PlayerData> ThisWeekPlayers;
-        public EnumerableRowCollection<MatchData> ThisSeasonMatches;
+        public List<MatchData> SeasonMatchList;
         public EnumerableRowCollection<PlayerData> ThisWeekGK;
         public EnumerableRowCollection<PlayerData> Players;
         public EnumerableRowCollection<PlayerData> GKs;
@@ -262,9 +262,9 @@ namespace TmRecorder3
             DateTime startDate = TmWeek.GetDateTimeOfSeasonStart((int)cmbSeason.SelectedItem);
             DateTime endDate = startDate.AddDays(7 * 12);
 
-            ThisSeasonMatches = (from c in DB.squadDB.Match
-                                 where (!c.IsDateNull()) && (c.Date > startDate) && (c.Date < endDate)
-                                 select new MatchData(c)).OrderBy(p => p.Date);
+            SeasonMatchList = (from c in DB.squadDB.Match
+                               where (!c.IsDateNull()) && (c.Date > startDate) && (c.Date < endDate)
+                               select new MatchData(c)).OrderBy(p => p.Date).ToList();
 
             FormatMatchesGrid();
             // FormatStatsGrids();
@@ -400,7 +400,7 @@ namespace TmRecorder3
         private void FormatMatchesGrid()
         {
             dgMatches.AutoGenerateColumns = false;
-            dgMatches.DataCollection = ThisSeasonMatches;
+            dgMatches.DataCollection = SeasonMatchList;
 
             dgMatches.Columns.Clear();
             dgMatches.AddColumn("Date", "Date", 40, AG_Style.String | AG_Style.ResizeAllCells);
@@ -1267,11 +1267,11 @@ namespace TmRecorder3
             DateTime startDate = TmWeek.GetDateTimeOfSeasonStart((int)cmbSeason.SelectedItem);
             DateTime endDate = startDate.AddDays(7 * 12);
 
-            ThisSeasonMatches = (from c in DB.squadDB.Match
-                                 where (!c.IsDateNull()) && (c.Date < endDate) && (c.Date > startDate)
-                                 select new MatchData(c)).OrderBy(p => p.Date);
+            SeasonMatchList = (from c in DB.squadDB.Match
+                               where (!c.IsDateNull()) && (c.Date < endDate) && (c.Date > startDate)
+                               select new MatchData(c)).OrderBy(p => p.Date).ToList();
 
-            dgMatches.DataCollection = ThisSeasonMatches;
+            dgMatches.DataCollection = SeasonMatchList;
         }
 
         private void msActionsHome_Load(object sender, EventArgs e)
@@ -1303,5 +1303,50 @@ namespace TmRecorder3
             TR3_PlayerForm playerForm = new TR3_PlayerForm(DB.squadDB, playerData, selectedWeek);
             playerForm.ShowDialog();
         }
+
+        #region Example
+        //public void FillGrid(DateTime startDate, DateTime endDate)
+        //{
+        //    MyDataGridClass datagridMatches = new MyDataGridClass();
+
+        //    EnumerableRowCollection<MatchData> SeasonMatches = (from c in DB.squadDB.Match
+        //                         where (!c.IsDateNull()) && (c.Date > startDate) && (c.Date < endDate)
+        //                         select new MatchData(c)).OrderBy(p => p.Date);
+
+        //    datagridMatches.DataCollection = SeasonMatches;
+        //    datagridMatches.AddColumn("Date", "Date", 40);
+        //    datagridMatches.AddColumn("Home", "Home", 90);
+        //    datagridMatches.AddColumn("-", "ScoreString", 20);
+        //    datagridMatches.AddColumn("Away", "Away", 90);
+        //}
+
+        //class MyDataGridClass : DataGridView
+        //{
+        //    BindingSource dataBindingSource = new BindingSource();
+        //    public Type DataType;
+
+        //    object _dataCollection = null;
+        //    public object DataCollection
+        //    {
+        //        get { return _dataCollection; }
+        //        set
+        //        {
+        //            _dataCollection = value;
+        //            this.DataSource = dataBindingSource;
+        //            dataBindingSource.DataSource = _dataCollection;
+        //        }
+        //    }
+
+        //    public void AddColumn(string Title, string Property, int width)
+        //    {
+        //        DataGridViewColumn dgv = null;
+        //        dgv.Name = Title;
+        //        dgv.DataPropertyName = Property;
+        //        dgv.Width = width;
+
+        //        this.Columns.Add(dgv);
+        //    }
+        //}
+        #endregion
     }
 }

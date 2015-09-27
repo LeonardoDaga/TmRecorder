@@ -775,7 +775,7 @@ namespace NTR_Db
                         squadDB.Team.AddTeamRow(tr);
                     }
                     tr.Owner = true;
-                    tr.IsReserve = false;
+                    tr.ReserveOf = 0;
 
                     int.TryParse(HTML_Parser.GetNumberAfter(originalSquadString, "B_team="), out Id);
                     ReserveSquadID = Id;
@@ -791,7 +791,7 @@ namespace NTR_Db
                             squadDB.Team.AddTeamRow(tr);
                         }
                         tr.Owner = true;
-                        tr.IsReserve = true;
+                        tr.ReserveOf = 0;
                     }
                 }
 

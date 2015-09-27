@@ -1381,6 +1381,29 @@ namespace NTR_Db
 
     }
 
+    public class PlayerPerfData
+    {
+        public PlayerPerfData(NTR_SquadDb.PlayerPerfRow c)
+        {
+            NPos = c.NPos;
+            Name = c.PlayerRow.Name;
+            if (!c.PlayerRow.IsNationalityNull())
+                Nationality = c.PlayerRow.Nationality;
+            Position = c.Position;
+            if (!c.IsVoteNull())
+                Vote = c.Vote;
+            if (!c.IsRecNull())
+                Rec = c.Rec;
+        }
+
+        public string Name { get; set; }
+        public string Position { get; set; }
+        public int NPos { get; set; }
+        public string Nationality { get; private set; }
+        public float Vote { get; private set; }
+        public decimal Rec { get; private set; }
+    }
+
     public class MatchData
     {
         public MatchData(NTR_SquadDb.MatchRow mr)
@@ -1409,12 +1432,21 @@ namespace NTR_Db
 
             if (Report)
             {
-                YActions = mr.YActions;
-                OActions = mr.OActions;
-                AttackStyles = mr.AttackStyles;
-                LineUps = mr.Lineups;
-                Pitch = mr.Pitch;
-                Mentalities = mr.Mentalities;
+                if (!mr.IsYActionsNull())
+                    YActions = mr.YActions;
+                if (!mr.IsOActionsNull())
+                    OActions = mr.OActions;
+                if (!mr.IsAttackStylesNull())
+                {
+                    AttackStyles = mr.AttackStyles;
+                    LineUps = mr.Lineups;
+                    Pitch = mr.Pitch;
+                    Mentalities = mr.Mentalities;
+                }
+                else
+                {
+                    Report = false;
+                }
             }
 
             Score = new MatchScore(mr.Score, IsHome);
@@ -1452,7 +1484,9 @@ namespace NTR_Db
                     Home.tagColor = Color.FromArgb(mr.TeamRowByTeam_OTeam.IsColorNull() ? 0 : mr.TeamRowByTeam_OTeam.Color);
                 }
             }
-            catch { }
+            catch
+            {
+            }
 
             Away.backColor = Score.ScoreColor;
             Home.backColor = Score.ScoreColor;
@@ -1483,7 +1517,8 @@ namespace NTR_Db
                     }
                 }
                 catch (Exception)
-                { }
+                {
+                }
             }
         }
 
@@ -1563,10 +1598,21 @@ namespace NTR_Db
         public MatchScore(string score, bool isHome)
         {
             IsHome = isHome;
-
+            if (score == "null")
+            {
+                home = 0;
+                away = 0;
+                return;
+            }
             try
             {
                 string[] str = score.Split('-');
+                if (str.Length == 1)
+                {
+                    home = 0;
+                    away = 0;
+                    return;
+                }
                 int.TryParse(str[0], out home);
                 int.TryParse(str[1], out away);
             }

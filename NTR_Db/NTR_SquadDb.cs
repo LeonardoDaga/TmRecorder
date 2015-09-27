@@ -2,21 +2,73 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 
-namespace NTR_Db
-{
-}
-namespace NTR_Db
-{
-}
 namespace NTR_Db
 {
 
     public partial class NTR_SquadDb
     {
-        partial class MatchDataDataTable
+        partial class ActionsDataTable
         {
+            internal void WriteXmlBySeason(string dirPath)
+            {
+                var actionTable = new NTR_SquadDb.ActionsDataTable();
+
+                NTR_SquadDb ds = (NTR_SquadDb)DataSet;
+
+                foreach (int seasons in ds.SeasonsWithData)
+                {
+                    DateTime startDate = TmWeek.GetDateTimeOfSeasonStart((int)seasons);
+                    DateTime endDate = startDate.AddDays(7 * 12);
+
+                    var selectedSeasonActions = (from c in this
+                                                 where c.MatchRow.Date >= startDate && c.MatchRow.Date < endDate
+                                                 select c);
+
+                    actionTable.Clear();
+
+                    foreach (var row in selectedSeasonActions)
+                    {
+                        actionTable.AddActionsRow(row);
+                    }
+
+                    FileInfo fi = new FileInfo(Path.Combine(dirPath, string.Format("Actions-Season{0}.5.xml", seasons)));
+                    actionTable.WriteXml(fi.FullName);
+                }
+            }
+        }
+
+        partial class HistDataDataTable
+        {
+            internal void WriteXmlBySeason(string dirPath)
+            {
+                var histTable = new NTR_SquadDb.HistDataDataTable();
+
+                NTR_SquadDb ds = (NTR_SquadDb)DataSet;
+
+                foreach (int seasons in ds.SeasonsWithData)
+                {
+                    int startWeek = TmWeek.GetWeekOfSeasonStart((int)seasons);
+                    int endWeek = startWeek + 12;
+
+                    var selectedSeasonActions = (from c in this
+                                                 where c.Week >= startWeek && c.Week < endWeek
+                                                 select c);
+
+                    histTable.Clear();
+
+                    foreach (var row in selectedSeasonActions)
+                    {
+                        histTable.AddHistDataRow(row);
+                    }
+
+                    FileInfo fi = new FileInfo(Path.Combine(dirPath, string.Format("HistData-Season{0}.5.xml", seasons)));
+                    histTable.WriteXml(fi.FullName);
+                }
+            }
+
         }
 
         partial class MatchDataTable

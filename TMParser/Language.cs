@@ -24,8 +24,6 @@ namespace TMRecorder
             this.chkHome.Text = Current.Language.Home;
             this.chkAway.Text = Current.Language.Away;
             this.groupBox3.Text = Current.Language.Squad;
-            this.chkSquadMain.Text = Current.Language.Main;
-            this.chkSquadReserves.Text = Current.Language.Reserves;
             this.groupBox2.Text = Current.Language.Season;
             this.groupBox1.Text = Current.Language.Type;
             this.btnHelp.Text = Current.Language.Help;
@@ -35,9 +33,6 @@ namespace TMRecorder
             this.showMatchActionsListToolStripMenuItem.Text = Current.Language.ShowMatchActionsList;
             this.analyzeMatchToolStripMenuItem.Text = Current.Language.AnalyzeMatch;
             this.pasteSelectedMatchFromFileToolStripMenuItem.Text = Current.Language.PasteSelectedMatchFromFile;
-            this.label1.Text = Current.Language.Matches;
-            this.label2.Text = Current.Language.YourTeam;
-            this.label3.Text = Current.Language.OppositeTeam;
             this.label4.Text = Current.Language.MatchStats;
             this.toolStripContainer1.Text = "toolStripContainer1";
             this.toolStripDropDownButton1.Text = Current.Language.File;
@@ -194,22 +189,6 @@ namespace TMRecorder
             this.Leadership.HeaderText = Current.Language.Lea;
             this.Aggressivity.HeaderText = Current.Language.Agg;
             this.noteDataGridViewTextBoxColumn.HeaderText = Current.Language.Notes;
-            this.dateDataGridViewTextBoxColumn.HeaderText = Current.Language.Date;
-            this.homeDataGridViewTextBoxColumn.HeaderText = Current.Language.Home;
-            this.scoreDataGridViewTextBoxColumn.HeaderText = "-";
-            this.awayDataGridViewTextBoxColumn.HeaderText = Current.Language.Away;
-            this.matchTypeDataGridViewTextBoxColumn.HeaderText = Current.Language.Type;
-            this.Crowd.HeaderText = Current.Language.Crowd;
-            this.reportDataGridViewCheckBoxColumn.HeaderText = "Dwnl";
-            this.nameDataGridViewTextBoxColumn.HeaderText = Current.Language.Name;
-            this.voteDataGridViewTextBoxColumn.HeaderText = "Vt";
-            this.positionDataGridViewTextBoxColumn.HeaderText = Current.Language.Pos;
-            this.scoredDataGridViewTextBoxColumn.HeaderText = "G";
-            this.Analysis.HeaderText = "Analysis";
-            this.nameDataGridViewTextBoxColumn1.HeaderText = Current.Language.Name;
-            this.voteDataGridViewTextBoxColumn1.HeaderText = "Vt";
-            this.positionDataGridViewTextBoxColumn1.HeaderText = Current.Language.Pos;
-            this.scoredDataGridViewTextBoxColumn1.HeaderText = "G";
             this.PlayerID.HeaderText = "ID";
             this.Num.HeaderText = "N";
             this.FP.HeaderText = "FP";
@@ -263,14 +242,6 @@ namespace TMRecorder
             this.Leadership.ToolTipText = Current.Language.Leadership;
             this.Aggressivity.ToolTipText = Current.Language.Aggressivity;
             this.noteDataGridViewTextBoxColumn.ToolTipText = Current.Language.NotesFromThePlayerSPage;
-            this.dateDataGridViewTextBoxColumn.ToolTipText = Current.Language.DateOfTheMatch;
-            this.reportDataGridViewCheckBoxColumn.ToolTipText = Current.Language.IfTheBoxIsCheckedTheMatchHaveBeenAlreadyDownloaded;
-            this.voteDataGridViewTextBoxColumn.ToolTipText = Current.Language.Vote;
-            this.positionDataGridViewTextBoxColumn.ToolTipText = Current.Language.PositionOfThePlayerIntoTheMatchField;
-            this.scoredDataGridViewTextBoxColumn.ToolTipText = Current.Language.GoalsScored;
-            this.voteDataGridViewTextBoxColumn1.ToolTipText = Current.Language.Vote;
-            this.positionDataGridViewTextBoxColumn1.ToolTipText = Current.Language.PositionOfThePlayerIntoTheMatchField;
-            this.scoredDataGridViewTextBoxColumn1.ToolTipText = Current.Language.GoalsScored;
         }
     }
 

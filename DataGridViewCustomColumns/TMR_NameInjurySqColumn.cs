@@ -106,7 +106,7 @@ namespace DataGridViewCustomColumns
             DataGridViewAdvancedBorderStyle advancedBorderStyle,
             DataGridViewPaintParts paintParts)
         {
-            string val = System.Convert.ToString(value);
+            string val = Convert.ToString(value);
             //if (val.IndexOf("&#39;") != 0)
             //{
             //    val = val.Replace("&#39;", "'");

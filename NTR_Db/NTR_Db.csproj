@@ -74,13 +74,13 @@
     </Compile>
     <Compile Include="NTR_SquadDb.cs">
       <DependentUpon>NTR_SquadDb.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="NTR_SquadDb.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>NTR_SquadDb.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Season.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ActionDecoder.resx">

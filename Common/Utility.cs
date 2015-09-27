@@ -642,8 +642,34 @@ namespace Common
         }
     }
 
+    public class TmSeason
+    {
+        public TmSeason(int season)
+        {
+            Season = season;
+        }
+
+        private DateTime _start;
+        private DateTime _end;
+        private int _season;
+        public int Season
+        {
+            get { return _season; }
+            set
+            {
+                _season = value;
+                _start = TmWeek.tmDay0.AddDays(84 * (_season - 1));
+                _end = TmWeek.tmDay0.AddDays(84 * _season);
+            }
+        }
+
+        public DateTime Start { get { return _start; } }
+        public DateTime End { get { return _end; } }
+    }
+
     public class TmWeek
     {
+
         public int absweek = -1;
 
         // Timebase is the first tuesday of the first TM season
@@ -652,6 +678,13 @@ namespace Common
         public static TmWeek thisWeek()
         {
             return new TmWeek(DateTime.Now);
+        }
+
+        public static TmSeason thisSeason()
+        {
+            int absweek = GetTmAbsWk(DateTime.Now);
+            int season = (int)(1 + absweek / 12);
+            return new TmSeason(season);
         }
 
         public TmWeek()
@@ -820,6 +853,12 @@ namespace Common
         {
             TmWeek tmw = new TmWeek(Season, 1);
             return tmw.ToDate();
+        }
+
+        public static int GetWeekOfSeasonStart(int Season)
+        {
+            TmWeek tmw = new TmWeek(Season, 1);
+            return tmw.absweek;
         }
 
         public static TmWeek FromAge(int valY, int valM)

@@ -129,6 +129,10 @@ namespace NTR_Controls
             {
                 dgv = new TMR_MatchTypeColumn();
             }
+            else if ((int)(styles & AG_Style.Stars) > 0)
+            {
+                dgv = new NTR_ImgColumn(NTR_ImgColumn.ImgType.Rec);
+            }
 
             dgv.Name = Title;
             dgv.DataPropertyName = Property;
@@ -191,5 +195,6 @@ namespace NTR_Controls
         N0 = 0x800,
         FormatString = 0x1000,
         MatchType = 0x2000,
+        Stars = 0x4000,
     }
 }

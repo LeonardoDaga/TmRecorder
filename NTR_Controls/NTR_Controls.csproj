@@ -54,6 +54,12 @@
       <DependentUpon>AeroDataGrid.cs</DependentUpon>
     </Compile>
     <Compile Include="Browser.cs" />
+    <Compile Include="ImgContainer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ImgContainer.Designer.cs">
+      <DependentUpon>ImgContainer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Linq.cs" />
     <Compile Include="MatchStats.cs">
       <SubType>UserControl</SubType>
@@ -67,9 +73,7 @@
     <Compile Include="NTR_Browser.Designer.cs">
       <DependentUpon>NTR_Browser.cs</DependentUpon>
     </Compile>
-    <Compile Include="NTR_HiddenSkillsColumn.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="NTR_HiddenSkillsColumn.cs" />
     <Compile Include="NTR_HiddenSkillsColumn.Designer.cs">
       <DependentUpon>NTR_HiddenSkillsColumn.cs</DependentUpon>
     </Compile>
@@ -80,13 +84,15 @@
     <Compile Include="QuantitySelector.Designer.cs">
       <DependentUpon>QuantitySelector.cs</DependentUpon>
     </Compile>
-    <Compile Include="NTR_FormatStringColumn.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="NTR_FormatStringColumn.cs" />
     <Compile Include="NTR_FormatStringColumn.Designer.cs">
       <DependentUpon>NTR_FormatStringColumn.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\Resources.Designer.cs" />
+    <Compile Include="NTR_ImgColumn.cs" />
+    <Compile Include="NTR_ImgColumn.Designer.cs">
+      <DependentUpon>NTR_ImgColumn.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
@@ -111,6 +117,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ImgContainer.resx">
+      <DependentUpon>ImgContainer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MatchStats.resx">
       <DependentUpon>MatchStats.cs</DependentUpon>
     </EmbeddedResource>
@@ -131,6 +140,10 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NTR_ImgColumn.resx">
+      <DependentUpon>NTR_ImgColumn.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

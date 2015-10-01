@@ -1394,6 +1394,14 @@ namespace NTR_Db
                 Vote = c.Vote;
             if (!c.IsRecNull())
                 Rec = c.Rec;
+            if (!c.IsRouNull())
+                Rou = c.Rou;
+            if (!c.IsScoredNull())
+                Scored = c.Scored;
+            if (!c.IsAssistNull())
+                Assist = c.Assist;
+            if (!c.IsStatusNull())
+                Status = c.Status;
         }
 
         public string Name { get; set; }
@@ -1402,6 +1410,10 @@ namespace NTR_Db
         public string Nationality { get; private set; }
         public float Vote { get; private set; }
         public decimal Rec { get; private set; }
+        public decimal Rou { get; private set; }
+        public int Scored { get; private set; }
+        public int Assist { get; private set; }
+        public string Status { get; private set; }
     }
 
     public class MatchData

@@ -3934,6 +3934,8 @@ namespace NTR_Db {
             
             private global::System.Data.DataColumn columnActions;
             
+            private global::System.Data.DataColumn columnRou;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public PlayerPerfDataTable() {
@@ -4073,6 +4075,14 @@ namespace NTR_Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn RouColumn {
+                get {
+                    return this.columnRou;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -4108,7 +4118,7 @@ namespace NTR_Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public PlayerPerfRow AddPlayerPerfRow(MatchRow parentMatchRowByMatch_YourTeamPerf, PlayerRow parentPlayerRowByPlayer_YourTeamPerf, float Vote, string Position, int Scored, int Number, string Analysis, int Assist, string Status, int TeamID, int NPos, decimal Rec, string Actions) {
+            public PlayerPerfRow AddPlayerPerfRow(MatchRow parentMatchRowByMatch_YourTeamPerf, PlayerRow parentPlayerRowByPlayer_YourTeamPerf, float Vote, string Position, int Scored, int Number, string Analysis, int Assist, string Status, int TeamID, int NPos, decimal Rec, string Actions, decimal Rou) {
                 PlayerPerfRow rowPlayerPerfRow = ((PlayerPerfRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -4123,7 +4133,8 @@ namespace NTR_Db {
                         TeamID,
                         NPos,
                         Rec,
-                        Actions};
+                        Actions,
+                        Rou};
                 if ((parentMatchRowByMatch_YourTeamPerf != null)) {
                     columnValuesArray[0] = parentMatchRowByMatch_YourTeamPerf[0];
                 }
@@ -4173,6 +4184,7 @@ namespace NTR_Db {
                 this.columnNPos = base.Columns["NPos"];
                 this.columnRec = base.Columns["Rec"];
                 this.columnActions = base.Columns["Actions"];
+                this.columnRou = base.Columns["Rou"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4204,6 +4216,8 @@ namespace NTR_Db {
                 base.Columns.Add(this.columnRec);
                 this.columnActions = new global::System.Data.DataColumn("Actions", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnActions);
+                this.columnRou = new global::System.Data.DataColumn("Rou", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRou);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("TeamPerfKey", new global::System.Data.DataColumn[] {
                                 this.columnMatchID,
                                 this.columnPlayerID}, true));
@@ -8455,6 +8469,22 @@ namespace NTR_Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal Rou {
+                get {
+                    try {
+                        return ((decimal)(this[this.tablePlayerPerf.RouColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Rou\' in table \'PlayerPerf\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePlayerPerf.RouColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public PlayerRow PlayerRow {
                 get {
                     return ((PlayerRow)(this.GetParentRow(this.Table.ParentRelations["Player_YourTeamPerf"])));
@@ -8605,6 +8635,18 @@ namespace NTR_Db {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetActionsNull() {
                 this[this.tablePlayerPerf.ActionsColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsRouNull() {
+                return this.IsNull(this.tablePlayerPerf.RouColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetRouNull() {
+                this[this.tablePlayerPerf.RouColumn] = global::System.Convert.DBNull;
             }
         }
         

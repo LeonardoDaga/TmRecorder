@@ -546,6 +546,7 @@
     <None Include="Properties\DataSources\Common.MatchDS+ActionsDataTable.datasource" />
     <None Include="Properties\DataSources\Common.ScoutsNReviews+ReviewDataTable.datasource" />
     <None Include="Properties\DataSources\Common.ScoutsNReviews+ScoutsDataTable.datasource" />
+    <None Include="Properties\DataSources\NTR_Db.NTR_SquadDb+ActionsDataTable.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

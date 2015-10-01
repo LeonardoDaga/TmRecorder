@@ -6,18 +6,28 @@ using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
 
-namespace DataGridViewCustomColumns
+namespace NTR_Controls
 {
-    public partial class TMR_FpColumn : DataGridViewColumn
+    public partial class NTR_ImgColumn : DataGridViewColumn
     {
-        public TMR_FpColumn()
-            : base(new TMR_FpCell())
+        public ImgContainer imgContainer = new ImgContainer();
+
+        public enum ImgType
         {
+            Rec,
+        }
+
+        public ImgType ImageType { get; set; }
+        
+        public NTR_ImgColumn(ImgType imgType)
+            : base(new NTR_ImgCell())
+        {
+            ImageType = imgType;
             InitializeComponent();
         }
 
-        public TMR_FpColumn(IContainer container)
-            : base(new TMR_FpCell())
+        public NTR_ImgColumn(IContainer container)
+            : base(new NTR_ImgCell())
         {
             container.Add(this);
 
@@ -33,22 +43,22 @@ namespace DataGridViewCustomColumns
             set
             {
                 if (value != null &&
-                    !value.GetType().IsAssignableFrom(typeof(TMR_FpCell)))
+                    !value.GetType().IsAssignableFrom(typeof(NTR_ImgCell)))
                 {
-                    throw new InvalidCastException("Must be a TMR_FpCell");
+                    throw new InvalidCastException("Must be a NTR_ImgCell");
                 }
                 base.CellTemplate = value;
             }
         }
     }
 
-    #region TMR_FpColumn
+    #region NTR_ImgColumn
 
-    public class TMR_FpCell : DataGridViewTextBoxCell
+    public class NTR_ImgCell : DataGridViewTextBoxCell
     {
         public short status = 2;
 
-        public TMR_FpCell()
+        public NTR_ImgCell()
             : base()
         {
         }
@@ -59,8 +69,8 @@ namespace DataGridViewCustomColumns
             // Set the value of the editing control to the current cell value.
             base.InitializeEditingControl(rowIndex, initialFormattedValue,
                 dataGridViewCellStyle);
-            TMR_FpEditingControl ctl =
-                DataGridView.EditingControl as TMR_FpEditingControl;
+            NTR_ImgEditingControl ctl =
+                DataGridView.EditingControl as NTR_ImgEditingControl;
 
             if (this.Value != System.DBNull.Value)
             {
@@ -76,7 +86,7 @@ namespace DataGridViewCustomColumns
 
         public override object Clone()
         {
-            TMR_FpCell clone = (TMR_FpCell)base.Clone();
+            NTR_ImgCell clone = (NTR_ImgCell)base.Clone();
             return clone;
         }
 
@@ -99,7 +109,7 @@ namespace DataGridViewCustomColumns
             Brush fbr = null, bbr = null;
             Pen gbr = null;
 
-            TMR_FpColumn dnc = (TMR_FpColumn)this.OwningColumn;            
+            NTR_ImgColumn dnc = (NTR_ImgColumn)this.OwningColumn;            
 
             DataGridViewElementStates isSelected = cellState & DataGridViewElementStates.Selected;
 
@@ -121,67 +131,26 @@ namespace DataGridViewCustomColumns
             graphics.FillRectangle(bbr, cellRect);
             graphics.DrawRectangle(gbr, cellRect);
 
-            string[] FPs = formattedValue.ToString().Split('/');
-
-            if (FPs.Length == 1)
             {
                 Point pt = cellRect.Location;
-                pt.Offset(2, (cellRect.Height - dnc.posImgList.ImageSize.Height) / 2);
+                pt.Offset(2, (cellRect.Height - dnc.imgContainer.starImageList.ImageSize.Height) / 2);
 
-                int ix = 0;
+                decimal ivalue = (decimal)value;
+
+                if ((ivalue == 0) || (ivalue > 10))
+                    ivalue = 1;
+
+                string strValue = ivalue.ToString();
 
                 Image image = null;
-                string strValue = formattedValue.ToString().ToUpper();
 
-                if (strValue.EndsWith("CL") || strValue.EndsWith("CC") || strValue.EndsWith("CR"))
-                {
-                    ix = dnc.posImgListEx.Images.IndexOfKey(strValue + ".gif");
-                    if (ix != -1) image = dnc.posImgListEx.Images[ix];
-                }
-                else
-                {
-                    if (strValue.StartsWith("SUB"))
-                        ix = dnc.posImgList.Images.IndexOfKey("SUB.gif");
-                    else 
-                        ix = dnc.posImgList.Images.IndexOfKey(strValue + ".gif");
-
-                    if (ix != -1) image = dnc.posImgList.Images[ix];
-                }
+                int ix = dnc.imgContainer.starImageList.Images.IndexOfKey(strValue + ".png");
+                if (ix != -1) image = dnc.imgContainer.starImageList.Images[ix];
 
                 if (image == null)
                 {
-                    image = dnc.posImgList.Images[0];
+                    image = dnc.imgContainer.starImageList.Images[0];
                 }
-
-                graphics.DrawImage(image, pt);
-            }
-            else
-            {
-                Point pt = cellRect.Location;
-                pt.Offset(2, (cellRect.Height - dnc.posImgList.ImageSize.Height) / 2);
-
-                int ix = 0;
-                if (FPs[0].ToString() != "")
-                    ix = dnc.posImgList.Images.IndexOfKey(FPs[0].ToString() + ".gif");
-                if (ix == -1) ix = 0;
-
-                Image image = dnc.posImgList.Images[ix];
-
-                Rectangle rcImage = new Rectangle(pt.X, pt.Y, image.Width,
-                    image.Height);
-
-                graphics.DrawImage(image, pt);
-
-                ix = dnc.posImgList.Images.IndexOfKey(FPs[1].ToString() + ".gif");
-                if (ix == -1) ix = 0;
-
-                image = dnc.posImgList.Images[ix];
-
-                pt = cellRect.Location;
-                pt.Offset(3 + image.Width, (cellRect.Height - image.Height) / 2);
-
-                rcImage = new Rectangle(pt.X, pt.Y, image.Width,
-                    image.Height);
 
                 graphics.DrawImage(image, pt);
             }
@@ -200,8 +169,8 @@ namespace DataGridViewCustomColumns
         {
             get
             {
-                // Return the type of the editing contol that TMR_FpCell uses.
-                return typeof(TMR_FpEditingControl);
+                // Return the type of the editing contol that NTR_ImgCell uses.
+                return typeof(NTR_ImgEditingControl);
             }
         }
 
@@ -209,7 +178,7 @@ namespace DataGridViewCustomColumns
         {
             get
             {
-                // Return the type of the value that TMR_FpCell contains.
+                // Return the type of the value that NTR_ImgCell contains.
                 return typeof(string);
             }
         }
@@ -231,76 +200,17 @@ namespace DataGridViewCustomColumns
         {
             if (value == null)
                 return "";
-
-            Type type = value.GetType();
-            if (type.Name == "String")
-                return (string)value;
-
-            if (type.Name == "DBNull")
-                return (string)"GK";
-
-            int val = (int)value;
-
-            //cellStyle.Font = new Font(cellStyle.Font.FontFamily, (float) cellStyle.Font.Size+1f);
-
-            switch (val)
-            {
-                case 0: return "GK";
-                case 10: return "DC";
-                case 11: return "DC/DL";
-                case 12: return "DC/DR";
-                case 13: return "DL";
-                case 14: return "DR/DL";
-                case 15: return "DR";
-                case 20: return "DC/DMC";
-                case 21: return "DL/DML";
-                case 22: return "DMR/DR";
-                case 25: return "DC/MC";
-                case 26: return "DL/ML";
-                case 27: return "DR/MR";
-                case 30: return "DMC";
-                case 31: return "DMC/DML";
-                case 32: return "DMC/DMR";
-                case 33: return "DML";
-                case 34: return "DML/DMR";
-                case 35: return "DMR";
-                case 40: return "DMC/MC";
-                case 41: return "DML/ML";
-                case 42: return "DMR/MR";
-                case 50: return "MC";
-                case 51: return "MC/ML";
-                case 52: return "MC/MR";
-                case 53: return "ML";
-                case 54: return "ML/MR";
-                case 55: return "MR";
-                case 60: return "MC/OMC";
-                case 61: return "ML/OML";
-                case 62: return "MR/OMR";
-                case 65: return "MC/FC";
-                case 66: return "ML/FC";
-                case 67: return "MR/FC";
-                case 70: return "OMC";
-                case 71: return "OMC/OML";
-                case 72: return "OMC/OMR";
-                case 73: return "OML";
-                case 74: return "OML/OMR";
-                case 75: return "OMR";
-                case 80: return "FC/OMC";
-                case 81: return "FC/OML";
-                case 82: return "FC/OMR";
-                case 90: return "FC";
-                default: return "NOID";
-            }
+            return value;
         }
     }
 
-    class TMR_FpEditingControl : TextBox, IDataGridViewEditingControl
+    class NTR_ImgEditingControl : TextBox, IDataGridViewEditingControl
     {
         DataGridView dataGridView;
         private bool valueChanged = false;
         int rowIndex;
 
-        public TMR_FpEditingControl()
+        public NTR_ImgEditingControl()
         {
         }
 

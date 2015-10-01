@@ -77,6 +77,19 @@ namespace NTR_Db
 
         private NTR_SquadDb seasonsDB = new NTR_SquadDb();
 
+        public bool RemoveMatchFromDB(int matchID)
+        {
+            NTR_SquadDb.MatchRow matchRow = seasonsDB.Match.FindByMatchID(matchID);
+
+            if (matchRow != null)
+            {
+                seasonsDB.Match.RemoveMatchRow(matchRow);
+                return true;
+            }
+
+            return false;
+        }
+
         public List<MatchData> GetSeasonMatchList(int season, int teamID, int homeOrAway, int matchType)
         {
             TmSeason actualSeason = new TmSeason(season);
@@ -241,6 +254,8 @@ namespace NTR_Db
                     ppr.Assist = perfRow.Assist;
                     ppr.Status = perfRow.Status;
                     ppr.NPos = perfRow.NPos;
+                    ppr.Rec = 1;
+                    ppr.Rou = 3.3M;
                 }
             }
             catch (Exception)
@@ -280,6 +295,8 @@ namespace NTR_Db
                     ppr.Assist = perfRow.Assist;
                     ppr.Status = perfRow.Status;
                     ppr.NPos = perfRow.NPos;
+                    ppr.Rec = 1;
+                    ppr.Rou = 3.3M;
                 }
             }
             catch (Exception)
@@ -306,6 +323,8 @@ namespace NTR_Db
                 ar.ActionCode = actionsRow.ActionCode;
                 if (!actionsRow.IsActionTypeNull())
                     ar.ActionType = actionsRow.ActionType;
+                else
+                    ar.ActionType = "";
                 ar.Description = actionsRow.Description;
                 ar.FullDesc = actionsRow.FullDesc;
                 ar.Time = actionsRow.Time;
@@ -323,6 +342,13 @@ namespace NTR_Db
             yTeamRow.Color = YTeamColor;
 
             Invalidate();
+        }
+
+        public List<NTR_SquadDb.ActionsRow> GetMatchActions(int matchID)
+        {
+            return (from c in seasonsDB.Actions
+                    where c.MatchID == matchID
+                    select c).OrderBy(p => p.Time).ToList();
         }
 
         private void LoadChampsDataVer3(FileInfo fi)

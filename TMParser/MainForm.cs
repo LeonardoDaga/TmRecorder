@@ -250,8 +250,6 @@ namespace TMRecorder
                 sf.Close();
                 // Text = "TM Team Recorder - Release " 
 
-                EnableActionAnalysis();
-
                 evidenceSkillsForGainsToolStripMenuItem.Checked = Program.Setts.EvidenceGain;
                 evidenceSkillsForGainsMenuItem2.Checked = Program.Setts.EvidenceGain;
 
@@ -282,15 +280,6 @@ namespace TMRecorder
 
                 SendFileTo.ErrorReport.Send(ex, info, Environment.StackTrace, swRelease);
             }
-        }
-
-        private void EnableActionAnalysis()
-        {
-            bool show = (Program.Setts.ShowActions != 0);
-
-            //dgMatches.Columns["Analyzed"].Visible = show;
-            recalculatePlayersStatisticsToolStripMenuItem.Visible = show;
-            analyzeMatchToolStripMenuItem.Visible = show;
         }
 
         private bool LoadData()
@@ -553,15 +542,19 @@ namespace TMRecorder
 
             dgYourTeamPerf.AutoGenerateColumns = false;
             dgYourTeamPerf.Columns.Clear();
-            dgYourTeamPerf.AddColumn("Name", "Name", 40, AG_Style.NameInj | AG_Style.ResizeAllCells);
-            dgYourTeamPerf.AddColumn("Pos", "Position", 90, AG_Style.FavPosition | AG_Style.ResizeAllCells);
-            dgYourTeamPerf.AddColumn("Vot", "Vote", 20, AG_Style.Numeric | AG_Style.N1 | AG_Style.ResizeAllCells);
+            dgYourTeamPerf.AddColumn("Name", "Name", 50, AG_Style.NameInj | AG_Style.ResizeAllCells);
+            dgYourTeamPerf.AddColumn("Pos", "Position", 30, AG_Style.FavPosition );
+            dgYourTeamPerf.AddColumn("Vot", "Vote", 30, AG_Style.Numeric | AG_Style.N1 );
+            dgYourTeamPerf.AddColumn("Rec", "Rec", 38, AG_Style.Stars);
+            dgYourTeamPerf.AddColumn("Rou", "Rou", 30, AG_Style.Numeric | AG_Style.N1);
 
             dgOppsTeamPerf.AutoGenerateColumns = false;
             dgOppsTeamPerf.Columns.Clear();
-            dgOppsTeamPerf.AddColumn("Name", "Name", 40, AG_Style.NameInj | AG_Style.ResizeAllCells);
-            dgOppsTeamPerf.AddColumn("Pos", "Position", 90, AG_Style.FavPosition | AG_Style.ResizeAllCells);
-            dgOppsTeamPerf.AddColumn("Vot", "Vote", 20, AG_Style.Numeric | AG_Style.N1 | AG_Style.ResizeAllCells);
+            dgOppsTeamPerf.AddColumn("Name", "Name", 50, AG_Style.NameInj | AG_Style.ResizeAllCells);
+            dgOppsTeamPerf.AddColumn("Pos", "Position", 30, AG_Style.FavPosition );
+            dgOppsTeamPerf.AddColumn("Vot", "Vote", 30, AG_Style.Numeric | AG_Style.N1);
+            dgOppsTeamPerf.AddColumn("Rec", "Rec", 38, AG_Style.Stars);
+            dgOppsTeamPerf.AddColumn("Rou", "Rou", 30, AG_Style.Numeric | AG_Style.N1);
         }
 
         private void UpdateTeamDateList()
@@ -2142,10 +2135,9 @@ namespace TMRecorder
         {
             tabControl1.SelectedTab = tabBrowser;
 
-            System.Data.DataRowView selMatch = (System.Data.DataRowView)dgMatches.SelectedRows[0].DataBoundItem;
-            ChampDS.MatchRow matchRow = (ChampDS.MatchRow)selMatch.Row;
+            MatchData selMatch = (MatchData)dgMatches.SelectedRows[0].DataBoundItem;
 
-            string matchAddr = "http://trophymanager.com/matches/" + matchRow.MatchID + "/";
+            string matchAddr = "http://trophymanager.com/matches/" + selMatch.MatchID + "/";
 
             navigationAddress = matchAddr;
             startnavigationAddress = navigationAddress;
@@ -2462,29 +2454,32 @@ namespace TMRecorder
 
         private void deleteSelectedMatchToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Data.DataRowView selMatch = (System.Data.DataRowView)dgMatches.SelectedRows[0].DataBoundItem;
-            ChampDS.MatchRow matchRow = (ChampDS.MatchRow)selMatch.Row;
+            MatchData selMatch = (MatchData)dgMatches.SelectedRows[0].DataBoundItem;
 
-            string matchname = matchRow.Home + " " + matchRow.Score.Trim("\r\n\t".ToCharArray()) + " " + matchRow.Away;
+            string matchAddr = "http://trophymanager.com/matches/" + selMatch.MatchID + "/";
+
+            string matchname = selMatch.Home + " - " + selMatch.Away;
             if (MessageBox.Show(Current.Language.AreYouSureThatYouWantToRemoveTheMatch + matchname + "?", Current.Language.DeleteMatch,
                 MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
-                champDS.Match.RemoveMatchRow(matchRow);
-            }
+                dgMatches.DataCollection = null;
 
-            champDS.UpdateSeason(cmbSeason);
+                AllSeasons.RemoveMatchFromDB(selMatch.MatchID);
+                SeasonMatchList.Remove(selMatch);
+
+                dgMatches.DataCollection = SeasonMatchList;
+            }
         }
 
         private void showMatchActionsListToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            MatchData selMatch = (MatchData)dgMatches.SelectedRows[0].DataBoundItem;
+
             MatchActionsList mal = new MatchActionsList();
 
-            mal.actionsDataTableBindingSource.DataSource = matchDS.Actions;
+            mal.actionsDataTableBindingSource.DataSource = AllSeasons.GetMatchActions(selMatch.MatchID);
 
-            System.Data.DataRowView selMatch = (System.Data.DataRowView)dgMatches.SelectedRows[0].DataBoundItem;
-            ChampDS.MatchRow matchRow = (ChampDS.MatchRow)selMatch.Row;
-
-            mal.Text = matchRow.Home + " " + matchRow.Score.Trim("\r\n\t".ToCharArray()) + " " + matchRow.Away;
+            mal.Text = selMatch.Home + " " + selMatch.ScoreString.ToString() + " " + selMatch.Away;
 
             mal.ShowDialog();
         }
@@ -4961,21 +4956,57 @@ namespace TMRecorder
             {
                 yourPlayersPerfRows = md.HomePlayerPerf;
                 oppsPlayersPerfRows = md.AwayPlayerPerf;
+                lblNameYourTeam.Text = md.Home.ToString();
+                lblNameYourTeam.ForeColor = md.Home.tagColor;
+                lblNameOppsTeam.Text = md.Away.ToString();
+                lblNameOppsTeam.ForeColor = md.Away.tagColor;
+                lblMatchScore.Text = md.ScoreString.value;
             }
             else
             {
                 oppsPlayersPerfRows = md.HomePlayerPerf;
                 yourPlayersPerfRows = md.AwayPlayerPerf;
+                lblNameOppsTeam.Text = md.Home.ToString();
+                lblNameOppsTeam.ForeColor = md.Home.tagColor;
+                lblNameYourTeam.Text = md.Away.ToString();
+                lblNameYourTeam.ForeColor = md.Away.tagColor;
+                lblMatchScore.Text = md.Score.away.ToString() + "-" + md.Score.home.ToString();
             }
 
-            List<PlayerPerfData> yourPlayerPerfData = (from c in yourPlayersPerfRows
-                                                       select new PlayerPerfData(c)).OrderBy(p => p.NPos).ToList();
-            List<PlayerPerfData> oppsPlayerPerfData = (from c in oppsPlayersPerfRows
-                                                       select new PlayerPerfData(c)).OrderBy(p => p.NPos).ToList();
+            if (lblNameYourTeam.ForeColor.GetBrightness() > 0.75)
+                lblNameYourTeam.ForeColor = Color.Black;
+            if (lblNameOppsTeam.ForeColor.GetBrightness() > 0.75)
+                lblNameOppsTeam.ForeColor = Color.Black;
+
+            if (yourPlayersPerfRows != null)
+            {
+                List<PlayerPerfData> yourPlayerPerfData = (from c in yourPlayersPerfRows
+                                                           select new PlayerPerfData(c)).OrderBy(p => p.NPos).ToList();
+                List<PlayerPerfData> oppsPlayerPerfData = (from c in oppsPlayersPerfRows
+                                                           select new PlayerPerfData(c)).OrderBy(p => p.NPos).ToList();
 
 
-            dgYourTeamPerf.DataCollection = yourPlayerPerfData;
-            dgOppsTeamPerf.DataCollection = oppsPlayerPerfData;
+                dgYourTeamPerf.DataCollection = yourPlayerPerfData;
+                dgOppsTeamPerf.DataCollection = oppsPlayerPerfData;
+            }
+            else
+            {
+                dgYourTeamPerf.DataCollection = null;
+                dgOppsTeamPerf.DataCollection = null;
+            }
+        }
+
+        private void dgMatches_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            tabControl1.SelectedTab = tabBrowser;
+
+            MatchData selMatch = (MatchData)dgMatches.Rows[e.RowIndex].DataBoundItem;
+
+            string matchAddr = "http://trophymanager.com/matches/" + selMatch.MatchID + "/";
+
+            navigationAddress = matchAddr;
+            startnavigationAddress = navigationAddress;
+            webBrowser.Navigate(navigationAddress);
         }
     }
 }

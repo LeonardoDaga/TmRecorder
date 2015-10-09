@@ -31,6 +31,7 @@ namespace DataGridViewCustomColumns
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TMR_NameInjurySqColumn));
             this.statusList = new System.Windows.Forms.ImageList(this.components);
+            this.matchImgList = new System.Windows.Forms.ImageList(this.components);
             // 
             // statusList
             // 
@@ -42,12 +43,21 @@ namespace DataGridViewCustomColumns
             this.statusList.Images.SetKeyName(3, "RedCard.ico");
             this.statusList.Images.SetKeyName(4, "Injuried.ico");
             this.statusList.Images.SetKeyName(5, "Retire.ico");
+            // 
+            // matchImgList
+            // 
+            this.matchImgList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("matchImgList.ImageStream")));
+            this.matchImgList.TransparentColor = System.Drawing.Color.Transparent;
+            this.matchImgList.Images.SetKeyName(0, "RedCard.png");
+            this.matchImgList.Images.SetKeyName(1, "YellowCard.png");
+            this.matchImgList.Images.SetKeyName(2, "YellowRed.png");
+            this.matchImgList.Images.SetKeyName(3, "Goal.png");
 
         }
 
         #endregion
 
         public System.Windows.Forms.ImageList statusList;
-
+        public System.Windows.Forms.ImageList matchImgList;
     }
 }

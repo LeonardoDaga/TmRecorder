@@ -544,16 +544,18 @@ namespace TMRecorder
             dgYourTeamPerf.Columns.Clear();
             dgYourTeamPerf.AddColumn("Name", "Name", 50, AG_Style.NameInj | AG_Style.ResizeAllCells);
             dgYourTeamPerf.AddColumn("Pos", "Position", 30, AG_Style.FavPosition );
+            dgYourTeamPerf.AddColumn("FP", "FPn", 40, AG_Style.FavPosition, "Favoured Position");
             dgYourTeamPerf.AddColumn("Vot", "Vote", 30, AG_Style.Numeric | AG_Style.N1 );
-            dgYourTeamPerf.AddColumn("Rec", "Rec", 38, AG_Style.Stars);
+            dgYourTeamPerf.AddColumn("Rec", "Rec", 57, AG_Style.Stars);
             dgYourTeamPerf.AddColumn("Rou", "Rou", 30, AG_Style.Numeric | AG_Style.N1);
 
             dgOppsTeamPerf.AutoGenerateColumns = false;
             dgOppsTeamPerf.Columns.Clear();
             dgOppsTeamPerf.AddColumn("Name", "Name", 50, AG_Style.NameInj | AG_Style.ResizeAllCells);
-            dgOppsTeamPerf.AddColumn("Pos", "Position", 30, AG_Style.FavPosition );
+            dgOppsTeamPerf.AddColumn("Pos", "Position", 30, AG_Style.FavPosition);
+            dgOppsTeamPerf.AddColumn("FP", "FPn", 40, AG_Style.FavPosition, "Favoured Position");
             dgOppsTeamPerf.AddColumn("Vot", "Vote", 30, AG_Style.Numeric | AG_Style.N1);
-            dgOppsTeamPerf.AddColumn("Rec", "Rec", 38, AG_Style.Stars);
+            dgOppsTeamPerf.AddColumn("Rec", "Rec", 57, AG_Style.Stars);
             dgOppsTeamPerf.AddColumn("Rou", "Rou", 30, AG_Style.Numeric | AG_Style.N1);
         }
 
@@ -2423,16 +2425,20 @@ namespace TMRecorder
 
         private void UpdateLackData()
         {
-            foreach (ChampDS.PlyStatsRow psr in champDS.PlyStats)
-            {
-                if (psr.IsNomeNull())
-                {
-                    ExtraDS.GiocatoriRow gr = extraDS.FindByPlayerID(psr.PlayerID);
+            FillCmbMatchesSeasons();
 
-                    if (gr != null)
-                        psr.Nome = extraDS.FindByPlayerID(psr.PlayerID).Nome;
-                }
-            }
+            MatchListUpdateSeason();
+
+            //foreach (ChampDS.PlyStatsRow psr in champDS.PlyStats)
+            //{
+            //    if (psr.IsNomeNull())
+            //    {
+            //        ExtraDS.GiocatoriRow gr = extraDS.FindByPlayerID(psr.PlayerID);
+
+            //        if (gr != null)
+            //            psr.Nome = extraDS.FindByPlayerID(psr.PlayerID).Nome;
+            //    }
+            //}
         }
 
         private void chkUpdateMatchList(object sender, EventArgs e)
@@ -3350,8 +3356,6 @@ namespace TMRecorder
                 }
             }
 
-            champDS.UpdateSeason(cmbSeason);
-
             UpdateBrowserImportPanel();
         }
 
@@ -3736,7 +3740,7 @@ namespace TMRecorder
             if (page.Contains("NewTM - Kamp"))
             {
                 page = startnavigationAddress + "\n" + page;
-                LoadKampFromHTMLcode_NewTM(page);
+                AllSeasons.LoadMatch(page);
                 UpdateLackData();
                 isDirty = true;
                 return;
@@ -4485,7 +4489,7 @@ namespace TMRecorder
                 tsbImportSquad.UnderColor = Color.DarkGreen;
             }
 
-            if (!champDS.Match.UpdatedCalendar())
+            if (!AllSeasons.IsUpdatedCalendar(Program.Setts.MainSquadID))
             {
                 tsbMatchListA.ForeColor = Color.DarkRed;
                 tsbMatchSquadA.Enabled = false;
@@ -4502,7 +4506,7 @@ namespace TMRecorder
                 tsbMatchListA.UnderColor = Color.DarkGreen;
             }
 
-            if (!champDS.Match.UpdatedCalendarReserves())
+            if (!AllSeasons.IsUpdatedCalendar(Program.Setts.ReserveSquadID))
             {
                 tsbMatchListB.ForeColor = Color.DarkRed;
                 tsbMatchSquadB.Enabled = false;
@@ -4519,7 +4523,7 @@ namespace TMRecorder
                 tsbMatchListB.UnderColor = Color.DarkGreen;
             }
 
-            int matchToUpdate = champDS.Match.Updated();
+            int matchToUpdate = AllSeasons.NumberOfMatchesToUpdate(Program.Setts.MainSquadID);
             if (matchToUpdate > 0)
             {
                 tsbMatchSquadA.ForeColor = Color.DarkRed;
@@ -4535,7 +4539,7 @@ namespace TMRecorder
                 tsbMatchSquadA.UnderColor = Color.DarkGreen;
             }
 
-            matchToUpdate = champDS.Match.UpdatedReserves();
+            matchToUpdate = AllSeasons.NumberOfMatchesToUpdate(Program.Setts.ReserveSquadID);
             if (matchToUpdate > 0)
             {
                 tsbMatchSquadB.ForeColor = Color.DarkRed;
@@ -4554,34 +4558,32 @@ namespace TMRecorder
 
         private void tsbMatchSquadA_Click(object sender, EventArgs e)
         {
-            int matchToUpdate = champDS.Match.GetFirstMatchToUpdate();
-            if (matchToUpdate == -1)
+            MatchData matchToUpdate = AllSeasons.GetFirstMatchToUpdate(Program.Setts.MainSquadID);
+
+            if (matchToUpdate == null)
             {
-                MessageBox.Show("There are no matches to show in this season");
+                MessageBox.Show("There are no matches to update in this season");
                 return;
             }
 
-            navigationAddress = "http://trophymanager.com/matches/" + matchToUpdate.ToString() + "/";
+            navigationAddress = "http://trophymanager.com/matches/" + matchToUpdate.MatchID.ToString() + "/";
             webBrowser.Navigate(navigationAddress);
             startnavigationAddress = navigationAddress;
-            //if (tsbMatchSquadA.UnderColor != Color.DarkGreen)
-            //    importWhenCompleted = true;
         }
 
         private void tsbMatchSquadB_Click(object sender, EventArgs e)
         {
-            int matchToUpdate = champDS.Match.GetFirstMatchToUpdateReserves();
-            if (matchToUpdate == -1)
+            MatchData matchToUpdate = AllSeasons.GetFirstMatchToUpdate(Program.Setts.ReserveSquadID);
+
+            if (matchToUpdate == null)
             {
-                MessageBox.Show("There are no matches to show in this season");
+                MessageBox.Show("There are no matches to update in this season");
                 return;
             }
 
-            navigationAddress = "http://trophymanager.com/matches/" + matchToUpdate.ToString() + "/";
+            navigationAddress = "http://trophymanager.com/matches/" + matchToUpdate.MatchID.ToString() + "/";
             webBrowser.Navigate(navigationAddress);
             startnavigationAddress = navigationAddress;
-            //if (tsbMatchSquadB.UnderColor != Color.DarkGreen)
-            //    importWhenCompleted = true;
         }
 
         private void tsbMatchListA_Click(object sender, EventArgs e)
@@ -4960,7 +4962,7 @@ namespace TMRecorder
                 lblNameYourTeam.ForeColor = md.Home.tagColor;
                 lblNameOppsTeam.Text = md.Away.ToString();
                 lblNameOppsTeam.ForeColor = md.Away.tagColor;
-                lblMatchScore.Text = md.ScoreString.value;
+                lblMatchScore.Text = md.Score.ToString();
             }
             else
             {
@@ -4970,7 +4972,7 @@ namespace TMRecorder
                 lblNameOppsTeam.ForeColor = md.Home.tagColor;
                 lblNameYourTeam.Text = md.Away.ToString();
                 lblNameYourTeam.ForeColor = md.Away.tagColor;
-                lblMatchScore.Text = md.Score.away.ToString() + "-" + md.Score.home.ToString();
+                lblMatchScore.Text = md.Score.Inverse();
             }
 
             if (lblNameYourTeam.ForeColor.GetBrightness() > 0.75)

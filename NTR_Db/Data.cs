@@ -1402,6 +1402,8 @@ namespace NTR_Db
                 Assist = c.Assist;
             if (!c.IsStatusNull())
                 Status = c.Status;
+            if (!c.PlayerRow.IsFPNull())
+                FPn = c.PlayerRow.FPn;
         }
 
         public string Name { get; set; }
@@ -1414,6 +1416,7 @@ namespace NTR_Db
         public int Scored { get; private set; }
         public int Assist { get; private set; }
         public string Status { get; private set; }
+        public int FPn { get; private set; }
     }
 
     public class MatchData
@@ -1591,13 +1594,16 @@ namespace NTR_Db
     {
         public int home;
         public int away;
+        public bool valid = true;
 
         public Color ScoreColor
         {
             get
             {
-                if (home == away)
+                if (!valid)
                     return Color.LightGray;
+                else if (home == away)
+                    return Color.FromArgb(230,230,0);
                 else if ((home < away) && IsHome)
                     return Color.LightSalmon;
                 else if ((home > away) && !IsHome)
@@ -1614,6 +1620,7 @@ namespace NTR_Db
             {
                 home = 0;
                 away = 0;
+                valid = false;
                 return;
             }
             try
@@ -1632,7 +1639,23 @@ namespace NTR_Db
             {
                 home = 0;
                 away = 0;
+                valid = false;
             }
+        }
+
+        public override string ToString()
+        {
+            if (!valid)
+                return "np";
+            return string.Format("{0}-{1}", home, away);
+        }
+
+        public string Inverse()
+        {
+            if (!valid)
+                return "np";
+
+            return string.Format("{1}-{0}", home, away);
         }
 
         public bool IsHome { get; set; }

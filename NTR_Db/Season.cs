@@ -554,6 +554,625 @@ namespace NTR_Db
             return SeasonsWithData.ToArray();
         }
 
+        public bool IsUpdatedCalendar(int teamID)
+        {
+            int thisSeason = TmWeek.thisSeason().Season;
+
+            List<MatchData> matchDataList = GetSeasonMatchList(thisSeason, teamID, 0, 1);
+
+            return (matchDataList.Count > 0);
+        }
+
+        public int NumberOfMatchesToUpdate(int teamID)
+        {
+            TmSeason actualSeason = TmWeek.thisSeason();
+            DateTime dtYesterday = DateTime.Now.AddDays(-1);
+
+            var matchDataSelection = (from c in seasonsDB.Match
+                                      where (!c.IsDateNull()) && (c.Date > actualSeason.Start) && (c.Date < dtYesterday)
+                                              && (c.Report == false) && ((c.OTeamID == teamID) || (c.YTeamID == teamID))
+                                      select new MatchData(c));
+
+            return matchDataSelection.Count();
+        }
+
+        public MatchData GetFirstMatchToUpdate(int teamID)
+        {
+            TmSeason actualSeason = TmWeek.thisSeason();
+            DateTime dtYesterday = DateTime.Now.AddDays(-1);
+
+            var matchDataSelection = (from c in seasonsDB.Match
+                                      where (!c.IsDateNull()) && (c.Date > actualSeason.Start) && (c.Date < dtYesterday)
+                                              && (c.Report == false) && ((c.OTeamID == teamID) || (c.YTeamID == teamID))
+                                      select new MatchData(c));
+
+            return matchDataSelection.First();
+        }
+
+        public bool LoadMatch(string page)
+        {
+            if (page.Contains("Javascript error")) return false;
+
+            string lineup_home_str = HTML_Parser.GetTag(page, "LINEUP_HOME");
+            string lineup_away_str = HTML_Parser.GetTag(page, "LINEUP_AWAY");
+            string match_info_str = HTML_Parser.GetTag(page, "MATCH_INFO");
+            string report = HTML_Parser.GetTag(page, "REPORT");
+
+            if (match_info_str.Contains("forfait=yes")) return false;
+
+            string[] att_styles = { "Bal", "Bal", "Count", "Wing", "Short", "Long", "Filt" };
+            string[] mentality = { "Norm", "VeDef", "Def", "SlDef", "Norm", "SlOff", "Off", "VrOff" };
+
+            string matchIdStr = HTML_Parser.GetNumberAfter(page, "http://trophymanager.com/matches/");
+            int matchId = int.Parse(matchIdStr);
+
+            NTR_SquadDb.MatchRow matchRow = seasonsDB.Match.FindByMatchID(matchId);
+            if (matchRow == null)
+            {
+                matchRow = seasonsDB.Match.NewMatchRow();
+                matchRow.MatchID = matchId;
+                seasonsDB.Match.AddMatchRow(matchRow);
+            }
+
+            try
+            {
+                List<string> home_pl = HTML_Parser.GetTags(lineup_home_str, "PL");
+                List<string> away_pl = HTML_Parser.GetTags(lineup_away_str, "PL");
+
+                Dictionary<string, string> match_info = HTML_Parser.CreateDictionary(match_info_str.Trim(';'), ';');
+
+                int homeTeamId = int.Parse(match_info["home_id"]);
+                int awayTeamId = int.Parse(match_info["away_id"]);
+
+                NTR_SquadDb.TeamRow homeTeamRow = seasonsDB.Team.FindByTeamID(homeTeamId);
+                if (homeTeamRow == null)
+                {
+                    homeTeamRow = seasonsDB.Team.NewTeamRow();
+                    homeTeamRow.TeamID = homeTeamId;
+                    seasonsDB.Team.AddTeamRow(homeTeamRow);
+                }
+                homeTeamRow.Nick = match_info["home_nick"];
+
+                NTR_SquadDb.TeamRow awayTeamRow = seasonsDB.Team.FindByTeamID(awayTeamId);
+                if (awayTeamRow == null)
+                {
+                    awayTeamRow = seasonsDB.Team.NewTeamRow();
+                    awayTeamRow.TeamID = awayTeamId;
+                    seasonsDB.Team.AddTeamRow(awayTeamRow);
+                }
+                awayTeamRow.Nick = match_info["away_nick"];
+
+                matchRow.Stadium = match_info["stadium"];
+                matchRow.Crowd = int.Parse(match_info["attendance"]);
+
+                if (!homeTeamRow.IsOwnerNull())
+                    matchRow.isHome = homeTeamRow.Owner;
+                else
+                    matchRow.isHome = false;
+
+                int yourTeamId = matchRow.isHome ? homeTeamId : awayTeamId;
+                int oppsTeamId = matchRow.isHome ? awayTeamId : homeTeamId;
+
+                if (matchRow.isHome)
+                {
+                    matchRow.Mentalities = mentality[int.Parse(match_info["home_mentality"])] + ";" + mentality[int.Parse(match_info["away_mentality"])];
+                    matchRow.AttackStyles = att_styles[int.Parse(match_info["home_attstyle"])] + ";" + att_styles[int.Parse(match_info["away_attstyle"])];
+                }
+                else
+                {
+                    matchRow.Mentalities = mentality[int.Parse(match_info["away_mentality"])] + ";" + mentality[int.Parse(match_info["home_mentality"])];
+                    matchRow.AttackStyles = att_styles[int.Parse(match_info["away_attstyle"])] + ";" + att_styles[int.Parse(match_info["home_attstyle"])];
+                }
+
+                // Getting pitch and weather data
+                matchRow.Pitch = match_info["sprinklers"] + ";" +
+                     match_info["draining"] + ";" +
+                     match_info["heating"] + ";" +
+                     match_info["pitch_condition"] + ";" +
+                     match_info["pitchcover"];
+                matchRow.Weather = match_info["weather"];
+
+                int pl_def = 0;
+                int pl_mid = 0;
+                int pl_att = 0;
+
+                List<int> homePlayers = new List<int>();
+                foreach (string player_row in home_pl)
+                {
+                    Dictionary<string, string> team = HTML_Parser.CreateDictionary(player_row, ';');
+
+                    string pos = team["position"];
+
+                    if ((pos.StartsWith("dc")) || (pos == "dr") || (pos == "dl"))
+                    {
+                        pl_def++;
+                    }
+                    else if (pos.StartsWith("fc"))
+                    {
+                        pl_att++;
+                    }
+                    else if ((pos.StartsWith("m")) || (pos.StartsWith("dm")) || pos.StartsWith("om"))
+                    {
+                        pl_mid++;
+                    }
+
+                    int teamID = homeTeamId;
+
+                    int playerID = int.Parse(team["player_id"]);
+                    NTR_SquadDb.PlayerRow pl = seasonsDB.Player.FindByPlayerID(playerID);
+                    if (pl == null)
+                    {
+                        pl = seasonsDB.Player.NewPlayerRow();
+                        pl.PlayerID = playerID;
+                        pl.Name = team["name"];
+                        seasonsDB.Player.AddPlayerRow(pl);
+                    }
+                    pl.TeamID = homeTeamId;
+
+                    NTR_SquadDb.PlayerPerfRow ppr = seasonsDB.PlayerPerf.FindByMatchIDPlayerID(matchId, playerID);
+                    if (ppr == null)
+                    {
+                        ppr = seasonsDB.PlayerPerf.NewPlayerPerfRow();
+                        ppr.MatchID = matchId;
+                        ppr.PlayerID = playerID;
+                        seasonsDB.PlayerPerf.AddPlayerPerfRow(ppr);
+                    }
+
+                    pl.FP = team["fp"].ToUpper();
+                    pl.FP = pl.FP.Replace(',', '/');
+                    pl.FPn = Tm_Utility.FPToNumber(pl.FP);
+                    ppr.TeamID = homeTeamId;
+                    ppr.Assist = 0;
+                    if (team["no"] == "null") team["no"] = "0";
+                    ppr.Number = int.Parse(team["no"]);
+                    ppr.Position = team["position"];
+                    ppr.Scored = 0;
+                    if (team["rating"] != "0")
+                        ppr.Vote = float.Parse(team["rating"], System.Globalization.NumberStyles.Any, CommGlobal.ciUs);
+                    ppr.NPos = Pos.ToCode(ppr.Position);
+                    ppr.Status = "";
+                    ppr.Rec = decimal.Parse(team["rec"]);
+                    if (team["mom"] == "1")
+                        matchRow.BestPlayer = ppr.PlayerID;
+                    ppr.Rou = decimal.Parse(team["routine"]);
+
+                    homePlayers.Add(playerID);
+                }
+
+                string homeformation = pl_def.ToString() + "-" + pl_mid.ToString() + "-" + pl_att.ToString();
+
+                pl_att = pl_def = pl_mid = 0;
+
+                List<int> awayPlayers = new List<int>();
+                foreach (string player_row in away_pl)
+                {
+                    Dictionary<string, string> team = HTML_Parser.CreateDictionary(player_row, ';');
+
+                    string pos = team["position"];
+
+                    if ((pos.StartsWith("dc")) || (pos == "dr") || (pos == "dl"))
+                    {
+                        pl_def++;
+                    }
+                    else if (pos.StartsWith("fc"))
+                    {
+                        pl_att++;
+                    }
+                    else if ((pos.StartsWith("m")) || (pos.StartsWith("dm")) || pos.StartsWith("om"))
+                    {
+                        pl_mid++;
+                    }
+
+                    int teamID = awayTeamId;
+
+                    int playerID = int.Parse(team["player_id"]);
+                    NTR_SquadDb.PlayerRow pl = seasonsDB.Player.FindByPlayerID(playerID);
+                    if (pl == null)
+                    {
+                        pl = seasonsDB.Player.NewPlayerRow();
+                        pl.PlayerID = playerID;
+                        pl.Name = team["name"];
+                        seasonsDB.Player.AddPlayerRow(pl);
+                    }
+                    pl.TeamID = awayTeamId;
+
+                    NTR_SquadDb.PlayerPerfRow ppr = seasonsDB.PlayerPerf.FindByMatchIDPlayerID(matchId, playerID);
+                    if (ppr == null)
+                    {
+                        ppr = seasonsDB.PlayerPerf.NewPlayerPerfRow();
+                        ppr.MatchID = matchId;
+                        ppr.PlayerID = playerID;
+                        seasonsDB.PlayerPerf.AddPlayerPerfRow(ppr);
+                    }
+
+                    pl.FP = team["fp"].ToUpper();
+                    pl.FP = pl.FP.Replace(',', '/');
+                    pl.FPn = Tm_Utility.FPToNumber(pl.FP);
+                    ppr.TeamID = awayTeamId;
+                    ppr.Assist = 0;
+                    if (team["no"] == "null") team["no"] = "0";
+                    ppr.Number = int.Parse(team["no"]);
+                    ppr.Position = team["position"];
+                    ppr.Scored = 0;
+                    if (team["rating"] != "0")
+                        ppr.Vote = float.Parse(team["rating"], System.Globalization.NumberStyles.Any, CommGlobal.ciUs);
+                    ppr.NPos = Pos.ToCode(ppr.Position);
+                    ppr.Status = "";
+                    ppr.Rec = decimal.Parse(team["rec"]);
+                    if (team["mom"] == "1")
+                        matchRow.BestPlayer = ppr.PlayerID;
+                    ppr.Rou = decimal.Parse(team["routine"]);
+
+                    awayPlayers.Add(playerID);
+                }
+
+                string awayformation = pl_def.ToString() + "-" + pl_mid.ToString() + "-" + pl_att.ToString();
+                if (matchRow.isHome)
+                {
+                    matchRow.Lineups = homeformation + ";" + awayformation;
+                }
+                else
+                {
+                    matchRow.Lineups = awayformation + ";" + homeformation;
+                }
+
+                List<string> mins = HTML_Parser.GetTags(report, "MIN");
+
+                int homeGoal = 0;
+                int awayGoal = 0;
+                int homeTiriIn = 0;
+                int awayTiriIn = 0;
+                int homeTiriTot = 0;
+                int awayTiriTot = 0;
+                int homeYellow = 0;
+                int awayYellow = 0;
+                int homeRed = 0;
+                int awayRed = 0;
+                int homeSetPc = 0;
+                int awaySetPc = 0;
+                int homeDef = 0;
+                int awayDef = 0;
+
+                List<int> goalPlayers = new List<int>();
+                List<int> asstPlayers = new List<int>();
+                List<int> stpcPlayers = new List<int>();
+                List<int> yelcPlayers = new List<int>();
+                List<int> redcPlayers = new List<int>();
+                List<int> injrPlayers = new List<int>();
+
+                ActionsList yourActionsList = new ActionsList();
+                ActionsList oppsActionsList = new ActionsList();
+                Dictionary<int, ActionsList> playerActionListDict = new Dictionary<int, ActionsList>();
+
+                foreach (string min in mins)
+                {
+                    string min_mod = min.Replace("action=(", "").Replace(")(", ";").Replace(")", "");
+                    Dictionary<string, string> items = HTML_Parser.CreateDictionary(min_mod, ';');
+
+                    if ((items["club"] == "undefined") || (items["club"] == "0") || (items["club"] == "null")) continue;
+
+                    bool isHome = (items["club"] == homeTeamId.ToString());
+                    // if (!isHome && (items["club"] != AwayID.ToString())) continue;
+
+                    NTR_SquadDb.ActionsRow atr = seasonsDB.Actions.NewActionsRow();
+                    atr.ActionCode = items["type"];
+                    atr.ActionType = atr.ActionCode;
+                    atr.FullDesc = min;
+                    string strColor = isHome ? match_info["home_color"] : match_info["away_color"];
+                    if ((strColor == "undefined") || (strColor == "")) strColor = "0000FF";
+
+                    if (isHome)
+                        homeTeamRow.Color = int.Parse(strColor, System.Globalization.NumberStyles.HexNumber);
+
+                    if (!items.ContainsKey("text"))
+                    {
+                        continue;
+                    }
+
+                    atr.Time = int.Parse(items["min"]);
+                    atr.TeamID = int.Parse(items["club"]);
+                    atr.MatchID = matchId;
+
+                    string description = items["text"];
+                    string attPlayers = "";
+                    string defPlayers = "";
+
+                    while (description.Contains("[player="))
+                    {
+                        string strnum = HTML_Parser.GetNumberAfter(description, "[player=");
+                        if (strnum == "]") strnum = "";
+                        int numPl = 0;
+                        if (!int.TryParse(strnum, out numPl))
+                        {
+                            description = description.Replace("[player=" + strnum + "]", "(unknown)");
+                            continue;
+                        }
+
+                        NTR_SquadDb.PlayerRow pr = seasonsDB.Player.FindByPlayerID(numPl);
+                        string name = pr.Name;
+
+                        description = description.Replace("[player=" + strnum + "]", name);
+
+                        if (pr.TeamRow.TeamID == atr.TeamID)
+                        {
+                            attPlayers += numPl.ToString() + ",";
+                        }
+                        else
+                        {
+                            defPlayers += numPl.ToString() + ",";
+                        }
+                    }
+
+                    atr.Attackers = attPlayers;
+                    atr.Defenders = defPlayers;
+
+                    atr.Description = description;
+
+                    NTR_SquadDb.ActionsDecoderRow actionDecRow = seasonsDB.ActionsDecoder.FindByActionCode(atr.ActionCode);
+                    if (actionDecRow == null)
+                    {
+                        actionDecRow = seasonsDB.ActionsDecoder.NewActionsDecoderRow();
+                        actionDecRow.ActionCode = atr.ActionCode;
+                        seasonsDB.ActionsDecoder.AddActionsDecoderRow(actionDecRow);
+
+                        ActionDecoder actionDecoderDlg = new ActionDecoder();
+                        actionDecoderDlg.Data = actionDecRow;
+                        actionDecoderDlg.Description = description;
+                        actionDecoderDlg.FullDescription = atr.FullDesc;
+
+                        if (actionDecoderDlg.ShowDialog() == DialogResult.Cancel)
+                        {
+                            if (MessageBox.Show("Do you want to continue with the next action [press OK] or cancel [press Cancel] the analysis of the actions at all for this match?", "Actions analysis", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                                continue;
+                            else
+                                break;
+                        }
+                    }
+
+                    seasonsDB.Actions.AddActionsRow(atr);
+
+                    if (atr.TeamID == yourTeamId)
+                        yourActionsList.AddNewAttackAction(actionDecRow);
+                    else
+                        oppsActionsList.AddNewAttackAction(actionDecRow);
+
+                    List<int> playerIds = HTML_Parser.GetNumbersBetween(atr.FullDesc, "[player=", "]");
+                    foreach (int playerId in playerIds)
+                    {
+                        if (!playerActionListDict.ContainsKey(playerId))
+                            playerActionListDict.Add(playerId, new ActionsList());
+
+                        ActionsList playerActionList = playerActionListDict[playerId];
+
+                        int playerTeamId = -1;
+                        if (homePlayers.Contains(playerId))
+                            playerTeamId = homeTeamId;
+                        else
+                            playerTeamId = awayTeamId;
+
+                        if (atr.TeamID == playerTeamId)
+                            playerActionList.AddNewAttackAction(actionDecRow);
+                        else
+                            playerActionList.AddNewDefendAction(actionDecRow);
+                    }
+
+                    if (items.ContainsKey("injury"))
+                    {
+                        injrPlayers.Add(int.Parse(items["injury"]));
+                    }
+                    else if (items.ContainsKey("scorer"))
+                    {
+                        goalPlayers.Add(int.Parse(items["scorer"]));
+                        if (isHome) homeGoal++; else awayGoal++;
+                        if (isHome) homeTiriIn++; else awayTiriIn++;
+                        if (isHome) homeTiriTot++; else awayTiriTot++;
+                        if ((items["assist"] != "none"))
+                            asstPlayers.Add(int.Parse(items["assist"]));
+                    }
+                    else if (items.ContainsKey("target"))
+                    {
+                        if (items["target"] == "on")
+                        {
+                            if (isHome) homeTiriIn++; else awayTiriIn++;
+                            if (isHome) homeTiriTot++; else awayTiriTot++;
+                        }
+                        else
+                        {
+                            if (isHome) homeTiriTot++; else awayTiriTot++;
+                        }
+                    }
+                    else if (items.ContainsKey("set_piece"))
+                    {
+                        stpcPlayers.Add(int.Parse(items["set_piece"]));
+                        if (isHome) homeSetPc++; else awaySetPc++;
+
+                        if (items.ContainsKey("target"))
+                        {
+                            if (items["target"] == "on")
+                            {
+                                if (isHome) homeTiriIn++; else awayTiriIn++;
+                                if (isHome) homeTiriTot++; else awayTiriTot++;
+                            }
+                            else
+                            {
+                                if (isHome) homeTiriTot++; else awayTiriTot++;
+                            }
+                        }
+                    }
+                    else if (items.ContainsKey("yellow_red"))
+                    {
+                        yelcPlayers.Add(int.Parse(items["yellow_red"]));
+                        if (isHome) awayYellow++; else homeYellow++;
+                        redcPlayers.Add(int.Parse(items["yellow_red"]));
+                        if (isHome) awayRed++; else homeRed++;
+                    }
+                    else if (items.ContainsKey("yellow"))
+                    {
+                        yelcPlayers.Add(int.Parse(items["yellow"]));
+                        if (isHome) awayYellow++; else homeYellow++;
+                    }
+                    else if (items.ContainsKey("red"))
+                    {
+                        redcPlayers.Add(int.Parse(items["red"]));
+                        if (isHome) awayRed++; else homeRed++;
+                    }
+                    else
+                    {
+                        if (isHome) awayDef++; else homeDef++;
+                    }
+                }
+
+                matchRow.Score = homeGoal.ToString() + "-" + awayGoal.ToString();
+
+                matchRow.OActions = oppsActionsList.ToString();
+                matchRow.YActions = yourActionsList.ToString();
+
+                matchRow.OTeamID = oppsTeamId;
+                matchRow.YTeamID = yourTeamId;
+
+                matchRow.Analyzed = 1;
+                matchRow.Report = true;
+
+                string type = match_info["matchtype"];
+                if (type == "l")
+                    matchRow.MatchType = (byte)0;
+                else if (type == "f")
+                    matchRow.MatchType = (byte)2;
+                else if (type == "fl")
+                    matchRow.MatchType = (byte)3;
+                else if (type.StartsWith("p"))
+                {
+                    byte i = byte.Parse(type.Substring(1));
+                    matchRow.MatchType = (byte)(10 + i);
+                }
+                else if (type.StartsWith("ue"))
+                {
+                    byte i = byte.Parse(type.Substring(2));
+                    matchRow.MatchType = (byte)(20 + i);
+                }
+                else if (type.StartsWith("lq"))
+                {
+                    matchRow.MatchType = (byte)5; // Qualificazioni campionato
+                }
+                else
+                {
+                    matchRow.MatchType = (byte)4; // Altra internazionale
+                }
+
+                long iKickOff = long.Parse(match_info["kickoff"]);
+
+                DateTime dt = new DateTime(1970, 1, 1, 1, 0, 0);
+                matchRow.Date = dt.AddSeconds((double)iKickOff);
+
+                foreach (KeyValuePair<int, ActionsList> actionList in playerActionListDict)
+                {
+                    NTR_SquadDb.PlayerPerfRow ppr = seasonsDB.PlayerPerf.FindByMatchIDPlayerID(matchId, actionList.Key);
+                    if (ppr != null)
+                        ppr.Actions = actionList.Value.ToString();
+                }
+
+                ActionsList tempActionsList = ActionsList.Parse(matchRow.OActions);
+
+                string home_stats = match_info["possession_home"] + "%;" +
+                    homeTiriTot.ToString() + ";" +
+                    homeTiriIn.ToString() + ";" +
+                    homeYellow.ToString() + ";" +
+                    homeRed.ToString() + ";";
+                string away_stats = match_info["possession_away"] + "%;" +
+                    awayTiriTot.ToString() + ";" +
+                    awayTiriIn.ToString() + ";" +
+                    awayYellow.ToString() + ";" +
+                    awayRed.ToString() + ";";
+
+                if (matchRow.isHome)
+                {
+                    matchRow.Stats = home_stats + ";" + away_stats;
+                }
+                else
+                {
+                    matchRow.Stats = away_stats + ";" + home_stats;
+                }
+
+                // Assegna i gol
+                foreach (int gp in goalPlayers)
+                {
+                    NTR_SquadDb.PlayerPerfRow ppr = seasonsDB.PlayerPerf.FindByMatchIDPlayerID(matchId, gp);
+                    if (ppr != null) { ppr.Scored += 1; continue; }
+                }
+
+                // Assegna gli assist
+                foreach (int gp in asstPlayers)
+                {
+                    NTR_SquadDb.PlayerPerfRow ppr = seasonsDB.PlayerPerf.FindByMatchIDPlayerID(matchId, gp);
+                    if (ppr != null) { ppr.Assist += 1; continue; }
+                }
+
+                // Assegna gli infortuni
+                foreach (int gp in injrPlayers)
+                {
+                    NTR_SquadDb.PlayerPerfRow ppr = seasonsDB.PlayerPerf.FindByMatchIDPlayerID(matchId, gp);
+                    if (ppr != null) { ppr.Status += "I"; continue; }
+                }
+
+                // Assegna i gialli
+                foreach (int gp in yelcPlayers)
+                {
+                    NTR_SquadDb.PlayerPerfRow ppr = seasonsDB.PlayerPerf.FindByMatchIDPlayerID(matchId, gp);
+                    if (ppr != null) { ppr.Status += "Y"; continue; }
+                }
+
+                // Assegna i rossi
+                foreach (int gp in redcPlayers)
+                {
+                    NTR_SquadDb.PlayerPerfRow ppr = seasonsDB.PlayerPerf.FindByMatchIDPlayerID(matchId, gp);
+                    if (ppr != null) { ppr.Status += "R"; continue; }
+                }
+
+                if (matchRow.isHome)
+                    matchRow.TeamRowByTeam_OTeam.Name = match_info["away_name"];
+                else
+                    matchRow.TeamRowByTeam_OTeam.Name = match_info["home_name"];
+
+                string oppsColor = matchRow.isHome ? match_info["away_color"] : match_info["home_color"];
+                if ((oppsColor == "undefined") || (oppsColor == "")) oppsColor = "0000FF";
+
+                if (matchRow.isHome)
+                    matchRow.TeamRowByTeam_OTeam.Color = int.Parse(oppsColor, System.Globalization.NumberStyles.HexNumber);
+
+                matchRow.TeamRowByTeam_OTeam.Owner = false;
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                string swRelease = "Sw Release:" + Application.ProductName + "("
+                    + Application.ProductVersion + ")";
+                string reportInfo = "";
+
+                string filename = "matchRowTable." + DateTime.Now.Hour.ToString() +
+                    DateTime.Now.Minute.ToString() + ".tmreport.txt";
+
+                string appDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+                appDataFolder = Path.Combine(appDataFolder, "TmRecorder");
+
+                string pathfilename = Path.Combine(appDataFolder, filename);
+                FileInfo fi = new FileInfo(pathfilename);
+
+                matchRow.Table.WriteXml(fi.FullName);
+                StreamReader file = new StreamReader(fi.FullName);
+                reportInfo += "PlayersDS:\r\n" + file.ReadToEnd();
+                file.Close();
+
+                reportInfo += "\r\nPage:\r\n" + page;
+
+                SendFileTo.ErrorReport.Send(ex, reportInfo, Environment.StackTrace, swRelease);
+                MessageBox.Show("Sorry. The importing process has failed. If you clicked ok, the info of the error have " +
+                    "been sent to Led Lennon that will remove this bug as soon as possible.");
+
+                return false;
+            }
+        }
+
         /*
         public void LoadChampDS(string matchFilePath)
         {

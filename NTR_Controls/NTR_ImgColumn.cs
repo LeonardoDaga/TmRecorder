@@ -133,23 +133,23 @@ namespace NTR_Controls
 
             {
                 Point pt = cellRect.Location;
-                pt.Offset(2, (cellRect.Height - dnc.imgContainer.starImageList.ImageSize.Height) / 2);
+                pt.Offset(2, (cellRect.Height - dnc.imgContainer.starRowImgList.ImageSize.Height) / 2);
 
-                decimal ivalue = (decimal)value;
+                decimal ivalue = (decimal)value * 2M;
 
                 if ((ivalue == 0) || (ivalue > 10))
                     ivalue = 1;
 
-                string strValue = ivalue.ToString();
+                string strValue = ivalue.ToString("N0");
 
                 Image image = null;
 
-                int ix = dnc.imgContainer.starImageList.Images.IndexOfKey(strValue + ".png");
-                if (ix != -1) image = dnc.imgContainer.starImageList.Images[ix];
+                int ix = dnc.imgContainer.starRowImgList.Images.IndexOfKey(strValue + ".png");
+                if (ix != -1) image = dnc.imgContainer.starRowImgList.Images[ix];
 
                 if (image == null)
                 {
-                    image = dnc.imgContainer.starImageList.Images[0];
+                    image = dnc.imgContainer.starRowImgList.Images[0];
                 }
 
                 graphics.DrawImage(image, pt);

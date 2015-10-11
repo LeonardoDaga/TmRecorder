@@ -262,9 +262,6 @@ namespace TMRecorder
                     tsbMatchSquadB.Visible = false;
                 }
 
-                tsBrowsePlayers.Visible = false;
-                tsBrowseMatches.Visible = false;
-
                 UpdateShownGrid();
             }
             catch (Exception ex)
@@ -381,7 +378,7 @@ namespace TMRecorder
             DirectoryInfo di = new DirectoryInfo(dirPath);
 
             FileInfo[] fis = di.GetFiles("*.5.xml");
-            if (fis.Length > 0)
+            if (fis.Length < 0)
             {
                 // Load the data version 5
                 AllSeasons.LoadSeasonsFromVersion5(dirPath, ref sf, true);
@@ -406,7 +403,7 @@ namespace TMRecorder
 
             MatchListUpdateSeason();
 
-            champDS.isDirty = false;
+            AllSeasons.IsDirty = false;
         }
 
         private void FillCmbMatchesSquads()
@@ -481,10 +478,10 @@ namespace TMRecorder
             string str = "l,c,f,fl,i";
             int cnt = 0;
 
-            champDS.TeamID = Program.Setts.MainSquadID;
-            champDS.ReservesID = Program.Setts.ReserveSquadID;
-            cnt = champDS.LoadSeasonFile_NewTM(text, ref str, Program.Setts.DebugFunction,
-                Program.Setts.ApplicationFolder);
+            //champDS.TeamID = Program.Setts.MainSquadID;
+            //champDS.ReservesID = Program.Setts.ReserveSquadID;
+            //cnt = champDS.LoadSeasonFile_NewTM(text, ref str, Program.Setts.DebugFunction,
+            //    Program.Setts.ApplicationFolder);
 
             if (str == "") // Il programma si è accorto che le definizioni dei match types sono sbagliate
             {
@@ -509,11 +506,11 @@ namespace TMRecorder
                 str = str.Replace("\"", "");
             }
 
-            if (text.Contains("var week"))
-                cnt = champDS.LoadSeasonFileFlash(text, ref str, Program.Setts.DebugFunction,
-                    Program.Setts.ApplicationFolder);
-            else
-                champDS.LoadSeasonFileNonFlash(text, ref str);
+            //if (text.Contains("var week"))
+            //    cnt = champDS.LoadSeasonFileFlash(text, ref str, Program.Setts.DebugFunction,
+            //        Program.Setts.ApplicationFolder);
+            //else
+            //    champDS.LoadSeasonFileNonFlash(text, ref str);
 
             if (str == "") // Il programma si è accorto che le definizioni dei match types sono sbagliate
             {
@@ -542,20 +539,20 @@ namespace TMRecorder
 
             dgYourTeamPerf.AutoGenerateColumns = false;
             dgYourTeamPerf.Columns.Clear();
-            dgYourTeamPerf.AddColumn("Name", "Name", 50, AG_Style.NameInj | AG_Style.ResizeAllCells);
+            dgYourTeamPerf.AddColumn("Name", "NameExt", 50, AG_Style.TextAndImage | AG_Style.ResizeAllCells);
             dgYourTeamPerf.AddColumn("Pos", "Position", 30, AG_Style.FavPosition );
             dgYourTeamPerf.AddColumn("FP", "FPn", 40, AG_Style.FavPosition, "Favoured Position");
             dgYourTeamPerf.AddColumn("Vot", "Vote", 30, AG_Style.Numeric | AG_Style.N1 );
-            dgYourTeamPerf.AddColumn("Rec", "Rec", 57, AG_Style.Stars);
+            dgYourTeamPerf.AddColumn("Rec", "RecExt", 57, AG_Style.Stars);
             dgYourTeamPerf.AddColumn("Rou", "Rou", 30, AG_Style.Numeric | AG_Style.N1);
 
             dgOppsTeamPerf.AutoGenerateColumns = false;
             dgOppsTeamPerf.Columns.Clear();
-            dgOppsTeamPerf.AddColumn("Name", "Name", 50, AG_Style.NameInj | AG_Style.ResizeAllCells);
+            dgOppsTeamPerf.AddColumn("Name", "NameExt", 50, AG_Style.TextAndImage | AG_Style.ResizeAllCells);
             dgOppsTeamPerf.AddColumn("Pos", "Position", 30, AG_Style.FavPosition);
             dgOppsTeamPerf.AddColumn("FP", "FPn", 40, AG_Style.FavPosition, "Favoured Position");
             dgOppsTeamPerf.AddColumn("Vot", "Vote", 30, AG_Style.Numeric | AG_Style.N1);
-            dgOppsTeamPerf.AddColumn("Rec", "Rec", 57, AG_Style.Stars);
+            dgOppsTeamPerf.AddColumn("Rec", "RecExt", 57, AG_Style.Stars);
             dgOppsTeamPerf.AddColumn("Rou", "Rou", 30, AG_Style.Numeric | AG_Style.N1);
         }
 
@@ -570,16 +567,17 @@ namespace TMRecorder
             toolDataList.SelectedIndex = History.IndexOf(History.actualDts);
         }
 
-        private void salvaComeXMLToolStripMenuItem_Click(object sender, EventArgs e)
+        private void salvaTeamData_Click(object sender, EventArgs e)
         {
             History.Save(Program.Setts.DefaultDirectory);
             isDirty = false;
 
-            if (champDS.isDirty)
+            if (AllSeasons.IsDirty)
             {
-                string matchFilePath = Path.Combine(Program.Setts.DefaultDirectory, Program.Setts.MatchesFileName);
-                champDS.WriteXml(matchFilePath);
-                champDS.isDirty = false;
+                AllSeasons.Save(Program.Setts.DefaultDirectory);
+                //string matchFilePath = Path.Combine(Program.Setts.DefaultDirectory, Program.Setts.MatchesFileName);
+                //champDS.WriteXml(matchFilePath);
+                AllSeasons.IsDirty = false;
             }
 
             History.teamDS.Save(Program.Setts.DefaultDirectory, "Shortlist.3.xml");
@@ -819,8 +817,6 @@ namespace TMRecorder
                 dP[2]++;
                 EvidenceSkillsGiocatoriForQuality();
 
-                champDS.ReservesID = of.ReserveSquadID;
-
                 dP[2]++;
                 if ((Program.Setts.NormalizeGains != of.NormalizeGains) ||
                     (Program.Setts.GainSet != of.GainSet))
@@ -916,7 +912,7 @@ namespace TMRecorder
                 SaveTrainers();
             }
 
-            if (champDS.isDirty)
+            if (AllSeasons.IsDirty)
             {
                 DialogResult res = MessageBox.Show(Current.Language.SaveMatchesDataBeforeExit, "Team Recorder", MessageBoxButtons.YesNo);
 
@@ -928,9 +924,8 @@ namespace TMRecorder
 
                 if (res == DialogResult.Yes)
                 {
-                    string matchFilePath = Path.Combine(Program.Setts.DefaultDirectory, Program.Setts.MatchesFileName);
-                    champDS.WriteXml(matchFilePath);
-                    champDS.isDirty = false;
+                    AllSeasons.Save(Program.Setts.DefaultDirectory);
+                    AllSeasons.IsDirty = false;
                 }
             }
         }
@@ -1604,7 +1599,7 @@ namespace TMRecorder
 
             int ID = (int)dataGridPortieri[0, e.RowIndex].Value;
 
-            GKForm pf = new GKForm(History.actualDts.PortieriNSkill, History, ID, champDS.PlyStats);
+            GKForm pf = new GKForm(History.actualDts.PortieriNSkill, History, ID, AllSeasons);
 
             pf.ShowDialog();
 
@@ -1680,7 +1675,7 @@ namespace TMRecorder
 
             if (History.actualDts.GiocatoriNSkill.FindByPlayerID(ID) != null)
             {
-                PlayerForm pf = new PlayerForm(History.actualDts.GiocatoriNSkill, History, ID, champDS.PlyStats);
+                PlayerForm pf = new PlayerForm(History.actualDts.GiocatoriNSkill, History, ID, AllSeasons);
 
                 pf.ShowDialog();
 
@@ -1690,7 +1685,7 @@ namespace TMRecorder
             }
             else
             {
-                GKForm pf = new GKForm(History.actualDts.PortieriNSkill, History, ID, champDS.PlyStats);
+                GKForm pf = new GKForm(History.actualDts.PortieriNSkill, History, ID, AllSeasons);
 
                 pf.ShowDialog();
 
@@ -2148,279 +2143,228 @@ namespace TMRecorder
 
         public void LoadKampFromHTMLcode_NewTM(string page)
         {
-            ChampDS.MatchRow matchRow = null;
+            //    ChampDS.MatchRow matchRow = null;
 
-            try
-            {
-                if (page.Contains("http://trophymanager.com/matches/"))
-                {
-                    string kampid = HTML_Parser.GetNumberAfter(page, "http://trophymanager.com/matches/");
-                    matchRow = champDS.Match.FindByMatchID(int.Parse(kampid));
+            //    try
+            //    {
+            //        if (page.Contains("http://trophymanager.com/matches/"))
+            //        {
+            //            string kampid = HTML_Parser.GetNumberAfter(page, "http://trophymanager.com/matches/");
+            //            matchRow = champDS.Match.FindByMatchID(int.Parse(kampid));
 
-                    if (matchRow == null)
-                    {
-                        MessageBox.Show("The match has not been found in your list of matches, so you cannot download it\n" +
-                            "Please update the matches list",
-                            "Loading match");
-                        return;
-                    }
-                }
-                else
-                {
-                    if (dgMatches.SelectedRows.Count == 0) return;
+            //            if (matchRow == null)
+            //            {
+            //                MessageBox.Show("The match has not been found in your list of matches, so you cannot download it\n" +
+            //                    "Please update the matches list",
+            //                    "Loading match");
+            //                return;
+            //            }
+            //        }
+            //        else
+            //        {
+            //            if (dgMatches.SelectedRows.Count == 0) return;
 
-                    System.Data.DataRowView selMatch = (System.Data.DataRowView)dgMatches.SelectedRows[0].DataBoundItem;
-                    matchRow = (ChampDS.MatchRow)selMatch.Row;
-                }
-            }
-            catch (Exception ex)
-            {
-                string swRelease = "Sw Release:" + Application.ProductName + "("
-                    + Application.ProductVersion + ")";
-                SendFileTo.ErrorReport.Send(ex, page, Environment.StackTrace, swRelease);
-                MessageBox.Show(Current.Language.SorryTheImportingProcessHasFailedIfYouClickedOkTheInfoOfTheErrorHave +
-                    Current.Language.BeenSentToLedLennonThatWillRemoveThisBugAsSoonAsPossible);
+            //            System.Data.DataRowView selMatch = (System.Data.DataRowView)dgMatches.SelectedRows[0].DataBoundItem;
+            //            matchRow = (ChampDS.MatchRow)selMatch.Row;
+            //        }
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        string swRelease = "Sw Release:" + Application.ProductName + "("
+            //            + Application.ProductVersion + ")";
+            //        SendFileTo.ErrorReport.Send(ex, page, Environment.StackTrace, swRelease);
+            //        MessageBox.Show(Current.Language.SorryTheImportingProcessHasFailedIfYouClickedOkTheInfoOfTheErrorHave +
+            //            Current.Language.BeenSentToLedLennonThatWillRemoveThisBugAsSoonAsPossible);
 
-                return;
-            }
+            //        return;
+            //    }
 
-            try
-            {
-                if ((!matchRow.IsOppsClubIDNull()) && (page.Contains(matchRow.OppsClubID.ToString())))
-                {
-                    if (matchDS.Analyze_NewTM(page, ref matchRow))
-                    {
-                        Program.Setts.ClubNickname = matchDS.clubNick;
-                        Program.Setts.Save();
+            //    try
+            //    {
+            //        if ((!matchRow.IsOppsClubIDNull()) && (page.Contains(matchRow.OppsClubID.ToString())))
+            //        {
+            //            if (matchDS.Analyze_NewTM(page, ref matchRow))
+            //            {
+            //                Program.Setts.ClubNickname = matchDS.clubNick;
+            //                Program.Setts.Save();
 
-                        // Read always the action analysis file
-                        actionAnalysis.Clear();
+            //                // Read always the action analysis file
+            //                actionAnalysis.Clear();
 
-                        FileInfo fi = new FileInfo(Program.Setts.ActionAnalysisFile);
+            //                FileInfo fi = new FileInfo(Program.Setts.ActionAnalysisFile);
 
-                        matchRow.Report = true;
+            //                matchRow.Report = true;
 
-                        if (fi.Exists)
-                        {
-                            actionAnalysis.ReadXml(fi.FullName);
+            //                if (fi.Exists)
+            //                {
+            //                    actionAnalysis.ReadXml(fi.FullName);
 
-                            ActionList al = actionAnalysis.Analyze(matchDS,
-                                                    ref matchRow);
+            //                    ActionList al = actionAnalysis.Analyze(matchDS,
+            //                                            ref matchRow);
 
-                            foreach (ActionItem ai in al)
-                            {
-                                ChampDS.PlyStatsRow psr = champDS.PlyStats.FindByPlayerIDSeasonIDTypeStats(ai.playerID,
-                                    TmWeek.GetSeason(matchRow.Date),
-                                    matchRow.MatchType);
+            //                    foreach (ActionItem ai in al)
+            //                    {
+            //                        ChampDS.PlyStatsRow psr = champDS.PlyStats.FindByPlayerIDSeasonIDTypeStats(ai.playerID,
+            //                            TmWeek.GetSeason(matchRow.Date),
+            //                            matchRow.MatchType);
 
-                                MatchDS.YourTeamPerfRow ytpr = matchDS.YourTeamPerf.FindByPlayerID(ai.playerID);
-                                if (ytpr != null)
-                                {
-                                    ytpr.Analysis = ai.actions;
-                                }
+            //                        MatchDS.YourTeamPerfRow ytpr = matchDS.YourTeamPerf.FindByPlayerID(ai.playerID);
+            //                        if (ytpr != null)
+            //                        {
+            //                            ytpr.Analysis = ai.actions;
+            //                        }
 
-                                MatchDS.OppsTeamPerfRow otpr = matchDS.OppsTeamPerf.FindByPlayerID(ai.playerID);
-                                if (otpr != null)
-                                {
-                                    otpr.Analysis = ai.actions;
-                                }
+            //                        MatchDS.OppsTeamPerfRow otpr = matchDS.OppsTeamPerf.FindByPlayerID(ai.playerID);
+            //                        if (otpr != null)
+            //                        {
+            //                            otpr.Analysis = ai.actions;
+            //                        }
 
-                                if (psr == null) continue;
+            //                        if (psr == null) continue;
 
-                                if (ai.actions != "")
-                                    psr.SetAnalysis(matchRow.Date, ai.actions);
+            //                        if (ai.actions != "")
+            //                            psr.SetAnalysis(matchRow.Date, ai.actions);
 
-                                psr.SetVote(matchRow.Date, ytpr.Vote, ytpr.Position, matchDS.MeanVote);
+            //                        psr.SetVote(matchRow.Date, ytpr.Vote, ytpr.Position, matchDS.MeanVote);
 
-                                if (ytpr != null)
-                                {
-                                    champDS.PlyStats.RefreshPlayerStats(
-                                        ai.playerID,
-                                        matchRow.MatchType,
-                                        TmWeek.GetSeason(matchRow.Date));
-                                }
-                            }
-                        }
-                        else
-                        {
-                            foreach (MatchDS.YourTeamPerfRow ypr in matchDS.YourTeamPerf)
-                            {
-                                ChampDS.PlyStatsRow psr = champDS.PlyStats.FindByPlayerIDSeasonIDTypeStats(ypr.PlayerID,
-                                    TmWeek.GetSeason(matchRow.Date),
-                                    matchRow.MatchType);
+            //                        if (ytpr != null)
+            //                        {
+            //                            champDS.PlyStats.RefreshPlayerStats(
+            //                                ai.playerID,
+            //                                matchRow.MatchType,
+            //                                TmWeek.GetSeason(matchRow.Date));
+            //                        }
+            //                    }
+            //                }
+            //                else
+            //                {
+            //                    foreach (MatchDS.YourTeamPerfRow ypr in matchDS.YourTeamPerf)
+            //                    {
+            //                        ChampDS.PlyStatsRow psr = champDS.PlyStats.FindByPlayerIDSeasonIDTypeStats(ypr.PlayerID,
+            //                            TmWeek.GetSeason(matchRow.Date),
+            //                            matchRow.MatchType);
 
-                                if (ypr.IsNumberNull())
-                                    continue;
+            //                        if (ypr.IsNumberNull())
+            //                            continue;
 
-                                if (psr == null)
-                                {
-                                    psr = champDS.PlyStats.NewPlyStatsRow();
-                                    psr.SeasonID = TmWeek.GetSeason(matchRow.Date);
-                                    psr.TypeStats = matchRow.MatchType;
-                                    psr.PlayerID = ypr.PlayerID;
+            //                        if (psr == null)
+            //                        {
+            //                            psr = champDS.PlyStats.NewPlyStatsRow();
+            //                            psr.SeasonID = TmWeek.GetSeason(matchRow.Date);
+            //                            psr.TypeStats = matchRow.MatchType;
+            //                            psr.PlayerID = ypr.PlayerID;
 
-                                    champDS.PlyStats.AddPlyStatsRow(psr);
-                                }
+            //                            champDS.PlyStats.AddPlyStatsRow(psr);
+            //                        }
 
-                                if ((ypr.Scored > 0) || (ypr.Assist > 0))
-                                {
-                                    string plActions = "";
-                                    if (ypr.Scored > 0)
-                                        plActions += ypr.Scored.ToString() + "gg,";
-                                    if (ypr.Assist > 0)
-                                        plActions += ypr.Assist.ToString() + "aa,";
-                                    plActions = plActions.Trim(',');
+            //                        if ((ypr.Scored > 0) || (ypr.Assist > 0))
+            //                        {
+            //                            string plActions = "";
+            //                            if (ypr.Scored > 0)
+            //                                plActions += ypr.Scored.ToString() + "gg,";
+            //                            if (ypr.Assist > 0)
+            //                                plActions += ypr.Assist.ToString() + "aa,";
+            //                            plActions = plActions.Trim(',');
 
-                                    psr.SetAnalysis(matchRow.Date, plActions);
-                                }
+            //                            psr.SetAnalysis(matchRow.Date, plActions);
+            //                        }
 
-                                if (ypr.IsVoteNull())
-                                    continue;
+            //                        if (ypr.IsVoteNull())
+            //                            continue;
 
-                                psr.SetVote(matchRow.Date, ypr.Vote, ypr.Position, matchDS.MeanVote);
+            //                        psr.SetVote(matchRow.Date, ypr.Vote, ypr.Position, matchDS.MeanVote);
 
-                                champDS.PlyStats.RefreshPlayerStats(
-                                    ypr.PlayerID,
-                                    matchRow.MatchType,
-                                    TmWeek.GetSeason(matchRow.Date));
-                            }
-                        }
-                    }
+            //                        champDS.PlyStats.RefreshPlayerStats(
+            //                            ypr.PlayerID,
+            //                            matchRow.MatchType,
+            //                            TmWeek.GetSeason(matchRow.Date));
+            //                    }
+            //                }
+            //            }
 
-                    matchDS.WriteXml(Path.Combine(Program.Setts.DefaultDirectory, "Match_" + matchRow.MatchID + ".xml"));
+            //            matchDS.WriteXml(Path.Combine(Program.Setts.DefaultDirectory, "Match_" + matchRow.MatchID + ".xml"));
 
-                    dgMatches_SelectionChanged(null, EventArgs.Empty);
+            //            dgMatches_SelectionChanged(null, EventArgs.Empty);
 
-                    champDS.isDirty = true;
-                }
-                else
-                {
-                    dgMatches.ClearSelection();
+            //            AllSeasons.IsDirty = true;
+            //        }
+            //        else
+            //        {
+            //            dgMatches.ClearSelection();
 
-                    MessageBox.Show(Current.Language.PleaseSelectInTheTableTheMatchRowYouArePasting);
-                }
-            }
-            catch (Exception e)
-            {
-                string swRelease = "Sw Release:" + Application.ProductName + "("
-                    + Application.ProductVersion + ")";
-                SendFileTo.ErrorReport.Send(e, page, Environment.StackTrace, swRelease);
-                MessageBox.Show(Current.Language.SorryTheImportingProcessHasFailedIfYouClickedOkTheInfoOfTheErrorHave +
-                    Current.Language.BeenSentToLedLennonThatWillRemoveThisBugAsSoonAsPossible);
-            }
+            //            MessageBox.Show(Current.Language.PleaseSelectInTheTableTheMatchRowYouArePasting);
+            //        }
+            //    }
+            //    catch (Exception e)
+            //    {
+            //        string swRelease = "Sw Release:" + Application.ProductName + "("
+            //            + Application.ProductVersion + ")";
+            //        SendFileTo.ErrorReport.Send(e, page, Environment.StackTrace, swRelease);
+            //        MessageBox.Show(Current.Language.SorryTheImportingProcessHasFailedIfYouClickedOkTheInfoOfTheErrorHave +
+            //            Current.Language.BeenSentToLedLennonThatWillRemoveThisBugAsSoonAsPossible);
+            //    }
         }
-
-        //private void dgMatches_SelectionChanged(object sender, EventArgs e)
-        //{
-        //    if (dgMatches.SelectedRows.Count == 0) return;
-
-        //    System.Data.DataRowView selMatch = (System.Data.DataRowView)dgMatches.SelectedRows[0].DataBoundItem;
-        //    ChampDS.MatchRow matchRow = (ChampDS.MatchRow)selMatch.Row;
-
-        //    FileInfo fi = new FileInfo(Path.Combine(Program.Setts.DefaultDirectory, "Match_" + matchRow.MatchID + ".xml"));
-
-        //    if (!fi.Exists)
-        //    {
-        //        matchRow.Report = false;
-        //        matchDS.Clear();
-        //        matchStats.MatchRow = null;
-
-        //        champDS.isDirty = true;
-
-        //        return;
-        //    }
-
-        //    matchStats.MatchRow = matchRow;
-
-        //    matchDS.Clear();
-        //    matchDS.ReadXml(Path.Combine(Program.Setts.DefaultDirectory, "Match_" + matchRow.MatchID + ".xml"));
-
-        //    matchRow.Report = true;
-
-        //    // Filling your formation
-        //    Formation yf = new Formation(eFormationTypes.Type_Empty);
-        //    foreach (MatchDS.YourTeamPerfRow row in matchDS.YourTeamPerf)
-        //    {
-        //        Player pl = yf.SetPlayer(row);
-        //    }
-
-        //    yourTeamLineup.formation = yf;
-
-        //    Formation of = new Formation(eFormationTypes.Type_Empty);
-        //    foreach (MatchDS.OppsTeamPerfRow row in matchDS.OppsTeamPerf)
-        //    {
-        //        Player pl = of.SetPlayer(row);
-        //    }
-
-        //    oppsTeamLineup.formation = of;
-
-
-        //    if (!matchRow.IsInitDesciptionNull())
-        //        txtMatchStart.Text = matchRow.InitDesciption;
-
-        //    champDS.isDirty = true;
-        //}
 
         private void reloadPlayersMatchStatsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MatchDS mds = null;
-            bool catched = false;
+            //    MatchDS mds = null;
+            //    bool catched = false;
 
-            DirectoryInfo di = new DirectoryInfo(Program.Setts.DefaultDirectory);
-            if (!di.Exists) return;
+            //    DirectoryInfo di = new DirectoryInfo(Program.Setts.DefaultDirectory);
+            //    if (!di.Exists) return;
 
-            champDS.PlyStats.Clear();
+            //    champDS.PlyStats.Clear();
 
-            foreach (FileInfo fi in di.GetFiles("Match_*.xml"))
-            {
-                try
-                {
-                    mds = new MatchDS();
+            //    foreach (FileInfo fi in di.GetFiles("Match_*.xml"))
+            //    {
+            //        try
+            //        {
+            //            mds = new MatchDS();
 
-                    mds.ReadXml(fi.FullName);
+            //            mds.ReadXml(fi.FullName);
 
-                    ChampDS.MatchRow mr = champDS.Match.FindByMatchID(mds.MatchData[0].MatchID);
+            //            ChampDS.MatchRow mr = champDS.Match.FindByMatchID(mds.MatchData[0].MatchID);
 
-                    champDS.PlyStats.AddPlayerStats(mr, mds, Program.Setts.ClubNickname);
+            //            champDS.PlyStats.AddPlayerStats(mr, mds, Program.Setts.ClubNickname);
 
-                }
-                catch (Exception ex)
-                {
-                    if (catched) continue;
-                    catched = true;
+            //        }
+            //        catch (Exception ex)
+            //        {
+            //            if (catched) continue;
+            //            catched = true;
 
-                    if (MessageBox.Show("Cannot import this page here. Here you can import only player profiles.\n" +
-                        "Pressing OK, you send a report to Atletico Granata that will try to detect the reason of the error.",
-                        "Import error", MessageBoxButtons.OKCancel) == DialogResult.OK)
-                    {
-                        string swRelease = "Sw Release:" + Application.ProductName + "("
-                           + Application.ProductVersion + ")";
-                        string info = "";
+            //            if (MessageBox.Show("Cannot import this page here. Here you can import only player profiles.\n" +
+            //                "Pressing OK, you send a report to Atletico Granata that will try to detect the reason of the error.",
+            //                "Import error", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            //            {
+            //                string swRelease = "Sw Release:" + Application.ProductName + "("
+            //                   + Application.ProductVersion + ")";
+            //                string info = "";
 
-                        string tempFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-                        tempFolder = Path.Combine(tempFolder, "TmRecorder");
+            //                string tempFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            //                tempFolder = Path.Combine(tempFolder, "TmRecorder");
 
-                        string pathfilename = Path.Combine(tempFolder, "tempFile.txt");
-                        FileInfo fin = new FileInfo(pathfilename);
+            //                string pathfilename = Path.Combine(tempFolder, "tempFile.txt");
+            //                FileInfo fin = new FileInfo(pathfilename);
 
-                        champDS.WriteXml(fin.FullName);
-                        StreamReader file = new StreamReader(fi.FullName);
-                        info += "ChampDS:\r\n" + file.ReadToEnd();
-                        file.Close();
+            //                champDS.WriteXml(fin.FullName);
+            //                StreamReader file = new StreamReader(fi.FullName);
+            //                info += "ChampDS:\r\n" + file.ReadToEnd();
+            //                file.Close();
 
-                        mds.WriteXml(fin.FullName);
-                        file = new StreamReader(fin.FullName);
-                        info += "MatchDS:\r\n" + file.ReadToEnd();
-                        file.Close();
+            //                mds.WriteXml(fin.FullName);
+            //                file = new StreamReader(fin.FullName);
+            //                info += "MatchDS:\r\n" + file.ReadToEnd();
+            //                file.Close();
 
-                        SendFileTo.ErrorReport.Send(ex, info, Environment.StackTrace, swRelease);
-                    }
-                }
-            }
+            //                SendFileTo.ErrorReport.Send(ex, info, Environment.StackTrace, swRelease);
+            //            }
+            //        }
+            //    }
 
-            UpdateLackData();
+            //    UpdateLackData();
 
-            champDS.isDirty = true;
+            //    AllSeasons.IsDirty = true;
         }
 
         private void UpdateLackData()
@@ -2453,7 +2397,7 @@ namespace TMRecorder
 
         private void playersStatisticsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            PlayersStats psf = new PlayersStats(champDS.PlyStats, this.extraDS);
+            PlayersStats psf = new PlayersStats(AllSeasons, this.extraDS);
 
             psf.ShowDialog();
         }
@@ -2510,7 +2454,7 @@ namespace TMRecorder
 
         private void showMatchesPerformarcesOnTheFieldToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MatchOnField mof = new MatchOnField(this.champDS, this.extraDS, this.History);
+            MatchOnField mof = new MatchOnField(AllSeasons, this.extraDS, this.History);
             mof.Show();
         }
 
@@ -2659,7 +2603,7 @@ namespace TMRecorder
 
         //        dgMatches_SelectionChanged(null, EventArgs.Empty);
 
-        //        champDS.isDirty = true;
+        //        AllSeasons.IsDirty = true;
         //    }
         //}
 
@@ -2973,129 +2917,6 @@ namespace TMRecorder
             tsbProgressBar.ForeColor = Color.Blue;
         }
 
-        private void UpdateMatchesMenu()
-        {
-            ChampDS.MatchRow cmr = null;
-            string[] matchTypes = Program.Setts.MatchTypes.Split(',');
-
-            AddMenuItem(tsbMatches, "", null);
-            int thisSeason = TmWeek.GetSeason(DateTime.Now);
-
-            for (int i = 0; i < champDS.Match.Count; i++)
-            {
-                cmr = champDS.Match[i];
-                if ((cmr.isReserves == 0) && (matchNavigationType == MatchNavigationType.NavigateReserves))
-                    continue;
-                if ((cmr.isReserves == 1) && (matchNavigationType == MatchNavigationType.NavigateMainTeam))
-                    continue;
-                if (TmWeek.GetSeason(cmr.Date) != thisSeason)
-                    continue;
-
-                ToolStripItem tsi = new ToolStripMenuItem();
-                tsi.Text = "[" + matchTypes[cmr.MatchType] + "] " + cmr.Home + " " + cmr.Score + " " + cmr.Away;
-                tsi.Tag = cmr.MatchID;
-                tsi.Click += ChangeMatch_Click;
-                AddMenuItem(tsbMatches, matchTypes[cmr.MatchType], tsi);
-            }
-        }
-
-        private void AddMenuItem(ToolStripDropDownButton tsb, string FP, ToolStripItem tsi)
-        {
-            if (tsb == tsbPlayers)
-            {
-                if (tsi == null)
-                {
-                    gKToolStripMenuItem.DropDownItems.Clear();
-                    dDefendersToolStripMenuItem.DropDownItems.Clear();
-                    dMDefenderMidfieldersToolStripMenuItem.DropDownItems.Clear();
-                    mMidfieldersToolStripMenuItem.DropDownItems.Clear();
-                    oMOffenderMidfieldersToolStripMenuItem.DropDownItems.Clear();
-                    fForwardsToolStripMenuItem.DropDownItems.Clear();
-                    return;
-                }
-
-                string[] fps = FP.Split('/');
-
-                foreach (string fp in fps)
-                {
-                    ToolStripItem itsi = new ToolStripMenuItem();
-                    itsi.Click += ChangePlayer_Click;
-                    itsi.Text = tsi.Text;
-                    itsi.Tag = tsi.Tag;
-
-                    if (fp == "GK")
-                    {
-                        gKToolStripMenuItem.DropDownItems.Add(itsi);
-                    }
-                    if ((fp == "DC") || (fp == "DL") || (fp == "DR"))
-                    {
-                        if (!FindItemInMenu(dDefendersToolStripMenuItem, itsi.Text))
-                            dDefendersToolStripMenuItem.DropDownItems.Add(itsi);
-                    }
-                    if ((fp == "DMC") || (fp == "DML") || (fp == "DMR"))
-                    {
-                        if (!FindItemInMenu(dMDefenderMidfieldersToolStripMenuItem, itsi.Text))
-                            dMDefenderMidfieldersToolStripMenuItem.DropDownItems.Add(itsi);
-                    }
-                    if ((fp == "MC") || (fp == "ML") || (fp == "MR"))
-                    {
-                        if (!FindItemInMenu(mMidfieldersToolStripMenuItem, itsi.Text))
-                            mMidfieldersToolStripMenuItem.DropDownItems.Add(itsi);
-                    }
-                    if ((fp == "OMC") || (fp == "OML") || (fp == "OMR"))
-                    {
-                        if (!FindItemInMenu(oMOffenderMidfieldersToolStripMenuItem, itsi.Text))
-                            oMOffenderMidfieldersToolStripMenuItem.DropDownItems.Add(itsi);
-                    }
-                    if (fp == "FC")
-                    {
-                        fForwardsToolStripMenuItem.DropDownItems.Add(itsi);
-                    }
-                }
-            }
-            else if (tsb == tsbMatches)
-            {
-                string[] matchTypes = Program.Setts.MatchTypes.Split(',');
-                ToolStripDropDownItem[] tsbMatchesVect = new ToolStripDropDownItem[6];
-                tsbMatchesVect[0] = tsbMatches0;
-                tsbMatchesVect[1] = tsbMatches1;
-                tsbMatchesVect[2] = tsbMatches2;
-                tsbMatchesVect[3] = tsbMatches3;
-                tsbMatchesVect[4] = tsbMatches4;
-                tsbMatchesVect[5] = tsbMatches5;
-
-                if (tsi == null)
-                {
-                    int i = 0;
-                    for (; i < matchTypes.Length; i++)
-                    {
-                        tsbMatchesVect[i].DropDownItems.Clear();
-                        tsbMatchesVect[i].Visible = true;
-                        tsbMatchesVect[i].Text = "[" + matchTypes[i] + "] Matches";
-                    }
-                    for (; i < tsbMatchesVect.Length; i++)
-                    {
-                        tsbMatchesVect[i].Visible = false;
-                    }
-                    return;
-                }
-
-                ToolStripItem itsi = new ToolStripMenuItem();
-                itsi.Click += ChangeMatch_Click;
-                itsi.Text = tsi.Text;
-                itsi.Tag = tsi.Tag;
-
-                for (int i = 0; i < matchTypes.Length; i++)
-                {
-                    if (FP == matchTypes[i])
-                    {
-                        tsbMatchesVect[i].DropDownItems.Add(itsi);
-                        break;
-                    }
-                }
-            }
-        }
-
         private bool FindItemInMenu(ToolStripMenuItem menu, string text)
         {
             bool found = false;
@@ -3338,23 +3159,6 @@ namespace TMRecorder
             }
 
             LoadHTMLfile_newPage(page);
-
-            ChampDS.MatchRow cmr = champDS.Match.FindByMatchID(lastBarMatch);
-            tsBrowseMatches.Visible = (cmr != null) && (startnavigationAddress.Contains("kamp.php"));
-
-            if (cmr != null)
-            {
-                if (cmr.Report == false)
-                {
-                    lblMatchStored.Text = "Match not stored";
-                    lblMatchStored.ForeColor = Color.Red;
-                }
-                else
-                {
-                    lblMatchStored.Text = "Match stored";
-                    lblMatchStored.ForeColor = Color.Green;
-                }
-            }
 
             UpdateBrowserImportPanel();
         }
@@ -3798,8 +3602,6 @@ namespace TMRecorder
                 hgRow.ScoutVoto = gRow.ScoutVoto;
                 hgRow.ScoutGiudizio = gRow.ScoutGiudizio;
 
-                tsbNumberOfReviews.Text = gRow.ScoutReviews.Length + " Scout Reviews stored";
-
                 hgRow.isDirty = true;
                 History.UpdateDirtyPlayers();
                 EvidenceSkillsPlayerForQuality(gRow.PlayerID, gRow.isYoungTeam == 1, gRow.FPn == 0);
@@ -4032,89 +3834,11 @@ namespace TMRecorder
         int lastBarPlayer = 0;
         int lastBarMatch = 0;
 
-        private void tsbPrevPlayer_Click(object sender, EventArgs e)
-        {
-            ExtraDS.GiocatoriRow gRow = extraDS.FindByPlayerID(lastBarPlayer);
-
-            int i = 0;
-            for (; i < extraDS.Giocatori.Count; i++)
-                if (gRow == extraDS.Giocatori[i]) break;
-
-            i--;
-            if (i == -1) i = extraDS.Giocatori.Count - 1;
-
-            navigationAddress = "http://trophymanager.com/showprofile.php?playerid=" +
-                extraDS.Giocatori[i].PlayerID.ToString();
-            if (navigationType == NavigationType.NavigateReports)
-                navigationAddress += "&scout_mode=1";
-            webBrowser.Navigate(navigationAddress);
-            startnavigationAddress = navigationAddress;
-        }
-
-        private void tsbNextPlayer_Click(object sender, EventArgs e)
-        {
-            ExtraDS.GiocatoriRow gRow = extraDS.FindByPlayerID(lastBarPlayer);
-
-            int i = 0;
-            for (; i < extraDS.Giocatori.Count; i++)
-                if (gRow == extraDS.Giocatori[i]) break;
-
-            i++;
-            if (i == extraDS.Giocatori.Count) i = 0;
-
-            navigationAddress = "http://trophymanager.com/showprofile.php?playerid=" +
-                extraDS.Giocatori[i].PlayerID.ToString();
-            if (navigationType == NavigationType.NavigateReports)
-                navigationAddress += "&scout_mode=1";
-            webBrowser.Navigate(navigationAddress);
-            startnavigationAddress = navigationAddress;
-        }
-
-        private void navigateProfilesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            tsbNavigationType.Text = navigateProfilesToolStripMenuItem.Text;
-            tsbNavigationType.Image = navigateProfilesToolStripMenuItem.Image;
-
-            if (navigationType != NavigationType.NavigateProfiles)
-            {
-                navigationType = NavigationType.NavigateProfiles;
-                navigationAddress = "http://trophymanager.com/showprofile.php?playerid=" +
-                    lastBarPlayer.ToString();
-                webBrowser.Navigate(navigationAddress);
-                startnavigationAddress = navigationAddress;
-            }
-        }
-
-        private void navigateReportsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            tsbNavigationType.Text = navigateReportsToolStripMenuItem.Text;
-            tsbNavigationType.Image = navigateReportsToolStripMenuItem.Image;
-
-            if (navigationType != NavigationType.NavigateReports)
-            {
-                navigationType = NavigationType.NavigateReports;
-                navigationAddress = "http://trophymanager.com/showprofile.php?playerid=" +
-                    lastBarPlayer.ToString() + "&scout_mode=1";
-                webBrowser.Navigate(navigationAddress);
-                startnavigationAddress = navigationAddress;
-            }
-        }
-
-        private void ChangePlayer_Click(object sender, EventArgs e)
-        {
-            ToolStripMenuItem tsi = (ToolStripMenuItem)sender;
-            navigationAddress = "http://trophymanager.com/showprofile.php?playerid=" +
-                tsi.Tag.ToString();
-            if (navigationType == NavigationType.NavigateReports)
-                navigationAddress += "&scout_mode=1";
-            webBrowser.Navigate(navigationAddress);
-            startnavigationAddress = navigationAddress;
-        }
         #endregion
 
         private void lineupToolToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LineUp lineup = new LineUp(champDS, extraDS, History);
+            LineUp lineup = new LineUp(AllSeasons, extraDS, History);
             lineup.ShowDialog();
         }
 
@@ -4140,101 +3864,77 @@ namespace TMRecorder
 
         MatchNavigationType matchNavigationType = MatchNavigationType.NavigateMainTeam;
 
-        private void btnNextMatch_Click(object sender, EventArgs e)
-        {
-            ChampDS.MatchRow cmr = champDS.Match.FindByMatchID(lastBarMatch);
+        //private void btnNextMatch_Click(object sender, EventArgs e)
+        //{
+        //    ChampDS.MatchRow cmr = champDS.Match.FindByMatchID(lastBarMatch);
 
-            int i = 0;
-            for (; i < champDS.Match.Count; i++)
-                if (cmr == champDS.Match[i]) break;
+        //    int i = 0;
+        //    for (; i < champDS.Match.Count; i++)
+        //        if (cmr == champDS.Match[i]) break;
 
-            int loop_count = 0;
-            int thisSeason = TmWeek.GetSeason(DateTime.Now);
-            i++;
-            if (i == champDS.Match.Count)
-                i = 0;
+        //    int loop_count = 0;
+        //    int thisSeason = TmWeek.GetSeason(DateTime.Now);
+        //    i++;
+        //    if (i == champDS.Match.Count)
+        //        i = 0;
 
-            for (; i < champDS.Match.Count; i++)
-            {
-                if (TmWeek.GetSeason(cmr.Date) != thisSeason) continue;
-                if ((champDS.Match[i].isReserves == 1) &&
-                    (matchNavigationType == MatchNavigationType.NavigateReserves)) break;
-                if ((champDS.Match[i].isReserves == 0) &&
-                    (matchNavigationType == MatchNavigationType.NavigateMainTeam)) break;
-                if (i == champDS.Match.Count)
-                {
-                    i = 0;
-                    if (loop_count++ == 2) return;
-                }
-            }
+        //    for (; i < champDS.Match.Count; i++)
+        //    {
+        //        if (TmWeek.GetSeason(cmr.Date) != thisSeason) continue;
+        //        if ((champDS.Match[i].isReserves == 1) &&
+        //            (matchNavigationType == MatchNavigationType.NavigateReserves)) break;
+        //        if ((champDS.Match[i].isReserves == 0) &&
+        //            (matchNavigationType == MatchNavigationType.NavigateMainTeam)) break;
+        //        if (i == champDS.Match.Count)
+        //        {
+        //            i = 0;
+        //            if (loop_count++ == 2) return;
+        //        }
+        //    }
 
-            ChampDS.MatchRow mr = champDS.Match[i];
-            if (mr == null) return;
-            int matchID = mr.MatchID;
-            navigationAddress = "http://trophymanager.com/matches/" + matchID.ToString() + "/"; ;
-            webBrowser.Navigate(navigationAddress);
-            startnavigationAddress = navigationAddress;
-        }
+        //    ChampDS.MatchRow mr = champDS.Match[i];
+        //    if (mr == null) return;
+        //    int matchID = mr.MatchID;
+        //    navigationAddress = "http://trophymanager.com/matches/" + matchID.ToString() + "/"; ;
+        //    webBrowser.Navigate(navigationAddress);
+        //    startnavigationAddress = navigationAddress;
+        //}
 
-        private void btnPrevMatch_Click(object sender, EventArgs e)
-        {
-            ChampDS.MatchRow cmr = champDS.Match.FindByMatchID(lastBarMatch);
+        //private void btnPrevMatch_Click(object sender, EventArgs e)
+        //{
+        //    ChampDS.MatchRow cmr = champDS.Match.FindByMatchID(lastBarMatch);
 
-            int i = 0;
-            for (; i < champDS.Match.Count; i++)
-                if (cmr == champDS.Match[i]) break;
+        //    int i = 0;
+        //    for (; i < champDS.Match.Count; i++)
+        //        if (cmr == champDS.Match[i]) break;
 
-            int loop_count = 0;
-            int thisSeason = TmWeek.GetSeason(DateTime.Now);
+        //    int loop_count = 0;
+        //    int thisSeason = TmWeek.GetSeason(DateTime.Now);
 
-            i--;
-            if (i == -1)
-                i = champDS.Match.Count - 1;
+        //    i--;
+        //    if (i == -1)
+        //        i = champDS.Match.Count - 1;
 
-            for (; i >= 0; i--)
-            {
-                if (TmWeek.GetSeason(champDS.Match[i].Date) != thisSeason) continue;
-                if ((champDS.Match[i].isReserves == 1) &&
-                    (matchNavigationType == MatchNavigationType.NavigateReserves)) break;
-                if ((champDS.Match[i].isReserves == 0) &&
-                    (matchNavigationType == MatchNavigationType.NavigateMainTeam)) break;
-                if (i == 0)
-                {
-                    i = champDS.Match.Count - 1;
-                    if (loop_count++ == 2) return;
-                }
-            }
+        //    for (; i >= 0; i--)
+        //    {
+        //        if (TmWeek.GetSeason(champDS.Match[i].Date) != thisSeason) continue;
+        //        if ((champDS.Match[i].isReserves == 1) &&
+        //            (matchNavigationType == MatchNavigationType.NavigateReserves)) break;
+        //        if ((champDS.Match[i].isReserves == 0) &&
+        //            (matchNavigationType == MatchNavigationType.NavigateMainTeam)) break;
+        //        if (i == 0)
+        //        {
+        //            i = champDS.Match.Count - 1;
+        //            if (loop_count++ == 2) return;
+        //        }
+        //    }
 
-            if (i == -1) return;
-            int matchID = champDS.Match[i].MatchID;
-            navigationAddress = "http://trophymanager.com/matches/" + matchID.ToString() + "/";
-            webBrowser.Navigate(navigationAddress);
-            startnavigationAddress = navigationAddress;
-        }
-
-        private void tsbNavigateMainTeamMatches_Click(object sender, EventArgs e)
-        {
-            tsbMatchNavigationType.Text = tsbNavigateMainTeamMatches.Text;
-            tsbMatchNavigationType.Image = tsbNavigateMainTeamMatches.Image;
-
-            if (matchNavigationType != MatchNavigationType.NavigateMainTeam)
-            {
-                matchNavigationType = MatchNavigationType.NavigateMainTeam;
-                UpdateMatchesMenu();
-            }
-        }
-
-        private void tsbNavigateReservesMatches_Click(object sender, EventArgs e)
-        {
-            tsbMatchNavigationType.Text = tsbNavigateReservesMatches.Text;
-            tsbMatchNavigationType.Image = tsbNavigateReservesMatches.Image;
-
-            if (matchNavigationType != MatchNavigationType.NavigateReserves)
-            {
-                matchNavigationType = MatchNavigationType.NavigateReserves;
-                UpdateMatchesMenu();
-            }
-        }
+        //    if (i == -1) return;
+        //    int matchID = champDS.Match[i].MatchID;
+        //    navigationAddress = "http://trophymanager.com/matches/" + matchID.ToString() + "/";
+        //    webBrowser.Navigate(navigationAddress);
+        //    startnavigationAddress = navigationAddress;
+        //}
 
         private void ChangeMatch_Click(object sender, EventArgs e)
         {
@@ -4264,24 +3964,7 @@ namespace TMRecorder
 
                 LoadHTMLfile_newPage(page, true);
 
-                ChampDS.MatchRow cmr = champDS.Match.FindByMatchID(lastBarMatch);
-                tsBrowseMatches.Visible = (cmr != null);
-
-                if (cmr != null)
-                {
-                    if (cmr.Report == false)
-                    {
-                        lblMatchStored.Text = "Match not stored";
-                        lblMatchStored.ForeColor = Color.Red;
-                    }
-                    else
-                    {
-                        lblMatchStored.Text = "Match stored";
-                        lblMatchStored.ForeColor = Color.Green;
-                    }
-                }
-
-                champDS.UpdateSeason(cmbSeason);
+                FillCmbMatchesSeasons();
             }
         }
 
@@ -4996,6 +4679,8 @@ namespace TMRecorder
                 dgYourTeamPerf.DataCollection = null;
                 dgOppsTeamPerf.DataCollection = null;
             }
+
+            matchStats.SetMatchData(md);
         }
 
         private void dgMatches_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -5009,6 +4694,35 @@ namespace TMRecorder
             navigationAddress = matchAddr;
             startnavigationAddress = navigationAddress;
             webBrowser.Navigate(navigationAddress);
+        }
+
+        private void tsmGotoPlayerPageInBrowser_Click(object sender, object o)
+        {
+            tabControl1.SelectedTab = tabBrowser;
+
+            AeroDataGrid dgPerfPlayers = (AeroDataGrid)sender;
+
+            PlayerPerfData selPlayer;
+            if (o.GetType() == typeof(DataGridViewCellEventArgs))
+            {
+                DataGridViewCellEventArgs e = (DataGridViewCellEventArgs)o;
+                selPlayer = (PlayerPerfData)dgPerfPlayers.Rows[e.RowIndex].DataBoundItem;
+            }
+            else
+            {
+                selPlayer = (PlayerPerfData)dgPerfPlayers.SelectedRows[0].DataBoundItem;
+            }
+
+            string matchAddr = "http://trophymanager.com/players/" + selPlayer.PlayerID + "/";
+
+            navigationAddress = matchAddr;
+            startnavigationAddress = navigationAddress;
+            webBrowser.Navigate(navigationAddress);
+        }
+
+        private void tsmGotoPlayerPageInBrowser_Click(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

@@ -12,6 +12,8 @@ namespace NTR_Db
 {
     public class Seasons
     {
+        public bool IsDirty { get; set; }
+
         private List<int> _seasonsWithData = null;
         public List<int> SeasonsWithData
         {
@@ -54,6 +56,90 @@ namespace NTR_Db
                 }
                 return _ownedSquadsList;
             }
+        }
+
+        public List<PlayerStats> GetPlayerStatsListByTeam(int season, int teamId, int matchType)
+        {
+            DateTime dtStart, dtEnd;
+
+            if (season != -1)
+            {
+                TmSeason tmSeason = new TmSeason(season);
+                dtStart = tmSeason.Start;
+                dtEnd = tmSeason.End;
+            }
+            else
+            {
+                TmSeason tmSeason = new TmSeason(1);
+                dtStart = tmSeason.Start;
+                dtEnd = DateTime.Now;
+            }
+
+            var playerPerfs = (from c in seasonsDB.PlayerPerf
+                              where (c.PlayerRow.TeamID == teamId) && (c.MatchRow.Date > dtStart)
+                              && (c.MatchRow.Date > dtEnd)
+                              select c);
+
+            if ((matchType != 0) && (matchType != 31))
+            {
+                if ((matchType & 1) == 0)
+                {
+                    playerPerfs = (from c in playerPerfs
+                                   where c.MatchRow.MatchType != 0 && c.MatchRow.MatchType != 5
+                                   select c);
+                }
+                if ((matchType & 2) == 0)
+                {
+                    playerPerfs = (from c in playerPerfs
+                                   where c.MatchRow.MatchType <= 10 || c.MatchRow.MatchType >= 20
+                                   select c);
+                }
+                if ((matchType & 4) == 0)
+                {
+                    playerPerfs = (from c in playerPerfs
+                                   where c.MatchRow.MatchType != 2
+                                   select c);
+                }
+                if ((matchType & 8) == 0)
+                {
+                    playerPerfs = (from c in playerPerfs
+                                   where c.MatchRow.MatchType != 3
+                                   select c);
+                }
+                if ((matchType & 16) == 0)
+                {
+                    playerPerfs = (from c in playerPerfs
+                                   where c.MatchRow.MatchType <= 20
+                                   select c);
+                }
+            }
+
+            List<NTR_SquadDb.PlayerPerfRow> playerPerfsList = playerPerfs.OrderBy(p => p.MatchRow.Date).ToList();
+
+            return CreateStats(playerPerfsList);
+        }
+
+        private List<PlayerStats> CreateStats(List<NTR_SquadDb.PlayerPerfRow> playerPerfs)
+        {
+            List<PlayerStats> playersStatsList = new List<PlayerStats>();
+
+            foreach(var playerPerf in playerPerfs)
+            {
+                var playerStats = playersStatsList.Find(p => p.PlayerId == playerPerf.PlayerID);
+
+                if (playerStats == null)
+                {
+                    playerStats = new PlayerStats();
+                    playerStats.Add(playerPerf);
+                    playersStatsList.Add(playerStats);
+                }
+                else
+                {
+                    playerStats.Add(playerPerf);
+                }
+            }
+
+            return playersStatsList;
         }
 
         List<Team> OwnedTeams = new List<Team>();
@@ -544,6 +630,31 @@ namespace NTR_Db
             Invalidate();
         }
 
+        public List<NTR_SquadDb.PlayerPerfRow> GetPlayerPerfList(int actualPlayerID, int season)
+        {
+            DateTime dtStart, dtEnd;
+
+            if (season != -1)
+            {
+                TmSeason tmSeason = new TmSeason(season);
+                dtStart = tmSeason.Start;
+                dtEnd = tmSeason.End;
+            }
+            else
+            {
+                TmSeason tmSeason = new TmSeason(1);
+                dtStart = tmSeason.Start;
+                dtEnd = DateTime.Now;
+            }
+
+            var playerPerf = (from c in seasonsDB.PlayerPerf
+                              where (c.PlayerID == actualPlayerID) && (c.MatchRow.Date > dtStart)
+                              && (c.MatchRow.Date < dtEnd)
+                              select c).OrderBy(p => p.MatchRow.Date).ToList();
+
+            return playerPerf;
+        }
+
         public List<Team> GetOwnedTeams()
         {
             return OwnedTeams;
@@ -731,10 +842,10 @@ namespace NTR_Db
                         ppr.Vote = float.Parse(team["rating"], System.Globalization.NumberStyles.Any, CommGlobal.ciUs);
                     ppr.NPos = Pos.ToCode(ppr.Position);
                     ppr.Status = "";
-                    ppr.Rec = decimal.Parse(team["rec"]);
+                    ppr.Rec = decimal.Parse(team["rec"], CommGlobal.ciUs);
                     if (team["mom"] == "1")
                         matchRow.BestPlayer = ppr.PlayerID;
-                    ppr.Rou = decimal.Parse(team["routine"]);
+                    ppr.Rou = decimal.Parse(team["routine"], CommGlobal.ciUs);
 
                     homePlayers.Add(playerID);
                 }
@@ -798,10 +909,10 @@ namespace NTR_Db
                         ppr.Vote = float.Parse(team["rating"], System.Globalization.NumberStyles.Any, CommGlobal.ciUs);
                     ppr.NPos = Pos.ToCode(ppr.Position);
                     ppr.Status = "";
-                    ppr.Rec = decimal.Parse(team["rec"]);
+                    ppr.Rec = decimal.Parse(team["rec"], CommGlobal.ciUs);
                     if (team["mom"] == "1")
                         matchRow.BestPlayer = ppr.PlayerID;
-                    ppr.Rou = decimal.Parse(team["routine"]);
+                    ppr.Rou = decimal.Parse(team["routine"], CommGlobal.ciUs);
 
                     awayPlayers.Add(playerID);
                 }
@@ -1170,6 +1281,63 @@ namespace NTR_Db
                     "been sent to Led Lennon that will remove this bug as soon as possible.");
 
                 return false;
+            }
+        }
+
+        public class PlayerStats
+        {
+            public int Assist { get; private set; }
+            public float AvgVote { get; private set; }
+            public int FPn { get; private set; }
+            public int GamePlayed { get; private set; }
+            public int Injuries { get; private set; }
+            public string Name { get; private set; }
+            public int PlayerId { get; internal set; }
+            public int Red { get; private set; }
+            public int Scored { get; private set; }
+            public float SdVote { get; private set; }
+            public float Vote2 { get; private set; }
+            public int Yellow { get; private set; }
+
+            internal void Add(NTR_SquadDb.PlayerPerfRow playerPerf)
+            {
+                this.Name = playerPerf.PlayerRow.Name;
+                this.PlayerId = playerPerf.PlayerID;
+
+                if (playerPerf.IsVoteNull())
+                    return;
+
+                if (playerPerf.PlayerRow.IsFPNull())
+                    this.FPn = 0;
+                else
+                    this.FPn = playerPerf.PlayerRow.FPn;
+
+                this.GamePlayed += 1;
+                this.AvgVote = (this.AvgVote * (this.GamePlayed - 1) + playerPerf.Vote) / this.GamePlayed;
+                this.Vote2 += (playerPerf.Vote * playerPerf.Vote);
+                float variance = (this.Vote2 - this.AvgVote * this.AvgVote * this.GamePlayed) / this.GamePlayed;
+                if (variance < 0) variance = 0;
+                this.SdVote = (float)Math.Sqrt(variance);
+                this.Scored += playerPerf.Scored;
+                this.Assist += playerPerf.Assist;
+
+                if (playerPerf.Status.Contains("YYR"))
+                {
+                    this.Yellow += 2;
+                    this.Red += 1;
+                }
+                else if (playerPerf.Status.Contains("R"))
+                {
+                    this.Red += 1;
+                }
+                else if (playerPerf.Status.Contains("Y"))
+                {
+                    this.Yellow += 1;
+                }
+                else if (playerPerf.Status.Contains("I"))
+                {
+                    this.Injuries += 1;
+                }
             }
         }
 

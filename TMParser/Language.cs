@@ -31,7 +31,6 @@ namespace TMRecorder
             this.gotoMatchReportPageToolStripMenuItem.Text = Current.Language.GotoMatchReportPage;
             this.deleteSelectedMatchToolStripMenuItem.Text = Current.Language.DeleteSelectedMatch;
             this.showMatchActionsListToolStripMenuItem.Text = Current.Language.ShowMatchActionsList;
-            this.label4.Text = Current.Language.MatchStats;
             this.toolStripContainer1.Text = "toolStripContainer1";
             this.toolStripDropDownButton1.Text = Current.Language.File;
             this.toolStripMenuItem1.Text = Current.Language.LoadTeamFileAsHTMLFile;

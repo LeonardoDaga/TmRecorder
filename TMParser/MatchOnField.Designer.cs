@@ -30,8 +30,12 @@ namespace TMRecorder
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MatchOnField));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.lblMatchStartInfo = new System.Windows.Forms.TextBox();
+            this.fp1 = new FieldFormationControl.FieldPlayer();
+            this.fp2 = new FieldFormationControl.FieldPlayer();
+            this.fp6 = new FieldFormationControl.FieldPlayer();
+            this.fp3 = new FieldFormationControl.FieldPlayer();
+            this.fp5 = new FieldFormationControl.FieldPlayer();
+            this.fp4 = new FieldFormationControl.FieldPlayer();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.lblTacticsComment = new System.Windows.Forms.Label();
             this.lblThB = new System.Windows.Forms.Label();
@@ -53,15 +57,8 @@ namespace TMRecorder
             this.reservesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.tcmbMatchList = new System.Windows.Forms.ToolStripComboBox();
-            this.fp1 = new FieldFormationControl.FieldPlayer();
-            this.fp2 = new FieldFormationControl.FieldPlayer();
-            this.fp6 = new FieldFormationControl.FieldPlayer();
-            this.fp3 = new FieldFormationControl.FieldPlayer();
-            this.fp5 = new FieldFormationControl.FieldPlayer();
-            this.fp4 = new FieldFormationControl.FieldPlayer();
             this.formationControl = new FieldFormationControl.FormationControl();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -81,217 +78,6 @@ namespace TMRecorder
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Other Players";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.lblMatchStartInfo);
-            this.groupBox2.Location = new System.Drawing.Point(494, 313);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(281, 190);
-            this.groupBox2.TabIndex = 6;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Match Start Info";
-            // 
-            // lblMatchStartInfo
-            // 
-            this.lblMatchStartInfo.BackColor = System.Drawing.SystemColors.Info;
-            this.lblMatchStartInfo.Location = new System.Drawing.Point(9, 17);
-            this.lblMatchStartInfo.Multiline = true;
-            this.lblMatchStartInfo.Name = "lblMatchStartInfo";
-            this.lblMatchStartInfo.ReadOnly = true;
-            this.lblMatchStartInfo.Size = new System.Drawing.Size(264, 167);
-            this.lblMatchStartInfo.TabIndex = 0;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.lblTacticsComment);
-            this.groupBox3.Controls.Add(this.lblThB);
-            this.groupBox3.Controls.Add(this.lblLnB);
-            this.groupBox3.Controls.Add(this.lblShP);
-            this.groupBox3.Controls.Add(this.lblWin);
-            this.groupBox3.Controls.Add(this.lblDir);
-            this.groupBox3.Controls.Add(this.lblBal);
-            this.groupBox3.Controls.Add(this.pbThB);
-            this.groupBox3.Controls.Add(this.pbLnB);
-            this.groupBox3.Controls.Add(this.pbShP);
-            this.groupBox3.Controls.Add(this.pbWin);
-            this.groupBox3.Controls.Add(this.pbDir);
-            this.groupBox3.Controls.Add(this.pbBal);
-            this.groupBox3.Location = new System.Drawing.Point(494, 28);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(280, 280);
-            this.groupBox3.TabIndex = 7;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Tactics Efficacy";
-            // 
-            // lblTacticsComment
-            // 
-            this.lblTacticsComment.Location = new System.Drawing.Point(9, 16);
-            this.lblTacticsComment.Name = "lblTacticsComment";
-            this.lblTacticsComment.Size = new System.Drawing.Size(264, 32);
-            this.lblTacticsComment.TabIndex = 2;
-            // 
-            // lblThB
-            // 
-            this.lblThB.AutoSize = true;
-            this.lblThB.Location = new System.Drawing.Point(6, 243);
-            this.lblThB.Name = "lblThB";
-            this.lblThB.Size = new System.Drawing.Size(71, 13);
-            this.lblThB.TabIndex = 1;
-            this.lblThB.Text = "Through balls";
-            // 
-            // lblLnB
-            // 
-            this.lblLnB.AutoSize = true;
-            this.lblLnB.Location = new System.Drawing.Point(6, 204);
-            this.lblLnB.Name = "lblLnB";
-            this.lblLnB.Size = new System.Drawing.Size(56, 13);
-            this.lblLnB.TabIndex = 1;
-            this.lblLnB.Text = "Long Balls";
-            // 
-            // lblShP
-            // 
-            this.lblShP.AutoSize = true;
-            this.lblShP.Location = new System.Drawing.Point(6, 165);
-            this.lblShP.Name = "lblShP";
-            this.lblShP.Size = new System.Drawing.Size(68, 13);
-            this.lblShP.TabIndex = 1;
-            this.lblShP.Text = "Shortpassing";
-            // 
-            // lblWin
-            // 
-            this.lblWin.AutoSize = true;
-            this.lblWin.Location = new System.Drawing.Point(6, 126);
-            this.lblWin.Name = "lblWin";
-            this.lblWin.Size = new System.Drawing.Size(37, 13);
-            this.lblWin.TabIndex = 1;
-            this.lblWin.Text = "Wings";
-            // 
-            // lblDir
-            // 
-            this.lblDir.AutoSize = true;
-            this.lblDir.Location = new System.Drawing.Point(6, 87);
-            this.lblDir.Name = "lblDir";
-            this.lblDir.Size = new System.Drawing.Size(35, 13);
-            this.lblDir.TabIndex = 1;
-            this.lblDir.Text = "Direct";
-            // 
-            // lblBal
-            // 
-            this.lblBal.AutoSize = true;
-            this.lblBal.Location = new System.Drawing.Point(6, 48);
-            this.lblBal.Name = "lblBal";
-            this.lblBal.Size = new System.Drawing.Size(52, 13);
-            this.lblBal.TabIndex = 1;
-            this.lblBal.Text = "Balanced";
-            // 
-            // pbThB
-            // 
-            this.pbThB.Location = new System.Drawing.Point(9, 259);
-            this.pbThB.Name = "pbThB";
-            this.pbThB.Size = new System.Drawing.Size(265, 15);
-            this.pbThB.TabIndex = 0;
-            this.pbThB.Value = 25;
-            // 
-            // pbLnB
-            // 
-            this.pbLnB.Location = new System.Drawing.Point(9, 220);
-            this.pbLnB.Name = "pbLnB";
-            this.pbLnB.Size = new System.Drawing.Size(265, 15);
-            this.pbLnB.TabIndex = 0;
-            this.pbLnB.Value = 25;
-            // 
-            // pbShP
-            // 
-            this.pbShP.Location = new System.Drawing.Point(9, 181);
-            this.pbShP.Name = "pbShP";
-            this.pbShP.Size = new System.Drawing.Size(265, 15);
-            this.pbShP.TabIndex = 0;
-            this.pbShP.Value = 25;
-            // 
-            // pbWin
-            // 
-            this.pbWin.Location = new System.Drawing.Point(9, 142);
-            this.pbWin.Name = "pbWin";
-            this.pbWin.Size = new System.Drawing.Size(265, 15);
-            this.pbWin.TabIndex = 0;
-            this.pbWin.Value = 25;
-            // 
-            // pbDir
-            // 
-            this.pbDir.Location = new System.Drawing.Point(9, 103);
-            this.pbDir.Name = "pbDir";
-            this.pbDir.Size = new System.Drawing.Size(265, 15);
-            this.pbDir.TabIndex = 0;
-            this.pbDir.Value = 25;
-            // 
-            // pbBal
-            // 
-            this.pbBal.Location = new System.Drawing.Point(9, 64);
-            this.pbBal.Name = "pbBal";
-            this.pbBal.Size = new System.Drawing.Size(265, 15);
-            this.pbBal.TabIndex = 0;
-            this.pbBal.Value = 25;
-            // 
-            // toolStrip1
-            // 
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsMatchTypeDDB,
-            this.toolStripLabel1,
-            this.tcmbMatchList});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(784, 25);
-            this.toolStrip1.TabIndex = 8;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // tsMatchTypeDDB
-            // 
-            this.tsMatchTypeDDB.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.allMatchesToolStripMenuItem,
-            this.mainSquadToolStripMenuItem,
-            this.reservesToolStripMenuItem});
-            this.tsMatchTypeDDB.Image = ((System.Drawing.Image)(resources.GetObject("tsMatchTypeDDB.Image")));
-            this.tsMatchTypeDDB.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsMatchTypeDDB.Name = "tsMatchTypeDDB";
-            this.tsMatchTypeDDB.Size = new System.Drawing.Size(92, 22);
-            this.tsMatchTypeDDB.Text = "Match Type";
-            // 
-            // allMatchesToolStripMenuItem
-            // 
-            this.allMatchesToolStripMenuItem.Name = "allMatchesToolStripMenuItem";
-            this.allMatchesToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
-            this.allMatchesToolStripMenuItem.Text = "All Matches";
-            this.allMatchesToolStripMenuItem.Click += new System.EventHandler(this.allMatchesToolStripMenuItem_Click);
-            // 
-            // mainSquadToolStripMenuItem
-            // 
-            this.mainSquadToolStripMenuItem.Name = "mainSquadToolStripMenuItem";
-            this.mainSquadToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
-            this.mainSquadToolStripMenuItem.Text = "Main Squad Matches";
-            this.mainSquadToolStripMenuItem.Click += new System.EventHandler(this.mainSquadToolStripMenuItem_Click);
-            // 
-            // reservesToolStripMenuItem
-            // 
-            this.reservesToolStripMenuItem.Name = "reservesToolStripMenuItem";
-            this.reservesToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
-            this.reservesToolStripMenuItem.Text = "Reserves Matches";
-            this.reservesToolStripMenuItem.Click += new System.EventHandler(this.reservesToolStripMenuItem_Click);
-            // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripLabel1.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(42, 22);
-            this.toolStripLabel1.Text = "Match";
-            // 
-            // tcmbMatchList
-            // 
-            this.tcmbMatchList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.tcmbMatchList.Name = "tcmbMatchList";
-            this.tcmbMatchList.Size = new System.Drawing.Size(315, 25);
-            this.tcmbMatchList.SelectedIndexChanged += new System.EventHandler(this.tcmbMatchList_SelectedIndexChanged);
             // 
             // fp1
             // 
@@ -455,6 +241,197 @@ namespace TMRecorder
             this.fp4.Vote = -1F;
             this.fp4.VoteFont = new System.Drawing.Font("Arial", 10F);
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.lblTacticsComment);
+            this.groupBox3.Controls.Add(this.lblThB);
+            this.groupBox3.Controls.Add(this.lblLnB);
+            this.groupBox3.Controls.Add(this.lblShP);
+            this.groupBox3.Controls.Add(this.lblWin);
+            this.groupBox3.Controls.Add(this.lblDir);
+            this.groupBox3.Controls.Add(this.lblBal);
+            this.groupBox3.Controls.Add(this.pbThB);
+            this.groupBox3.Controls.Add(this.pbLnB);
+            this.groupBox3.Controls.Add(this.pbShP);
+            this.groupBox3.Controls.Add(this.pbWin);
+            this.groupBox3.Controls.Add(this.pbDir);
+            this.groupBox3.Controls.Add(this.pbBal);
+            this.groupBox3.Location = new System.Drawing.Point(494, 28);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(280, 280);
+            this.groupBox3.TabIndex = 7;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Tactics Efficacy";
+            // 
+            // lblTacticsComment
+            // 
+            this.lblTacticsComment.Location = new System.Drawing.Point(9, 16);
+            this.lblTacticsComment.Name = "lblTacticsComment";
+            this.lblTacticsComment.Size = new System.Drawing.Size(264, 32);
+            this.lblTacticsComment.TabIndex = 2;
+            // 
+            // lblThB
+            // 
+            this.lblThB.AutoSize = true;
+            this.lblThB.Location = new System.Drawing.Point(6, 243);
+            this.lblThB.Name = "lblThB";
+            this.lblThB.Size = new System.Drawing.Size(71, 13);
+            this.lblThB.TabIndex = 1;
+            this.lblThB.Text = "Through balls";
+            // 
+            // lblLnB
+            // 
+            this.lblLnB.AutoSize = true;
+            this.lblLnB.Location = new System.Drawing.Point(6, 204);
+            this.lblLnB.Name = "lblLnB";
+            this.lblLnB.Size = new System.Drawing.Size(56, 13);
+            this.lblLnB.TabIndex = 1;
+            this.lblLnB.Text = "Long Balls";
+            // 
+            // lblShP
+            // 
+            this.lblShP.AutoSize = true;
+            this.lblShP.Location = new System.Drawing.Point(6, 165);
+            this.lblShP.Name = "lblShP";
+            this.lblShP.Size = new System.Drawing.Size(68, 13);
+            this.lblShP.TabIndex = 1;
+            this.lblShP.Text = "Shortpassing";
+            // 
+            // lblWin
+            // 
+            this.lblWin.AutoSize = true;
+            this.lblWin.Location = new System.Drawing.Point(6, 126);
+            this.lblWin.Name = "lblWin";
+            this.lblWin.Size = new System.Drawing.Size(37, 13);
+            this.lblWin.TabIndex = 1;
+            this.lblWin.Text = "Wings";
+            // 
+            // lblDir
+            // 
+            this.lblDir.AutoSize = true;
+            this.lblDir.Location = new System.Drawing.Point(6, 87);
+            this.lblDir.Name = "lblDir";
+            this.lblDir.Size = new System.Drawing.Size(35, 13);
+            this.lblDir.TabIndex = 1;
+            this.lblDir.Text = "Direct";
+            // 
+            // lblBal
+            // 
+            this.lblBal.AutoSize = true;
+            this.lblBal.Location = new System.Drawing.Point(6, 48);
+            this.lblBal.Name = "lblBal";
+            this.lblBal.Size = new System.Drawing.Size(52, 13);
+            this.lblBal.TabIndex = 1;
+            this.lblBal.Text = "Balanced";
+            // 
+            // pbThB
+            // 
+            this.pbThB.Location = new System.Drawing.Point(9, 259);
+            this.pbThB.Name = "pbThB";
+            this.pbThB.Size = new System.Drawing.Size(265, 15);
+            this.pbThB.TabIndex = 0;
+            this.pbThB.Value = 25;
+            // 
+            // pbLnB
+            // 
+            this.pbLnB.Location = new System.Drawing.Point(9, 220);
+            this.pbLnB.Name = "pbLnB";
+            this.pbLnB.Size = new System.Drawing.Size(265, 15);
+            this.pbLnB.TabIndex = 0;
+            this.pbLnB.Value = 25;
+            // 
+            // pbShP
+            // 
+            this.pbShP.Location = new System.Drawing.Point(9, 181);
+            this.pbShP.Name = "pbShP";
+            this.pbShP.Size = new System.Drawing.Size(265, 15);
+            this.pbShP.TabIndex = 0;
+            this.pbShP.Value = 25;
+            // 
+            // pbWin
+            // 
+            this.pbWin.Location = new System.Drawing.Point(9, 142);
+            this.pbWin.Name = "pbWin";
+            this.pbWin.Size = new System.Drawing.Size(265, 15);
+            this.pbWin.TabIndex = 0;
+            this.pbWin.Value = 25;
+            // 
+            // pbDir
+            // 
+            this.pbDir.Location = new System.Drawing.Point(9, 103);
+            this.pbDir.Name = "pbDir";
+            this.pbDir.Size = new System.Drawing.Size(265, 15);
+            this.pbDir.TabIndex = 0;
+            this.pbDir.Value = 25;
+            // 
+            // pbBal
+            // 
+            this.pbBal.Location = new System.Drawing.Point(9, 64);
+            this.pbBal.Name = "pbBal";
+            this.pbBal.Size = new System.Drawing.Size(265, 15);
+            this.pbBal.TabIndex = 0;
+            this.pbBal.Value = 25;
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsMatchTypeDDB,
+            this.toolStripLabel1,
+            this.tcmbMatchList});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(784, 25);
+            this.toolStrip1.TabIndex = 8;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // tsMatchTypeDDB
+            // 
+            this.tsMatchTypeDDB.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.allMatchesToolStripMenuItem,
+            this.mainSquadToolStripMenuItem,
+            this.reservesToolStripMenuItem});
+            this.tsMatchTypeDDB.Image = ((System.Drawing.Image)(resources.GetObject("tsMatchTypeDDB.Image")));
+            this.tsMatchTypeDDB.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsMatchTypeDDB.Name = "tsMatchTypeDDB";
+            this.tsMatchTypeDDB.Size = new System.Drawing.Size(98, 22);
+            this.tsMatchTypeDDB.Text = "Match Type";
+            // 
+            // allMatchesToolStripMenuItem
+            // 
+            this.allMatchesToolStripMenuItem.Name = "allMatchesToolStripMenuItem";
+            this.allMatchesToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.allMatchesToolStripMenuItem.Text = "All Matches";
+            this.allMatchesToolStripMenuItem.Click += new System.EventHandler(this.allMatchesToolStripMenuItem_Click);
+            // 
+            // mainSquadToolStripMenuItem
+            // 
+            this.mainSquadToolStripMenuItem.Name = "mainSquadToolStripMenuItem";
+            this.mainSquadToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.mainSquadToolStripMenuItem.Text = "Main Squad Matches";
+            this.mainSquadToolStripMenuItem.Click += new System.EventHandler(this.mainSquadToolStripMenuItem_Click);
+            // 
+            // reservesToolStripMenuItem
+            // 
+            this.reservesToolStripMenuItem.Name = "reservesToolStripMenuItem";
+            this.reservesToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.reservesToolStripMenuItem.Text = "Reserves Matches";
+            this.reservesToolStripMenuItem.Click += new System.EventHandler(this.reservesToolStripMenuItem_Click);
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripLabel1.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(42, 22);
+            this.toolStripLabel1.Text = "Match";
+            // 
+            // tcmbMatchList
+            // 
+            this.tcmbMatchList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.tcmbMatchList.Name = "tcmbMatchList";
+            this.tcmbMatchList.Size = new System.Drawing.Size(315, 25);
+            this.tcmbMatchList.SelectedIndexChanged += new System.EventHandler(this.tcmbMatchList_SelectedIndexChanged);
+            // 
             // formationControl
             // 
             this.formationControl.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("formationControl.BackgroundImage")));
@@ -473,7 +450,6 @@ namespace TMRecorder
             this.ClientSize = new System.Drawing.Size(784, 507);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.formationControl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -481,8 +457,6 @@ namespace TMRecorder
             this.Name = "MatchOnField";
             this.Text = "Match Field";
             this.groupBox1.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
@@ -502,7 +476,6 @@ namespace TMRecorder
         private FieldFormationControl.FieldPlayer fp5;
         private FieldFormationControl.FieldPlayer fp6;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label lblBal;
         private System.Windows.Forms.ProgressBar pbBal;
@@ -517,7 +490,6 @@ namespace TMRecorder
         private System.Windows.Forms.ProgressBar pbWin;
         private System.Windows.Forms.ProgressBar pbDir;
         private System.Windows.Forms.Label lblTacticsComment;
-        private System.Windows.Forms.TextBox lblMatchStartInfo;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripDropDownButton tsMatchTypeDDB;
         private System.Windows.Forms.ToolStripMenuItem allMatchesToolStripMenuItem;

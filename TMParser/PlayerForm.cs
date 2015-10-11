@@ -20,16 +20,16 @@ namespace TMRecorder
     {
         private TeamHistory History;
         public ExtTMDataSet.GiocatoriNSkillDataTable GDT;
-        private int iActualPlayer;
+        private int actualPlayerCnt;
         private bool playerInfoChanged = false;
         public bool isDirty = false;
-        public ChampDS.PlyStatsDataTable plyStatsTable = null;
+        public NTR_Db.Seasons allSeasons = null;
 
         public int actPlayerID
         {
             get
             {
-                ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[iActualPlayer];
+                ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
                 return playerDatarow.PlayerID;
             }
         }
@@ -45,14 +45,14 @@ namespace TMRecorder
         }
 
         public PlayerForm(ExtTMDataSet.GiocatoriNSkillDataTable gdt,
-                         ChampDS.PlyStatsDataTable plystatstable)
+                         NTR_Db.Seasons allseason)
         {
             // Only for debug
             InitializeComponent();
 
             SetLanguage();
 
-            this.plyStatsTable = plystatstable;
+            this.allSeasons = allseason;
 
             GDT = gdt;
         }
@@ -60,13 +60,13 @@ namespace TMRecorder
         public PlayerForm(ExtTMDataSet.GiocatoriNSkillDataTable gdt,
                          TeamHistory hist,
                          int ID,
-                         ChampDS.PlyStatsDataTable plystatstable)
+                         NTR_Db.Seasons allseasons)
         {
             InitializeComponent();
 
             SetLanguage();
 
-            this.plyStatsTable = plystatstable;
+            this.allSeasons = allseasons;
 
             History = hist;
 
@@ -77,7 +77,7 @@ namespace TMRecorder
             {
                 if (row == gdt.Rows[n])
                 {
-                    iActualPlayer = n;
+                    actualPlayerCnt = n;
                     break;
                 }
             }
@@ -97,7 +97,7 @@ namespace TMRecorder
                 ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[n];
                 if (playerDatarow.PlayerID == playerID)
                 {
-                    iActualPlayer = n;
+                    actualPlayerCnt = n;
                     break;
                 }
             }
@@ -109,7 +109,7 @@ namespace TMRecorder
         {
             chkShowTGI.Checked = Program.Setts.ShowTGI;
 
-            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[iActualPlayer];
+            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
 
             ExtTMDataSet.PlayerHistoryDataTable table = History.GetPlayerHistory(playerDatarow.PlayerID);
 
@@ -131,14 +131,11 @@ namespace TMRecorder
 
             SetTraining();
 
-            string expression = "(PlayerID = " + playerDatarow.PlayerID + ")";
-            ChampDS.PlyStatsRow[] drs = (ChampDS.PlyStatsRow[])plyStatsTable.Select(expression);
-
-            FillSeasonCombo(drs);
+            FillSeasonCombo();
             chkShowPosition.Checked = Program.Setts.ShowPosition;
             chkNormalized.Checked = Program.Setts.ShowStatsNormalized;
 
-            FillMatchStatsGraph(plyStatsTable);
+            FillMatchStatsGraph();
 
             playerInfoChanged = false;
 
@@ -193,7 +190,7 @@ namespace TMRecorder
 
         private void SetTraining()
         {
-            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[iActualPlayer];
+            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
             ExtraDS.GiocatoriRow gr = History.PlayersDS.FindByPlayerID(playerDatarow.PlayerID);
 
             FillTrainingPsychologyGraph(gr);
@@ -441,30 +438,24 @@ namespace TMRecorder
             graphTrainingPsychology.Refresh();
         }
 
-        private void FillSeasonCombo(ChampDS.PlyStatsRow[] drs)
+        private void FillSeasonCombo()
         {
-            List<int> seasons = new List<int>();
-
-            foreach (ChampDS.PlyStatsRow psr in drs)
-            {
-                if (!seasons.Contains(psr.SeasonID))
-                    seasons.Add(psr.SeasonID);
-            }
-
             cmbSeason.Items.Clear();
 
             cmbSeason.Items.Add("All seasons");
 
-            foreach (int season in seasons)
+            foreach (int season in allSeasons.GetSeasonsVector())
             {
                 cmbSeason.Items.Add(season);
             }
 
-            if (cmbSeason.Items.Count > 0)
-                cmbSeason.SelectedIndex = cmbSeason.Items.Count - 1;
+            if (cmbSeason.Items.Count == 0)
+                return;
+
+            cmbSeason.SelectedItem = TmWeek.thisSeason().Season;
         }
 
-        public void FillMatchStatsGraph(ChampDS.PlyStatsDataTable psDT)
+        public void FillMatchStatsGraph()
         {
             try
             {
@@ -497,26 +488,26 @@ namespace TMRecorder
                 if (cmbSeason.SelectedItem.ToString() != "All seasons")
                     season = (int)(cmbSeason.SelectedItem);
 
-                ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[iActualPlayer];
-                string expression = "(PlayerID = " + playerDatarow.PlayerID + ")";
-                if (season != -1)
-                    expression += " AND (SeasonID = " + season + ")";
-                else
-                    expression += " AND (SeasonID > 0)";
-                ChampDS.PlyStatsRow[] drs = (ChampDS.PlyStatsRow[])plyStatsTable.Select(expression);
+                var playerPerfList = allSeasons.GetPlayerPerfList(actPlayerID, season);
 
-                foreach (ChampDS.PlyStatsRow psr in drs)
+                foreach (NTR_Db.NTR_SquadDb.PlayerPerfRow ppr in playerPerfList)
                 {
-                    if (psr.IsVotesNull()) continue;
+                    if (ppr.IsVoteNull()) continue;
 
-                    int type = psr.TypeStats;
+                    int type = ppr.MatchRow.MatchType;
                     if (type > 20) type = 4;
                     else if (type > 10) type = 1;
                     else if (type == 5) type = 0;
+
+                    string newDateVote = TmWeek.DateTimeToSWD(ppr.MatchRow.Date).ToString() + 
+                        "|" + ppr.Position +
+                        "|" + ppr.Vote.ToString("N1", CommGlobal.ci) +
+                        "|" + ppr.Vote.ToString("N1", CommGlobal.ci);
+
                     if (votesSng[type] == null)
-                        votesSng[type] = psr.Votes;
+                        votesSng[type] = newDateVote;
                     else
-                        votesSng[type] += (";" + psr.Votes);
+                        votesSng[type] += ";" + newDateVote;
                 }
 
                 for (int i = 0; i < numOfMatchTypes; i++)
@@ -554,9 +545,9 @@ namespace TMRecorder
 
                         float vote;
                         if (chkNormalized.Checked)
-                            vote = float.Parse(part[3]);
+                            vote = float.Parse(part[3], CommGlobal.ci);
                         else
-                            vote = float.Parse(part[2]);
+                            vote = float.Parse(part[2], CommGlobal.ci);
 
                         votes[mt].Add(xdate, vote, part[1]);
                     }
@@ -596,7 +587,7 @@ namespace TMRecorder
                 string swRelease = "Sw Release:" + Application.ProductName + "("
                     + Application.ProductVersion + ")";
                 string info = "";
-                info += "iActualPlayer:" + iActualPlayer.ToString() + "\r\n";
+                info += "iActualPlayer:" + actualPlayerCnt.ToString() + "\r\n";
                 info += "cmbSeason.SelectedItem:" + cmbSeason.SelectedItem.ToString() + "\r\n";
                 info += "Program.Setts.MatchTypes:" + Program.Setts.MatchTypes + "\r\n";
 
@@ -609,12 +600,6 @@ namespace TMRecorder
 
                 StreamReader file = new StreamReader(fi.FullName);
                 info += "\r\nGDT:\r\n" + file.ReadToEnd();
-                file.Close();
-
-                plyStatsTable.WriteXml(fi.FullName);
-
-                file = new StreamReader(fi.FullName);
-                info += "\r\nplyStatsTable:\r\n" + file.ReadToEnd();
                 file.Close();
 
                 ErrorReport.Send(e, info, Environment.StackTrace, swRelease);
@@ -702,7 +687,7 @@ namespace TMRecorder
 
         private void FillPlayerInfo(bool reset)
         {
-            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[iActualPlayer];
+            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
             ExtraDS.GiocatoriRow gRow = History.PlayersDS.Giocatori.FindByPlayerID(playerDatarow.PlayerID);
 
             scoutsNReviews.Scouts.Clear();
@@ -771,7 +756,7 @@ namespace TMRecorder
 
         private void StorePlayerInfo()
         {
-            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[iActualPlayer];
+            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
             ExtraDS.GiocatoriRow gRow = History.PlayersDS.Giocatori.FindByPlayerID(playerDatarow.PlayerID);
             gRow.Note = txtNotes.Text;
         }
@@ -915,7 +900,7 @@ namespace TMRecorder
 
         private void FillTIGraph(ExtTMDataSet.PlayerHistoryDataTable table)
         {
-            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[iActualPlayer];
+            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
             ExtraDS.GiocatoriRow gRow = History.PlayersDS.Giocatori.FindByPlayerID(playerDatarow.PlayerID);
 
             if ((gRow.IsTSINull()) || (gRow.TSI == ""))
@@ -1666,11 +1651,11 @@ namespace TMRecorder
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-            iActualPlayer++;
+            actualPlayerCnt++;
 
-            if (iActualPlayer > GDT.Rows.Count - 1)
+            if (actualPlayerCnt > GDT.Rows.Count - 1)
             {
-                iActualPlayer = 0;
+                actualPlayerCnt = 0;
             }
 
             Initialize();
@@ -1678,11 +1663,11 @@ namespace TMRecorder
 
         private void btnPrev_Click(object sender, EventArgs e)
         {
-            iActualPlayer--;
+            actualPlayerCnt--;
 
-            if (iActualPlayer < 0)
+            if (actualPlayerCnt < 0)
             {
-                iActualPlayer = GDT.Rows.Count - 1;
+                actualPlayerCnt = GDT.Rows.Count - 1;
             }
 
             Initialize();
@@ -1695,13 +1680,13 @@ namespace TMRecorder
 
         private void playersMainPageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[iActualPlayer];
+            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
             Clipboard.SetText("http://trophymanager.com/players/" + playerDatarow.PlayerID.ToString());
         }
 
         private void playersScoutPageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[iActualPlayer];
+            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
             Clipboard.SetText("http://trophymanager.com/players/" + playerDatarow.PlayerID.ToString() + "/#/page/scout/");
         }
 
@@ -1735,7 +1720,7 @@ namespace TMRecorder
 
         private void chkShowTGI_CheckedChanged(object sender, EventArgs e)
         {
-            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[iActualPlayer];
+            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
             ExtTMDataSet.PlayerHistoryDataTable table = History.GetPlayerHistory(playerDatarow.PlayerID);
             FillTIGraph(table);
             Program.Setts.ShowTGI = chkShowTGI.Checked;
@@ -1744,7 +1729,7 @@ namespace TMRecorder
 
         private void exportInExcelFormat_Click(object sender, EventArgs e)
         {
-            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[iActualPlayer];
+            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
             ExtTMDataSet.PlayerHistoryDataTable table = History.GetPlayerHistory(playerDatarow.PlayerID);
             ExtraDS.GiocatoriRow gRow = History.PlayersDS.Giocatori.FindByPlayerID(playerDatarow.PlayerID);
             WeekHistorical whTI = new WeekHistorical(gRow.TSI);
@@ -1773,8 +1758,8 @@ namespace TMRecorder
 
         private void chkNormalized_CheckedChanged(object sender, EventArgs e)
         {
-            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[iActualPlayer];
-            FillMatchStatsGraph(plyStatsTable);
+            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
+            FillMatchStatsGraph();
 
             if (chkNormalized.Checked)
             {
@@ -1806,7 +1791,7 @@ namespace TMRecorder
 
         private void tsbComputeGrowth_Click(object sender, EventArgs e)
         {
-            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[iActualPlayer];
+            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
             ExtTMDataSet.PlayerHistoryDataTable table = History.GetPlayerHistory(playerDatarow.PlayerID);
 
             ExtraDS.GiocatoriRow gRow = History.PlayersDS.Giocatori.FindByPlayerID(playerDatarow.PlayerID);
@@ -1867,7 +1852,7 @@ namespace TMRecorder
 
         private void btnGetVotenSkillAuto_Click(object sender, EventArgs e)
         {
-            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[iActualPlayer];
+            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
 
             FileInfo fi = new FileInfo(Program.Setts.ReportAnalysisFile);
 
@@ -1898,7 +1883,7 @@ namespace TMRecorder
 
         private void getPotentialForThisPlayerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[iActualPlayer];
+            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
 
             FileInfo fi = new FileInfo(Program.Setts.ReportAnalysisFile);
 
@@ -2015,7 +2000,7 @@ namespace TMRecorder
                 return;
             }
 
-            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[iActualPlayer];
+            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
             ExtraDS.GiocatoriRow gRow = History.PlayersDS.Giocatori.FindByPlayerID(playerDatarow.PlayerID);
 
             if (!ExtraDS.ParsePlayerPage_NewTM(webBrowser.Document, page, ref gRow, History.reportParser))

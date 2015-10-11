@@ -10,19 +10,12 @@ namespace NTR_Controls
 {
     public partial class NTR_ImgColumn : DataGridViewColumn
     {
-        public ImgContainer imgContainer = new ImgContainer();
-
-        public enum ImgType
-        {
-            Rec,
-        }
-
-        public ImgType ImageType { get; set; }
+        public ImageList ImgList { get; set; }
         
-        public NTR_ImgColumn(ImgType imgType)
+        public NTR_ImgColumn(ImageList imgList)
             : base(new NTR_ImgCell())
         {
-            ImageType = imgType;
+            ImgList = imgList;
             InitializeComponent();
         }
 
@@ -133,23 +126,18 @@ namespace NTR_Controls
 
             {
                 Point pt = cellRect.Location;
-                pt.Offset(2, (cellRect.Height - dnc.imgContainer.starRowImgList.ImageSize.Height) / 2);
+                pt.Offset(2, (cellRect.Height - dnc.ImgList.ImageSize.Height) / 2);
 
-                decimal ivalue = (decimal)value * 2M;
-
-                if ((ivalue == 0) || (ivalue > 10))
-                    ivalue = 1;
-
-                string strValue = ivalue.ToString("N0");
+                string strValue = (string)value;
 
                 Image image = null;
 
-                int ix = dnc.imgContainer.starRowImgList.Images.IndexOfKey(strValue + ".png");
-                if (ix != -1) image = dnc.imgContainer.starRowImgList.Images[ix];
+                int ix = dnc.ImgList.Images.IndexOfKey(strValue + ".png");
+                if (ix != -1) image = dnc.ImgList.Images[ix];
 
                 if (image == null)
                 {
-                    image = dnc.imgContainer.starRowImgList.Images[0];
+                    image = dnc.ImgList.Images[0];
                 }
 
                 graphics.DrawImage(image, pt);

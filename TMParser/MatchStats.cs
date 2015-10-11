@@ -1,4 +1,4 @@
-using System; 
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -6,6 +6,7 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 using Common;
+using NTR_Db;
 
 namespace TMRecorder
 {
@@ -42,12 +43,6 @@ namespace TMRecorder
 
                     txtOnTarget1.Text = YourStats[2];
                     txtOnTarget2.Text = OppsStats[2];
-
-                    txtYellowCards1.Text = YourStats[3];
-                    txtYellowCards2.Text = OppsStats[3];
-
-                    txtRedCards1.Text = YourStats[4];
-                    txtRedCards2.Text = OppsStats[4];
                 }
                 else
                 {
@@ -62,13 +57,64 @@ namespace TMRecorder
 
                     txtOnTarget1.Text = "";
                     txtOnTarget2.Text = "";
-
-                    txtYellowCards1.Text = "";
-                    txtYellowCards2.Text = "";
-
-                    txtRedCards1.Text = "";
-                    txtRedCards2.Text = "";
                 }
+            }
+        }
+
+        internal void SetMatchData(MatchData matchData)
+        {
+            if ((matchData != null) && (matchData.LineUps != null))
+            {
+                string[] lineUps = matchData.LineUps.Split(';');
+
+                txtLineUp1.Text = lineUps[0];
+                txtLineUp2.Text = lineUps[1];
+
+                string[] Stats = matchData.Stats.Split(';');
+
+                txtPossession1.Text = Stats[0];
+                txtPossession2.Text = Stats[6];
+
+                txtShots1.Text = Stats[1];
+                txtShots2.Text = Stats[7];
+
+                txtOnTarget1.Text = Stats[2];
+                txtOnTarget2.Text = Stats[8];
+
+                NTR_Formation yf = new NTR_Formation(eFormationTypes.Type_Empty);
+                foreach (NTR_SquadDb.PlayerPerfRow row in matchData.YourPlayerPerf)
+                {
+                    Player pl = yf.SetYourPlayer(row);
+                }
+
+                yourTeamLineup.SetFormation(yf);
+
+                NTR_Formation of = new NTR_Formation(eFormationTypes.Type_Empty);
+                foreach (NTR_SquadDb.PlayerPerfRow row in matchData.OppsPlayerPerf)
+                {
+                    Player pl = of.SetOppsPlayer(row);
+                }
+
+                oppsTeamLineup.SetFormation(of);
+            }
+            else
+            {
+                txtLineUp1.Text = "";
+                txtLineUp2.Text = "";
+
+                txtPossession1.Text = "";
+                txtPossession2.Text = "";
+
+                txtShots1.Text = "";
+                txtShots2.Text = "";
+
+                txtOnTarget1.Text = "";
+                txtOnTarget2.Text = "";
+
+                Formation yf = new Formation(eFormationTypes.Type_Empty);
+                Formation of = new Formation(eFormationTypes.Type_Empty);
+                yourTeamLineup.formation = yf;
+                oppsTeamLineup.formation = of;
             }
         }
     }

@@ -501,24 +501,6 @@ namespace TMRecorder
             History.LoadTIfromTrainingNew(dt, page);
         }
 
-        public static void TestFillMatchStatsGraph()
-        {
-            Program.Setts.Initialize();
-
-            ExtTMDataSet eds = new ExtTMDataSet();
-            eds.GiocatoriNSkill.ReadXml(@"C:\Temp\ExtTmDataSet.xml");
-
-            TeamHistory History = new TeamHistory();
-
-            ChampDS champDS = new ChampDS();
-            champDS.ReadXml(@"C:\Temp\ChampDS.xml");
-
-            PlayerForm form = new PlayerForm(eds.GiocatoriNSkill, champDS.PlyStats);
-
-
-            form.FillMatchStatsGraph(champDS.PlyStats);
-        }
-
         public static void TestLoadSquad()
         {
             Program.Setts.Initialize();

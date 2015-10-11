@@ -22,6 +22,24 @@ namespace Common
 
     public class Utility
     {
+        public static Dictionary<string, string> StringToDictionary(string tablerow, char separator = ';')
+        {
+            Dictionary<string, string> dict = new Dictionary<string, string>();
+
+            string[] cells = tablerow.Split(separator);
+
+            foreach (string cell in cells)
+            {
+                string[] item = cell.Split('=');
+                if (item.Length < 2) continue;
+                string key = item[0].Trim();
+                string value = item[1].Trim();
+                dict.Add(key, value);
+            }
+
+            return dict;
+        }
+
         public static float[] StringToFloatArray(string val)
         {
             string[] pars = val.Split(';');
@@ -944,6 +962,11 @@ namespace Common
         public static DateTime TmWeekToDate(int absweek)
         {
             return tmDay0.AddDays(7 * absweek);
+        }
+
+        public static object DateTimeToSWD(DateTime date)
+        {
+            return new TmSWD(date);
         }
     }
 }

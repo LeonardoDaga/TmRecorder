@@ -1387,6 +1387,7 @@ namespace NTR_Db
         {
             NPos = c.NPos;
             Name = c.PlayerRow.Name;
+            PlayerID = c.PlayerID;
             if (!c.PlayerRow.IsNationalityNull())
                 Nationality = c.PlayerRow.Nationality;
             Position = c.Position;
@@ -1407,16 +1408,46 @@ namespace NTR_Db
         }
 
         public string Name { get; set; }
+        public string NameExt
+        {
+            get
+            {
+                string res = "Text=" + Name;
+                if (Scored > 0)
+                    res += ";Goal=" + Scored.ToString();
+                if (Assist > 0)
+                    res += ";Assist=" + Assist.ToString();
+                if (Status.Contains("YYR"))
+                    res += ";Yellow=1;YellowRed=1";
+                else if (Status.Contains("YR"))
+                    res += ";Yellow=1;Red=1";
+                else if (Status.Contains("Y"))
+                    res += ";Yellow=1";
+                else if (Status.Contains("R"))
+                    res += ";Red=1";
+                else if (Status.Contains("I"))
+                    res += ";Injury=1";
+                return res;
+            }
+        }
         public string Position { get; set; }
         public int NPos { get; set; }
         public string Nationality { get; private set; }
         public float Vote { get; private set; }
         public decimal Rec { get; private set; }
+        public string RecExt
+        {
+            get
+            {
+                return Rec.ToString("N1", CommGlobal.ciUs);
+            }
+        }
         public decimal Rou { get; private set; }
         public int Scored { get; private set; }
         public int Assist { get; private set; }
         public string Status { get; private set; }
         public int FPn { get; private set; }
+        public int PlayerID { get; private set; }
     }
 
     public class MatchData
@@ -1564,6 +1595,21 @@ namespace NTR_Db
 
         public EnumerableRowCollection<NTR_SquadDb.PlayerPerfRow> HomePlayerPerf { get; set; }
         public EnumerableRowCollection<NTR_SquadDb.PlayerPerfRow> AwayPlayerPerf { get; set; }
+
+        public EnumerableRowCollection<NTR_SquadDb.PlayerPerfRow> YourPlayerPerf
+        {
+            get
+            {
+                return IsHome ? HomePlayerPerf : AwayPlayerPerf;
+            }
+        }
+        public EnumerableRowCollection<NTR_SquadDb.PlayerPerfRow> OppsPlayerPerf
+        {
+            get
+            {
+                return !IsHome ? HomePlayerPerf : AwayPlayerPerf;
+            }
+        }
     }
 
     public class FormattedString

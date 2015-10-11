@@ -6,6 +6,7 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 using Common;
+using NTR_Db;
 
 namespace FieldFormationControl
 {
@@ -164,6 +165,19 @@ namespace FieldFormationControl
             if (penLin != null) penLin.Dispose();
             if (brCnt != null) brCnt.Dispose();
             if (penCnt != null) penCnt.Dispose();
+        }
+
+        public void SetFormation(NTR_Formation yf)
+        {
+            _formation = new Formation();
+
+            _formation.Type = yf.Type;
+            _formation.players = yf.players;
+            _formation.showMeanVote = yf.showMeanVote;
+            _formation.ShowValue = yf.ShowValue;
+            _formation.TeamColor = yf.TeamColor;
+
+            Invalidate();
         }
 
         private Rectangle GetRectangleFromIndex(int i)

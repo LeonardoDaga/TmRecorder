@@ -703,6 +703,7 @@ namespace TMRecorder
             // 
             // cmbSeason
             // 
+            this.cmbSeason.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSeason.Name = "cmbSeason";
             this.cmbSeason.Size = new System.Drawing.Size(95, 25);
             this.cmbSeason.SelectedIndexChanged += new System.EventHandler(this.cmbSeason_SelectedIndexChanged);

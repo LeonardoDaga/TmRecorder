@@ -93,6 +93,10 @@
     <Compile Include="NTR_ImgColumn.Designer.cs">
       <DependentUpon>NTR_ImgColumn.cs</DependentUpon>
     </Compile>
+    <Compile Include="NTR_TxtAndImgColumn.cs" />
+    <Compile Include="NTR_TxtAndImgColumn.Designer.cs">
+      <DependentUpon>NTR_TxtAndImgColumn.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
@@ -143,6 +147,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NTR_ImgColumn.resx">
       <DependentUpon>NTR_ImgColumn.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NTR_TxtAndImgColumn.resx">
+      <DependentUpon>NTR_TxtAndImgColumn.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

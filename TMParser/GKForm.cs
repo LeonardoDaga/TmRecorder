@@ -21,7 +21,7 @@ namespace TMRecorder
         private int iActualPlayer;
         private bool playerInfoChanged = false;
         public bool isDirty = false;
-        public ChampDS.PlyStatsDataTable plyStatsTable = null;
+        public NTR_Db.Seasons allSeasons = null;
 
         public int actPlayerID
         {
@@ -60,13 +60,13 @@ namespace TMRecorder
         public GKForm(ExtTMDataSet.PortieriNSkillDataTable gdt,
                          TeamHistory hist,
                          int ID,
-                         ChampDS.PlyStatsDataTable plystatstable)
+                         NTR_Db.Seasons allseason)
         {
             InitializeComponent();
 
             SetLanguage();
 
-            this.plyStatsTable = plystatstable;
+            this.allSeasons = allseason;
 
             History = hist;
 
@@ -124,14 +124,11 @@ namespace TMRecorder
 
             FillTrainingTable(playerDatarow.PlayerID);
 
-            string expression = "(PlayerID = " + playerDatarow.PlayerID + ")";
-            ChampDS.PlyStatsRow[] drs = (ChampDS.PlyStatsRow[])plyStatsTable.Select(expression);
-
-            FillSeasonCombo(drs);
+            FillSeasonCombo();
             chkShowPosition.Checked = Program.Setts.ShowPosition;
             chkNormalized.Checked = Program.Setts.ShowStatsNormalized;
 
-            FillMatchStatsGraph(plyStatsTable);
+            FillMatchStatsGraph();
 
             playerInfoChanged = false;
 
@@ -179,28 +176,26 @@ namespace TMRecorder
             History.FillGKTrainingTable(playerTraining, playerID);
         }
 
-        private void FillSeasonCombo(ChampDS.PlyStatsRow[] drs)
+        private void FillSeasonCombo()
         {
-            List<int> seasons = new List<int>();
+            cmbSeason.Items.Clear();
 
-            foreach (ChampDS.PlyStatsRow psr in drs)
-            {
-                if (!seasons.Contains(psr.SeasonID))
-                    seasons.Add(psr.SeasonID);
-            }
+            cmbSeason.Items.Add("All seasons");
 
             cmbSeason.Items.Clear();
 
-            foreach (int season in seasons)
+            foreach (int season in allSeasons.GetSeasonsVector())
             {
                 cmbSeason.Items.Add(season);
             }
 
-            if (cmbSeason.Items.Count > 0)
-                cmbSeason.SelectedIndex = cmbSeason.Items.Count - 1;
+            if (cmbSeason.Items.Count == 0)
+                return;
+
+            cmbSeason.SelectedItem = TmWeek.thisSeason().Season;
         }
 
-        private void FillMatchStatsGraph(ChampDS.PlyStatsDataTable psDT)
+        private void FillMatchStatsGraph()
         {
             GraphPane pane = graphPerf.GraphPane;
             pane.CurveList.Clear();
@@ -228,18 +223,37 @@ namespace TMRecorder
             int season = (int)(cmbSeason.SelectedItem);
 
             ExtTMDataSet.PortieriNSkillRow playerDatarow = (ExtTMDataSet.PortieriNSkillRow)GDT.Rows[iActualPlayer];
-            string expression = "(PlayerID = " + playerDatarow.PlayerID + ") AND (SeasonID = " + season + ")";
-            ChampDS.PlyStatsRow[] drs = (ChampDS.PlyStatsRow[])plyStatsTable.Select(expression);
 
-            foreach (ChampDS.PlyStatsRow psr in drs)
+            var playerPerfList = allSeasons.GetPlayerPerfList(actPlayerID, season);
+
+            string[] votesSng = new string[numOfMatchTypes];
+
+            foreach (NTR_Db.NTR_SquadDb.PlayerPerfRow ppr in playerPerfList)
             {
-                if (psr.IsVotesNull()) continue;
-                
-                int type = psr.TypeStats;
+                if (ppr.IsVoteNull()) continue;
+
+                int type = ppr.MatchRow.MatchType;
                 if (type > 20) type = 4;
                 else if (type > 10) type = 1;
                 else if (type == 5) type = 0;
-                votesStr[type] = psr.Votes.Split(';');
+
+                string newDateVote = TmWeek.DateTimeToSWD(ppr.MatchRow.Date).ToString() +
+                    "|" + ppr.Position +
+                    "|" + ppr.Vote.ToString("N1", CommGlobal.ci) +
+                    "|" + ppr.Vote.ToString("N1", CommGlobal.ci);
+
+                if (votesSng[type] == null)
+                    votesSng[type] = newDateVote;
+                else
+                    votesSng[type] += ";" + newDateVote;
+            }
+
+            for (int i = 0; i < numOfMatchTypes; i++)
+            {
+                if (votesSng[i] != null)
+                    votesStr[i] = votesSng[i].Split(';');
+                else
+                    votesStr[i] = null;
             }
 
             XDate xdateMin = XDate.XLDayMax;
@@ -269,9 +283,9 @@ namespace TMRecorder
 
                     float vote;
                     if (chkNormalized.Checked)
-                        vote = float.Parse(part[3]);
+                        vote = float.Parse(part[3], CommGlobal.ci);
                     else
-                        vote = float.Parse(part[2]);
+                        vote = float.Parse(part[2], CommGlobal.ci);
 
                     votes[mt].Add(xdate, vote, part[1]);
                 }
@@ -1295,7 +1309,7 @@ namespace TMRecorder
         private void chkNormalized_CheckedChanged(object sender, EventArgs e)
         {
             ExtTMDataSet.PortieriNSkillRow playerDatarow = (ExtTMDataSet.PortieriNSkillRow)GDT.Rows[iActualPlayer];
-            FillMatchStatsGraph(plyStatsTable);
+            FillMatchStatsGraph();
 
             Program.Setts.ShowStatsNormalized = chkNormalized.Checked;
             Program.Setts.ShowPosition = chkShowPosition.Checked;

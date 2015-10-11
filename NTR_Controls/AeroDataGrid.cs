@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using DataGridViewCustomColumns;
+using NTR_Common;
 //using Common;
 
 namespace NTR_Controls
@@ -17,6 +18,8 @@ namespace NTR_Controls
         OrderCommand lastOrderCommand;
         BindingSource dataBindingSource = new BindingSource();
         public Type DataType;
+
+        ImgContainer imgContainer = new ImgContainer();
 
         object _dataCollection = null;
         public object DataCollection
@@ -113,6 +116,10 @@ namespace NTR_Controls
             {
                 dgv = new TMR_NameInjurySqColumn();
             }
+            else if ((int)(styles & AG_Style.TextAndImage) > 0)
+            {
+                dgv = new NTR_TxtAndImgColumn(imgContainer.GetImageList(ImgContainer.ImgListType.Match));
+            }
             else if ((int)(styles & AG_Style.Nationality) > 0)
             {
                 dgv = new TMR_NationColumn();
@@ -131,7 +138,7 @@ namespace NTR_Controls
             }
             else if ((int)(styles & AG_Style.Stars) > 0)
             {
-                dgv = new NTR_ImgColumn(NTR_ImgColumn.ImgType.Rec);
+                dgv = new NTR_ImgColumn(imgContainer.GetImageList(ImgContainer.ImgListType.StarsLine));
             }
 
             dgv.Name = Title;
@@ -196,5 +203,6 @@ namespace NTR_Controls
         FormatString = 0x1000,
         MatchType = 0x2000,
         Stars = 0x4000,
+        TextAndImage = 0x8000,
     }
 }

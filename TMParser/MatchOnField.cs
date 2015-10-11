@@ -1,4 +1,4 @@
-using System; 
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,12 +9,13 @@ using TMRecorder.Properties;
 using System.IO;
 using Common;
 using FieldFormationControl;
+using NTR_Db;
 
 namespace TMRecorder
 {
     public partial class MatchOnField : Form
     {
-        public ChampDS champDS = null;
+        public NTR_Db.Seasons AllSeasons = null;
         public MatchDS matchDS = null;
         public ExtraDS extraDS = null;
         public TeamHistory History = null;
@@ -23,27 +24,32 @@ namespace TMRecorder
 
         public class MatchItem
         {
-            public ChampDS.MatchRow mr = null;
+            public MatchItem(MatchData matchdata)
+            {
+                matchData = matchdata;
+            }
+
+            public MatchData matchData { get; }
 
             public override string ToString()
             {
-                return "[" + mr.Date.ToShortDateString() + "] " + mr.Home + " " + mr.Score + " " + mr.Away;
+                return "[" + matchData.Date.ToShortDateString() + "] " + matchData.Home + " " + matchData.Score + " " + matchData.Away;
             }
 
             public int matchID
             {
                 get
                 {
-                    return mr.MatchID;
+                    return matchData.MatchID;
                 }
             }
         }
 
-        public MatchOnField(ChampDS champds, ExtraDS extrads, TeamHistory hist)
+        public MatchOnField(NTR_Db.Seasons allSeasons, ExtraDS extrads, TeamHistory hist)
         {
             InitializeComponent();
 
-            champDS = champds;
+            AllSeasons = allSeasons;
             extraDS = extrads;
             History = hist;
 
@@ -86,7 +92,7 @@ namespace TMRecorder
                 lblTacticsComment.Text = "There is no team history to compute the tactics efficacy for this match";
             }
 
-            ExtTMDataSet extDS = History.DS_BeforeDate(mi.mr.Date);
+            ExtTMDataSet extDS = History.DS_BeforeDate(mi.matchData.Date);
             if (extDS == null)
             {
                 // Non ci sono dati prima di questa data
@@ -219,38 +225,36 @@ namespace TMRecorder
 
         private void FillComboList()
         {
-            if (champDS == null) return;
+            tcmbMatchList.SelectedIndexChanged -= tcmbMatchList_SelectedIndexChanged;
 
             tcmbMatchList.Items.Clear();
 
-            MatchItem mi = null;
-            MatchItem lastmi = null;
+            MatchItem matchItem = null;
+            MatchItem lastMatchItem = null;
 
-            BindingSource bs = new BindingSource(champDS, "Match");
-            bs.Sort = "Date ASC";
-            
-            foreach (DataRowView dr in bs)
+            List<MatchData> allMatchesData;
+
+            if (Program.Setts.MatchOnFieldFilter == 1)
             {
-                ChampDS.MatchRow mr = (ChampDS.MatchRow)dr.Row;
-                if (!mr.Report) continue;
-
-                mi = new MatchItem();
-                mi.mr = mr;
-
-                if ((mi.mr.isReserves == 1) && (Program.Setts.MatchOnFieldFilter != 1))
-                {
-                    tcmbMatchList.Items.Add(mi);
-                    lastmi = mi;
-                }
-                else if ((mi.mr.isReserves == 0) && (Program.Setts.MatchOnFieldFilter != 2))
-                {
-                    tcmbMatchList.Items.Add(mi);
-                    lastmi = mi;
-                }
+                allMatchesData = AllSeasons.GetSeasonMatchList(-1, Program.Setts.MainSquadID, -1, -1);
+            }
+            else
+            {
+                allMatchesData = AllSeasons.GetSeasonMatchList(-1, Program.Setts.ReserveSquadID, -1, -1);
             }
 
-            if (lastmi != null)
-                tcmbMatchList.SelectedItem = lastmi;
+            foreach (MatchData matchData in allMatchesData)
+            {
+                matchItem = new MatchItem(matchData);
+
+                tcmbMatchList.Items.Add(matchItem);
+                lastMatchItem = matchItem;
+            }
+
+            if (lastMatchItem != null)
+                tcmbMatchList.SelectedItem = lastMatchItem;
+
+            tcmbMatchList.SelectedIndexChanged += tcmbMatchList_SelectedIndexChanged;
         }
 
         private void tcmbMatchList_SelectedIndexChanged(object sender, EventArgs e)
@@ -322,8 +326,6 @@ namespace TMRecorder
             }
 
             formationControl.ShowFormationPlayers(f);
-
-            lblMatchStartInfo.Text = mi.mr.InitDesciption;
         }
 
         private void allMatchesToolStripMenuItem_Click(object sender, EventArgs e)

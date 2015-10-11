@@ -84,7 +84,6 @@ namespace TMRecorder
             this.tsForwards = new System.Windows.Forms.ToolStripMenuItem();
             this.tsRecallMatch = new System.Windows.Forms.ToolStripDropDownButton();
             this.tsMatchesType = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsAllMatches = new System.Windows.Forms.ToolStripMenuItem();
             this.tsMainSquadMatches = new System.Windows.Forms.ToolStripMenuItem();
             this.tsReservesMatches = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
@@ -708,19 +707,11 @@ namespace TMRecorder
             // tsMatchesType
             // 
             this.tsMatchesType.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsAllMatches,
             this.tsMainSquadMatches,
             this.tsReservesMatches});
             this.tsMatchesType.Name = "tsMatchesType";
             this.tsMatchesType.Size = new System.Drawing.Size(375, 22);
             this.tsMatchesType.Text = "Matches Type (All Matches)";
-            // 
-            // tsAllMatches
-            // 
-            this.tsAllMatches.Name = "tsAllMatches";
-            this.tsAllMatches.Size = new System.Drawing.Size(185, 22);
-            this.tsAllMatches.Text = "All Matches";
-            this.tsAllMatches.Click += new System.EventHandler(this.tsAllMatches_Click);
             // 
             // tsMainSquadMatches
             // 
@@ -920,7 +911,6 @@ namespace TMRecorder
         private System.Windows.Forms.ToolStripMenuItem tsOddMid;
         private System.Windows.Forms.ToolStripMenuItem tsForwards;
         private System.Windows.Forms.ToolStripMenuItem tsMatchesType;
-        private System.Windows.Forms.ToolStripMenuItem tsAllMatches;
         private System.Windows.Forms.ToolStripMenuItem tsMainSquadMatches;
         private System.Windows.Forms.ToolStripMenuItem tsReservesMatches;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;

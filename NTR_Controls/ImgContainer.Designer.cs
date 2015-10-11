@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ImgContainer));
             this.starImageList = new System.Windows.Forms.ImageList(this.components);
             this.starRowImgList = new System.Windows.Forms.ImageList(this.components);
+            this.matchImageList = new System.Windows.Forms.ImageList(this.components);
             // 
             // starImageList
             // 
@@ -52,16 +53,28 @@
             // 
             this.starRowImgList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("starRowImgList.ImageStream")));
             this.starRowImgList.TransparentColor = System.Drawing.Color.Transparent;
-            this.starRowImgList.Images.SetKeyName(0, "1.png");
-            this.starRowImgList.Images.SetKeyName(1, "2.png");
-            this.starRowImgList.Images.SetKeyName(2, "3.png");
-            this.starRowImgList.Images.SetKeyName(3, "4.png");
-            this.starRowImgList.Images.SetKeyName(4, "5.png");
-            this.starRowImgList.Images.SetKeyName(5, "6.png");
-            this.starRowImgList.Images.SetKeyName(6, "7.png");
-            this.starRowImgList.Images.SetKeyName(7, "8.png");
-            this.starRowImgList.Images.SetKeyName(8, "9.png");
-            this.starRowImgList.Images.SetKeyName(9, "10.png");
+            this.starRowImgList.Images.SetKeyName(0, "0.5.png");
+            this.starRowImgList.Images.SetKeyName(1, "1.0.png");
+            this.starRowImgList.Images.SetKeyName(2, "1.5.png");
+            this.starRowImgList.Images.SetKeyName(3, "2.0.png");
+            this.starRowImgList.Images.SetKeyName(4, "2.5.png");
+            this.starRowImgList.Images.SetKeyName(5, "3.0.png");
+            this.starRowImgList.Images.SetKeyName(6, "3.5.png");
+            this.starRowImgList.Images.SetKeyName(7, "4.0.png");
+            this.starRowImgList.Images.SetKeyName(8, "4.5.png");
+            this.starRowImgList.Images.SetKeyName(9, "5.0.png");
+            // 
+            // matchImageList
+            // 
+            this.matchImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("matchImageList.ImageStream")));
+            this.matchImageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.matchImageList.Images.SetKeyName(0, "Assist.png");
+            this.matchImageList.Images.SetKeyName(1, "GoalGreen.png");
+            this.matchImageList.Images.SetKeyName(2, "Goal.png");
+            this.matchImageList.Images.SetKeyName(3, "Injury.png");
+            this.matchImageList.Images.SetKeyName(4, "Red.png");
+            this.matchImageList.Images.SetKeyName(5, "Yellow.png");
+            this.matchImageList.Images.SetKeyName(6, "YellowRed.png");
 
         }
 
@@ -69,5 +82,6 @@
 
         public System.Windows.Forms.ImageList starImageList;
         public System.Windows.Forms.ImageList starRowImgList;
+        public System.Windows.Forms.ImageList matchImageList;
     }
 }

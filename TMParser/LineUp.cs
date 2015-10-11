@@ -9,6 +9,7 @@ using TMRecorder.Properties;
 using System.IO;
 using Common;
 using FieldFormationControl;
+using NTR_Db;
 
 namespace TMRecorder
 {
@@ -30,8 +31,6 @@ namespace TMRecorder
          * (Strength), (hea) and (tac) are necessary attributes if your team is to win 
          * the ball one-on-one. (Stamina) is, as always, a factor.
          */
-
-        public ChampDS champDS = null;
         public MatchDS matchDS = null;
         public ExtraDS extraDS = null;
         public TeamHistory History = null;
@@ -40,30 +39,36 @@ namespace TMRecorder
         bool browseLineup = false;
 
         private FieldPlayer[] fps = new FieldPlayer[6];
+        private Seasons allSeasons;
 
         public class MatchItem
         {
-            public ChampDS.MatchRow mr = null;
+            public MatchItem(MatchData matchdata)
+            {
+                matchData = matchdata;
+            }
+
+            public MatchData matchData { get; }
 
             public override string ToString()
             {
-                return "[" + mr.Date.ToShortDateString() + "] " + mr.Home + " " + mr.Score + " " + mr.Away;
+                return "[" + matchData.Date.ToShortDateString() + "] " + matchData.Home + " " + matchData.Score + " " + matchData.Away;
             }
 
             public int matchID
             {
                 get
                 {
-                    return mr.MatchID;
+                    return matchData.MatchID;
                 }
             }
         }
 
-        public LineUp(ChampDS champds, ExtraDS extrads, TeamHistory hist)
+        public LineUp(NTR_Db.Seasons allseasons, ExtraDS extrads, TeamHistory hist)
         {
             InitializeComponent();
 
-            champDS = champds;
+            allSeasons = allseasons;
             extraDS = extrads;
             History = hist;
 
@@ -250,13 +255,6 @@ namespace TMRecorder
             */
         }
 
-        private void tsAllMatches_Click(object sender, EventArgs e)
-        {
-            Program.Setts.MatchOnFieldFilter = 0;
-            SetMenuFilter();
-            FillComboList();
-        }
-
         private void tsMainSquadMatches_Click(object sender, EventArgs e)
         {
             Program.Setts.MatchOnFieldFilter = 1;
@@ -276,7 +274,8 @@ namespace TMRecorder
             switch (Program.Setts.MatchOnFieldFilter)
             {
                 case 0: // All Matches
-                    tsMatchesType.Text = "Matches Type (All Matches)";
+                    Program.Setts.MatchOnFieldFilter = 1;
+                    tsMatchesType.Text = "Matches Type (Main Team Matches)";
                     break;
                 case 1: // Main Team Matches
                     tsMatchesType.Text = "Matches Type (Main Team Matches)";
@@ -290,40 +289,34 @@ namespace TMRecorder
 
         private void FillComboList()
         {
-            if (champDS == null) return;
-
             tcmbMatchList.SelectedIndexChanged -= tcmbMatchList_SelectedIndexChanged;
 
             tcmbMatchList.Items.Clear();
 
-            MatchItem mi = null;
-            MatchItem lastmi = null;
+            MatchItem matchItem = null;
+            MatchItem lastMatchItem = null;
 
-            BindingSource bs = new BindingSource(champDS, "Match");
-            bs.Sort = "Date ASC";
+            List<MatchData> allMatchesData;
 
-            foreach (DataRowView dr in bs)
+            if (Program.Setts.MatchOnFieldFilter == 1)
             {
-                ChampDS.MatchRow mr = (ChampDS.MatchRow)dr.Row;
-                if (!mr.Report) continue;
-
-                mi = new MatchItem();
-                mi.mr = mr;
-
-                if ((mi.mr.isReserves == 1) && (Program.Setts.MatchOnFieldFilter != 1))
-                {
-                    tcmbMatchList.Items.Add(mi);
-                    lastmi = mi;
-                }
-                else if ((mi.mr.isReserves == 0) && (Program.Setts.MatchOnFieldFilter != 2))
-                {
-                    tcmbMatchList.Items.Add(mi);
-                    lastmi = mi;
-                }
+                allMatchesData = allSeasons.GetSeasonMatchList(-1, Program.Setts.MainSquadID, -1, -1);
+            }
+            else
+            {
+                allMatchesData = allSeasons.GetSeasonMatchList(-1, Program.Setts.ReserveSquadID, -1, -1);
             }
 
-            if (lastmi != null)
-                tcmbMatchList.SelectedItem = lastmi;
+            foreach (MatchData matchData in allMatchesData)
+            {
+                matchItem = new MatchItem(matchData);
+
+                tcmbMatchList.Items.Add(matchItem);
+                lastMatchItem = matchItem;
+            }
+
+            if (lastMatchItem != null)
+                tcmbMatchList.SelectedItem = lastMatchItem;
 
             tcmbMatchList.SelectedIndexChanged += tcmbMatchList_SelectedIndexChanged;
         }

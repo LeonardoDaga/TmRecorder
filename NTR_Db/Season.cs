@@ -77,7 +77,7 @@ namespace NTR_Db
 
             var playerPerfs = (from c in seasonsDB.PlayerPerf
                               where (c.PlayerRow.TeamID == teamId) && (c.MatchRow.Date > dtStart)
-                              && (c.MatchRow.Date > dtEnd)
+                              && (c.MatchRow.Date < dtEnd)
                               select c);
 
             if ((matchType != 0) && (matchType != 31))
@@ -176,35 +176,43 @@ namespace NTR_Db
             return false;
         }
 
-        public List<MatchData> GetSeasonMatchList(int season, int teamID, int homeOrAway, int matchType)
+        public List<MatchData> GetSeasonMatchList(int season, int teamID, int homeOrAway, int matchType, bool playedOnly = false)
         {
-            TmSeason actualSeason = new TmSeason(season);
+            DateTime dtStart;
+            DateTime dtEnd;
 
-            //var matchRowList = (from c in seasonsDB.Match
-            //                     where (!c.IsDateNull()) && (c.Date > actualSeason.Start) && (c.Date < actualSeason.End) &&
-            //                             ((c.OTeamID == teamID) || (c.YTeamID == teamID))
-            //                     select c);
+            IEnumerable<MatchData> matchDataSelection;
 
-            //var matchRowListOrdered = matchRowList.OrderBy(p => p.Date);
+            if (season != -1)
+            {
+                TmSeason actualSeason = new TmSeason(season);
+                dtStart = actualSeason.Start;
+                dtEnd = actualSeason.End;
 
-            //List<MatchData> matchDataList = new List<MatchData>();
-            //foreach (var matchRow in matchRowList)
-            //{
-            //    matchDataList.Add(new MatchData(matchRow));
-            //}
-
-            //return matchDataList;
-
-            var matchDataSelection = (from c in seasonsDB.Match
-                                      where (!c.IsDateNull()) && (c.Date > actualSeason.Start) && (c.Date < actualSeason.End) &&
+                matchDataSelection = (from c in seasonsDB.Match
+                                      where (!c.IsDateNull()) && (c.Date > dtStart) && (c.Date < dtEnd) &&
                                               ((c.OTeamID == teamID) || (c.YTeamID == teamID))
                                       select new MatchData(c));
+            }
+            else
+            {
+                matchDataSelection = (from c in seasonsDB.Match
+                                      where (!c.IsDateNull()) && ((c.OTeamID == teamID) || (c.YTeamID == teamID))
+                                      select new MatchData(c));
+            }
+
+            if (playedOnly)
+            {
+                matchDataSelection = (from c in matchDataSelection
+                                      where c.Report == true
+                                      select c);
+            }
 
             if (homeOrAway != 0)
             {
                 matchDataSelection = (from c in matchDataSelection
-                                        where c.IsHome == (homeOrAway == 1)
-                                        select c);
+                                      where c.IsHome == (homeOrAway == 1)
+                                      select c);
             }
 
             if ((matchType != 0) && (matchType != 31))
@@ -598,6 +606,8 @@ namespace NTR_Db
                 seasonsDB.TempData.ReadXml(fi.FullName);
 
                 fi = new FileInfo(Path.Combine(dirPath, "Team.5.xml"));
+
+                seasonsDB.Team.Clear();
                 seasonsDB.Team.ReadXml(fi.FullName);
 
                 fi = new FileInfo(Path.Combine(dirPath, "Match.5.xml"));
@@ -612,7 +622,7 @@ namespace NTR_Db
                 if (fi.Exists)
                     seasonsDB.PlayerPerf.ReadXml(fi.FullName);
 
-                fis = di.GetFiles("Actions-*.5.xml");
+                fis = di.GetFiles("Actions-Season*.5.xml");
                 cntfis = fis.Length;
                 for (int i = 0; i < cntfis; i++)
                 {
@@ -700,7 +710,7 @@ namespace NTR_Db
             return matchDataSelection.First();
         }
 
-        public bool LoadMatch(string page)
+        public bool LoadMatch(string page, bool quiet = false)
         {
             if (page.Contains("Javascript error")) return false;
 
@@ -1303,14 +1313,13 @@ namespace NTR_Db
             {
                 this.Name = playerPerf.PlayerRow.Name;
                 this.PlayerId = playerPerf.PlayerID;
+                if ((playerPerf.PlayerRow.IsFPNull()) && (FPn == 0))
+                    this.FPn = -1;
+                else if (!playerPerf.PlayerRow.IsFPNull())
+                    this.FPn = playerPerf.PlayerRow.FPn;
 
                 if (playerPerf.IsVoteNull())
                     return;
-
-                if (playerPerf.PlayerRow.IsFPNull())
-                    this.FPn = 0;
-                else
-                    this.FPn = playerPerf.PlayerRow.FPn;
 
                 this.GamePlayed += 1;
                 this.AvgVote = (this.AvgVote * (this.GamePlayed - 1) + playerPerf.Vote) / this.GamePlayed;

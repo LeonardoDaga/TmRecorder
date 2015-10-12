@@ -378,7 +378,11 @@ namespace TMRecorder
             DirectoryInfo di = new DirectoryInfo(dirPath);
 
             FileInfo[] fis = di.GetFiles("*.5.xml");
-            if (fis.Length < 0)
+
+            AllSeasons.SetOwnedTeam(Program.Setts.MainSquadID, Program.Setts.MainSquadName);
+            AllSeasons.SetOwnedTeam(Program.Setts.ReserveSquadID, Program.Setts.ReserveSquadName, Program.Setts.MainSquadID);
+
+            if (fis.Length > 0)
             {
                 // Load the data version 5
                 AllSeasons.LoadSeasonsFromVersion5(dirPath, ref sf, true);
@@ -389,8 +393,6 @@ namespace TMRecorder
                 fi = new FileInfo(matchFilePath);
                 if (fi.Exists)
                 {
-                    AllSeasons.SetOwnedTeam(Program.Setts.MainSquadID, Program.Setts.MainSquadName);
-                    AllSeasons.SetOwnedTeam(Program.Setts.ReserveSquadID, Program.Setts.ReserveSquadName, Program.Setts.MainSquadID);
 
                     AllSeasons.LoadSeasonsFromVersion3(dirPath, ref sf, true);
                 }
@@ -473,7 +475,7 @@ namespace TMRecorder
                 reportAnalysis.ReadXml(Program.Setts.ReportAnalysisFile);
         }
 
-        private int LoadMatchesFromHTMLcode_NewTM(string text)
+        private int LoadMatchesFromHTMLcode_NewTM(string text, bool quiet = false)
         {
             string str = "l,c,f,fl,i";
             int cnt = 0;
@@ -3017,28 +3019,6 @@ namespace TMRecorder
                 return;
             }
 
-            //if (doctext.Contains("Unable to get property 'lineup' of undefined or null reference"))
-            //{
-            //    string str = HTML_Parser.GetNumberAfter(startnavigationAddress, "matches/");
-            //    if (MessageBox.Show("Error importing the Match number " + str + ". Maybe this match is not available anymore. Tag this match as not available?\n" +
-            //        "Pressing OK, the match will not be scanned automatically anymore.",
-            //        "Import error", MessageBoxButtons.OKCancel) == DialogResult.OK)
-            //    {
-                    
-            //        if (str != "-1")
-            //        {
-            //            int matchID = int.Parse(str);
-            //            ChampDS.MatchRow mr = champDS.Match.FindByMatchID(matchID);
-            //            if (mr == null)
-            //            {
-            //                MessageBox.Show("It seems that many errors occurs at the same time: please communicate the error id 29921 to led.lennon@gmail.com. Thanks.");
-            //                return;
-            //            }
-            //            mr.Report = true;
-            //        }
-            //        return;
-            //    }
-            //}
 
             if (doctext.StartsWith("Exception error") || doctext.StartsWith("GBC error") || doctext.Contains("Javascript error"))
             {
@@ -3518,94 +3498,24 @@ namespace TMRecorder
             LoadHTMLfile_newPage(page, false);
         }
 
-        private void LoadHTMLfile_newPage(string page, bool specifyDate, int importWeek = -1)
+        private void LoadHTMLfile_newPage(string page, bool specifyDate, int importWeek = -1, bool quiet = false)
         {
-            if ((page.Contains("NewTM - Staff_trainers")) ||
-                (page.Contains("Navigation Address: http://trophymanager.com/coaches/")))
-            {
-                dbTrainers.ParseTrainers_NewTM(page);
-                string strMsg = "Import complete:\n" + dbTrainers.Trainers.Count.ToString() + " trainers imported;\n";
-                MessageBox.Show(strMsg, "TmRecorder");
-                isDirty = true;
-                return;
-            }
-            else if (page.Contains("TM - Staff_trainers"))
-            {
-                dbTrainers.ParseTrainers(page);
-                extraDS.Scouts.ParseScoutPage(page);
-                History.PlayersDS.Scouts.ParseScoutPage(page);
-                string strMsg = "Import complete:\n" + dbTrainers.Trainers.Count.ToString() + " trainers imported;\n" +
-                    extraDS.Scouts.Count.ToString() + " scouts imported;";
-                MessageBox.Show(strMsg, "TmRecorder");
-                isDirty = true;
-                return;
-            }
-
             if (page.Contains("NewTM - Kamp"))
             {
                 page = startnavigationAddress + "\n" + page;
-                AllSeasons.LoadMatch(page);
+                AllSeasons.LoadMatch(page, quiet);
                 UpdateLackData();
                 isDirty = true;
+                AllSeasons.IsDirty = true;
                 return;
             }
 
             if (page.Contains("NewTM - Matches"))
             {
-                int cnt = LoadMatchesFromHTMLcode_NewTM(page);
+                int cnt = LoadMatchesFromHTMLcode_NewTM(page, quiet);
                 string strMsg = "Import complete:\n" + cnt.ToString() + " new matches imported;\n";
                 MessageBox.Show(strMsg, "TmRecorder");
-                isDirty = true;
-                return;
-            }
-            else if (page.Contains("TM - Matches"))
-            {
-                int cnt = LoadMatchesFromHTMLcode(page);
-                string strMsg = "Import complete:\n" + cnt.ToString() + " new matches imported;\n";
-                MessageBox.Show(strMsg, "TmRecorder");
-                isDirty = true;
-                return;
-            }
-
-            if ((page.Contains("TM - Player")) || (page.Contains("TM - Showprofile")))
-            {
-                // trova l'id dal titolo
-                int playerID = 0;
-
-                if (specifyDate) // Load from file
-                    playerID = int.Parse(HTML_Parser.GetNumberAfter(page, "playerid="));
-                else
-                    playerID = int.Parse(HTML_Parser.GetNumberAfter(webBrowser.Url.ToString(), "playerid="));
-
-                // cerca l'item di extrads da aggiornare
-                ExtraDS.GiocatoriRow gRow = extraDS.FindByPlayerID(playerID);
-
-                if (gRow == null) return;
-
-                // aggiorna
-                ExtraDS.ParsePlayerPage(page, ref gRow);
-
-                gRow.isDirty = true;
-
-                ExtraDS.GiocatoriRow hgRow = History.PlayersDS.Giocatori.FindByPlayerID(playerID);
-
-                if (hgRow == null) return;
-
-                hgRow.Nome = gRow.Nome;
-                hgRow.Routine = gRow.Routine;
-                hgRow.MediaVoto = gRow.MediaVoto;
-                hgRow.wBorn = gRow.wBorn;
-                hgRow.Note = gRow.Note;
-
-                hgRow.ScoutDate = gRow.ScoutDate;
-                hgRow.ScoutName = gRow.ScoutName;
-                hgRow.ScoutVoto = gRow.ScoutVoto;
-                hgRow.ScoutGiudizio = gRow.ScoutGiudizio;
-
-                hgRow.isDirty = true;
-                History.UpdateDirtyPlayers();
-                EvidenceSkillsPlayerForQuality(gRow.PlayerID, gRow.isYoungTeam == 1, gRow.FPn == 0);
-
+                AllSeasons.IsDirty = true;
                 isDirty = true;
                 return;
             }
@@ -3681,8 +3591,8 @@ namespace TMRecorder
                 }
                 else if (Program.Setts.PlayerType == 2)
                 {
-                    History.LoadSquad_NewTm(dt, pages[0]);
-                    History.LoadTraining_NewTM2(dt, pages[1]);
+                    History.LoadSquad_NewTm(dt, pages[0], quiet);
+                    History.LoadTraining_NewTM2(dt, pages[1], quiet);
                     isDirty = true;
                     InvalidateGrids();
                     UpdateShownGrid();
@@ -4462,11 +4372,11 @@ namespace TMRecorder
             Program.Setts.Save();
         }
 
-        private void reloadAllTheImportedPagesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void reloadAllTheImportedPlayerPagesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("This operation will overwrite your history with the content of the imported pages." +
+            if (MessageBox.Show("This operation will overwrite your actual history with the content of the imported pages." +
                 "It's an operation that is advised just if you lost a lot of data for any reason" +
-                " (see in the web site http://tmr.inside.it/ for more info: Losted pages)") == System.Windows.Forms.DialogResult.Cancel)
+                " (see in the web site http://tmr.inside.it/ for more info: Lost pages)") == System.Windows.Forms.DialogResult.Cancel)
                 return;
 
             folderBrowserDialog.SelectedPath = Program.Setts.DefaultDirectory;
@@ -4477,8 +4387,12 @@ namespace TMRecorder
                 return;
             }
 
+            SplashForm sf = new SplashForm("TM - Team Recorder",
+                    "Release " + Application.ProductVersion,
+                    "Loading Players From the saved pages...");
+
             DirectoryInfo di = new DirectoryInfo(folderBrowserDialog.SelectedPath);
-            LoadSavedPagesRecursively(di);
+            LoadSavedPlayerPagesRecursively(di, ref sf);
 
             UpdateTeamDateList();
 
@@ -4489,36 +4403,71 @@ namespace TMRecorder
             SetLastTeam();
         }
 
-        private void LoadSavedPagesRecursively(DirectoryInfo di)
+        private void reloadAllTheImportedFixturesAndMatchesPagesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadSavedPages(di.FullName);
+            if (MessageBox.Show("This operation will overwrite your actual history with the content of the imported pages." +
+                "It's an operation that is advised just if you lost a lot of data for any reason" +
+                " (see in the web site http://tmr.inside.it/ for more info: Lost pages)") == System.Windows.Forms.DialogResult.Cancel)
+                return;
 
-            foreach (DirectoryInfo directory in di.GetDirectories())
-                LoadSavedPagesRecursively(directory);
+            folderBrowserDialog.SelectedPath = Program.Setts.DefaultDirectory;
+            folderBrowserDialog.Description = "Select the folder with saved pages";
+
+            if (folderBrowserDialog.ShowDialog(this) == System.Windows.Forms.DialogResult.Cancel)
+            {
+                return;
+            }
+
+            SplashForm sf = new SplashForm("TM - Team Recorder",
+                    "Release " + Application.ProductVersion,
+                    "Loading Players From the saved pages...");
+
+            DirectoryInfo di = new DirectoryInfo(folderBrowserDialog.SelectedPath);
+            LoadSavedFixturesAndMatchesPagesRecursively(di, ref sf, (Program.Setts.Trace > 0));
+
+            UpdateTeamDateList();
+
+            History.ClearAllDecimals();
+
+            History.ReapplyTrainings(extraDS);
+
+            SetLastTeam();
         }
 
-        private void LoadSavedPages(string folder)
+        private void LoadSavedPlayerPagesRecursively(DirectoryInfo di, ref SplashForm sf)
+        {
+            LoadSavedPlayerPages(di.FullName);
+
+            foreach (DirectoryInfo directory in di.GetDirectories())
+                LoadSavedPlayerPagesRecursively(directory, ref sf);
+        }
+
+        private void LoadSavedFixturesAndMatchesPagesRecursively(DirectoryInfo di, ref SplashForm sf, bool trace)
+        {
+            LoadSavedFixturesAndMatchesPages(di.FullName, ref sf, trace);
+
+            foreach (DirectoryInfo directory in di.GetDirectories())
+                LoadSavedFixturesAndMatchesPagesRecursively(directory, ref sf, trace);
+        }
+
+        private void LoadSavedPlayerPages(string folder)
         {
             try
             {
-                LoadSavedPages(folder, ref sf, (Program.Setts.Trace > 0));
+                LoadSavedPlayerPages(folder, ref sf, (Program.Setts.Trace > 0));
             }
             catch (Exception)
             {
             }
         }
 
-        public void LoadSavedPages(string dirPath, ref Common.SplashForm sf, bool trace)
+        public void LoadSavedPlayerPages(string dirPath, ref Common.SplashForm sf, bool trace)
         {
             // Select first all the team files
             // Name template: NF-players-S37-W10-D6.2.htm
             DirectoryInfo di = new DirectoryInfo(dirPath);
 
-            sf = new SplashForm("TM - Team Recorder",
-                    "Release " + Application.ProductVersion,
-                    "Starting Application...");
-
-            sf.UpdateStatusMessage(0, "Loading Players From the saved pages...");
+            sf.UpdateStatusMessage(0, string.Format("Scanning folder {0}...", di.Name));
 
             sf.Show();
 
@@ -4537,7 +4486,7 @@ namespace TMRecorder
                 string dateString = str[2] + "-" + str[3] + "-" + str[4];
                 int importWeek = TmWeek.SWDtoTmWeek(dateString).absweek;
 
-                LoadHTMLfile_newPage(playersPage, true, importWeek);
+                LoadHTMLfile_newPage(playersPage, true, importWeek, true);
 
                 sf.progressvalue = (cnt * 100) / fisTot;
                 sf.Refresh();
@@ -4547,15 +4496,26 @@ namespace TMRecorder
                 //content.ParsePage(playersPage, "http://trophymanager.com/players/", importWeek);
             }
 
+            sf.Close();
+            sf.Dispose();
+            sf = null;
+
+            Invalidate();
+        }
+
+        public void LoadSavedFixturesAndMatchesPages(string dirPath, ref Common.SplashForm sf, bool trace)
+        {
             // Select first all the team files
-            // Name template: NF-fixturesclub3350340-S37-W10-D6.2.htm
-            di = new DirectoryInfo(dirPath);
+            // Name template: NF-players-S37-W10-D6.2.htm
+            DirectoryInfo di = new DirectoryInfo(dirPath);
 
-            sf.UpdateStatusMessage(0, "Loading Fixtures From the saved pages...");
+            sf.UpdateStatusMessage(0, string.Format("Scanning folder {0} for Fixtures files", di.Name));
 
-            fis = di.GetFiles("NF-fixturesclub*.2.htm*");
-            fisTot = fis.Length;
-            cnt = 0;
+            sf.Show();
+
+            FileInfo[] fis = di.GetFiles("NF-fixturesclub*.2.htm*");
+            int fisTot = fis.Length;
+            int cnt = 0;
 
             foreach (FileInfo fi in fis)
             {
@@ -4571,7 +4531,7 @@ namespace TMRecorder
 
                 string clubId = HTML_Parser.GetNumberAfter(fi.FullName, "NF-fixturesclub");
 
-                LoadHTMLfile_newPage(fixturesPage, true, importWeek);
+                LoadHTMLfile_newPage(fixturesPage, true, importWeek, true);
 
                 sf.progressvalue = (cnt * 100) / fisTot;
                 sf.Refresh();
@@ -4604,15 +4564,20 @@ namespace TMRecorder
 
                 string matchId = HTML_Parser.GetNumberAfter(fi.FullName, "NF-matches");
 
-                LoadHTMLfile_newPage(matchPage, true, importWeek);
+
+                LoadHTMLfile_newPage(matchPage, true, importWeek, true);
 
                 sf.progressvalue = (cnt * 100) / fisTot;
                 sf.Refresh();
-                sf.UpdateStatusMessage(0, string.Format("Loading Matches {0} of {1}", cnt, fisTot));
+                sf.UpdateStatusMessage(0, string.Format("Loading Match {0} of {1}", cnt, fisTot));
 
                 cnt++;
                 // content.ParsePage(matchPage, "http://trophymanager.com/matches/" + matchId + "//", importWeek);
             }
+
+            sf.Close();
+            sf.Dispose();
+            sf = null;
 
             Invalidate();
         }

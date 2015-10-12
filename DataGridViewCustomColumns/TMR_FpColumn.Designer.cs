@@ -57,6 +57,7 @@ namespace DataGridViewCustomColumns
             this.posImgList.Images.SetKeyName(17, "OMR.gif");
             this.posImgList.Images.SetKeyName(18, "D.gif");
             this.posImgList.Images.SetKeyName(19, "SUB.gif");
+            this.posImgList.Images.SetKeyName(20, "NID.gif");
             // 
             // posImgListEx
             // 
@@ -77,6 +78,7 @@ namespace DataGridViewCustomColumns
             this.posImgListEx.Images.SetKeyName(12, "OMCC.gif");
             this.posImgListEx.Images.SetKeyName(13, "OMCL.gif");
             this.posImgListEx.Images.SetKeyName(14, "OMCR.gif");
+            this.posImgListEx.Images.SetKeyName(15, "NID.gif");
 
         }
 

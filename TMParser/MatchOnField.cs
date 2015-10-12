@@ -15,8 +15,7 @@ namespace TMRecorder
 {
     public partial class MatchOnField : Form
     {
-        public NTR_Db.Seasons AllSeasons = null;
-        public MatchDS matchDS = null;
+        public Seasons AllSeasons = null;
         public ExtraDS extraDS = null;
         public TeamHistory History = null;
 
@@ -101,7 +100,7 @@ namespace TMRecorder
                 lblTacticsComment.Text = "There are no team data before the date of this match to compute correctly the tactics efficacy for this match";
             }
 
-            foreach (MatchDS.YourTeamPerfRow row in matchDS.YourTeamPerf)
+            foreach (var row in mi.matchData.YourPlayerPerf)
             {
 
                 Player pl = f.FindPlayer(row.Position.ToUpper());
@@ -236,11 +235,11 @@ namespace TMRecorder
 
             if (Program.Setts.MatchOnFieldFilter == 1)
             {
-                allMatchesData = AllSeasons.GetSeasonMatchList(-1, Program.Setts.MainSquadID, -1, -1);
+                allMatchesData = AllSeasons.GetSeasonMatchList(-1, Program.Setts.MainSquadID, -1, -1, true);
             }
             else
             {
-                allMatchesData = AllSeasons.GetSeasonMatchList(-1, Program.Setts.ReserveSquadID, -1, -1);
+                allMatchesData = AllSeasons.GetSeasonMatchList(-1, Program.Setts.ReserveSquadID, -1, -1, true);
             }
 
             foreach (MatchData matchData in allMatchesData)
@@ -261,15 +260,6 @@ namespace TMRecorder
         {
             MatchItem mi = (MatchItem)tcmbMatchList.SelectedItem;
 
-            matchDS = new Common.MatchDS();
-
-            string namefile = Path.Combine(Program.Setts.DefaultDirectory, "Match_" + mi.matchID + ".xml");
-            FileInfo fi = new FileInfo(namefile);
-
-            if (!fi.Exists) return;
-
-            matchDS.ReadXml(Path.Combine(Program.Setts.DefaultDirectory, "Match_" + mi.matchID + ".xml"));
-
             FillField(mi);
 
             FillTactics(mi);
@@ -277,7 +267,7 @@ namespace TMRecorder
 
         private void FillField(MatchItem mi)
         {
-            Formation f = new Formation(eFormationTypes.Type_Empty);
+            NTR_Formation f = new NTR_Formation(eFormationTypes.Type_Empty);
             int i = 0;
 
             foreach (FieldPlayer fp in fps)
@@ -285,9 +275,9 @@ namespace TMRecorder
                 fp.Visible = false;
             }
 
-            foreach (MatchDS.YourTeamPerfRow row in matchDS.YourTeamPerf)
+            foreach (var row in mi.matchData.YourPlayerPerf)
             {
-                Player pl = f.SetPlayer(row);
+                Player pl = f.SetYourPlayer(row);
                 ExtraDS.GiocatoriRow gr = extraDS.Giocatori.FindByPlayerID(row.PlayerID);
 
                 if (pl == null)
@@ -323,6 +313,7 @@ namespace TMRecorder
                     pl.name = gr.Nome;
                     pl.pf = gr.FP;
                 }
+                pl.value = pl.vote;
             }
 
             formationControl.ShowFormationPlayers(f);

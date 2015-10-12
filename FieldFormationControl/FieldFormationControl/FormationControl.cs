@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using Common;
 using System.IO;
+using NTR_Db;
 
 namespace FieldFormationControl
 {
@@ -143,6 +144,16 @@ namespace FieldFormationControl
         }
 
         public void ShowFormationPlayers(Formation form)
+        {
+            ShowGoalKee(form.players);
+            ShowDefense(form.players);
+            ShowMidDefn(form.players);
+            ShowMidfiel(form.players);
+            ShowOffense(form.players);
+            ShowFrwdAttack(form.players);
+        }
+
+        public void ShowFormationPlayers(NTR_Formation form)
         {
             ShowGoalKee(form.players);
             ShowDefense(form.players);
@@ -326,6 +337,8 @@ namespace FieldFormationControl
 
                     lp.EvidenceColor = Color.Transparent;
 
+                    if (lp.ExtraDsRow == null)
+                        return;
                     ExtraDS.GiocatoriRow gr = (ExtraDS.GiocatoriRow)lp.ExtraDsRow;
                     if (gr.FPn == 0) // it's a gk
                     {

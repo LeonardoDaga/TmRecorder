@@ -31,7 +31,9 @@ namespace NTR_Db
 
                     foreach (var row in selectedSeasonActions)
                     {
-                        actionTable.AddActionsRow(row);
+                        ActionsRow ar = actionTable.NewActionsRow();
+                        ar.ItemArray = row.ItemArray;
+                        actionTable.AddActionsRow(ar);
                     }
 
                     FileInfo fi = new FileInfo(Path.Combine(dirPath, string.Format("Actions-Season{0}.5.xml", seasons)));
@@ -98,6 +100,16 @@ namespace NTR_Db
 
                     foreach (var date in dates)
                         _weeksWithData.Add((int)date.Key);
+
+                    var matches = (from c in Match
+                                 group c by TmWeek.GetTmAbsWk(c.Date) into g
+                                 select g).OrderByDescending(p => p.Key);
+
+                    foreach (var match in matches)
+                    {
+                        if (!_weeksWithData.Contains(match.Key))
+                            _weeksWithData.Add(match.Key);
+                    }
                 }
 
                 return _weeksWithData;

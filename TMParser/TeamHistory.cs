@@ -1054,7 +1054,7 @@ namespace TMRecorder
             }
         }
 
-        internal void LoadTraining_NewTM2(DateTime dt, string squad)
+        internal void LoadTraining_NewTM2(DateTime dt, string squad, bool quiet = false)
         {
             if (squad.StartsWith("GBC error:"))
                 return;
@@ -1953,7 +1953,7 @@ namespace TMRecorder
             }
         }
 
-        internal void LoadSquad_NewTm(DateTime dt, string squad)
+        internal void LoadSquad_NewTm(DateTime dt, string squad, bool quiet = false)
         {
             string originalSquadString = squad;
             Db_TrophyDataSet db_TrophyDataSet = null;

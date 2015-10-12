@@ -455,8 +455,6 @@ namespace TMRecorder
             this.tbTxtAddress = new System.Windows.Forms.ToolStripTextBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.loadFromBackupFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reloadAllTheImportedPagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -560,6 +558,7 @@ namespace TMRecorder
             this.nomeDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Age = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStripGK.SuspendLayout();
             this.contextMenuPlInfo.SuspendLayout();
@@ -4184,7 +4183,6 @@ namespace TMRecorder
             this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem1,
-            this.loadFromBackupFilesToolStripMenuItem,
             this.reloadAllTheImportedPagesToolStripMenuItem,
             this.toolStripMenuItem2,
             this.toolStripSeparator2,
@@ -4195,41 +4193,29 @@ namespace TMRecorder
             this.toolStripDropDownButton1.Size = new System.Drawing.Size(38, 24);
             this.toolStripDropDownButton1.Text = "File";
             // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(231, 22);
-            // 
-            // loadFromBackupFilesToolStripMenuItem
-            // 
-            this.loadFromBackupFilesToolStripMenuItem.Name = "loadFromBackupFilesToolStripMenuItem";
-            this.loadFromBackupFilesToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
-            this.loadFromBackupFilesToolStripMenuItem.Text = "Load From Backup files";
-            this.loadFromBackupFilesToolStripMenuItem.Click += new System.EventHandler(this.loadFromBackupFilesToolStripMenuItem_Click);
-            // 
             // reloadAllTheImportedPagesToolStripMenuItem
             // 
             this.reloadAllTheImportedPagesToolStripMenuItem.Name = "reloadAllTheImportedPagesToolStripMenuItem";
-            this.reloadAllTheImportedPagesToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
-            this.reloadAllTheImportedPagesToolStripMenuItem.Text = "Reload all the imported pages";
-            this.reloadAllTheImportedPagesToolStripMenuItem.Click += new System.EventHandler(this.reloadAllTheImportedPagesToolStripMenuItem_Click);
+            this.reloadAllTheImportedPagesToolStripMenuItem.Size = new System.Drawing.Size(310, 22);
+            this.reloadAllTheImportedPagesToolStripMenuItem.Text = "Reload imported Players pages";
+            this.reloadAllTheImportedPagesToolStripMenuItem.Click += new System.EventHandler(this.reloadAllTheImportedPlayerPagesToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(231, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(310, 22);
             this.toolStripMenuItem2.Text = "Save Team Data";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.salvaTeamData_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(228, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(307, 6);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(231, 22);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(310, 22);
             this.toolStripMenuItem4.Text = "Exit";
             this.toolStripMenuItem4.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -5105,6 +5091,13 @@ namespace TMRecorder
             this.dataGridViewTextBoxColumn6.HeaderText = "ASI";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(310, 22);
+            this.toolStripMenuItem1.Text = "Reload imported Fixtures and Matches pages";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.reloadAllTheImportedFixturesAndMatchesPagesToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -5211,7 +5204,6 @@ namespace TMRecorder
         private System.Windows.Forms.ToolStripContainer toolStripContainer1;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
@@ -5376,7 +5368,6 @@ namespace TMRecorder
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem13;
         private System.Windows.Forms.ToolStripMenuItem shortlistToolToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton tsbShortListTool;
-        private System.Windows.Forms.ToolStripMenuItem loadFromBackupFilesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem setPlayerBloominAgeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem setAgeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem15;
@@ -5582,5 +5573,6 @@ namespace TMRecorder
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.ContextMenuStrip playersPerfMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem8;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
     }
 }

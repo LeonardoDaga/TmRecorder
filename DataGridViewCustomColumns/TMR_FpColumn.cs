@@ -150,7 +150,8 @@ namespace DataGridViewCustomColumns
 
                 if (image == null)
                 {
-                    image = dnc.posImgList.Images[0];
+                    ix = dnc.posImgList.Images.IndexOfKey("NID.gif");
+                    image = dnc.posImgList.Images[ix];
                 }
 
                 graphics.DrawImage(image, pt);
@@ -173,7 +174,8 @@ namespace DataGridViewCustomColumns
                 graphics.DrawImage(image, pt);
 
                 ix = dnc.posImgList.Images.IndexOfKey(FPs[1].ToString() + ".gif");
-                if (ix == -1) ix = 0;
+                if (ix == -1)
+                    ix = dnc.posImgList.Images.IndexOfKey("NID.gif");
 
                 image = dnc.posImgList.Images[ix];
 

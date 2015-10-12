@@ -300,11 +300,11 @@ namespace TMRecorder
 
             if (Program.Setts.MatchOnFieldFilter == 1)
             {
-                allMatchesData = allSeasons.GetSeasonMatchList(-1, Program.Setts.MainSquadID, -1, -1);
+                allMatchesData = allSeasons.GetSeasonMatchList(-1, Program.Setts.MainSquadID, -1, -1, true);
             }
             else
             {
-                allMatchesData = allSeasons.GetSeasonMatchList(-1, Program.Setts.ReserveSquadID, -1, -1);
+                allMatchesData = allSeasons.GetSeasonMatchList(-1, Program.Setts.ReserveSquadID, -1, -1, true);
             }
 
             foreach (MatchData matchData in allMatchesData)

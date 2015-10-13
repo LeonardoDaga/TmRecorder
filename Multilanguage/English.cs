@@ -1055,9 +1055,9 @@ namespace Languages {
         /// <summary>
         ///   Cerca una stringa localizzata simile a Load Team File as HTML file.
         /// </summary>
-        public string LoadTeamFileAsHTMLFile {
+        public string ReloadFixturesAndMatches {
             get {
-                return ResourceManager.GetString("LoadTeamFileAsHTMLFile", resourceCulture);
+                return ResourceManager.GetString("ReloadFixturesAndMatches", resourceCulture);
             }
         }
         

@@ -1057,9 +1057,9 @@ namespace Languages {
         /// <summary>
         ///   Cerca una stringa localizzata simile a Archivo de equipo de carga como archivo HTML.
         /// </summary>
-        public string LoadTeamFileAsHTMLFile {
+        public string ReloadFixturesAndMatches {
             get {
-                return ResourceManager.GetString("LoadTeamFileAsHTMLFile", resourceCulture);
+                return ResourceManager.GetString("ReloadFixturesAndMatches", resourceCulture);
             }
         }
         

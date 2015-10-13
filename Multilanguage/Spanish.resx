@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="TrophyManagerReportLightGreenArrows" xml:space="preserve">
     <value>Trophy Manager Report:
@@ -451,8 +451,8 @@ Exception loading the file: </value>
   <data name="File" xml:space="preserve">
     <value>File</value>
   </data>
-  <data name="LoadTeamFileAsHTMLFile" xml:space="preserve">
-    <value>Load Team File as HTML file</value>
+  <data name="ReloadFixturesAndMatches" xml:space="preserve">
+    <value>Reload Fixtures and Matches</value>
   </data>
   <data name="LoadTrainingAsHTMLFile" xml:space="preserve">
     <value>Load Training as HTML file</value>

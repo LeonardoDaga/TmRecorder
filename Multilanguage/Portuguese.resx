@@ -452,7 +452,7 @@ Exception loading the file: </value>
   <data name="File" xml:space="preserve">
     <value>File</value>
   </data>
-  <data name="LoadTeamFileAsHTMLFile" xml:space="preserve">
+  <data name="ReloadFixturesAndMatches" xml:space="preserve">
     <value>Load Team File as HTML file</value>
   </data>
   <data name="LoadTrainingAsHTMLFile" xml:space="preserve">

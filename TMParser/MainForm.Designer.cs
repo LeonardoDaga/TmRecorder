@@ -217,7 +217,6 @@ namespace TMRecorder
             this.deleteSelectedMatchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showMatchActionsListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.matchBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.champDSBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.plyStatsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.inFormazioneDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -398,7 +397,6 @@ namespace TMRecorder
             this.txtMatchStart = new System.Windows.Forms.TextBox();
             this.btnHelp = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.lblMatchScore = new System.Windows.Forms.Label();
@@ -411,8 +409,6 @@ namespace TMRecorder
             this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel3 = new System.Windows.Forms.Panel();
             this.dgOppsTeamPerf = new NTR_Controls.AeroDataGrid();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.matchStats = new TMRecorder.MatchStats();
             this.tabBrowser = new System.Windows.Forms.TabPage();
             this.toolStripContainer3 = new System.Windows.Forms.ToolStripContainer();
             this.webBrowser = new System.Windows.Forms.WebBrowser();
@@ -455,6 +451,7 @@ namespace TMRecorder
             this.tbTxtAddress = new System.Windows.Forms.ToolStripTextBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.miReloadFixturesAndMatches = new System.Windows.Forms.ToolStripMenuItem();
             this.reloadAllTheImportedPagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -558,13 +555,13 @@ namespace TMRecorder
             this.nomeDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Age = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.matchStats = new TMRecorder.MatchStats();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStripGK.SuspendLayout();
             this.contextMenuPlInfo.SuspendLayout();
             this.matchesMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.matchBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.champDSBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.plyStatsBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.plyStatsBindingSource)).BeginInit();
             this.toolStrip3.SuspendLayout();
@@ -594,10 +591,6 @@ namespace TMRecorder
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -606,7 +599,6 @@ namespace TMRecorder
             this.playersPerfMenuStrip.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgOppsTeamPerf)).BeginInit();
-            this.panel4.SuspendLayout();
             this.tabBrowser.SuspendLayout();
             this.toolStripContainer3.ContentPanel.SuspendLayout();
             this.toolStripContainer3.LeftToolStripPanel.SuspendLayout();
@@ -621,6 +613,7 @@ namespace TMRecorder
             ((System.ComponentModel.ISupportInitialize)(this.portieriBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.actionAnalysis)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.giocatoriNSkillBindingSourceA)).BeginInit();
+            this.tableLayoutPanel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // openFileDialog
@@ -923,15 +916,6 @@ namespace TMRecorder
             this.showMatchActionsListToolStripMenuItem.Text = "Show Match Actions List";
             this.showMatchActionsListToolStripMenuItem.Click += new System.EventHandler(this.showMatchActionsListToolStripMenuItem_Click);
             // 
-            // matchBindingSource
-            // 
-            this.matchBindingSource.DataSource = this.champDSBindingSource;
-            this.matchBindingSource.Sort = "Date";
-            // 
-            // plyStatsBindingSource1
-            // 
-            this.plyStatsBindingSource1.DataSource = this.champDSBindingSource;
-            // 
             // inFormazioneDataGridViewCheckBoxColumn
             // 
             this.inFormazioneDataGridViewCheckBoxColumn.DataPropertyName = "InFormazione";
@@ -1055,10 +1039,6 @@ namespace TMRecorder
             this.zedGraphControl2.ZoomModifierKeys2 = System.Windows.Forms.Keys.None;
             this.zedGraphControl2.ZoomStepFraction = 0.1D;
             // 
-            // plyStatsBindingSource
-            // 
-            this.plyStatsBindingSource.DataSource = this.champDSBindingSource;
-            // 
             // toolStripSeparator9
             // 
             this.toolStripSeparator9.Name = "toolStripSeparator9";
@@ -1110,12 +1090,12 @@ namespace TMRecorder
             // toolStripContainer2.ContentPanel
             // 
             this.toolStripContainer2.ContentPanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.toolStripContainer2.ContentPanel.Size = new System.Drawing.Size(1115, 480);
+            this.toolStripContainer2.ContentPanel.Size = new System.Drawing.Size(1115, 542);
             this.toolStripContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer2.Location = new System.Drawing.Point(0, 0);
             this.toolStripContainer2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.toolStripContainer2.Name = "toolStripContainer2";
-            this.toolStripContainer2.Size = new System.Drawing.Size(1115, 505);
+            this.toolStripContainer2.Size = new System.Drawing.Size(1115, 567);
             this.toolStripContainer2.TabIndex = 0;
             this.toolStripContainer2.Text = "toolStripContainer2";
             // 
@@ -1126,12 +1106,12 @@ namespace TMRecorder
             // 
             this.toolStripContainer1.ContentPanel.Controls.Add(this.tabControl1);
             this.toolStripContainer1.ContentPanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1115, 478);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1115, 540);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
             this.toolStripContainer1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.toolStripContainer1.Name = "toolStripContainer1";
-            this.toolStripContainer1.Size = new System.Drawing.Size(1115, 505);
+            this.toolStripContainer1.Size = new System.Drawing.Size(1115, 567);
             this.toolStripContainer1.TabIndex = 2;
             this.toolStripContainer1.Text = "toolStripContainer1";
             // 
@@ -1153,7 +1133,7 @@ namespace TMRecorder
             this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1115, 478);
+            this.tabControl1.Size = new System.Drawing.Size(1115, 540);
             this.tabControl1.TabIndex = 2;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl1_Selected);
@@ -1165,7 +1145,7 @@ namespace TMRecorder
             this.tabATeamPage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabATeamPage.Name = "tabATeamPage";
             this.tabATeamPage.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tabATeamPage.Size = new System.Drawing.Size(1107, 452);
+            this.tabATeamPage.Size = new System.Drawing.Size(1107, 514);
             this.tabATeamPage.TabIndex = 0;
             this.tabATeamPage.Text = "A-Team Players";
             this.tabATeamPage.UseVisualStyleBackColor = true;
@@ -1246,7 +1226,7 @@ namespace TMRecorder
             this.dataGridGiocatori.ReadOnly = true;
             this.dataGridGiocatori.RowHeadersWidth = 20;
             this.dataGridGiocatori.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridGiocatori.Size = new System.Drawing.Size(1101, 444);
+            this.dataGridGiocatori.Size = new System.Drawing.Size(1101, 506);
             this.dataGridGiocatori.TabIndex = 3;
             this.dataGridGiocatori.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridPlayersInfo_CellDoubleClick);
             this.dataGridGiocatori.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridGiocatori_ColumnHeaderMouseClick);
@@ -1768,7 +1748,7 @@ namespace TMRecorder
             this.tabBTeamPage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabBTeamPage.Name = "tabBTeamPage";
             this.tabBTeamPage.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tabBTeamPage.Size = new System.Drawing.Size(1107, 452);
+            this.tabBTeamPage.Size = new System.Drawing.Size(1107, 514);
             this.tabBTeamPage.TabIndex = 4;
             this.tabBTeamPage.Text = "B-Team Players";
             this.tabBTeamPage.UseVisualStyleBackColor = true;
@@ -1849,7 +1829,7 @@ namespace TMRecorder
             this.dataGridGiocatoriB.ReadOnly = true;
             this.dataGridGiocatoriB.RowHeadersWidth = 20;
             this.dataGridGiocatoriB.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridGiocatoriB.Size = new System.Drawing.Size(1101, 444);
+            this.dataGridGiocatoriB.Size = new System.Drawing.Size(1101, 506);
             this.dataGridGiocatoriB.TabIndex = 2;
             this.dataGridGiocatoriB.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridPlayersInfo_CellDoubleClick);
             this.dataGridGiocatoriB.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridGiocatori_ColumnHeaderMouseClick);
@@ -2358,7 +2338,7 @@ namespace TMRecorder
             this.tabGK.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabGK.Name = "tabGK";
             this.tabGK.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tabGK.Size = new System.Drawing.Size(1107, 452);
+            this.tabGK.Size = new System.Drawing.Size(1107, 514);
             this.tabGK.TabIndex = 1;
             this.tabGK.Text = "GoalKeepers";
             this.tabGK.UseVisualStyleBackColor = true;
@@ -2422,7 +2402,7 @@ namespace TMRecorder
             this.dataGridPortieri.ReadOnly = true;
             this.dataGridPortieri.RowHeadersWidth = 20;
             this.dataGridPortieri.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridPortieri.Size = new System.Drawing.Size(1101, 444);
+            this.dataGridPortieri.Size = new System.Drawing.Size(1101, 506);
             this.dataGridPortieri.TabIndex = 0;
             this.dataGridPortieri.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridPortieri_CellDoubleClick);
             this.dataGridPortieri.Sorted += new System.EventHandler(this.dataGridPortieri_Sorted);
@@ -2715,7 +2695,7 @@ namespace TMRecorder
             this.tabInfo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabInfo.Name = "tabInfo";
             this.tabInfo.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tabInfo.Size = new System.Drawing.Size(1107, 452);
+            this.tabInfo.Size = new System.Drawing.Size(1107, 514);
             this.tabInfo.TabIndex = 2;
             this.tabInfo.Text = "Players Info";
             this.tabInfo.UseVisualStyleBackColor = true;
@@ -2778,7 +2758,7 @@ namespace TMRecorder
             this.dataGridPlayersInfo.Name = "dataGridPlayersInfo";
             this.dataGridPlayersInfo.RowHeadersWidth = 25;
             this.dataGridPlayersInfo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridPlayersInfo.Size = new System.Drawing.Size(1101, 444);
+            this.dataGridPlayersInfo.Size = new System.Drawing.Size(1101, 506);
             this.dataGridPlayersInfo.TabIndex = 0;
             this.dataGridPlayersInfo.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridPlayersInfo_CellDoubleClick);
             this.dataGridPlayersInfo.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridPlayersInfo_CellEndEdit);
@@ -2792,6 +2772,7 @@ namespace TMRecorder
             this.playerIDDataGridViewTextBoxColumn.Name = "playerIDDataGridViewTextBoxColumn";
             this.playerIDDataGridViewTextBoxColumn.ReadOnly = true;
             this.playerIDDataGridViewTextBoxColumn.Visible = false;
+            this.playerIDDataGridViewTextBoxColumn.Width = 45;
             // 
             // dataGridViewTextBoxColumn2
             // 
@@ -3116,7 +3097,7 @@ namespace TMRecorder
             this.tabInfoMain.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabInfoMain.Name = "tabInfoMain";
             this.tabInfoMain.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tabInfoMain.Size = new System.Drawing.Size(1107, 452);
+            this.tabInfoMain.Size = new System.Drawing.Size(1107, 514);
             this.tabInfoMain.TabIndex = 5;
             this.tabInfoMain.Text = "Team Matches";
             this.tabInfoMain.UseVisualStyleBackColor = true;
@@ -3127,14 +3108,14 @@ namespace TMRecorder
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.04723F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 51.95277F));
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.splitContainer1, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel5, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 4);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1101, 444);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1101, 506);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // panel1
@@ -3151,7 +3132,7 @@ namespace TMRecorder
             this.panel1.Location = new System.Drawing.Point(3, 4);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(522, 436);
+            this.panel1.Size = new System.Drawing.Size(522, 498);
             this.panel1.TabIndex = 0;
             // 
             // dgMatches
@@ -3197,7 +3178,7 @@ namespace TMRecorder
             this.dgMatches.RowHeadersDefaultCellStyle = dataGridViewCellStyle111;
             this.dgMatches.RowHeadersWidth = 20;
             this.dgMatches.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgMatches.Size = new System.Drawing.Size(517, 274);
+            this.dgMatches.Size = new System.Drawing.Size(517, 336);
             this.dgMatches.TabIndex = 10;
             this.dgMatches.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgMatches_CellDoubleClick);
             this.dgMatches.SelectionChanged += new System.EventHandler(this.dgMatches_SelectionChanged);
@@ -3425,7 +3406,7 @@ namespace TMRecorder
             // 
             this.txtMatchStart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMatchStart.Location = new System.Drawing.Point(3, 372);
+            this.txtMatchStart.Location = new System.Drawing.Point(3, 434);
             this.txtMatchStart.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtMatchStart.Multiline = true;
             this.txtMatchStart.Name = "txtMatchStart";
@@ -3450,30 +3431,11 @@ namespace TMRecorder
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(3, 353);
+            this.label5.Location = new System.Drawing.Point(3, 415);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(73, 13);
             this.label5.TabIndex = 0;
             this.label5.Text = "Match Start";
-            // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(531, 4);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.splitContainer1.Name = "splitContainer1";
-            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.Controls.Add(this.tableLayoutPanel4);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.panel4);
-            this.splitContainer1.Size = new System.Drawing.Size(567, 436);
-            this.splitContainer1.SplitterDistance = 256;
-            this.splitContainer1.TabIndex = 1;
             // 
             // tableLayoutPanel4
             // 
@@ -3482,12 +3444,12 @@ namespace TMRecorder
             this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel3, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel2, 0, 1);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(567, 256);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(571, 424);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
             // tableLayoutPanel3
@@ -3504,14 +3466,14 @@ namespace TMRecorder
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(561, 22);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(565, 22);
             this.tableLayoutPanel3.TabIndex = 1;
             // 
             // lblMatchScore
             // 
             this.lblMatchScore.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblMatchScore.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMatchScore.Location = new System.Drawing.Point(253, 0);
+            this.lblMatchScore.Location = new System.Drawing.Point(255, 0);
             this.lblMatchScore.Name = "lblMatchScore";
             this.lblMatchScore.Size = new System.Drawing.Size(54, 22);
             this.lblMatchScore.TabIndex = 3;
@@ -3524,7 +3486,7 @@ namespace TMRecorder
             this.lblNameYourTeam.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNameYourTeam.Location = new System.Drawing.Point(3, 0);
             this.lblNameYourTeam.Name = "lblNameYourTeam";
-            this.lblNameYourTeam.Size = new System.Drawing.Size(244, 22);
+            this.lblNameYourTeam.Size = new System.Drawing.Size(246, 22);
             this.lblNameYourTeam.TabIndex = 4;
             this.lblNameYourTeam.Text = "Team1";
             this.lblNameYourTeam.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -3533,9 +3495,9 @@ namespace TMRecorder
             // 
             this.lblNameOppsTeam.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblNameOppsTeam.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNameOppsTeam.Location = new System.Drawing.Point(313, 0);
+            this.lblNameOppsTeam.Location = new System.Drawing.Point(315, 0);
             this.lblNameOppsTeam.Name = "lblNameOppsTeam";
-            this.lblNameOppsTeam.Size = new System.Drawing.Size(245, 22);
+            this.lblNameOppsTeam.Size = new System.Drawing.Size(247, 22);
             this.lblNameOppsTeam.TabIndex = 5;
             this.lblNameOppsTeam.Text = "Team2";
             this.lblNameOppsTeam.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -3553,7 +3515,7 @@ namespace TMRecorder
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(561, 220);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(565, 388);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // panel2
@@ -3563,7 +3525,7 @@ namespace TMRecorder
             this.panel2.Location = new System.Drawing.Point(3, 4);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(274, 212);
+            this.panel2.Size = new System.Drawing.Size(276, 380);
             this.panel2.TabIndex = 0;
             // 
             // dgYourTeamPerf
@@ -3607,7 +3569,7 @@ namespace TMRecorder
             this.dgYourTeamPerf.RowHeadersDefaultCellStyle = dataGridViewCellStyle114;
             this.dgYourTeamPerf.RowHeadersWidth = 20;
             this.dgYourTeamPerf.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgYourTeamPerf.Size = new System.Drawing.Size(274, 212);
+            this.dgYourTeamPerf.Size = new System.Drawing.Size(276, 380);
             this.dgYourTeamPerf.TabIndex = 11;
             this.dgYourTeamPerf.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tsmGotoPlayerPageInBrowser_Click);
             // 
@@ -3631,10 +3593,10 @@ namespace TMRecorder
             // 
             this.panel3.Controls.Add(this.dgOppsTeamPerf);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(283, 4);
+            this.panel3.Location = new System.Drawing.Point(285, 4);
             this.panel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(275, 212);
+            this.panel3.Size = new System.Drawing.Size(277, 380);
             this.panel3.TabIndex = 1;
             // 
             // dgOppsTeamPerf
@@ -3678,28 +3640,9 @@ namespace TMRecorder
             this.dgOppsTeamPerf.RowHeadersDefaultCellStyle = dataGridViewCellStyle117;
             this.dgOppsTeamPerf.RowHeadersWidth = 20;
             this.dgOppsTeamPerf.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgOppsTeamPerf.Size = new System.Drawing.Size(275, 212);
+            this.dgOppsTeamPerf.Size = new System.Drawing.Size(277, 380);
             this.dgOppsTeamPerf.TabIndex = 11;
             this.dgOppsTeamPerf.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tsmGotoPlayerPageInBrowser_Click);
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.matchStats);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(0, 0);
-            this.panel4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(567, 176);
-            this.panel4.TabIndex = 0;
-            // 
-            // matchStats
-            // 
-            this.matchStats.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.matchStats.Location = new System.Drawing.Point(0, 0);
-            this.matchStats.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.matchStats.Name = "matchStats";
-            this.matchStats.Size = new System.Drawing.Size(567, 176);
-            this.matchStats.TabIndex = 1;
             // 
             // tabBrowser
             // 
@@ -3708,7 +3651,7 @@ namespace TMRecorder
             this.tabBrowser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabBrowser.Name = "tabBrowser";
             this.tabBrowser.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tabBrowser.Size = new System.Drawing.Size(1107, 452);
+            this.tabBrowser.Size = new System.Drawing.Size(1107, 514);
             this.tabBrowser.TabIndex = 8;
             this.tabBrowser.Text = "Trophy Browser";
             this.tabBrowser.UseVisualStyleBackColor = true;
@@ -3720,7 +3663,7 @@ namespace TMRecorder
             // 
             this.toolStripContainer3.ContentPanel.Controls.Add(this.webBrowser);
             this.toolStripContainer3.ContentPanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.toolStripContainer3.ContentPanel.Size = new System.Drawing.Size(1008, 417);
+            this.toolStripContainer3.ContentPanel.Size = new System.Drawing.Size(1008, 479);
             this.toolStripContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
             // 
             // toolStripContainer3.LeftToolStripPanel
@@ -3729,7 +3672,7 @@ namespace TMRecorder
             this.toolStripContainer3.Location = new System.Drawing.Point(3, 4);
             this.toolStripContainer3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.toolStripContainer3.Name = "toolStripContainer3";
-            this.toolStripContainer3.Size = new System.Drawing.Size(1101, 444);
+            this.toolStripContainer3.Size = new System.Drawing.Size(1101, 506);
             this.toolStripContainer3.TabIndex = 0;
             this.toolStripContainer3.Text = "toolStripContainer3";
             // 
@@ -3745,7 +3688,7 @@ namespace TMRecorder
             this.webBrowser.MinimumSize = new System.Drawing.Size(23, 23);
             this.webBrowser.Name = "webBrowser";
             this.webBrowser.ScriptErrorsSuppressed = true;
-            this.webBrowser.Size = new System.Drawing.Size(1008, 417);
+            this.webBrowser.Size = new System.Drawing.Size(1008, 479);
             this.webBrowser.TabIndex = 1;
             this.webBrowser.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser_DocumentCompleted_1);
             this.webBrowser.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.webBrowser_Navigating);
@@ -4182,7 +4125,7 @@ namespace TMRecorder
             // 
             this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1,
+            this.miReloadFixturesAndMatches,
             this.reloadAllTheImportedPagesToolStripMenuItem,
             this.toolStripMenuItem2,
             this.toolStripSeparator2,
@@ -4192,6 +4135,13 @@ namespace TMRecorder
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
             this.toolStripDropDownButton1.Size = new System.Drawing.Size(38, 24);
             this.toolStripDropDownButton1.Text = "File";
+            // 
+            // miReloadFixturesAndMatches
+            // 
+            this.miReloadFixturesAndMatches.Name = "miReloadFixturesAndMatches";
+            this.miReloadFixturesAndMatches.Size = new System.Drawing.Size(310, 22);
+            this.miReloadFixturesAndMatches.Text = "Reload imported Fixtures and Matches pages";
+            this.miReloadFixturesAndMatches.Click += new System.EventHandler(this.reloadAllTheImportedFixturesAndMatchesPagesToolStripMenuItem_Click);
             // 
             // reloadAllTheImportedPagesToolStripMenuItem
             // 
@@ -5091,18 +5041,35 @@ namespace TMRecorder
             this.dataGridViewTextBoxColumn6.HeaderText = "ASI";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             // 
-            // toolStripMenuItem1
+            // tableLayoutPanel5
             // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(310, 22);
-            this.toolStripMenuItem1.Text = "Reload imported Fixtures and Matches pages";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.reloadAllTheImportedFixturesAndMatchesPagesToolStripMenuItem_Click);
+            this.tableLayoutPanel5.ColumnCount = 1;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel5.Controls.Add(this.matchStats, 0, 1);
+            this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel4, 0, 0);
+            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(531, 3);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 2;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 430F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(567, 500);
+            this.tableLayoutPanel5.TabIndex = 1;
+            // 
+            // matchStats
+            // 
+            this.matchStats.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.matchStats.Location = new System.Drawing.Point(5, 436);
+            this.matchStats.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.matchStats.Name = "matchStats";
+            this.matchStats.Size = new System.Drawing.Size(567, 58);
+            this.matchStats.TabIndex = 1;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1115, 505);
+            this.ClientSize = new System.Drawing.Size(1115, 567);
             this.Controls.Add(this.toolStripContainer1);
             this.Controls.Add(this.toolStripContainer2);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -5153,10 +5120,6 @@ namespace TMRecorder
             this.groupBox3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
@@ -5165,7 +5128,6 @@ namespace TMRecorder
             this.playersPerfMenuStrip.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgOppsTeamPerf)).EndInit();
-            this.panel4.ResumeLayout(false);
             this.tabBrowser.ResumeLayout(false);
             this.toolStripContainer3.ContentPanel.ResumeLayout(false);
             this.toolStripContainer3.LeftToolStripPanel.ResumeLayout(false);
@@ -5186,6 +5148,7 @@ namespace TMRecorder
             ((System.ComponentModel.ISupportInitialize)(this.portieriBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.actionAnalysis)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.giocatoriNSkillBindingSourceA)).EndInit();
+            this.tableLayoutPanel5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -5291,11 +5254,8 @@ namespace TMRecorder
         private System.Windows.Forms.TabPage tabInfoMain;
         private Common.MatchDS matchDS;
         private System.Windows.Forms.BindingSource matchBindingSource;
-        private System.Windows.Forms.BindingSource champDSBindingSource;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton8;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem12;
         private System.Windows.Forms.ContextMenuStrip matchesMenuStrip;
@@ -5573,6 +5533,7 @@ namespace TMRecorder
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.ContextMenuStrip playersPerfMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem8;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem miReloadFixturesAndMatches;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
     }
 }

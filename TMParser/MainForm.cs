@@ -532,12 +532,16 @@ namespace TMRecorder
             dgMatches.AutoGenerateColumns = false;
 
             dgMatches.Columns.Clear();
-            dgMatches.AddColumn("Date", "Date", 40, AG_Style.String | AG_Style.ResizeAllCells);
+            dgMatches.AddColumn("Date", "Date", 74, AG_Style.String);
             dgMatches.AddColumn("Home", "Home", 90, AG_Style.FormatString | AG_Style.ResizeAllCells);
             dgMatches.AddColumn("-", "ScoreString", 20, AG_Style.FormatString | AG_Style.ResizeAllCells);
             dgMatches.AddColumn("Away", "Away", 90, AG_Style.FormatString | AG_Style.ResizeAllCells);
             dgMatches.AddColumn("Type", "MatchType", 35, AG_Style.MatchType);
             dgMatches.AddColumn("Crowd", "Crowd", 90, AG_Style.Numeric | AG_Style.ResizeAllCells);
+            dgMatches.AddColumn("YMent", "YMent", 38, AG_Style.String, "Your team mentality");
+            dgMatches.AddColumn("YAttk", "YAttk", 38, AG_Style.String, "Your team attacking style");
+            dgMatches.AddColumn("OMent", "OMent", 38, AG_Style.String, "Opposite team mentality");
+            dgMatches.AddColumn("OAttk", "OAttk", 38, AG_Style.String, "Opposite team attacking style");
 
             dgYourTeamPerf.AutoGenerateColumns = false;
             dgYourTeamPerf.Columns.Clear();
@@ -3504,7 +3508,7 @@ namespace TMRecorder
             {
                 page = startnavigationAddress + "\n" + page;
                 AllSeasons.LoadMatch(page, quiet);
-                UpdateLackData();
+                if (!quiet) UpdateLackData();
                 isDirty = true;
                 AllSeasons.IsDirty = true;
                 return;
@@ -3512,9 +3516,13 @@ namespace TMRecorder
 
             if (page.Contains("NewTM - Matches"))
             {
-                int cnt = LoadMatchesFromHTMLcode_NewTM(page, quiet);
-                string strMsg = "Import complete:\n" + cnt.ToString() + " new matches imported;\n";
-                MessageBox.Show(strMsg, "TmRecorder");
+                int cnt = AllSeasons.LoadFixture(page, quiet);
+
+                if (!quiet)
+                {
+                    string strMsg = "Import complete:\n" + cnt.ToString() + " new matches imported;\n";
+                    MessageBox.Show(strMsg, "TmRecorder");
+                }
                 AllSeasons.IsDirty = true;
                 isDirty = true;
                 return;
@@ -4411,7 +4419,7 @@ namespace TMRecorder
                 return;
 
             folderBrowserDialog.SelectedPath = Program.Setts.DefaultDirectory;
-            folderBrowserDialog.Description = "Select the folder with saved pages";
+            folderBrowserDialog.Description = "Select the folder with saved matches pages";
 
             if (folderBrowserDialog.ShowDialog(this) == System.Windows.Forms.DialogResult.Cancel)
             {
@@ -4424,6 +4432,10 @@ namespace TMRecorder
 
             DirectoryInfo di = new DirectoryInfo(folderBrowserDialog.SelectedPath);
             LoadSavedFixturesAndMatchesPagesRecursively(di, ref sf, (Program.Setts.Trace > 0));
+
+            sf.Close();
+            sf.Dispose();
+            sf = null;
 
             UpdateTeamDateList();
 
@@ -4574,10 +4586,6 @@ namespace TMRecorder
                 cnt++;
                 // content.ParsePage(matchPage, "http://trophymanager.com/matches/" + matchId + "//", importWeek);
             }
-
-            sf.Close();
-            sf.Dispose();
-            sf = null;
 
             Invalidate();
         }

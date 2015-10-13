@@ -1484,10 +1484,14 @@ namespace NTR_Db
                     OActions = mr.OActions;
                 if (!mr.IsAttackStylesNull())
                 {
-                    AttackStyles = mr.AttackStyles;
+                    string[] AttackStyles = mr.AttackStyles.Split(';');
+                    YAttk = AttackStyles[0];
+                    OAttk = AttackStyles[1];
                     LineUps = mr.Lineups;
                     Pitch = mr.Pitch;
-                    Mentalities = mr.Mentalities;
+                    string[] Mentalities = mr.Mentalities.Split(';');
+                    YMent = Mentalities[0];
+                    OMent = Mentalities[1];
                 }
                 else
                 {
@@ -1572,13 +1576,15 @@ namespace NTR_Db
         public int Crowd { get; set; }
         public string Cards { get; set; }
         public int BestPlayer { get; set; }
-        public string AttackStyles { get; set; }
+        public string YAttk { get; set; }
+        public string OAttk { get; set; }
         public int Analyzed { get; set; }
         public bool IsHome { get; set; }
         public string LineUps { get; set; }
         public int MatchID { get; set; }
         public byte MatchType { get; set; }
-        public string Mentalities { get; set; }
+        public string YMent { get; set; }
+        public string OMent { get; set; }
         public int OTeamID { get; set; }
         public string Pitch { get; set; }
         public bool Report { get; set; }

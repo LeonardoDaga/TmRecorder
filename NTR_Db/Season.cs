@@ -287,7 +287,8 @@ namespace NTR_Db
             {
                 FileInfo fiMatchFile = fiMatchFiles[i];
 
-                sf.UpdateStatusMessage((i * 100) / cntfis, "Loading Matches from the DB v.3...");
+                sf.UpdateStatusMessage((i * 100) / cntfis, string.Format("Loading Match ({0}/{1} from the DB v.3...",
+                    i, cntfis));
 
                 LoadMatchDataVer3(fiMatchFile);
 
@@ -585,39 +586,51 @@ namespace NTR_Db
                 fi = new FileInfo(Path.Combine(dirPath, "Players.5.xml"));
                 seasonsDB.Player.ReadXml(fi.FullName);
 
+                sf.UpdateStatusMessage(30, string.Format("Loading Players DB v.5..."));
+
                 FileInfo[] fis = di.GetFiles("HistData-*.5.xml");
                 int cntfis = fis.Length;
                 for (int i = 0; i < cntfis; i++)
                 {
                     fi = fis[i];
 
+                    sf.UpdateStatusMessage(30 + (10 * i) /cntfis, string.Format("Loading Team History ({0}/{1} DB v.5...",
+                        i, cntfis));
+
                     NTR_SquadDb.HistDataDataTable tempHistDataDataTable = new NTR_SquadDb.HistDataDataTable();
                     tempHistDataDataTable.ReadXml(fi.FullName);
                     seasonsDB.HistData.Merge(tempHistDataDataTable);
                 }
 
+                sf.UpdateStatusMessage(41, string.Format("Loading Scout reviews..."));
                 fi = new FileInfo(Path.Combine(dirPath, "ScoutReview.5.xml"));
                 seasonsDB.ScoutReview.ReadXml(fi.FullName);
 
+                sf.UpdateStatusMessage(42, string.Format("Loading Scouts..."));
                 fi = new FileInfo(Path.Combine(dirPath, "Scout.5.xml"));
                 seasonsDB.Scout.ReadXml(fi.FullName);
 
+                sf.UpdateStatusMessage(43, string.Format("Loading Temporary Data..."));
                 fi = new FileInfo(Path.Combine(dirPath, "TempData.5.xml"));
                 seasonsDB.TempData.ReadXml(fi.FullName);
 
+                sf.UpdateStatusMessage(44, string.Format("Loading Team Data..."));
                 fi = new FileInfo(Path.Combine(dirPath, "Team.5.xml"));
 
                 seasonsDB.Team.Clear();
                 seasonsDB.Team.ReadXml(fi.FullName);
 
+                sf.UpdateStatusMessage(46, string.Format("Loading Match Data..."));
                 fi = new FileInfo(Path.Combine(dirPath, "Match.5.xml"));
                 if (fi.Exists)
                     seasonsDB.Match.ReadXml(fi.FullName);
 
+                sf.UpdateStatusMessage(50, string.Format("Loading TeamData File..."));
                 fi = new FileInfo(Path.Combine(dirPath, "TeamData.5.xml"));
                 if (fi.Exists)
                     seasonsDB.TeamData.ReadXml(fi.FullName);
 
+                sf.UpdateStatusMessage(60, string.Format("Loading Player Performances Data..."));
                 fi = new FileInfo(Path.Combine(dirPath, "PlayerPerf.5.xml"));
                 if (fi.Exists)
                     seasonsDB.PlayerPerf.ReadXml(fi.FullName);
@@ -628,11 +641,15 @@ namespace NTR_Db
                 {
                     fi = fis[i];
 
+                    sf.UpdateStatusMessage(65 + (30 * i)/cntfis, string.Format("Loading Season Data ({0}/{1})...", 
+                        i, cntfis));
+
                     NTR_SquadDb.ActionsDataTable tempActionsDataDataTable = new NTR_SquadDb.ActionsDataTable();
                     tempActionsDataDataTable.ReadXml(fi.FullName);
                     seasonsDB.Actions.Merge(tempActionsDataDataTable);
                 }
 
+                sf.UpdateStatusMessage(95, string.Format("Loading Action Decoder Datafile..."));
                 fi = new FileInfo(Path.Combine(dirPath, "ActionsDecoder.5.xml"));
                 if (fi.Exists)
                     seasonsDB.ActionsDecoder.ReadXml(fi.FullName);
@@ -707,7 +724,107 @@ namespace NTR_Db
                                               && (c.Report == false) && ((c.OTeamID == teamID) || (c.YTeamID == teamID))
                                       select new MatchData(c));
 
-            return matchDataSelection.First();
+            if (matchDataSelection.Count() > 0)
+                return matchDataSelection.First();
+
+            return null;
+        }
+
+        public int LoadFixture(string page, bool quiet)
+        {
+            int cnt = 0;
+
+            string strTeamId = HTML_Parser.GetNumberAfter(page, "fixtures/club/");
+            int TeamID = int.Parse(strTeamId);
+
+            // Get the items
+            string[] rows = page.Split('\n');
+
+            foreach (string row in rows)
+            {
+                if (!row.Contains(";")) continue;
+
+                Dictionary<string, string> items = HTML_Parser.CreateDictionary(row, ';');
+
+                int matchId = int.Parse(items["id"]);
+
+                NTR_SquadDb.MatchRow matchRow = seasonsDB.Match.FindByMatchID(matchId);
+                if (matchRow == null)
+                {
+                    matchRow = seasonsDB.Match.NewMatchRow();
+                    matchRow.MatchID = matchId;
+                    seasonsDB.Match.AddMatchRow(matchRow);
+                    cnt++;
+                }
+
+                // First, get the day number
+                matchRow.Date = DateTime.Parse(items["date"]);
+                matchRow.Score = items["result"];
+
+                int home = int.Parse(items["home"]);
+                int away = int.Parse(items["away"]);
+
+                matchRow.isHome = (home == TeamID);
+
+                int OTeamID = 0;
+                string OTeamName = "";
+
+                if (matchRow.isHome)
+                {
+                    matchRow.Analyzed = 0;
+                    matchRow.YTeamID = home;
+                    matchRow.TeamRowByTeam_YTeam.Name = items["home_name"];
+                    OTeamID = away;
+                    OTeamName = items["away_name"];
+                }
+                else if (away == TeamID)
+                {
+                    matchRow.Analyzed = 0;
+                    matchRow.YTeamID = away;
+                    matchRow.TeamRowByTeam_YTeam.Name = items["away_name"];
+                    OTeamID = home;
+                    OTeamName = items["home_name"];
+                }
+
+                NTR_SquadDb.TeamRow trow = this.seasonsDB.Team.FindByTeamID(OTeamID);
+                if (trow == null)
+                {
+                    trow = this.seasonsDB.Team.NewTeamRow();
+                    trow.TeamID = OTeamID;
+                    trow.Owner = false;
+                    seasonsDB.Team.AddTeamRow(trow);
+                }
+
+                matchRow.OTeamID = OTeamID;
+                matchRow.TeamRowByTeam_OTeam.Name = OTeamName;
+
+                if (items["type"] == "l")
+                    matchRow.MatchType = (byte)0;
+                else if (items["type"] == "f")
+                    matchRow.MatchType = (byte)2;
+                else if (items["type"] == "fl")
+                    matchRow.MatchType = (byte)3;
+                else if (items["type"].StartsWith("p"))
+                {
+                    byte i = byte.Parse(items["type"].Substring(1));
+                    matchRow.MatchType = (byte)(10 + i);
+                }
+                else if (items["type"].StartsWith("ue"))
+                {
+                    byte i = byte.Parse(items["type"].Substring(2));
+                    matchRow.MatchType = (byte)(20 + i);
+                }
+                else if (items["type"].StartsWith("lq"))
+                {
+                    matchRow.MatchType = (byte)5; // Qualificazioni campionato
+                }
+                else
+                {
+                    matchRow.MatchType = (byte)4; // Altra internazionale
+                }
+            }
+
+            return cnt;
         }
 
         public bool LoadMatch(string page, bool quiet = false)

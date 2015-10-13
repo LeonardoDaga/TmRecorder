@@ -806,7 +806,7 @@ namespace Languages {
         /// <summary>
         ///   Cerca una stringa localizzata simile a Load Team File as HTML file.
         /// </summary>
-        string LoadTeamFileAsHTMLFile {
+        string ReloadFixturesAndMatches {
             get;
         }
         

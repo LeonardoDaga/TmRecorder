@@ -33,7 +33,7 @@ namespace TMRecorder
             this.showMatchActionsListToolStripMenuItem.Text = Current.Language.ShowMatchActionsList;
             this.toolStripContainer1.Text = "toolStripContainer1";
             this.toolStripDropDownButton1.Text = Current.Language.File;
-            this.toolStripMenuItem1.Text = Current.Language.LoadTeamFileAsHTMLFile;
+            this.miReloadFixturesAndMatches.Text = Current.Language.ReloadFixturesAndMatches;
             this.toolStripMenuItem2.Text = Current.Language.SaveTeamData;
             this.toolStripMenuItem4.Text = Current.Language.Exit;
             this.toolStripDropDownButton4.Text = Current.Language.Edit;

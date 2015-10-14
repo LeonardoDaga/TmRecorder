@@ -96,6 +96,41 @@ namespace TMRecorder
                 }
 
                 oppsTeamLineup.SetFormation(of);
+
+                string[] pitch = matchData.Pitch.Split(';');
+
+                lblSprinklers.Text = (pitch[0] == "0") ? "No" : "Yes";
+                lblDraining.Text = (pitch[1] == "0") ? "No" : "Yes";
+                lblHeating.Text = (pitch[2] == "0") ? "No" : "Yes";
+                int pitchConditions = int.Parse(pitch[3]);
+                lblPitchCondition.Text =
+                    (pitchConditions <= 70) ? string.Format("Outstanding ({0}%)", pitchConditions) :
+                    (pitchConditions <= 73) ? string.Format("Superb ({0}%)", pitchConditions) :
+                    (pitchConditions <= 76) ? string.Format("Excellent ({0}%)", pitchConditions) :
+                    (pitchConditions <= 82) ? string.Format("Good ({0}%)", pitchConditions) :
+                    (pitchConditions <= 88) ? string.Format("Decent ({0}%)", pitchConditions) :
+                    (pitchConditions <= 94) ? string.Format("Poor ({0}%)", pitchConditions) :
+                    string.Format("Very Poor ({0}%)", pitchConditions);
+
+                lblPitchCover.Text = (pitch[4] == "0") ? "No" : "Yes";
+
+                int ix = weatherImgList.Images.IndexOfKey(matchData.Weather + ".png");
+                if (ix != -1)
+                {
+                    pictWeather.Image = weatherImgList.Images[ix];
+                }
+
+                string num = HTML_Parser.GetFirstNumberInString(matchData.Weather);
+                if (num == "1")
+                    lblWeather.Text = "Very light";
+                else if (num == "2")
+                    lblWeather.Text = "Light";
+                else if (num == "3")
+                    lblWeather.Text = "Medium";
+                else if (num == "4")
+                    lblWeather.Text = "Heavy";
+                else
+                    lblWeather.Text = "Strong";
             }
             else
             {
@@ -115,6 +150,14 @@ namespace TMRecorder
                 Formation of = new Formation(eFormationTypes.Type_Empty);
                 yourTeamLineup.formation = yf;
                 oppsTeamLineup.formation = of;
+
+                lblSprinklers.Text = "nd";
+                lblDraining.Text = "nd";
+                lblHeating.Text = "nd";
+                lblPitchCondition.Text = "nd";
+                lblPitchCover.Text = "nd";
+
+                lblWeather.Text = "nd";
             }
         }
     }

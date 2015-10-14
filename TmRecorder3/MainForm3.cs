@@ -1118,8 +1118,8 @@ namespace TmRecorder3
             };
 
             string[] Lineups = HTML_Parser.Split(md.LineUps, ";");
-            string[] AttackStyles = HTML_Parser.Split(md.AttackStyles, ";");
-            string[] Mentalities = HTML_Parser.Split(md.Mentalities, ";");
+            string[] AttackStyles = new string[] { md.YAttk, md.OAttk };
+            string[] Mentalities = new string[] { md.YMent, md.OMent };
             string[] Tactics = null;
             if (Lineups != null)
             {

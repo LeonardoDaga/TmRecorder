@@ -1454,7 +1454,7 @@ namespace NTR_Db
     {
         public MatchData(NTR_SquadDb.MatchRow mr)
         {
-            Date = mr.Date;
+            Date = mr.Date.Date;
 
             if (!mr.IsCrowdNull()) 
                 Crowd = mr.Crowd;

@@ -394,9 +394,8 @@ namespace TMRecorder
             this.chkMT3 = new System.Windows.Forms.CheckBox();
             this.chkMT4 = new System.Windows.Forms.CheckBox();
             this.chkMT5 = new System.Windows.Forms.CheckBox();
-            this.txtMatchStart = new System.Windows.Forms.TextBox();
             this.btnHelp = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.lblMatchScore = new System.Windows.Forms.Label();
@@ -555,7 +554,6 @@ namespace TMRecorder
             this.nomeDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Age = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.matchStats = new TMRecorder.MatchStats();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStripGK.SuspendLayout();
@@ -591,6 +589,7 @@ namespace TMRecorder
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -613,7 +612,6 @@ namespace TMRecorder
             ((System.ComponentModel.ISupportInitialize)(this.portieriBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.actionAnalysis)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.giocatoriNSkillBindingSourceA)).BeginInit();
-            this.tableLayoutPanel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // openFileDialog
@@ -3125,9 +3123,7 @@ namespace TMRecorder
             this.panel1.Controls.Add(this.groupBox3);
             this.panel1.Controls.Add(this.groupBox2);
             this.panel1.Controls.Add(this.groupBox1);
-            this.panel1.Controls.Add(this.txtMatchStart);
             this.panel1.Controls.Add(this.btnHelp);
-            this.panel1.Controls.Add(this.label5);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 4);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -3178,7 +3174,7 @@ namespace TMRecorder
             this.dgMatches.RowHeadersDefaultCellStyle = dataGridViewCellStyle111;
             this.dgMatches.RowHeadersWidth = 20;
             this.dgMatches.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgMatches.Size = new System.Drawing.Size(517, 336);
+            this.dgMatches.Size = new System.Drawing.Size(517, 420);
             this.dgMatches.TabIndex = 10;
             this.dgMatches.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgMatches_CellDoubleClick);
             this.dgMatches.SelectionChanged += new System.EventHandler(this.dgMatches_SelectionChanged);
@@ -3402,19 +3398,6 @@ namespace TMRecorder
             this.chkMT5.UseVisualStyleBackColor = false;
             this.chkMT5.CheckedChanged += new System.EventHandler(this.chkUpdateMatchList);
             // 
-            // txtMatchStart
-            // 
-            this.txtMatchStart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMatchStart.Location = new System.Drawing.Point(3, 434);
-            this.txtMatchStart.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtMatchStart.Multiline = true;
-            this.txtMatchStart.Name = "txtMatchStart";
-            this.txtMatchStart.ReadOnly = true;
-            this.txtMatchStart.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtMatchStart.Size = new System.Drawing.Size(513, 61);
-            this.txtMatchStart.TabIndex = 4;
-            // 
             // btnHelp
             // 
             this.btnHelp.Location = new System.Drawing.Point(520, 22);
@@ -3426,16 +3409,20 @@ namespace TMRecorder
             this.btnHelp.UseVisualStyleBackColor = true;
             this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
             // 
-            // label5
+            // tableLayoutPanel5
             // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(3, 415);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(73, 13);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "Match Start";
+            this.tableLayoutPanel5.ColumnCount = 1;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel5.Controls.Add(this.matchStats, 0, 1);
+            this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel4, 0, 0);
+            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(531, 3);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 2;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 430F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(567, 500);
+            this.tableLayoutPanel5.TabIndex = 1;
             // 
             // tableLayoutPanel4
             // 
@@ -5041,21 +5028,6 @@ namespace TMRecorder
             this.dataGridViewTextBoxColumn6.HeaderText = "ASI";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             // 
-            // tableLayoutPanel5
-            // 
-            this.tableLayoutPanel5.ColumnCount = 1;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel5.Controls.Add(this.matchStats, 0, 1);
-            this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel4, 0, 0);
-            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(531, 3);
-            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 2;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 430F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(567, 500);
-            this.tableLayoutPanel5.TabIndex = 1;
-            // 
             // matchStats
             // 
             this.matchStats.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -5114,12 +5086,12 @@ namespace TMRecorder
             this.tabInfoMain.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgMatches)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
+            this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
@@ -5148,7 +5120,6 @@ namespace TMRecorder
             ((System.ComponentModel.ISupportInitialize)(this.portieriBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.actionAnalysis)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.giocatoriNSkillBindingSourceA)).EndInit();
-            this.tableLayoutPanel5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -5276,8 +5247,6 @@ namespace TMRecorder
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.ToolStripMenuItem playersStatisticsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showMatchActionsListToolStripMenuItem;
-        private System.Windows.Forms.TextBox txtMatchStart;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ToolStripMenuItem deleteSelectedMatchToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ComboBox cmbSeason;

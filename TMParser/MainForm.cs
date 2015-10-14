@@ -537,7 +537,7 @@ namespace TMRecorder
             dgMatches.AddColumn("-", "ScoreString", 20, AG_Style.FormatString | AG_Style.ResizeAllCells);
             dgMatches.AddColumn("Away", "Away", 90, AG_Style.FormatString | AG_Style.ResizeAllCells);
             dgMatches.AddColumn("Type", "MatchType", 35, AG_Style.MatchType);
-            dgMatches.AddColumn("Crowd", "Crowd", 90, AG_Style.Numeric | AG_Style.ResizeAllCells);
+            dgMatches.AddColumn("Crowd", "Crowd", 55, AG_Style.Numeric);
             dgMatches.AddColumn("YMent", "YMent", 38, AG_Style.String, "Your team mentality");
             dgMatches.AddColumn("YAttk", "YAttk", 38, AG_Style.String, "Your team attacking style");
             dgMatches.AddColumn("OMent", "OMent", 38, AG_Style.String, "Opposite team mentality");
@@ -1309,7 +1309,7 @@ namespace TMRecorder
                 for (; ix < table.Rows.Count; ix++)
                 {
                     ExtTMDataSet.GKHistoryRow gk = (ExtTMDataSet.GKHistoryRow)table.Rows[ix];
-                    if (gk.Date == dt) break;
+                    if (gk.Date.Date == dt) break;
                 }
 
                 TmWeek tmwActual = new TmWeek(dt);

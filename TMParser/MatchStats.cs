@@ -115,6 +115,11 @@ namespace TMRecorder
                 txtOnTarget1.Text = "";
                 txtOnTarget2.Text = "";
 
+                lblRecAvg1.Text = "";
+                lblRecAvg2.Text = "";
+                lblRouAvg1.Text = "";
+                lblRouAvg2.Text = "";
+
                 Formation yf = new Formation(eFormationTypes.Type_Empty);
                 Formation of = new Formation(eFormationTypes.Type_Empty);
                 yourTeamLineup.formation = yf;

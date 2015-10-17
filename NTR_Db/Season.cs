@@ -315,6 +315,11 @@ namespace NTR_Db
             int matchID = int.Parse(HTML_Parser.GetNumberAfter(fin.FullName, "Match_"));
 
             NTR_SquadDb.MatchRow matchRow = seasonsDB.Match.FindByMatchID(matchID);
+
+            if (matchRow == null) return;
+            if (matchRow.IsYTeamIDNull()) return;
+            if (matchRow.IsOTeamIDNull()) return;
+
             int YTeamID = matchRow.YTeamID;
             int OTeamID = matchRow.OTeamID;
 
@@ -411,38 +416,46 @@ namespace NTR_Db
             int YTeamColor = -1;
             int OTeamColor = -1;
 
-            foreach (MatchDS.ActionsRow actionsRow in matchDS.Actions)
+            try
             {
-                NTR_SquadDb.ActionsRow ar = seasonsDB.Actions.FindByMatchIDActionID(matchID, actionID);
-                if (ar == null)
+                foreach (MatchDS.ActionsRow actionsRow in matchDS.Actions)
                 {
-                    ar = seasonsDB.Actions.NewActionsRow();
-                    ar.ActionID = actionID;
-                    ar.MatchID = matchID;
-                    seasonsDB.Actions.AddActionsRow(ar);
+                    NTR_SquadDb.ActionsRow ar = seasonsDB.Actions.FindByMatchIDActionID(matchID, actionID);
+                    if (ar == null)
+                    {
+                        ar = seasonsDB.Actions.NewActionsRow();
+                        ar.ActionID = actionID;
+                        ar.MatchID = matchID;
+                        seasonsDB.Actions.AddActionsRow(ar);
+                    }
+                    actionID++;
+
+                    ar.ActionCode = actionsRow.ActionCode;
+                    if (!actionsRow.IsActionTypeNull())
+                        ar.ActionType = actionsRow.ActionType;
+                    else
+                        ar.ActionType = "";
+                    ar.Description = actionsRow.Description;
+                    ar.FullDesc = actionsRow.FullDesc;
+                    ar.Time = actionsRow.Time;
+                    ar.TeamID = actionsRow.ID;
+
+                    if (ar.TeamID == YTeamID)
+                        YTeamColor = actionsRow.Color;
+                    else
+                        OTeamColor = actionsRow.Color;
                 }
-                actionID++;
 
-                ar.ActionCode = actionsRow.ActionCode;
-                if (!actionsRow.IsActionTypeNull())
-                    ar.ActionType = actionsRow.ActionType;
-                else
-                    ar.ActionType = "";
-                ar.Description = actionsRow.Description;
-                ar.FullDesc = actionsRow.FullDesc;
-                ar.Time = actionsRow.Time;
-                ar.TeamID = actionsRow.ID;
-
-                if (ar.TeamID == YTeamID)
-                    YTeamColor = actionsRow.Color;
-                else
-                    OTeamColor = actionsRow.Color;
+                NTR_SquadDb.TeamRow oTeamRow = seasonsDB.Team.FindByTeamID(OTeamID);
+                if (oTeamRow != null)
+                    oTeamRow.Color = OTeamColor;
+                NTR_SquadDb.TeamRow yTeamRow = seasonsDB.Team.FindByTeamID(YTeamID);
+                if (yTeamRow != null)
+                    yTeamRow.Color = YTeamColor;
             }
-
-            NTR_SquadDb.TeamRow oTeamRow = seasonsDB.Team.FindByTeamID(OTeamID);
-            oTeamRow.Color = OTeamColor;
-            NTR_SquadDb.TeamRow yTeamRow = seasonsDB.Team.FindByTeamID(YTeamID);
-            yTeamRow.Color = YTeamColor;
+            catch
+            {
+            }
 
             Invalidate();
         }

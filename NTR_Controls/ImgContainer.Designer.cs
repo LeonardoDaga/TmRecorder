@@ -75,6 +75,8 @@
             this.matchImageList.Images.SetKeyName(4, "Red.png");
             this.matchImageList.Images.SetKeyName(5, "Yellow.png");
             this.matchImageList.Images.SetKeyName(6, "YellowRed.png");
+            this.matchImageList.Images.SetKeyName(7, "SubIn.png");
+            this.matchImageList.Images.SetKeyName(8, "SubOut.png");
 
         }
 

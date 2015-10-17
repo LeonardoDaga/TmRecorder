@@ -83,6 +83,8 @@ namespace TMRecorder
 
             InvalidateGrids();
 
+            AllSeasons.AutoconvertActions = Program.Setts.AutoconvertActions;
+
             LoadLanguage();
 
             SetLanguage();
@@ -393,8 +395,9 @@ namespace TMRecorder
                 fi = new FileInfo(matchFilePath);
                 if (fi.Exists)
                 {
-
+                    string actionDecoderFilePath = Path.Combine(Program.Setts.DatafilePath, "ActionsDecoder.5.xml");
                     AllSeasons.LoadSeasonsFromVersion3(dirPath, ref sf, true);
+                    AllSeasons.LoadActionDecoder5(ref sf, actionDecoderFilePath);
                 }
             }
 
@@ -4586,6 +4589,8 @@ namespace TMRecorder
                 cnt++;
                 // content.ParsePage(matchPage, "http://trophymanager.com/matches/" + matchId + "//", importWeek);
             }
+
+            UpdateLackData();
 
             Invalidate();
         }

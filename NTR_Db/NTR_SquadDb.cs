@@ -102,8 +102,8 @@ namespace NTR_Db
                         _weeksWithData.Add((int)date.Key);
 
                     var matches = (from c in Match
-                                 group c by TmWeek.GetTmAbsWk(c.Date) into g
-                                 select g).OrderByDescending(p => p.Key);
+                                   group c by TmWeek.GetTmAbsWk(c.Date) into g
+                                   select g).OrderByDescending(p => p.Key);
 
                     foreach (var match in matches)
                     {

@@ -25,6 +25,11 @@ namespace NTR_Db
 
         private void ActionDecoder_Load(object sender, EventArgs e)
         {
+            LoadControls();
+        }
+
+        public void LoadControls()
+        {
             lblActionDescription.Text = Description;
 
             //[0]	"Short Pass"	object {string}
@@ -163,6 +168,11 @@ namespace NTR_Db
         }
 
         private void btnOK_Click(object sender, EventArgs e)
+        {
+            ConvertSelection();
+        }
+
+        public void ConvertSelection()
         {
             foreach (int ix in chkActionType.CheckedIndices)
             {

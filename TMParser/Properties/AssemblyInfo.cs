@@ -30,7 +30,7 @@ using System.Runtime.CompilerServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("2.9.3.1")]
-[assembly: AssemblyFileVersion("2.9.3.1")]
+[assembly: AssemblyVersion("2.10.0.0")]
+[assembly: AssemblyFileVersion("2.10.0.0")]
 [assembly: NeutralResourcesLanguage("en")]
 

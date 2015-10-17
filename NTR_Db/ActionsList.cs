@@ -292,21 +292,21 @@ namespace NTR_Db
 
         public static string[] ActionStatStr = new string[]
         {
-            "Short Pass",           // Short Pass
-            "Throu Ball",           // Through Ball
-            "Wing",           // Wing
-            "Long Ball",           // Long Ball
-            "Cnt Attack",           // Counter Attack
-            "Corner",           // Corner
-            "Freekick",           // Freekick
-            "GK CntAtk",           // GK counterattack
-            "GK LngBll",           // GK long ball attack
-            "Penalty",      	 //  Penalty Shot
-            "Penalty Fault",           // Penalty Fault
-            "Yellow/Red Card",           // Yellow/Red Card
-            "Injury",           // Injury
-            "Substitution",           // Substitution
-            "Not identified",           // Not identified
+            "Short Pass",           // 0 Short Pass
+            "Throu Ball",           // 1 Through Ball
+            "Wing",           // 2 Wing
+            "Long Ball",           // 3 Long Ball
+            "Cnt Attack",           // 4 Counter Attack
+            "Corner",           // 5 Corner
+            "Freekick",           // 6 Freekick
+            "GK CntAtk",           // 7 GK counterattack
+            "GK LngBll",           // 8 GK long ball attack
+            "Penalty",      	 //  9 Penalty Shot
+            "Penalty Fault",           // 10 Penalty Fault
+            "Yellow/Red Card",           // 11 Yellow/Red Card
+            "Injury",           // 12 Injury
+            "Substitution",           // 13 Substitution
+            "Not identified",           // 14 Not identified
         };
 
         public ActionStat(KeyValuePair<byte, ActionsItem> a)

@@ -226,6 +226,7 @@ namespace TMRecorder
             sb.Def("DebugFunction", 0);
 
             sb.Def("ReportParsingFile", Path.Combine(_datafilePath, @"ReportParsingFile.EN.txt"));
+            sb.Def("AutoconvertActions", true);
 
             // Always the last settings
             sb.Def("SettsRelease", 1);
@@ -233,6 +234,11 @@ namespace TMRecorder
             sb.Def("LicenseCode", (UInt64)0);
         }
 
+        public bool AutoconvertActions
+        {
+            get { return (bool)sb["AutoconvertActions"]; }
+            set { sb["AutoconvertActions"] = (bool)value; }
+        }
         public string ReportParsingFile
         {
             get { return (string)sb["ReportParsingFile"]; }

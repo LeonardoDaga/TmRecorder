@@ -3373,6 +3373,8 @@ namespace NTR_Db {
             
             private global::System.Data.DataColumn columnAttackStyles;
             
+            private global::System.Data.DataColumn columnLastMin;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public MatchDataTable() {
@@ -3576,6 +3578,14 @@ namespace NTR_Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn LastMinColumn {
+                get {
+                    return this.columnLastMin;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -3632,7 +3642,8 @@ namespace NTR_Db {
                         TeamRow parentTeamRowByTeam_YTeam, 
                         string OActions, 
                         string YActions, 
-                        string AttackStyles) {
+                        string AttackStyles, 
+                        int LastMin) {
                 MatchRow rowMatchRow = ((MatchRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         MatchID,
@@ -3655,7 +3666,8 @@ namespace NTR_Db {
                         null,
                         OActions,
                         YActions,
-                        AttackStyles};
+                        AttackStyles,
+                        LastMin};
                 if ((parentTeamRowByTeam_OTeam != null)) {
                     columnValuesArray[16] = parentTeamRowByTeam_OTeam[0];
                 }
@@ -3712,6 +3724,7 @@ namespace NTR_Db {
                 this.columnOActions = base.Columns["OActions"];
                 this.columnYActions = base.Columns["YActions"];
                 this.columnAttackStyles = base.Columns["AttackStyles"];
+                this.columnLastMin = base.Columns["LastMin"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3759,6 +3772,8 @@ namespace NTR_Db {
                 base.Columns.Add(this.columnYActions);
                 this.columnAttackStyles = new global::System.Data.DataColumn("AttackStyles", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnAttackStyles);
+                this.columnLastMin = new global::System.Data.DataColumn("LastMin", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLastMin);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("MatchTableKey1", new global::System.Data.DataColumn[] {
                                 this.columnMatchID}, true));
                 this.columnMatchID.AllowDBNull = false;
@@ -7996,6 +8011,22 @@ namespace NTR_Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int LastMin {
+                get {
+                    try {
+                        return ((int)(this[this.tableMatch.LastMinColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'LastMin\' in table \'Match\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableMatch.LastMinColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public TeamRow TeamRowByTeam_YTeam {
                 get {
                     return ((TeamRow)(this.GetParentRow(this.Table.ParentRelations["Team_YTeam"])));
@@ -8230,6 +8261,18 @@ namespace NTR_Db {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetAttackStylesNull() {
                 this[this.tableMatch.AttackStylesColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsLastMinNull() {
+                return this.IsNull(this.tableMatch.LastMinColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetLastMinNull() {
+                this[this.tableMatch.LastMinColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

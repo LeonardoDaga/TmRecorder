@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using Common;
 using NTR_Db;
+using NTR_Common;
 
 namespace TMRecorder
 {
@@ -15,50 +16,6 @@ namespace TMRecorder
         public MatchStats()
         {
             InitializeComponent();
-        }
-
-        public ChampDS.MatchRow MatchRow
-        {
-            set
-            {
-                if (value != null)
-                {
-                    ChampDS.MatchRow mr = value;
-
-                    if (mr.IsYourFormationNull()) return;
-
-                    txtLineUp1.Text = mr.YourFormation;
-                    txtLineUp2.Text = mr.OppsFormation;
-
-                    if (mr.IsYourStatsNull()) return;
-
-                    string[] YourStats = mr.YourStats.Split(';');
-                    string[] OppsStats = mr.OppsStats.Split(';');
-
-                    txtPossession1.Text = YourStats[0];
-                    txtPossession2.Text = OppsStats[0];
-
-                    txtShots1.Text = YourStats[1];
-                    txtShots2.Text = OppsStats[1];
-
-                    txtOnTarget1.Text = YourStats[2];
-                    txtOnTarget2.Text = OppsStats[2];
-                }
-                else
-                {
-                    txtLineUp1.Text = "";
-                    txtLineUp2.Text = "";
-
-                    txtPossession1.Text = "";
-                    txtPossession2.Text = "";
-
-                    txtShots1.Text = "";
-                    txtShots2.Text = "";
-
-                    txtOnTarget1.Text = "";
-                    txtOnTarget2.Text = "";
-                }
-            }
         }
 
         internal void SetMatchData(MatchData matchData)
@@ -97,7 +54,19 @@ namespace TMRecorder
 
                 oppsTeamLineup.SetFormation(of);
 
+                // Evaluating avg experience and avg rec
+                ActionsList tempActionsList = ActionsList.Parse(matchData.OActions);
+                ItemDictionary itemDictionary = ActionsList.ParseAsItemDictionary(matchData.OActions);
+
                 string[] pitch = matchData.Pitch.Split(';');
+
+                var yourAvgStats = ComputeStatistics(matchData.YourPlayerPerf, matchData.LastMin);
+                var oppsAvgStats = ComputeStatistics(matchData.OppsPlayerPerf, matchData.LastMin);
+
+                lblRecAvg1.Text = (yourAvgStats.RecSum / matchData.LastMin / 11).ToString("N2");
+                lblRecAvg2.Text = (oppsAvgStats.RecSum / matchData.LastMin / 11).ToString("N2");
+                lblRouAvg1.Text = (yourAvgStats.RouSum / matchData.LastMin / 11).ToString("N2");
+                lblRouAvg2.Text = (oppsAvgStats.RouSum / matchData.LastMin / 11).ToString("N2");
 
                 lblSprinklers.Text = (pitch[0] == "0") ? "No" : "Yes";
                 lblDraining.Text = (pitch[1] == "0") ? "No" : "Yes";
@@ -159,6 +128,42 @@ namespace TMRecorder
 
                 lblWeather.Text = "nd";
             }
+        }
+
+        public class MatchComputedStats
+        {
+            public decimal RecSum = 0;
+            public decimal RouSum = 0;
+        }
+
+        private MatchComputedStats ComputeStatistics(EnumerableRowCollection<NTR_SquadDb.PlayerPerfRow> yourPlayerPerf, int lastMin)
+        {
+            MatchComputedStats mcs = new MatchComputedStats();
+
+            // Compute Rec Sum
+            foreach (var playerPerf in yourPlayerPerf)
+            {
+                if (playerPerf.IsVoteNull())
+                    continue;
+
+                int numMin = lastMin;
+
+                if (playerPerf.Status.Contains(">"))
+                {
+                    string value = HTML_Parser.GetNumberAfter(playerPerf.Status, ">");
+                    numMin -= int.Parse(value);
+                }
+                if (playerPerf.Status.Contains("<"))
+                {
+                    string value = HTML_Parser.GetNumberAfter(playerPerf.Status, "<");
+                    numMin -= lastMin - int.Parse(value);
+                }
+
+                mcs.RecSum += numMin * playerPerf.Rec;
+                mcs.RouSum += numMin * playerPerf.Rou;
+            }
+
+            return mcs;
         }
     }
 }

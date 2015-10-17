@@ -1403,7 +1403,7 @@ namespace NTR_Db
                 Assist = c.Assist;
             if (!c.IsStatusNull())
                 Status = c.Status;
-            if (!c.PlayerRow.IsFPNull())
+             if (!c.PlayerRow.IsFPNull())
                 FPn = c.PlayerRow.FPn;
         }
 
@@ -1417,16 +1417,41 @@ namespace NTR_Db
                     res += ";Goal=" + Scored.ToString();
                 if (Assist > 0)
                     res += ";Assist=" + Assist.ToString();
-                if (Status.Contains("YYR"))
+                if (Status.Contains("YYR<"))
+                {
+                    string value = HTML_Parser.GetNumberAfter(Status, "R<");
+                    res += string.Format(";Yellow=1;YellowRed=1;RMin={0}", value);
+                }
+                else if (Status.Contains("YYR"))
                     res += ";Yellow=1;YellowRed=1";
+                else if (Status.Contains("YR<"))
+                {
+                    string value = HTML_Parser.GetNumberAfter(Status, "R<");
+                    res += string.Format(";Yellow=1;Red=1;RMin={0}", value);
+                }
                 else if (Status.Contains("YR"))
                     res += ";Yellow=1;Red=1";
                 else if (Status.Contains("Y"))
                     res += ";Yellow=1";
+                else if (Status.Contains("R<"))
+                {
+                    string value = HTML_Parser.GetNumberAfter(Status, "R<");
+                    res += string.Format(";Red=1;RMin={0}", value);
+                }
                 else if (Status.Contains("R"))
                     res += ";Red=1";
                 else if (Status.Contains("I"))
                     res += ";Injury=1";
+                if (Status.Contains("S<"))
+                {
+                    string value = HTML_Parser.GetNumberAfter(Status, "S<");
+                    res += string.Format(";SubOut=1;SMin={0}", value);
+                }
+                else if (Status.Contains("S>"))
+                {
+                    string value = HTML_Parser.GetNumberAfter(Status, "S>");
+                    res += string.Format(";SubIn=1;SMin={0}", value);
+                }
                 return res;
             }
         }
@@ -1543,6 +1568,15 @@ namespace NTR_Db
 
             NTR_SquadDb squadDB = (NTR_SquadDb)mr.Table.DataSet;
 
+            AllActions = (from c in squadDB.Actions
+                          where c.MatchID == mr.MatchID
+                          select c).OrderBy(p => p.Time);
+
+            if (!mr.IsLastMinNull())
+                LastMin = mr.LastMin;
+            else
+                LastMin = 90;
+
             if (mr.Report)
             {
                 try
@@ -1616,6 +1650,9 @@ namespace NTR_Db
                 return !IsHome ? HomePlayerPerf : AwayPlayerPerf;
             }
         }
+
+        public OrderedEnumerableRowCollection<NTR_SquadDb.ActionsRow> AllActions { get; private set; }
+        public int LastMin { get; private set; }
     }
 
     public class FormattedString

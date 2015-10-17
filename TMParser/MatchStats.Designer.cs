@@ -29,8 +29,8 @@ namespace TMRecorder
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Common.Formation formation3 = new Common.Formation();
-            Common.Formation formation4 = new Common.Formation();
+            Common.Formation formation1 = new Common.Formation();
+            Common.Formation formation2 = new Common.Formation();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MatchStats));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.txtLineUp1 = new System.Windows.Forms.Label();
@@ -46,6 +46,12 @@ namespace TMRecorder
             this.txtOnTarget1 = new System.Windows.Forms.Label();
             this.txtShots2 = new System.Windows.Forms.Label();
             this.txtOnTarget2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblRouAvg2 = new System.Windows.Forms.Label();
+            this.lblRouAvg1 = new System.Windows.Forms.Label();
+            this.lblRecAvg1 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.lblRecAvg2 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.oppsTeamLineup = new FieldFormationControl.LineupListItem();
@@ -64,10 +70,10 @@ namespace TMRecorder
             this.lblHeating = new System.Windows.Forms.Label();
             this.lblPitchCondition = new System.Windows.Forms.Label();
             this.lblPitchCover = new System.Windows.Forms.Label();
-            this.weatherImgList = new System.Windows.Forms.ImageList(this.components);
             this.panel3 = new System.Windows.Forms.Panel();
             this.pictWeather = new System.Windows.Forms.PictureBox();
             this.lblWeather = new System.Windows.Forms.Label();
+            this.weatherImgList = new System.Windows.Forms.ImageList(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -96,15 +102,25 @@ namespace TMRecorder
             this.tableLayoutPanel1.Controls.Add(this.txtOnTarget1, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.txtShots2, 2, 3);
             this.tableLayoutPanel1.Controls.Add(this.txtOnTarget2, 2, 4);
+            this.tableLayoutPanel1.Controls.Add(this.label3, 1, 6);
+            this.tableLayoutPanel1.Controls.Add(this.lblRouAvg2, 2, 6);
+            this.tableLayoutPanel1.Controls.Add(this.lblRouAvg1, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.lblRecAvg1, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.label16, 1, 5);
+            this.tableLayoutPanel1.Controls.Add(this.lblRecAvg2, 2, 5);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(87, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 5;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowCount = 9;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(214, 277);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
@@ -114,9 +130,9 @@ namespace TMRecorder
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtLineUp1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtLineUp1.ForeColor = System.Drawing.Color.DarkBlue;
-            this.txtLineUp1.Location = new System.Drawing.Point(3, 20);
+            this.txtLineUp1.Location = new System.Drawing.Point(3, 18);
             this.txtLineUp1.Name = "txtLineUp1";
-            this.txtLineUp1.Size = new System.Drawing.Size(43, 20);
+            this.txtLineUp1.Size = new System.Drawing.Size(43, 18);
             this.txtLineUp1.TabIndex = 3;
             this.txtLineUp1.Text = "0-0-0";
             this.txtLineUp1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -127,7 +143,7 @@ namespace TMRecorder
             this.label4.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.label4.Location = new System.Drawing.Point(52, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(109, 20);
+            this.label4.Size = new System.Drawing.Size(109, 18);
             this.label4.TabIndex = 2;
             this.label4.Text = "Match Stats";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -136,9 +152,9 @@ namespace TMRecorder
             // 
             this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
             this.label5.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.label5.Location = new System.Drawing.Point(52, 20);
+            this.label5.Location = new System.Drawing.Point(52, 18);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(109, 20);
+            this.label5.Size = new System.Drawing.Size(109, 18);
             this.label5.TabIndex = 2;
             this.label5.Text = "Line Up";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -149,9 +165,9 @@ namespace TMRecorder
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtLineUp2.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtLineUp2.ForeColor = System.Drawing.Color.DarkBlue;
-            this.txtLineUp2.Location = new System.Drawing.Point(167, 20);
+            this.txtLineUp2.Location = new System.Drawing.Point(167, 18);
             this.txtLineUp2.Name = "txtLineUp2";
-            this.txtLineUp2.Size = new System.Drawing.Size(44, 20);
+            this.txtLineUp2.Size = new System.Drawing.Size(44, 18);
             this.txtLineUp2.TabIndex = 3;
             this.txtLineUp2.Text = "0-0-0";
             this.txtLineUp2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -160,9 +176,9 @@ namespace TMRecorder
             // 
             this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
             this.label6.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.label6.Location = new System.Drawing.Point(52, 40);
+            this.label6.Location = new System.Drawing.Point(52, 36);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(109, 20);
+            this.label6.Size = new System.Drawing.Size(109, 18);
             this.label6.TabIndex = 4;
             this.label6.Text = "Possession";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -171,9 +187,9 @@ namespace TMRecorder
             // 
             this.label8.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
             this.label8.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.label8.Location = new System.Drawing.Point(52, 60);
+            this.label8.Location = new System.Drawing.Point(52, 54);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(109, 20);
+            this.label8.Size = new System.Drawing.Size(109, 18);
             this.label8.TabIndex = 5;
             this.label8.Text = "Shots";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -182,9 +198,9 @@ namespace TMRecorder
             // 
             this.label11.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
             this.label11.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.label11.Location = new System.Drawing.Point(52, 80);
+            this.label11.Location = new System.Drawing.Point(52, 72);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(109, 20);
+            this.label11.Size = new System.Drawing.Size(109, 18);
             this.label11.TabIndex = 6;
             this.label11.Text = "On Target";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -195,9 +211,9 @@ namespace TMRecorder
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPossession1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtPossession1.ForeColor = System.Drawing.Color.DarkBlue;
-            this.txtPossession1.Location = new System.Drawing.Point(3, 40);
+            this.txtPossession1.Location = new System.Drawing.Point(3, 36);
             this.txtPossession1.Name = "txtPossession1";
-            this.txtPossession1.Size = new System.Drawing.Size(43, 20);
+            this.txtPossession1.Size = new System.Drawing.Size(43, 18);
             this.txtPossession1.TabIndex = 3;
             this.txtPossession1.Text = "0%";
             this.txtPossession1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -208,9 +224,9 @@ namespace TMRecorder
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPossession2.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtPossession2.ForeColor = System.Drawing.Color.DarkBlue;
-            this.txtPossession2.Location = new System.Drawing.Point(167, 40);
+            this.txtPossession2.Location = new System.Drawing.Point(167, 36);
             this.txtPossession2.Name = "txtPossession2";
-            this.txtPossession2.Size = new System.Drawing.Size(44, 20);
+            this.txtPossession2.Size = new System.Drawing.Size(44, 18);
             this.txtPossession2.TabIndex = 3;
             this.txtPossession2.Text = "0%";
             this.txtPossession2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -221,9 +237,9 @@ namespace TMRecorder
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtShots1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtShots1.ForeColor = System.Drawing.Color.DarkBlue;
-            this.txtShots1.Location = new System.Drawing.Point(3, 60);
+            this.txtShots1.Location = new System.Drawing.Point(3, 54);
             this.txtShots1.Name = "txtShots1";
-            this.txtShots1.Size = new System.Drawing.Size(43, 20);
+            this.txtShots1.Size = new System.Drawing.Size(43, 18);
             this.txtShots1.TabIndex = 3;
             this.txtShots1.Text = "0";
             this.txtShots1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -234,9 +250,9 @@ namespace TMRecorder
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtOnTarget1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtOnTarget1.ForeColor = System.Drawing.Color.DarkBlue;
-            this.txtOnTarget1.Location = new System.Drawing.Point(3, 80);
+            this.txtOnTarget1.Location = new System.Drawing.Point(3, 72);
             this.txtOnTarget1.Name = "txtOnTarget1";
-            this.txtOnTarget1.Size = new System.Drawing.Size(43, 20);
+            this.txtOnTarget1.Size = new System.Drawing.Size(43, 18);
             this.txtOnTarget1.TabIndex = 3;
             this.txtOnTarget1.Text = "0";
             this.txtOnTarget1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -247,9 +263,9 @@ namespace TMRecorder
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtShots2.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtShots2.ForeColor = System.Drawing.Color.DarkBlue;
-            this.txtShots2.Location = new System.Drawing.Point(167, 60);
+            this.txtShots2.Location = new System.Drawing.Point(167, 54);
             this.txtShots2.Name = "txtShots2";
-            this.txtShots2.Size = new System.Drawing.Size(44, 20);
+            this.txtShots2.Size = new System.Drawing.Size(44, 18);
             this.txtShots2.TabIndex = 3;
             this.txtShots2.Text = "0";
             this.txtShots2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -260,12 +276,86 @@ namespace TMRecorder
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtOnTarget2.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtOnTarget2.ForeColor = System.Drawing.Color.DarkBlue;
-            this.txtOnTarget2.Location = new System.Drawing.Point(167, 80);
+            this.txtOnTarget2.Location = new System.Drawing.Point(167, 72);
             this.txtOnTarget2.Name = "txtOnTarget2";
-            this.txtOnTarget2.Size = new System.Drawing.Size(44, 20);
+            this.txtOnTarget2.Size = new System.Drawing.Size(44, 18);
             this.txtOnTarget2.TabIndex = 3;
             this.txtOnTarget2.Text = "0";
             this.txtOnTarget2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label3
+            // 
+            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
+            this.label3.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.label3.Location = new System.Drawing.Point(52, 108);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(109, 18);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Routine Avg.";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblRouAvg2
+            // 
+            this.lblRouAvg2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblRouAvg2.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.lblRouAvg2.ForeColor = System.Drawing.Color.DarkBlue;
+            this.lblRouAvg2.Location = new System.Drawing.Point(167, 108);
+            this.lblRouAvg2.Name = "lblRouAvg2";
+            this.lblRouAvg2.Size = new System.Drawing.Size(44, 18);
+            this.lblRouAvg2.TabIndex = 3;
+            this.lblRouAvg2.Text = "0";
+            this.lblRouAvg2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblRouAvg1
+            // 
+            this.lblRouAvg1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblRouAvg1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.lblRouAvg1.ForeColor = System.Drawing.Color.DarkBlue;
+            this.lblRouAvg1.Location = new System.Drawing.Point(3, 108);
+            this.lblRouAvg1.Name = "lblRouAvg1";
+            this.lblRouAvg1.Size = new System.Drawing.Size(43, 18);
+            this.lblRouAvg1.TabIndex = 3;
+            this.lblRouAvg1.Text = "0";
+            this.lblRouAvg1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblRecAvg1
+            // 
+            this.lblRecAvg1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblRecAvg1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.lblRecAvg1.ForeColor = System.Drawing.Color.DarkBlue;
+            this.lblRecAvg1.Location = new System.Drawing.Point(3, 90);
+            this.lblRecAvg1.Name = "lblRecAvg1";
+            this.lblRecAvg1.Size = new System.Drawing.Size(43, 18);
+            this.lblRecAvg1.TabIndex = 3;
+            this.lblRecAvg1.Text = "0";
+            this.lblRecAvg1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label16
+            // 
+            this.label16.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
+            this.label16.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.label16.Location = new System.Drawing.Point(52, 90);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(109, 18);
+            this.label16.TabIndex = 6;
+            this.label16.Text = "Rec Avg.";
+            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblRecAvg2
+            // 
+            this.lblRecAvg2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblRecAvg2.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.lblRecAvg2.ForeColor = System.Drawing.Color.DarkBlue;
+            this.lblRecAvg2.Location = new System.Drawing.Point(167, 90);
+            this.lblRecAvg2.Name = "lblRecAvg2";
+            this.lblRecAvg2.Size = new System.Drawing.Size(44, 18);
+            this.lblRecAvg2.TabIndex = 3;
+            this.lblRecAvg2.Text = "0";
+            this.lblRecAvg2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tableLayoutPanel2
             // 
@@ -302,10 +392,10 @@ namespace TMRecorder
             // 
             this.oppsTeamLineup.BackColor = System.Drawing.Color.DarkGreen;
             this.oppsTeamLineup.DrawMode = FieldFormationControl.LineupListItem.eDrawMode.ColorByPosition;
-            formation3.ShowValue = false;
-            formation3.TeamColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            formation3.Type = Common.eFormationTypes.Type_4_4_2;
-            this.oppsTeamLineup.formation = formation3;
+            formation1.ShowValue = false;
+            formation1.TeamColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            formation1.Type = Common.eFormationTypes.Type_4_4_2;
+            this.oppsTeamLineup.formation = formation1;
             this.oppsTeamLineup.IsSelected = false;
             this.oppsTeamLineup.Location = new System.Drawing.Point(2, 24);
             this.oppsTeamLineup.Name = "oppsTeamLineup";
@@ -325,10 +415,10 @@ namespace TMRecorder
             // 
             this.yourTeamLineup.BackColor = System.Drawing.Color.DarkGreen;
             this.yourTeamLineup.DrawMode = FieldFormationControl.LineupListItem.eDrawMode.ColorByPosition;
-            formation4.ShowValue = false;
-            formation4.TeamColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            formation4.Type = Common.eFormationTypes.Type_4_4_2;
-            this.yourTeamLineup.formation = formation4;
+            formation2.ShowValue = false;
+            formation2.TeamColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            formation2.Type = Common.eFormationTypes.Type_4_4_2;
+            this.yourTeamLineup.formation = formation2;
             this.yourTeamLineup.IsSelected = false;
             this.yourTeamLineup.Location = new System.Drawing.Point(2, 24);
             this.yourTeamLineup.Name = "yourTeamLineup";
@@ -358,13 +448,13 @@ namespace TMRecorder
             this.tableLayoutPanel3.Location = new System.Drawing.Point(391, 3);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 7;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(194, 277);
             this.tableLayoutPanel3.TabIndex = 4;
             // 
@@ -374,7 +464,7 @@ namespace TMRecorder
             this.label1.ForeColor = System.Drawing.Color.OliveDrab;
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(74, 20);
+            this.label1.Size = new System.Drawing.Size(74, 18);
             this.label1.TabIndex = 2;
             this.label1.Text = "Pitch";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -383,9 +473,9 @@ namespace TMRecorder
             // 
             this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
             this.label2.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.label2.Location = new System.Drawing.Point(3, 20);
+            this.label2.Location = new System.Drawing.Point(3, 18);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(74, 20);
+            this.label2.Size = new System.Drawing.Size(74, 18);
             this.label2.TabIndex = 2;
             this.label2.Text = "Sprinklers";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -396,9 +486,9 @@ namespace TMRecorder
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSprinklers.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lblSprinklers.ForeColor = System.Drawing.Color.DarkOliveGreen;
-            this.lblSprinklers.Location = new System.Drawing.Point(83, 20);
+            this.lblSprinklers.Location = new System.Drawing.Point(83, 18);
             this.lblSprinklers.Name = "lblSprinklers";
-            this.lblSprinklers.Size = new System.Drawing.Size(108, 20);
+            this.lblSprinklers.Size = new System.Drawing.Size(108, 18);
             this.lblSprinklers.TabIndex = 3;
             this.lblSprinklers.Text = "No";
             this.lblSprinklers.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -407,9 +497,9 @@ namespace TMRecorder
             // 
             this.label7.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
             this.label7.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.label7.Location = new System.Drawing.Point(3, 40);
+            this.label7.Location = new System.Drawing.Point(3, 36);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(74, 20);
+            this.label7.Size = new System.Drawing.Size(74, 18);
             this.label7.TabIndex = 2;
             this.label7.Text = "Draining";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -418,9 +508,9 @@ namespace TMRecorder
             // 
             this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
             this.label9.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.label9.Location = new System.Drawing.Point(3, 60);
+            this.label9.Location = new System.Drawing.Point(3, 54);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(74, 20);
+            this.label9.Size = new System.Drawing.Size(74, 18);
             this.label9.TabIndex = 2;
             this.label9.Text = "Heating";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -429,9 +519,9 @@ namespace TMRecorder
             // 
             this.label10.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
             this.label10.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.label10.Location = new System.Drawing.Point(3, 80);
+            this.label10.Location = new System.Drawing.Point(3, 72);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(74, 20);
+            this.label10.Size = new System.Drawing.Size(74, 18);
             this.label10.TabIndex = 2;
             this.label10.Text = "Pitch Condition";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -440,9 +530,9 @@ namespace TMRecorder
             // 
             this.label12.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
             this.label12.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.label12.Location = new System.Drawing.Point(3, 100);
+            this.label12.Location = new System.Drawing.Point(3, 90);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(74, 20);
+            this.label12.Size = new System.Drawing.Size(74, 18);
             this.label12.TabIndex = 2;
             this.label12.Text = "Pitch Cover";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -451,7 +541,7 @@ namespace TMRecorder
             // 
             this.label13.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
             this.label13.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.label13.Location = new System.Drawing.Point(3, 120);
+            this.label13.Location = new System.Drawing.Point(3, 108);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(74, 20);
             this.label13.TabIndex = 2;
@@ -464,9 +554,9 @@ namespace TMRecorder
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDraining.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lblDraining.ForeColor = System.Drawing.Color.DarkOliveGreen;
-            this.lblDraining.Location = new System.Drawing.Point(83, 40);
+            this.lblDraining.Location = new System.Drawing.Point(83, 36);
             this.lblDraining.Name = "lblDraining";
-            this.lblDraining.Size = new System.Drawing.Size(108, 20);
+            this.lblDraining.Size = new System.Drawing.Size(108, 18);
             this.lblDraining.TabIndex = 3;
             this.lblDraining.Text = "No";
             this.lblDraining.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -477,9 +567,9 @@ namespace TMRecorder
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblHeating.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lblHeating.ForeColor = System.Drawing.Color.DarkOliveGreen;
-            this.lblHeating.Location = new System.Drawing.Point(83, 60);
+            this.lblHeating.Location = new System.Drawing.Point(83, 54);
             this.lblHeating.Name = "lblHeating";
-            this.lblHeating.Size = new System.Drawing.Size(108, 20);
+            this.lblHeating.Size = new System.Drawing.Size(108, 18);
             this.lblHeating.TabIndex = 3;
             this.lblHeating.Text = "No";
             this.lblHeating.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -490,9 +580,9 @@ namespace TMRecorder
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblPitchCondition.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lblPitchCondition.ForeColor = System.Drawing.Color.DarkOliveGreen;
-            this.lblPitchCondition.Location = new System.Drawing.Point(83, 80);
+            this.lblPitchCondition.Location = new System.Drawing.Point(83, 72);
             this.lblPitchCondition.Name = "lblPitchCondition";
-            this.lblPitchCondition.Size = new System.Drawing.Size(108, 20);
+            this.lblPitchCondition.Size = new System.Drawing.Size(108, 18);
             this.lblPitchCondition.TabIndex = 3;
             this.lblPitchCondition.Text = "82%";
             this.lblPitchCondition.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -503,38 +593,18 @@ namespace TMRecorder
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblPitchCover.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lblPitchCover.ForeColor = System.Drawing.Color.DarkOliveGreen;
-            this.lblPitchCover.Location = new System.Drawing.Point(83, 100);
+            this.lblPitchCover.Location = new System.Drawing.Point(83, 90);
             this.lblPitchCover.Name = "lblPitchCover";
-            this.lblPitchCover.Size = new System.Drawing.Size(108, 20);
+            this.lblPitchCover.Size = new System.Drawing.Size(108, 18);
             this.lblPitchCover.TabIndex = 3;
             this.lblPitchCover.Text = "Yes";
             this.lblPitchCover.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // weatherImgList
-            // 
-            this.weatherImgList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("weatherImgList.ImageStream")));
-            this.weatherImgList.TransparentColor = System.Drawing.Color.Transparent;
-            this.weatherImgList.Images.SetKeyName(0, "cloudy1.png");
-            this.weatherImgList.Images.SetKeyName(1, "cloudy2.png");
-            this.weatherImgList.Images.SetKeyName(2, "cloudy3.png");
-            this.weatherImgList.Images.SetKeyName(3, "cloudy4.png");
-            this.weatherImgList.Images.SetKeyName(4, "cloudy5.png");
-            this.weatherImgList.Images.SetKeyName(5, "rainy1.png");
-            this.weatherImgList.Images.SetKeyName(6, "rainy2.png");
-            this.weatherImgList.Images.SetKeyName(7, "rainy3.png");
-            this.weatherImgList.Images.SetKeyName(8, "rainy4.png");
-            this.weatherImgList.Images.SetKeyName(9, "rainy5.png");
-            this.weatherImgList.Images.SetKeyName(10, "sunny1.png");
-            this.weatherImgList.Images.SetKeyName(11, "sunny2.png");
-            this.weatherImgList.Images.SetKeyName(12, "sunny3.png");
-            this.weatherImgList.Images.SetKeyName(13, "sunny4.png");
-            this.weatherImgList.Images.SetKeyName(14, "sunny5.png");
             // 
             // panel3
             // 
             this.panel3.Controls.Add(this.pictWeather);
             this.panel3.Controls.Add(this.lblWeather);
-            this.panel3.Location = new System.Drawing.Point(83, 123);
+            this.panel3.Location = new System.Drawing.Point(83, 111);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(108, 41);
             this.panel3.TabIndex = 4;
@@ -560,6 +630,26 @@ namespace TMRecorder
             this.lblWeather.TabIndex = 3;
             this.lblWeather.Text = "Yes";
             this.lblWeather.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // weatherImgList
+            // 
+            this.weatherImgList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("weatherImgList.ImageStream")));
+            this.weatherImgList.TransparentColor = System.Drawing.Color.Transparent;
+            this.weatherImgList.Images.SetKeyName(0, "cloudy1.png");
+            this.weatherImgList.Images.SetKeyName(1, "cloudy2.png");
+            this.weatherImgList.Images.SetKeyName(2, "cloudy3.png");
+            this.weatherImgList.Images.SetKeyName(3, "cloudy4.png");
+            this.weatherImgList.Images.SetKeyName(4, "cloudy5.png");
+            this.weatherImgList.Images.SetKeyName(5, "rainy1.png");
+            this.weatherImgList.Images.SetKeyName(6, "rainy2.png");
+            this.weatherImgList.Images.SetKeyName(7, "rainy3.png");
+            this.weatherImgList.Images.SetKeyName(8, "rainy4.png");
+            this.weatherImgList.Images.SetKeyName(9, "rainy5.png");
+            this.weatherImgList.Images.SetKeyName(10, "sunny1.png");
+            this.weatherImgList.Images.SetKeyName(11, "sunny2.png");
+            this.weatherImgList.Images.SetKeyName(12, "sunny3.png");
+            this.weatherImgList.Images.SetKeyName(13, "sunny4.png");
+            this.weatherImgList.Images.SetKeyName(14, "sunny5.png");
             // 
             // MatchStats
             // 
@@ -617,5 +707,11 @@ namespace TMRecorder
         private System.Windows.Forms.PictureBox pictWeather;
         private System.Windows.Forms.Label lblWeather;
         private System.Windows.Forms.ImageList weatherImgList;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblRouAvg2;
+        private System.Windows.Forms.Label lblRouAvg1;
+        private System.Windows.Forms.Label lblRecAvg1;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label lblRecAvg2;
     }
 }

@@ -132,6 +132,16 @@ namespace NTR_Controls
             {
                 if (item.Key == "Text") continue;
 
+                if ((item.Key == "SMin") || (item.Key == "IMin") || (item.Key == "RMin") || (item.Key == "GMin"))
+                {
+                    string min = item.Value;
+                    Font font = new Font(cellStyle.Font.FontFamily, 6f);
+                    graphics.DrawString(min, font, fbr, pt2);
+                    SizeF szf2 = graphics.MeasureString(min, font);
+                    pt2.X += (int)szf2.Width;
+                    continue;
+                }
+
                 int ix = dgc.ImgList.Images.IndexOfKey(item.Key + ".png");
                 if (ix != -1) image = dgc.ImgList.Images[ix];
 
@@ -184,6 +194,12 @@ namespace NTR_Controls
             foreach (var item in dict)
             {
                 if (item.Key == "Text") continue;
+                if ((item.Key == "SMin") || (item.Key == "IMin") || (item.Key == "RMin") || (item.Key == "GMin"))
+                {
+                    formattedString += "   ";
+                    continue;
+                }
+
                 for (int j = 0; j < int.Parse(item.Value); j++)
                     formattedString += "   ";
             }

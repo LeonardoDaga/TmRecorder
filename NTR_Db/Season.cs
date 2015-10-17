@@ -58,6 +58,8 @@ namespace NTR_Db
             }
         }
 
+        public bool AutoconvertActions { get; set; }
+
         public List<PlayerStats> GetPlayerStatsListByTeam(int season, int teamId, int matchType)
         {
             DateTime dtStart, dtEnd;
@@ -437,6 +439,14 @@ namespace NTR_Db
             yTeamRow.Color = YTeamColor;
 
             Invalidate();
+        }
+
+        public void LoadActionDecoder5(ref SplashForm sf, string actionDecoderFilePath)
+        {
+            sf.UpdateStatusMessage(95, string.Format("Loading Action Decoder Datafile..."));
+            FileInfo fi = new FileInfo(actionDecoderFilePath);
+            if (fi.Exists)
+                seasonsDB.ActionsDecoder.ReadXml(fi.FullName);
         }
 
         public List<NTR_SquadDb.ActionsRow> GetMatchActions(int matchID)
@@ -1075,8 +1085,9 @@ namespace NTR_Db
                 List<int> asstPlayers = new List<int>();
                 List<int> stpcPlayers = new List<int>();
                 List<int> yelcPlayers = new List<int>();
-                List<int> redcPlayers = new List<int>();
-                List<int> injrPlayers = new List<int>();
+                List<PlayerOut> redcPlayers = new List<PlayerOut>();
+                List<PlayerOut> injrPlayers = new List<PlayerOut>();
+                List<Substitution> subsPlayers = new List<Substitution>();
 
                 ActionsList yourActionsList = new ActionsList();
                 ActionsList oppsActionsList = new ActionsList();
@@ -1158,7 +1169,12 @@ namespace NTR_Db
                         actionDecoderDlg.Description = description;
                         actionDecoderDlg.FullDescription = atr.FullDesc;
 
-                        if (actionDecoderDlg.ShowDialog() == DialogResult.Cancel)
+                        if (this.AutoconvertActions)
+                        {
+                            actionDecoderDlg.LoadControls();
+                            actionDecoderDlg.ConvertSelection();
+                        }
+                        else if(actionDecoderDlg.ShowDialog() == DialogResult.Cancel)
                         {
                             if (MessageBox.Show("Do you want to continue with the next action [press OK] or cancel [press Cancel] the analysis of the actions at all for this match?", "Actions analysis", MessageBoxButtons.OKCancel) == DialogResult.OK)
                                 continue;
@@ -1196,7 +1212,23 @@ namespace NTR_Db
 
                     if (items.ContainsKey("injury"))
                     {
-                        injrPlayers.Add(int.Parse(items["injury"]));
+                        injrPlayers.Add(new PlayerOut()
+                        {
+                            player = int.Parse(items["injury"]),
+                            minute = int.Parse(items["min"])
+                        });
+
+                        string[] sub_out = items["sub_out"].Split(",(=".ToCharArray());
+                        if (sub_out[2] == "undefined")
+                            continue;
+
+                        subsPlayers.Add(new Substitution()
+                        {
+                            inPlayer = int.Parse(sub_out[2]),
+                            outPlayer = int.Parse(sub_out[0]),
+                            minute = int.Parse(items["min"]),
+                            newPos = sub_out[4]
+                        });
                     }
                     else if (items.ContainsKey("scorer"))
                     {
@@ -1241,7 +1273,11 @@ namespace NTR_Db
                     {
                         yelcPlayers.Add(int.Parse(items["yellow_red"]));
                         if (isHome) awayYellow++; else homeYellow++;
-                        redcPlayers.Add(int.Parse(items["yellow_red"]));
+                        redcPlayers.Add(new PlayerOut()
+                        {
+                            player = int.Parse(items["yellow_red"]),
+                            minute = int.Parse(items["min"])
+                        });
                         if (isHome) awayRed++; else homeRed++;
                     }
                     else if (items.ContainsKey("yellow"))
@@ -1251,14 +1287,42 @@ namespace NTR_Db
                     }
                     else if (items.ContainsKey("red"))
                     {
-                        redcPlayers.Add(int.Parse(items["red"]));
+                        redcPlayers.Add(new PlayerOut()
+                        {
+                            player = int.Parse(items["red"]),
+                            minute = int.Parse(items["min"])
+                        });
                         if (isHome) awayRed++; else homeRed++;
+                    }
+                    else if (items.ContainsKey("sub_out"))
+                    {
+                        string[] sub_out = items["sub_out"].Split(",(=".ToCharArray());
+                        subsPlayers.Add(new Substitution()
+                        {
+                            inPlayer = int.Parse(sub_out[2]),
+                            outPlayer = int.Parse(sub_out[0]),
+                            minute = int.Parse(items["min"]),
+                            newPos = sub_out[4]
+                        });
                     }
                     else
                     {
                         if (isHome) awayDef++; else homeDef++;
                     }
                 }
+
+                if (match_info.ContainsKey("last_min"))
+                    matchRow.LastMin = int.Parse(match_info["last_min"]);
+                else
+                {
+                    string min_mod = mins.Last().Replace("action=(", "").Replace(")(", ";").Replace(")", "");
+                    Dictionary<string, string> items = HTML_Parser.CreateDictionary(min_mod, ';');
+
+                    matchRow.LastMin = int.Parse(items["min"]);
+                }
+
+                if (matchRow.LastMin < 90)
+                    matchRow.LastMin = 90;
 
                 matchRow.Score = homeGoal.ToString() + "-" + awayGoal.ToString();
 
@@ -1346,10 +1410,10 @@ namespace NTR_Db
                 }
 
                 // Assegna gli infortuni
-                foreach (int gp in injrPlayers)
+                foreach (PlayerOut gp in injrPlayers)
                 {
-                    NTR_SquadDb.PlayerPerfRow ppr = seasonsDB.PlayerPerf.FindByMatchIDPlayerID(matchId, gp);
-                    if (ppr != null) { ppr.Status += "I"; continue; }
+                    NTR_SquadDb.PlayerPerfRow ppr = seasonsDB.PlayerPerf.FindByMatchIDPlayerID(matchId, gp.player);
+                    if (ppr != null) { ppr.Status += string.Format("I<{0}", gp.minute); continue; }
                 }
 
                 // Assegna i gialli
@@ -1360,10 +1424,19 @@ namespace NTR_Db
                 }
 
                 // Assegna i rossi
-                foreach (int gp in redcPlayers)
+                foreach (PlayerOut gp in redcPlayers)
                 {
-                    NTR_SquadDb.PlayerPerfRow ppr = seasonsDB.PlayerPerf.FindByMatchIDPlayerID(matchId, gp);
-                    if (ppr != null) { ppr.Status += "R"; continue; }
+                    NTR_SquadDb.PlayerPerfRow ppr = seasonsDB.PlayerPerf.FindByMatchIDPlayerID(matchId, gp.player);
+                    if (ppr != null) { ppr.Status += string.Format("R<{0}", gp.minute); continue; }
+                }
+
+                // Assegna le sostituzioni
+                foreach (Substitution subs in subsPlayers)
+                {
+                    NTR_SquadDb.PlayerPerfRow ippr = seasonsDB.PlayerPerf.FindByMatchIDPlayerID(matchId, subs.inPlayer);
+                    if (ippr != null) { ippr.Status += string.Format("S>{0}", subs.minute); }
+                    NTR_SquadDb.PlayerPerfRow oppr = seasonsDB.PlayerPerf.FindByMatchIDPlayerID(matchId, subs.outPlayer);
+                    if (oppr != null) { oppr.Status += string.Format("S<{0}", subs.minute); }
                 }
 
                 if (matchRow.isHome)
@@ -1465,6 +1538,20 @@ namespace NTR_Db
                     this.Injuries += 1;
                 }
             }
+        }
+
+        public class Substitution
+        {
+            public int outPlayer;
+            public int inPlayer;
+            public int minute;
+            public string newPos;
+        }
+
+        public class PlayerOut
+        {
+            public int minute;
+            public int player;
         }
 
         /*

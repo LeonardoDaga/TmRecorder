@@ -379,6 +379,9 @@ namespace TMRecorder
             string dirPath = Program.Setts.DefaultDirectory;
             DirectoryInfo di = new DirectoryInfo(dirPath);
 
+            if (!di.Exists)
+                di.Create();
+
             FileInfo[] fis = di.GetFiles("*.5.xml");
 
             AllSeasons.SetOwnedTeam(Program.Setts.MainSquadID, Program.Setts.MainSquadName);

@@ -63,7 +63,9 @@ namespace NTR_Db
 
                     foreach (var row in selectedSeasonActions)
                     {
-                        histTable.AddHistDataRow(row);
+                        HistDataRow hrow = histTable.NewHistDataRow();
+                        hrow.ItemArray = row.ItemArray;
+                        histTable.AddHistDataRow(hrow);
                     }
 
                     FileInfo fi = new FileInfo(Path.Combine(dirPath, string.Format("HistData-Season{0}.5.xml", seasons)));

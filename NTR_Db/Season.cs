@@ -314,9 +314,15 @@ namespace NTR_Db
 
             int matchID = int.Parse(HTML_Parser.GetNumberAfter(fin.FullName, "Match_"));
 
-            NTR_SquadDb.MatchRow mrRow = seasonsDB.Match.FindByMatchID(matchID);
-            int YTeamID = mrRow.YTeamID;
-            int OTeamID = mrRow.OTeamID;
+            NTR_SquadDb.MatchRow matchRow = seasonsDB.Match.FindByMatchID(matchID);
+            int YTeamID = matchRow.YTeamID;
+            int OTeamID = matchRow.OTeamID;
+
+            var playerPerfRows = matchRow.GetPlayerPerfRows();
+            foreach (var playerPerfRow in playerPerfRows)
+            {
+                seasonsDB.PlayerPerf.RemovePlayerPerfRow(playerPerfRow);
+            }
 
             try
             {
@@ -860,6 +866,12 @@ namespace NTR_Db
                 matchRow = seasonsDB.Match.NewMatchRow();
                 matchRow.MatchID = matchId;
                 seasonsDB.Match.AddMatchRow(matchRow);
+            }
+
+            var playerPerfRows = matchRow.GetPlayerPerfRows();
+            foreach(var playerPerfRow in playerPerfRows)
+            {
+                seasonsDB.PlayerPerf.RemovePlayerPerfRow(playerPerfRow);
             }
 
             try

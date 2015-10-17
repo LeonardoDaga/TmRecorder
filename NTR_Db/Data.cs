@@ -261,9 +261,9 @@ namespace NTR_Db
 
             int matchID = int.Parse(HTML_Parser.GetNumberAfter(fin.FullName, "Match_"));
 
-            NTR_SquadDb.MatchRow mrRow = squadDB.Match.FindByMatchID(matchID);
-            int YTeamID = mrRow.YTeamID;
-            int OTeamID = mrRow.OTeamID;
+            NTR_SquadDb.MatchRow matchRow = squadDB.Match.FindByMatchID(matchID);
+            int YTeamID = matchRow.YTeamID;
+            int OTeamID = matchRow.OTeamID;
 
             try
             {

@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using NTR_Common;
 using Common;
+using System.Diagnostics;
 
 namespace NTR_Common
 {
@@ -437,6 +438,14 @@ namespace NTR_Common
         private void NTR_PlayerData_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void linkLabel1_DoubleClick(object sender, EventArgs e)
+        {
+            string arg = "http://trophymanager.com/club/2925434/";
+
+            ProcessStartInfo startInfo = new ProcessStartInfo(arg);
+            Process.Start(startInfo);
         }
     }
 }

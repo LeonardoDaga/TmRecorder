@@ -117,6 +117,7 @@ namespace NTR_Common
             this.banImgList = new System.Windows.Forms.ImageList(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.pctTeamB = new System.Windows.Forms.PictureBox();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pictFlag)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pctInj)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pctBan)).BeginInit();
@@ -1269,11 +1270,25 @@ namespace NTR_Common
             this.pctTeamB.TabIndex = 52;
             this.pctTeamB.TabStop = false;
             // 
+            // linkLabel1
+            // 
+            this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabel1.Location = new System.Drawing.Point(137, 295);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(109, 12);
+            this.linkLabel1.TabIndex = 57;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "R2Rating - by VF Tomato";
+            this.linkLabel1.DoubleClick += new System.EventHandler(this.linkLabel1_DoubleClick);
+            // 
             // NTR_PlayerData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
+            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.lblPot);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.lblProfessionalism);
@@ -1331,7 +1346,7 @@ namespace NTR_Common
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
             this.Name = "NTR_PlayerData";
-            this.Size = new System.Drawing.Size(254, 301);
+            this.Size = new System.Drawing.Size(254, 313);
             this.Load += new System.EventHandler(this.NTR_PlayerData_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictFlag)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pctInj)).EndInit();
@@ -1434,5 +1449,6 @@ namespace NTR_Common
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pctTeamB;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }

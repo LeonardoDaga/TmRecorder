@@ -31,10 +31,10 @@ namespace TMRecorder
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PlayerForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabSkills = new System.Windows.Forms.TabPage();
             this.graphSkills = new ZedGraph.ZedGraphControl();
@@ -258,6 +258,7 @@ namespace TMRecorder
             this.dataGridViewTextBoxColumn20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.playerData = new NTR_Common.NTR_PlayerData();
             this.teamDS = new NTR_Common.TeamDS();
+            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.tabControl1.SuspendLayout();
             this.tabSkills.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -334,7 +335,7 @@ namespace TMRecorder
             this.tabControl1.Location = new System.Drawing.Point(257, 28);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(696, 548);
+            this.tabControl1.Size = new System.Drawing.Size(711, 548);
             this.tabControl1.TabIndex = 3;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
@@ -1177,15 +1178,15 @@ namespace TMRecorder
             this.psychologyDataGridViewTextBoxColumn});
             this.dgScouts.DataMember = "Scouts";
             this.dgScouts.DataSource = this.scoutsNReviews;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.NullValue = "-";
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgScouts.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle9.NullValue = "-";
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgScouts.DefaultCellStyle = dataGridViewCellStyle9;
             this.dgScouts.Location = new System.Drawing.Point(6, 29);
             this.dgScouts.Name = "dgScouts";
             this.dgScouts.RowHeadersWidth = 20;
@@ -1289,15 +1290,15 @@ namespace TMRecorder
             this.aggressivityDataGridViewTextBoxColumn});
             this.dgReviews.DataMember = "Review";
             this.dgReviews.DataSource = this.scoutsNReviews;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.NullValue = "-";
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgReviews.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle10.NullValue = "-";
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgReviews.DefaultCellStyle = dataGridViewCellStyle10;
             this.dgReviews.Location = new System.Drawing.Point(6, 191);
             this.dgReviews.Name = "dgReviews";
             this.dgReviews.RowHeadersWidth = 20;
@@ -1872,7 +1873,7 @@ namespace TMRecorder
             this.tabPlayerBrowser.Location = new System.Drawing.Point(4, 22);
             this.tabPlayerBrowser.Name = "tabPlayerBrowser";
             this.tabPlayerBrowser.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPlayerBrowser.Size = new System.Drawing.Size(688, 522);
+            this.tabPlayerBrowser.Size = new System.Drawing.Size(703, 522);
             this.tabPlayerBrowser.TabIndex = 7;
             this.tabPlayerBrowser.Text = "Trophy Browser - Player";
             this.tabPlayerBrowser.UseVisualStyleBackColor = true;
@@ -1886,10 +1887,10 @@ namespace TMRecorder
             // toolStripContainer1.ContentPanel
             // 
             this.toolStripContainer1.ContentPanel.Controls.Add(this.webBrowser);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(688, 497);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(703, 497);
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
             this.toolStripContainer1.Name = "toolStripContainer1";
-            this.toolStripContainer1.Size = new System.Drawing.Size(688, 522);
+            this.toolStripContainer1.Size = new System.Drawing.Size(703, 522);
             this.toolStripContainer1.TabIndex = 1;
             this.toolStripContainer1.Text = "toolStripContainer1";
             // 
@@ -1904,7 +1905,7 @@ namespace TMRecorder
             this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser.Name = "webBrowser";
             this.webBrowser.ScriptErrorsSuppressed = true;
-            this.webBrowser.Size = new System.Drawing.Size(688, 497);
+            this.webBrowser.Size = new System.Drawing.Size(703, 497);
             this.webBrowser.TabIndex = 2;
             this.webBrowser.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser_DocumentCompleted);
             this.webBrowser.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.webBrowser_Navigating);
@@ -1921,10 +1922,11 @@ namespace TMRecorder
             this.toolStripLabel4,
             this.tsbProgressBar,
             this.tsbProgressText,
-            this.tsbImport});
+            this.tsbImport,
+            this.toolStripLabel3});
             this.tsBrowsePlayers.Location = new System.Drawing.Point(3, 0);
             this.tsBrowsePlayers.Name = "tsBrowsePlayers";
-            this.tsBrowsePlayers.Size = new System.Drawing.Size(620, 25);
+            this.tsBrowsePlayers.Size = new System.Drawing.Size(700, 25);
             this.tsBrowsePlayers.TabIndex = 3;
             this.tsBrowsePlayers.Text = "toolStrip2";
             // 
@@ -2031,7 +2033,7 @@ namespace TMRecorder
             this.txtNotes.Name = "txtNotes";
             this.txtNotes.ReadOnly = true;
             this.txtNotes.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtNotes.Size = new System.Drawing.Size(239, 55);
+            this.txtNotes.Size = new System.Drawing.Size(239, 51);
             this.txtNotes.TabIndex = 6;
             this.txtNotes.TextChanged += new System.EventHandler(this.txtNotes_TextChanged);
             // 
@@ -2041,9 +2043,9 @@ namespace TMRecorder
             | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox2.Controls.Add(this.splitContainer1);
             this.groupBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.groupBox2.Location = new System.Drawing.Point(6, 333);
+            this.groupBox2.Location = new System.Drawing.Point(6, 342);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(245, 239);
+            this.groupBox2.Size = new System.Drawing.Size(245, 225);
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Player Info";
@@ -2063,8 +2065,8 @@ namespace TMRecorder
             // 
             this.splitContainer1.Panel2.Controls.Add(this.label5);
             this.splitContainer1.Panel2.Controls.Add(this.txtNotes);
-            this.splitContainer1.Size = new System.Drawing.Size(239, 219);
-            this.splitContainer1.SplitterDistance = 141;
+            this.splitContainer1.Size = new System.Drawing.Size(239, 205);
+            this.splitContainer1.SplitterDistance = 131;
             this.splitContainer1.TabIndex = 10;
             // 
             // dataGridView2
@@ -2089,7 +2091,7 @@ namespace TMRecorder
             this.dataGridView2.RowHeadersWidth = 10;
             this.dataGridView2.RowTemplate.Height = 19;
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(239, 141);
+            this.dataGridView2.Size = new System.Drawing.Size(239, 131);
             this.dataGridView2.TabIndex = 0;
             // 
             // seasonDataGridViewTextBoxColumn
@@ -2150,8 +2152,8 @@ namespace TMRecorder
             // 
             this.ratDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
             this.ratDataGridViewTextBoxColumn.DataPropertyName = "Rat";
-            dataGridViewCellStyle3.Format = "N1";
-            this.ratDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle11.Format = "N1";
+            this.ratDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle11;
             this.ratDataGridViewTextBoxColumn.HeaderText = "Rat";
             this.ratDataGridViewTextBoxColumn.MinimumWidth = 33;
             this.ratDataGridViewTextBoxColumn.Name = "ratDataGridViewTextBoxColumn";
@@ -2194,7 +2196,7 @@ namespace TMRecorder
             this.tsbComputeGrowth});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(953, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(968, 25);
             this.toolStrip1.TabIndex = 10;
             this.toolStrip1.Text = "toolStripMenu";
             // 
@@ -3043,8 +3045,8 @@ namespace TMRecorder
             // 
             this.dataGridViewTextBoxColumn19.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
             this.dataGridViewTextBoxColumn19.DataPropertyName = "Rat";
-            dataGridViewCellStyle4.Format = "N1";
-            this.dataGridViewTextBoxColumn19.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle12.Format = "N1";
+            this.dataGridViewTextBoxColumn19.DefaultCellStyle = dataGridViewCellStyle12;
             this.dataGridViewTextBoxColumn19.HeaderText = "Rat";
             this.dataGridViewTextBoxColumn19.MinimumWidth = 33;
             this.dataGridViewTextBoxColumn19.Name = "dataGridViewTextBoxColumn19";
@@ -3066,7 +3068,7 @@ namespace TMRecorder
             this.playerData.BackColor = System.Drawing.SystemColors.Control;
             this.playerData.Location = new System.Drawing.Point(3, 28);
             this.playerData.Name = "playerData";
-            this.playerData.Size = new System.Drawing.Size(252, 299);
+            this.playerData.Size = new System.Drawing.Size(252, 313);
             this.playerData.TabIndex = 11;
             // 
             // teamDS
@@ -3075,12 +3077,23 @@ namespace TMRecorder
             this.teamDS.last_week_loaded = -1;
             this.teamDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
+            // toolStripLabel3
+            // 
+            this.toolStripLabel3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripLabel3.Font = new System.Drawing.Font("Segoe UI", 7F);
+            this.toolStripLabel3.ForeColor = System.Drawing.Color.Black;
+            this.toolStripLabel3.IsLink = true;
+            this.toolStripLabel3.Name = "toolStripLabel3";
+            this.toolStripLabel3.Size = new System.Drawing.Size(115, 12);
+            this.toolStripLabel3.Text = "R2Rating - by VF Tomato";
+            this.toolStripLabel3.DoubleClick += new System.EventHandler(this.toolStripLabel3_DoubleClick);
+            // 
             // PlayerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(953, 577);
+            this.ClientSize = new System.Drawing.Size(968, 577);
             this.Controls.Add(this.playerData);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.tabControl1);
@@ -3396,5 +3409,6 @@ namespace TMRecorder
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn19;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn20;
         private NTR_Common.TeamDS teamDS;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel3;
     }
 }

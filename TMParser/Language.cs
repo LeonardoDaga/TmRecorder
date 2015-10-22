@@ -16,9 +16,6 @@ namespace TMRecorder
             this.tabBTeamPage.Text = Current.Language.BTeamPlayers;
             this.tabGK.Text = Current.Language.GoalKeepers;
             this.tabInfo.Text = Current.Language.PlayersInfo;
-            this.openPlayersWebPagesToolStripMenuItem.Text = Current.Language.OpenPlayersProfilePages;
-            this.openPlayersToolStripMenuItem.Text = Current.Language.OpenPlayersScoutPages;
-            this.changePlayerPropertiesToolStripMenuItem.Text = Current.Language.ChangePlayerProperties;
             this.tabInfoMain.Text = Current.Language.TeamInfo;
             this.groupBox4.Text = Current.Language.Location;
             this.chkHome.Text = Current.Language.Home;

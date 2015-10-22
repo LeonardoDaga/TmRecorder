@@ -1677,17 +1677,87 @@ namespace TMRecorder
             }
         }
 
-        private void dataGridPlayersInfo_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        // Item selected with double click
+        private void dataGridPlayersInfo_CellDoubleClick(object sender, object o)
         {
-            if (e.RowIndex < 0) return;
+            AeroDataGrid dgGiocatori = null;
 
-            DataGridView dgv = (DataGridView)sender;
-
-            int ID = (int)dgv[0, e.RowIndex].Value;
-
-            if (History.actualDts.GiocatoriNSkill.FindByPlayerID(ID) != null)
+            if (sender.GetType() == typeof(AeroDataGrid))
             {
-                PlayerForm pf = new PlayerForm(History.actualDts.GiocatoriNSkill, History, ID, AllSeasons);
+                dgGiocatori = (AeroDataGrid)sender;
+            }
+            else if (sender.GetType() == typeof(ToolStripMenuItem))
+            {
+                ToolStripMenuItem menuItem = (ToolStripMenuItem)sender;
+                ContextMenuStrip cmStrip = (ContextMenuStrip)menuItem.Owner;
+                dgGiocatori = (AeroDataGrid)cmStrip.SourceControl;
+            }
+
+            if (dgGiocatori == null)
+                return;
+
+            int PlayerID = -1;
+            if (dgGiocatori == dataGridPortieri)
+            {
+                ExtTMDataSet.PortieriNSkillRow selPlayer = null;
+                if (o.GetType() == typeof(DataGridViewCellEventArgs))
+                {
+                    DataGridViewCellEventArgs e = (DataGridViewCellEventArgs)o;
+
+                    DataRowView drv = (DataRowView)dgGiocatori.Rows[e.RowIndex].DataBoundItem;
+                    selPlayer = (ExtTMDataSet.PortieriNSkillRow)drv.Row;
+                }
+                else if (o.GetType() == typeof(EventArgs))
+                {
+                    DataRowView drv = (DataRowView)dgGiocatori.SelectedRows[0].DataBoundItem;
+                    selPlayer = (ExtTMDataSet.PortieriNSkillRow)drv.Row;
+                }
+
+                PlayerID = selPlayer.PlayerID;
+            }
+            else
+            {
+                if (o.GetType() == typeof(DataGridViewCellEventArgs))
+                {
+                    DataGridViewCellEventArgs e = (DataGridViewCellEventArgs)o;
+
+                    if (dgGiocatori.Rows[e.RowIndex].DataBoundItem.GetType() == typeof(DataRowView))
+                    {
+                        DataRowView drv = (DataRowView)dgGiocatori.Rows[e.RowIndex].DataBoundItem;
+                        ExtraDS.GiocatoriRow selPlayer = (ExtraDS.GiocatoriRow)drv.Row;
+                        PlayerID = selPlayer.PlayerID;
+                    }
+                    else
+                    {
+                        ExtTMDataSet.GiocatoriNSkillRow selPlayer = (ExtTMDataSet.GiocatoriNSkillRow)dgGiocatori.Rows[e.RowIndex].DataBoundItem;
+                        PlayerID = selPlayer.PlayerID;
+                    }
+                }
+                else if (o.GetType() == typeof(EventArgs))
+                {
+                    if (dgGiocatori.SelectedRows[0].DataBoundItem.GetType() == typeof(DataRowView))
+                    {
+                        DataRowView drv = (DataRowView)dgGiocatori.SelectedRows[0].DataBoundItem;
+                        ExtraDS.GiocatoriRow selPlayer = (ExtraDS.GiocatoriRow)drv.Row;
+                        PlayerID = selPlayer.PlayerID;
+                    }
+                    else
+                    {
+                        ExtTMDataSet.GiocatoriNSkillRow selPlayer = (ExtTMDataSet.GiocatoriNSkillRow)dgGiocatori.SelectedRows[0].DataBoundItem;
+                        PlayerID = selPlayer.PlayerID;
+                    }
+                }
+            }
+
+            OpenPlayerInfoDialog(PlayerID);
+        }
+
+        // Item selected with double click
+        private void OpenPlayerInfoDialog(int playerID)
+        {
+            if (History.actualDts.GiocatoriNSkill.FindByPlayerID(playerID) != null)
+            {
+                PlayerForm pf = new PlayerForm(History.actualDts.GiocatoriNSkill, History, playerID, AllSeasons);
 
                 pf.ShowDialog();
 
@@ -1697,7 +1767,7 @@ namespace TMRecorder
             }
             else
             {
-                GKForm pf = new GKForm(History.actualDts.PortieriNSkill, History, ID, AllSeasons);
+                GKForm pf = new GKForm(History.actualDts.PortieriNSkill, History, playerID, AllSeasons);
 
                 pf.ShowDialog();
 
@@ -1715,6 +1785,14 @@ namespace TMRecorder
                 EvidenceSkillsPlayerForQuality(grow.PlayerID, grow.isYoungTeam == 1, grow.FPn == 0);
 
                 ExtraDS.GiocatoriRow egrow = extraDS.FindByPlayerID(grow.PlayerID);
+
+                if (egrow == null)
+                {
+                    egrow = extraDS.Giocatori.NewGiocatoriRow();
+                    egrow.ItemArray = grow.ItemArray;
+                    extraDS.Giocatori.AddGiocatoriRow(egrow);
+                }
+
                 egrow.Routine = grow.Routine;
                 egrow.ScoutVoto = grow.ScoutVoto;
                 egrow.ScoutName = grow.ScoutName;
@@ -1747,7 +1825,6 @@ namespace TMRecorder
 
             if (dataGridPlayersInfo.RowCount == 0)
                 return;
-            dataGridPlayersInfo.CurrentCell = dataGridPlayersInfo[2, e.RowIndex];
         }
 
         private void nationListEditorToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2861,10 +2938,23 @@ namespace TMRecorder
             if (actualUrl == "http://trophymanager.com/players/#/a/true/b//")
                 actualUrl = "http://trophymanager.com/players/";
 
-            if (actualUrl != startnavigationAddress) return;
+            //if (actualUrl != startnavigationAddress) return;
+
+            if (e.Url.AbsolutePath != (sender as WebBrowser).Url.AbsolutePath)
+                return;
 
             // this.Text = "TMR Browser - Navigation Complete";
             tsbProgressBar.ForeColor = Color.Green;
+
+            if (actualUrl.Contains("http://trophymanager.com/players/"))
+            {
+                HtmlElement head = webBrowser.Document.GetElementsByTagName("head")[0];
+                HtmlElement scriptEl = webBrowser.Document.CreateElement("script");
+                IHTMLScriptElement element = (IHTMLScriptElement)scriptEl.DomElement;
+                element.text = System.IO.File.ReadAllText(Program.Setts.DatafilePath + "\\RatingR2.user.js");
+                head.AppendChild(scriptEl);
+                webBrowser.Document.InvokeScript("ApplyRatingR2");
+            }
 
             if (importWhenCompleted)
             {
@@ -2889,34 +2979,6 @@ namespace TMRecorder
                 tbTxtAddress.Text = url;
 
                 startnavigationAddress = navigationAddress;
-
-                //tsBrowseMatches.Visible = false;
-                //if (navigationAddress.Contains("showprofile.php?playerid="))
-                //{
-                //    lastBarPlayer = int.Parse(HTML_Parser.GetNumberAfter(navigationAddress, "playerid="));
-                //    ExtraDS.GiocatoriRow gRow = extraDS.FindByPlayerID(lastBarPlayer);
-                //    if (gRow == null)
-                //    {
-                //        tsBrowsePlayers.Visible = false;
-                //        return;
-                //    }
-                //    tsBrowsePlayers.Visible = true;
-                //    tsbNumberOfReviews.Text = gRow.ScoutReviews.Length + " Scout Reviews stored";
-                //    tsbPlayers.Text = "[" + gRow.FP + "] " + gRow.Nome;
-                //    AddMenuItem(tsbPlayers, "", null);
-                //    for (int i = 0; i < extraDS.Giocatori.Count; i++)
-                //    {
-                //        ToolStripItem tsi = new ToolStripMenuItem();
-                //        tsi.Text = "[" + extraDS.Giocatori[i].FP + "] " + extraDS.Giocatori[i].Nome;
-                //        tsi.Tag = extraDS.Giocatori[i].PlayerID;
-                //        tsi.Click += ChangePlayer_Click;
-                //        AddMenuItem(tsbPlayers, extraDS.Giocatori[i].FP, tsi);
-                //    }
-                //}
-                //else
-                //{
-                //    tsBrowsePlayers.Visible = false;
-                //}
             }
             else
             {
@@ -4404,13 +4466,16 @@ namespace TMRecorder
             SplashForm sf = new SplashForm("TM - Team Recorder",
                     "Release " + Application.ProductVersion,
                     "Loading Players From the saved pages...");
+            sf.Show();
 
             DirectoryInfo di = new DirectoryInfo(folderBrowserDialog.SelectedPath);
             LoadSavedPlayerPagesRecursively(di, ref sf);
 
-            UpdateTeamDateList();
+            sf.Close();
+            sf.Dispose();
+            sf = null;
 
-            History.ClearAllDecimals();
+            UpdateTeamDateList();
 
             History.ReapplyTrainings(extraDS);
 
@@ -4444,10 +4509,6 @@ namespace TMRecorder
             sf = null;
 
             UpdateTeamDateList();
-
-            History.ClearAllDecimals();
-
-            History.ReapplyTrainings(extraDS);
 
             SetLastTeam();
         }
@@ -4513,10 +4574,6 @@ namespace TMRecorder
                 cnt++;
                 //content.ParsePage(playersPage, "http://trophymanager.com/players/", importWeek);
             }
-
-            sf.Close();
-            sf.Dispose();
-            sf = null;
 
             Invalidate();
         }
@@ -4681,29 +4738,159 @@ namespace TMRecorder
         {
             tabControl1.SelectedTab = tabBrowser;
 
-            AeroDataGrid dgPerfPlayers = (AeroDataGrid)sender;
+            navigationAddress = GetMatchAddress(sender, o);
+            startnavigationAddress = navigationAddress;
+            webBrowser.Navigate(navigationAddress);
+        }
 
-            PlayerPerfData selPlayer;
+        private string GetMatchAddress(object sender, object o)
+        {
+            AeroDataGrid dgPerfPlayers = null;
+
+            if (sender.GetType() == typeof(AeroDataGrid))
+            {
+                dgPerfPlayers = (AeroDataGrid)sender;
+            }
+            else if (sender.GetType() == typeof(ToolStripMenuItem))
+            {
+                ToolStripMenuItem menuItem = (ToolStripMenuItem)sender;
+                ContextMenuStrip cmStrip = (ContextMenuStrip)menuItem.Owner;
+                dgPerfPlayers = (AeroDataGrid)cmStrip.SourceControl;
+            }
+
+            PlayerPerfData selPlayer = null;
             if (o.GetType() == typeof(DataGridViewCellEventArgs))
             {
                 DataGridViewCellEventArgs e = (DataGridViewCellEventArgs)o;
                 selPlayer = (PlayerPerfData)dgPerfPlayers.Rows[e.RowIndex].DataBoundItem;
             }
-            else
+            else if (o.GetType() == typeof(EventArgs))
             {
                 selPlayer = (PlayerPerfData)dgPerfPlayers.SelectedRows[0].DataBoundItem;
             }
 
-            string matchAddr = "http://trophymanager.com/players/" + selPlayer.PlayerID + "/";
+            return "http://trophymanager.com/players/" + selPlayer.PlayerID + "/";
+        }
+
+        private void toolStripLabel6_DoubleClick(object sender, EventArgs e)
+        {
+            string arg = "http://trophymanager.com/club/2925434/";
+
+            ProcessStartInfo startInfo = new ProcessStartInfo(arg);
+            Process.Start(startInfo);
+        }
+
+        private void openPlayerPageInTheInternalBrowserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectedTab = tabBrowser;
+
+            AeroDataGrid dgGiocatori = null;
+
+            if (sender.GetType() == typeof(ToolStripMenuItem))
+            {
+                ToolStripMenuItem menuItem = (ToolStripMenuItem)sender;
+                ContextMenuStrip cmStrip = (ContextMenuStrip)menuItem.Owner;
+                dgGiocatori = (AeroDataGrid)cmStrip.SourceControl;
+            }
+
+            int playerID; 
+            if (dgGiocatori == dataGridPortieri)
+            {
+                DataRowView drv = (DataRowView)dgGiocatori.SelectedRows[0].DataBoundItem;
+                ExtTMDataSet.PortieriNSkillRow selPlayer = (ExtTMDataSet.PortieriNSkillRow)drv.Row;
+                playerID = selPlayer.PlayerID;
+            }
+            else
+            {
+                if (dgGiocatori.SelectedRows[0].DataBoundItem.GetType() == typeof(DataRowView))
+                {
+                    DataRowView drv = (DataRowView)dgGiocatori.SelectedRows[0].DataBoundItem;
+                    ExtraDS.GiocatoriRow selPlayer = (ExtraDS.GiocatoriRow)drv.Row;
+                    playerID = selPlayer.PlayerID;
+                }
+                else
+                {
+                    ExtTMDataSet.GiocatoriNSkillRow selPlayer = (ExtTMDataSet.GiocatoriNSkillRow)dgGiocatori.SelectedRows[0].DataBoundItem;
+                    playerID = selPlayer.PlayerID;
+                }
+            }
+
+            string matchAddr = "http://trophymanager.com/players/" + playerID + "/";
 
             navigationAddress = matchAddr;
             startnavigationAddress = navigationAddress;
             webBrowser.Navigate(navigationAddress);
         }
 
-        private void tsmGotoPlayerPageInBrowser_Click(object sender, DataGridViewCellEventArgs e)
+        private void openPlayerPageInAnExternalBrowserToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            AeroDataGrid dgGiocatori = null;
 
+            if (sender.GetType() == typeof(ToolStripMenuItem))
+            {
+                ToolStripMenuItem menuItem = (ToolStripMenuItem)sender;
+                ContextMenuStrip cmStrip = (ContextMenuStrip)menuItem.Owner;
+                dgGiocatori = (AeroDataGrid)cmStrip.SourceControl;
+            }
+
+            int playerID;
+            if (dgGiocatori == dataGridPortieri)
+            {
+                DataRowView drv = (DataRowView)dgGiocatori.SelectedRows[0].DataBoundItem;
+                ExtTMDataSet.PortieriNSkillRow selPlayer = (ExtTMDataSet.PortieriNSkillRow)drv.Row;
+                playerID = selPlayer.PlayerID;
+            }
+            else
+            {
+                if (dgGiocatori.SelectedRows[0].DataBoundItem.GetType() == typeof(DataRowView))
+                {
+                    DataRowView drv = (DataRowView)dgGiocatori.SelectedRows[0].DataBoundItem;
+                    ExtraDS.GiocatoriRow selPlayer = (ExtraDS.GiocatoriRow)drv.Row;
+                    playerID = selPlayer.PlayerID;
+                }
+                else
+                {
+                    ExtTMDataSet.GiocatoriNSkillRow selPlayer = (ExtTMDataSet.GiocatoriNSkillRow)dgGiocatori.SelectedRows[0].DataBoundItem;
+                    playerID = selPlayer.PlayerID;
+                }
+            }
+
+            string matchAddr = "http://trophymanager.com/players/" + playerID + "/";
+
+            Process.Start(matchAddr);
+        }
+
+        private void copyMatchDataInPlainTextToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AeroDataGrid dgPerfPlayers = null;
+
+            ToolStripMenuItem menuItem = (ToolStripMenuItem)sender;
+            ContextMenuStrip cmStrip = (ContextMenuStrip)menuItem.Owner;
+            dgPerfPlayers = (AeroDataGrid)cmStrip.SourceControl;
+
+            PlayerPerfData selPlayer = null;
+            selPlayer = (PlayerPerfData)dgPerfPlayers.SelectedRows[0].DataBoundItem;
+
+            string playersMatchData =
+                selPlayer.MatchData.Home.ToString() + " " 
+                + selPlayer.MatchData.Score.ToString() 
+                + " " 
+                + selPlayer.MatchData.Away.ToString() + "\t"
+                + selPlayer.Name + "\t"
+                + selPlayer.Vote + "\t"
+                + selPlayer.Rou + "\t"
+                + selPlayer.Status + "\t"
+                + selPlayer.Rec;
+
+            Clipboard.SetText(playersMatchData);
+        }
+
+        private void openPlayerPageInAnExternalBrowserToolStripMenuItem1_Click(object sender, object o)
+        {
+            tabControl1.SelectedTab = tabBrowser;
+
+            navigationAddress = GetMatchAddress(sender, o);
+            Process.Start(navigationAddress);
         }
     }
 }

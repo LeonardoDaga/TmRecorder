@@ -1405,6 +1405,7 @@ namespace NTR_Db
                 Status = c.Status;
              if (!c.PlayerRow.IsFPNull())
                 FPn = c.PlayerRow.FPn;
+            this.MatchData = new MatchData(c.MatchRow);
         }
 
         public string Name { get; set; }
@@ -1473,6 +1474,7 @@ namespace NTR_Db
         public string Status { get; private set; }
         public int FPn { get; private set; }
         public int PlayerID { get; private set; }
+        public MatchData MatchData { get; private set; }
     }
 
     public class MatchData

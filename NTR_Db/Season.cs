@@ -193,7 +193,7 @@ namespace NTR_Db
 
                 matchDataSelection = (from c in seasonsDB.Match
                                       where (!c.IsDateNull()) && (c.Date > dtStart) && (c.Date < dtEnd) &&
-                                              ((c.OTeamID == teamID) || (c.YTeamID == teamID))
+                                             (!c.IsYTeamIDNull()) && ((c.OTeamID == teamID) || (c.YTeamID == teamID))
                                       select new MatchData(c));
             }
             else
@@ -278,23 +278,30 @@ namespace NTR_Db
 
             sf.UpdateStatusMessage(0, "Loading From Seasons DB v.3...");
 
-            // Getting matches data
-            FileInfo fiMatchHistory = new FileInfo(Path.Combine(di.FullName, "MatchesHistory.3.xml"));
-            LoadChampsDataVer3(fiMatchHistory);
-
-            FileInfo[] fiMatchFiles = di.GetFiles("Match_*.xml");
-            int cntfis = fiMatchFiles.Length;
-
-            for (int i = 0; i < cntfis; i++)
+            try
             {
-                FileInfo fiMatchFile = fiMatchFiles[i];
+                // Getting matches data
+                FileInfo fiMatchHistory = new FileInfo(Path.Combine(di.FullName, "MatchesHistory.3.xml"));
+                LoadChampsDataVer3(fiMatchHistory);
 
-                sf.UpdateStatusMessage((i * 100) / cntfis, string.Format("Loading Match ({0}/{1} from the DB v.3...",
-                    i, cntfis));
+                FileInfo[] fiMatchFiles = di.GetFiles("Match_*.xml");
+                int cntfis = fiMatchFiles.Length;
 
-                LoadMatchDataVer3(fiMatchFile);
+                for (int i = 0; i < cntfis; i++)
+                {
+                    FileInfo fiMatchFile = fiMatchFiles[i];
 
-                if (trace) tracer.WriteLine("Added Matches data from " + fiMatchFile.Name);
+                    sf.UpdateStatusMessage((i * 100) / cntfis, string.Format("Loading Match ({0}/{1} from the DB v.3...",
+                        i, cntfis));
+
+                    LoadMatchDataVer3(fiMatchFile);
+
+                    if (trace) tracer.WriteLine("Added Matches data from " + fiMatchFile.Name);
+                }
+            }
+            catch(Exception e)
+            {
+                throw e;
             }
 
             Invalidate();
@@ -798,6 +805,21 @@ namespace NTR_Db
                 int OTeamID = 0;
                 string OTeamName = "";
 
+                NTR_SquadDb.TeamRow teamRow = seasonsDB.Team.FindByTeamID(home);
+                if (teamRow == null)
+                {
+                    teamRow = seasonsDB.Team.NewTeamRow();
+                    teamRow.TeamID = home;
+                    seasonsDB.Team.AddTeamRow(teamRow);
+                }
+                teamRow = seasonsDB.Team.FindByTeamID(away);
+                if (teamRow == null)
+                {
+                    teamRow = seasonsDB.Team.NewTeamRow();
+                    teamRow.TeamID = away;
+                    seasonsDB.Team.AddTeamRow(teamRow);
+                }
+
                 if (matchRow.isHome)
                 {
                     matchRow.Analyzed = 0;
@@ -820,9 +842,9 @@ namespace NTR_Db
                 {
                     trow = this.seasonsDB.Team.NewTeamRow();
                     trow.TeamID = OTeamID;
-                    trow.Owner = false;
                     seasonsDB.Team.AddTeamRow(trow);
                 }
+                trow.Owner = false;
 
                 matchRow.OTeamID = OTeamID;
                 matchRow.TeamRowByTeam_OTeam.Name = OTeamName;

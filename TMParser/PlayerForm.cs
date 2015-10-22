@@ -13,6 +13,7 @@ using System.IO;
 using Languages;
 using SendFileTo;
 using NTR_Common;
+using mshtml;
 
 namespace TMRecorder
 {
@@ -1700,22 +1701,8 @@ namespace TMRecorder
         {
             string arg = "http://trophymanager.com/club/11816/";
 
-            if (Program.Setts.UseTMRBrowser)
-            {
-                string processName = Application.StartupPath + "/TMRBrowser.exe";
-                FileInfo fi = new FileInfo(processName);
-
-                if (!fi.Exists)
-                    MessageBox.Show(Current.Language.TheTMRBrowserTMRBrowserExeDoesnTExistAtTheGivenPath +
-                        Application.StartupPath + ")", "TM Recorder", MessageBoxButtons.OK);
-                else
-                    Process.Start(processName, arg);
-            }
-            else
-            {
-                ProcessStartInfo startInfo = new ProcessStartInfo(arg);
-                Process.Start(startInfo);
-            }
+            ProcessStartInfo startInfo = new ProcessStartInfo(arg);
+            Process.Start(startInfo);
         }
 
         private void chkShowTGI_CheckedChanged(object sender, EventArgs e)
@@ -2090,6 +2077,21 @@ namespace TMRecorder
             // this.Text = "TMR Browser - Navigation Complete";
             tsbProgressBar.ForeColor = Color.Green;
 
+            if (e.Url.AbsolutePath != (sender as WebBrowser).Url.AbsolutePath)
+                return;
+
+            string actualUrl = e.Url.ToString();
+
+            if (actualUrl.Contains("http://trophymanager.com/players/"))
+            {
+                HtmlElement head = webBrowser.Document.GetElementsByTagName("head")[0];
+                HtmlElement scriptEl = webBrowser.Document.CreateElement("script");
+                IHTMLScriptElement element = (IHTMLScriptElement)scriptEl.DomElement;
+                element.text = System.IO.File.ReadAllText(Program.Setts.DatafilePath + "\\RatingR2.user.js");
+                head.AppendChild(scriptEl);
+                webBrowser.Document.InvokeScript("ApplyRatingR2");
+            }
+
             System.GC.Collect();
         }
 
@@ -2307,6 +2309,14 @@ namespace TMRecorder
         {
             if (tabControl1.SelectedTab == tabPlayerScouting)
                 PlayerForm_SizeChanged(this, EventArgs.Empty);
+        }
+
+        private void toolStripLabel3_DoubleClick(object sender, EventArgs e)
+        {
+            string arg = "http://trophymanager.com/club/2925434/";
+
+            ProcessStartInfo startInfo = new ProcessStartInfo(arg);
+            Process.Start(startInfo);
         }
     }
 }

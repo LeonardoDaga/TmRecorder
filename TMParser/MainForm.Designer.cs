@@ -180,19 +180,21 @@ namespace TMRecorder
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle147 = new System.Windows.Forms.DataGridViewCellStyle();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.movePlayerToATeamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.movePlayerToBTeamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.evidenceSkillsForGainsMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.openPlayersWebPagesToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.openPlayersScoutWebPagesToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.openPlayerPageInTheInternalBrowserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openPlayerPageInAnExternalBrowserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStripGK = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem14 = new System.Windows.Forms.ToolStripMenuItem();
             this.evidenceSkillsForGainsMenuItemGK = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItem17 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem18 = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuPlInfo = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.openPlayersWebPagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openPlayersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.changePlayerPropertiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem28 = new System.Windows.Forms.ToolStripMenuItem();
             this.setPlayerBloominAgeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setAgeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem15 = new System.Windows.Forms.ToolStripMenuItem();
@@ -396,6 +398,7 @@ namespace TMRecorder
             this.chkMT5 = new System.Windows.Forms.CheckBox();
             this.btnHelp = new System.Windows.Forms.Button();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.matchStats = new TMRecorder.MatchStats();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.lblMatchScore = new System.Windows.Forms.Label();
@@ -406,6 +409,8 @@ namespace TMRecorder
             this.dgYourTeamPerf = new NTR_Controls.AeroDataGrid();
             this.playersPerfMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
+            this.openPlayerPageInAnExternalBrowserToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyMatchDataInPlainTextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel3 = new System.Windows.Forms.Panel();
             this.dgOppsTeamPerf = new NTR_Controls.AeroDataGrid();
             this.tabBrowser = new System.Windows.Forms.TabPage();
@@ -448,6 +453,7 @@ namespace TMRecorder
             this.tsbProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.tsbProgressText = new System.Windows.Forms.ToolStripLabel();
             this.tbTxtAddress = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.miReloadFixturesAndMatches = new System.Windows.Forms.ToolStripMenuItem();
@@ -554,7 +560,10 @@ namespace TMRecorder
             this.nomeDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Age = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.matchStats = new TMRecorder.MatchStats();
+            this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem29 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem30 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStripGK.SuspendLayout();
             this.contextMenuPlInfo.SuspendLayout();
@@ -622,113 +631,132 @@ namespace TMRecorder
             // 
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1,
             this.movePlayerToATeamToolStripMenuItem,
             this.movePlayerToBTeamToolStripMenuItem,
             this.evidenceSkillsForGainsMenuItem2,
-            this.openPlayersWebPagesToolStripMenuItem2,
-            this.openPlayersScoutWebPagesToolStripMenuItem2});
+            this.toolStripSeparator4,
+            this.openPlayerPageInTheInternalBrowserToolStripMenuItem,
+            this.openPlayerPageInAnExternalBrowserToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(215, 114);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(289, 142);
             this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(288, 22);
+            this.toolStripMenuItem1.Text = "Open Player Info page (Dbl-Click)";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.dataGridPlayersInfo_CellDoubleClick);
             // 
             // movePlayerToATeamToolStripMenuItem
             // 
             this.movePlayerToATeamToolStripMenuItem.Name = "movePlayerToATeamToolStripMenuItem";
-            this.movePlayerToATeamToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.movePlayerToATeamToolStripMenuItem.Size = new System.Drawing.Size(288, 22);
             this.movePlayerToATeamToolStripMenuItem.Text = "Move Player To A Team";
             this.movePlayerToATeamToolStripMenuItem.Click += new System.EventHandler(this.movePlayerToATeamToolStripMenuItem_Click);
             // 
             // movePlayerToBTeamToolStripMenuItem
             // 
             this.movePlayerToBTeamToolStripMenuItem.Name = "movePlayerToBTeamToolStripMenuItem";
-            this.movePlayerToBTeamToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.movePlayerToBTeamToolStripMenuItem.Size = new System.Drawing.Size(288, 22);
             this.movePlayerToBTeamToolStripMenuItem.Text = "Move Player To B Team";
             this.movePlayerToBTeamToolStripMenuItem.Click += new System.EventHandler(this.movePlayerToBTeamToolStripMenuItem_Click);
             // 
             // evidenceSkillsForGainsMenuItem2
             // 
             this.evidenceSkillsForGainsMenuItem2.Name = "evidenceSkillsForGainsMenuItem2";
-            this.evidenceSkillsForGainsMenuItem2.Size = new System.Drawing.Size(214, 22);
+            this.evidenceSkillsForGainsMenuItem2.Size = new System.Drawing.Size(288, 22);
             this.evidenceSkillsForGainsMenuItem2.Text = "Evidence Skills for Gains";
             this.evidenceSkillsForGainsMenuItem2.Click += new System.EventHandler(this.evidenceSkillsForGainsToolStripMenuItem_Click);
             // 
-            // openPlayersWebPagesToolStripMenuItem2
+            // toolStripSeparator4
             // 
-            this.openPlayersWebPagesToolStripMenuItem2.Name = "openPlayersWebPagesToolStripMenuItem2";
-            this.openPlayersWebPagesToolStripMenuItem2.Size = new System.Drawing.Size(214, 22);
-            this.openPlayersWebPagesToolStripMenuItem2.Text = "Open Players Profile Pages";
-            this.openPlayersWebPagesToolStripMenuItem2.Click += new System.EventHandler(this.openPlayersWebPagesToolStripMenuItem_Click);
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(285, 6);
             // 
-            // openPlayersScoutWebPagesToolStripMenuItem2
+            // openPlayerPageInTheInternalBrowserToolStripMenuItem
             // 
-            this.openPlayersScoutWebPagesToolStripMenuItem2.Name = "openPlayersScoutWebPagesToolStripMenuItem2";
-            this.openPlayersScoutWebPagesToolStripMenuItem2.Size = new System.Drawing.Size(214, 22);
-            this.openPlayersScoutWebPagesToolStripMenuItem2.Text = "Open Players Scout Pages";
-            this.openPlayersScoutWebPagesToolStripMenuItem2.Click += new System.EventHandler(this.openPlayersToolStripMenuItem_Click);
+            this.openPlayerPageInTheInternalBrowserToolStripMenuItem.Name = "openPlayerPageInTheInternalBrowserToolStripMenuItem";
+            this.openPlayerPageInTheInternalBrowserToolStripMenuItem.Size = new System.Drawing.Size(288, 22);
+            this.openPlayerPageInTheInternalBrowserToolStripMenuItem.Text = "Open Player Page in the internal browser";
+            this.openPlayerPageInTheInternalBrowserToolStripMenuItem.Click += new System.EventHandler(this.openPlayerPageInTheInternalBrowserToolStripMenuItem_Click);
+            // 
+            // openPlayerPageInAnExternalBrowserToolStripMenuItem
+            // 
+            this.openPlayerPageInAnExternalBrowserToolStripMenuItem.Name = "openPlayerPageInAnExternalBrowserToolStripMenuItem";
+            this.openPlayerPageInAnExternalBrowserToolStripMenuItem.Size = new System.Drawing.Size(288, 22);
+            this.openPlayerPageInAnExternalBrowserToolStripMenuItem.Text = "Open Player Page in an external browser";
+            this.openPlayerPageInAnExternalBrowserToolStripMenuItem.Click += new System.EventHandler(this.openPlayerPageInAnExternalBrowserToolStripMenuItem_Click);
             // 
             // contextMenuStripGK
             // 
             this.contextMenuStripGK.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStripGK.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem14,
             this.evidenceSkillsForGainsMenuItemGK,
+            this.toolStripSeparator10,
             this.toolStripMenuItem17,
             this.toolStripMenuItem18});
             this.contextMenuStripGK.Name = "contextMenuStrip1";
-            this.contextMenuStripGK.Size = new System.Drawing.Size(215, 70);
+            this.contextMenuStripGK.Size = new System.Drawing.Size(289, 98);
+            // 
+            // toolStripMenuItem14
+            // 
+            this.toolStripMenuItem14.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripMenuItem14.Name = "toolStripMenuItem14";
+            this.toolStripMenuItem14.Size = new System.Drawing.Size(288, 22);
+            this.toolStripMenuItem14.Text = "Open Player Info page (Dbl-Click)";
+            this.toolStripMenuItem14.Click += new System.EventHandler(this.dataGridPlayersInfo_CellDoubleClick);
             // 
             // evidenceSkillsForGainsMenuItemGK
             // 
             this.evidenceSkillsForGainsMenuItemGK.Name = "evidenceSkillsForGainsMenuItemGK";
-            this.evidenceSkillsForGainsMenuItemGK.Size = new System.Drawing.Size(214, 22);
+            this.evidenceSkillsForGainsMenuItemGK.Size = new System.Drawing.Size(288, 22);
             this.evidenceSkillsForGainsMenuItemGK.Text = "Evidence Skills for Gains";
             this.evidenceSkillsForGainsMenuItemGK.Click += new System.EventHandler(this.evidenceSkillsForGainsToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator10
+            // 
+            this.toolStripSeparator10.Name = "toolStripSeparator10";
+            this.toolStripSeparator10.Size = new System.Drawing.Size(285, 6);
             // 
             // toolStripMenuItem17
             // 
             this.toolStripMenuItem17.Name = "toolStripMenuItem17";
-            this.toolStripMenuItem17.Size = new System.Drawing.Size(214, 22);
-            this.toolStripMenuItem17.Text = "Open Players Profile Pages";
-            this.toolStripMenuItem17.Click += new System.EventHandler(this.openPlayersWebPagesToolStripMenuItem_Click);
+            this.toolStripMenuItem17.Size = new System.Drawing.Size(288, 22);
+            this.toolStripMenuItem17.Text = "Open Player Page in the internal browser";
+            this.toolStripMenuItem17.Click += new System.EventHandler(this.openPlayerPageInTheInternalBrowserToolStripMenuItem_Click);
             // 
             // toolStripMenuItem18
             // 
             this.toolStripMenuItem18.Name = "toolStripMenuItem18";
-            this.toolStripMenuItem18.Size = new System.Drawing.Size(214, 22);
-            this.toolStripMenuItem18.Text = "Open Players Scout Pages";
-            this.toolStripMenuItem18.Click += new System.EventHandler(this.openPlayersToolStripMenuItem_Click);
+            this.toolStripMenuItem18.Size = new System.Drawing.Size(288, 22);
+            this.toolStripMenuItem18.Text = "Open Player Page in an external browser";
+            this.toolStripMenuItem18.Click += new System.EventHandler(this.openPlayerPageInAnExternalBrowserToolStripMenuItem_Click);
             // 
             // contextMenuPlInfo
             // 
             this.contextMenuPlInfo.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuPlInfo.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openPlayersWebPagesToolStripMenuItem,
-            this.openPlayersToolStripMenuItem,
-            this.changePlayerPropertiesToolStripMenuItem,
+            this.toolStripMenuItem28,
+            this.toolStripSeparator12,
+            this.toolStripMenuItem29,
+            this.toolStripMenuItem30,
+            this.toolStripSeparator13,
             this.setPlayerBloominAgeToolStripMenuItem});
             this.contextMenuPlInfo.Name = "contextMenuPlInfo";
-            this.contextMenuPlInfo.Size = new System.Drawing.Size(215, 92);
+            this.contextMenuPlInfo.Size = new System.Drawing.Size(289, 126);
             this.contextMenuPlInfo.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuPlInfo_Opening);
             // 
-            // openPlayersWebPagesToolStripMenuItem
+            // toolStripMenuItem28
             // 
-            this.openPlayersWebPagesToolStripMenuItem.Name = "openPlayersWebPagesToolStripMenuItem";
-            this.openPlayersWebPagesToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
-            this.openPlayersWebPagesToolStripMenuItem.Text = "Open Players Profile Pages";
-            this.openPlayersWebPagesToolStripMenuItem.Click += new System.EventHandler(this.openPlayersWebPagesToolStripMenuItem_Click);
-            // 
-            // openPlayersToolStripMenuItem
-            // 
-            this.openPlayersToolStripMenuItem.Name = "openPlayersToolStripMenuItem";
-            this.openPlayersToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
-            this.openPlayersToolStripMenuItem.Text = "Open Players Scout Pages";
-            this.openPlayersToolStripMenuItem.Click += new System.EventHandler(this.openPlayersToolStripMenuItem_Click);
-            // 
-            // changePlayerPropertiesToolStripMenuItem
-            // 
-            this.changePlayerPropertiesToolStripMenuItem.Name = "changePlayerPropertiesToolStripMenuItem";
-            this.changePlayerPropertiesToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
-            this.changePlayerPropertiesToolStripMenuItem.Text = "Change Player Properties";
-            this.changePlayerPropertiesToolStripMenuItem.Click += new System.EventHandler(this.changePlayerPropertiesToolStripMenuItem_Click);
+            this.toolStripMenuItem28.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripMenuItem28.Name = "toolStripMenuItem28";
+            this.toolStripMenuItem28.Size = new System.Drawing.Size(288, 22);
+            this.toolStripMenuItem28.Text = "Open Player Info page (Dbl-Click)";
+            this.toolStripMenuItem28.Click += new System.EventHandler(this.dataGridPlayersInfo_CellDoubleClick);
             // 
             // setPlayerBloominAgeToolStripMenuItem
             // 
@@ -736,7 +764,7 @@ namespace TMRecorder
             this.setAgeToolStripMenuItem,
             this.setPhaseToolStripMenuItem});
             this.setPlayerBloominAgeToolStripMenuItem.Name = "setPlayerBloominAgeToolStripMenuItem";
-            this.setPlayerBloominAgeToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.setPlayerBloominAgeToolStripMenuItem.Size = new System.Drawing.Size(288, 22);
             this.setPlayerBloominAgeToolStripMenuItem.Text = "Set Player\'s Bloomin\'";
             // 
             // setAgeToolStripMenuItem
@@ -754,7 +782,7 @@ namespace TMRecorder
             this.toolStripMenuItem26,
             this.toolStripMenuItem27});
             this.setAgeToolStripMenuItem.Name = "setAgeToolStripMenuItem";
-            this.setAgeToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.setAgeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.setAgeToolStripMenuItem.Text = "Set Age";
             // 
             // toolStripMenuItem15
@@ -843,7 +871,7 @@ namespace TMRecorder
             this.mi3rdYearToolStripMenuItem,
             this.miCompletelyBloomedEToolStripMenuItem});
             this.setPhaseToolStripMenuItem.Name = "setPhaseToolStripMenuItem";
-            this.setPhaseToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.setPhaseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.setPhaseToolStripMenuItem.Text = "Set Phase";
             // 
             // miNotBloomedUToolStripMenuItem
@@ -2402,7 +2430,7 @@ namespace TMRecorder
             this.dataGridPortieri.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridPortieri.Size = new System.Drawing.Size(1101, 506);
             this.dataGridPortieri.TabIndex = 0;
-            this.dataGridPortieri.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridPortieri_CellDoubleClick);
+            this.dataGridPortieri.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridPlayersInfo_CellDoubleClick);
             this.dataGridPortieri.Sorted += new System.EventHandler(this.dataGridPortieri_Sorted);
             // 
             // ID
@@ -2770,7 +2798,6 @@ namespace TMRecorder
             this.playerIDDataGridViewTextBoxColumn.Name = "playerIDDataGridViewTextBoxColumn";
             this.playerIDDataGridViewTextBoxColumn.ReadOnly = true;
             this.playerIDDataGridViewTextBoxColumn.Visible = false;
-            this.playerIDDataGridViewTextBoxColumn.Width = 45;
             // 
             // dataGridViewTextBoxColumn2
             // 
@@ -3424,6 +3451,15 @@ namespace TMRecorder
             this.tableLayoutPanel5.Size = new System.Drawing.Size(567, 500);
             this.tableLayoutPanel5.TabIndex = 1;
             // 
+            // matchStats
+            // 
+            this.matchStats.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.matchStats.Location = new System.Drawing.Point(5, 436);
+            this.matchStats.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.matchStats.Name = "matchStats";
+            this.matchStats.Size = new System.Drawing.Size(567, 58);
+            this.matchStats.TabIndex = 1;
+            // 
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.ColumnCount = 1;
@@ -3564,9 +3600,11 @@ namespace TMRecorder
             // 
             this.playersPerfMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.playersPerfMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem8});
+            this.toolStripMenuItem8,
+            this.openPlayerPageInAnExternalBrowserToolStripMenuItem1,
+            this.copyMatchDataInPlainTextToolStripMenuItem});
             this.playersPerfMenuStrip.Name = "matchesMenuStrip";
-            this.playersPerfMenuStrip.Size = new System.Drawing.Size(316, 26);
+            this.playersPerfMenuStrip.Size = new System.Drawing.Size(316, 70);
             // 
             // toolStripMenuItem8
             // 
@@ -3575,6 +3613,20 @@ namespace TMRecorder
             this.toolStripMenuItem8.Size = new System.Drawing.Size(315, 22);
             this.toolStripMenuItem8.Text = "Goto Player Page in the Browser (Dbl-Click)";
             this.toolStripMenuItem8.Click += new System.EventHandler(this.tsmGotoPlayerPageInBrowser_Click);
+            // 
+            // openPlayerPageInAnExternalBrowserToolStripMenuItem1
+            // 
+            this.openPlayerPageInAnExternalBrowserToolStripMenuItem1.Name = "openPlayerPageInAnExternalBrowserToolStripMenuItem1";
+            this.openPlayerPageInAnExternalBrowserToolStripMenuItem1.Size = new System.Drawing.Size(315, 22);
+            this.openPlayerPageInAnExternalBrowserToolStripMenuItem1.Text = "Open Player Page in an external browser";
+            this.openPlayerPageInAnExternalBrowserToolStripMenuItem1.Click += new System.EventHandler(this.openPlayerPageInAnExternalBrowserToolStripMenuItem1_Click);
+            // 
+            // copyMatchDataInPlainTextToolStripMenuItem
+            // 
+            this.copyMatchDataInPlainTextToolStripMenuItem.Name = "copyMatchDataInPlainTextToolStripMenuItem";
+            this.copyMatchDataInPlainTextToolStripMenuItem.Size = new System.Drawing.Size(315, 22);
+            this.copyMatchDataInPlainTextToolStripMenuItem.Text = "Copy player\'s match data in plain text";
+            this.copyMatchDataInPlainTextToolStripMenuItem.Click += new System.EventHandler(this.copyMatchDataInPlainTextToolStripMenuItem_Click);
             // 
             // panel3
             // 
@@ -3926,10 +3978,11 @@ namespace TMRecorder
             this.toolStripLabel12,
             this.tsbProgressBar,
             this.tsbProgressText,
-            this.tbTxtAddress});
+            this.tbTxtAddress,
+            this.toolStripLabel6});
             this.tsBrowserMain.Location = new System.Drawing.Point(3, 0);
             this.tsBrowserMain.Name = "tsBrowserMain";
-            this.tsBrowserMain.Size = new System.Drawing.Size(999, 27);
+            this.tsBrowserMain.Size = new System.Drawing.Size(1098, 27);
             this.tsBrowserMain.TabIndex = 3;
             this.tsBrowserMain.Text = "toolStrip4";
             // 
@@ -4077,6 +4130,16 @@ namespace TMRecorder
             this.tbTxtAddress.Name = "tbTxtAddress";
             this.tbTxtAddress.ReadOnly = true;
             this.tbTxtAddress.Size = new System.Drawing.Size(400, 27);
+            // 
+            // toolStripLabel6
+            // 
+            this.toolStripLabel6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripLabel6.Font = new System.Drawing.Font("Segoe UI", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripLabel6.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.toolStripLabel6.Name = "toolStripLabel6";
+            this.toolStripLabel6.Size = new System.Drawing.Size(105, 12);
+            this.toolStripLabel6.Text = "R2Rating from VF Tomato";
+            this.toolStripLabel6.DoubleClick += new System.EventHandler(this.toolStripLabel6_DoubleClick);
             // 
             // toolStrip1
             // 
@@ -5028,14 +5091,29 @@ namespace TMRecorder
             this.dataGridViewTextBoxColumn6.HeaderText = "ASI";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             // 
-            // matchStats
+            // toolStripSeparator12
             // 
-            this.matchStats.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.matchStats.Location = new System.Drawing.Point(5, 436);
-            this.matchStats.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.matchStats.Name = "matchStats";
-            this.matchStats.Size = new System.Drawing.Size(567, 58);
-            this.matchStats.TabIndex = 1;
+            this.toolStripSeparator12.Name = "toolStripSeparator12";
+            this.toolStripSeparator12.Size = new System.Drawing.Size(285, 6);
+            // 
+            // toolStripMenuItem29
+            // 
+            this.toolStripMenuItem29.Name = "toolStripMenuItem29";
+            this.toolStripMenuItem29.Size = new System.Drawing.Size(288, 22);
+            this.toolStripMenuItem29.Text = "Open Player Page in the internal browser";
+            this.toolStripMenuItem29.Click += new System.EventHandler(this.openPlayerPageInTheInternalBrowserToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem30
+            // 
+            this.toolStripMenuItem30.Name = "toolStripMenuItem30";
+            this.toolStripMenuItem30.Size = new System.Drawing.Size(288, 22);
+            this.toolStripMenuItem30.Text = "Open Player Page in an external browser";
+            this.toolStripMenuItem30.Click += new System.EventHandler(this.openPlayerPageInAnExternalBrowserToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator13
+            // 
+            this.toolStripSeparator13.Name = "toolStripSeparator13";
+            this.toolStripSeparator13.Size = new System.Drawing.Size(285, 6);
             // 
             // MainForm
             // 
@@ -5202,8 +5280,6 @@ namespace TMRecorder
         private System.Windows.Forms.ToolStripMenuItem importPlayersDataToolStripMenuItem;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
         private System.Windows.Forms.ContextMenuStrip contextMenuPlInfo;
-        private System.Windows.Forms.ToolStripMenuItem openPlayersWebPagesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem openPlayersToolStripMenuItem;
         private ZedGraph.ZedGraphControl zedGraphControl1;
         private ZedGraph.ZedGraphControl zedGraphControl2;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton6;
@@ -5264,7 +5340,6 @@ namespace TMRecorder
         private System.Windows.Forms.ToolStripMenuItem youthDevelopmentToolStripMenuItem;
         private Common.ActionAnalysis actionAnalysis;
         private System.Windows.Forms.ToolStripMenuItem recalculatePlayersStatisticsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem changePlayerPropertiesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem evidenceSkillsForGainsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem evidenceSkillsForGainsMenuItem2;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton9;
@@ -5275,12 +5350,8 @@ namespace TMRecorder
         private System.Windows.Forms.ToolStripMenuItem gotoTheTmRecorderFederationInTrophyManagerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem frequentlyAskedQuestionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem iTDomandeFrequentiToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem openPlayersWebPagesToolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem openPlayersScoutWebPagesToolStripMenuItem2;
         private System.Windows.Forms.ContextMenuStrip contextMenuStripGK;
         private System.Windows.Forms.ToolStripMenuItem evidenceSkillsForGainsMenuItemGK;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem17;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem18;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
         private System.Windows.Forms.ToolStrip toolStrip3;
         private System.Windows.Forms.ToolStripLabel toolStripLabel3;
@@ -5504,5 +5575,21 @@ namespace TMRecorder
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem8;
         private System.Windows.Forms.ToolStripMenuItem miReloadFixturesAndMatches;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel6;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem openPlayerPageInTheInternalBrowserToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openPlayerPageInAnExternalBrowserToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem14;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem17;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem18;
+        private System.Windows.Forms.ToolStripMenuItem openPlayerPageInAnExternalBrowserToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem copyMatchDataInPlainTextToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem28;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem29;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem30;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator13;
     }
 }

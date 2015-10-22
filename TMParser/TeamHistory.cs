@@ -2458,9 +2458,18 @@ namespace TMRecorder
 
         internal void ReapplyTrainings(ExtraDS extraDS)
         {
+            SplashForm sf = new SplashForm("TM - Team Recorder",
+                                            "Release " + Application.ProductVersion,
+                                            "Reapplying all trainings...");
+            sf.Show();
+
+            int cntTot = TrainingHist.Count;
+            int cnt = 0;
             ClearAllDecimals();
             foreach (TrainingDataSet tds in TrainingHist)
             {
+                sf.UpdateStatusMessage(0, string.Format("Reapplying all trainings {0}/{1}...", cnt, cntTot));
+
                 ApplyTI_TrainingDataSet(PlayersDS, tds);
                 ApplyTI_TrainingDataSet(extraDS, tds);
 
@@ -2490,7 +2499,13 @@ namespace TMRecorder
                     // Leva il Training Data Set da tutti i set precedenti
                     this[ix].DecSkill_TrainingDataSet(tds, this[ixAfter]);
                 }
+
+                cnt++;
             }
+
+            sf.Close();
+            sf.Dispose();
+            sf = null;
         }
 
         internal void ApplyTI_TrainingDataSet(ExtraDS eds,

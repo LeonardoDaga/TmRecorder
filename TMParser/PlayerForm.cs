@@ -187,6 +187,8 @@ namespace TMRecorder
             playerTraining.Clear();
 
             History.FillPLTrainingTable(playerTraining, playerID);
+
+            dgTraining.SetWhen(DateTime.Now);
         }
 
         private void SetTraining()

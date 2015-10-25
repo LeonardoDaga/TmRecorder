@@ -1,4 +1,6 @@
 using Common;
+using NTR_Controls;
+
 namespace TMRecorder
 {
     partial class PlayerForm
@@ -105,7 +107,7 @@ namespace TMRecorder
             this.tagsBarTac = new Common.TagsBar();
             this.tagsBarPhy = new Common.TagsBar();
             this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgTraining = new AeroDataGrid();
             this.PlayerAge = new DataGridViewCustomColumns.TMR_AgeColumn(this.components);
             this.absWeekDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_DateColumn(this.components);
             this.forDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_ArrowColumn(this.components);
@@ -289,7 +291,7 @@ namespace TMRecorder
             ((System.ComponentModel.ISupportInitialize)(this.scoutsNReviews)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgReviews)).BeginInit();
             this.tabPage6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgTraining)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trainingBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.playerTraining)).BeginInit();
             this.tabPlayerBrowser.SuspendLayout();
@@ -1621,7 +1623,7 @@ namespace TMRecorder
             // 
             // tabPage6
             // 
-            this.tabPage6.Controls.Add(this.dataGridView1);
+            this.tabPage6.Controls.Add(this.dgTraining);
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
@@ -1632,12 +1634,12 @@ namespace TMRecorder
             // 
             // dataGridView1
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToResizeColumns = false;
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgTraining.AllowUserToAddRows = false;
+            this.dgTraining.AllowUserToDeleteRows = false;
+            this.dgTraining.AllowUserToResizeColumns = false;
+            this.dgTraining.AutoGenerateColumns = false;
+            this.dgTraining.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgTraining.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.PlayerAge,
             this.absWeekDataGridViewTextBoxColumn,
             this.forDataGridViewTextBoxColumn,
@@ -1657,17 +1659,17 @@ namespace TMRecorder
             this.tIDataGridViewTextBoxColumn,
             this.trainerNameDataGridViewTextBoxColumn,
             this.programDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.trainingBindingSource;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
-            this.dataGridView1.MultiSelect = false;
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersWidth = 20;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(682, 516);
-            this.dataGridView1.TabIndex = 0;
+            this.dgTraining.DataSource = this.trainingBindingSource;
+            this.dgTraining.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgTraining.Location = new System.Drawing.Point(3, 3);
+            this.dgTraining.Margin = new System.Windows.Forms.Padding(2);
+            this.dgTraining.MultiSelect = false;
+            this.dgTraining.Name = "dataGridView1";
+            this.dgTraining.ReadOnly = true;
+            this.dgTraining.RowHeadersWidth = 20;
+            this.dgTraining.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgTraining.Size = new System.Drawing.Size(682, 516);
+            this.dgTraining.TabIndex = 0;
             // 
             // PlayerAge
             // 
@@ -3141,7 +3143,7 @@ namespace TMRecorder
             ((System.ComponentModel.ISupportInitialize)(this.scoutsNReviews)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgReviews)).EndInit();
             this.tabPage6.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgTraining)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trainingBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.playerTraining)).EndInit();
             this.tabPlayerBrowser.ResumeLayout(false);
@@ -3216,7 +3218,7 @@ namespace TMRecorder
         public ReportAnalysis ReportAnalysis;
         private PlayerTraining playerTraining;
         private System.Windows.Forms.TabPage tabPage6;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private AeroDataGrid dgTraining;
         private System.Windows.Forms.BindingSource trainingBindingSource;
         private DataGridViewCustomColumns.TMR_AgeColumn tmR_AgeColumn1;
         private DataGridViewCustomColumns.TMR_DateColumn tmR_DateColumn1;

@@ -1533,8 +1533,10 @@ namespace NTR_Db
             if (!mr.IsStadiumNull())
             {
                 Stadium = mr.Stadium;
-                Stats = mr.Stats;
-                Weather = mr.Weather;
+                if (!mr.IsStatsNull())
+                    Stats = mr.Stats;
+                if (!mr.IsWeatherNull())
+                    Weather = mr.Weather;
             }
 
             Home = "";

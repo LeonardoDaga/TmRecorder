@@ -393,10 +393,10 @@
       <DependentUpon>TrainingDataSet.xsd</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="TrainingDataSet.Designer.cs">
-      <DependentUpon>TrainingDataSet.xsd</DependentUpon>
+    <Compile Include="TrainingDataSet1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>TrainingDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Userdata.cs">
       <DependentUpon>Userdata.xsd</DependentUpon>
@@ -612,8 +612,8 @@
     </None>
     <None Include="TrainingDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>TrainingDataSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>TrainingDataSet1.Designer.cs</LastGenOutput>
     </None>
     <None Include="TrainingDataSet.xss">
       <DependentUpon>TrainingDataSet.xsd</DependentUpon>

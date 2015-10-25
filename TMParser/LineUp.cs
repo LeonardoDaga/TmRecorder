@@ -48,7 +48,11 @@ namespace TMRecorder
                 matchData = matchdata;
             }
 
-            public MatchData matchData { get; }
+            public MatchData matchData
+            {
+                get;
+                set;
+            }
 
             public override string ToString()
             {

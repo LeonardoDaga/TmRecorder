@@ -1040,11 +1040,6 @@ namespace TMRecorder
 
             ShowActualPlayers(dt);
 
-            dataGridGiocatori.SetWhen(dt);
-            dataGridGiocatoriB.SetWhen(dt);
-            dataGridPortieri.SetWhen(dt);
-            dataGridPlayersInfo.SetWhen(dt);
-
             dataGridPlayersInfo.DataSource = extraDS.Giocatori;
         }
 
@@ -1071,6 +1066,10 @@ namespace TMRecorder
 
         private void ShowActualPlayers(DateTime dt)
         {
+            dataGridGiocatori.SetWhen(dt);
+            dataGridGiocatoriB.SetWhen(dt);
+            dataGridPortieri.SetWhen(dt);
+            dataGridPlayersInfo.SetWhen(dt);
             History.FillActualPlayersList(extraDS, dt);
         }
 
@@ -4117,14 +4116,16 @@ namespace TMRecorder
             int thisWeek = TmWeek.thisWeek().absweek;
             ExtTMDataSet eds = History.LastTeam();
             int lastUpdateWeek = -1;
-            int lastTrainingWeek = -1;
+            bool trainingProgramUpdated = false;
 
             if (eds != null)
             {
                 lastUpdateWeek = TmWeek.GetTmAbsWk(eds.Date);
 
                 if (History.TrainingHist.Count > 0)
-                    lastTrainingWeek = TmWeek.GetTmAbsWk(History.TrainingHist.LastTraining().Date);
+                {
+                    trainingProgramUpdated = History.TrainingHist.LastTraining().ProgramUpdated;
+                }
             }
 
             if (lastUpdateWeek == -1) // Never imported data
@@ -4133,9 +4134,6 @@ namespace TMRecorder
                 tsbImportSquad.ToolTipText = "Import squad data";
                 tsbImportSquad.UnderColor = Color.DarkRed;
                 tsbImportSquad.UnderText = "Click here";
-
-                if (Program.Setts.PlayerType != 2) // Non PRO player
-                    tsbTrainingTraining.Enabled = false;
             }
             else if (thisWeek > lastUpdateWeek)
             {
@@ -4143,19 +4141,42 @@ namespace TMRecorder
                 tsbImportSquad.ToolTipText = "Squad data imported " + (thisWeek - lastUpdateWeek).ToString() + " weeks ago";
                 tsbImportSquad.UnderColor = Color.DarkRed;
                 tsbImportSquad.UnderText = "To import";
-
-                if (Program.Setts.PlayerType != 2) // Non PRO player
-                    tsbTrainingTraining.Enabled = true;
             }
             else
             {
-                if (Program.Setts.PlayerType != 2) // Non PRO player
-                    tsbTrainingTraining.Enabled = true;
-
                 tsbImportSquad.ForeColor = Color.DarkGreen;
                 tsbImportSquad.ToolTipText = "Squad data updated";
                 tsbImportSquad.UnderText = "Import ok";
                 tsbImportSquad.UnderColor = Color.DarkGreen;
+            }
+
+            if (Program.Setts.PlayerType != 2)
+            {
+                tsbTrainingTraining.Enabled = false;
+            }
+            else if (thisWeek > lastUpdateWeek)
+            {
+                tsbTrainingTraining.Enabled = false;
+                tsbTrainingTraining.ForeColor = Color.DarkRed;
+                tsbTrainingTraining.ToolTipText = string.Format("The team data is to import.");
+                tsbTrainingTraining.UnderColor = Color.DarkRed;
+                tsbTrainingTraining.UnderText = "Team to update";
+            }
+            else if (!trainingProgramUpdated)
+            {
+                tsbTrainingTraining.Enabled = true;
+                tsbTrainingTraining.ForeColor = Color.DarkRed;
+                tsbTrainingTraining.ToolTipText = string.Format("Training Program has not been updated");
+                tsbTrainingTraining.UnderColor = Color.DarkRed;
+                tsbTrainingTraining.UnderText = "To import";
+            }
+            else
+            {
+                tsbTrainingTraining.Enabled = true;
+                tsbTrainingTraining.ForeColor = Color.DarkGreen;
+                tsbTrainingTraining.ToolTipText = "Training Updated";
+                tsbTrainingTraining.UnderColor = Color.DarkGreen;
+                tsbTrainingTraining.UnderText = "Import Ok";
             }
 
             if (!AllSeasons.IsUpdatedCalendar(Program.Setts.MainSquadID))

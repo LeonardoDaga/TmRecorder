@@ -5,6 +5,10 @@ namespace Common
 
     partial class TrainingDataSet
     {
+        partial class WeekNoDataDataTable
+        {
+        }
+    
         partial class GiocatoriDataTable
         {
         }
@@ -175,6 +179,42 @@ namespace Common
 
                 WeekNoDataRow row = (WeekNoDataRow)WeekNoData.Rows[0];
                 return row.Date;
+            }
+        }
+
+        public bool ProgramUpdated
+        {
+            set
+            {
+                WeekNoDataRow row = null;
+
+                // Create Row if needed
+                if (WeekNoData.Rows.Count == 0)
+                {
+                    row = (WeekNoDataRow)WeekNoData.NewRow();
+                    WeekNoData.Rows.Add(row);
+                }
+                else
+                {
+                    row = (WeekNoDataRow)WeekNoData.Rows[0];
+                }
+
+                row.ProgramUpdated = value;
+            }
+
+            get
+            {
+                // Create Row if needed
+                if (WeekNoData.Rows.Count == 0)
+                {
+                    return false;
+                }
+
+                WeekNoDataRow row = (WeekNoDataRow)WeekNoData.Rows[0];
+                if (row.IsProgramUpdatedNull())
+                    return false;
+
+                return row.ProgramUpdated;
             }
         }
     }

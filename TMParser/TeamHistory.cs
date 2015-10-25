@@ -1652,6 +1652,9 @@ namespace TMRecorder
                     }
                 }
 
+                if (count > 0)
+                    TrainingHist.LastTraining().ProgramUpdated = true;
+
                 return count;
             }
             catch (Exception e)
@@ -2947,14 +2950,14 @@ namespace TMRecorder
                             switch (trainingType)
                             {
                                 case 1:
-                                    tr.TrainerName = "Allenamento Tecnico";
+                                    tr.TrainerName = "Technical Drills";
                                     tr.Program = "Tec;Pas;Set;";
                                     tr.Tec += 30;
                                     tr.Pas += 30;
                                     tr.Cal += 30;
                                     break;
                                 case 2:
-                                    tr.TrainerName = "Allenamento Fisico";
+                                    tr.TrainerName = "Fitness Drills";
                                     tr.Program = "Str;Sta;Pac;Wor;";
                                     tr.For += 10;
                                     tr.Res += 10;
@@ -2962,21 +2965,21 @@ namespace TMRecorder
                                     tr.Wor += 10;
                                     break;
                                 case 3:
-                                    tr.TrainerName = "Allenamento Tattico";
+                                    tr.TrainerName = "Tactical Drills";
                                     tr.Program = "Wor;Pos;Pas;";
                                     tr.Wor += 50;
                                     tr.Pos += 50;
                                     tr.Pas += 50;
                                     break;
                                 case 4:
-                                    tr.TrainerName = "Allenamento Finalizzazione";
+                                    tr.TrainerName = "Finishing Drills";
                                     tr.Program = "Fin;Lon;Hea;";
                                     tr.Fin += 60;
                                     tr.Tir += 60;
                                     tr.Tes += 60;
                                     break;
                                 case 5:
-                                    tr.TrainerName = "Allenamento Difensivo";
+                                    tr.TrainerName = "Defending Drills";
                                     tr.Program = "Mar;Tak;Pos;Hea;";
                                     tr.Mar += 20;
                                     tr.Con += 20;
@@ -2984,13 +2987,14 @@ namespace TMRecorder
                                     tr.Tes += 20;
                                     break;
                                 case 6:
-                                    tr.TrainerName = "Allenamento Fascia";
+                                    tr.TrainerName = "Winger Drills";
                                     tr.Program = "Cro;Pac;Tec;";
                                     tr.Cro += 40;
                                     tr.Vel += 40;
                                     tr.Tec += 40;
                                     break;
                                 case 7:
+                                    tr.TrainerName = "Goal Keeping";
                                     tr.Program = "GK;";
                                     break;
                             }

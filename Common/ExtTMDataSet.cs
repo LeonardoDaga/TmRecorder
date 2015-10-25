@@ -762,18 +762,10 @@ namespace Common {
 
                     edsRow.Età = tdsRow.Età;
 
-                    if (plyDB != null)
-                    {
-                        TmWeek age = TmWeek.GetAge(plyDB.wBorn, DateTime.Now);
-                        if (age.Years < edsRow.Età)
-                        {
-                            plyDB.wBorn = TmWeek.GetBornWeekFromAge(DateTime.Now, 0, edsRow.Età);
-                        }
+                    edsRow.wBorn = TmWeek.GetBornWeekFromAge(DateTime.Now, tdsRow.Mesi, tdsRow.Età);
 
-                        edsRow.wBorn = plyDB.wBorn;
-                    }
-                    else
-                        edsRow.wBorn = TmWeek.GetBornWeekFromAge(DateTime.Now, 0, edsRow.Età);
+                    if (plyDB != null)
+                        plyDB.wBorn = edsRow.wBorn;
 
                     edsRow.FP = tdsRow.FP;
                     edsRow.FPn = Tm_Utility.FPToNumber(tdsRow.FP);

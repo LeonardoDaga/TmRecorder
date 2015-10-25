@@ -170,5 +170,10 @@ namespace TMRecorder
 
             return mcs;
         }
+
+        private void label23_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

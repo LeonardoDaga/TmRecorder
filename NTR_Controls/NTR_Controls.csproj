@@ -61,6 +61,12 @@
       <DependentUpon>ImgContainer.cs</DependentUpon>
     </Compile>
     <Compile Include="Linq.cs" />
+    <Compile Include="ActionStats.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ActionStats.Designer.cs">
+      <DependentUpon>ActionStats.cs</DependentUpon>
+    </Compile>
     <Compile Include="MatchStats.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -123,6 +129,9 @@
   <ItemGroup>
     <EmbeddedResource Include="ImgContainer.resx">
       <DependentUpon>ImgContainer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ActionStats.resx">
+      <DependentUpon>ActionStats.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MatchStats.resx">
       <DependentUpon>MatchStats.cs</DependentUpon>

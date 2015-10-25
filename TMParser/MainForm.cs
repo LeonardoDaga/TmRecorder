@@ -3357,12 +3357,6 @@ namespace TMRecorder
         {
             string pl_data = "";
 
-            if (false) // (!CheckLicense("Import_Players_Training_Adv"))
-            {
-                pl_data = "License not valid";
-                return pl_data;
-            }
-
             try
             {
                 HtmlElement head = webBrowser.Document.GetElementsByTagName("head")[0];
@@ -3417,9 +3411,9 @@ namespace TMRecorder
                 IHTMLScriptElement element = (IHTMLScriptElement)scriptEl.DomElement;
                 return pl_data;
 
-                element.text = System.IO.File.ReadAllText(Program.Setts.DatafilePath + "\\player_info_loader.js");
-                HtmlElement res = head.AppendChild(scriptEl);
-                pl_data = (string)webBrowser.Document.InvokeScript("get_player_info");
+                //element.text = System.IO.File.ReadAllText(Program.Setts.DatafilePath + "\\player_info_loader.js");
+                //HtmlElement res = head.AppendChild(scriptEl);
+                //pl_data = (string)webBrowser.Document.InvokeScript("get_player_info");
             }
             catch (Exception ex)
             {

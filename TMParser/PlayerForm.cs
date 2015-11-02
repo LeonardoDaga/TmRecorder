@@ -486,6 +486,8 @@ namespace TMRecorder
                 pane.GraphObjList.Clear();
 
                 if (cmbSeason.Items.Count == 0) return;
+                if (cmbSeason.SelectedItem == null)
+                    cmbSeason.SelectedItem = cmbSeason.Items[0];
 
                 int season = -1;
                 if (cmbSeason.SelectedItem.ToString() != "All seasons")

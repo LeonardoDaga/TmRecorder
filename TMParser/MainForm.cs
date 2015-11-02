@@ -384,9 +384,6 @@ namespace TMRecorder
 
             FileInfo[] fis = di.GetFiles("*.5.xml");
 
-            AllSeasons.SetOwnedTeam(Program.Setts.MainSquadID, Program.Setts.MainSquadName);
-            AllSeasons.SetOwnedTeam(Program.Setts.ReserveSquadID, Program.Setts.ReserveSquadName, Program.Setts.MainSquadID);
-
             if (fis.Length > 0)
             {
                 // Load the data version 5
@@ -404,6 +401,9 @@ namespace TMRecorder
                 }
             }
 
+            AllSeasons.SetOwnedTeam(Program.Setts.MainSquadID, Program.Setts.MainSquadName);
+            AllSeasons.SetOwnedTeam(Program.Setts.ReserveSquadID, Program.Setts.ReserveSquadName, Program.Setts.MainSquadID);
+
             FormatMatchesAndPerfGrid();
 
             FillCmbMatchesSeasons();
@@ -418,14 +418,15 @@ namespace TMRecorder
         {
             cmbSquad.Items.Clear();
 
-            List<Team> ownedTeams = AllSeasons.GetOwnedTeams();
-            foreach (Team team in ownedTeams)
+            List<Team> ownedAndImportedTeams = AllSeasons.GetOwnedAndImportedTeams();
+
+            foreach (Team team in ownedAndImportedTeams)
             {
                 cmbSquad.Items.Add(team);
             }
 
             if (cmbSquad.Items.Count > 0)
-                cmbSquad.SelectedItem = ownedTeams[0];
+                cmbSquad.SelectedItem = ownedAndImportedTeams[0];
         }
 
         private void FillCmbMatchesSeasons()
@@ -3584,6 +3585,9 @@ namespace TMRecorder
                     string strMsg = "Import complete:\n" + cnt.ToString() + " new matches imported;\n";
                     MessageBox.Show(strMsg, "TmRecorder");
                 }
+
+                FillCmbMatchesSquads();
+
                 AllSeasons.IsDirty = true;
                 isDirty = true;
                 return;
@@ -4361,6 +4365,38 @@ namespace TMRecorder
             }
         }
 
+        private void Login(string username, string password)
+        {
+            try
+            {
+                string function =
+                    "function club_login(){"+
+                    "var type; var captcha;"+
+                    "$.post(\"/ajax/login.ajax.php\", " +
+                    "{"+
+                    "\"type\": type," +
+                    "\"user\": \"" + username + "\"," +
+                    "\"password\": \"" + password + "\"," +
+                    "\"remember\": 1, " +
+                    "\"captcha\": captcha}," +
+                    "function(data) { if (data != null) { if (data[\"success\"])" +
+                    " page_refresh(); } }, \"json\");}";
+                HtmlElement head = webBrowser.Document.GetElementsByTagName("head")[0];
+                HtmlElement scriptEl = webBrowser.Document.CreateElement("script");
+                IHTMLScriptElement element = (IHTMLScriptElement)scriptEl.DomElement;
+                element.text = function;
+
+                HtmlElement res = head.AppendChild(scriptEl);
+                //object[] args = new object[2]; 
+                //args[0] = 2097098;
+                //args[1] = "club";
+                webBrowser.Document.InvokeScript("club_login");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         private void addExtraTeamToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             AddExtraTeam aetDlg = new AddExtraTeam();
@@ -4690,7 +4726,9 @@ namespace TMRecorder
             EnumerableRowCollection<NTR_SquadDb.PlayerPerfRow> yourPlayersPerfRows;
             EnumerableRowCollection<NTR_SquadDb.PlayerPerfRow> oppsPlayersPerfRows;
 
-            if (md.IsHome)
+            bool IsHome = (md.Home.value == (cmbSquad.SelectedItem as Team).Name);
+
+            if (IsHome)
             {
                 yourPlayersPerfRows = md.HomePlayerPerf;
                 oppsPlayersPerfRows = md.AwayPlayerPerf;
@@ -4906,6 +4944,23 @@ namespace TMRecorder
 
             navigationAddress = GetMatchAddress(sender, o);
             Process.Start(navigationAddress);
+        }
+
+        private void dataGridPlayersInfo_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void tsmGotoPlayerPageInBrowser_Click(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void loginTrophyManagercomToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoginForm loginForm = new LoginForm();
+            if (loginForm.ShowDialog() == DialogResult.OK)
+                Login(loginForm.UserName, loginForm.Password);
         }
     }
 }

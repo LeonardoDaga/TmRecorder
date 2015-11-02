@@ -195,6 +195,10 @@ namespace TMRecorder
             this.toolStripMenuItem18 = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuPlInfo = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem28 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem29 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem30 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.setPlayerBloominAgeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setAgeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem15 = new System.Windows.Forms.ToolStripMenuItem();
@@ -218,8 +222,6 @@ namespace TMRecorder
             this.gotoMatchReportPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteSelectedMatchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showMatchActionsListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.matchBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.plyStatsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.inFormazioneDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.squalificatoDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -227,7 +229,6 @@ namespace TMRecorder
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.zedGraphControl1 = new ZedGraph.ZedGraphControl();
             this.zedGraphControl2 = new ZedGraph.ZedGraphControl();
-            this.plyStatsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
@@ -396,9 +397,7 @@ namespace TMRecorder
             this.chkMT3 = new System.Windows.Forms.CheckBox();
             this.chkMT4 = new System.Windows.Forms.CheckBox();
             this.chkMT5 = new System.Windows.Forms.CheckBox();
-            this.btnHelp = new System.Windows.Forms.Button();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.matchStats = new TMRecorder.MatchStats();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.lblMatchScore = new System.Windows.Forms.Label();
@@ -413,6 +412,7 @@ namespace TMRecorder
             this.copyMatchDataInPlainTextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel3 = new System.Windows.Forms.Panel();
             this.dgOppsTeamPerf = new NTR_Controls.AeroDataGrid();
+            this.matchStats = new TMRecorder.MatchStats();
             this.tabBrowser = new System.Windows.Forms.TabPage();
             this.toolStripContainer3 = new System.Windows.Forms.ToolStripContainer();
             this.webBrowser = new System.Windows.Forms.WebBrowser();
@@ -560,17 +560,14 @@ namespace TMRecorder
             this.nomeDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Age = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripMenuItem29 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem30 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
+            this.matchBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.plyStatsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.plyStatsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.loginTrophyManagercomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStripGK.SuspendLayout();
             this.contextMenuPlInfo.SuspendLayout();
             this.matchesMenuStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.matchBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.plyStatsBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.plyStatsBindingSource)).BeginInit();
             this.toolStrip3.SuspendLayout();
             this.toolStripContainer2.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
@@ -621,6 +618,9 @@ namespace TMRecorder
             ((System.ComponentModel.ISupportInitialize)(this.portieriBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.actionAnalysis)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.giocatoriNSkillBindingSourceA)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.matchBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.plyStatsBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.plyStatsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // openFileDialog
@@ -747,7 +747,7 @@ namespace TMRecorder
             this.toolStripSeparator13,
             this.setPlayerBloominAgeToolStripMenuItem});
             this.contextMenuPlInfo.Name = "contextMenuPlInfo";
-            this.contextMenuPlInfo.Size = new System.Drawing.Size(289, 126);
+            this.contextMenuPlInfo.Size = new System.Drawing.Size(289, 104);
             this.contextMenuPlInfo.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuPlInfo_Opening);
             // 
             // toolStripMenuItem28
@@ -757,6 +757,30 @@ namespace TMRecorder
             this.toolStripMenuItem28.Size = new System.Drawing.Size(288, 22);
             this.toolStripMenuItem28.Text = "Open Player Info page (Dbl-Click)";
             this.toolStripMenuItem28.Click += new System.EventHandler(this.dataGridPlayersInfo_CellDoubleClick);
+            // 
+            // toolStripSeparator12
+            // 
+            this.toolStripSeparator12.Name = "toolStripSeparator12";
+            this.toolStripSeparator12.Size = new System.Drawing.Size(285, 6);
+            // 
+            // toolStripMenuItem29
+            // 
+            this.toolStripMenuItem29.Name = "toolStripMenuItem29";
+            this.toolStripMenuItem29.Size = new System.Drawing.Size(288, 22);
+            this.toolStripMenuItem29.Text = "Open Player Page in the internal browser";
+            this.toolStripMenuItem29.Click += new System.EventHandler(this.openPlayerPageInTheInternalBrowserToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem30
+            // 
+            this.toolStripMenuItem30.Name = "toolStripMenuItem30";
+            this.toolStripMenuItem30.Size = new System.Drawing.Size(288, 22);
+            this.toolStripMenuItem30.Text = "Open Player Page in an external browser";
+            this.toolStripMenuItem30.Click += new System.EventHandler(this.openPlayerPageInAnExternalBrowserToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator13
+            // 
+            this.toolStripSeparator13.Name = "toolStripSeparator13";
+            this.toolStripSeparator13.Size = new System.Drawing.Size(285, 6);
             // 
             // setPlayerBloominAgeToolStripMenuItem
             // 
@@ -782,7 +806,7 @@ namespace TMRecorder
             this.toolStripMenuItem26,
             this.toolStripMenuItem27});
             this.setAgeToolStripMenuItem.Name = "setAgeToolStripMenuItem";
-            this.setAgeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.setAgeToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.setAgeToolStripMenuItem.Text = "Set Age";
             // 
             // toolStripMenuItem15
@@ -871,7 +895,7 @@ namespace TMRecorder
             this.mi3rdYearToolStripMenuItem,
             this.miCompletelyBloomedEToolStripMenuItem});
             this.setPhaseToolStripMenuItem.Name = "setPhaseToolStripMenuItem";
-            this.setPhaseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.setPhaseToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.setPhaseToolStripMenuItem.Text = "Set Phase";
             // 
             // miNotBloomedUToolStripMenuItem
@@ -1116,12 +1140,12 @@ namespace TMRecorder
             // toolStripContainer2.ContentPanel
             // 
             this.toolStripContainer2.ContentPanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.toolStripContainer2.ContentPanel.Size = new System.Drawing.Size(1115, 542);
+            this.toolStripContainer2.ContentPanel.Size = new System.Drawing.Size(1134, 543);
             this.toolStripContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer2.Location = new System.Drawing.Point(0, 0);
             this.toolStripContainer2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.toolStripContainer2.Name = "toolStripContainer2";
-            this.toolStripContainer2.Size = new System.Drawing.Size(1115, 567);
+            this.toolStripContainer2.Size = new System.Drawing.Size(1134, 568);
             this.toolStripContainer2.TabIndex = 0;
             this.toolStripContainer2.Text = "toolStripContainer2";
             // 
@@ -1132,12 +1156,12 @@ namespace TMRecorder
             // 
             this.toolStripContainer1.ContentPanel.Controls.Add(this.tabControl1);
             this.toolStripContainer1.ContentPanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1115, 540);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1134, 541);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
             this.toolStripContainer1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.toolStripContainer1.Name = "toolStripContainer1";
-            this.toolStripContainer1.Size = new System.Drawing.Size(1115, 567);
+            this.toolStripContainer1.Size = new System.Drawing.Size(1134, 568);
             this.toolStripContainer1.TabIndex = 2;
             this.toolStripContainer1.Text = "toolStripContainer1";
             // 
@@ -1159,7 +1183,7 @@ namespace TMRecorder
             this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1115, 540);
+            this.tabControl1.Size = new System.Drawing.Size(1134, 541);
             this.tabControl1.TabIndex = 2;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl1_Selected);
@@ -1171,7 +1195,7 @@ namespace TMRecorder
             this.tabATeamPage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabATeamPage.Name = "tabATeamPage";
             this.tabATeamPage.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tabATeamPage.Size = new System.Drawing.Size(1107, 514);
+            this.tabATeamPage.Size = new System.Drawing.Size(1126, 515);
             this.tabATeamPage.TabIndex = 0;
             this.tabATeamPage.Text = "A-Team Players";
             this.tabATeamPage.UseVisualStyleBackColor = true;
@@ -1252,7 +1276,7 @@ namespace TMRecorder
             this.dataGridGiocatori.ReadOnly = true;
             this.dataGridGiocatori.RowHeadersWidth = 20;
             this.dataGridGiocatori.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridGiocatori.Size = new System.Drawing.Size(1101, 506);
+            this.dataGridGiocatori.Size = new System.Drawing.Size(1120, 507);
             this.dataGridGiocatori.TabIndex = 3;
             this.dataGridGiocatori.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridPlayersInfo_CellDoubleClick);
             this.dataGridGiocatori.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridGiocatori_ColumnHeaderMouseClick);
@@ -1774,7 +1798,7 @@ namespace TMRecorder
             this.tabBTeamPage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabBTeamPage.Name = "tabBTeamPage";
             this.tabBTeamPage.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tabBTeamPage.Size = new System.Drawing.Size(1107, 514);
+            this.tabBTeamPage.Size = new System.Drawing.Size(1126, 515);
             this.tabBTeamPage.TabIndex = 4;
             this.tabBTeamPage.Text = "B-Team Players";
             this.tabBTeamPage.UseVisualStyleBackColor = true;
@@ -1855,7 +1879,7 @@ namespace TMRecorder
             this.dataGridGiocatoriB.ReadOnly = true;
             this.dataGridGiocatoriB.RowHeadersWidth = 20;
             this.dataGridGiocatoriB.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridGiocatoriB.Size = new System.Drawing.Size(1101, 506);
+            this.dataGridGiocatoriB.Size = new System.Drawing.Size(1120, 507);
             this.dataGridGiocatoriB.TabIndex = 2;
             this.dataGridGiocatoriB.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridPlayersInfo_CellDoubleClick);
             this.dataGridGiocatoriB.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridGiocatori_ColumnHeaderMouseClick);
@@ -2364,7 +2388,7 @@ namespace TMRecorder
             this.tabGK.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabGK.Name = "tabGK";
             this.tabGK.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tabGK.Size = new System.Drawing.Size(1107, 514);
+            this.tabGK.Size = new System.Drawing.Size(1126, 515);
             this.tabGK.TabIndex = 1;
             this.tabGK.Text = "GoalKeepers";
             this.tabGK.UseVisualStyleBackColor = true;
@@ -2428,7 +2452,7 @@ namespace TMRecorder
             this.dataGridPortieri.ReadOnly = true;
             this.dataGridPortieri.RowHeadersWidth = 20;
             this.dataGridPortieri.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridPortieri.Size = new System.Drawing.Size(1101, 506);
+            this.dataGridPortieri.Size = new System.Drawing.Size(1120, 507);
             this.dataGridPortieri.TabIndex = 0;
             this.dataGridPortieri.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridPlayersInfo_CellDoubleClick);
             this.dataGridPortieri.Sorted += new System.EventHandler(this.dataGridPortieri_Sorted);
@@ -2721,7 +2745,7 @@ namespace TMRecorder
             this.tabInfo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabInfo.Name = "tabInfo";
             this.tabInfo.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tabInfo.Size = new System.Drawing.Size(1107, 514);
+            this.tabInfo.Size = new System.Drawing.Size(1126, 515);
             this.tabInfo.TabIndex = 2;
             this.tabInfo.Text = "Players Info";
             this.tabInfo.UseVisualStyleBackColor = true;
@@ -2784,7 +2808,7 @@ namespace TMRecorder
             this.dataGridPlayersInfo.Name = "dataGridPlayersInfo";
             this.dataGridPlayersInfo.RowHeadersWidth = 25;
             this.dataGridPlayersInfo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridPlayersInfo.Size = new System.Drawing.Size(1101, 506);
+            this.dataGridPlayersInfo.Size = new System.Drawing.Size(1120, 507);
             this.dataGridPlayersInfo.TabIndex = 0;
             this.dataGridPlayersInfo.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridPlayersInfo_CellDoubleClick);
             this.dataGridPlayersInfo.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridPlayersInfo_CellEndEdit);
@@ -3122,7 +3146,7 @@ namespace TMRecorder
             this.tabInfoMain.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabInfoMain.Name = "tabInfoMain";
             this.tabInfoMain.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tabInfoMain.Size = new System.Drawing.Size(1107, 514);
+            this.tabInfoMain.Size = new System.Drawing.Size(1126, 515);
             this.tabInfoMain.TabIndex = 5;
             this.tabInfoMain.Text = "Team Matches";
             this.tabInfoMain.UseVisualStyleBackColor = true;
@@ -3140,7 +3164,7 @@ namespace TMRecorder
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1101, 506);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1120, 507);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // panel1
@@ -3150,12 +3174,11 @@ namespace TMRecorder
             this.panel1.Controls.Add(this.groupBox3);
             this.panel1.Controls.Add(this.groupBox2);
             this.panel1.Controls.Add(this.groupBox1);
-            this.panel1.Controls.Add(this.btnHelp);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 4);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(522, 498);
+            this.panel1.Size = new System.Drawing.Size(532, 499);
             this.panel1.TabIndex = 0;
             // 
             // dgMatches
@@ -3201,7 +3224,7 @@ namespace TMRecorder
             this.dgMatches.RowHeadersDefaultCellStyle = dataGridViewCellStyle111;
             this.dgMatches.RowHeadersWidth = 20;
             this.dgMatches.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgMatches.Size = new System.Drawing.Size(517, 420);
+            this.dgMatches.Size = new System.Drawing.Size(527, 421);
             this.dgMatches.TabIndex = 10;
             this.dgMatches.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgMatches_CellDoubleClick);
             this.dgMatches.SelectionChanged += new System.EventHandler(this.dgMatches_SelectionChanged);
@@ -3211,7 +3234,7 @@ namespace TMRecorder
             this.groupBox4.Controls.Add(this.chkHome);
             this.groupBox4.Controls.Add(this.chkAway);
             this.groupBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.groupBox4.Location = new System.Drawing.Point(411, 0);
+            this.groupBox4.Location = new System.Drawing.Point(418, 0);
             this.groupBox4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -3268,7 +3291,7 @@ namespace TMRecorder
             this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox3.Size = new System.Drawing.Size(148, 37);
+            this.groupBox3.Size = new System.Drawing.Size(158, 37);
             this.groupBox3.TabIndex = 8;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Squad";
@@ -3277,7 +3300,7 @@ namespace TMRecorder
             // 
             this.cmbSquad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSquad.FormattingEnabled = true;
-            this.cmbSquad.Location = new System.Drawing.Point(15, 13);
+            this.cmbSquad.Location = new System.Drawing.Point(26, 13);
             this.cmbSquad.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbSquad.Name = "cmbSquad";
             this.cmbSquad.Size = new System.Drawing.Size(127, 21);
@@ -3292,7 +3315,7 @@ namespace TMRecorder
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox2.Size = new System.Drawing.Size(148, 37);
+            this.groupBox2.Size = new System.Drawing.Size(158, 37);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Season";
@@ -3301,7 +3324,7 @@ namespace TMRecorder
             // 
             this.cmbSeason.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSeason.FormattingEnabled = true;
-            this.cmbSeason.Location = new System.Drawing.Point(55, 13);
+            this.cmbSeason.Location = new System.Drawing.Point(66, 13);
             this.cmbSeason.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbSeason.Name = "cmbSeason";
             this.cmbSeason.Size = new System.Drawing.Size(87, 21);
@@ -3425,40 +3448,20 @@ namespace TMRecorder
             this.chkMT5.UseVisualStyleBackColor = false;
             this.chkMT5.CheckedChanged += new System.EventHandler(this.chkUpdateMatchList);
             // 
-            // btnHelp
-            // 
-            this.btnHelp.Location = new System.Drawing.Point(520, 22);
-            this.btnHelp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnHelp.Name = "btnHelp";
-            this.btnHelp.Size = new System.Drawing.Size(44, 26);
-            this.btnHelp.TabIndex = 3;
-            this.btnHelp.Text = "Help";
-            this.btnHelp.UseVisualStyleBackColor = true;
-            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
-            // 
             // tableLayoutPanel5
             // 
             this.tableLayoutPanel5.ColumnCount = 1;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel5.Controls.Add(this.matchStats, 0, 1);
             this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel4, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.matchStats, 0, 1);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(531, 3);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(541, 3);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 2;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 430F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(567, 500);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(576, 501);
             this.tableLayoutPanel5.TabIndex = 1;
-            // 
-            // matchStats
-            // 
-            this.matchStats.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.matchStats.Location = new System.Drawing.Point(5, 436);
-            this.matchStats.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.matchStats.Name = "matchStats";
-            this.matchStats.Size = new System.Drawing.Size(567, 58);
-            this.matchStats.TabIndex = 1;
             // 
             // tableLayoutPanel4
             // 
@@ -3683,6 +3686,15 @@ namespace TMRecorder
             this.dgOppsTeamPerf.TabIndex = 11;
             this.dgOppsTeamPerf.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tsmGotoPlayerPageInBrowser_Click);
             // 
+            // matchStats
+            // 
+            this.matchStats.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.matchStats.Location = new System.Drawing.Point(0, 430);
+            this.matchStats.Margin = new System.Windows.Forms.Padding(0);
+            this.matchStats.Name = "matchStats";
+            this.matchStats.Size = new System.Drawing.Size(577, 71);
+            this.matchStats.TabIndex = 1;
+            // 
             // tabBrowser
             // 
             this.tabBrowser.Controls.Add(this.toolStripContainer3);
@@ -3690,7 +3702,7 @@ namespace TMRecorder
             this.tabBrowser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabBrowser.Name = "tabBrowser";
             this.tabBrowser.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tabBrowser.Size = new System.Drawing.Size(1107, 514);
+            this.tabBrowser.Size = new System.Drawing.Size(1126, 515);
             this.tabBrowser.TabIndex = 8;
             this.tabBrowser.Text = "Trophy Browser";
             this.tabBrowser.UseVisualStyleBackColor = true;
@@ -3702,7 +3714,7 @@ namespace TMRecorder
             // 
             this.toolStripContainer3.ContentPanel.Controls.Add(this.webBrowser);
             this.toolStripContainer3.ContentPanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.toolStripContainer3.ContentPanel.Size = new System.Drawing.Size(1008, 479);
+            this.toolStripContainer3.ContentPanel.Size = new System.Drawing.Size(1027, 480);
             this.toolStripContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
             // 
             // toolStripContainer3.LeftToolStripPanel
@@ -3711,7 +3723,7 @@ namespace TMRecorder
             this.toolStripContainer3.Location = new System.Drawing.Point(3, 4);
             this.toolStripContainer3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.toolStripContainer3.Name = "toolStripContainer3";
-            this.toolStripContainer3.Size = new System.Drawing.Size(1101, 506);
+            this.toolStripContainer3.Size = new System.Drawing.Size(1120, 507);
             this.toolStripContainer3.TabIndex = 0;
             this.toolStripContainer3.Text = "toolStripContainer3";
             // 
@@ -3727,7 +3739,7 @@ namespace TMRecorder
             this.webBrowser.MinimumSize = new System.Drawing.Size(23, 23);
             this.webBrowser.Name = "webBrowser";
             this.webBrowser.ScriptErrorsSuppressed = true;
-            this.webBrowser.Size = new System.Drawing.Size(1008, 479);
+            this.webBrowser.Size = new System.Drawing.Size(1027, 480);
             this.webBrowser.TabIndex = 1;
             this.webBrowser.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser_DocumentCompleted_1);
             this.webBrowser.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.webBrowser_Navigating);
@@ -3982,7 +3994,7 @@ namespace TMRecorder
             this.toolStripLabel6});
             this.tsBrowserMain.Location = new System.Drawing.Point(3, 0);
             this.tsBrowserMain.Name = "tsBrowserMain";
-            this.tsBrowserMain.Size = new System.Drawing.Size(1098, 27);
+            this.tsBrowserMain.Size = new System.Drawing.Size(1117, 27);
             this.tsBrowserMain.TabIndex = 3;
             this.tsBrowserMain.Text = "toolStrip4";
             // 
@@ -4054,6 +4066,7 @@ namespace TMRecorder
             // toolStripDropDownButton16
             // 
             this.toolStripDropDownButton16.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.loginTrophyManagercomToolStripMenuItem,
             this.tsbGotoMainTrophyPage,
             this.tsbGotoAdobePage,
             this.tsbLoadHTMLPage,
@@ -5091,35 +5104,18 @@ namespace TMRecorder
             this.dataGridViewTextBoxColumn6.HeaderText = "ASI";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             // 
-            // toolStripSeparator12
+            // loginTrophyManagercomToolStripMenuItem
             // 
-            this.toolStripSeparator12.Name = "toolStripSeparator12";
-            this.toolStripSeparator12.Size = new System.Drawing.Size(285, 6);
-            // 
-            // toolStripMenuItem29
-            // 
-            this.toolStripMenuItem29.Name = "toolStripMenuItem29";
-            this.toolStripMenuItem29.Size = new System.Drawing.Size(288, 22);
-            this.toolStripMenuItem29.Text = "Open Player Page in the internal browser";
-            this.toolStripMenuItem29.Click += new System.EventHandler(this.openPlayerPageInTheInternalBrowserToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem30
-            // 
-            this.toolStripMenuItem30.Name = "toolStripMenuItem30";
-            this.toolStripMenuItem30.Size = new System.Drawing.Size(288, 22);
-            this.toolStripMenuItem30.Text = "Open Player Page in an external browser";
-            this.toolStripMenuItem30.Click += new System.EventHandler(this.openPlayerPageInAnExternalBrowserToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator13
-            // 
-            this.toolStripSeparator13.Name = "toolStripSeparator13";
-            this.toolStripSeparator13.Size = new System.Drawing.Size(285, 6);
+            this.loginTrophyManagercomToolStripMenuItem.Name = "loginTrophyManagercomToolStripMenuItem";
+            this.loginTrophyManagercomToolStripMenuItem.Size = new System.Drawing.Size(335, 22);
+            this.loginTrophyManagercomToolStripMenuItem.Text = "Login TrophyManager.com";
+            this.loginTrophyManagercomToolStripMenuItem.Click += new System.EventHandler(this.loginTrophyManagercomToolStripMenuItem_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1115, 567);
+            this.ClientSize = new System.Drawing.Size(1134, 568);
             this.Controls.Add(this.toolStripContainer1);
             this.Controls.Add(this.toolStripContainer2);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -5135,9 +5131,6 @@ namespace TMRecorder
             this.contextMenuStripGK.ResumeLayout(false);
             this.contextMenuPlInfo.ResumeLayout(false);
             this.matchesMenuStrip.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.matchBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.plyStatsBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.plyStatsBindingSource)).EndInit();
             this.toolStrip3.ResumeLayout(false);
             this.toolStrip3.PerformLayout();
             this.toolStripContainer2.ResumeLayout(false);
@@ -5198,6 +5191,9 @@ namespace TMRecorder
             ((System.ComponentModel.ISupportInitialize)(this.portieriBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.actionAnalysis)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.giocatoriNSkillBindingSourceA)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.matchBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.plyStatsBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.plyStatsBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -5314,7 +5310,6 @@ namespace TMRecorder
         private System.Windows.Forms.CheckBox chkMT3;
         private System.Windows.Forms.CheckBox chkMT2;
         private System.Windows.Forms.CheckBox chkMT1;
-        private System.Windows.Forms.Button btnHelp;
         private System.Windows.Forms.CheckBox chkMT5;
         private System.Windows.Forms.BindingSource plyStatsBindingSource;
         private System.Windows.Forms.BindingSource plyStatsBindingSource1;
@@ -5591,5 +5586,6 @@ namespace TMRecorder
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem29;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem30;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator13;
+        private System.Windows.Forms.ToolStripMenuItem loginTrophyManagercomToolStripMenuItem;
     }
 }

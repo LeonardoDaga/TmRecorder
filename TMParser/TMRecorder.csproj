@@ -71,8 +71,8 @@
     <ProductName>TM Recorder</ProductName>
     <PublisherName>INSYDE</PublisherName>
     <DisallowUrlActivation>true</DisallowUrlActivation>
-    <ApplicationRevision>6</ApplicationRevision>
-    <ApplicationVersion>2.10.0.6</ApplicationVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>2.10.2.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -87,7 +87,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -230,6 +230,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Languages.resx</DependentUpon>
+    </Compile>
+    <Compile Include="LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MySettings.cs" />
     <Compile Include="NTR_PlayerData.cs">
@@ -437,6 +443,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Languages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -461,7 +470,10 @@
       <DependentUpon>NTR_PlayerData.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="NTR_PlayerForm.resx" />
+    <EmbeddedResource Include="NTR_PlayerForm.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>NTR_PlayerForm1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="OptionsForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>OptionsForm.cs</DependentUpon>
@@ -684,6 +696,8 @@
     </None>
     <None Include="Resources\Coach.gif" />
     <Content Include="Resources\PasteHtmlSource.ico" />
+    <None Include="Resources\Waste.png" />
+    <None Include="Resources\WasteDisabled.png" />
     <Content Include="Shortlist.ico" />
     <Content Include="TeamRecorder.ico" />
     <Content Include="ZedGraph.dll" />

@@ -1495,7 +1495,20 @@ namespace NTR_Db
                 BestPlayer = 0;
 
             Analyzed = mr.Analyzed;
-            IsHome = mr.isHome;
+
+            // This operation is to recover the status before 2.10.1.1
+            NTR_SquadDb.TeamRow HomeRow = mr.isHome ? mr.TeamRowByTeam_YTeam : mr.TeamRowByTeam_OTeam;
+            NTR_SquadDb.TeamRow AwayRow = mr.isHome ? mr.TeamRowByTeam_OTeam : mr.TeamRowByTeam_YTeam;
+
+            if (!HomeRow.IsOwnerNull() && (HomeRow.Owner))
+                IsHome = true;
+            else if (!HomeRow.IsOwnerNull() && (AwayRow.Owner))
+                IsHome = false;
+            else if (!HomeRow.IsImportedNull() && (HomeRow.Imported))
+                IsHome = true;
+            else
+                IsHome = false;
+
             MatchID = mr.MatchID;
             MatchType = mr.MatchType;
             OTeamID = mr.OTeamID;

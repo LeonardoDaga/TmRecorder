@@ -15,6 +15,10 @@ namespace A_TestForm
         public FormTest()
         {
             InitializeComponent();
+
+            Gecko.Xpcom.Initialize("c:\\xulrunner");
+
+            webBrowser.Navigate("http://www.trophymanager.com");
         }
 
         private void matchStats1_Load(object sender, EventArgs e)

@@ -23,7 +23,6 @@ namespace TMRecorder
             this.groupBox3.Text = Current.Language.Squad;
             this.groupBox2.Text = Current.Language.Season;
             this.groupBox1.Text = Current.Language.Type;
-            this.btnHelp.Text = Current.Language.Help;
             this.gotoMatchReportPageToolStripMenuItem.Text = Current.Language.GotoMatchReportPage;
             this.deleteSelectedMatchToolStripMenuItem.Text = Current.Language.DeleteSelectedMatch;
             this.showMatchActionsListToolStripMenuItem.Text = Current.Language.ShowMatchActionsList;

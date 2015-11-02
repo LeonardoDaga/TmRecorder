@@ -687,6 +687,8 @@ namespace NTR_Db
 
                 sf.UpdateStatusMessage(95, string.Format("Loading Action Decoder Datafile..."));
                 fi = new FileInfo(Path.Combine(dirPath, "ActionsDecoder.5.xml"));
+
+                seasonsDB.ActionsDecoder.Clear();
                 if (fi.Exists)
                     seasonsDB.ActionsDecoder.ReadXml(fi.FullName);
             }
@@ -721,6 +723,19 @@ namespace NTR_Db
         public List<Team> GetOwnedTeams()
         {
             return OwnedTeams;
+        }
+
+        public List<Team> GetOwnedAndImportedTeams()
+        {
+            List<Team> teams = GetOwnedTeams();
+
+            var importedTeams = (from c in seasonsDB.Team
+                                 where ((!c.IsImportedNull()) && (c.Imported))
+                                 select new Team(c.TeamID, c.Name)).ToList();
+
+            teams.AddRange(importedTeams);
+
+            return teams;
         }
 
         public int[] GetSeasonsVector()
@@ -772,6 +787,19 @@ namespace NTR_Db
 
             string strTeamId = HTML_Parser.GetNumberAfter(page, "fixtures/club/");
             int TeamID = int.Parse(strTeamId);
+
+            // Check if I'm the Owner
+            if (!OwnedSquadsList.ContainsKey(TeamID))
+            {
+                NTR_SquadDb.TeamRow teamRow = seasonsDB.Team.FindByTeamID(TeamID);
+                if (teamRow == null)
+                {
+                    teamRow = seasonsDB.Team.NewTeamRow();
+                    teamRow.TeamID = TeamID;
+                    seasonsDB.Team.AddTeamRow(teamRow);
+                }
+                teamRow.Imported = true;
+            }
 
             // Get the items
             string[] rows = page.Split('\n');
@@ -844,7 +872,8 @@ namespace NTR_Db
                     trow.TeamID = OTeamID;
                     seasonsDB.Team.AddTeamRow(trow);
                 }
-                trow.Owner = false;
+                if (!this.OwnedSquadsList.ContainsKey(OTeamID))
+                    trow.Owner = false;
 
                 matchRow.OTeamID = OTeamID;
                 matchRow.TeamRowByTeam_OTeam.Name = OTeamName;
@@ -938,16 +967,30 @@ namespace NTR_Db
                 awayTeamRow.Nick = match_info["away_nick"];
 
                 matchRow.Stadium = match_info["stadium"];
-                matchRow.Crowd = int.Parse(match_info["attendance"]);
 
-                if (!homeTeamRow.IsOwnerNull())
-                    matchRow.isHome = homeTeamRow.Owner;
+                int crowd = 0;
+                int.TryParse(match_info["attendance"], out crowd);
+                matchRow.Crowd = crowd;
+
+                if ((!homeTeamRow.IsOwnerNull()) && homeTeamRow.Owner)
+                    matchRow.isHome = true;
+                else if ((!awayTeamRow.IsOwnerNull()) && awayTeamRow.Owner)
+                    matchRow.isHome = false;
+                else if ((!homeTeamRow.IsImportedNull()) && homeTeamRow.Imported)
+                    matchRow.isHome = true;
                 else
                     matchRow.isHome = false;
 
                 int yourTeamId = matchRow.isHome ? homeTeamId : awayTeamId;
                 int oppsTeamId = matchRow.isHome ? awayTeamId : homeTeamId;
 
+                matchRow.OTeamID = oppsTeamId;
+                matchRow.YTeamID = yourTeamId;
+
+                if (match_info["home_attstyle"] == "null")
+                    match_info["home_attstyle"] = "0";
+                if (match_info["away_attstyle"] == "null")
+                    match_info["away_attstyle"] = "0";
                 if (matchRow.isHome)
                 {
                     matchRow.Mentalities = mentality[int.Parse(match_info["home_mentality"])] + ";" + mentality[int.Parse(match_info["away_mentality"])];
@@ -1376,9 +1419,6 @@ namespace NTR_Db
                 matchRow.OActions = oppsActionsList.ToString();
                 matchRow.YActions = yourActionsList.ToString();
 
-                matchRow.OTeamID = oppsTeamId;
-                matchRow.YTeamID = yourTeamId;
-
                 matchRow.Analyzed = 1;
                 matchRow.Report = true;
 
@@ -1496,8 +1536,6 @@ namespace NTR_Db
 
                 if (matchRow.isHome)
                     matchRow.TeamRowByTeam_OTeam.Color = int.Parse(oppsColor, System.Globalization.NumberStyles.HexNumber);
-
-                matchRow.TeamRowByTeam_OTeam.Owner = false;
 
                 return true;
             }

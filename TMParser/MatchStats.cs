@@ -68,6 +68,11 @@ namespace TMRecorder
                 lblRouAvg1.Text = (yourAvgStats.RouSum / matchData.LastMin / 11).ToString("N2");
                 lblRouAvg2.Text = (oppsAvgStats.RouSum / matchData.LastMin / 11).ToString("N2");
 
+                lblAttackStyle1.Text = matchData.YAttk;
+                lblAttackStyle2.Text = matchData.OAttk;
+                lblMentality1.Text = matchData.YMent;
+                lblMentality2.Text = matchData.OMent;
+
                 lblSprinklers.Text = (pitch[0] == "0") ? "No" : "Yes";
                 lblDraining.Text = (pitch[1] == "0") ? "No" : "Yes";
                 lblHeating.Text = (pitch[2] == "0") ? "No" : "Yes";
@@ -100,6 +105,8 @@ namespace TMRecorder
                     lblWeather.Text = "Heavy";
                 else
                     lblWeather.Text = "Strong";
+
+                actionsStats.ActionsToRows(matchData.YActions, matchData.OActions);
             }
             else
             {
@@ -120,6 +127,11 @@ namespace TMRecorder
                 lblRouAvg1.Text = "";
                 lblRouAvg2.Text = "";
 
+                lblAttackStyle1.Text = "";
+                lblAttackStyle2.Text = "";
+                lblMentality1.Text = "";
+                lblMentality2.Text = "";
+
                 Formation yf = new Formation(eFormationTypes.Type_Empty);
                 Formation of = new Formation(eFormationTypes.Type_Empty);
                 yourTeamLineup.formation = yf;
@@ -132,6 +144,8 @@ namespace TMRecorder
                 lblPitchCover.Text = "nd";
 
                 lblWeather.Text = "nd";
+
+                actionsStats.ActionsToRows(null, null);
             }
         }
 

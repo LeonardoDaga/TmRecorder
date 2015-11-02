@@ -199,6 +199,45 @@ namespace NTR_Db
             return adt;
         }
 
+        public static Dictionary<string, string[]> ParseAsSimpleDictionary(string coded)
+        {
+            if (coded == null) return null;
+
+            ActionsList actionList = Parse(coded);
+
+            string[] Titles = new string[]
+                {"ShortPass","ThroughBall","Wing","LongBall","CounterAttack",
+                "Corner","Freekick","GkLongBall","GkCounterAttack","Penalty"};
+
+            Dictionary<string, string[]> outputAnalysis = new Dictionary<string, string[]>();
+
+            foreach (KeyValuePair<byte, ActionsItem> item in actionList)
+            {
+                if (item.Key > 9) continue;
+
+                string failed = "";
+                string shot_off = "";
+                string shot_in = "";
+                string goal = "";
+
+                int total = 0;
+                foreach (var i in item.Value)
+                {
+                    if (i.Key < 4) total += i.Value;
+                    if (i.Key == 0) failed = i.Value.ToString();
+                    if (i.Key == 1) shot_off = i.Value.ToString();
+                    if (i.Key == 2) shot_in = i.Value.ToString();
+                    if (i.Key == 3) goal = i.Value.ToString();
+                }
+
+                string[] values = new string[4]
+                    {total.ToString(), shot_off, shot_in, goal};
+                outputAnalysis.Add(Titles[item.Key], values);
+            }
+
+            return outputAnalysis;
+        }
+
         public static ItemDictionary ParseAsItemDictionary(string coded)
         {
             if (coded == null) return null;
@@ -209,7 +248,7 @@ namespace NTR_Db
 
             string[] Titles = new string[]
                 {"ShortPass","ThroughBall","Wing","LongBall","CounterAttack",
-                "Corner","Freekick","Wing","GkLongBall","GkCounterAttack"};
+                "Corner","Freekick","GkLongBall","GkCounterAttack","Penalty"};
             string[] Cols = new string[]
                 {"Tot","Fld","ShIn","SOut","Gol"};
 

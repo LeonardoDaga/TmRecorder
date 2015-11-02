@@ -3011,6 +3011,8 @@ namespace NTR_Db {
             
             private global::System.Data.DataColumn columnOwner;
             
+            private global::System.Data.DataColumn columnImported;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public TeamDataTable() {
@@ -3094,6 +3096,14 @@ namespace NTR_Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ImportedColumn {
+                get {
+                    return this.columnImported;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -3129,7 +3139,7 @@ namespace NTR_Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TeamRow AddTeamRow(int TeamID, string Name, int Color, string Nick, TeamRow parentTeamRowByTeam_ReserveOf, bool Owner) {
+            public TeamRow AddTeamRow(int TeamID, string Name, int Color, string Nick, TeamRow parentTeamRowByTeam_ReserveOf, bool Owner, bool Imported) {
                 TeamRow rowTeamRow = ((TeamRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         TeamID,
@@ -3137,7 +3147,8 @@ namespace NTR_Db {
                         Color,
                         Nick,
                         null,
-                        Owner};
+                        Owner,
+                        Imported};
                 if ((parentTeamRowByTeam_ReserveOf != null)) {
                     columnValuesArray[4] = parentTeamRowByTeam_ReserveOf[0];
                 }
@@ -3176,6 +3187,7 @@ namespace NTR_Db {
                 this.columnNick = base.Columns["Nick"];
                 this.columnReserveOf = base.Columns["ReserveOf"];
                 this.columnOwner = base.Columns["Owner"];
+                this.columnImported = base.Columns["Imported"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3193,6 +3205,8 @@ namespace NTR_Db {
                 base.Columns.Add(this.columnReserveOf);
                 this.columnOwner = new global::System.Data.DataColumn("Owner", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnOwner);
+                this.columnImported = new global::System.Data.DataColumn("Imported", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnImported);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint11", new global::System.Data.DataColumn[] {
                                 this.columnTeamID}, true));
                 this.columnTeamID.AllowDBNull = false;
@@ -7538,6 +7552,22 @@ namespace NTR_Db {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Imported {
+                get {
+                    try {
+                        return ((bool)(this[this.tableTeam.ImportedColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Imported\' in table \'Team\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTeam.ImportedColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public TeamRow TeamRowParent {
                 get {
                     return ((TeamRow)(this.GetParentRow(this.Table.ParentRelations["Team_ReserveOf"])));
@@ -7605,6 +7635,18 @@ namespace NTR_Db {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetOwnerNull() {
                 this[this.tableTeam.OwnerColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsImportedNull() {
+                return this.IsNull(this.tableTeam.ImportedColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetImportedNull() {
+                this[this.tableTeam.ImportedColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

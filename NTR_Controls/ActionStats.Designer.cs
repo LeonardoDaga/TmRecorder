@@ -36,11 +36,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "ActionsStats";
             this.Size = new System.Drawing.Size(300, 305);
-            this.Enter += new System.EventHandler(this.ActionsStats_Enter);
-            this.Leave += new System.EventHandler(this.ActionsStats_Leave);
-            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ActionsStats_MouseClick);
-            this.MouseLeave += new System.EventHandler(this.ActionsStats_MouseLeave);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ActionsStats_MouseMove);
             this.ResumeLayout(false);
 
         }

@@ -39,8 +39,8 @@ namespace NTR_Controls
 
         private void NTR_Browser_Load(object sender, EventArgs e)
         {
-            TheBrowser = new Browser(webBrowser);
-            TheBrowser.DefaultDirectory = this.DefaultDirectory;
+            //TheBrowser = new Browser(webBrowser);
+            //TheBrowser.DefaultDirectory = this.DefaultDirectory;
         }
 
         private void tsbPrev_Click(object sender, EventArgs e)

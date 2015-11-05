@@ -10,6 +10,7 @@ using System.ComponentModel;
 using NTR_Controls.Properties;
 using NTR_Db;
 using mshtml;
+using Gecko;
 
 namespace NTR_Controls
 {
@@ -26,13 +27,13 @@ namespace NTR_Controls
 
         string navigationAddress = "";
         string startnavigationAddress = "";
-        private WebBrowser webBrowser;
+        private GeckoWebBrowser webBrowser;
         public string DefaultDirectory { get; set; }
         
         // Path where the js scripts are located
         public string DatafilePath = "";
 
-        public Browser(WebBrowser webBrowser)
+        public Browser(GeckoWebBrowser webBrowser)
         {
             this.webBrowser = webBrowser;
         }
@@ -60,7 +61,7 @@ namespace NTR_Controls
             Content returnedContent = new Content();
 
             // Read the browser content to extract the TeamID and the Team name
-            doctext = webBrowser.DocumentText;
+            doctext = webBrowser.Document.TextContent;
             int actualTeamId = 0;
             string actTeamIdString = HTML_Parser.GetNumberAfter(doctext, "SESSION[\"id\"] = ");
             int.TryParse(actTeamIdString, out actualTeamId);
@@ -201,7 +202,7 @@ namespace NTR_Controls
             }
             else
             {
-                doctext = "Doc Text: \n" + webBrowser.DocumentText;
+                doctext = "Doc Text: \n" + webBrowser.Document.TextContent;
             }
 
             return doctext;
@@ -213,13 +214,24 @@ namespace NTR_Controls
 
             try
             {
-                HtmlElement head = webBrowser.Document.GetElementsByTagName("head")[0];
-                HtmlElement scriptEl = webBrowser.Document.CreateElement("script");
-                IHTMLScriptElement element = (IHTMLScriptElement)scriptEl.DomElement;
+                using (AutoJSContext java = new AutoJSContext(webBrowser.Window.JSContext))
+                {
+                    string result;
+                    if (!java.EvaluateScript(Resources.get_players_training_loader,
+                        (nsISupports)webBrowser.Window.DomWindow, 
+                        out result))
+                    {
+                        pl_data = result;
+                    }
+                }
 
-                element.text = Resources.get_players_training_loader;
-                HtmlElement res = head.AppendChild(scriptEl);
-                pl_data = (string)webBrowser.Document.InvokeScript("get_players_training");
+                GeckoHtmlElement head = webBrowser.Document.GetElementsByTagName("head")[0];
+                GeckoElement scriptEl = webBrowser.Document.CreateElement("script");
+                //IHTMLScriptElement element = scriptEl.DOMElement;
+
+                //element.text = Resources.get_players_training_loader;
+                //HtmlElement res = head.AppendChild(scriptEl);
+                //pl_data = (string)webBrowser.Document.InvokeScript("get_players_training");
             }
             catch (Exception ex)
             {
@@ -235,13 +247,13 @@ namespace NTR_Controls
 
             try
             {
-                HtmlElement head = webBrowser.Document.GetElementsByTagName("head")[0];
-                HtmlElement scriptEl = webBrowser.Document.CreateElement("script");
-                IHTMLScriptElement element = (IHTMLScriptElement)scriptEl.DomElement;
+                //HtmlElement head = webBrowser.Document.GetElementsByTagName("head")[0];
+                //HtmlElement scriptEl = webBrowser.Document.CreateElement("script");
+                //IHTMLScriptElement element = (IHTMLScriptElement)scriptEl.DomElement;
 
-                element.text = Resources.players_loader;
-                HtmlElement res = head.AppendChild(scriptEl);
-                pl_data = (string)webBrowser.Document.InvokeScript("get_players");
+                //element.text = Resources.players_loader;
+                //HtmlElement res = head.AppendChild(scriptEl);
+                //pl_data = (string)webBrowser.Document.InvokeScript("get_players");
             }
             catch (Exception ex)
             {
@@ -257,16 +269,16 @@ namespace NTR_Controls
 
             try
             {
-                object doc = webBrowser.Document.DomDocument;
-                string doctext = webBrowser.Document.Body.InnerHtml;
+                //object doc = webBrowser.Document.DomDocument;
+                //string doctext = webBrowser.Document.Body.InnerHtml;
 
-                HtmlElement head = webBrowser.Document.GetElementsByTagName("head")[0];
-                HtmlElement scriptEl = webBrowser.Document.CreateElement("script");
-                IHTMLScriptElement element = (IHTMLScriptElement)scriptEl.DomElement;
+                //HtmlElement head = webBrowser.Document.GetElementsByTagName("head")[0];
+                //HtmlElement scriptEl = webBrowser.Document.CreateElement("script");
+                //IHTMLScriptElement element = (IHTMLScriptElement)scriptEl.DomElement;
 
-                element.text = Resources.player_info_loader;
-                HtmlElement res = head.AppendChild(scriptEl);
-                pl_data = (string)webBrowser.Document.InvokeScript("get_player_info");
+                //element.text = Resources.player_info_loader;
+                //HtmlElement res = head.AppendChild(scriptEl);
+                //pl_data = (string)webBrowser.Document.InvokeScript("get_player_info");
             }
             catch (Exception ex)
             {
@@ -282,19 +294,19 @@ namespace NTR_Controls
 
             try
             {
-                HtmlElement head = webBrowser.Document.GetElementsByTagName("head")[0];
-                HtmlElement scriptEl = webBrowser.Document.CreateElement("script");
-                IHTMLScriptElement element = (IHTMLScriptElement)scriptEl.DomElement;
+                //HtmlElement head = webBrowser.Document.GetElementsByTagName("head")[0];
+                //HtmlElement scriptEl = webBrowser.Document.CreateElement("script");
+                //IHTMLScriptElement element = (IHTMLScriptElement)scriptEl.DomElement;
 
-                element.text = Resources.match_loader;
-                HtmlElement res = head.AppendChild(scriptEl);
-                string lineup = (string)webBrowser.Document.InvokeScript("get_lineup");
-                string match_info = (string)webBrowser.Document.InvokeScript("get_match_info");
-                string report = (string)webBrowser.Document.InvokeScript("get_report");
+                //element.text = Resources.match_loader;
+                //HtmlElement res = head.AppendChild(scriptEl);
+                //string lineup = (string)webBrowser.Document.InvokeScript("get_lineup");
+                //string match_info = (string)webBrowser.Document.InvokeScript("get_match_info");
+                //string report = (string)webBrowser.Document.InvokeScript("get_report");
 
-                matches_data = "<TABLE>" + lineup + "</TABLE>" +
-                    "<TABLE>" + match_info + "</TABLE>" +
-                    "<TABLE>" + report + "</TABLE>";
+                //matches_data = "<TABLE>" + lineup + "</TABLE>" +
+                //    "<TABLE>" + match_info + "</TABLE>" +
+                //    "<TABLE>" + report + "</TABLE>";
 
                 if (matches_data.Contains("Javascript error"))
                 {
@@ -315,13 +327,13 @@ namespace NTR_Controls
 
             try
             {
-                HtmlElement head = webBrowser.Document.GetElementsByTagName("head")[0];
-                HtmlElement scriptEl = webBrowser.Document.CreateElement("script");
-                IHTMLScriptElement element = (IHTMLScriptElement)scriptEl.DomElement;
+                //HtmlElement head = webBrowser.Document.GetElementsByTagName("head")[0];
+                //HtmlElement scriptEl = webBrowser.Document.CreateElement("script");
+                //IHTMLScriptElement element = (IHTMLScriptElement)scriptEl.DomElement;
 
-                element.text = Resources.fixture_loader;
-                HtmlElement res = head.AppendChild(scriptEl);
-                fix_data = (string)webBrowser.Document.InvokeScript("get_fixture");
+                //element.text = Resources.fixture_loader;
+                //HtmlElement res = head.AppendChild(scriptEl);
+                //fix_data = (string)webBrowser.Document.InvokeScript("get_fixture");
             }
             catch (Exception ex)
             {
@@ -337,13 +349,13 @@ namespace NTR_Controls
 
             try
             {
-                HtmlElement head = webBrowser.Document.GetElementsByTagName("head")[0];
-                HtmlElement scriptEl = webBrowser.Document.CreateElement("script");
-                IHTMLScriptElement element = (IHTMLScriptElement)scriptEl.DomElement;
+                //HtmlElement head = webBrowser.Document.GetElementsByTagName("head")[0];
+                //HtmlElement scriptEl = webBrowser.Document.CreateElement("script");
+                //IHTMLScriptElement element = (IHTMLScriptElement)scriptEl.DomElement;
 
-                element.text = Resources.training_loader;
-                HtmlElement res = head.AppendChild(scriptEl);
-                fix_data = (string)webBrowser.Document.InvokeScript("get_training");
+                //element.text = Resources.training_loader;
+                //HtmlElement res = head.AppendChild(scriptEl);
+                //fix_data = (string)webBrowser.Document.InvokeScript("get_training");
             }
             catch (Exception ex)
             {

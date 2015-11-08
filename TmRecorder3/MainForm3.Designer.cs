@@ -110,7 +110,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.cmbSeason = new System.Windows.Forms.ComboBox();
             this.tabBrowser = new System.Windows.Forms.TabPage();
-            this.ntrBrowser = new NTR_Controls.NTR_Browser();
+            this.ntrBrowser = new NTR_Controls.NTR_BrowserIE();
             this.tsBrowserImport = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
@@ -1556,7 +1556,7 @@
         private System.Windows.Forms.ToolStripPanel RightToolStripPanel;
         private System.Windows.Forms.ToolStripPanel LeftToolStripPanel;
         private System.Windows.Forms.ToolStripContentPanel ContentPanel;
-        private NTR_Controls.NTR_Browser ntrBrowser;
+        private NTR_Controls.NTR_BrowserIE ntrBrowser;
         private System.Windows.Forms.TabPage tabMatches;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.CheckBox chkHome;

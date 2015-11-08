@@ -103,8 +103,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TestForm.resx">
       <DependentUpon>TestForm.cs</DependentUpon>
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>TestForm1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -112,6 +110,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\players_loader.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\RatingR2.user.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

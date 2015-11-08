@@ -12,7 +12,7 @@ namespace NTR_Controls
 {
     public delegate void ImportedContentHandler(Content content);    
 
-    public partial class NTR_Browser : UserControl
+    public partial class NTR_BrowserIE : UserControl
     {
         Browser TheBrowser = null;
 
@@ -32,7 +32,7 @@ namespace NTR_Controls
 
         public NTR_Db.NTR_SquadDb SourceDB { get; set; }
 
-        public NTR_Browser()
+        public NTR_BrowserIE()
         {
             InitializeComponent();
         }
@@ -111,6 +111,5 @@ namespace NTR_Controls
         {
             TheBrowser.Update();
         }
-
     }
 }

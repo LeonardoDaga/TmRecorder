@@ -79,11 +79,11 @@
     <Compile Include="MatchStats.Designer.cs">
       <DependentUpon>MatchStats.cs</DependentUpon>
     </Compile>
-    <Compile Include="NTR_Browser.cs">
+    <Compile Include="NTR_BrowserIE.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="NTR_Browser.Designer.cs">
-      <DependentUpon>NTR_Browser.cs</DependentUpon>
+    <Compile Include="NTR_BrowserIE.Designer.cs">
+      <DependentUpon>NTR_BrowserIE.cs</DependentUpon>
     </Compile>
     <Compile Include="NTR_HiddenSkillsColumn.cs" />
     <Compile Include="NTR_HiddenSkillsColumn.Designer.cs">
@@ -142,8 +142,8 @@
     <EmbeddedResource Include="MatchStats.resx">
       <DependentUpon>MatchStats.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NTR_Browser.resx">
-      <DependentUpon>NTR_Browser.cs</DependentUpon>
+    <EmbeddedResource Include="NTR_BrowserIE.resx">
+      <DependentUpon>NTR_BrowserIE.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NTR_HiddenSkillsColumn.resx">
       <DependentUpon>NTR_HiddenSkillsColumn.cs</DependentUpon>

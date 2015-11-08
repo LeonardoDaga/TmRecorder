@@ -108,5 +108,25 @@ namespace A_TestForm.Properties {
                 return ResourceManager.GetString("players_loader", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to function ApplyRatingR2() {
+        ///
+        ///    var rou_factor = 0.00405;
+        ///    var wage_rate = 27.55 * 0.9;
+        ///
+        ///    // Array to setup the weights of particular skills for each player&apos;s actual ability
+        ///    // This is the direct weight to be given to each skill.
+        ///    // Array maps to these skills:
+        ///    //				   [Str,Sta,Pac,Mar,Tac,Wor,Pos,Pas,Cro,Tec,Hea,Fin,Lon,Set]
+        ///    var positions = [[1, 3, 1, 1, 1, 3, 3, 2, 2, 2, 1, 3, 3, 3], // D C
+        ///                     [2, 3, 1, 1, 1, 3, 3, 2, 2, 2, 2, 3, 3, 3], // D L
+        ///            [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string RatingR2_user {
+            get {
+                return ResourceManager.GetString("RatingR2_user", resourceCulture);
+            }
+        }
     }
 }

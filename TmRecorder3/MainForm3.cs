@@ -156,7 +156,7 @@ namespace TmRecorder3
 
             LoadDB();
 
-            ntrBrowser.SourceDB = this.DB.squadDB;
+            //ntrBrowser.SourceDB = this.DB.squadDB;
 
             FormatPlayersGrid();
             FormatPlayersGridGK();
@@ -949,7 +949,7 @@ namespace TmRecorder3
 
         private void tsbImportSquad_Click(object sender, EventArgs e)
         {
-            ntrBrowser.Goto(Browser.Pages.Players);
+            ntrBrowser.Goto(NTR_Browser.Pages.Players);
         }
 
         private void tsbTrainingTraining_Click(object sender, EventArgs e)

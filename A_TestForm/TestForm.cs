@@ -1,12 +1,5 @@
-﻿using A_TestForm.Properties;
-using Gecko;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+﻿using System;
+using System.IO;
 using System.Windows.Forms;
 
 namespace A_TestForm
@@ -15,37 +8,66 @@ namespace A_TestForm
     {
         public TestForm()
         {
+            string xulDir = Properties.Settings.Default.xulRunnerPath;
+
+            bool DialogResult = CheckXulDir(xulDir);
+
+            if (DialogResult)
+            {
+                FolderBrowserDialog fbd = new FolderBrowserDialog();
+                fbd.SelectedPath = Properties.Settings.Default.xulRunnerPath;
+                fbd.Description = "Select the Folder where the XUL dll is located";
+                if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    xulDir = fbd.SelectedPath;
+                    DialogResult = CheckXulDir(xulDir);
+                }
+            }
+
+            if (!DialogResult)
+            {
+                Properties.Settings.Default.xulRunnerPath = xulDir;
+                Properties.Settings.Default.Save();
+            }
+            else
+            {
+                MessageBox.Show("This application needs XUL, sorry");
+                Close();
+            }
+
             InitializeComponent();
-            Gecko.Xpcom.Initialize("c:\\xulrunner");
-            geckoWebBrowser.Navigate("http://www.trophymanager.com/players/");
+            ntR_Browser1.SetXUL(xulDir);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private static bool CheckXulDir(string xulDir)
         {
-            GeckoElement scriptEl = geckoWebBrowser.Document.CreateElement("script");
+            bool DialogResult = false;
 
-            scriptEl.TextContent = Resources.players_loader;
-            GeckoNode res = geckoWebBrowser.Document.Head.AppendChild(scriptEl);
-
-            using (var java = new AutoJSContext(geckoWebBrowser.Window.JSContext))
+            try
             {
-                JsVal result = java.EvaluateScript("get_players()", geckoWebBrowser.Window.DomWindow);
-                MessageBox.Show(result.ToString());
+                DirectoryInfo di = new DirectoryInfo(xulDir);
+                if (di.Exists)
+                {
+                    FileInfo[] fis = di.GetFiles("xul.dll");
+                    if (fis.Length == 0)
+                    {
+                        string message = string.Format("The folder {0} does not contain the xul DLL. Press OK to select another folder, otherwise press CANCEL to close the application.", Properties.Settings.Default.xulRunnerPath)
+                            + "\nIf you want to download XUL, see instructions in http://tmr.insyde.it/xul";
+                        if (MessageBox.Show(message, "Missing XUL Dll for TmRecorder", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
+                            DialogResult = true;
+                    }
+                }
+                else
+                {
+                    DialogResult = true;
+                }
             }
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            GeckoElement scriptEl = geckoWebBrowser.Document.CreateElement("script");
-
-            scriptEl.TextContent = Resources.RatingR2_user;
-            GeckoNode res = geckoWebBrowser.Document.Head.AppendChild(scriptEl);
-
-            using (var java = new AutoJSContext(geckoWebBrowser.Window.JSContext))
+            catch (Exception)
             {
-                JsVal result = java.EvaluateScript("ApplyRatingR2()", geckoWebBrowser.Window.DomWindow);
-                MessageBox.Show(result.ToString());
+                DialogResult = true;
             }
+
+            return DialogResult;
         }
     }
 }

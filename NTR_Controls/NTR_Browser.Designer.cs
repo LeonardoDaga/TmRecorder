@@ -1,6 +1,6 @@
 ﻿namespace NTR_Controls
 {
-    partial class NTR_BrowserIE
+    partial class NTR_Browser
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,8 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NTR_BrowserIE));
-            this.webBrowser = new System.Windows.Forms.WebBrowser();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NTR_Browser));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.tsbPrev = new System.Windows.Forms.ToolStripButton();
@@ -39,6 +38,7 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel11 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.loginTrophyManagercomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsbGotoMainTrophyPage = new System.Windows.Forms.ToolStripMenuItem();
             this.tsbGotoAdobePage = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator17 = new System.Windows.Forms.ToolStripSeparator();
@@ -47,22 +47,10 @@
             this.toolStripLabel12 = new System.Windows.Forms.ToolStripLabel();
             this.tsbProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.tsbProgressText = new System.Windows.Forms.ToolStripLabel();
+            this.tbTxtAddress = new System.Windows.Forms.ToolStripTextBox();
+            this.webBrowser = new Gecko.GeckoWebBrowser();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // webBrowser
-            // 
-            this.webBrowser.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.webBrowser.Location = new System.Drawing.Point(3, 42);
-            this.webBrowser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.webBrowser.MinimumSize = new System.Drawing.Size(23, 23);
-            this.webBrowser.Name = "webBrowser";
-            this.webBrowser.ScriptErrorsSuppressed = true;
-            this.webBrowser.Size = new System.Drawing.Size(564, 360);
-            this.webBrowser.TabIndex = 2;
-            this.webBrowser.ProgressChanged += new System.Windows.Forms.WebBrowserProgressChangedEventHandler(this.webBrowser_ProgressChanged);
             // 
             // toolStrip1
             // 
@@ -78,10 +66,11 @@
             this.toolStripSeparator2,
             this.toolStripLabel12,
             this.tsbProgressBar,
-            this.tsbProgressText});
+            this.tsbProgressText,
+            this.tbTxtAddress});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(570, 38);
+            this.toolStrip1.Size = new System.Drawing.Size(698, 38);
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -142,12 +131,13 @@
             this.toolStripLabel11.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripLabel11.ForeColor = System.Drawing.SystemColors.Desktop;
             this.toolStripLabel11.Name = "toolStripLabel11";
-            this.toolStripLabel11.Size = new System.Drawing.Size(61, 35);
-            this.toolStripLabel11.Text = "TM Pages";
+            this.toolStripLabel11.Size = new System.Drawing.Size(24, 35);
+            this.toolStripLabel11.Text = "TM";
             // 
             // toolStripDropDownButton1
             // 
             this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.loginTrophyManagercomToolStripMenuItem,
             this.tsbGotoMainTrophyPage,
             this.tsbGotoAdobePage,
             this.toolStripSeparator17,
@@ -158,6 +148,12 @@
             this.toolStripDropDownButton1.Size = new System.Drawing.Size(38, 35);
             this.toolStripDropDownButton1.Text = "File";
             this.toolStripDropDownButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
+            // loginTrophyManagercomToolStripMenuItem
+            // 
+            this.loginTrophyManagercomToolStripMenuItem.Name = "loginTrophyManagercomToolStripMenuItem";
+            this.loginTrophyManagercomToolStripMenuItem.Size = new System.Drawing.Size(283, 22);
+            this.loginTrophyManagercomToolStripMenuItem.Text = "Login TrophyManager.com";
             // 
             // tsbGotoMainTrophyPage
             // 
@@ -201,7 +197,7 @@
             // 
             this.tsbProgressBar.AutoSize = false;
             this.tsbProgressBar.Name = "tsbProgressBar";
-            this.tsbProgressBar.Size = new System.Drawing.Size(92, 20);
+            this.tsbProgressBar.Size = new System.Drawing.Size(70, 20);
             this.tsbProgressBar.Step = 5;
             // 
             // tsbProgressText
@@ -210,14 +206,35 @@
             this.tsbProgressText.Size = new System.Drawing.Size(17, 35);
             this.tsbProgressText.Text = "%";
             // 
+            // tbTxtAddress
+            // 
+            this.tbTxtAddress.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.tbTxtAddress.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbTxtAddress.Name = "tbTxtAddress";
+            this.tbTxtAddress.ReadOnly = true;
+            this.tbTxtAddress.Size = new System.Drawing.Size(350, 16);
+            // 
+            // webBrowser
+            // 
+            this.webBrowser.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.webBrowser.Location = new System.Drawing.Point(3, 41);
+            this.webBrowser.Name = "webBrowser";
+            this.webBrowser.Size = new System.Drawing.Size(692, 362);
+            this.webBrowser.TabIndex = 4;
+            this.webBrowser.UseHttpActivityObserver = false;
+            this.webBrowser.DocumentCompleted += new System.EventHandler<Gecko.Events.GeckoDocumentCompletedEventArgs>(this.webBrowser_DocumentCompleted);
+            this.webBrowser.ProgressChanged += new System.EventHandler<Gecko.GeckoProgressEventArgs>(this.webBrowser_ProgressChanged);
+            // 
             // NTR_Browser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.webBrowser);
+            this.Controls.Add(this.toolStrip1);
             this.Name = "NTR_Browser";
-            this.Size = new System.Drawing.Size(570, 406);
+            this.Size = new System.Drawing.Size(698, 406);
             this.Load += new System.EventHandler(this.NTR_Browser_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
@@ -227,8 +244,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.WebBrowser webBrowser;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton tsbNext;
         private System.Windows.Forms.ToolStripButton tsbPrev;
@@ -246,5 +261,8 @@
         private System.Windows.Forms.ToolStripLabel tsbProgressText;
         private System.Windows.Forms.ToolStripButton tsbImport;
         private System.Windows.Forms.ToolStripButton tsbUpdate;
+        private System.Windows.Forms.ToolStripMenuItem loginTrophyManagercomToolStripMenuItem;
+        private System.Windows.Forms.ToolStripTextBox tbTxtAddress;
+        private Gecko.GeckoWebBrowser webBrowser;
     }
 }

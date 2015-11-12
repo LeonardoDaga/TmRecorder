@@ -1,20 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Common;
-using System.IO;
-using System.ComponentModel;
-using NTR_Controls.Properties;
 using NTR_Db;
-using mshtml;
 using Gecko;
+using NTR_Controls.Properties;
+using System.IO;
+using Common;
 
 namespace NTR_Controls
 {
-    public class Browser
+    public delegate void ImportedContentHandler(Content content);
+
+    public partial class NTR_Browser : UserControl
     {
         public class Pages
         {
@@ -27,17 +29,32 @@ namespace NTR_Controls
 
         string navigationAddress = "";
         string startnavigationAddress = "";
-        private GeckoWebBrowser webBrowser;
-        public string DefaultDirectory { get; set; }
-        
-        // Path where the js scripts are located
-        public string DatafilePath = "";
 
-        public Browser(GeckoWebBrowser webBrowser)
+        private string _defaultDirectory = "";
+        public string DefaultDirectory
         {
-            this.webBrowser = webBrowser;
+            get { return _defaultDirectory; }
+            set
+            {
+                _defaultDirectory = value;
+            }
         }
 
+        public NTR_Browser()
+        {
+            InitializeComponent();
+        }
+
+        public void SetXUL(string xulRunnerPath)
+        {
+            Gecko.Xpcom.Initialize(xulRunnerPath);
+        }
+
+        private void NTR_Browser_Load(object sender, EventArgs e)
+        {
+        }
+
+        #region Navigation
         public void Goto(string address)
         {
             navigationAddress = address;
@@ -54,69 +71,37 @@ namespace NTR_Controls
         {
             webBrowser.GoBack();
         }
+        #endregion
 
-        internal Content Import(NTR_SquadDb.ActionsDecoderDataTable ActionsDecoderDT)
+        private void tsbPrev_Click(object sender, EventArgs e)
         {
-            string doctext = "";
-            Content returnedContent = new Content();
-
-            // Read the browser content to extract the TeamID and the Team name
-            doctext = webBrowser.Document.TextContent;
-            int actualTeamId = 0;
-            string actTeamIdString = HTML_Parser.GetNumberAfter(doctext, "SESSION[\"id\"] = ");
-            int.TryParse(actTeamIdString, out actualTeamId);
-
-            returnedContent.TeamID = actualTeamId;
-            returnedContent.ClubName = HTML_Parser.GetField(doctext, "SESSION[\"clubname\"] = '", "';");
-            returnedContent.DocText = "";
-
-            if (webBrowser.Url == null) return null;
-            if ((!webBrowser.Url.OriginalString.Contains("http://trophymanager.com/players/")) &&
-                (!webBrowser.Url.OriginalString.Contains("http://trophymanager.com/matches/")))
-            {
-                MessageBox.Show("Sorry, cannot import this page!", "TmRecorder");
-                return null;
-            }
-
-            try
-            {
-                doctext = GetHiddenBrowserContent(webBrowser.Url.OriginalString);
-            }
-            catch (Exception ex)
-            {
-                doctext = "Exception error:\nWeb Site: " + startnavigationAddress + "\nException: " + ex.Message;
-            }
-
-            returnedContent.DocText = doctext;
-
-            if (doctext.Contains("Javascript error: data doesn't exists"))
-                return returnedContent;
-
-            if (doctext.StartsWith("Exception error") || doctext.StartsWith("GBC error") || doctext.Contains("Javascript error"))
-                return returnedContent;
-
-            string page = webBrowser.Url + "\n" + doctext;
-
-            if (page.Contains("You are not logged in"))
-            {
-                MessageBox.Show("You are not logged in. Please, login");
-                return null;
-            }
-
-            SaveImportedFile(page, webBrowser.Url);
-
-            // Initialize the datatable to parse the actual content and avoid to fill it again with
-            // old values
-            if (returnedContent.squadDB == null)
-                returnedContent.squadDB = new NTR_SquadDb();
-            if (ActionsDecoderDT != null)
-                returnedContent.squadDB.ActionsDecoder.Merge(ActionsDecoderDT);
-
-            returnedContent.ParsePage(page, webBrowser.Url.OriginalString);
-
-            return returnedContent;
+            GoBack();
         }
 
+        private void tsbNext_Click(object sender, EventArgs e)
+        {
+            GoForward();
+        }
+
+        private void gotoTmHome_Click(object sender, EventArgs e)
+        {
+            Goto(Pages.Home);
+        }
+
+        private void gotoAdobeFlashplayerPageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Goto(Pages.AdobeFlashplayer);
+        }
+
+        private void tsbImport_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void tsbUpdate_Click(object sender, EventArgs e)
+        {
+            webBrowser.Reload();
+        }
 
         #region Getting Browser Content functions
         private string GetHiddenBrowserContent(string startnavigationAddress)
@@ -218,20 +203,15 @@ namespace NTR_Controls
                 {
                     string result;
                     if (!java.EvaluateScript(Resources.get_players_training_loader,
-                        (nsISupports)webBrowser.Window.DomWindow, 
+                        (nsISupports)webBrowser.Window.DomWindow,
                         out result))
                     {
                         pl_data = result;
                     }
                 }
 
-                GeckoHtmlElement head = webBrowser.Document.GetElementsByTagName("head")[0];
-                GeckoElement scriptEl = webBrowser.Document.CreateElement("script");
-                //IHTMLScriptElement element = scriptEl.DOMElement;
-
-                //element.text = Resources.get_players_training_loader;
-                //HtmlElement res = head.AppendChild(scriptEl);
-                //pl_data = (string)webBrowser.Document.InvokeScript("get_players_training");
+                pl_data = AppendScriptAndExecute(Resources.get_players_training_loader,
+                                                "get_players_training()");
             }
             catch (Exception ex)
             {
@@ -241,19 +221,44 @@ namespace NTR_Controls
             return pl_data;
         }
 
+        private string AppendScriptAndExecute(string script, string command)
+        {
+            AppendScript(script);
+
+            return ExecuteScript(command);
+        }
+
+        private GeckoNode AppendScript(string script)
+        {
+            GeckoElement scriptEl = webBrowser.Document.CreateElement("script");
+            scriptEl.TextContent = script;
+            GeckoNode res = webBrowser.Document.Head.AppendChild(scriptEl);
+
+            return res;
+        }
+
+        private string ExecuteScript(string command)
+        {
+            string pl_data;
+
+            using (var java = new AutoJSContext(webBrowser.Window.JSContext))
+            {
+                JsVal result = java.EvaluateScript(command, webBrowser.Window.DomWindow);
+                pl_data = result.ToString();
+            }
+
+            return pl_data;
+        }
+
+
         private string Import_Players_Adv()
         {
             string pl_data = "";
 
             try
             {
-                //HtmlElement head = webBrowser.Document.GetElementsByTagName("head")[0];
-                //HtmlElement scriptEl = webBrowser.Document.CreateElement("script");
-                //IHTMLScriptElement element = (IHTMLScriptElement)scriptEl.DomElement;
-
-                //element.text = Resources.players_loader;
-                //HtmlElement res = head.AppendChild(scriptEl);
-                //pl_data = (string)webBrowser.Document.InvokeScript("get_players");
+                pl_data = AppendScriptAndExecute(Resources.players_loader,
+                                                "get_players()");
             }
             catch (Exception ex)
             {
@@ -269,16 +274,8 @@ namespace NTR_Controls
 
             try
             {
-                //object doc = webBrowser.Document.DomDocument;
-                //string doctext = webBrowser.Document.Body.InnerHtml;
-
-                //HtmlElement head = webBrowser.Document.GetElementsByTagName("head")[0];
-                //HtmlElement scriptEl = webBrowser.Document.CreateElement("script");
-                //IHTMLScriptElement element = (IHTMLScriptElement)scriptEl.DomElement;
-
-                //element.text = Resources.player_info_loader;
-                //HtmlElement res = head.AppendChild(scriptEl);
-                //pl_data = (string)webBrowser.Document.InvokeScript("get_player_info");
+                pl_data = AppendScriptAndExecute(Resources.player_info_loader,
+                                                "get_player_info()");
             }
             catch (Exception ex)
             {
@@ -294,19 +291,15 @@ namespace NTR_Controls
 
             try
             {
-                //HtmlElement head = webBrowser.Document.GetElementsByTagName("head")[0];
-                //HtmlElement scriptEl = webBrowser.Document.CreateElement("script");
-                //IHTMLScriptElement element = (IHTMLScriptElement)scriptEl.DomElement;
+                AppendScript(Resources.player_info_loader);
 
-                //element.text = Resources.match_loader;
-                //HtmlElement res = head.AppendChild(scriptEl);
-                //string lineup = (string)webBrowser.Document.InvokeScript("get_lineup");
-                //string match_info = (string)webBrowser.Document.InvokeScript("get_match_info");
-                //string report = (string)webBrowser.Document.InvokeScript("get_report");
+                string lineup = ExecuteScript("get_lineup()");
+                string match_info = ExecuteScript("get_match_info()");
+                string report = ExecuteScript("get_report()");
 
-                //matches_data = "<TABLE>" + lineup + "</TABLE>" +
-                //    "<TABLE>" + match_info + "</TABLE>" +
-                //    "<TABLE>" + report + "</TABLE>";
+                matches_data = "<TABLE>" + lineup + "</TABLE>" +
+                    "<TABLE>" + match_info + "</TABLE>" +
+                    "<TABLE>" + report + "</TABLE>";
 
                 if (matches_data.Contains("Javascript error"))
                 {
@@ -327,13 +320,8 @@ namespace NTR_Controls
 
             try
             {
-                //HtmlElement head = webBrowser.Document.GetElementsByTagName("head")[0];
-                //HtmlElement scriptEl = webBrowser.Document.CreateElement("script");
-                //IHTMLScriptElement element = (IHTMLScriptElement)scriptEl.DomElement;
-
-                //element.text = Resources.fixture_loader;
-                //HtmlElement res = head.AppendChild(scriptEl);
-                //fix_data = (string)webBrowser.Document.InvokeScript("get_fixture");
+                fix_data = AppendScriptAndExecute(Resources.fixture_loader,
+                                                "get_fixture()");
             }
             catch (Exception ex)
             {
@@ -349,13 +337,8 @@ namespace NTR_Controls
 
             try
             {
-                //HtmlElement head = webBrowser.Document.GetElementsByTagName("head")[0];
-                //HtmlElement scriptEl = webBrowser.Document.CreateElement("script");
-                //IHTMLScriptElement element = (IHTMLScriptElement)scriptEl.DomElement;
-
-                //element.text = Resources.training_loader;
-                //HtmlElement res = head.AppendChild(scriptEl);
-                //fix_data = (string)webBrowser.Document.InvokeScript("get_training");
+                fix_data = AppendScriptAndExecute(Resources.training_loader,
+                                                "get_training()");
             }
             catch (Exception ex)
             {
@@ -365,6 +348,68 @@ namespace NTR_Controls
             return fix_data;
         }
         #endregion
+
+        //internal Content Import(NTR_SquadDb.ActionsDecoderDataTable ActionsDecoderDT)
+        //{
+        //    string doctext = "";
+        //    Content returnedContent = new Content();
+
+        //    // Read the browser content to extract the TeamID and the Team name
+        //    doctext = webBrowser.Document.TextContent;
+        //    int actualTeamId = 0;
+        //    string actTeamIdString = HTML_Parser.GetNumberAfter(doctext, "SESSION[\"id\"] = ");
+        //    int.TryParse(actTeamIdString, out actualTeamId);
+
+        //    returnedContent.TeamID = actualTeamId;
+        //    returnedContent.ClubName = HTML_Parser.GetField(doctext, "SESSION[\"clubname\"] = '", "';");
+        //    returnedContent.DocText = "";
+
+        //    if (webBrowser.Url == null) return null;
+        //    if ((!webBrowser.Url.OriginalString.Contains("http://trophymanager.com/players/")) &&
+        //        (!webBrowser.Url.OriginalString.Contains("http://trophymanager.com/matches/")))
+        //    {
+        //        MessageBox.Show("Sorry, cannot import this page!", "TmRecorder");
+        //        return null;
+        //    }
+
+        //    try
+        //    {
+        //        doctext = GetHiddenBrowserContent(webBrowser.Url.OriginalString);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        doctext = "Exception error:\nWeb Site: " + startnavigationAddress + "\nException: " + ex.Message;
+        //    }
+
+        //    returnedContent.DocText = doctext;
+
+        //    if (doctext.Contains("Javascript error: data doesn't exists"))
+        //        return returnedContent;
+
+        //    if (doctext.StartsWith("Exception error") || doctext.StartsWith("GBC error") || doctext.Contains("Javascript error"))
+        //        return returnedContent;
+
+        //    string page = webBrowser.Url + "\n" + doctext;
+
+        //    if (page.Contains("You are not logged in"))
+        //    {
+        //        MessageBox.Show("You are not logged in. Please, login");
+        //        return null;
+        //    }
+
+        //    SaveImportedFile(page, webBrowser.Url);
+
+        //    // Initialize the datatable to parse the actual content and avoid to fill it again with
+        //    // old values
+        //    if (returnedContent.squadDB == null)
+        //        returnedContent.squadDB = new NTR_SquadDb();
+        //    if (ActionsDecoderDT != null)
+        //        returnedContent.squadDB.ActionsDecoder.Merge(ActionsDecoderDT);
+
+        //    returnedContent.ParsePage(page, webBrowser.Url.OriginalString);
+
+        //    return returnedContent;
+        //}
 
         /// <summary>
         /// Save imported file
@@ -420,9 +465,33 @@ namespace NTR_Controls
             file.Close();
         }
 
-        internal void Update()
+        private void webBrowser_DocumentCompleted(object sender, Gecko.Events.GeckoDocumentCompletedEventArgs e)
         {
-            webBrowser.Update();
+
+        }
+
+        private void webBrowser_ProgressChanged(object sender, GeckoProgressEventArgs e)
+        {
+            if (e.CurrentProgress <= 0)
+            {
+                //if (theBrowser.ReadyState == WebBrowserReadyState.Complete)
+                //{
+                //    tsbProgressText.Text = "100%";
+                //    tsbProgressBar.ForeColor = Color.Green;
+                //    tsbProgressBar.Value = 100;
+                //}
+                return;
+            }
+
+            long maxProgress = e.MaximumProgress;
+            if (maxProgress == 0)
+                maxProgress = 1;
+            int perc = (int)((e.CurrentProgress * 100) / maxProgress);
+            if (perc > 100) perc = 100;
+            if (perc < 0) perc = 0;
+            tsbProgressBar.Value = perc;
+            tsbProgressText.Text = perc.ToString() + "%";
+            tsbProgressBar.ForeColor = Color.Blue;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace TMRecorder
+﻿namespace NTR_WebBrowser
 {
     partial class LoginForm
     {

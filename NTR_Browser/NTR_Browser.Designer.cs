@@ -1,4 +1,4 @@
-﻿namespace NTR_Controls
+﻿namespace NTR_WebBrowser
 {
     partial class NTR_Browser
     {
@@ -103,7 +103,7 @@
             // 
             // tsbUpdate
             // 
-            this.tsbUpdate.Image = global::NTR_Controls.Properties.Resources.Update;
+            this.tsbUpdate.Image = global::NTR_WebBrowser.Properties.Resources.Update;
             this.tsbUpdate.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbUpdate.Name = "tsbUpdate";
             this.tsbUpdate.Size = new System.Drawing.Size(49, 35);
@@ -113,7 +113,7 @@
             // 
             // tsbImport
             // 
-            this.tsbImport.Image = global::NTR_Controls.Properties.Resources.ImportIcon;
+            this.tsbImport.Image = global::NTR_WebBrowser.Properties.Resources.ImportIcon;
             this.tsbImport.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbImport.Name = "tsbImport";
             this.tsbImport.Size = new System.Drawing.Size(47, 35);
@@ -142,7 +142,7 @@
             this.tsbGotoAdobePage,
             this.toolStripSeparator17,
             this.tsbSendThisPageForDebug});
-            this.toolStripDropDownButton1.Image = global::NTR_Controls.Properties.Resources.Folder;
+            this.toolStripDropDownButton1.Image = global::NTR_WebBrowser.Properties.Resources.Folder;
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
             this.toolStripDropDownButton1.Size = new System.Drawing.Size(38, 35);
@@ -154,6 +154,7 @@
             this.loginTrophyManagercomToolStripMenuItem.Name = "loginTrophyManagercomToolStripMenuItem";
             this.loginTrophyManagercomToolStripMenuItem.Size = new System.Drawing.Size(283, 22);
             this.loginTrophyManagercomToolStripMenuItem.Text = "Login TrophyManager.com";
+            this.loginTrophyManagercomToolStripMenuItem.Click += new System.EventHandler(this.loginTrophyManagercomToolStripMenuItem_Click);
             // 
             // tsbGotoMainTrophyPage
             // 

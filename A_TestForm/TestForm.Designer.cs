@@ -30,7 +30,7 @@ namespace A_TestForm
         /// </summary>
         private void InitializeComponent()
         {
-            this.ntR_Browser1 = new NTR_Controls.NTR_Browser();
+            this.ntR_Browser1 = new NTR_WebBrowser.NTR_Browser();
             this.SuspendLayout();
             // 
             // ntR_Browser1
@@ -56,6 +56,6 @@ namespace A_TestForm
 
         #endregion
 
-        private NTR_Controls.NTR_Browser ntR_Browser1;
+        private NTR_WebBrowser.NTR_Browser ntR_Browser1;
     }
 }

@@ -85,6 +85,10 @@
       <Project>{23E5DD68-40AD-438A-8FA8-4A8A632D2480}</Project>
       <Name>FieldFormationControl</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NTR_Browser\NTR_WebBrowser.csproj">
+      <Project>{483d9c7d-108e-4aec-9da2-20e57abe217f}</Project>
+      <Name>NTR_WebBrowser</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NTR_Controls\NTR_Controls.csproj">
       <Project>{A62AB280-42D0-4639-8391-4BFA73269625}</Project>
       <Name>NTR_Controls</Name>

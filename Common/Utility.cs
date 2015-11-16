@@ -5,6 +5,18 @@ using System.Drawing;
 
 namespace Common
 {
+    public class TM_Pages
+    {
+        public const string TmrWebSite = "http://tmr.insyde.it/";
+        public const string Home = "http://trophymanager.com/";
+        public const string AdobeFlashplayer = "http://www.adobe.com/products/flashplayer/";
+        public const string Club = "http://trophymanager.com/club/";
+        public const string Trainers = "http://trophymanager.com/coaches/";
+        public const string Players = "http://trophymanager.com/players/";
+        public const string Scouts = "http://trophymanager.com/scouts/";
+        public const string Training = "http://trophymanager.com/training/";
+    }
+
     public class WindowWrapper : System.Windows.Forms.IWin32Window
     {
         public WindowWrapper(IntPtr handle)

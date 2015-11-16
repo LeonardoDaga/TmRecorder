@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.22823.1
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransferManager3", "TransferManager2\TransferManager3.csproj", "{AAC4A7FF-52D3-4459-A8E9-35423C49D16A}"
 EndProject
@@ -74,6 +74,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NTR_Controls", "NTR_Controls\NTR_Controls.csproj", "{A62AB280-42D0-4639-8391-4BFA73269625}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATmRecorderCleaner", "ATmRecorderCleaner\ATmRecorderCleaner.csproj", "{A30CC08E-0066-4A49-ADAD-E7BBB23E0155}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NTR_WebBrowser", "NTR_Browser\NTR_WebBrowser.csproj", "{483D9C7D-108E-4AEC-9DA2-20E57ABE217F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1155,6 +1157,30 @@ Global
 		{A30CC08E-0066-4A49-ADAD-E7BBB23E0155}.ReleaseX64|x64.Build.0 = Release|Any CPU
 		{A30CC08E-0066-4A49-ADAD-E7BBB23E0155}.ReleaseX64|x86.ActiveCfg = Release|Any CPU
 		{A30CC08E-0066-4A49-ADAD-E7BBB23E0155}.ReleaseX64|x86.Build.0 = Release|Any CPU
+		{483D9C7D-108E-4AEC-9DA2-20E57ABE217F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{483D9C7D-108E-4AEC-9DA2-20E57ABE217F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{483D9C7D-108E-4AEC-9DA2-20E57ABE217F}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{483D9C7D-108E-4AEC-9DA2-20E57ABE217F}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{483D9C7D-108E-4AEC-9DA2-20E57ABE217F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{483D9C7D-108E-4AEC-9DA2-20E57ABE217F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{483D9C7D-108E-4AEC-9DA2-20E57ABE217F}.Debug32|Any CPU.ActiveCfg = Debug|Any CPU
+		{483D9C7D-108E-4AEC-9DA2-20E57ABE217F}.Debug32|Any CPU.Build.0 = Debug|Any CPU
+		{483D9C7D-108E-4AEC-9DA2-20E57ABE217F}.Debug32|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{483D9C7D-108E-4AEC-9DA2-20E57ABE217F}.Debug32|Mixed Platforms.Build.0 = Debug|Any CPU
+		{483D9C7D-108E-4AEC-9DA2-20E57ABE217F}.Debug32|x64.ActiveCfg = Debug|Any CPU
+		{483D9C7D-108E-4AEC-9DA2-20E57ABE217F}.Debug32|x86.ActiveCfg = Debug|Any CPU
+		{483D9C7D-108E-4AEC-9DA2-20E57ABE217F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{483D9C7D-108E-4AEC-9DA2-20E57ABE217F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{483D9C7D-108E-4AEC-9DA2-20E57ABE217F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{483D9C7D-108E-4AEC-9DA2-20E57ABE217F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{483D9C7D-108E-4AEC-9DA2-20E57ABE217F}.Release|x64.ActiveCfg = Release|Any CPU
+		{483D9C7D-108E-4AEC-9DA2-20E57ABE217F}.Release|x86.ActiveCfg = Release|Any CPU
+		{483D9C7D-108E-4AEC-9DA2-20E57ABE217F}.ReleaseX64|Any CPU.ActiveCfg = Release|Any CPU
+		{483D9C7D-108E-4AEC-9DA2-20E57ABE217F}.ReleaseX64|Any CPU.Build.0 = Release|Any CPU
+		{483D9C7D-108E-4AEC-9DA2-20E57ABE217F}.ReleaseX64|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{483D9C7D-108E-4AEC-9DA2-20E57ABE217F}.ReleaseX64|Mixed Platforms.Build.0 = Release|Any CPU
+		{483D9C7D-108E-4AEC-9DA2-20E57ABE217F}.ReleaseX64|x64.ActiveCfg = Release|Any CPU
+		{483D9C7D-108E-4AEC-9DA2-20E57ABE217F}.ReleaseX64|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -3,23 +3,16 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
-using TMRecorder.Properties;
 using System.IO;
-using System.Net;
 using System.Diagnostics;
 using DataGridViewCustomColumns;
 using Common;
-using Profile;
 using Languages;
-using NTR_Common;
 using NTR_Db;
 using NTR_Controls;
 
-using System.Reflection;
 using mshtml;
-using System.Threading;
 using System.Linq;
 
 namespace TMRecorder
@@ -40,9 +33,6 @@ namespace TMRecorder
         ExtraDS.GiocatoriRow editingPlayerRow = null;
         int[] dP;
         SplashForm sf = null;
-        string navigationAddress = "";
-        string startnavigationAddress = "";
-        bool importWhenCompleted = false;
         string doctext = "";
         MatchAnalysis matchAnalysisDB = new MatchAnalysis();
         bool thisIsExtraTeam = false;
@@ -2225,9 +2215,7 @@ namespace TMRecorder
 
             string matchAddr = "http://trophymanager.com/matches/" + selMatch.MatchID + "/";
 
-            navigationAddress = matchAddr;
-            startnavigationAddress = navigationAddress;
-            webBrowser.Navigate(navigationAddress);
+            webBrowser.Goto(matchAddr);
         }
 
         public void LoadKampFromHTMLcode_NewTM(string page)
@@ -2900,613 +2888,17 @@ namespace TMRecorder
             Utility.OpenPage(arg);
         }
 
-        private void tsbSquadA_Click(object sender, EventArgs e)
-        {
-            navigationAddress = "http://trophymanager.com/squad.php";
-            startnavigationAddress = navigationAddress;
-            webBrowser.Navigate(navigationAddress);
-        }
-
-        private void webBrowser_ProgressChanged(object sender, WebBrowserProgressChangedEventArgs e)
-        {
-            if (e.CurrentProgress <= 0)
-            {
-                if (webBrowser.ReadyState == WebBrowserReadyState.Complete)
-                {
-                    tsbProgressText.Text = "100%";
-                    tsbProgressBar.ForeColor = Color.Green;
-                    tsbProgressBar.Value = 100;
-                }
-                return;
-            }
-
-            long maxProgress = e.MaximumProgress;
-            if (maxProgress == 0)
-                maxProgress = 1;
-            int perc = (int)((e.CurrentProgress * 100) / maxProgress);
-            if (perc > 100) perc = 100;
-            if (perc < 0) perc = 0;
-            tsbProgressBar.Value = perc;
-            tsbProgressText.Text = perc.ToString() + "%";
-            tsbProgressBar.ForeColor = Color.Blue;
-        }
-
-        private void webBrowser_DocumentCompleted_1(object sender, WebBrowserDocumentCompletedEventArgs e)
-        {
-            string actualUrl = e.Url.ToString();
-
-            if (actualUrl == "http://trophymanager.com/players/#/a/true/b//")
-                actualUrl = "http://trophymanager.com/players/";
-
-            //if (actualUrl != startnavigationAddress) return;
-
-            if (e.Url.AbsolutePath != (sender as WebBrowser).Url.AbsolutePath)
-                return;
-
-            // this.Text = "TMR Browser - Navigation Complete";
-            tsbProgressBar.ForeColor = Color.Green;
-
-            if (actualUrl.Contains("http://trophymanager.com/players/"))
-            {
-                HtmlElement head = webBrowser.Document.GetElementsByTagName("head")[0];
-                HtmlElement scriptEl = webBrowser.Document.CreateElement("script");
-                IHTMLScriptElement element = (IHTMLScriptElement)scriptEl.DomElement;
-                element.text = System.IO.File.ReadAllText(Program.Setts.DatafilePath + "\\RatingR2.user.js");
-                head.AppendChild(scriptEl);
-                webBrowser.Document.InvokeScript("ApplyRatingR2");
-            }
-
-            if (importWhenCompleted)
-            {
-                importWhenCompleted = false;
-                Thread.Sleep(1000);
-                tsbImport_Click(null, EventArgs.Empty);
-            }
-        }
-
-        private void webBrowser_Navigating(object sender, WebBrowserNavigatingEventArgs e)
-        {
-            string url = e.Url.ToString();
-
-            if (url.StartsWith("http://trophymanager.com/buy-pro/") ||
-                url.StartsWith("http://trophymanager.com/banners.php"))
-                return;
-
-            if (url.StartsWith("http://trophymanager.com/"))
-            {
-                navigationAddress = e.Url.ToString();
-
-                tbTxtAddress.Text = url;
-
-                startnavigationAddress = navigationAddress;
-            }
-            else
-            {
-                if (url != "about:blank")
-                    navigationAddress = url;
-            }
-
-            tsbProgressBar.Value = 0;
-            tsbProgressText.Text = "0%";
-            tsbProgressBar.ForeColor = Color.Blue;
-        }
-
-        private bool FindItemInMenu(ToolStripMenuItem menu, string text)
-        {
-            bool found = false;
-            foreach (ToolStripItem ftsi in menu.DropDownItems)
-            {
-                if (ftsi.Text == text)
-                {
-                    found = true;
-                    break;
-                }
-            }
-            return found;
-        }
-
-        private void tsbSquadB_Click(object sender, EventArgs e)
-        {
-            navigationAddress = "http://trophymanager.com/squad.php?reserves";
-            webBrowser.Navigate(navigationAddress);
-            startnavigationAddress = navigationAddress;
-        }
-
         private void tsbTraining_Click(object sender, EventArgs e)
         {
-            navigationAddress = "http://trophymanager.com/training/";
-            startnavigationAddress = navigationAddress;
-            webBrowser.Navigate(navigationAddress);
-
-            if (Program.Setts.PlayerType != 2) // Non PRO player
-                importWhenCompleted = true;
-        }
-
-        private void tsbOverview_Click(object sender, EventArgs e)
-        {
-            navigationAddress = "http://trophymanager.com/training.php";
-            startnavigationAddress = navigationAddress;
-            webBrowser.Navigate(navigationAddress);
-        }
-
-        private void tsbImport_Click(object sender, EventArgs e)
-        {
-            if (!startnavigationAddress.StartsWith("http://trophymanager.com/"))
-                return;
-
-            if (startnavigationAddress.StartsWith("http://trophymanager.com/buy-pro/") ||
-                startnavigationAddress.StartsWith("http://trophymanager.com/forum/") ||
-                startnavigationAddress.StartsWith("http://trophymanager.com/club/") ||
-                startnavigationAddress.StartsWith("http://trophymanager.com/league/") ||
-                startnavigationAddress.StartsWith("http://trophymanager.com/fixtures/league/") ||
-                startnavigationAddress.StartsWith("http://trophymanager.com/home/"))
-            {
-                MessageBox.Show("This page cannot be imported in TmRecorder");
-                return;
-            }
-
-            if (startnavigationAddress.StartsWith("http://trophymanager.com/players/"))
-            {
-                string str = HTML_Parser.GetNumberAfter(startnavigationAddress, "players/");
-                if (str != "-1")
-                {
-                    MessageBox.Show("This page has to be imported in the Player Info Panel");
-                    return;
-                }
-            }
-
-            // Check if the team is the one actually used
-            {
-                doctext = webBrowser.DocumentText;
-                int actualTeamId = 0;
-                string actTeamIdString = HTML_Parser.GetNumberAfter(doctext, "SESSION[\"id\"] = ");
-                int.TryParse(actTeamIdString, out actualTeamId);
-                if ((actualTeamId != 0) && (Program.Setts.MainSquadID != 0) && (actualTeamId != Program.Setts.MainSquadID))
-                {
-                    MessageBox.Show("You are using the DB of " + Program.Setts.MainSquadName + " while you are trying to import a different team");
-                    return;
-                }
-                else if (Program.Setts.MainSquadName == "")
-                {
-                    Program.Setts.MainSquadName = HTML_Parser.GetField(doctext, "SESSION[\"clubname\"] = '", "';");
-                    Program.Setts.Save();
-                    Text = "Trophy Manager - " + Program.Setts.MainSquadName + " - Team Recorder v." + Application.ProductVersion;
-                }
-            }
-
-            try
-            {
-                doctext = GetWebBrowserContent(startnavigationAddress);
-            }
-            catch (Exception ex)
-            {
-                doctext = "Exception error:\nWeb Site: " + startnavigationAddress + "\nException: " + ex.Message;
-            }
-
-            string page = "";
-
-            if (doctext.Contains("Javascript error: data doesn't exists"))
-            {
-                importWhenCompleted = true;
-                return;
-            }
-
-
-            if (doctext.StartsWith("Exception error") || doctext.StartsWith("GBC error") || doctext.Contains("Javascript error"))
-            {
-                if (!doctext.Contains("forfait=yes"))
-                    return;
-
-                //page = doctext;
-
-                //if (MessageBox.Show("There is an error importing the page.\n" +
-                //    "Pressing OK, you send a report to Atletico Granata that will try to detect the reason of the error.",
-                //    "Import error", MessageBoxButtons.OKCancel) == DialogResult.OK)
-                //{
-                //    string swRelease = "Sw Release:" + Application.ProductName + "("
-                //       + Application.ProductVersion + ")";
-                //    page = "Navigation Address: " + startnavigationAddress + "\n" + page;
-                //    Exception ex = new Exception("Navigation error");
-                //    SendFileTo.ErrorReport.Send(ex, page, Environment.StackTrace, swRelease);
-                //}
-            }
-
-            page = startnavigationAddress + "\n" + doctext;
-
-            if (page.Contains("You are not logged in"))
-            {
-                MessageBox.Show("You are not logged in. Please, login");
-                return;
-            }
-
-            if (startnavigationAddress.Contains("tactics.php"))
-                return;
-
-            if (startnavigationAddress.Contains("squad.php?reserves"))
-                page = "SourceURL:<TM - Squad - Reserves>\n" + page;
-            else if (startnavigationAddress.Contains("players/"))
-                page = "SourceURL:<NewTM - Squad>\n" + page;
-            else if (startnavigationAddress.Contains("training-overview/advanced/"))
-                page = "SourceURL:<NewTM - Training>\n" + page;
-            else if (startnavigationAddress.Contains("training_new.php"))
-                page = "SourceURL:<TM - Training_new>\n" + page;
-            else if (startnavigationAddress.Contains("squad.php?reserves"))
-                page = "SourceURL:<TM - Squad - Reserves>\n" + page;
-            else if (startnavigationAddress.Contains("squad.php"))
-                page = "SourceURL:<TM - Squad>\n" + page;
-            else if (startnavigationAddress.Contains("training.php"))
-                page = "SourceURL:<TM - Training>\n" + page;
-            else if (startnavigationAddress.Contains("training/"))
-                page = "SourceURL:<NewTM - TrainingNew>\n" + page;
-            else if (startnavigationAddress.Contains("training_new.php"))
-                page = "SourceURL:<TM - Training_new>\n" + page;
-            else if (startnavigationAddress.Contains("matches.php"))
-                page = "SourceURL:<TM - Matches>\n" + page;
-            else if (startnavigationAddress.Contains("/fixtures/club/"))
-                page = "SourceURL:<NewTM - Matches>\n" + page;
-            else if (startnavigationAddress.Contains("kamp.php"))
-                page = "SourceURL:<TM - Kamp>\n" + page;
-            else if (startnavigationAddress.Contains("/matches/"))
-                page = "SourceURL:<NewTM - Kamp>\n" + page;
-            else if (startnavigationAddress.Contains("/trophymanager.com/scouts/"))
-                page = "SourceURL:<NewTM - Scouts>\n" + page;
-            else if (startnavigationAddress.Contains("showprofile.php?playerid="))
-                page = "SourceURL:<TM - Player>\n" + page;
-            else if (startnavigationAddress.Contains("staff_trainers.php"))
-                page = "SourceURL:<TM - Staff_trainers>\n" + page;
-            else if (startnavigationAddress.Contains("coaches/"))
-                page = "SourceURL:<NewTM - Staff_trainers>\n" + page;
-            else
-            {
-                if (startnavigationAddress.Contains("index.php"))
-                {
-                    MessageBox.Show("I'm sorry, but the Trophy Manager home page cannot be imported in TmRecorder. You think it could be useful? Contact me at led.lennon@gmail.com");
-                    return;
-                }
-
-                if (startnavigationAddress.Contains("klubhus.php"))
-                {
-                    MessageBox.Show("I'm sorry, but the club house page cannot be imported in TmRecorder. You think it could be useful? Contact me at led.lennon@gmail.com");
-                    return;
-                }
-
-                if (startnavigationAddress.Contains("shortlist.php"))
-                {
-                    MessageBox.Show("I'm sorry, but the shortlist page cannot be imported in TmRecorder. You think it could be useful? Contact me at led.lennon@gmail.com");
-                    return;
-                }
-
-                if (startnavigationAddress.Contains("live_prematch.php"))
-                {
-                    MessageBox.Show("I'm sorry, this page cannot be imported now. Try once again to load this page.");
-                    return;
-                }
-
-                if (MessageBox.Show("Cannot import this page here. Here you can import only squad, training, calendar and matches.\n" +
-                    "Pressing OK, you send a report to Atletico Granata that will try to detect the reason of the error.",
-                    "Import error", MessageBoxButtons.OKCancel) == DialogResult.OK)
-                {
-                    string swRelease = "Sw Release:" + Application.ProductName + "("
-                       + Application.ProductVersion + ")";
-                    page = "Navigation Address: " + startnavigationAddress + "\n" + page;
-                    Exception ex = new Exception("Navigation error");
-                    SendFileTo.ErrorReport.Send(ex, page, Environment.StackTrace, swRelease);
-                }
-                return;
-            }
-
-            SaveImportedFile(page, webBrowser.Url);
-
-            if ((!page.Contains("TM - Squad")) &&
-                (!page.Contains("TM - Squad")) &&
-                (!page.Contains("TM - Kamp")) &&
-                (!page.Contains("TM - Training")) &&
-                (!page.Contains("TM - Matches")) &&
-                (!page.Contains("TM - Training_new")) &&
-                (!page.Contains("TM - Scouts")) &&
-                (!page.Contains("TM - Player")) &&
-                (!page.Contains("TM - Staff_trainers")))
-            {
-                return;
-            }
-
-            LoadHTMLfile_newPage(page);
-
-            UpdateBrowserImportPanel();
-        }
-
-        private string GetWebBrowserContent(string startnavigationAddress)
-        {
-            string doctext = "";
-
-            //if ((startnavigationAddress.Contains("showprofile.php?playerid=")))
-            //{
-            //    doctext = webBrowser.Document.Body.InnerHtml;
-            //}
-            //else 
-            if (startnavigationAddress.Contains("/matches/"))
-            {
-                doctext = Import_Matches_Adv();
-                if ((doctext == "") || (doctext == null))
-                {
-                    if (doctext == null)
-                        doctext = "GBC error: failed importing players  (text is null)";
-                    else
-                        doctext = "GBC error: failed importing players  (text is empty)";
-
-                    FileInfo fi = new FileInfo(Program.Setts.DatafilePath + "\\match_loader.js");
-                    if (!fi.Exists)
-                    {
-                        doctext += "\nThe js does not exists in " + Program.Setts.DatafilePath;
-                    }
-                    else
-                    {
-                        doctext += "\nJs content (in " + Program.Setts.DatafilePath + "): \n";
-                        doctext += System.IO.File.ReadAllText(Program.Setts.DatafilePath + "\\match_loader.js");
-                    }
-                    doctext += "\n";
-                }
-            }
-            else if (startnavigationAddress.Contains("/players/#") || startnavigationAddress.EndsWith("/players/"))
-            {
-                doctext = Import_Players_Adv();
-                if ((doctext == "") || (doctext == null))
-                {
-                    if (doctext == null)
-                        doctext = "GBC error: failed importing players  (text is null)";
-                    else
-                        doctext = "GBC error: failed importing players  (text is empty)";
-
-                    FileInfo fi = new FileInfo(Program.Setts.DatafilePath + "\\players_loader.js");
-                    if (!fi.Exists)
-                    {
-                        doctext += "\nThe js does not exists in " + Program.Setts.DatafilePath;
-                    }
-                    else
-                    {
-                        doctext += "\nJs content (in " + Program.Setts.DatafilePath + "): \n";
-                        doctext += System.IO.File.ReadAllText(Program.Setts.DatafilePath + "\\players_loader.js");
-                    }
-                    doctext += "\n";
-                }
-
-                if (Program.Setts.PlayerType == 2)
-                {
-                    string training_doctext = Import_Players_Training_Adv();
-                    if ((training_doctext == "") || (training_doctext == null))
-                    {
-                        if (training_doctext == null)
-                            training_doctext = "GBC error: failed importing players training  (text is null)";
-                        else
-                            training_doctext = "GBC error: failed importing players training  (text is empty)";
-
-                        FileInfo fi = new FileInfo(Program.Setts.DatafilePath + "\\get_players_training_loader.js");
-                        if (!fi.Exists)
-                        {
-                            training_doctext += "\nThe js does not exists in " + Program.Setts.DatafilePath;
-                        }
-                        else
-                        {
-                            training_doctext += "\nJs content (in " + Program.Setts.DatafilePath + "): \n";
-                            training_doctext += System.IO.File.ReadAllText(Program.Setts.DatafilePath + "\\get_players_training_loader.js");
-                        }
-                        training_doctext += "\n";
-                    }
-
-                    doctext += "\n\r\n" + training_doctext;
-                }
-            }
-            //else if (startnavigationAddress.Contains("/players/"))
-            //{
-            //    doctext = Import_Player_Adv();
-            //}
-            else if (startnavigationAddress.Contains("/fixtures/club/"))
-            {
-                doctext = Import_Fixtures_Adv();
-                if ((doctext == "") || (doctext == null))
-                {
-                    if (doctext == null)
-                        doctext = "GBC error: failed importing players  (text is null)";
-                    else
-                        doctext = "GBC error: failed importing players  (text is empty)";
-
-                    FileInfo fi = new FileInfo(Program.Setts.DatafilePath + "\\fixture_loader.js");
-                    if (!fi.Exists)
-                    {
-                        doctext += "\nThe js does not exists in " + Program.Setts.DatafilePath;
-                    }
-                    else
-                    {
-                        doctext += "\nJs content (in " + Program.Setts.DatafilePath + "): \n";
-                        doctext += System.IO.File.ReadAllText(Program.Setts.DatafilePath + "\\fixture_loader.js");
-                    }
-                    doctext += "\n";
-                }
-            }
-            else if (startnavigationAddress.Contains("/training/"))
-            {
-                doctext = Import_Training();
-                if ((doctext == "") || (doctext == null))
-                {
-                    if (doctext == null)
-                        doctext = "GBC error: failed importing training  (text is null)";
-                    else
-                        doctext = "GBC error: failed importing training  (text is empty)";
-
-                    FileInfo fi = new FileInfo(Program.Setts.DatafilePath + "\\training_loader.js");
-                    if (!fi.Exists)
-                    {
-                        doctext += "\nThe js does not exists in " + Program.Setts.DatafilePath;
-                    }
-                    else
-                    {
-                        doctext += "\nJs content (in " + Program.Setts.DatafilePath + "): \n";
-                        doctext += System.IO.File.ReadAllText(Program.Setts.DatafilePath + "\\training_loader.js");
-                    }
-                    doctext += "\n";
-                }
-            }
-            else
-            {
-                doctext = "Doc Text: \n" + webBrowser.DocumentText;
-            }
-
-            return doctext;
-        }
-
-        private string Import_Players_Training_Adv()
-        {
-            string pl_data = "";
-
-            try
-            {
-                HtmlElement head = webBrowser.Document.GetElementsByTagName("head")[0];
-                HtmlElement scriptEl = webBrowser.Document.CreateElement("script");
-                IHTMLScriptElement element = (IHTMLScriptElement)scriptEl.DomElement;
-
-                element.text = System.IO.File.ReadAllText(Program.Setts.DatafilePath + "\\get_players_training_loader.js");
-                HtmlElement res = head.AppendChild(scriptEl);
-                pl_data = (string)webBrowser.Document.InvokeScript("get_players_training");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-            return pl_data;
-        }
-
-        private string Import_Players_Adv()
-        {
-            string pl_data = "";
-
-            try
-            {
-                HtmlElement head = webBrowser.Document.GetElementsByTagName("head")[0];
-                HtmlElement scriptEl = webBrowser.Document.CreateElement("script");
-                IHTMLScriptElement element = (IHTMLScriptElement)scriptEl.DomElement;
-
-                element.text = System.IO.File.ReadAllText(Program.Setts.DatafilePath + "\\players_loader.js");
-                HtmlElement res = head.AppendChild(scriptEl);
-                pl_data = (string)webBrowser.Document.InvokeScript("get_players");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-            return pl_data;
-        }
-
-        private string Import_Player_Adv()
-        {
-            string pl_data = "";
-
-            try
-            {
-                object doc = webBrowser.Document.DomDocument;
-                doctext = webBrowser.Document.Body.InnerHtml;
-
-                HtmlElement head = webBrowser.Document.GetElementsByTagName("head")[0];
-                HtmlElement scriptEl = webBrowser.Document.CreateElement("script");
-                IHTMLScriptElement element = (IHTMLScriptElement)scriptEl.DomElement;
-                return pl_data;
-
-                //element.text = System.IO.File.ReadAllText(Program.Setts.DatafilePath + "\\player_info_loader.js");
-                //HtmlElement res = head.AppendChild(scriptEl);
-                //pl_data = (string)webBrowser.Document.InvokeScript("get_player_info");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-            return pl_data;
-        }
-
-        private string Import_Matches_Adv()
-        {
-            string matches_data = "";
-
-            try
-            {
-                HtmlElement head = webBrowser.Document.GetElementsByTagName("head")[0];
-                HtmlElement scriptEl = webBrowser.Document.CreateElement("script");
-                IHTMLScriptElement element = (IHTMLScriptElement)scriptEl.DomElement;
-
-                element.text = System.IO.File.ReadAllText(Program.Setts.DatafilePath + "\\match_loader.js");
-                HtmlElement res = head.AppendChild(scriptEl);
-                string lineup = (string)webBrowser.Document.InvokeScript("get_lineup");
-                string match_info = (string)webBrowser.Document.InvokeScript("get_match_info");
-                string report = (string)webBrowser.Document.InvokeScript("get_report");
-
-                matches_data = "<TABLE>" + lineup + "</TABLE>" +
-                    "<TABLE>" + match_info + "</TABLE>" +
-                    "<TABLE>" + report + "</TABLE>";
-
-                if (matches_data.Contains("Javascript error"))
-                {
-                    //MessageBox.Show("Error executing java scripts");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-            return matches_data;
-        }
-
-        private string Import_Fixtures_Adv()
-        {
-            string fix_data = "";
-
-            try
-            {
-                HtmlElement head = webBrowser.Document.GetElementsByTagName("head")[0];
-                HtmlElement scriptEl = webBrowser.Document.CreateElement("script");
-                IHTMLScriptElement element = (IHTMLScriptElement)scriptEl.DomElement;
-
-                element.text = System.IO.File.ReadAllText(Program.Setts.DatafilePath + "\\fixture_loader.js");
-                HtmlElement res = head.AppendChild(scriptEl);
-                fix_data = (string)webBrowser.Document.InvokeScript("get_fixture");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-            return fix_data;
-        }
-
-        private string Import_Training()
-        {
-            string fix_data = "";
-
-            try
-            {
-                HtmlElement head = webBrowser.Document.GetElementsByTagName("head")[0];
-                HtmlElement scriptEl = webBrowser.Document.CreateElement("script");
-                IHTMLScriptElement element = (IHTMLScriptElement)scriptEl.DomElement;
-
-                element.text = System.IO.File.ReadAllText(Program.Setts.DatafilePath + "\\training_loader.js");
-                HtmlElement res = head.AppendChild(scriptEl);
-                fix_data = (string)webBrowser.Document.InvokeScript("get_training");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-            return fix_data;
+            webBrowser.Goto(TM_Pages.Training);
         }
 
         /// <summary>
         /// Save imported file
         /// </summary>
         /// <param name="page"></param>
-        /// <param name="url"></param>
-        private void SaveImportedFile(string page, Uri url)
+        /// <param name="address"></param>
+        private void SaveImportedFile(string page, string address)
         {
             // Check the existence of the folder
             DirectoryInfo di = new DirectoryInfo(Path.Combine(Program.Setts.DefaultDirectory, "ImportedPages"));
@@ -3517,40 +2909,9 @@ namespace TMRecorder
 
             string filedate = TmWeek.ToSWDString(DateTime.Now);
 
-            string filename = "NF-" + url.LocalPath.Replace(".php", "").Replace("/", "");
+            string filename = "NF-" + address.Replace(".php", "").Replace("/", "");
 
-            if (filename == "kamp")
-            {
-                string kampid = HTML_Parser.GetField(webBrowser.Url.Query, "=", ",");
-                filename += "_" + kampid + ".2.htm";
-            }
-            else if (filename == "matches")
-            {
-                if (url.ToString().Contains(Program.Setts.ReserveSquadID.ToString()))
-                {
-                    filename += "-res-" + TmWeek.GetSeason(DateTime.Now).ToString() + ".2.htm";
-                }
-                else
-                    filename += "-" + TmWeek.GetSeason(DateTime.Now).ToString() + ".2.htm";
-            }
-            else if (filename == "players")
-            {
-                if (webBrowser.Url.ToString().Contains("reserves"))
-                {
-                    filename += "-res-" + filedate + ".2.htm";
-                }
-                else
-                    filename += "-" + filedate + ".2.htm";
-            }
-            else if (filename == "showprofile")
-            {
-                string playerid = HTML_Parser.GetNumberAfter(url.ToString(), "playerid=");
-                filename += "-" + playerid + "-" + filedate + ".2.htm";
-            }
-            else
-            {
-                filename += "-" + filedate + ".2.htm";
-            }
+            filename += "-" + filedate + ".2.htm";
 
             FileInfo fi = new FileInfo(Path.Combine(di.FullName, filename));
 
@@ -3559,16 +2920,11 @@ namespace TMRecorder
             file.Close();
         }
 
-        private void LoadHTMLfile_newPage(string page)
-        {
-            LoadHTMLfile_newPage(page, false);
-        }
-
-        private void LoadHTMLfile_newPage(string page, bool specifyDate, int importWeek = -1, bool quiet = false)
+        private void LoadHTMLfile_newPage(string page, string navigationAddress, bool specifyDate = false, int importWeek = -1, bool quiet = false)
         {
             if (page.Contains("NewTM - Kamp"))
             {
-                page = startnavigationAddress + "\n" + page;
+                page = navigationAddress + "\n" + page;
                 AllSeasons.LoadMatch(page, quiet);
                 if (!quiet) UpdateLackData();
                 isDirty = true;
@@ -3648,7 +3004,7 @@ namespace TMRecorder
                     {
 
                         string swRelease = "Sw Release:" + Application.ProductName + "(" + Application.ProductVersion + ")";
-                        page = "Navigation Address: " + startnavigationAddress + "\n" + page;
+                        page = "Navigation Address: " + navigationAddress + "\n" + page;
 
                         string message = "Error retrieving data from the players page";
                         SendFileTo.ErrorReport.SendPage(message, page, Environment.StackTrace, swRelease);
@@ -3657,7 +3013,7 @@ namespace TMRecorder
                 else if ((pages.Length < 1) && (Program.Setts.PlayerType != 2))
                 {
                     string swRelease = "Sw Release:" + Application.ProductName + "("  + Application.ProductVersion + ")";
-                    page = "Navigation Address: " + startnavigationAddress + "\n" + page;
+                    page = "Navigation Address: " + navigationAddress + "\n" + page;
 
                     string message = "Error retrieving data from the players page";
                     SendFileTo.ErrorReport.SendPage(message, page, Environment.StackTrace, swRelease);
@@ -3752,16 +3108,6 @@ namespace TMRecorder
             SetLastTeam();
         }
 
-        private void tsbNext_Click(object sender, EventArgs e)
-        {
-            webBrowser.GoForward();
-        }
-
-        private void tsbPrev_Click(object sender, EventArgs e)
-        {
-            webBrowser.GoBack();
-        }
-
         private void MainForm_Shown(object sender, EventArgs e)
         {
             if (Program.Setts.SettsRelease < 2)
@@ -3772,52 +3118,9 @@ namespace TMRecorder
                 tabControl1.SelectedTab = tabBrowser;
 
             }
-            navigationAddress = "http://tmr.insyde.it/";
-            webBrowser.Navigate(navigationAddress);
-            startnavigationAddress = navigationAddress;
+
+            webBrowser.Goto(TM_Pages.TmrWebSite);
         }
-
-        private void mainTeamToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            navigationAddress = "http://trophymanager.com/matches.php";
-            webBrowser.Navigate(navigationAddress);
-            startnavigationAddress = navigationAddress;
-        }
-
-        private void reserveTeamToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            navigationAddress = "http://trophymanager.com/matches.php?showclub=" +
-                Program.Setts.ReserveSquadID.ToString();
-            webBrowser.Navigate(navigationAddress);
-            startnavigationAddress = navigationAddress;
-        }
-
-        private void gotoAdobeFlashplayerPageToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            navigationAddress = "http://www.adobe.com/products/flashplayer/";
-            webBrowser.Navigate(navigationAddress);
-            startnavigationAddress = navigationAddress;
-        }
-
-        private void tsbTrainers_Click(object sender, EventArgs e)
-        {
-            navigationAddress = "http://trophymanager.com/coaches/";
-            webBrowser.Navigate(navigationAddress);
-            startnavigationAddress = navigationAddress;
-        }
-
-        #region Player Profiles Navigation
-        enum NavigationType
-        {
-            NavigateProfiles,
-            NavigateReports
-        }
-
-        NavigationType navigationType = NavigationType.NavigateProfiles;
-        int lastBarPlayer = 0;
-        int lastBarMatch = 0;
-
-        #endregion
 
         private void lineupToolToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -3825,187 +3128,10 @@ namespace TMRecorder
             lineup.ShowDialog();
         }
 
-        private void gotoMToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            navigationAddress = "http://trophymanager.com/";
-            webBrowser.Navigate(navigationAddress);
-            startnavigationAddress = navigationAddress;
-        }
-
         private void shortlistToolToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShortlistForm sf = new ShortlistForm(ref History.teamDS);
             sf.Show();
-        }
-
-        #region MatchBrowser Management
-        enum MatchNavigationType
-        {
-            NavigateMainTeam,
-            NavigateReserves,
-        }
-
-        MatchNavigationType matchNavigationType = MatchNavigationType.NavigateMainTeam;
-
-        //private void btnNextMatch_Click(object sender, EventArgs e)
-        //{
-        //    ChampDS.MatchRow cmr = champDS.Match.FindByMatchID(lastBarMatch);
-
-        //    int i = 0;
-        //    for (; i < champDS.Match.Count; i++)
-        //        if (cmr == champDS.Match[i]) break;
-
-        //    int loop_count = 0;
-        //    int thisSeason = TmWeek.GetSeason(DateTime.Now);
-        //    i++;
-        //    if (i == champDS.Match.Count)
-        //        i = 0;
-
-        //    for (; i < champDS.Match.Count; i++)
-        //    {
-        //        if (TmWeek.GetSeason(cmr.Date) != thisSeason) continue;
-        //        if ((champDS.Match[i].isReserves == 1) &&
-        //            (matchNavigationType == MatchNavigationType.NavigateReserves)) break;
-        //        if ((champDS.Match[i].isReserves == 0) &&
-        //            (matchNavigationType == MatchNavigationType.NavigateMainTeam)) break;
-        //        if (i == champDS.Match.Count)
-        //        {
-        //            i = 0;
-        //            if (loop_count++ == 2) return;
-        //        }
-        //    }
-
-        //    ChampDS.MatchRow mr = champDS.Match[i];
-        //    if (mr == null) return;
-        //    int matchID = mr.MatchID;
-        //    navigationAddress = "http://trophymanager.com/matches/" + matchID.ToString() + "/"; ;
-        //    webBrowser.Navigate(navigationAddress);
-        //    startnavigationAddress = navigationAddress;
-        //}
-
-        //private void btnPrevMatch_Click(object sender, EventArgs e)
-        //{
-        //    ChampDS.MatchRow cmr = champDS.Match.FindByMatchID(lastBarMatch);
-
-        //    int i = 0;
-        //    for (; i < champDS.Match.Count; i++)
-        //        if (cmr == champDS.Match[i]) break;
-
-        //    int loop_count = 0;
-        //    int thisSeason = TmWeek.GetSeason(DateTime.Now);
-
-        //    i--;
-        //    if (i == -1)
-        //        i = champDS.Match.Count - 1;
-
-        //    for (; i >= 0; i--)
-        //    {
-        //        if (TmWeek.GetSeason(champDS.Match[i].Date) != thisSeason) continue;
-        //        if ((champDS.Match[i].isReserves == 1) &&
-        //            (matchNavigationType == MatchNavigationType.NavigateReserves)) break;
-        //        if ((champDS.Match[i].isReserves == 0) &&
-        //            (matchNavigationType == MatchNavigationType.NavigateMainTeam)) break;
-        //        if (i == 0)
-        //        {
-        //            i = champDS.Match.Count - 1;
-        //            if (loop_count++ == 2) return;
-        //        }
-        //    }
-
-        //    if (i == -1) return;
-        //    int matchID = champDS.Match[i].MatchID;
-        //    navigationAddress = "http://trophymanager.com/matches/" + matchID.ToString() + "/";
-        //    webBrowser.Navigate(navigationAddress);
-        //    startnavigationAddress = navigationAddress;
-        //}
-
-        private void ChangeMatch_Click(object sender, EventArgs e)
-        {
-            ToolStripMenuItem tsi = (ToolStripMenuItem)sender;
-            navigationAddress = "http://trophymanager.com/matches/" + tsi.Tag.ToString() + "/";
-            webBrowser.Navigate(navigationAddress);
-            startnavigationAddress = navigationAddress;
-        }
-        #endregion
-
-        private void loadFromBackupFilesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            // Check the existence of the folder
-            DirectoryInfo di = new DirectoryInfo(Path.Combine(Program.Setts.DefaultDirectory, "ImportedPages"));
-
-            openFileDialog.InitialDirectory = di.FullName;
-            openFileDialog.FileName = Path.Combine(di.FullName, "*.htm");
-            openFileDialog.Filter = "HTML file (*.htm;*.html)|*.htm;*.html|All Files (*.*)|*.*";
-
-            DateTime dt = DateTime.Today;
-
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                StreamReader file = new StreamReader(openFileDialog.FileName);
-                string page = file.ReadToEnd();
-                file.Close();
-
-                LoadHTMLfile_newPage(page, true);
-
-                FillCmbMatchesSeasons();
-            }
-        }
-
-        private void sendThisPageToLedLennonForDebugToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            string message = "You are sending this page to LedLennon for debug. If you want to add some more pages to improuve the \n" +
-                "possibility to find the error, please send (after) also the squad page (eventually also the team B page) \n" +
-                "leaving the same 'Your team' field. All these file are needed to generate exactly the environment in which the \n" +
-                "bug has been generated. Please add your name and your info and email, so that Led may contact you to ask for\n" +
-                "further info or advise you when a new release is available.\n";
-
-            string doctext = "";
-
-            if (startnavigationAddress == "") return;
-
-            HtmlElementCollection hmtlElColl = webBrowser.Document.All;
-
-            // Check if it's the right team
-            {
-                doctext = webBrowser.DocumentText;
-                string num = HTML_Parser.GetNumberAfter(doctext, "SESSION[\"id\"] = ");
-                int idsession = 0;
-                int.TryParse(num, out idsession);
-                if ((idsession != 0) && (Program.Setts.MainSquadID != 0) && (idsession != Program.Setts.MainSquadID))
-                {
-                    MessageBox.Show("This is not the team loaded actually in TmRecorder. Please open a new session for the other team.");
-                }
-            }
-
-            try
-            {
-                doctext = GetWebBrowserContent(startnavigationAddress);
-            }
-            catch (FileNotFoundException fnfex)
-            {
-                MessageBox.Show(fnfex.Message);
-                doctext = "";
-            }
-
-            if (doctext == "")
-            {
-                foreach (HtmlElement hel in webBrowser.Document.All)
-                {
-                    if (hel.InnerHtml != null)
-                        doctext += hel.InnerHtml;
-                }
-            }
-
-            string page = doctext;
-
-            SaveImportedFile(page, webBrowser.Url);
-
-            string swRelease = "Sw Release:" + Application.ProductName + "("
-               + Application.ProductVersion + ")";
-            page = "Navigation Address: " + startnavigationAddress + "\n" + page;
-            Exception ex = new Exception("Navigation error");
-
-            SendFileTo.ErrorReport.SendPage(message, page, Environment.StackTrace, swRelease);
         }
 
         private void toolStripMenu_SetBloomingAge_Click(object sender, EventArgs e)
@@ -4085,20 +3211,7 @@ namespace TMRecorder
 
         private void tsbImportSquadA_Click(object sender, EventArgs e)
         {
-            navigationAddress = "http://trophymanager.com/players/";
-            startnavigationAddress = navigationAddress;
-            webBrowser.Navigate(navigationAddress);
-            if (tsbImportSquad.UnderColor != Color.DarkGreen)
-                importWhenCompleted = true;
-        }
-
-        private void tsbImportTrainingOverview_Click(object sender, EventArgs e)
-        {
-            navigationAddress = "http://trophymanager.com/training-overview/advanced/";
-            webBrowser.Navigate(navigationAddress);
-            startnavigationAddress = navigationAddress;
-            // if ((tsbImportTrainingOverview.Enabled) && (tsbImportTrainingOverview.UnderColor != Color.DarkGreen))
-            //     importWhenCompleted = true;
+            webBrowser.Goto(TM_Pages.Players);
         }
 
         private void tabControl1_Selected(object sender, TabControlEventArgs e)
@@ -4231,8 +3344,8 @@ namespace TMRecorder
             if (matchToUpdate > 0)
             {
                 tsbMatchSquadB.ForeColor = Color.DarkRed;
-                tsbMatchSquadB.ToolTipText = "There are at least " + matchToUpdate.ToString() + " match to update";
-                tsbMatchSquadB.UnderText = "To import " + matchToUpdate.ToString();
+                tsbMatchSquadB.ToolTipText = "There are at least " + matchToUpdate + " match to update";
+                tsbMatchSquadB.UnderText = "To import " + matchToUpdate;
                 tsbMatchSquadB.UnderColor = Color.DarkRed;
             }
             else
@@ -4254,9 +3367,7 @@ namespace TMRecorder
                 return;
             }
 
-            navigationAddress = "http://trophymanager.com/matches/" + matchToUpdate.MatchID.ToString() + "/";
-            webBrowser.Navigate(navigationAddress);
-            startnavigationAddress = navigationAddress;
+            webBrowser.Goto("http://trophymanager.com/matches/" + matchToUpdate.MatchID + "/");
         }
 
         private void tsbMatchSquadB_Click(object sender, EventArgs e)
@@ -4269,27 +3380,17 @@ namespace TMRecorder
                 return;
             }
 
-            navigationAddress = "http://trophymanager.com/matches/" + matchToUpdate.MatchID.ToString() + "/";
-            webBrowser.Navigate(navigationAddress);
-            startnavigationAddress = navigationAddress;
+            webBrowser.Goto("http://trophymanager.com/matches/" + matchToUpdate.MatchID + "/");
         }
 
         private void tsbMatchListA_Click(object sender, EventArgs e)
         {
-            navigationAddress = "http://trophymanager.com/fixtures/club/" + Program.Setts.MainSquadID + "/";
-            webBrowser.Navigate(navigationAddress);
-            startnavigationAddress = navigationAddress;
-            if ((tsbMatchListA.Enabled) && (tsbMatchListA.UnderColor != Color.DarkGreen))
-                importWhenCompleted = true;
+            webBrowser.Goto("http://trophymanager.com/fixtures/club/" + Program.Setts.MainSquadID + "/");
         }
 
         private void tsbMatchListB_Click(object sender, EventArgs e)
         {
-            navigationAddress = "http://trophymanager.com/fixtures/club/" + Program.Setts.ReserveSquadID + "/";
-            webBrowser.Navigate(navigationAddress);
-            startnavigationAddress = navigationAddress;
-            if ((tsbMatchListB.Enabled) && (tsbMatchListB.UnderColor != Color.DarkGreen))
-                importWhenCompleted = true;
+            webBrowser.Goto("http://trophymanager.com/fixtures/club/" + Program.Setts.ReserveSquadID + "/");
         }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
@@ -4340,63 +3441,6 @@ namespace TMRecorder
             matchAnalysisDB.ParseDescription(matchRow);
         }
 
-        private void ChangeTeam_Adv(string id)
-        {
-            try
-            {
-                string function =
-                    "function club_int_change(){$.post(\"/ajax/club_change.ajax.php\", {\"change\": " +
-                    "\"club\",\"club_id\": " + id.ToString() + "}, function(data) { if (data != null) { if (data[\"success\"])" +
-                    " page_refresh(); } }, \"json\");}";
-                HtmlElement head = webBrowser.Document.GetElementsByTagName("head")[0];
-                HtmlElement scriptEl = webBrowser.Document.CreateElement("script");
-                IHTMLScriptElement element = (IHTMLScriptElement)scriptEl.DomElement;
-                element.text = function;
-
-                HtmlElement res = head.AppendChild(scriptEl);
-                //object[] args = new object[2]; 
-                //args[0] = 2097098;
-                //args[1] = "club";
-                webBrowser.Document.InvokeScript("club_int_change");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void Login(string username, string password)
-        {
-            try
-            {
-                string function =
-                    "function club_login(){"+
-                    "var type; var captcha;"+
-                    "$.post(\"/ajax/login.ajax.php\", " +
-                    "{"+
-                    "\"type\": type," +
-                    "\"user\": \"" + username + "\"," +
-                    "\"password\": \"" + password + "\"," +
-                    "\"remember\": 1, " +
-                    "\"captcha\": captcha}," +
-                    "function(data) { if (data != null) { if (data[\"success\"])" +
-                    " page_refresh(); } }, \"json\");}";
-                HtmlElement head = webBrowser.Document.GetElementsByTagName("head")[0];
-                HtmlElement scriptEl = webBrowser.Document.CreateElement("script");
-                IHTMLScriptElement element = (IHTMLScriptElement)scriptEl.DomElement;
-                element.text = function;
-
-                HtmlElement res = head.AppendChild(scriptEl);
-                //object[] args = new object[2]; 
-                //args[0] = 2097098;
-                //args[1] = "club";
-                webBrowser.Document.InvokeScript("club_login");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
         private void addExtraTeamToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             AddExtraTeam aetDlg = new AddExtraTeam();
@@ -4482,12 +3526,7 @@ namespace TMRecorder
 
         private void tsbScouts_Click(object sender, EventArgs e)
         {
-            navigationAddress = "http://trophymanager.com/scouts/";
-            startnavigationAddress = navigationAddress;
-            webBrowser.Navigate(navigationAddress);
-
-            if (Program.Setts.PlayerType != 2) // Non PRO player
-                importWhenCompleted = true;
+            webBrowser.Goto(TM_Pages.Scouts);
         }
 
         private void structuresEconomyToolStripMenuItem_Click(object sender, EventArgs e)
@@ -4956,11 +3995,13 @@ namespace TMRecorder
 
         }
 
-        private void loginTrophyManagercomToolStripMenuItem_Click(object sender, EventArgs e)
+        private void webBrowser_ImportedContent(string page, string address)
         {
-            LoginForm loginForm = new LoginForm();
-            if (loginForm.ShowDialog() == DialogResult.OK)
-                Login(loginForm.UserName, loginForm.Password);
+            SaveImportedFile(page, address);
+
+            LoadHTMLfile_newPage(page, address);
+
+            UpdateBrowserImportPanel();
         }
     }
 }

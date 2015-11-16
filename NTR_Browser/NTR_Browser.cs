@@ -1,32 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using NTR_Db;
 using Gecko;
-using NTR_Controls.Properties;
-using System.IO;
+using NTR_WebBrowser.Properties;
 using Common;
 
-namespace NTR_Controls
+namespace NTR_WebBrowser
 {
-    public delegate void ImportedContentHandler(Content content);
+    public delegate void ImportedContentHandler(string content, string address);
 
     public partial class NTR_Browser : UserControl
     {
-        public class Pages
-        {
-            public const string Home = "http://trophymanager.com/";
-            public const string AdobeFlashplayer = "http://www.adobe.com/products/flashplayer/";
-            public const string Club = "http://trophymanager.com/club/";
-            public const string Trainers = "http://trophymanager.com/coaches/";
-            public const string Players = "http://trophymanager.com/players/";
-        }
-
         string navigationAddress = "";
         string startnavigationAddress = "";
 
@@ -39,6 +23,8 @@ namespace NTR_Controls
                 _defaultDirectory = value;
             }
         }
+
+        public event ImportedContentHandler ImportedContent;
 
         public NTR_Browser()
         {
@@ -85,17 +71,19 @@ namespace NTR_Controls
 
         private void gotoTmHome_Click(object sender, EventArgs e)
         {
-            Goto(Pages.Home);
+            Goto(TM_Pages.Home);
         }
 
         private void gotoAdobeFlashplayerPageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Goto(Pages.AdobeFlashplayer);
+            Goto(TM_Pages.AdobeFlashplayer);
         }
 
         private void tsbImport_Click(object sender, EventArgs e)
         {
-            
+            string importedPage = GetHiddenBrowserContent();
+
+            ImportedContent(importedPage, navigationAddress);
         }
 
         private void tsbUpdate_Click(object sender, EventArgs e)
@@ -104,19 +92,16 @@ namespace NTR_Controls
         }
 
         #region Getting Browser Content functions
-        private string GetHiddenBrowserContent(string startnavigationAddress)
+        private string GetHiddenBrowserContent()
         {
-            string doctext = "";
+            string doctext;
 
             if (startnavigationAddress.Contains("/matches/"))
             {
                 doctext = Import_Matches_Adv();
-                if ((doctext == "") || (doctext == null))
+                if (string.IsNullOrEmpty(doctext))
                 {
-                    if (doctext == null)
-                        doctext = "GBC error: failed importing players  (text is null)";
-                    else
-                        doctext = "GBC error: failed importing players  (text is empty)";
+                    doctext = doctext == null ? "GBC error: failed importing players  (text is null)" : "GBC error: failed importing players  (text is empty)";
 
                     doctext += "\nJs content (in " + Resources.match_loader;
 
@@ -126,42 +111,35 @@ namespace NTR_Controls
             else if (startnavigationAddress.Contains("/players/#") || startnavigationAddress.EndsWith("/players/"))
             {
                 doctext = Import_Players_Adv();
-                if ((doctext == "") || (doctext == null))
+                if (string.IsNullOrEmpty(doctext))
                 {
-                    if (doctext == null)
-                        doctext = "GBC error: failed importing players  (text is null)";
-                    else
-                        doctext = "GBC error: failed importing players  (text is empty)";
+                    doctext = doctext == null ? "GBC error: failed importing players  (text is null)" : "GBC error: failed importing players  (text is empty)";
 
                     doctext += "\nJs content (in " + Resources.players_loader;
 
                     doctext += "\n";
                 }
 
-                string training_doctext = Import_Players_Training_Adv();
-                if ((training_doctext == "") || (training_doctext == null))
+                string trainingDoctext = Import_Players_Training_Adv();
+                if (string.IsNullOrEmpty(trainingDoctext))
                 {
-                    if (training_doctext == null)
-                        training_doctext = "GBC error: failed importing players training  (text is null)";
-                    else
-                        training_doctext = "GBC error: failed importing players training  (text is empty)";
+                    trainingDoctext = trainingDoctext == null ? "GBC error: failed importing players training  (text is null)" : "GBC error: failed importing players training  (text is empty)";
 
                     doctext += "\nJs content (in " + Resources.get_players_training_loader;
 
-                    training_doctext += "\n";
+                    trainingDoctext += "\n";
                 }
 
-                doctext += "\n\r\n" + training_doctext;
+                doctext += "\n\r\n" + trainingDoctext;
             }
             else if (startnavigationAddress.Contains("/fixtures/club/"))
             {
                 doctext = Import_Fixtures_Adv();
-                if ((doctext == "") || (doctext == null))
+                if (string.IsNullOrEmpty(doctext))
                 {
-                    if (doctext == null)
-                        doctext = "GBC error: failed importing players  (text is null)";
-                    else
-                        doctext = "GBC error: failed importing players  (text is empty)";
+                    doctext = doctext == null ? 
+                        "GBC error: failed importing players  (text is null)" : 
+                        "GBC error: failed importing players  (text is empty)";
 
 
                     doctext += "\nJs content (in " + Resources.fixture_loader;
@@ -172,12 +150,11 @@ namespace NTR_Controls
             else if (startnavigationAddress.Contains("/training/"))
             {
                 doctext = Import_Training();
-                if ((doctext == "") || (doctext == null))
+                if (string.IsNullOrEmpty(doctext))
                 {
-                    if (doctext == null)
-                        doctext = "GBC error: failed importing training  (text is null)";
-                    else
-                        doctext = "GBC error: failed importing training  (text is empty)";
+                    doctext = doctext == null ? 
+                        "GBC error: failed importing training  (text is null)" : 
+                        "GBC error: failed importing training  (text is empty)";
 
 
                     doctext += "\nJs content (in " + Resources.training_loader;
@@ -228,13 +205,11 @@ namespace NTR_Controls
             return ExecuteScript(command);
         }
 
-        private GeckoNode AppendScript(string script)
+        private void AppendScript(string script)
         {
             GeckoElement scriptEl = webBrowser.Document.CreateElement("script");
             scriptEl.TextContent = script;
-            GeckoNode res = webBrowser.Document.Head.AppendChild(scriptEl);
-
-            return res;
+            webBrowser.Document.Head.AppendChild(scriptEl);
         }
 
         private string ExecuteScript(string command)
@@ -411,59 +386,58 @@ namespace NTR_Controls
         //    return returnedContent;
         //}
 
-        /// <summary>
-        /// Save imported file
-        /// </summary>
-        /// <param name="page"></param>
-        /// <param name="url"></param>
-        private void SaveImportedFile(string page, Uri url)
-        {
-            // Check the existence of the folder
-            DirectoryInfo di = new DirectoryInfo(Path.Combine(DefaultDirectory, "ImportedPages"));
-            if (!di.Exists)
-            {
-                di.Create();
-            }
+        ///// <summary>
+        ///// Save imported file
+        ///// </summary>
+        ///// <param name="page"></param>
+        ///// <param name="url"></param>
+        //private void SaveImportedFile(string page, Uri url)
+        //{
+        //    // Check the existence of the folder
+        //    DirectoryInfo di = new DirectoryInfo(Path.Combine(DefaultDirectory, "ImportedPages"));
+        //    if (!di.Exists)
+        //    {
+        //        di.Create();
+        //    }
 
-            string filedate = TmWeek.ToSWDString(DateTime.Now);
+        //    string filedate = TmWeek.ToSWDString(DateTime.Now);
 
-            string filename = "NF-" + url.LocalPath.Replace(".php", "").Replace("/", "");
+        //    string filename = "NF-" + url.LocalPath.Replace(".php", "").Replace("/", "");
 
-            if (filename == "kamp")
-            {
-                string kampid = HTML_Parser.GetField(webBrowser.Url.Query, "=", ",");
-                filename += "_" + kampid + ".2.htm";
-            }
-            else if (filename == "matches")
-            {
-                // TODO: Find an unique way to save the match data
-                filename += "-" + TmWeek.GetSeason(DateTime.Now).ToString() + ".2.htm";
-            }
-            else if (filename == "players")
-            {
-                if (webBrowser.Url.ToString().Contains("reserves"))
-                {
-                    filename += "-res-" + filedate + ".2.htm";
-                }
-                else
-                    filename += "-" + filedate + ".2.htm";
-            }
-            else if (filename == "showprofile")
-            {
-                string playerid = HTML_Parser.GetNumberAfter(url.ToString(), "playerid=");
-                filename += "-" + playerid + "-" + filedate + ".2.htm";
-            }
-            else
-            {
-                filename += "-" + filedate + ".2.htm";
-            }
+        //    if (filename == "kamp")
+        //    {
+        //        string kampid = HTML_Parser.GetField(webBrowser.Url.Query, "=", ",");
+        //        filename += "_" + kampid + ".2.htm";
+        //    }
+        //    else if (filename == "matches")
+        //    {
+        //        filename += "-" + TmWeek.GetSeason(DateTime.Now) + ".2.htm";
+        //    }
+        //    else if (filename == "players")
+        //    {
+        //        if (webBrowser.Url.ToString().Contains("reserves"))
+        //        {
+        //            filename += "-res-" + filedate + ".2.htm";
+        //        }
+        //        else
+        //            filename += "-" + filedate + ".2.htm";
+        //    }
+        //    else if (filename == "showprofile")
+        //    {
+        //        string playerid = HTML_Parser.GetNumberAfter(url.ToString(), "playerid=");
+        //        filename += "-" + playerid + "-" + filedate + ".2.htm";
+        //    }
+        //    else
+        //    {
+        //        filename += "-" + filedate + ".2.htm";
+        //    }
 
-            FileInfo fi = new FileInfo(Path.Combine(di.FullName, filename));
+        //    FileInfo fi = new FileInfo(Path.Combine(di.FullName, filename));
 
-            StreamWriter file = new StreamWriter(fi.FullName);
-            file.Write(page);
-            file.Close();
-        }
+        //    StreamWriter file = new StreamWriter(fi.FullName);
+        //    file.Write(page);
+        //    file.Close();
+        //}
 
         private void webBrowser_DocumentCompleted(object sender, Gecko.Events.GeckoDocumentCompletedEventArgs e)
         {
@@ -490,8 +464,60 @@ namespace NTR_Controls
             if (perc > 100) perc = 100;
             if (perc < 0) perc = 0;
             tsbProgressBar.Value = perc;
-            tsbProgressText.Text = perc.ToString() + "%";
+            tsbProgressText.Text = perc + "%";
             tsbProgressBar.ForeColor = Color.Blue;
+        }
+
+        private void Login(string username, string password)
+        {
+            try
+            {
+                string function =
+                    "function club_login(){" +
+                    "var type; var captcha;" +
+                    "$.post(\"/ajax/login.ajax.php\", " +
+                    "{" +
+                    "\"type\": type," +
+                    "\"user\": \"" + username + "\"," +
+                    "\"password\": \"" + password + "\"," +
+                    "\"remember\": 1, " +
+                    "\"captcha\": captcha}," +
+                    "function(data) { if (data != null) { if (data[\"success\"])" +
+                    " page_refresh(); } }, \"json\");}";
+
+                AppendScriptAndExecute(function,
+                                       "club_login()");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void ChangeTeam_Adv(string id)
+        {
+            try
+            {
+                string function =
+                    "function club_int_change(){$.post(\"/ajax/club_change.ajax.php\", {\"change\": " +
+                    "\"club\",\"club_id\": " + id + "}, function(data) { if (data != null) { if (data[\"success\"])" +
+                    " page_refresh(); } }, \"json\");}";
+
+                AppendScriptAndExecute(function,
+                                       "club_int_change()");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+
+        private void loginTrophyManagercomToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoginForm loginForm = new LoginForm();
+            if (loginForm.ShowDialog() == DialogResult.OK)
+                Login(loginForm.UserName, loginForm.Password);
         }
     }
 }

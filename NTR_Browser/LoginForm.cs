@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Linq;
-using System.Reflection;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
-namespace TMRecorder
+namespace NTR_WebBrowser
 {
     partial class LoginForm : Form
     {

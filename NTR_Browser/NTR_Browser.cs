@@ -11,8 +11,6 @@ namespace NTR_WebBrowser
 
     public partial class NTR_Browser : UserControl
     {
-        string navigationAddress = "";
-        string startnavigationAddress = "";
 
         private string _defaultDirectory = "";
         public string DefaultDirectory
@@ -21,6 +19,34 @@ namespace NTR_WebBrowser
             set
             {
                 _defaultDirectory = value;
+            }
+        }
+
+        string _startnavigationAddress = "";
+        public string StartnavigationAddress
+        {
+            get
+            {
+                return _startnavigationAddress;
+            }
+
+            set
+            {
+                _startnavigationAddress = value;
+            }
+        }
+
+        string _navigationAddress = "";
+        public string NavigationAddress
+        {
+            get
+            {
+                return _navigationAddress;
+            }
+
+            set
+            {
+                _navigationAddress = value;
             }
         }
 
@@ -43,9 +69,9 @@ namespace NTR_WebBrowser
         #region Navigation
         public void Goto(string address)
         {
-            navigationAddress = address;
-            webBrowser.Navigate(navigationAddress);
-            startnavigationAddress = navigationAddress;
+            NavigationAddress = address;
+            webBrowser.Navigate(NavigationAddress);
+            StartnavigationAddress = NavigationAddress;
         }
 
         internal void GoForward()
@@ -83,7 +109,7 @@ namespace NTR_WebBrowser
         {
             string importedPage = GetHiddenBrowserContent();
 
-            ImportedContent(importedPage, navigationAddress);
+            ImportedContent(importedPage, NavigationAddress);
         }
 
         private void tsbUpdate_Click(object sender, EventArgs e)
@@ -96,7 +122,7 @@ namespace NTR_WebBrowser
         {
             string doctext;
 
-            if (startnavigationAddress.Contains("/matches/"))
+            if (StartnavigationAddress.Contains("/matches/"))
             {
                 doctext = Import_Matches_Adv();
                 if (string.IsNullOrEmpty(doctext))
@@ -108,7 +134,7 @@ namespace NTR_WebBrowser
                     doctext += "\n";
                 }
             }
-            else if (startnavigationAddress.Contains("/players/#") || startnavigationAddress.EndsWith("/players/"))
+            else if (StartnavigationAddress.Contains("/players/#") || StartnavigationAddress.EndsWith("/players/"))
             {
                 doctext = Import_Players_Adv();
                 if (string.IsNullOrEmpty(doctext))
@@ -132,7 +158,7 @@ namespace NTR_WebBrowser
 
                 doctext += "\n\r\n" + trainingDoctext;
             }
-            else if (startnavigationAddress.Contains("/fixtures/club/"))
+            else if (StartnavigationAddress.Contains("/fixtures/club/"))
             {
                 doctext = Import_Fixtures_Adv();
                 if (string.IsNullOrEmpty(doctext))
@@ -147,7 +173,7 @@ namespace NTR_WebBrowser
                     doctext += "\n";
                 }
             }
-            else if (startnavigationAddress.Contains("/training/"))
+            else if (StartnavigationAddress.Contains("/training/"))
             {
                 doctext = Import_Training();
                 if (string.IsNullOrEmpty(doctext))
@@ -494,7 +520,7 @@ namespace NTR_WebBrowser
             }
         }
 
-        private void ChangeTeam_Adv(string id)
+        public void ChangeTeam_Adv(string id)
         {
             try
             {

@@ -154,6 +154,10 @@
       <Project>{e0e469c1-bfb5-4ec0-93f1-f019c9101110}</Project>
       <Name>Languages</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NTR_Browser\NTR_WebBrowser.csproj">
+      <Project>{483d9c7d-108e-4aec-9da2-20e57abe217f}</Project>
+      <Name>NTR_WebBrowser</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NTR_Common\NTR_Common.csproj">
       <Project>{d32f5344-d291-42fc-8b6e-4183864e2d77}</Project>
       <Name>NTR_Common</Name>

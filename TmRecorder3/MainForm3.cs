@@ -15,6 +15,7 @@ using NTR_Forms;
 using NTR_Db;
 using NTR_Common;
 using NTR_Controls;
+using NTR_WebBrowser;
 using DataGridViewCustomColumns;
 
 namespace TmRecorder3
@@ -949,7 +950,7 @@ namespace TmRecorder3
 
         private void tsbImportSquad_Click(object sender, EventArgs e)
         {
-            ntrBrowser.Goto(NTR_Browser.Pages.Players);
+            ntrBrowser.Goto(TM_Pages.Players);
         }
 
         private void tsbTrainingTraining_Click(object sender, EventArgs e)

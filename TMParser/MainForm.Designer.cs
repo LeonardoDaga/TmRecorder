@@ -424,6 +424,7 @@ namespace TMRecorder
             this.tsbImportSquad = new TMR_CostumControls.TMR_ToolStripButton();
             this.toolStripLabel14 = new System.Windows.Forms.ToolStripLabel();
             this.tsbScouts = new TMR_CostumControls.TMR_ToolStripButton();
+            this.tsbExtraTeam = new System.Windows.Forms.ToolStripMenuItem();
             this.tsbTrainingTraining = new TMR_CostumControls.TMR_ToolStripButton();
             this.toolStripLabel15 = new System.Windows.Forms.ToolStripLabel();
             this.tsbMatchListA = new TMR_CostumControls.TMR_ToolStripButton();
@@ -5334,5 +5335,6 @@ namespace TMRecorder
         private TMR_CostumControls.TMR_ToolStripButton tsbMatchSquadB;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton10;
+        private System.Windows.Forms.ToolStripMenuItem tsbExtraTeam;
     }
 }

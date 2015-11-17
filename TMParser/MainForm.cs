@@ -3441,39 +3441,39 @@ namespace TMRecorder
             matchAnalysisDB.ParseDescription(matchRow);
         }
 
-        private void addExtraTeamToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-            AddExtraTeam aetDlg = new AddExtraTeam();
-            if (aetDlg.ShowDialog() == DialogResult.OK)
-            {
-                Dictionary<string, string> dictExtraTeams = Program.Setts.ExtraTeams;
-                dictExtraTeams.Add(aetDlg.TeamID.ToString(), aetDlg.TeamName);
-                Program.Setts.ExtraTeams = dictExtraTeams;
-                UpdateExtraTeamMenu();
-            }
-        }
+        //private void addExtraTeamToolStripMenuItem_Click_1(object sender, EventArgs e)
+        //{
+        //    AddExtraTeam aetDlg = new AddExtraTeam();
+        //    if (aetDlg.ShowDialog() == DialogResult.OK)
+        //    {
+        //        Dictionary<string, string> dictExtraTeams = Program.Setts.ExtraTeams;
+        //        dictExtraTeams.Add(aetDlg.TeamID.ToString(), aetDlg.TeamName);
+        //        Program.Setts.ExtraTeams = dictExtraTeams;
+        //        UpdateExtraTeamMenu();
+        //    }
+        //}
 
         private void UpdateExtraTeamMenu()
         {
-            Dictionary<string, string> dictExtraTeams = Program.Setts.ExtraTeams;
-            tsbExtraTeam.DropDownItems.Clear();
-            tsbExtraTeam.DropDownItems.Add(tsbChangeToConfiguredExtraTeam);
+            //    Dictionary<string, string> dictExtraTeams = Program.Setts.ExtraTeams;
+            //    tsbExtraTeam.DropDownItems.Clear();
+            //    tsbExtraTeam.DropDownItems.Add(tsbChangeToConfiguredExtraTeam);
 
-            if (thisIsExtraTeam) return;
+            //    if (thisIsExtraTeam) return;
 
-            tsbExtraTeam.DropDownItems.Add(addExtraTeamToolStripMenuItem);
+            //    tsbExtraTeam.DropDownItems.Add(addExtraTeamToolStripMenuItem);
 
-            tsbExtraTeam.DropDownItems.Add(new ToolStripSeparator());
+            //    tsbExtraTeam.DropDownItems.Add(new ToolStripSeparator());
 
-            foreach (string key in dictExtraTeams.Keys)
-            {
-                ToolStripMenuItem tsi = new ToolStripMenuItem();
-                tsi.Name = "menuExtra_" + key;
-                tsi.Text = "Open TmRecorder session for " + dictExtraTeams[key] + " (" + key + ")";
-                tsi.Tag = key;
-                tsi.Click += new EventHandler(tsiOpenTmRecorderSession_Click);
-                tsbExtraTeam.DropDownItems.Add(tsi);
-            }
+            //    foreach (string key in dictExtraTeams.Keys)
+            //    {
+            //        ToolStripMenuItem tsi = new ToolStripMenuItem();
+            //        tsi.Name = "menuExtra_" + key;
+            //        tsi.Text = "Open TmRecorder session for " + dictExtraTeams[key] + " (" + key + ")";
+            //        tsi.Tag = key;
+            //        tsi.Click += new EventHandler(tsiOpenTmRecorderSession_Click);
+            //        tsbExtraTeam.DropDownItems.Add(tsi);
+            //    }
         }
 
         void tsiOpenTmRecorderSession_Click(object sender, EventArgs e)
@@ -3499,13 +3499,13 @@ namespace TMRecorder
 
         private void tsbChangeToConfiguredExtraTeam_Click(object sender, EventArgs e)
         {
-            if (!startnavigationAddress.StartsWith(@"http://trophymanager.com/"))
+            if (!webBrowser.StartnavigationAddress.StartsWith(@"http://trophymanager.com/"))
             {
                 MessageBox.Show("You cannot switch to the extra team pages if you are not navigating in the Trophy Manager website");
                 return;
             }
 
-            ChangeTeam_Adv(Program.Setts.MainSquadID.ToString());
+            webBrowser.ChangeTeam_Adv(Program.Setts.MainSquadID.ToString());
         }
 
         private void tsbFacebook_Click(object sender, EventArgs e)
@@ -3655,7 +3655,8 @@ namespace TMRecorder
                 string dateString = str[2] + "-" + str[3] + "-" + str[4];
                 int importWeek = TmWeek.SWDtoTmWeek(dateString).absweek;
 
-                LoadHTMLfile_newPage(playersPage, true, importWeek, true);
+                // The navigation address is not necessary in this case
+                LoadHTMLfile_newPage(playersPage, "", true, importWeek, true);
 
                 sf.progressvalue = (cnt * 100) / fisTot;
                 sf.Refresh();
@@ -3696,7 +3697,8 @@ namespace TMRecorder
 
                 string clubId = HTML_Parser.GetNumberAfter(fi.FullName, "NF-fixturesclub");
 
-                LoadHTMLfile_newPage(fixturesPage, true, importWeek, true);
+                // the navigation address is not needed
+                LoadHTMLfile_newPage(fixturesPage, "", true, importWeek, true);
 
                 sf.progressvalue = (cnt * 100) / fisTot;
                 sf.Refresh();
@@ -3729,8 +3731,8 @@ namespace TMRecorder
 
                 string matchId = HTML_Parser.GetNumberAfter(fi.FullName, "NF-matches");
 
-
-                LoadHTMLfile_newPage(matchPage, true, importWeek, true);
+                // The navigation address is not necessary
+                LoadHTMLfile_newPage(matchPage, "", true, importWeek, true);
 
                 sf.progressvalue = (cnt * 100) / fisTot;
                 sf.Refresh();
@@ -3821,18 +3823,15 @@ namespace TMRecorder
 
             string matchAddr = "http://trophymanager.com/matches/" + selMatch.MatchID + "/";
 
-            navigationAddress = matchAddr;
-            startnavigationAddress = navigationAddress;
-            webBrowser.Navigate(navigationAddress);
+            webBrowser.Goto(matchAddr);
         }
 
         private void tsmGotoPlayerPageInBrowser_Click(object sender, object o)
         {
             tabControl1.SelectedTab = tabBrowser;
 
-            navigationAddress = GetMatchAddress(sender, o);
-            startnavigationAddress = navigationAddress;
-            webBrowser.Navigate(navigationAddress);
+            string matchAddr = GetMatchAddress(sender, o);
+            webBrowser.Goto(matchAddr);
         }
 
         private string GetMatchAddress(object sender, object o)
@@ -3909,9 +3908,7 @@ namespace TMRecorder
 
             string matchAddr = "http://trophymanager.com/players/" + playerID + "/";
 
-            navigationAddress = matchAddr;
-            startnavigationAddress = navigationAddress;
-            webBrowser.Navigate(navigationAddress);
+            webBrowser.Goto(matchAddr);
         }
 
         private void openPlayerPageInAnExternalBrowserToolStripMenuItem_Click(object sender, EventArgs e)
@@ -3981,8 +3978,8 @@ namespace TMRecorder
         {
             tabControl1.SelectedTab = tabBrowser;
 
-            navigationAddress = GetMatchAddress(sender, o);
-            Process.Start(navigationAddress);
+            string matchAddress = GetMatchAddress(sender, o);
+            Process.Start(matchAddress);
         }
 
         private void dataGridPlayersInfo_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

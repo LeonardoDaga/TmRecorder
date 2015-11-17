@@ -66,11 +66,11 @@
     <Compile Include="ActionStats.Designer.cs">
       <DependentUpon>ActionStats.cs</DependentUpon>
     </Compile>
-    <Compile Include="MatchStats.cs">
+    <Compile Include="OldMatchStats.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MatchStats.Designer.cs">
-      <DependentUpon>MatchStats.cs</DependentUpon>
+    <Compile Include="OldMatchStats.Designer.cs">
+      <DependentUpon>OldMatchStats.cs</DependentUpon>
     </Compile>
     <Compile Include="NTR_HiddenSkillsColumn.cs">
       <SubType>Component</SubType>
@@ -132,8 +132,8 @@
     <EmbeddedResource Include="ActionStats.resx">
       <DependentUpon>ActionStats.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MatchStats.resx">
-      <DependentUpon>MatchStats.cs</DependentUpon>
+    <EmbeddedResource Include="OldMatchStats.resx">
+      <DependentUpon>OldMatchStats.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NTR_HiddenSkillsColumn.resx">
       <DependentUpon>NTR_HiddenSkillsColumn.cs</DependentUpon>

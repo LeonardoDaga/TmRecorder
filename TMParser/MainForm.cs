@@ -3812,7 +3812,7 @@ namespace TMRecorder
                 dgOppsTeamPerf.DataCollection = null;
             }
 
-            matchStats.SetMatchData(md);
+            //matchStats.SetMatchData(md);
         }
 
         private void dgMatches_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

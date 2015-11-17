@@ -86,10 +86,10 @@
             this.dgPlayersGK = new NTR_Controls.AeroDataGrid();
             this.qsMinRatingGK = new NTR_Controls.QuantitySelector();
             this.tabMatches = new System.Windows.Forms.TabPage();
-            this.msActionsAway = new NTR_Controls.MatchStats();
-            this.msTacticsBreakdown = new NTR_Controls.MatchStats();
-            this.msActionsHome = new NTR_Controls.MatchStats();
-            this.msGameBreakDown = new NTR_Controls.MatchStats();
+            this.msActionsAway = new NTR_Controls.OldMatchStats();
+            this.msTacticsBreakdown = new NTR_Controls.OldMatchStats();
+            this.msActionsHome = new NTR_Controls.OldMatchStats();
+            this.msGameBreakDown = new NTR_Controls.OldMatchStats();
             this.lineupControl = new FieldFormationControl.RotLineupControl();
             this.lblNameTeamAway = new System.Windows.Forms.Label();
             this.btnEnlargeMatchWindow = new System.Windows.Forms.Button();
@@ -1580,10 +1580,10 @@
         private FieldFormationControl.RotLineupControl lineupControl;
         private System.Windows.Forms.ToolStripMenuItem searchAndImportAllSavedPagesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem recalculateDecimalsToolStripMenuItem;
-        private NTR_Controls.MatchStats msGameBreakDown;
-        private NTR_Controls.MatchStats msTacticsBreakdown;
-        private NTR_Controls.MatchStats msActionsHome;
-        private NTR_Controls.MatchStats msActionsAway;
+        private NTR_Controls.OldMatchStats msGameBreakDown;
+        private NTR_Controls.OldMatchStats msTacticsBreakdown;
+        private NTR_Controls.OldMatchStats msActionsHome;
+        private NTR_Controls.OldMatchStats msActionsAway;
         private System.Windows.Forms.ToolStripMenuItem openPlayerProfilePageToolStripMenuItem;
     }
 }

@@ -18,7 +18,7 @@ namespace NTR_Controls
     // Il controllo contiene, internamente, l'ItemDictionary con gli elementi da visualizzare. Non mostrata ad interfaccia
     // per non farla incasinare
 
-    public partial class MatchStats : UserControl
+    public partial class OldMatchStats : UserControl
     {
         #region Properties
 
@@ -127,7 +127,7 @@ namespace NTR_Controls
 
         #endregion
 
-        public MatchStats()
+        public OldMatchStats()
         {
             InitializeComponent();
             this.DoubleBuffered = true;

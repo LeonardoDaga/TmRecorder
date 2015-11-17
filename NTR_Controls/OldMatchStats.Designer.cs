@@ -1,6 +1,6 @@
 ﻿namespace NTR_Controls
 {
-    partial class MatchStats
+    partial class OldMatchStats
     {
         /// <summary> 
         /// Required designer variable.

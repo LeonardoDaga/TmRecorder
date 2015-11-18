@@ -10,6 +10,40 @@ namespace NTR_Db
 
     public partial class NTR_SquadDb
     {
+        partial class PlayerDataTable
+        {
+            internal void ReadSafeXml(string fullName)
+            {
+                this.DataSet.EnforceConstraints = false;
+                ReadXml(fullName);
+
+                Dictionary<int, NTR_SquadDb.PlayerRow> listDuplicates = new Dictionary<int, NTR_SquadDb.PlayerRow>();
+
+                foreach (NTR_SquadDb.PlayerRow player in this)
+                {
+                    var playersFound = (from c in this
+                                        where c.PlayerID == player.PlayerID
+                                        select c);
+
+                    if (playersFound.Count() > 1)
+                    {
+                        if (!listDuplicates.ContainsKey(player.PlayerID))
+                            listDuplicates.Add(player.PlayerID, player);
+                    }
+                }
+
+                foreach (var item in listDuplicates)
+                {
+                    RemovePlayerRow(item.Value);
+                }
+
+                if (listDuplicates.Count > 0)
+                    WriteXml(fullName);
+
+                this.DataSet.EnforceConstraints = true;
+            }
+        }
+
         partial class ActionsDataTable
         {
             internal void WriteXmlBySeason(string dirPath)

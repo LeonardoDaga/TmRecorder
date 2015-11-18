@@ -620,7 +620,8 @@ namespace NTR_Db
                 DirectoryInfo di = new DirectoryInfo(dirPath);
 
                 fi = new FileInfo(Path.Combine(dirPath, "Players.5.xml"));
-                seasonsDB.Player.ReadXml(fi.FullName);
+
+                seasonsDB.Player.ReadSafeXml(fi.FullName);
 
                 sf.UpdateStatusMessage(30, string.Format("Loading Players DB v.5..."));
 

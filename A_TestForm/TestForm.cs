@@ -1,5 +1,10 @@
 ﻿using System;
-using System.IO;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 
 namespace A_TestForm
@@ -8,15 +13,9 @@ namespace A_TestForm
     {
         public TestForm()
         {
-            string xulDir = Properties.Settings.Default.xulRunnerPath;
-
             InitializeComponent();
-            string xulRunnerPath = ntR_Browser1.CheckXulInitialization(Properties.Settings.Default.xulRunnerPath);
-
-            if (xulRunnerPath == "")
+            if (!ntR_Browser1.CheckXulInitialization())
                 Close();
-
-            Properties.Settings.Default.xulRunnerPath = xulRunnerPath;
         }
     }
 }

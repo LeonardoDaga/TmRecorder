@@ -36,23 +36,29 @@
             this.tsbUpdate = new System.Windows.Forms.ToolStripButton();
             this.tsbImport = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabel11 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.tsLabelAddedMenu = new System.Windows.Forms.ToolStripLabel();
+            this.tsmFile = new System.Windows.Forms.ToolStripDropDownButton();
             this.loginTrophyManagercomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsbGotoMainTrophyPage = new System.Windows.Forms.ToolStripMenuItem();
             this.tsbGotoAdobePage = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator17 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbSendThisPageForDebug = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabel12 = new System.Windows.Forms.ToolStripLabel();
+            this.tsbPlayersNavigationType = new System.Windows.Forms.ToolStripDropDownButton();
+            this.navigateProfilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.navigateReportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
+            this.tbTxtAddress = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.tsbProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.tsbProgressText = new System.Windows.Forms.ToolStripLabel();
-            this.tbTxtAddress = new System.Windows.Forms.ToolStripTextBox();
             this.toolStrip1.SuspendLayout();
+            this.toolStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
             // 
+            this.toolStrip1.AutoSize = false;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripLabel1,
             this.tsbPrev,
@@ -60,16 +66,12 @@
             this.tsbUpdate,
             this.tsbImport,
             this.toolStripSeparator1,
-            this.toolStripLabel11,
-            this.toolStripDropDownButton1,
-            this.toolStripSeparator2,
-            this.toolStripLabel12,
-            this.tsbProgressBar,
-            this.tsbProgressText,
-            this.tbTxtAddress});
+            this.tsLabelAddedMenu,
+            this.tsmFile,
+            this.tsbPlayersNavigationType});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(698, 38);
+            this.toolStrip1.Size = new System.Drawing.Size(874, 36);
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -77,7 +79,7 @@
             // 
             this.toolStripLabel1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(67, 35);
+            this.toolStripLabel1.Size = new System.Drawing.Size(67, 33);
             this.toolStripLabel1.Text = "Navigation";
             // 
             // tsbPrev
@@ -85,7 +87,7 @@
             this.tsbPrev.Image = ((System.Drawing.Image)(resources.GetObject("tsbPrev.Image")));
             this.tsbPrev.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbPrev.Name = "tsbPrev";
-            this.tsbPrev.Size = new System.Drawing.Size(34, 35);
+            this.tsbPrev.Size = new System.Drawing.Size(34, 33);
             this.tsbPrev.Text = "Prev";
             this.tsbPrev.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.tsbPrev.Click += new System.EventHandler(this.tsbPrev_Click);
@@ -95,7 +97,7 @@
             this.tsbNext.Image = ((System.Drawing.Image)(resources.GetObject("tsbNext.Image")));
             this.tsbNext.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbNext.Name = "tsbNext";
-            this.tsbNext.Size = new System.Drawing.Size(35, 35);
+            this.tsbNext.Size = new System.Drawing.Size(35, 33);
             this.tsbNext.Text = "Next";
             this.tsbNext.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.tsbNext.Click += new System.EventHandler(this.tsbNext_Click);
@@ -105,7 +107,7 @@
             this.tsbUpdate.Image = global::NTR_WebBrowser.Properties.Resources.Update;
             this.tsbUpdate.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbUpdate.Name = "tsbUpdate";
-            this.tsbUpdate.Size = new System.Drawing.Size(49, 35);
+            this.tsbUpdate.Size = new System.Drawing.Size(49, 33);
             this.tsbUpdate.Text = "Update";
             this.tsbUpdate.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.tsbUpdate.Click += new System.EventHandler(this.tsbUpdate_Click);
@@ -115,7 +117,7 @@
             this.tsbImport.Image = global::NTR_WebBrowser.Properties.Resources.ImportIcon;
             this.tsbImport.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbImport.Name = "tsbImport";
-            this.tsbImport.Size = new System.Drawing.Size(47, 35);
+            this.tsbImport.Size = new System.Drawing.Size(47, 33);
             this.tsbImport.Text = "Import";
             this.tsbImport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.tsbImport.Click += new System.EventHandler(this.tsbImport_Click);
@@ -123,30 +125,30 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 38);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 36);
             // 
-            // toolStripLabel11
+            // tsLabelAddedMenu
             // 
-            this.toolStripLabel11.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripLabel11.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.toolStripLabel11.Name = "toolStripLabel11";
-            this.toolStripLabel11.Size = new System.Drawing.Size(24, 35);
-            this.toolStripLabel11.Text = "TM";
+            this.tsLabelAddedMenu.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsLabelAddedMenu.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.tsLabelAddedMenu.Name = "tsLabelAddedMenu";
+            this.tsLabelAddedMenu.Size = new System.Drawing.Size(24, 33);
+            this.tsLabelAddedMenu.Text = "TM";
             // 
-            // toolStripDropDownButton1
+            // tsmFile
             // 
-            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.loginTrophyManagercomToolStripMenuItem,
             this.tsbGotoMainTrophyPage,
             this.tsbGotoAdobePage,
             this.toolStripSeparator17,
             this.tsbSendThisPageForDebug});
-            this.toolStripDropDownButton1.Image = global::NTR_WebBrowser.Properties.Resources.Folder;
-            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(38, 35);
-            this.toolStripDropDownButton1.Text = "File";
-            this.toolStripDropDownButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tsmFile.Image = global::NTR_WebBrowser.Properties.Resources.Folder;
+            this.tsmFile.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsmFile.Name = "tsmFile";
+            this.tsmFile.Size = new System.Drawing.Size(38, 33);
+            this.tsmFile.Text = "File";
+            this.tsmFile.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // loginTrophyManagercomToolStripMenuItem
             // 
@@ -180,18 +182,76 @@
             this.tsbSendThisPageForDebug.Size = new System.Drawing.Size(283, 22);
             this.tsbSendThisPageForDebug.Text = "Send this page to LedLennon for Debug";
             // 
-            // toolStripSeparator2
+            // tsbPlayersNavigationType
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 38);
+            this.tsbPlayersNavigationType.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.navigateProfilesToolStripMenuItem,
+            this.navigateReportsToolStripMenuItem});
+            this.tsbPlayersNavigationType.Image = ((System.Drawing.Image)(resources.GetObject("tsbPlayersNavigationType.Image")));
+            this.tsbPlayersNavigationType.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbPlayersNavigationType.Name = "tsbPlayersNavigationType";
+            this.tsbPlayersNavigationType.Size = new System.Drawing.Size(59, 33);
+            this.tsbPlayersNavigationType.Text = "Profiles";
+            this.tsbPlayersNavigationType.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
-            // toolStripLabel12
+            // navigateProfilesToolStripMenuItem
             // 
-            this.toolStripLabel12.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripLabel12.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.toolStripLabel12.Name = "toolStripLabel12";
-            this.toolStripLabel12.Size = new System.Drawing.Size(87, 35);
-            this.toolStripLabel12.Text = "Load progress";
+            this.navigateProfilesToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("navigateProfilesToolStripMenuItem.Image")));
+            this.navigateProfilesToolStripMenuItem.Name = "navigateProfilesToolStripMenuItem";
+            this.navigateProfilesToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.navigateProfilesToolStripMenuItem.Text = "Navigate Profiles";
+            this.navigateProfilesToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.navigateProfilesToolStripMenuItem.Click += new System.EventHandler(this.navigateProfilesToolStripMenuItem_Click);
+            // 
+            // navigateReportsToolStripMenuItem
+            // 
+            this.navigateReportsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("navigateReportsToolStripMenuItem.Image")));
+            this.navigateReportsToolStripMenuItem.Name = "navigateReportsToolStripMenuItem";
+            this.navigateReportsToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.navigateReportsToolStripMenuItem.Text = "Navigate Reports";
+            this.navigateReportsToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.navigateReportsToolStripMenuItem.Click += new System.EventHandler(this.navigateReportsToolStripMenuItem_Click);
+            // 
+            // toolStrip2
+            // 
+            this.toolStrip2.AutoSize = false;
+            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel2,
+            this.tbTxtAddress,
+            this.toolStripLabel3,
+            this.tsbProgressBar,
+            this.tsbProgressText});
+            this.toolStrip2.Location = new System.Drawing.Point(0, 36);
+            this.toolStrip2.Name = "toolStrip2";
+            this.toolStrip2.Size = new System.Drawing.Size(874, 18);
+            this.toolStrip2.TabIndex = 4;
+            this.toolStrip2.Text = "toolStrip2";
+            // 
+            // toolStripLabel2
+            // 
+            this.toolStripLabel2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripLabel2.Name = "toolStripLabel2";
+            this.toolStripLabel2.Size = new System.Drawing.Size(51, 15);
+            this.toolStripLabel2.Text = "Address";
+            // 
+            // tbTxtAddress
+            // 
+            this.tbTxtAddress.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.tbTxtAddress.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
+            this.tbTxtAddress.AutoSize = false;
+            this.tbTxtAddress.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.tbTxtAddress.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbTxtAddress.Name = "tbTxtAddress";
+            this.tbTxtAddress.Size = new System.Drawing.Size(350, 18);
+            this.tbTxtAddress.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbTxtAddress_KeyDown);
+            // 
+            // toolStripLabel3
+            // 
+            this.toolStripLabel3.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripLabel3.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.toolStripLabel3.Name = "toolStripLabel3";
+            this.toolStripLabel3.Size = new System.Drawing.Size(87, 15);
+            this.toolStripLabel3.Text = "Load progress";
             // 
             // tsbProgressBar
             // 
@@ -203,29 +263,24 @@
             // tsbProgressText
             // 
             this.tsbProgressText.Name = "tsbProgressText";
-            this.tsbProgressText.Size = new System.Drawing.Size(17, 35);
+            this.tsbProgressText.Size = new System.Drawing.Size(17, 15);
             this.tsbProgressText.Text = "%";
-            // 
-            // tbTxtAddress
-            // 
-            this.tbTxtAddress.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.tbTxtAddress.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbTxtAddress.Name = "tbTxtAddress";
-            this.tbTxtAddress.ReadOnly = true;
-            this.tbTxtAddress.Size = new System.Drawing.Size(350, 16);
             // 
             // NTR_Browser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.toolStrip2);
             this.Controls.Add(this.toolStrip1);
             this.Name = "NTR_Browser";
-            this.Size = new System.Drawing.Size(698, 406);
+            this.Size = new System.Drawing.Size(874, 406);
             this.Load += new System.EventHandler(this.NTR_Browser_Load);
+            this.Resize += new System.EventHandler(this.NTR_Browser_Resize);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.toolStrip2.ResumeLayout(false);
+            this.toolStrip2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -235,19 +290,23 @@
         private System.Windows.Forms.ToolStripButton tsbPrev;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel12;
-        private System.Windows.Forms.ToolStripProgressBar tsbProgressBar;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel11;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
+        private System.Windows.Forms.ToolStripLabel tsLabelAddedMenu;
+        private System.Windows.Forms.ToolStripDropDownButton tsmFile;
         private System.Windows.Forms.ToolStripMenuItem tsbGotoMainTrophyPage;
         private System.Windows.Forms.ToolStripMenuItem tsbGotoAdobePage;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator17;
         private System.Windows.Forms.ToolStripMenuItem tsbSendThisPageForDebug;
-        private System.Windows.Forms.ToolStripLabel tsbProgressText;
         private System.Windows.Forms.ToolStripButton tsbImport;
         private System.Windows.Forms.ToolStripButton tsbUpdate;
         private System.Windows.Forms.ToolStripMenuItem loginTrophyManagercomToolStripMenuItem;
+        private System.Windows.Forms.ToolStripDropDownButton tsbPlayersNavigationType;
+        private System.Windows.Forms.ToolStripMenuItem navigateProfilesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem navigateReportsToolStripMenuItem;
+        private System.Windows.Forms.ToolStrip toolStrip2;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel2;
         private System.Windows.Forms.ToolStripTextBox tbTxtAddress;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel3;
+        private System.Windows.Forms.ToolStripProgressBar tsbProgressBar;
+        private System.Windows.Forms.ToolStripLabel tsbProgressText;
     }
 }

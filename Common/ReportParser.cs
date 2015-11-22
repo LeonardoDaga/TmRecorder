@@ -72,12 +72,12 @@ namespace Common
             }
         }
 
-        internal int find(string dictionary, string item)
+        public int find(string dictionary, string item)
         {
             return find(dictionary, item, 0);
         }
 
-        internal int find(string dictionary, string item, int defaultVal)
+        public int find(string dictionary, string item, int defaultVal)
         {
             for (int i = 1; i <= Dict[dictionary].Count; i++)
             {

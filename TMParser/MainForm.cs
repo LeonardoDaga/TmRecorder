@@ -99,19 +99,8 @@ namespace TMRecorder
 
         private void InitializeBrowser()
         {
-            if (Properties.Settings.Default.xulRunnerPath == "")
-                Properties.Settings.Default.xulRunnerPath = "C:\\xul\\";
-
-            string xulRunnerPath = webBrowser.CheckXulInitialization(Properties.Settings.Default.xulRunnerPath);
-
-            if (xulRunnerPath == "")
+            if (webBrowser.CheckXulInitialization())
                 Close();
-
-            if (Properties.Settings.Default.xulRunnerPath != xulRunnerPath)
-            {
-                Properties.Settings.Default.xulRunnerPath = xulRunnerPath;
-                Properties.Settings.Default.Save();
-            }
         }
 
         private void LoadLanguage()

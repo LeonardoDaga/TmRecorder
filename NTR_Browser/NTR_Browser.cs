@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using Gecko;
 using NTR_WebBrowser.Properties;
 using Common;
+using System.IO;
 
 namespace NTR_WebBrowser
 {
@@ -33,6 +34,7 @@ namespace NTR_WebBrowser
             set
             {
                 _startnavigationAddress = value;
+                tbTxtAddress.Text = _startnavigationAddress;
             }
         }
 
@@ -50,11 +52,41 @@ namespace NTR_WebBrowser
             }
         }
 
+        public bool XulInitialized { get; private set; }
+
+        private GeckoWebBrowser webBrowser;
+
         public event ImportedContentHandler ImportedContent;
 
         public NTR_Browser()
         {
             InitializeComponent();
+
+            if (!IsInDesignMode())
+            {
+                webBrowser = new GeckoWebBrowser();
+                webBrowser.Location = new System.Drawing.Point(3, 41);
+                webBrowser.Width = this.Width - 6;
+                webBrowser.Height = this.Height - 44;
+                webBrowser.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                    | System.Windows.Forms.AnchorStyles.Left)
+                    | System.Windows.Forms.AnchorStyles.Right)));
+                this.webBrowser.Name = "webBrowser";
+                this.webBrowser.UseHttpActivityObserver = false;
+                this.webBrowser.DocumentCompleted += new System.EventHandler<Gecko.Events.GeckoDocumentCompletedEventArgs>(this.webBrowser_DocumentCompleted);
+                this.webBrowser.ProgressChanged += new System.EventHandler<Gecko.GeckoProgressEventArgs>(this.webBrowser_ProgressChanged);
+                this.webBrowser.Visible = true;
+                this.Controls.Add(webBrowser);
+            }
+        }
+
+        public static bool IsInDesignMode()
+        {
+            if (Application.ExecutablePath.IndexOf("devenv.exe", StringComparison.OrdinalIgnoreCase) > -1)
+            {
+                return true;
+            }
+            return false;
         }
 
         public void SetXUL(string xulRunnerPath)
@@ -72,6 +104,73 @@ namespace NTR_WebBrowser
             NavigationAddress = address;
             webBrowser.Navigate(NavigationAddress);
             StartnavigationAddress = NavigationAddress;
+        }
+
+        public string CheckXulInitialization(string xulRunnerPath)
+        {
+            if (!XulInitialized)
+            {
+                bool checkResult = CheckXulDir(xulRunnerPath);
+
+                if (!checkResult)
+                {
+                    FolderBrowserDialog fbd = new FolderBrowserDialog();
+                    fbd.SelectedPath = xulRunnerPath;
+                    fbd.Description = "Select the Folder where the XUL dll is located";
+                    if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                    {
+                        xulRunnerPath = fbd.SelectedPath;
+                        checkResult = CheckXulDir(xulRunnerPath);
+                    }
+                }
+
+                if (!checkResult)
+                {
+                    MessageBox.Show("This application needs XUL, sorry");
+                    return "";
+                }
+
+                if (checkResult)
+                {
+                    SetXUL(xulRunnerPath);
+                    XulInitialized = true;
+                }
+            }
+
+            return xulRunnerPath;
+        }
+
+        private bool CheckXulDir(string xulDir)
+        {
+            bool DialogResult = false;
+
+            try
+            {
+                DirectoryInfo di = new DirectoryInfo(xulDir);
+                if (di.Exists)
+                {
+                    FileInfo[] fis = di.GetFiles("xul.dll");
+                    if (fis.Length == 0)
+                    {
+                        string message = string.Format("The folder {0} does not contain the xul DLL. Press OK to select another folder, otherwise press CANCEL to close the application.", xulDir)
+                            + string.Format("\nIf you want to download XUL, see instructions in {0}", TM_Pages.TmrWebSiteXul);
+                        if (MessageBox.Show(message, "XP and Linux versions need XUL!", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
+                            DialogResult = true;
+                    }
+                    else
+                        DialogResult = true;
+                }
+                else
+                {
+                    DialogResult = false;
+                }
+            }
+            catch (Exception)
+            {
+                DialogResult = true;
+            }
+
+            return DialogResult;
         }
 
         internal void GoForward()
@@ -188,6 +287,11 @@ namespace NTR_WebBrowser
                     doctext += "\n";
                 }
             }
+            else if (StartnavigationAddress.Contains("/scouts/"))
+            {
+                MessageBox.Show("The scouts data are imported automatically when you import the players data");
+                doctext = "Doc Text: \nScouts data not imported";
+            }
             else
             {
                 doctext = "Doc Text: \n" + webBrowser.Document.TextContent;
@@ -292,7 +396,7 @@ namespace NTR_WebBrowser
 
             try
             {
-                AppendScript(Resources.player_info_loader);
+                AppendScript(Resources.match_loader);
 
                 string lineup = ExecuteScript("get_lineup()");
                 string match_info = ExecuteScript("get_match_info()");

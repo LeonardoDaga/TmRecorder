@@ -48,7 +48,6 @@
             this.tsbProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.tsbProgressText = new System.Windows.Forms.ToolStripLabel();
             this.tbTxtAddress = new System.Windows.Forms.ToolStripTextBox();
-            this.webBrowser = new Gecko.GeckoWebBrowser();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -215,24 +214,10 @@
             this.tbTxtAddress.ReadOnly = true;
             this.tbTxtAddress.Size = new System.Drawing.Size(350, 16);
             // 
-            // webBrowser
-            // 
-            this.webBrowser.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.webBrowser.Location = new System.Drawing.Point(3, 41);
-            this.webBrowser.Name = "webBrowser";
-            this.webBrowser.Size = new System.Drawing.Size(692, 362);
-            this.webBrowser.TabIndex = 4;
-            this.webBrowser.UseHttpActivityObserver = false;
-            this.webBrowser.DocumentCompleted += new System.EventHandler<Gecko.Events.GeckoDocumentCompletedEventArgs>(this.webBrowser_DocumentCompleted);
-            this.webBrowser.ProgressChanged += new System.EventHandler<Gecko.GeckoProgressEventArgs>(this.webBrowser_ProgressChanged);
-            // 
             // NTR_Browser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.webBrowser);
             this.Controls.Add(this.toolStrip1);
             this.Name = "NTR_Browser";
             this.Size = new System.Drawing.Size(698, 406);
@@ -264,6 +249,5 @@
         private System.Windows.Forms.ToolStripButton tsbUpdate;
         private System.Windows.Forms.ToolStripMenuItem loginTrophyManagercomToolStripMenuItem;
         private System.Windows.Forms.ToolStripTextBox tbTxtAddress;
-        private Gecko.GeckoWebBrowser webBrowser;
     }
 }

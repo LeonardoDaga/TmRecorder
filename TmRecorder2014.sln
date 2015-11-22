@@ -1,11 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransferManager3", "TransferManager2\TransferManager3.csproj", "{AAC4A7FF-52D3-4459-A8E9-35423C49D16A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "A_TestForm", "A_TestForm\A_TestForm.csproj", "{729A21B9-CC7A-4C08-B027-0CA4CEE53B4B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{483D9C7D-108E-4AEC-9DA2-20E57ABE217F} = {483D9C7D-108E-4AEC-9DA2-20E57ABE217F}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMRBrowser", "ApplicationForTest\TMRBrowser.csproj", "{AE2D8637-B2F9-462A-B683-27245E619209}"
 EndProject
@@ -54,6 +57,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMEconomyEvaluator", "TMEconomyEvaluator\TMEconomyEvaluator.csproj", "{57D4421D-454B-4315-A398-39382AF0B4CF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMRecorder", "TMParser\TMRecorder.csproj", "{5388053E-2E8F-4201-A96C-77861EC058C1}"
+	ProjectSection(ProjectDependencies) = postProject
+		{483D9C7D-108E-4AEC-9DA2-20E57ABE217F} = {483D9C7D-108E-4AEC-9DA2-20E57ABE217F}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMR_CustomControls", "TMR_CostumControls\TMR_CustomControls.csproj", "{DF2A1B02-EACF-4F54-8692-ABAC9AF54D8E}"
 EndProject

@@ -8,6 +8,7 @@ namespace Common
     public class TM_Pages
     {
         public const string TmrWebSite = "http://tmr.insyde.it/";
+        public const string TmrWebSiteXul = "http://tmr.insyde.it/xul/";
         public const string Home = "http://trophymanager.com/";
         public const string AdobeFlashplayer = "http://www.adobe.com/products/flashplayer/";
         public const string Club = "http://trophymanager.com/club/";

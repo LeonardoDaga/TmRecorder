@@ -71,6 +71,8 @@ namespace TMRecorder
 
             InitializeComponent();
 
+            InitializeBrowser();
+
             InvalidateGrids();
 
             AllSeasons.AutoconvertActions = Program.Setts.AutoconvertActions;
@@ -93,6 +95,23 @@ namespace TMRecorder
 
             System.Diagnostics.Trace.Listeners.Add(myListener);
             #endregion
+        }
+
+        private void InitializeBrowser()
+        {
+            if (Properties.Settings.Default.xulRunnerPath == "")
+                Properties.Settings.Default.xulRunnerPath = "C:\\xul\\";
+
+            string xulRunnerPath = webBrowser.CheckXulInitialization(Properties.Settings.Default.xulRunnerPath);
+
+            if (xulRunnerPath == "")
+                Close();
+
+            if (Properties.Settings.Default.xulRunnerPath != xulRunnerPath)
+            {
+                Properties.Settings.Default.xulRunnerPath = xulRunnerPath;
+                Properties.Settings.Default.Save();
+            }
         }
 
         private void LoadLanguage()
@@ -2907,6 +2926,9 @@ namespace TMRecorder
                 di.Create();
             }
 
+            if (address.Contains(TM_Pages.Home))
+                address = address.Replace(TM_Pages.Home, "");
+
             string filedate = TmWeek.ToSWDString(DateTime.Now);
 
             string filename = "NF-" + address.Replace(".php", "").Replace("/", "");
@@ -2918,194 +2940,6 @@ namespace TMRecorder
             StreamWriter file = new StreamWriter(fi.FullName);
             file.Write(page);
             file.Close();
-        }
-
-        private void LoadHTMLfile_newPage(string page, string navigationAddress, bool specifyDate = false, int importWeek = -1, bool quiet = false)
-        {
-            if (page.Contains("NewTM - Kamp"))
-            {
-                page = navigationAddress + "\n" + page;
-                AllSeasons.LoadMatch(page, quiet);
-                if (!quiet) UpdateLackData();
-                isDirty = true;
-                AllSeasons.IsDirty = true;
-                return;
-            }
-
-            if (page.Contains("NewTM - Matches"))
-            {
-                int cnt = AllSeasons.LoadFixture(page, quiet);
-
-                if (!quiet)
-                {
-                    string strMsg = "Import complete:\n" + cnt.ToString() + " new matches imported;\n";
-                    MessageBox.Show(strMsg, "TmRecorder");
-                }
-
-                FillCmbMatchesSquads();
-
-                AllSeasons.IsDirty = true;
-                isDirty = true;
-                return;
-            }
-
-            DateTime dt = DateTime.Now;
-
-            if (!specifyDate)
-                dt = DateTime.Now;
-            else if (specifyDate && (importWeek == -1))
-            {
-                if (MessageBox.Show(Current.Language.IsThisFileRelativeToToday, Current.Language.LoadHTMData,
-                                    MessageBoxButtons.YesNo) == DialogResult.No)
-                {
-                    // Select the week number using the form
-                    SelectDataDate sdd = new SelectDataDate();
-                    if (sdd.ShowDialog() == DialogResult.OK)
-                    {
-                        dt = sdd.SelectedDate;
-                    }
-                    else
-                    {
-                        return;
-                    }
-                }
-            }
-            else
-            {
-                dt = (new TmWeek(importWeek)).ToDate();
-            }
-
-            if (page.Contains("NewTM - Scouts"))
-            {
-                int count = History.ImportScouts(page);
-
-                if (count > 0)
-                    isDirty = true;
-
-                MessageBox.Show("Scouts imported: " + count.ToString() + " scout imported");
-            }
-
-            if ((page.Contains("NewTM - Squad")) ||
-                (page.Contains("Navigation Address: http://trophymanager.com/players/")))
-            {
-                string[] stringSeparators = new string[] { "\n\r\n" };
-                string[] pages = page.Split(stringSeparators, StringSplitOptions.None);
-
-                if ((pages.Length < 2) && (Program.Setts.PlayerType == 2))
-                {
-                    try
-                    {
-                        History.LoadSquad_NewTm(dt, pages[0]);
-                        isDirty = true;
-                        InvalidateGrids();
-                        UpdateShownGrid();
-                    }
-                    catch (Exception)
-                    {
-
-                        string swRelease = "Sw Release:" + Application.ProductName + "(" + Application.ProductVersion + ")";
-                        page = "Navigation Address: " + navigationAddress + "\n" + page;
-
-                        string message = "Error retrieving data from the players page";
-                        SendFileTo.ErrorReport.SendPage(message, page, Environment.StackTrace, swRelease);
-                    }
-                }
-                else if ((pages.Length < 1) && (Program.Setts.PlayerType != 2))
-                {
-                    string swRelease = "Sw Release:" + Application.ProductName + "("  + Application.ProductVersion + ")";
-                    page = "Navigation Address: " + navigationAddress + "\n" + page;
-
-                    string message = "Error retrieving data from the players page";
-                    SendFileTo.ErrorReport.SendPage(message, page, Environment.StackTrace, swRelease);
-                }
-                else if (Program.Setts.PlayerType == 2)
-                {
-                    History.LoadSquad_NewTm(dt, pages[0], quiet);
-                    History.LoadTraining_NewTM2(dt, pages[1], quiet);
-                    isDirty = true;
-                    InvalidateGrids();
-                    UpdateShownGrid();
-                }
-                else if (Program.Setts.PlayerType == 1)
-                {
-                    History.LoadSquad_NewTm(dt, pages[0]);
-                    isDirty = true;
-                    InvalidateGrids();
-                    UpdateShownGrid();
-                }
-            }
-            else if ((page.Contains("TM - Squad")) ||
-                (page.Contains("Navigation Address: http://trophymanager.com/squad.php")))
-            {
-                History.LoadSquad_New(dt, page);
-                isDirty = true;
-                InvalidateGrids();
-                UpdateShownGrid();
-            }
-            else if (page.Contains("NewTM - TrainingNew"))
-            {
-                int count = History.LoadTIfromTrainingNew_NewTM(dt, page);
-                isDirty = true;
-                MessageBox.Show("Training imported: " + count.ToString() + " players imported");
-            }
-            else if (page.Contains("TM - Training_new"))
-            {
-                if (Program.Setts.PlayerType == 1)
-                {
-                    page = page.Replace("'", "");
-                    page = page.Replace('"', '\'');
-                    page = page.Replace("'>", ">");
-                    page = page.Replace("&#39;", "'");
-
-                    History.LoadTrainingNew(dt, page, dbTrainers);
-                    isDirty = true;
-                }
-                else
-                {
-                    History.LoadTIfromTrainingNew(dt, page);
-                    isDirty = true;
-                }
-            }
-            else if (page.Contains("NewTM - Training") ||
-                     page.Contains("Navigation Address: http://trophymanager.com/training-overview/advanced/"))
-            {
-                if (Program.Setts.PlayerType == 2)
-                {
-                    History.LoadTraining_NewTM(dt, page, dbTrainers);
-                    isDirty = true;
-                }
-                else
-                {
-                    MessageBox.Show(Current.Language.NonPROUsersMustPasteTheTrainingRegimesAllenamentoPage);
-                    return;
-                }
-            }
-            else if (page.Contains("TM - Training"))
-            {
-                if (Program.Setts.PlayerType == 2)
-                {
-                    History.LoadTraining(dt, page, dbTrainers);
-                    isDirty = true;
-                }
-                else
-                {
-                    MessageBox.Show(Current.Language.NonPROUsersMustPasteTheTrainingRegimesAllenamentoPage);
-                    return;
-                }
-            }
-
-            History.actualDts = History.LastTeam();
-
-            if (History.actualDts != null)
-            {
-                dataGridGiocatori.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'A'");
-                dataGridGiocatoriB.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'B'");
-                dataGridPortieri.DataSource = History.actualDts.PortieriNSkill;
-            }
-
-            isDirty = true;
-
-            SetLastTeam();
         }
 
         private void MainForm_Shown(object sender, EventArgs e)
@@ -3441,39 +3275,39 @@ namespace TMRecorder
             matchAnalysisDB.ParseDescription(matchRow);
         }
 
-        //private void addExtraTeamToolStripMenuItem_Click_1(object sender, EventArgs e)
-        //{
-        //    AddExtraTeam aetDlg = new AddExtraTeam();
-        //    if (aetDlg.ShowDialog() == DialogResult.OK)
-        //    {
-        //        Dictionary<string, string> dictExtraTeams = Program.Setts.ExtraTeams;
-        //        dictExtraTeams.Add(aetDlg.TeamID.ToString(), aetDlg.TeamName);
-        //        Program.Setts.ExtraTeams = dictExtraTeams;
-        //        UpdateExtraTeamMenu();
-        //    }
-        //}
+        private void addExtraTeamToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            AddExtraTeam aetDlg = new AddExtraTeam();
+            if (aetDlg.ShowDialog() == DialogResult.OK)
+            {
+                Dictionary<string, string> dictExtraTeams = Program.Setts.ExtraTeams;
+                dictExtraTeams.Add(aetDlg.TeamID.ToString(), aetDlg.TeamName);
+                Program.Setts.ExtraTeams = dictExtraTeams;
+                UpdateExtraTeamMenu();
+            }
+        }
 
         private void UpdateExtraTeamMenu()
         {
-            //    Dictionary<string, string> dictExtraTeams = Program.Setts.ExtraTeams;
-            //    tsbExtraTeam.DropDownItems.Clear();
-            //    tsbExtraTeam.DropDownItems.Add(tsbChangeToConfiguredExtraTeam);
+            Dictionary<string, string> dictExtraTeams = Program.Setts.ExtraTeams;
+            tsbExtraTeamMenu.DropDownItems.Clear();
+            tsbExtraTeamMenu.DropDownItems.Add(tsbChangeToConfiguredExtraTeam);
 
-            //    if (thisIsExtraTeam) return;
+            if (thisIsExtraTeam) return;
 
-            //    tsbExtraTeam.DropDownItems.Add(addExtraTeamToolStripMenuItem);
+            tsbExtraTeamMenu.DropDownItems.Add(addExtraTeamToolStripMenuItem);
 
-            //    tsbExtraTeam.DropDownItems.Add(new ToolStripSeparator());
+            tsbExtraTeamMenu.DropDownItems.Add(new ToolStripSeparator());
 
-            //    foreach (string key in dictExtraTeams.Keys)
-            //    {
-            //        ToolStripMenuItem tsi = new ToolStripMenuItem();
-            //        tsi.Name = "menuExtra_" + key;
-            //        tsi.Text = "Open TmRecorder session for " + dictExtraTeams[key] + " (" + key + ")";
-            //        tsi.Tag = key;
-            //        tsi.Click += new EventHandler(tsiOpenTmRecorderSession_Click);
-            //        tsbExtraTeam.DropDownItems.Add(tsi);
-            //    }
+            foreach (string key in dictExtraTeams.Keys)
+            {
+                ToolStripMenuItem tsi = new ToolStripMenuItem();
+                tsi.Name = "menuExtra_" + key;
+                tsi.Text = "Open TmRecorder session for " + dictExtraTeams[key] + " (" + key + ")";
+                tsi.Tag = key;
+                tsi.Click += new EventHandler(tsiOpenTmRecorderSession_Click);
+                tsbExtraTeamMenu.DropDownItems.Add(tsi);
+            }
         }
 
         void tsiOpenTmRecorderSession_Click(object sender, EventArgs e)
@@ -3812,7 +3646,7 @@ namespace TMRecorder
                 dgOppsTeamPerf.DataCollection = null;
             }
 
-            //matchStats.SetMatchData(md);
+            matchStats.SetMatchData(md);
         }
 
         private void dgMatches_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -3984,21 +3818,170 @@ namespace TMRecorder
 
         private void dataGridPlayersInfo_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            dataGridPlayersInfo_CellDoubleClick(sender, (object)e);
         }
 
         private void tsmGotoPlayerPageInBrowser_Click(object sender, DataGridViewCellEventArgs e)
         {
-
+            tsmGotoPlayerPageInBrowser_Click(sender, (object)e);
         }
 
         private void webBrowser_ImportedContent(string page, string address)
         {
+            page = address + "\n" + page;
+
+            if (address == TM_Pages.Players)
+                page = "SourceURL:<NewTM - Squad>\n" + page;
+            else if (address == TM_Pages.Training)
+                page = "SourceURL:<NewTM - TrainingNew>\n" + page;
+            else if (address.Contains("/fixtures/club/"))
+                page = "SourceURL:<NewTM - Matches>\n" + page;
+            else if (address.Contains("/matches/"))
+                page = "SourceURL:<NewTM - Kamp>\n" + page;
+            else
+                return;
+
             SaveImportedFile(page, address);
 
             LoadHTMLfile_newPage(page, address);
 
             UpdateBrowserImportPanel();
         }
+
+        private void LoadHTMLfile_newPage(string page, string navigationAddress, bool specifyDate = false, int importWeek = -1, bool quiet = false)
+        {
+            if (page.Contains("NewTM - Kamp"))
+            {
+                page = navigationAddress + "\n" + page;
+                AllSeasons.LoadMatch(page, quiet);
+                if (!quiet) UpdateLackData();
+                isDirty = true;
+                AllSeasons.IsDirty = true;
+                return;
+            }
+
+            if (page.Contains("NewTM - Matches"))
+            {
+                int cnt = AllSeasons.LoadFixture(page, quiet);
+
+                if (!quiet)
+                {
+                    string strMsg = "Import complete:\n" + cnt.ToString() + " new matches imported;\n";
+                    MessageBox.Show(strMsg, "TmRecorder");
+                }
+
+                FillCmbMatchesSquads();
+
+                AllSeasons.IsDirty = true;
+                isDirty = true;
+                return;
+            }
+
+            DateTime dt = DateTime.Now;
+
+            if (!specifyDate)
+                dt = DateTime.Now;
+            else if (specifyDate && (importWeek == -1))
+            {
+                if (MessageBox.Show(Current.Language.IsThisFileRelativeToToday, Current.Language.LoadHTMData,
+                                    MessageBoxButtons.YesNo) == DialogResult.No)
+                {
+                    // Select the week number using the form
+                    SelectDataDate sdd = new SelectDataDate();
+                    if (sdd.ShowDialog() == DialogResult.OK)
+                    {
+                        dt = sdd.SelectedDate;
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+            }
+            else
+            {
+                dt = (new TmWeek(importWeek)).ToDate();
+            }
+
+            if (page.Contains("NewTM - Scouts"))
+            {
+                int count = History.ImportScouts(page);
+
+                if (count > 0)
+                    isDirty = true;
+
+                MessageBox.Show("Scouts imported: " + count.ToString() + " scout imported");
+            }
+
+            if (navigationAddress == TM_Pages.Players)
+            {
+                string[] stringSeparators = new string[] { "\n\r\n" };
+                string[] pages = page.Split(stringSeparators, StringSplitOptions.None);
+
+                if ((pages.Length < 2) && (Program.Setts.PlayerType == 2))
+                {
+                    try
+                    {
+                        History.LoadSquad_NewTm(dt, pages[0]);
+                        isDirty = true;
+                        InvalidateGrids();
+                        UpdateShownGrid();
+                    }
+                    catch (Exception)
+                    {
+
+                        string swRelease = "Sw Release:" + Application.ProductName + "(" + Application.ProductVersion + ")";
+                        page = "Navigation Address: " + navigationAddress + "\n" + page;
+
+                        string message = "Error retrieving data from the players page";
+                        SendFileTo.ErrorReport.SendPage(message, page, Environment.StackTrace, swRelease);
+                    }
+                }
+                else if ((pages.Length < 1) && (Program.Setts.PlayerType != 2))
+                {
+                    string swRelease = "Sw Release:" + Application.ProductName + "(" + Application.ProductVersion + ")";
+                    page = "Navigation Address: " + navigationAddress + "\n" + page;
+
+                    string message = "Error retrieving data from the players page";
+                    SendFileTo.ErrorReport.SendPage(message, page, Environment.StackTrace, swRelease);
+                }
+                else if (Program.Setts.PlayerType == 2)
+                {
+                    History.LoadSquad_NewTm(dt, pages[0], quiet);
+                    History.LoadTraining_NewTM2(dt, pages[1], quiet);
+                    isDirty = true;
+                    InvalidateGrids();
+                    UpdateShownGrid();
+                }
+                else if (Program.Setts.PlayerType == 1)
+                {
+                    History.LoadSquad_NewTm(dt, pages[0]);
+                    isDirty = true;
+                    InvalidateGrids();
+                    UpdateShownGrid();
+                }
+            }
+
+            if (navigationAddress == TM_Pages.Training)
+            {
+                int count = History.LoadTIfromTrainingNew_NewTM(dt, page);
+                isDirty = true;
+                MessageBox.Show("Training imported: " + count.ToString() + " players imported");
+            }
+
+            History.actualDts = History.LastTeam();
+
+            if (History.actualDts != null)
+            {
+                dataGridGiocatori.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'A'");
+                dataGridGiocatoriB.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'B'");
+                dataGridPortieri.DataSource = History.actualDts.PortieriNSkill;
+            }
+
+            isDirty = true;
+
+            SetLastTeam();
+        }
+
     }
 }

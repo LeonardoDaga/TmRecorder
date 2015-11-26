@@ -99,7 +99,7 @@ namespace TMRecorder
 
         private void InitializeBrowser()
         {
-            if (webBrowser.CheckXulInitialization())
+            if (!webBrowser.CheckXulInitialization())
                 Close();
         }
 

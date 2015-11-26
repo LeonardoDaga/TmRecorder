@@ -14,6 +14,7 @@ using Languages;
 using SendFileTo;
 using NTR_Common;
 using mshtml;
+using NTR_WebBrowser;
 
 namespace TMRecorder
 {
@@ -25,7 +26,7 @@ namespace TMRecorder
         private bool playerInfoChanged = false;
         public bool isDirty = false;
         public NTR_Db.Seasons allSeasons = null;
-
+        private PlayerTraining playerTraining = new PlayerTraining();
         public int actPlayerID
         {
             get
@@ -87,8 +88,7 @@ namespace TMRecorder
 
             chkNormalized_CheckedChanged(null, EventArgs.Empty);
 
-            tsbNavigationType.Text = navigateReportsToolStripMenuItem.Text;
-            tsbNavigationType.Image = navigateReportsToolStripMenuItem.Image;
+            webBrowser.GotoPlayer(ID, NTR_Browser.PlayerNavigationType.NavigateReports);
         }
 
         public void Initialize(int playerID)
@@ -1890,11 +1890,7 @@ namespace TMRecorder
         string startnavigationAddress = "";
         private void tsbLoadPlayerPage_Click(object sender, EventArgs e)
         {
-            navigationAddress = "http://trophymanager.com/players/" + actPlayerID.ToString() + "/#/page/history/";
-            if (navigationType == NavigationType.NavigateReports)
-                navigationAddress += "/#/page/scout/";
-            webBrowser.Navigate(navigationAddress);
-            startnavigationAddress = navigationAddress;
+            webBrowser.GotoPlayer(actPlayerID, NTR_Browser.PlayerNavigationType.NavigateReports);
         }
 
         #region Player Profiles Navigation
@@ -1912,234 +1908,14 @@ namespace TMRecorder
             int changeID = (int)tsi.Tag;
             Initialize(changeID);
 
-            if (tabControl1.SelectedTab == tabPlayerBrowser)
-            {
+            //if (tabControl1.SelectedTab == tabPlayerBrowser)
+            //{
                 tsbLoadPlayerPage_Click(sender, e);
-            }
-            else
-            {
-                FillPlayerBar(changeID);
-            }
-        }
-        #endregion
-
-        private void tsbImport_Click(object sender, EventArgs e)
-        {
-            string doctext = "";
-
-            if (startnavigationAddress == "") return;
-
-            HtmlElementCollection hmtlElColl = webBrowser.Document.All;
-
-            string str = "";
-            int cnt = 0;
-            foreach (HtmlElement he in hmtlElColl)
-            {
-                cnt++;
-                str += cnt.ToString() + ") InnerHtml = " + he.InnerHtml + "\n";
-                str += cnt.ToString() + ") OuterHtml = " + he.OuterHtml + "\n\n";
-            }
-
-            try
-            {
-                if (HTML_Parser.GetNumberAfter(startnavigationAddress, "http://trophymanager.com/players/") != "-1")
-                {
-                    doctext = webBrowser.Document.Body.InnerHtml;
-                }
-                else
-                {
-                    doctext = webBrowser.DocumentText;
-                }
-            }
-            catch (FileNotFoundException)
-            {
-                doctext = "";
-            }
-
-            if (doctext == "")
-            {
-                foreach (HtmlElement hel in webBrowser.Document.All)
-                {
-                    if (hel.InnerHtml != null)
-                        doctext += hel.InnerHtml;
-                }
-            }
-
-            string page = doctext;
-
-            SaveImportedFile(page, webBrowser.Url);
-
-            if (HTML_Parser.GetNumberAfter(startnavigationAddress, "http://trophymanager.com/players/") != "-1")
-                page = "SourceURL:<TM - Showprofile>\n" + page;
-            else
-            {
-                if (MessageBox.Show("Cannot import this page here. Here you can import only player profiles.\n" +
-                    "Pressing OK, you send a report to Atletico Granata that will try to detect the reason of the error.",
-                    "Import error", MessageBoxButtons.OKCancel) == DialogResult.OK)
-                {
-                    string swRelease = "Sw Release:" + Application.ProductName + "("
-                       + Application.ProductVersion + ")";
-                    page = "Navigation Address: " + startnavigationAddress + "\n" + page;
-                    Exception ex = new Exception("Navigation error");
-                    SendFileTo.ErrorReport.Send(ex, page, Environment.StackTrace, swRelease);
-                }
-                return;
-            }
-
-            if (!page.Contains("TM - Showprofile"))
-            {
-                return;
-            }
-
-            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
-            ExtraDS.GiocatoriRow gRow = History.PlayersDS.Giocatori.FindByPlayerID(playerDatarow.PlayerID);
-
-            if (!ExtraDS.ParsePlayerPage_NewTM(webBrowser.Document, page, ref gRow, History.reportParser))
-                return;
-            ExtraDS.ParsePlayerPage_Extras(webBrowser.Document, ref gRow, History.reportParser);
-
-            // Aggiorna i dati di basi
-            playerDatarow.FP = gRow.FP;
-            gRow.FPn = Tm_Utility.FPToNumber(gRow.FP);
-            playerDatarow.FPn = gRow.FPn;
-
-            isDirty = true;
-
-            ExtTMDataSet.PlayerHistoryDataTable table = History.GetPlayerHistory(playerDatarow.PlayerID);
-            // FillTIGraph(table);
-
-            gRow.ParseReviewsToSpecialities(scoutsNReviews, History.reportParser);
-
-            gRow.ComputeBloomingFromGiudizio(scoutsNReviews);
-
-            FillBaseData(playerDatarow);
-            FillPlayerInfo(false);
-
-            SetTraining();
-
-            gRow.isDirty = true;
-        }
-
-        private void navigateProfilesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            tsbNavigationType.Text = navigateProfilesToolStripMenuItem.Text;
-            tsbNavigationType.Image = navigateProfilesToolStripMenuItem.Image;
-
-            if (navigationType != NavigationType.NavigateProfiles)
-            {
-                navigationType = NavigationType.NavigateProfiles;
-                navigationAddress = "http://trophymanager.com/players/" +
-                    actPlayerID.ToString();
-                webBrowser.Navigate(navigationAddress);
-                startnavigationAddress = navigationAddress;
-            }
-        }
-
-        private void navigateReportsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            tsbNavigationType.Text = navigateReportsToolStripMenuItem.Text;
-            tsbNavigationType.Image = navigateReportsToolStripMenuItem.Image;
-
-            if (navigationType != NavigationType.NavigateReports)
-            {
-                navigationType = NavigationType.NavigateReports;
-                navigationAddress = "http://trophymanager.com/players/" +
-                    actPlayerID.ToString() + "/#/page/scout/";
-                webBrowser.Navigate(navigationAddress);
-                startnavigationAddress = navigationAddress;
-            }
-        }
-
-        #region WebBrowser Navigation
-        private void webBrowser_ProgressChanged(object sender, WebBrowserProgressChangedEventArgs e)
-        {
-            if (e.CurrentProgress <= 0)
-            {
-                if (webBrowser.ReadyState == WebBrowserReadyState.Complete)
-                {
-                    tsbProgressText.Text = "100%";
-                    tsbProgressBar.ForeColor = Color.Green;
-                    tsbProgressBar.Value = 100;
-                }
-                return;
-            }
-
-            int maxProgress = (int)e.MaximumProgress;
-            if (maxProgress == 0) maxProgress = 1;
-            int perc = (int)((e.CurrentProgress * 100) / maxProgress);
-            if (perc < 0) perc = 0;
-            if (perc > 100) perc = 100;
-            tsbProgressBar.Value = perc;
-            tsbProgressText.Text = perc.ToString() + "%";
-            tsbProgressBar.ForeColor = Color.Blue;
-        }
-
-        private void webBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
-        {
-            if (e.Url.ToString() != navigationAddress) return;
-
-            // this.Text = "TMR Browser - Navigation Complete";
-            tsbProgressBar.ForeColor = Color.Green;
-
-            if (e.Url.AbsolutePath != (sender as WebBrowser).Url.AbsolutePath)
-                return;
-
-            string actualUrl = e.Url.ToString();
-
-            if (actualUrl.Contains("http://trophymanager.com/players/"))
-            {
-                HtmlElement head = webBrowser.Document.GetElementsByTagName("head")[0];
-                HtmlElement scriptEl = webBrowser.Document.CreateElement("script");
-                IHTMLScriptElement element = (IHTMLScriptElement)scriptEl.DomElement;
-                element.text = System.IO.File.ReadAllText(Program.Setts.DatafilePath + "\\RatingR2.user.js");
-                head.AppendChild(scriptEl);
-                webBrowser.Document.InvokeScript("ApplyRatingR2");
-            }
-
-            System.GC.Collect();
-        }
-
-        private void webBrowser_Navigating(object sender, WebBrowserNavigatingEventArgs e)
-        {
-            if (e.Url.ToString().StartsWith("http://trophymanager.com/livematch.php?matchid="))
-            {
-                string kampid = e.Url.ToString().Split('=')[1];
-                navigationAddress = "http://trophymanager.com/matches/" + kampid + "/";
-                webBrowser.Navigate(navigationAddress);
-                startnavigationAddress = navigationAddress;
-            }
-            else if (e.Url.ToString().StartsWith("http://trophymanager.com/"))
-            {
-                navigationAddress = e.Url.ToString();
-                startnavigationAddress = navigationAddress;
-
-                if (startnavigationAddress.Contains("trophymanager.com/players/"))
-                {
-                    try
-                    {
-                        lastBarPlayer = int.Parse(HTML_Parser.GetNumberAfter(startnavigationAddress, "trophymanager.com/players/"));
-                        if (lastBarPlayer != -1)
-                            FillPlayerBar(lastBarPlayer);
-                        tsBrowsePlayers.Visible = true;
-                    }
-                    catch
-                    {
-                        tsBrowsePlayers.Visible = false;
-                    }
-                }
-                else
-                {
-                    tsBrowsePlayers.Visible = false;
-                }
-            }
-            else
-            {
-                navigationAddress = e.Url.ToString();
-            }
-
-            tsbProgressBar.Value = 0;
-            tsbProgressText.Text = "0%";
-            tsbProgressBar.ForeColor = Color.Blue;
+            //}
+            //else
+            //{
+            //    FillPlayerBar(changeID);
+            //}
         }
 
         private void FillPlayerBar(int playerID)
@@ -2148,11 +1924,11 @@ namespace TMRecorder
 
             if (gRow == null)
             {
-                tsBrowsePlayers.Visible = false;
+                //tsBrowsePlayers.Visible = false;
                 return;
             }
 
-            tsBrowsePlayers.Visible = true;
+            //tsBrowsePlayers.Visible = true;
 
             //tsbNumberOfReviews.Text = gRow.ScoutReviews.Length + " Scout Reviews stored";
 
@@ -2278,8 +2054,6 @@ namespace TMRecorder
             Rectangle pos = new Rectangle(DesktopBounds.X, DesktopBounds.Y, DesktopBounds.Width, DesktopBounds.Height);
             Program.Setts.PlayerFormPosition = pos;
             Program.Setts.Save();
-
-            webBrowser.Stop();
             this.SuspendLayout();
             this.Controls.Remove(this.webBrowser);
             this.ResumeLayout(false);
@@ -2321,6 +2095,35 @@ namespace TMRecorder
 
             ProcessStartInfo startInfo = new ProcessStartInfo(arg);
             Process.Start(startInfo);
+        }
+
+        private void webBrowser_ImportedContent(string content, string address)
+        {
+            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
+            ExtraDS.GiocatoriRow gRow = History.PlayersDS.Giocatori.FindByPlayerID(playerDatarow.PlayerID);
+
+            ExtraDS.ParsePlayerPage_NTR(content, ref gRow);
+
+            // Aggiorna i dati di basi
+            playerDatarow.FP = gRow.FP;
+            gRow.FPn = Tm_Utility.FPToNumber(gRow.FP);
+            playerDatarow.FPn = gRow.FPn;
+
+            isDirty = true;
+
+            ExtTMDataSet.PlayerHistoryDataTable table = History.GetPlayerHistory(playerDatarow.PlayerID);
+            // FillTIGraph(table);
+
+            gRow.ParseReviewsToSpecialities(scoutsNReviews, History.reportParser);
+
+            gRow.ComputeBloomingFromGiudizio(scoutsNReviews);
+
+            FillBaseData(playerDatarow);
+            FillPlayerInfo(false);
+
+            SetTraining();
+
+            gRow.isDirty = true;
         }
     }
 }

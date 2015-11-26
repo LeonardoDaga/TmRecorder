@@ -320,7 +320,7 @@ namespace NTR_WebBrowser
                     doctext += "\n";
                 }
             }
-            else if ((StartnavigationAddress.Contains(TM_Pages.Players)) && (ActualPlayerID != 0))
+            else if ((StartnavigationAddress.Contains(TM_Pages.Players)) && (ActualPlayerID > 0))
             {
                 doctext = Import_Player_Document_Content();
             }

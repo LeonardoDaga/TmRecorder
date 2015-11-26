@@ -129,10 +129,10 @@ namespace TMRecorder
             DataRowView drv = (DataRowView)row.DataBoundItem;
             TeamDS.GiocatoriNSkillRow gsr = (TeamDS.GiocatoriNSkillRow)drv.Row;
 
-            NTR_PlayerForm pf = new NTR_PlayerForm(teamDS, gsr.PlayerID, teamDS.Squad);
-            pf.ShowDialog();
+            //NTR_PlayerForm pf = new NTR_PlayerForm(teamDS, gsr.PlayerID, teamDS.Squad);
+            //pf.ShowDialog();
 
-            if (pf.isDirty) isDirty = true;
+            //if (pf.isDirty) isDirty = true;
         }
 
         private void dgGiocatori_MouseDoubleClick(object sender, MouseEventArgs e)

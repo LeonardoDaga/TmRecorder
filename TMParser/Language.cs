@@ -242,24 +242,6 @@ namespace TMRecorder
         public void SetLanguage()
         {
             this.PlayerAge.HeaderText = Current.Language.Age;
-            this.absWeekDataGridViewTextBoxColumn.HeaderText = Current.Language.Week;
-            this.forDataGridViewTextBoxColumn.HeaderText = Current.Language.Str;
-            this.resDataGridViewTextBoxColumn.HeaderText = Current.Language.Res;
-            this.velDataGridViewTextBoxColumn.HeaderText = Current.Language.Pac;
-            this.marDataGridViewTextBoxColumn.HeaderText = Current.Language.Mar;
-            this.conDataGridViewTextBoxColumn.HeaderText = Current.Language.Tak;
-            this.worDataGridViewTextBoxColumn.HeaderText = Current.Language.Wor;
-            this.posDataGridViewTextBoxColumn.HeaderText = Current.Language.Pos;
-            this.pasDataGridViewTextBoxColumn.HeaderText = Current.Language.Pas;
-            this.croDataGridViewTextBoxColumn.HeaderText = Current.Language.Cro;
-            this.tecDataGridViewTextBoxColumn.HeaderText = Current.Language.Tec;
-            this.tesDataGridViewTextBoxColumn.HeaderText = Current.Language.Hea;
-            this.finDataGridViewTextBoxColumn.HeaderText = Current.Language.Fin;
-            this.tirDataGridViewTextBoxColumn.HeaderText = Current.Language.Tir;
-            this.calDataGridViewTextBoxColumn.HeaderText = Current.Language.CP;
-            this.tIDataGridViewTextBoxColumn.HeaderText = "TI";
-            this.trainerNameDataGridViewTextBoxColumn.HeaderText = Current.Language.Trainer;
-            this.programDataGridViewTextBoxColumn.HeaderText = Current.Language.TrainingProgram;
             this.tmR_AgeColumn1.HeaderText = Current.Language.Age;
             this.tmR_DateColumn1.HeaderText = Current.Language.Week;
             this.dataGridViewTextBoxColumn1.HeaderText = Current.Language.Str;

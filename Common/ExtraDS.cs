@@ -1663,7 +1663,7 @@ namespace Common
 
             if (!playerpage.Contains("scouts.php"))
             {
-                ParsePlayerPage(playerpage, ref gRow);
+                ParsePlayerPage_NTR(playerpage, ref gRow);
             }
             else // Scout page
             {
@@ -1946,7 +1946,7 @@ namespace Common
             return true;
         }
 
-        public static void ParsePlayerPage(string page, ref GiocatoriRow gRow)
+        public static void ParsePlayerPage_NTR(string page, ref GiocatoriRow gRow)
         {
             page = page.Replace("'", "");
             page = page.Replace('"', '\'');

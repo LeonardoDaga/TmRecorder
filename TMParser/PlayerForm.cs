@@ -88,6 +88,7 @@ namespace TMRecorder
 
             chkNormalized_CheckedChanged(null, EventArgs.Empty);
 
+            webBrowser.SelectedReportParser = History.reportParser;
             webBrowser.GotoPlayer(ID, NTR_Browser.PlayerNavigationType.NavigateReports);
         }
 

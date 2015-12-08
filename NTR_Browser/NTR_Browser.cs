@@ -396,7 +396,7 @@ namespace NTR_WebBrowser
             string resultBase = ParsePlayerPage(webBrowser.Document);
             string resultExtra = ParsePlayerPage_Extras(webBrowser.Document);
 
-            return resultExtra;
+            return resultBase + resultExtra;
         }
 
         public string ParsePlayerPage_Extras(GeckoDocument htmlDocument)
@@ -410,7 +410,7 @@ namespace NTR_WebBrowser
             {
                 string tooltip = element[i].GetAttribute("tooltip");
 
-                if (tooltip == "")
+                if ((tooltip == null) || (tooltip == ""))
                     return "";
 
                 string field = HTML_Parser.GetField(tooltip, "<strong>", "/");
@@ -435,19 +435,19 @@ namespace NTR_WebBrowser
             var elementCollection = element.GetElementsByTagName("tr");
 
             string result = "";
-            string page = htmlDocument.TextContent;
+            string page = ((Gecko.GeckoHtmlElement)htmlDocument.DocumentElement).InnerHtml;
 
             // Import only the report to analyze it
             string str = HTML_Parser.CutBefore(page, "player_scout_new");
 
             if (SelectedReportParser == null)
             {
-                MessageBox.Show("Please select the Scout Report parser before");
+                MessageBox.Show("Please select the Scout Report parser (in Tools->Options->Report Analysis) before");
                 return "";
             }
 
             int i = 0;
-            if (page.Contains("active_tab\" id=\"tabplayer_scout_new"))
+            if (page.Contains("id=\"tabplayer_scout_new"))
             {
                 string ScoutName = "";
                 string ScoutDate = "";
@@ -457,17 +457,17 @@ namespace NTR_WebBrowser
 
                 foreach (var child in element.ChildNodes)
                 {
-                    if (child.TextContent.Contains("report_header"))
+                    if (((Gecko.GeckoHtmlElement)child).InnerHtml.Contains("report_header"))
                     {
-                        HtmlElementCollection div = null; //  child.GetElementsByTagName("div");
+                        var div = ((Gecko.GeckoHtmlElement)child).GetElementsByTagName("div");
 
-                        ScoutName += HTML_Parser.GetTag(div[0].InnerHtml, "strong") + "|";
+                        ScoutName += HTML_Parser.GetTag(((Gecko.GeckoHtmlElement)(div[0])).InnerHtml, "strong") + "|";
 
-                        string date = HTML_Parser.GetTag(div[0].InnerHtml, "span").TrimStart('(').TrimEnd(')');
+                        string date = HTML_Parser.GetTag(((Gecko.GeckoHtmlElement)(div[0])).InnerHtml, "span").TrimStart('(').TrimEnd(')');
                         DateTime dt = DateTime.Parse(date);
                         ScoutDate += TmWeek.ToSWDString(dt) + "|";
 
-                        string age = HTML_Parser.GetFirstNumberInString(div[2].InnerText);
+                        string age = HTML_Parser.GetFirstNumberInString(((Gecko.GeckoHtmlElement)(div[2])).InnerHtml);
 
                         string giudizio = "";
                         giudizio += "Age=" + age + ";";
@@ -484,8 +484,8 @@ namespace NTR_WebBrowser
                         int aggressivity = 0;
                         int potential = 0;
 
-                        string field = div[3].InnerText;
-                        if (field.Contains(SelectedReportParser.Dict["Keys"][(int)ReportParser.Keys.Potential]))
+                        string field = ((Gecko.GeckoHtmlElement)(div[3])).InnerHtml;
+                        if (field.Contains(this.SelectedReportParser.Dict["Keys"][(int)ReportParser.Keys.Potential]))
                         {
                             // It's the potential
                             string potential_string = HTML_Parser.GetFirstNumberInString(field);
@@ -501,9 +501,9 @@ namespace NTR_WebBrowser
                             return "";
                         }
 
-                        if (div.Count > 5)
+                        if (div.Length > 5)
                         {
-                            field = div[4].InnerText;
+                            field = ((Gecko.GeckoHtmlElement)(div[4])).InnerHtml;
                             if (field.Contains(SelectedReportParser.Dict["Keys"][(int)ReportParser.Keys.BloomStatus]))
                             {
                                 // It's the bloom status
@@ -519,7 +519,7 @@ namespace NTR_WebBrowser
                                 }
                             }
 
-                            field = div[5].InnerText;
+                            field = ((Gecko.GeckoHtmlElement)(div[5])).InnerHtml;
                             if (field.Contains(SelectedReportParser.Dict["Keys"][(int)ReportParser.Keys.DevStatus]))
                             {
                                 // It's the DevStatus
@@ -527,7 +527,7 @@ namespace NTR_WebBrowser
                                 dev_status = SelectedReportParser.find("Development", devstats[1]);
                             }
 
-                            field = div[6].InnerText;
+                            field = ((Gecko.GeckoHtmlElement)(div[6])).InnerHtml;
                             if (field.Contains(SelectedReportParser.Dict["Keys"][(int)ReportParser.Keys.Speciality]))
                             {
                                 // It's the Speciality
@@ -542,7 +542,7 @@ namespace NTR_WebBrowser
                                 }
                             }
 
-                            field = child.TextContent;
+                            field = ((Gecko.GeckoHtmlElement)child).InnerHtml;
                             if (field.Contains("Should Develop:"))
                             {
                                 physique = SelectedReportParser.find("Physique", field, physique);

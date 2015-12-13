@@ -438,13 +438,21 @@ namespace NTR_WebBrowser
             string page = ((Gecko.GeckoHtmlElement)htmlDocument.DocumentElement).InnerHtml;
 
             // Import only the report to analyze it
-            string str = HTML_Parser.CutBefore(page, "player_scout_new");
+            string report = HTML_Parser.CutBefore(page, "player_scout_new");
 
             if (SelectedReportParser == null)
             {
                 MessageBox.Show("Please select the Scout Report parser (in Tools->Options->Report Analysis) before");
                 return "";
             }
+
+            result += "PlayerID=" + HTML_Parser.GetNumberAfter(page, "var player_id = ");
+            result += ";PlayerName=" + HTML_Parser.GetField(page, "var player_name = '", "';");
+            string playerFp = HTML_Parser.GetField(page, "var player_fp = '", "';").ToUpper().Replace(",", "/");
+            result += ";PlayerFp=" + playerFp;
+            result += ";IsUsersPlayer=" + (page.Contains("is_users_player = true")?"Yes":"No");
+
+            int FPn = Tm_Utility.FPToNumber(playerFp);                
 
             int i = 0;
             if (page.Contains("id=\"tabplayer_scout_new"))
@@ -453,11 +461,42 @@ namespace NTR_WebBrowser
                 string ScoutDate = "";
                 string ScoutVoto = "";
                 string ScoutGiudizio = "";
-                int FPn = 0;
+                string ScoutInfo = "";
 
                 foreach (var child in element.ChildNodes)
                 {
-                    if (((Gecko.GeckoHtmlElement)child).InnerHtml.Contains("report_header"))
+                    if (((Gecko.GeckoHtmlElement)child).InnerHtml.Contains("<tbody>"))
+                    {
+                        var rows = ((Gecko.GeckoHtmlElement)child).GetElementsByTagName("tr");
+                        foreach (var row in rows)
+                        {
+                            var cols = ((Gecko.GeckoHtmlElement)row).GetElementsByTagName("td");
+
+                            if ((cols == null) || (cols.Length < 8))
+                                continue;
+
+                            string name = ((Gecko.GeckoHtmlElement)(cols[0])).InnerHtml;
+                            string sen = ((Gecko.GeckoHtmlElement)(cols[1])).InnerHtml;
+                            string yth = ((Gecko.GeckoHtmlElement)(cols[2])).InnerHtml;
+                            string phy = ((Gecko.GeckoHtmlElement)(cols[3])).InnerHtml;
+                            string tac = ((Gecko.GeckoHtmlElement)(cols[4])).InnerHtml;
+                            string tec = ((Gecko.GeckoHtmlElement)(cols[5])).InnerHtml;
+                            string dev = ((Gecko.GeckoHtmlElement)(cols[6])).InnerHtml;
+                            string psy = ((Gecko.GeckoHtmlElement)(cols[7])).InnerHtml;
+
+                            ScoutInfo += "Name:" + name;
+                            ScoutInfo += ",Sen:" + sen;
+                            ScoutInfo += ",Yth:" + yth;
+                            ScoutInfo += ",Phy:" + phy;
+                            ScoutInfo += ",Tac:" + tac;
+                            ScoutInfo += ",Tec:" + tec;
+                            ScoutInfo += ",Dev:" + dev;
+                            ScoutInfo += ",Psy:" + psy + "|";
+                        }
+
+                        ScoutInfo = ScoutInfo.TrimEnd('|');
+                    }
+                    else if (((Gecko.GeckoHtmlElement)child).InnerHtml.Contains("report_header"))
                     {
                         var div = ((Gecko.GeckoHtmlElement)child).GetElementsByTagName("div");
 
@@ -470,7 +509,7 @@ namespace NTR_WebBrowser
                         string age = HTML_Parser.GetFirstNumberInString(((Gecko.GeckoHtmlElement)(div[2])).InnerHtml);
 
                         string giudizio = "";
-                        giudizio += "Age=" + age + ";";
+                        giudizio += "Age:" + age + ",";
 
                         int blooming_status = 0;
                         int blooming = 0;
@@ -489,7 +528,7 @@ namespace NTR_WebBrowser
                         {
                             // It's the potential
                             string potential_string = HTML_Parser.GetFirstNumberInString(field);
-                            giudizio += "Pot=" + potential_string + ";";
+                            giudizio += "Pot:" + potential_string + ",";
 
                             ScoutVoto += potential_string + "|";
                         }
@@ -553,16 +592,16 @@ namespace NTR_WebBrowser
                                 professionalism = SelectedReportParser.find("Professionalism", field, professionalism);
                             }
 
-                            if (physique != 0) giudizio += "Phy=" + physique + ",";
-                            if (technics != 0) giudizio += "Tec=" + technics + ",";
-                            if (tactics != 0) giudizio += "Tac=" + tactics + ",";
-                            if (leadership != 0) giudizio += "Lea=" + leadership + ",";
-                            if (blooming_status != 0) giudizio += "BlS=" + blooming_status + ",";
-                            if (blooming != 0) giudizio += "Blo=" + blooming + ",";
-                            if (dev_status != 0) giudizio += "Dev=" + dev_status + ",";
-                            if (speciality != 0) giudizio += "Spe=" + speciality + ",";
-                            if (aggressivity != 0) giudizio += "Agg=" + aggressivity + ",";
-                            if (professionalism != 0) giudizio += "Pro=" + professionalism + ",";
+                            if (physique != 0) giudizio += "Phy:" + physique + ",";
+                            if (technics != 0) giudizio += "Tec:" + technics + ",";
+                            if (tactics != 0) giudizio += "Tac:" + tactics + ",";
+                            if (leadership != 0) giudizio += "Lea:" + leadership + ",";
+                            if (blooming_status != 0) giudizio += "BlS:" + blooming_status + ",";
+                            if (blooming != 0) giudizio += "Blo:" + blooming + ",";
+                            if (dev_status != 0) giudizio += "Dev:" + dev_status + ",";
+                            if (speciality != 0) giudizio += "Spe:" + speciality + ",";
+                            if (aggressivity != 0) giudizio += "Agg:" + aggressivity + ",";
+                            if (professionalism != 0) giudizio += "Pro:" + professionalism + ",";
                         }
 
                         if (ScoutGiudizio != "")
@@ -581,11 +620,12 @@ namespace NTR_WebBrowser
                 result += ";ScoutDate=" + ScoutDate;
                 result += ";ScoutVoto=" + ScoutVoto;
                 result += ";ScoutGiudizio=" + ScoutGiudizio;
+                result += ";ScoutInfo=" + ScoutInfo;
                 result += ";FPn=" + FPn;
             }
             else if (page.Contains("active_tab\" id=\"tabplayer_history_new"))
             {
-                string[] divs = str.Split('\n');
+                string[] divs = report.Split('\n');
 
                 List<string> bodies = HTML_Parser.GetTags(page, "tbody");
 
@@ -721,8 +761,15 @@ namespace NTR_WebBrowser
 
             using (var java = new AutoJSContext(webBrowser.Window.JSContext))
             {
-                JsVal result = java.EvaluateScript(command, webBrowser.Window.DomWindow);
-                pl_data = result.ToString();
+                try
+                {
+                    JsVal result = java.EvaluateScript(command, webBrowser.Window.DomWindow);
+                    pl_data = result.ToString();
+                }
+                catch (Exception ex)
+                {
+                    pl_data = "";
+                }
             }
 
             return pl_data;
@@ -944,7 +991,7 @@ namespace NTR_WebBrowser
 
         private void webBrowser_DocumentCompleted(object sender, Gecko.Events.GeckoDocumentCompletedEventArgs e)
         {
-            if (ActualPlayerID != 0)
+            if (ActualPlayerID > 0)
             {
                 AppendScriptAndExecute(Resources.RatingR2_user, "ApplyRatingR2()");
             }

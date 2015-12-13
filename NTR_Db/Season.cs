@@ -1183,6 +1183,14 @@ namespace NTR_Db
                 ActionsList oppsActionsList = new ActionsList();
                 Dictionary<int, ActionsList> playerActionListDict = new Dictionary<int, ActionsList>();
 
+                var alreadyRecordedActionsForThisMatch = (from c in seasonsDB.Actions
+                                                           where c.MatchID == matchId
+                                                           select c).ToList();
+                foreach (var actionRow in alreadyRecordedActionsForThisMatch)
+                {
+                    seasonsDB.Actions.RemoveActionsRow(actionRow);
+                }
+
                 foreach (string min in mins)
                 {
                     string min_mod = min.Replace("action=(", "").Replace(")(", ";").Replace(")", "");

@@ -10,6 +10,8 @@
 
 #pragma warning disable 1591
 
+using System;
+
 namespace Common {
     
     
@@ -1734,7 +1736,7 @@ namespace Common {
                 this[this.tableReview.VoteColumn] = global::System.Convert.DBNull;
             }
         }
-        
+
         /// <summary>
         ///Row event argument class
         ///</summary>

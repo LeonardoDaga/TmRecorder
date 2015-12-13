@@ -26,7 +26,6 @@ namespace TMRecorder
         private bool playerInfoChanged = false;
         public bool isDirty = false;
         public NTR_Db.Seasons allSeasons = null;
-        private PlayerTraining playerTraining = new PlayerTraining();
         public int actPlayerID
         {
             get
@@ -141,7 +140,7 @@ namespace TMRecorder
 
             playerInfoChanged = false;
 
-            FillTagsBar(History.reportParser);
+            SetupTagsBars(History.reportParser);
 
             FillPlayerBar(playerDatarow.PlayerID);
 
@@ -153,17 +152,39 @@ namespace TMRecorder
             this.Refresh();
         }
 
-        private void FillTagsBar(ReportParser reportParser)
+        private void FillTagsBars(ExtraDS.GiocatoriRow gRow)
         {
-            SetTagBar(reportParser, tagsBarAgg, "Aggressivity");
-            SetTagBar(reportParser, tagsBarPro, "Professionalism");
-            SetTagBar(reportParser, tagsBarLea, "Charisma");
-            SetTagBar(reportParser, tagsBarPhy, "Physique", 0, 20);
-            SetTagBar(reportParser, tagsBarTac, "Tactics", 0, 20);
-            SetTagBar(reportParser, tagsBarTec, "Technics", 0, 20);
+            if (!gRow.IsAggressivityNull())
+                tagsBarAgg.Value = (decimal)gRow.Aggressivity / 5M + 1;
+            else
+                tagsBarAgg.Value = 0;
+
+            if (!gRow.IsProfessionalismNull())
+                tagsBarPro.Value = (decimal)gRow.Professionalism / 5M + 1;
+            else
+                tagsBarPro.Value = 0;
+
+            if (!gRow.IsLeadershipNull())
+                tagsBarLea.Value = (decimal)gRow.Leadership / 5M + 1;
+            else
+                tagsBarLea.Value = 0;
+
+            tagsBarPhy.Value = (decimal)gRow.Physics;
+            tagsBarTac.Value = (decimal)gRow.Tactics;
+            tagsBarTec.Value = (decimal)gRow.Technics;
         }
 
-        private void SetTagBar(ReportParser reportParser, TagsBar tagsBar, string report, decimal min = 1M, decimal max = -1M)
+        private void SetupTagsBars(ReportParser reportParser)
+        {
+            SetupTagBar(reportParser, tagsBarAgg, "Aggressivity");
+            SetupTagBar(reportParser, tagsBarPro, "Professionalism");
+            SetupTagBar(reportParser, tagsBarLea, "Charisma");
+            SetupTagBar(reportParser, tagsBarPhy, "Physique", 0, 20);
+            SetupTagBar(reportParser, tagsBarTac, "Tactics", 0, 20);
+            SetupTagBar(reportParser, tagsBarTec, "Technics", 0, 20);
+        }
+
+        private void SetupTagBar(ReportParser reportParser, TagsBar tagsBar, string report, decimal min = 1M, decimal max = -1M)
         {
             tagsBar.Tags = new List<string>();
             if (!reportParser.Dict.ContainsKey(report))
@@ -730,24 +751,7 @@ namespace TMRecorder
                 }
             }
 
-            if (!gRow.IsAggressivityNull())
-                tagsBarAgg.Value = (decimal)gRow.Aggressivity / 5M + 1;
-            else
-                tagsBarAgg.Value = 0;
-
-            if (!gRow.IsProfessionalismNull())
-                tagsBarPro.Value = (decimal)gRow.Professionalism / 5M + 1;
-            else
-                tagsBarPro.Value = 0;
-
-            if (!gRow.IsLeadershipNull())
-                tagsBarLea.Value = (decimal)gRow.Leadership / 5M + 1;
-            else
-                tagsBarLea.Value = 0;
-
-            tagsBarPhy.Value = (decimal)gRow.Physics;
-            tagsBarTac.Value = (decimal)gRow.Tactics;
-            tagsBarTec.Value = (decimal)gRow.Technics;
+            FillTagsBars(gRow);
 
             string gameTable = "";
             if (!gRow.IsGameTableNull())
@@ -2103,11 +2107,12 @@ namespace TMRecorder
             ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
             ExtraDS.GiocatoriRow gRow = History.PlayersDS.Giocatori.FindByPlayerID(playerDatarow.PlayerID);
 
+            scoutsNReviews.FillScoutsInfo(content);
+
             ExtraDS.ParsePlayerPage_NTR(content, ref gRow);
 
             // Aggiorna i dati di basi
             playerDatarow.FP = gRow.FP;
-            gRow.FPn = Tm_Utility.FPToNumber(gRow.FP);
             playerDatarow.FPn = gRow.FPn;
 
             isDirty = true;
@@ -2120,11 +2125,33 @@ namespace TMRecorder
             gRow.ComputeBloomingFromGiudizio(scoutsNReviews);
 
             FillBaseData(playerDatarow);
-            FillPlayerInfo(false);
 
-            SetTraining();
+            UpdateHistoryScouts();
+
+            scoutsNReviews.Review.Clear();
+            scoutsNReviews.FillTables(gRow, History.reportParser);
+
+            FillTagsBars(gRow);
 
             gRow.isDirty = true;
+        }
+
+        private void UpdateHistoryScouts()
+        {
+            History.PlayersDS.Scouts.Clear();
+            foreach (var sr in scoutsNReviews.Scouts)
+            {
+                var srn = History.PlayersDS.Scouts.NewScoutsRow();
+                srn.Name = sr.Name;
+                srn.Physical = sr.Physical;
+                srn.Psychology = sr.Psychology;
+                srn.Development = sr.Development;
+                srn.Senior = sr.Senior;
+                srn.Youth = sr.Youth;
+                srn.Tactical = sr.Tactical;
+                srn.Technical = sr.Technical;
+                History.PlayersDS.Scouts.AddScoutsRow(srn);
+            }
         }
     }
 }

@@ -112,6 +112,10 @@ namespace Common
             Pen penBorder = new Pen(BorderColor);
             e.Graphics.DrawRectangle(penBorder, new Rectangle(1, start, 12, recHeigth));
 
+            // Draw the cursor
+            e.Graphics.DrawRectangle(penBorder, new Rectangle(0, start + recHeigth - len - 2, 14, 4));
+            e.Graphics.DrawRectangle(penBorder, new Rectangle(1, start + recHeigth - len - 1, 12, 2));
+
             StringFormat sf = new StringFormat();
             sf.Alignment = StringAlignment.Near;
             sf.LineAlignment = StringAlignment.Near;

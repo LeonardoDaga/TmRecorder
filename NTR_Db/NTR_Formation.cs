@@ -527,7 +527,11 @@ namespace NTR_Db
 
             pl.name = row.PlayerRow.Name;
             pl.pf = row.Position;
-            pl.vote = (int)row.Vote;
+            if (!row.IsVoteNull())
+                pl.vote = (int)row.Vote;
+            else
+                pl.vote = -1;
+
             pl.playerID = row.PlayerID;
 
             if (row.IsNumberNull())
@@ -546,7 +550,10 @@ namespace NTR_Db
             if (pl == null) return null;
             pl.name = row.PlayerRow.Name;
             pl.pf = row.Position;
-            pl.vote = (int)row.Vote;
+            if (row.IsVoteNull())
+                pl.vote = -1;
+            else
+                pl.vote = (int)row.Vote;
             pl.playerID = row.PlayerID;
 
             if (row.IsNumberNull())

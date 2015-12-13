@@ -4,10 +4,79 @@ namespace Common
 {    
     public partial class ScoutsNReviews 
     {
+        public bool isDirty { get; set; }
+
         partial class ReviewDataTable
         {
         }
-    
+
+        public void FillScoutsInfo(string content)
+        {
+            Dictionary<string, string> dictValues = HTML_Parser.CreateDictionary(content, ';');
+
+            string scoutsInfo = dictValues["ScoutInfo"].Replace(":", "=");
+
+            string[] scouts = scoutsInfo.Split('|');
+
+            Dictionary<string, string> scoutInfo = new Dictionary<string, string>();
+            foreach (string scout in scouts)
+            {
+                scoutInfo = HTML_Parser.CreateDictionary(scout, ',');
+
+                ScoutsRow sr = Scouts.FindByName(scoutInfo["Name"]);
+                if (sr == null)
+                {
+                    sr = Scouts.NewScoutsRow();
+                    sr.Name = scoutInfo["Name"];
+
+                    Scouts.AddScoutsRow(sr);
+                }
+                sr.Development = short.Parse(scoutInfo["Dev"]);
+                sr.Physical = short.Parse(scoutInfo["Phy"]);
+                sr.Psychology = short.Parse(scoutInfo["Psy"]);
+                sr.Senior = short.Parse(scoutInfo["Sen"]);
+                sr.Tactical = short.Parse(scoutInfo["Tac"]);
+                sr.Technical = short.Parse(scoutInfo["Tec"]);
+                sr.Youth = short.Parse(scoutInfo["Yth"]);
+                this.isDirty = true;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            }
+        }
+
         public void FillTables(ExtraDS.GiocatoriRow gRow, ReportParser reportParser)
         {
             for (int i = 0; i < gRow.ScoutNames.Length; i++)
@@ -28,7 +97,10 @@ namespace Common
 
                 try
                 {
-                    Dictionary<string, string> dict = HTML_Parser.String2Dictionary(gRow.ScoutReviews[i]);
+                    string scoutReview = gRow.ScoutReviews[i].Replace(":", "=");
+                    scoutReview = scoutReview.Replace(";", ",");
+                    Dictionary<string, string> dict = HTML_Parser.CreateDictionary(scoutReview, ',');
+
                     if (dict.ContainsKey("Dev")) rrow.Development = short.Parse(dict["Dev"]);
                     if (dict.ContainsKey("Tec")) rrow.Technics = short.Parse(dict["Tec"]);
                     if (dict.ContainsKey("Tac")) rrow.Tactics = short.Parse(dict["Tac"]);

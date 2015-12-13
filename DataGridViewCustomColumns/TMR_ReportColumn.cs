@@ -128,7 +128,7 @@ namespace DataGridViewCustomColumns
                             else if (value.GetType() == typeof(float))
                             {
                                 float val = (float)value;
-                                dictStr = (val / 2).ToString("N1");
+                                dictStr = val.ToString("N1");
                             }
                             else if (colName == "Speciality")
                             {

@@ -14,8 +14,6 @@ namespace A_TestForm
         public TestForm()
         {
             InitializeComponent();
-            if (!ntR_Browser1.CheckXulInitialization())
-                Close();
         }
     }
 }

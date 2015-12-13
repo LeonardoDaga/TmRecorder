@@ -749,13 +749,17 @@ namespace Common
                 // Reset professionality
                 for (int i = 0; i < ScoutNames.Length; i++)
                 {
-                    Dictionary<string, string> dict = HTML_Parser.String2Dictionary(ScoutReviews[i]);
+                    string review = ScoutReviews[i].Replace(":", "=");
+                    Dictionary<string, string> dict = HTML_Parser.CreateDictionary(review, ',');
 
                     ScoutsNReviews.ScoutsRow sr = null;
                     foreach (ScoutsNReviews.ScoutsRow srix in snr.Scouts)
                     {
                         if (srix.Name.Contains(ScoutNames[i]))
+                        {
                             sr = srix;
+                            break;
+                        }
                     }
 
                     if (sr == null)
@@ -766,6 +770,7 @@ namespace Common
                         sr.Psychology = 5;
                         sr.Physical = 5;
                         sr.Development = 5;
+                        sr.Name = ScoutNames[i];
                     }
 
 
@@ -843,7 +848,8 @@ namespace Common
                 float fBloom = 0;
                 for (int i = 0; i < ScoutNames.Length; i++)
                 {
-                    Dictionary<string, string> dict = HTML_Parser.String2Dictionary(ScoutReviews[i]);
+                    string scoutReview = ScoutReviews[i].Replace(":", "=");
+                    Dictionary<string, string> dict = HTML_Parser.CreateDictionary(scoutReview, ',');
 
                     ScoutsNReviews.ScoutsRow sr = null;
 
@@ -888,6 +894,13 @@ namespace Common
                         // Se è già esploso inutile cambiare la data dell'esposione
                         if (wBloomStart == -1)
                             bloomstart = wBorn + (age - 3) * 12;
+                        else
+                        {
+                            // In caso sia esploso, non ci sono più informazioni su quando è
+                            // esploso per cui si ipotizza una esplosione normale
+                            weight = 0.1f;
+                            bloomstart = wBorn + 19 * 12;
+                        }
                     }
                     else if (blooming_status == 4) // Fine esplosione
                     {
@@ -1948,158 +1961,39 @@ namespace Common
 
         public static void ParsePlayerPage_NTR(string page, ref GiocatoriRow gRow)
         {
-            page = page.Replace("'", "");
-            page = page.Replace('"', '\'');
-            page = page.Replace("'>", ">");
-            page = page.Replace("&#39;", "'");
-            page = page.Replace(" \r\n", " ");
-            bool scout_parsed = false;
+            Dictionary<string, string> dictValues = HTML_Parser.CreateDictionary(page, ';');
 
-            DateTime pageDate = DateTime.Now;
+            gRow.Nome = dictValues["PlayerName"];
+            gRow.FP = dictValues["PlayerFp"].ToUpper();
+            gRow.FPn = int.Parse(dictValues["FPn"]);
 
-            List<string> tables = HTML_Parser.GetTags(page, "table");
-
-            // It's a base page
-            string[] pagelines = page.Split('\n');
-
-            for (int ix = 0; ix < pagelines.Length; ix++)
+            if (dictValues.ContainsKey("Aggressivity"))
             {
-                string line = pagelines[ix];
-
-                if (line.Contains("select_player"))
-                {
-                    // Line containing Age, Height and Weight
-                    int index = 0;
-                    string Age = HTML_Parser.GetField(line, "</strong>", "<", ref index);
-
-                    if (Age == "")
-                    {
-                        ix = ix + 1;
-                        line = pagelines[ix];
-                        Age = HTML_Parser.GetField(line, "</strong>", "<", ref index);
-                    }
-                    string Heigth = HTML_Parser.GetField(line, "</strong>", "<", ref index);
-                    string Weight = HTML_Parser.GetField(line, "</strong>", "<", ref index);
-
-                    gRow.wBorn = TmWeek.GetBornWeekFromAge(pageDate, Age);
-
-                    TmWeek age = TmWeek.GetAge(gRow.wBorn, pageDate);
-                    gRow.Età = age.Years;
-
-                    continue;
-                }
-
-                if (line.Contains("importage"))
-                {
-                    // Line containing Age, Height and Weight
-                    int index = 0;
-                    string training = HTML_Parser.GetField(line, "importage=", ">", ref index);
-                    training = HTML_Parser.CleanFlashVars(training);
-                    gRow.SetTSINull();
-                    gRow.SetTI(pageDate, training);
-                    gRow.AvTSI = Utility.WeightedMean(gRow.TSI);
-
-                    continue;
-                }
-
-                if (line.Contains("<!-- Header start -->"))
-                {
-                    string full_line = "";
-                    ix++;
-
-                    for (; ix < pagelines.Length; ix++)
-                    {
-                        line = pagelines[ix];
-                        full_line += line.TrimEnd('\r');
-                        if (line.Contains("<!-- Header end -->")) break;
-                    }
-
-                    // Season line
-                    int index = 0;
-                    string FullName = HTML_Parser.GetField(full_line, "</div>", " <a href", ref index);
-                    string RealCountry = HTML_Parser.GetField(full_line, "showcountry=", "><img", ref index);
-                    gRow.Nome = FullName.Replace("  ", " ");
-                    gRow.Nationality = RealCountry;
-
-                    continue;
-                }
-            } // end for (int ix = 0; ix < lines.Length; ix++)
-
-            for (int ix = 0; ix < tables.Count; ix++)
-            {
-                string table = tables[ix];
-
-                if (table.Contains(">ASI<"))
-                {
-                    // Line containing Age, Height and Weight
-                    string partline = table.Substring(table.IndexOf(">ASI<") + 5);
-                    List<string> tags = HTML_Parser.GetTags(partline, "td");
-                    string FP = TM_Compatible.ConvertNewFP(tags[0]);
-                    string routine = tags[1];
-                    string wage = tags[2];
-                    wage = wage.Replace(",", "");
-                    gRow.FP = FP;
-                    gRow.Wage = int.Parse(wage);
-                    gRow.Routine = decimal.Parse(routine, Common.CommGlobal.ciUs);
-                    continue;
-                }
-
-                if (table.Contains("<!-- Season -->"))
-                {
-                    List<string> rows = HTML_Parser.GetTags2(table, "tr");
-
-                    for (int ir = 1; ir < rows.Count; ir++)
-                    {
-                        List<string> tdFields = HTML_Parser.GetTags(rows[ir], "td");
-
-                        if (tdFields == null) continue;
-
-                        string Fee;
-
-                        if (tdFields.Count == 12)
-                        {
-                            // Season  = tdFields[0]; 
-                            // Club    = tdFields[1];; 
-                            // Nation  = tdFields[2]; 
-                            // Age     = tdFields[3]; 
-                            Fee = tdFields[4];
-                            // GP      = tdFields[5]; 
-                            // Gol     = tdFields[6]; 
-                            // Assist  = tdFields[7]; 
-                            // Prod    = tdFields[8]; 
-                            // Mom     = tdFields[9];
-                            // Cards   = tdFields[10];
-                            float avRating;
-                            float.TryParse(tdFields[11], NumberStyles.Float, CommGlobal.ciUs, out avRating);
-                            gRow.AvRating = avRating;
-                            break; // Get only the first season
-                            // continue;
-                        }
-
-                        if (tdFields.Count == 9)
-                        {
-                            // GP      = tdFields[2; 
-                            // Gol     = tdFields[3]; 
-                            // Assist  = tdFields[4]; 
-                            // Prod    = tdFields[5]; 
-                            // Mom     = tdFields[6];
-                            // Cards   = tdFields[7];
-                            // float.TryParse(tdFields[8], out gr.AvRating);
-                        }
-                    }
-                }
-
-                if ((table.Contains("scouts.php") && !table.Contains("scouts_table") && (!scout_parsed)) ||
-                    ((ix < tables.Count - 1) && (ix == 1) && (tables[ix + 1].Contains("scouts.php"))))
-                {
-                    List<ScoutReview> srList = ScoutReview.ParseTable(table);
-                    if (srList.Count == 0) continue;
-
-                    gRow.FillWithScoutReviewList(srList);
-
-                    scout_parsed = true;
-                }
+                // Hidden values are available
+                gRow.Aggressivity = int.Parse(dictValues["Aggressivity"]);
+                gRow.InjPron = int.Parse(dictValues["InjPron"]);
+                gRow.Professionalism = int.Parse(dictValues["Professionalism"]);
+                gRow.Ada = int.Parse(dictValues["Ada"]);
             }
+
+            string[] scoutNamesArray = dictValues["ScoutName"].Split('|');
+            string[] scoutDatesArray = dictValues["ScoutDate"].Split('|');
+            string[] scoutVotesArray = dictValues["ScoutVoto"].Split('|');
+            string[] scoutReviewsArray = dictValues["ScoutGiudizio"].Split('|');
+
+            List<ScoutReview> srList = new List<ScoutReview>();
+
+            for (int i=0; i<scoutNamesArray.Length; i++)
+            {
+                ScoutReview sr = new ScoutReview();
+                sr.ScoutName = scoutNamesArray[i];
+                sr.Vote = int.Parse(scoutVotesArray[i]);
+                sr.Review = scoutReviewsArray[i];
+                sr.Date = TmWeek.SWDtoDateTime(scoutDatesArray[i]);
+                srList.Add(sr);
+            }
+
+            gRow.FillWithScoutReviewList(srList);
         }
 
         public void RecomputePlayersMeanVote()

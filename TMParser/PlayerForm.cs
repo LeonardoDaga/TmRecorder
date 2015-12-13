@@ -1669,6 +1669,8 @@ namespace TMRecorder
             }
 
             Initialize();
+
+            webBrowser.GotoPlayer(actPlayerID, NTR_Browser.PlayerNavigationType.NavigateReports);
         }
 
         private void btnPrev_Click(object sender, EventArgs e)
@@ -1681,6 +1683,8 @@ namespace TMRecorder
             }
 
             Initialize();
+
+            webBrowser.GotoPlayer(actPlayerID, NTR_Browser.PlayerNavigationType.NavigateReports);
         }
 
         private void txtNotes_TextChanged(object sender, EventArgs e)

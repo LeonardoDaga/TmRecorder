@@ -199,7 +199,8 @@ namespace NTR_Db
             else
             {
                 matchDataSelection = (from c in seasonsDB.Match
-                                      where (!c.IsDateNull()) && ((c.OTeamID == teamID) || (c.YTeamID == teamID))
+                                      where (!c.IsDateNull()) && (!c.IsOTeamIDNull()) && (!c.IsYTeamIDNull()) && 
+                                            ((c.OTeamID == teamID) || (c.YTeamID == teamID))
                                       select new MatchData(c));
             }
 
@@ -620,7 +621,8 @@ namespace NTR_Db
                 DirectoryInfo di = new DirectoryInfo(dirPath);
 
                 fi = new FileInfo(Path.Combine(dirPath, "Players.5.xml"));
-                seasonsDB.Player.ReadXml(fi.FullName);
+
+                seasonsDB.Player.ReadSafeXml(fi.FullName);
 
                 sf.UpdateStatusMessage(30, string.Format("Loading Players DB v.5..."));
 
@@ -1205,11 +1207,15 @@ namespace NTR_Db
                     atr.ActionCode = items["type"];
                     atr.ActionType = atr.ActionCode;
                     atr.FullDesc = min;
-                    string strColor = isHome ? match_info["home_color"] : match_info["away_color"];
-                    if ((strColor == "undefined") || (strColor == "")) strColor = "0000FF";
 
+                    // Parsing the shirt color
+                    string strColor = isHome ? match_info["home_color"] : match_info["away_color"];
+                    if ((strColor == "undefined") || (strColor == "") || (strColor == "NaNNaN")) strColor = "0000FF";
+
+                    int color = 256; // Black 
                     if (isHome)
-                        homeTeamRow.Color = int.Parse(strColor, System.Globalization.NumberStyles.HexNumber);
+                        int.TryParse(strColor, System.Globalization.NumberStyles.HexNumber, CommGlobal.ciUs, out color);
+                    homeTeamRow.Color = color;
 
                     if (!items.ContainsKey("text"))
                     {

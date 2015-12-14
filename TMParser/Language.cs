@@ -272,7 +272,7 @@ namespace TMRecorder
             this.lblSeason.Text = Current.Language.Season;
             this.chkNormalized.Text = Current.Language.Normalized;
             this.chkShowPosition.Text = Current.Language.ShowPosition;
-            this.tabPage5.Text = Current.Language.TrainingPotential;
+            this.tabControlPlayerHistory.Text = Current.Language.TrainingPotential;
             this.btnGetVotenSkillAuto.Text = Current.Language.GetAutomatically;
             this.tabPage6.Text = Current.Language.PlayerTraining;
             this.label5.Text = Current.Language.Notes;

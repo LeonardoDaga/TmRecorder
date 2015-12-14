@@ -116,7 +116,25 @@ namespace TMRecorder
 
             FillBaseData(playerDatarow);
 
-            FillSkillGraph(table);
+            if (playerDatarow.FPn == 0)
+            {
+                // FillSkillGraph_Gk(table);
+                // FillSpecsGraph_Gk(table);
+                FillTrainingTable_Gk(playerDatarow.PlayerID);
+                if (tabControlPlayerHistory.TabPages.Contains(tabPageTrainingAndPotential))
+                    tabControlPlayerHistory.TabPages.Remove(tabPageTrainingAndPotential);
+            }
+            else
+            {
+                FillSkillGraph_Pl(table);
+                FillSpecsGraph_Pl(table);
+                FillTrainingTable_Pl(playerDatarow.PlayerID);
+                if (!tabControlPlayerHistory.TabPages.Contains(tabPageTrainingAndPotential))
+                {
+                    tabControlPlayerHistory.TabPages.Insert(5, tabPageTrainingAndPotential);
+                }
+                SetTraining();
+            }
 
             FillASIGraph(table);
 
@@ -124,13 +142,7 @@ namespace TMRecorder
 
             FillInjuriesGraph(table);
 
-            FillSpecsGraph(table);
-
             FillPlayerInfo(true);
-
-            FillTrainingTable(playerDatarow.PlayerID);
-
-            SetTraining();
 
             FillSeasonCombo();
             chkShowPosition.Checked = Program.Setts.ShowPosition;
@@ -144,7 +156,7 @@ namespace TMRecorder
 
             FillPlayerBar(playerDatarow.PlayerID);
 
-            if (tabControl1.SelectedTab == tabPlayerBrowser)
+            if (tabControlPlayerHistory.SelectedTab == tabPlayerBrowser)
             {
                 tsbLoadPlayerPage_Click(null, EventArgs.Empty);
             }
@@ -204,8 +216,25 @@ namespace TMRecorder
             tagsBar.Invalidate();       
         }
 
-        private void FillTrainingTable(int playerID)
+        private void FillTrainingTable_Gk(int playerID)
         {
+            finDataGridViewTextBoxColumn.Visible = false;
+            setDataGridViewTextBoxColumn.Visible = false;
+            lonDataGridViewTextBoxColumn.Visible = false;
+
+            playerTraining.Clear();
+
+            History.FillGKTrainingTable(playerTraining, playerID);
+
+            dgTraining.SetWhen(DateTime.Now);
+        }
+
+        private void FillTrainingTable_Pl(int playerID)
+        {
+            finDataGridViewTextBoxColumn.Visible = true;
+            setDataGridViewTextBoxColumn.Visible = true;
+            lonDataGridViewTextBoxColumn.Visible = true;
+
             playerTraining.Clear();
 
             History.FillPLTrainingTable(playerTraining, playerID);
@@ -1127,7 +1156,247 @@ namespace TMRecorder
             playerData.PlayerRow = teamDS.GiocatoriNSkill.FromExtraDSGiocatoriRow(playerDatarow, gRow);
         }
 
-        internal void FillSkillGraph(ExtTMDataSet.PlayerHistoryDataTable table)
+        internal void FillSkillGraph_Gk(ExtTMDataSet.GKHistoryDataTable table)
+        {
+            MasterPane master = graphSkills.MasterPane;
+
+            // Remove the default pane that comes with the ZedGraphControl.MasterPane
+            master.PaneList.Clear();
+
+            // Set the master pane title
+            master.Title.Text = "Player History";
+            master.Title.IsVisible = true;
+
+            // Fill the axis background with a color gradient
+            master.Fill = new Fill(Color.FromArgb(255, 255, 245), Color.FromArgb(255, 255, 190), 90F);
+
+            // Set the margins and the space between panes to 10 points
+            master.Margin.All = 10;
+            master.InnerPaneGap = 10;
+
+            double[] dDataFor = new double[table.Rows.Count];
+            double[] dDataVel = new double[table.Rows.Count];
+            double[] dDataRes = new double[table.Rows.Count];
+            double[] dDataPre = new double[table.Rows.Count];
+            double[] dDataUno = new double[table.Rows.Count];
+            double[] dDataRif = new double[table.Rows.Count];
+            double[] dDataAer = new double[table.Rows.Count];
+            double[] dDataEle = new double[table.Rows.Count];
+            double[] dDataCom = new double[table.Rows.Count];
+            double[] dDataTir = new double[table.Rows.Count];
+            double[] dDataLan = new double[table.Rows.Count];
+            double[] xdate = new double[table.Rows.Count];
+
+            for (int i = 0; i < table.Rows.Count; i++)
+            {
+                ExtTMDataSet.GKHistoryRow pr = (ExtTMDataSet.GKHistoryRow)table.Rows[i];
+
+                dDataFor[i] = (double)pr.For;
+                dDataVel[i] = (double)pr.Vel;
+                dDataRes[i] = (double)pr.Res;
+                dDataPre[i] = (double)pr.Pre;
+                dDataUno[i] = (double)pr.Uno;
+                dDataRif[i] = (double)pr.Rif;
+                dDataAer[i] = (double)pr.Aer;
+                dDataEle[i] = (double)pr.Ele;
+                dDataCom[i] = (double)pr.Com;
+                dDataTir[i] = (double)pr.Tir;
+                dDataLan[i] = (double)pr.Lan;
+                xdate[i] = (double)new XDate(pr.Date);
+            }
+
+            LineItem myCurve;
+
+            // 1o grafico
+            {
+                GraphPane pane = new GraphPane();
+
+                pane.Title.Text = "Physic Skills";
+                pane.YAxis.Title.Text = "Skill Value";
+                pane.XAxis.Title.Text = "Weeks";
+                pane.XAxis.Type = AxisType.Date;
+                pane.XAxis.Scale.MajorStep = 7;
+                pane.XAxis.Scale.MinorStep = 7;
+                pane.XAxis.Scale.MajorUnit = DateUnit.Day;
+                pane.XAxis.Scale.Format = "TW";
+
+                // Fill the axis background with a color gradient
+                pane.Chart.Fill = new Fill(Color.FromArgb(255, 255, 245), Color.FromArgb(255, 255, 190), 90F);
+                // pane.BaseDimension = 6.0F;
+
+                // Generate a red curve with "For" in the legend
+                myCurve = pane.AddCurve("For", xdate, dDataFor, Color.DarkGreen);
+
+                // Make the symbols opaque by filling them with white
+                myCurve.Symbol.Type = SymbolType.Diamond;
+                myCurve.Symbol.Fill = new Fill(Color.White);
+
+                // Generate a red curve with "Res" in the legend
+                myCurve = pane.AddCurve("Res", xdate, dDataRes, Color.Indigo);
+
+                // Make the symbols opaque by filling them with white
+                myCurve.Symbol.Type = SymbolType.Circle;
+                myCurve.Symbol.Fill = new Fill(Color.White);
+
+                // Generate a red curve with "Vel" in the legend
+                myCurve = pane.AddCurve("Vel", xdate, dDataVel, Color.Turquoise);
+
+                // Make the symbols opaque by filling them with white
+                myCurve.Symbol.Type = SymbolType.Triangle;
+                myCurve.Symbol.Fill = new Fill(Color.White);
+
+                // Manually set the x axis range
+                pane.YAxis.Scale.Min = 0;
+                pane.YAxis.Scale.Max = 20;
+                pane.YAxis.Scale.MajorStep = 5;
+                pane.YAxis.Scale.MinorStep = 1;
+
+                master.Add(pane);
+            }
+
+            // 2o grafico
+            {
+                GraphPane pane = new GraphPane();
+
+                pane.Title.Text = "Goal Defense Skills";
+                pane.YAxis.Title.Text = "Skill Value";
+                pane.XAxis.Title.Text = "Weeks";
+                pane.XAxis.Type = AxisType.Date;
+                pane.XAxis.Scale.MajorStep = 7;
+                pane.XAxis.Scale.MinorStep = 7;
+                pane.XAxis.Scale.MajorUnit = DateUnit.Day;
+                pane.XAxis.Scale.Format = "TW";
+
+                // Fill the axis background with a color gradient
+                pane.Chart.Fill = new Fill(Color.FromArgb(255, 255, 245), Color.FromArgb(255, 255, 190), 90F);
+                // pane.BaseDimension = 6.0F;
+
+                // Generate a red curve with "Pre" in the legend
+                myCurve = pane.AddCurve("Pre", xdate, dDataPre, Color.Blue);
+
+                // Make the symbols opaque by filling them with white
+                myCurve.Symbol.Type = SymbolType.Circle;
+                myCurve.Symbol.Fill = new Fill(Color.White);
+
+                // Generate a red curve with "Uno" in the legend
+                myCurve = pane.AddCurve("Uno", xdate, dDataUno, Color.Green);
+
+                // Make the symbols opaque by filling them with white
+                myCurve.Symbol.Type = SymbolType.Diamond;
+                myCurve.Symbol.Fill = new Fill(Color.White);
+
+                // Generate a red curve with "Rif" in the legend
+                myCurve = pane.AddCurve("Rif", xdate, dDataRif, Color.Brown);
+
+                // Make the symbols opaque by filling them with white
+                myCurve.Symbol.Type = SymbolType.Triangle;
+                myCurve.Symbol.Fill = new Fill(Color.White);
+
+                // Manually set the x axis range
+                pane.YAxis.Scale.Min = 0;
+                pane.YAxis.Scale.Max = 20;
+                pane.YAxis.Scale.MajorStep = 5;
+                pane.YAxis.Scale.MinorStep = 1;
+
+                master.Add(pane);
+            }
+
+            // 3o grafico
+            {
+                GraphPane pane = new GraphPane();
+
+                pane.Title.Text = "Area Defense Skills";
+                pane.YAxis.Title.Text = "Skill Value";
+                pane.XAxis.Title.Text = "Weeks";
+                pane.XAxis.Type = AxisType.Date;
+                pane.XAxis.Scale.MajorStep = 7;
+                pane.XAxis.Scale.MinorStep = 7;
+                pane.XAxis.Scale.MajorUnit = DateUnit.Day;
+                pane.XAxis.Scale.Format = "TW";
+
+                // Fill the axis background with a color gradient
+                pane.Chart.Fill = new Fill(Color.FromArgb(255, 255, 245), Color.FromArgb(255, 255, 190), 90F);
+                // pane.BaseDimension = 6.0F;
+
+                // Generate a red curve with "Aer" in the legend
+                myCurve = pane.AddCurve("Aer", xdate, dDataAer, Color.Black);
+
+                // Make the symbols opaque by filling them with white
+                myCurve.Symbol.Type = SymbolType.Circle;
+                myCurve.Symbol.Fill = new Fill(Color.White);
+
+                // Generate a red curve with "Ele" in the legend
+                myCurve = pane.AddCurve("Ele", xdate, dDataEle, Color.Cyan);
+
+                // Make the symbols opaque by filling them with white
+                myCurve.Symbol.Type = SymbolType.Diamond;
+                myCurve.Symbol.Fill = new Fill(Color.White);
+
+                // Manually set the x axis range
+                pane.YAxis.Scale.Min = 0;
+                pane.YAxis.Scale.Max = 20;
+                pane.YAxis.Scale.MajorStep = 5;
+                pane.YAxis.Scale.MinorStep = 1;
+
+                master.Add(pane);
+            }
+
+            // 4o grafico
+            {
+                GraphPane pane = new GraphPane();
+
+                pane.Title.Text = "Offensive Skills";
+                pane.YAxis.Title.Text = "Skill Value";
+                pane.XAxis.Title.Text = "Weeks";
+                pane.XAxis.Type = AxisType.Date;
+                pane.XAxis.Scale.MajorStep = 7;
+                pane.XAxis.Scale.MinorStep = 7;
+                pane.XAxis.Scale.MajorUnit = DateUnit.Day;
+                pane.XAxis.Scale.Format = "TW";
+
+                // Fill the axis background with a color gradient
+                pane.Chart.Fill = new Fill(Color.FromArgb(255, 255, 245), Color.FromArgb(255, 255, 190), 90F);
+                // pane.BaseDimension = 6.0F;
+
+                // Generate a red curve with "Com" in the legend
+                myCurve = pane.AddCurve(Current.Language.Com, xdate, dDataCom, Color.Blue);
+
+                // Make the symbols opaque by filling them with white
+                myCurve.Symbol.Type = SymbolType.Diamond;
+                myCurve.Symbol.Fill = new Fill(Color.White);
+
+                // Generate a red curve with "Tir" in the legend
+                myCurve = pane.AddCurve("Tir", xdate, dDataTir, Color.Red);
+
+                // Make the symbols opaque by filling them with white
+                myCurve.Symbol.Type = SymbolType.Square;
+                myCurve.Symbol.Fill = new Fill(Color.White);
+
+                // Generate a red curve with "Lan" in the legend
+                myCurve = pane.AddCurve("Lan", xdate, dDataLan, Color.SlateGray);
+
+                // Make the symbols opaque by filling them with white
+                myCurve.Symbol.Type = SymbolType.Triangle;
+                myCurve.Symbol.Fill = new Fill(Color.White);
+
+                // Manually set the x axis range
+                pane.YAxis.Scale.Min = 0;
+                pane.YAxis.Scale.Max = 20;
+                pane.YAxis.Scale.MajorStep = 5;
+                pane.YAxis.Scale.MinorStep = 1;
+
+                master.Add(pane);
+            }
+
+            // Tell ZedGraph to auto layout all the panes
+            using (Graphics g = graphSkills.CreateGraphics())
+            {
+                master.SetLayout(g, PaneLayout.SquareColPreferred);
+                master.AxisChange(g);
+            }
+        }
+
+        internal void FillSkillGraph_Pl(ExtTMDataSet.PlayerHistoryDataTable table)
         {
             MasterPane master = graphSkills.MasterPane;
 
@@ -1401,7 +1670,7 @@ namespace TMRecorder
             }
         }
 
-        internal void FillSpecsGraph(ExtTMDataSet.PlayerHistoryDataTable table)
+        internal void FillSpecsGraph_Pl(ExtTMDataSet.PlayerHistoryDataTable table)
         {
             MasterPane master = graphSpecs.MasterPane;
 
@@ -1706,7 +1975,7 @@ namespace TMRecorder
 
         private void openPlayerPageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            tabControl1.SelectedTab = tabPlayerBrowser;
+            tabControlPlayerHistory.SelectedTab = tabPlayerBrowser;
             tsbLoadPlayerPage_Click(sender, e);
         }
 
@@ -2094,7 +2363,7 @@ namespace TMRecorder
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (tabControl1.SelectedTab == tabPlayerScouting)
+            if (tabControlPlayerHistory.SelectedTab == tabPlayerScouting)
                 PlayerForm_SizeChanged(this, EventArgs.Empty);
         }
 

@@ -448,6 +448,77 @@ namespace NTR_Common
 
                 return gr;
             }
+
+
+            public GiocatoriNSkillRow FromExtraDSGiocatoriRow(ExtTMDataSet2.GiocatoriNSkillRow gnsRow, ExtraDS.GiocatoriRow egRow)
+            {
+                GiocatoriNSkillRow gr = this.NewGiocatoriNSkillRow();
+
+                gr.Nome = gnsRow.Nome;
+                gr.FP = gnsRow.FP;
+                gr.FPn = gnsRow.FPn;
+                gr.wBorn = gnsRow.wBorn;
+
+                if ((gnsRow.Ada != 0) || (egRow.IsAdaNull()))
+                    gr.Ada = gnsRow.Ada;
+                else
+                    gr.Ada = egRow.Ada;
+
+                gr.For = gnsRow.For;
+                gr.Res = gnsRow.Res;
+                gr.Vel = gnsRow.Vel;
+                gr.Mar = gnsRow.Mar_Pre;
+                gr.Con = gnsRow.Con_Uno;
+                gr.Wor = gnsRow.Wor_Rif;
+                gr.Pos = gnsRow.Pos_Aer;
+                gr.Pas = gnsRow.Pas_Ele;
+                gr.Cro = gnsRow.Cro_Com;
+                gr.Tec = gnsRow.Tec_Tir;
+                gr.Tes = gnsRow.Tes_Lan;
+                gr.Fin = gnsRow.Fin;
+                gr.Dis = gnsRow.Lon;
+                gr.Cal = gnsRow.Set;
+
+                gr.ASI = gnsRow.ASI;
+
+                gr.OSi = gnsRow.OSi;
+
+                gr.Rou = gnsRow.Rou;
+
+                gr.SSD = Tm_Utility.ASItoSkSum((decimal)gnsRow.ASI, false) - gnsRow.SkillSum;
+
+                gr.CStr = gnsRow.CStr;
+
+                gr.Nationality = gnsRow.Nationality;
+
+                if (!gnsRow.IsRecNull())
+                    gr.Rec = gnsRow.Rec;
+
+                if (!egRow.IsProfessionalismNull())
+                    gr.Pro = egRow.Professionalism;
+
+                if (!egRow.IsLeadershipNull())
+                    gr.Lea = egRow.Leadership;
+
+                if (!egRow.IsAggressivityNull())
+                    gr.Agg = egRow.Aggressivity;
+
+                if (!egRow.IsPotentialNull())
+                    gr.Pot = (decimal)egRow.Potential;
+
+                if (!egRow.IsInjPronNull())
+                    gr.InjPron = egRow.InjPron;
+
+                if (!egRow.IsSpecialityNull())
+                {
+                    gr.Specialities = "Spe=" + egRow.Speciality;
+                    gr.Specialities += ";Phy=" + egRow.Physics;
+                    gr.Specialities += ";Tac=" + egRow.Tactics;
+                    gr.Specialities += ";Tec=" + egRow.Technics;
+                }
+
+                return gr;
+            }
         }
 
         partial class GiocatoriNSkillRow

@@ -288,6 +288,57 @@ namespace TMRecorder
         }
     }
 
+    partial class PlayerForm2
+    {
+        public void SetLanguage()
+        {
+            this.PlayerAge.HeaderText = Current.Language.Age;
+            this.tmR_AgeColumn1.HeaderText = Current.Language.Age;
+            this.tmR_DateColumn1.HeaderText = Current.Language.Week;
+            this.dataGridViewTextBoxColumn1.HeaderText = Current.Language.Str;
+            this.dataGridViewTextBoxColumn2.HeaderText = Current.Language.Res;
+            this.dataGridViewTextBoxColumn3.HeaderText = Current.Language.Pac;
+            this.dataGridViewTextBoxColumn4.HeaderText = Current.Language.Mar;
+            this.dataGridViewTextBoxColumn5.HeaderText = Current.Language.Tak;
+            this.dataGridViewTextBoxColumn6.HeaderText = Current.Language.Wor;
+            this.dataGridViewTextBoxColumn7.HeaderText = Current.Language.Pos;
+            this.dataGridViewTextBoxColumn8.HeaderText = Current.Language.Pas;
+            this.dataGridViewTextBoxColumn9.HeaderText = Current.Language.Cro;
+            this.dataGridViewTextBoxColumn10.HeaderText = Current.Language.Tec;
+            this.dataGridViewTextBoxColumn11.HeaderText = Current.Language.Hea;
+            this.dataGridViewTextBoxColumn12.HeaderText = Current.Language.Fin;
+            this.dataGridViewTextBoxColumn13.HeaderText = Current.Language.Tir;
+            this.dataGridViewTextBoxColumn14.HeaderText = Current.Language.CP;
+            this.dataGridViewTextBoxColumn15.HeaderText = "TI";
+            this.dataGridViewTextBoxColumn16.HeaderText = Current.Language.Trainer;
+            this.dataGridViewTextBoxColumn17.HeaderText = Current.Language.Program;
+            this.dataGridViewTextBoxColumn18.HeaderText = "%";
+            this.tabSkills.Text = Current.Language.Skills;
+            this.tabPage1.Text = "ASI";
+            this.linkLabel1.Text = "Delta ASI - By FS Paystu";
+            this.chkShowTGI.Text = "Show TGI";
+            this.tabPage2.Text = Current.Language.Injuries;
+            this.tabPage3.Text = "Specs";
+            this.tabPage4.Text = Current.Language.Performances;
+            this.lblSeason.Text = Current.Language.Season;
+            this.chkNormalized.Text = Current.Language.Normalized;
+            this.chkShowPosition.Text = Current.Language.ShowPosition;
+            this.tabControlPlayerHistory.Text = Current.Language.TrainingPotential;
+            this.btnGetVotenSkillAuto.Text = Current.Language.GetAutomatically;
+            this.tabPage6.Text = Current.Language.PlayerTraining;
+            this.label5.Text = Current.Language.Notes;
+            this.groupBox2.Text = Current.Language.PlayerInfo;
+            this.toolStripLabel2.Text = Current.Language.Browse;
+            this.toolStripButton1.Text = Current.Language.PrevPlayer;
+            this.toolStripButton2.Text = Current.Language.NextPlayer;
+            this.toolStripLabel1.Text = Current.Language.Edit;
+            this.toolStripButton4.Text = Current.Language.ExplorePlayer;
+            this.toolStripButton3.Text = Current.Language.ExportHistoryToExcel;
+            this.tsbComputeGrowth.Text = Current.Language.ComputeGrowth;
+            this.Text = Current.Language.PlayerHistory;
+        }
+    }
+
     partial class GKForm
     {
         public void SetLanguage()

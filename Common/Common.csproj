@@ -213,8 +213,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="ExtTMDataSet2.cs" />
-    <Compile Include="ExtTMDataSet2.Designer.cs" />
     <Compile Include="FillInfoMessageBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -467,17 +465,6 @@
     </None>
     <None Include="ExtTMDataSet.xss">
       <DependentUpon>ExtTMDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="ExtTMDataSet2.xsc">
-      <DependentUpon>ExtTMDataSet2.xsd</DependentUpon>
-    </None>
-    <None Include="ExtTMDataSet2.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>ExtTMDataSet21.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="ExtTMDataSet2.xss">
-      <DependentUpon>ExtTMDataSet2.xsd</DependentUpon>
     </None>
     <None Include="FormationDS.xsc">
       <DependentUpon>FormationDS.xsd</DependentUpon>

@@ -497,7 +497,7 @@ namespace FieldFormationControl
             //if (_rule2 != "") _titletip += "/" + _rule2;
             //_titletip += ")";
         }
-        internal void SetData(ExtraDS.GiocatoriRow gr, ExtTMDataSet.PortieriNSkillRow gnsr)
+        internal void SetDataGk(ExtraDS.GiocatoriRow gr, ExtTMDataSet.GiocatoriNSkillRow gnsr)
         {
             this.PlName = gr.Nome;
             this.Rules = gr.FP;

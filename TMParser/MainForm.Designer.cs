@@ -2710,7 +2710,7 @@ namespace TMRecorder
             // 
             // portieriNSkillBindingSource
             // 
-            this.portieriNSkillBindingSource.DataMember = "PortieriNSkill";
+            this.portieriNSkillBindingSource.DataMember = "GiocatoriNSkill";
             this.portieriNSkillBindingSource.DataSource = this.extTMDataSet;
             // 
             // tabInfo

@@ -158,7 +158,7 @@ namespace TMRecorder
 
                 if (gr.FPn == 0) // This is a GK
                 {
-                    ExtTMDataSet.PortieriNSkillRow gnsr = History.actualDts.PortieriNSkill.FindByPlayerID(pl.playerID);
+                    ExtTMDataSet.GiocatoriNSkillRow gnsr = History.actualDts.GiocatoriNSkill.FindByPlayerID(pl.playerID);
 
                     vSquad += gnsr.PO;
                 }
@@ -239,7 +239,7 @@ namespace TMRecorder
                     }
                     else
                     {
-                        ExtTMDataSet.PortieriNSkillRow gnsr = History.actualDts.PortieriNSkill.FindByPlayerID(row.PlayerID);
+                        ExtTMDataSet.GiocatoriNSkillRow gnsr = History.actualDts.GiocatoriNSkill.FindByPlayerID(row.PlayerID);
                         pl.value = gnsr.PO;
                     }
                 }

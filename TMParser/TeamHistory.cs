@@ -52,7 +52,7 @@ namespace TMRecorder
         }
     }
 
-    public class ListTrainingDataSet : List<TrainingDataSet>
+    public class ListTrainingDataSet2 : List<TrainingDataSet>
     {
         public bool sorted = false;
 
@@ -95,7 +95,7 @@ namespace TMRecorder
         public Gain_Function PFun = null;
         public ExtraDS PlayersDS = null;
         public float release = 1.0f;
-        public ListTrainingDataSet TrainingHist = new ListTrainingDataSet();
+        public ListTrainingDataSet2 TrainingHist = new ListTrainingDataSet2();
         public TrainersSkills dbTrainers = null;
         public ExtTMDataSet actualDts = null;
         public TeamDS teamDS = new TeamDS();
@@ -425,7 +425,7 @@ namespace TMRecorder
 
                     // Se è arrivato qui vuol dire che non era tra i giocatori, ma è tra i portieri,
                     // oppure a quel tempo non era ancora in squadra
-                    ExtTMDataSet.PortieriNSkillRow prow = tds.PortieriNSkill.FindByPlayerID(grow.PlayerID);
+                    ExtTMDataSet.GiocatoriNSkillRow prow = tds.GiocatoriNSkill.FindByPlayerID(grow.PlayerID);
 
                     if (prow != null)
                     {
@@ -490,7 +490,7 @@ namespace TMRecorder
                     }
 
                     // Se è arrivato qui vuol dire che non era tra i giocatori, ma è tra i portieri
-                    ExtTMDataSet.PortieriNSkillRow prow = tds.PortieriNSkill.FindByPlayerID(grow.PlayerID);
+                    ExtTMDataSet.GiocatoriNSkillRow prow = tds.GiocatoriNSkill.FindByPlayerID(grow.PlayerID);
 
                     if (prow != null)
                     {
@@ -541,35 +541,20 @@ namespace TMRecorder
             {
                 foreach (ExtTMDataSet.GiocatoriNSkillRow edsRow in eds.GiocatoriNSkill)
                 {
-                    edsRow.Cal = (int)(edsRow.Cal);
-                    edsRow.Con = (int)(edsRow.Con);
-                    edsRow.Cro = (int)(edsRow.Cro);
+                    edsRow.Set = (int)(edsRow.Set);
+                    edsRow.Con_Uno = (int)(edsRow.Con_Uno);
+                    edsRow.Cro_Com = (int)(edsRow.Cro_Com);
                     edsRow.Fin = (int)(edsRow.Fin);
                     edsRow.For = (int)(edsRow.For);
-                    edsRow.Mar = (int)(edsRow.Mar);
-                    edsRow.Pas = (int)(edsRow.Pas);
-                    edsRow.Pos = (int)(edsRow.Pos);
+                    edsRow.Mar_Pre = (int)(edsRow.Mar_Pre);
+                    edsRow.Pas_Ele = (int)(edsRow.Pas_Ele);
+                    edsRow.Pos_Aer = (int)(edsRow.Pos_Aer);
                     edsRow.Res = (int)(edsRow.Res);
-                    edsRow.Tec = (int)(edsRow.Tec);
-                    edsRow.Tes = (int)(edsRow.Tes);
-                    edsRow.Tir = (int)(edsRow.Tir);
+                    edsRow.Tec_Tir = (int)(edsRow.Tec_Tir);
+                    edsRow.Tes_Lan = (int)(edsRow.Tes_Lan);
+                    edsRow.Lon = (int)(edsRow.Lon);
                     edsRow.Vel = (int)(edsRow.Vel);
-                    edsRow.Wor = (int)(edsRow.Wor);
-                }
-
-                foreach (ExtTMDataSet.PortieriNSkillRow edsRow in eds.PortieriNSkill)
-                {
-                    edsRow.For = (int)(edsRow.For);
-                    edsRow.Res = (int)(edsRow.Res);
-                    edsRow.Tir = (int)(edsRow.Tir);
-                    edsRow.Vel = (int)(edsRow.Vel);
-                    edsRow.Aer = (int)(edsRow.Aer);
-                    edsRow.Com = (int)(edsRow.Com);
-                    edsRow.Ele = (int)(edsRow.Ele);
-                    edsRow.Lan = (int)(edsRow.Lan);
-                    edsRow.Pre = (int)(edsRow.Pre);
-                    edsRow.Rif = (int)(edsRow.Rif);
-                    edsRow.Uno = (int)(edsRow.Uno);
+                    edsRow.Wor_Rif = (int)(edsRow.Wor_Rif);
                 }
             }
         }
@@ -929,30 +914,6 @@ namespace TMRecorder
             return null;
         }
 
-        internal ExtTMDataSet.GKHistoryDataTable GetGKHistory(int playerID)
-        {
-            ExtTMDataSet.GKHistoryDataTable table = new ExtTMDataSet.GKHistoryDataTable();
-
-            foreach (ExtTMDataSet tds in this)
-            {
-                ExtTMDataSet.PortieriNSkillRow row = null;
-                if ((row = tds.PortieriNSkill.FindByPlayerID(playerID)) != null)
-                {
-                    ExtTMDataSet.GKHistoryRow hrow = (ExtTMDataSet.GKHistoryRow)table.NewRow();
-
-                    for (int i = 1, j = 5; i < hrow.Table.Columns.Count; i++, j++)
-                    {
-                        hrow[i] = row[j];
-                    }
-                    hrow.Date = tds.Date;
-
-                    table.Rows.Add(hrow);
-                }
-            }
-
-            return table;
-        }
-
         internal void LoadTraining_NewTM(DateTime dt, string squad, TrainersSkills trainers)
         {
             try
@@ -1160,7 +1121,7 @@ namespace TMRecorder
                 if (wBorn < egr.wBorn)
                 {
                     egr.wBorn = wBorn;
-                    ExtTMDataSet.PortieriNSkillRow ergr = this.actualDts.PortieriNSkill.FindByPlayerID(gr.PlayerID);
+                    ExtTMDataSet.GiocatoriNSkillRow ergr = this.actualDts.GiocatoriNSkill.FindByPlayerID(gr.PlayerID);
                     ergr.wBorn = wBorn;
                 }
             }
@@ -2424,33 +2385,6 @@ namespace TMRecorder
                     }
                 }
 
-                foreach (ExtTMDataSet.PortieriNSkillRow row in tds.PortieriNSkill)
-                {
-                    if (row.Età <= 18) arow.U18++;
-                    else if (row.Età <= 21) arow.U21++;
-                    else if (row.Età <= 24) arow.U24++;
-                    else if (row.Età <= 30) arow.U30++;
-                    else arow.O30++;
-
-                    grow.SkillCount += row.SkillSum;
-
-                    grow.TotASI += row.ASI;
-
-                    if (lasttds != null)
-                    {
-                        ExtTMDataSet.GiocatoriNSkillRow lastrow = lasttds.GiocatoriNSkill.FindByPlayerID(row.PlayerID);
-
-                        if (lastrow != null)
-                        {
-                            decimal delta = row.SkillSum - lastrow.SkillSum;
-                            if (delta > 0)
-                                grow.DeltaSkillPos += delta;
-                            else
-                                grow.DeltaSkillNeg += delta;
-                        }
-                    }
-                }
-
                 lasttds = tds;
 
                 teamStats.AgeHistory.AddAgeHistoryRow(arow);
@@ -2526,20 +2460,6 @@ namespace TMRecorder
                 ExtTMDataSet.GiocatoriNSkillRow gnsrow = actualDts.GiocatoriNSkill.FindByPlayerID(tdsRow.PlayerID);
                 if (gnsrow != null)
                     gnsrow.TI = gRow.LastTI;
-            }
-
-            foreach (TrainingDataSet.PortieriRow tdsRow in tds.Portieri)
-            {
-                ExtraDS.GiocatoriRow gRow = eds.FindByPlayerID(tdsRow.PlayerID);
-
-                if (gRow == null) continue;
-                gRow.SetTI(tds.Date, tdsRow.TI.ToString());
-                gRow.AvTSI = Common.Utility.WeightedMean(gRow.TSI);
-
-                if (actualDts == null) continue;
-                ExtTMDataSet.PortieriNSkillRow pnsrow = actualDts.PortieriNSkill.FindByPlayerID(tdsRow.PlayerID);
-                if (pnsrow != null)
-                    pnsrow.TI = gRow.LastTI;
             }
         }
 
@@ -2645,13 +2565,15 @@ namespace TMRecorder
             string strToClip = "ID\tNum\tNat\tName\tAge\tFP\tAda\tStr\tSta\tPac\tMar\tTac\tWor\tPos\tPas\tCro\tTec\tHea\tFin\tLon\tSet\tASI\t\r\n";
             foreach (ExtTMDataSet.GiocatoriNSkillRow gr in eds.GiocatoriNSkill)
             {
-                strToClip += gr.ToExcelString() + "\r\n";
+                if (gr.FPn != 0)
+                    strToClip += gr.ToExcelString() + "\r\n";
             }
 
             strToClip += "ID\tNum\tNat\tName\tAge\tStr\tSta\tPac\tHan\tOne\tRef\tAri\tJum\tCom\tKic\tThr\tASI\t\r\n";
-            foreach (ExtTMDataSet.PortieriNSkillRow gr in eds.PortieriNSkill)
+            foreach (ExtTMDataSet.GiocatoriNSkillRow gr in eds.GiocatoriNSkill)
             {
-                strToClip += gr.ToExcelString() + "\r\n";
+                if (gr.FPn == 0)
+                    strToClip += gr.ToExcelString() + "\r\n";
             }
 
 
@@ -2764,48 +2686,6 @@ namespace TMRecorder
                         pr.ManagCost = TraderForm.ManagementCost(pr);
                     }
                 }
-
-                foreach (ExtTMDataSet.PortieriNSkillRow gnr in eds.PortieriNSkill)
-                {
-                    Trading.PlayersRow pr = trading.Players.FindByPlayerID(gnr.PlayerID);
-
-                    if (pr == null)
-                    {
-                        pr = trading.Players.NewPlayersRow();
-
-                        pr.PlayerID = gnr.PlayerID;
-                        string[] strs = gnr.Nome.Split('|');
-                        pr.Name = strs[0];
-                        pr.Nation = gnr.Nationality;
-                        pr.DateAcquire = weekDS;
-                        pr.DateSell = weekDS;
-                        pr.ASIwhenSold = gnr.ASI;
-                        pr.ASIwhenBuyed = gnr.ASI;
-                        pr.WeekInTeam = 1;
-                        pr.Age = gnr.Età;
-
-                        trading.Players.AddPlayersRow(pr);
-                    }
-                    else
-                    {
-                        if (weekDS < pr.DateAcquire)
-                        {
-                            pr.DateAcquire = weekDS;
-                            pr.ASIwhenBuyed = gnr.ASI;
-                            pr.WeekInTeam = pr.DateSell - pr.DateAcquire;
-                        }
-                        if (weekDS > pr.DateSell)
-                        {
-                            pr.DateSell = weekDS;
-                            pr.ASIwhenSold = gnr.ASI;
-                            pr.WeekInTeam = pr.DateSell - pr.DateAcquire;
-                        }
-                        string[] strs = gnr.Nome.Split('|');
-                        pr.Name = strs[0];
-                        pr.Age = gnr.Età;
-                        pr.ManagCost = TraderForm.ManagementCost(pr);
-                    }
-                }
             }
 
             pform.CodeClose();
@@ -2818,7 +2698,7 @@ namespace TMRecorder
             TrainingDataSet tds_in = null;
             int check = 0;
 
-            TrainingHist.Sort(ListTrainingDataSet.CompareTrainingByDate);
+            TrainingHist.Sort(ListTrainingDataSet2.CompareTrainingByDate);
 
             try
             {
@@ -2865,7 +2745,7 @@ namespace TMRecorder
                     tr.Tes = gr.Tes + 2 + (int)gsr.Tes * 100;
                     tr.Tir = gr.Tir + 2 + (int)gsr.Tir * 100;
                     tr.Fin = gr.Fin + 2 + (int)gsr.Fin * 100;
-                    tr.Cal = gr.Cal + 2 + (int)gsr.Cal * 100;
+                    tr.Cal = gr.Cal + 2 + (int)gsr.Set * 100;
                     tr.Cro = gr.Cro + 2 + (int)gsr.Cro * 100;
 
                     check++;
@@ -3110,7 +2990,7 @@ namespace TMRecorder
             TrainingDataSet tds_in = null;
             int check = 0;
 
-            TrainingHist.Sort(ListTrainingDataSet.CompareTrainingByDate);
+            TrainingHist.Sort(ListTrainingDataSet2.CompareTrainingByDate);
 
             try
             {
@@ -3140,7 +3020,7 @@ namespace TMRecorder
                     check++;
                     if (cnt == this.Count * 2) continue; // not found
 
-                    ExtTMDataSet.PortieriNSkillRow gsr = this[ix].PortieriNSkill.FindByPlayerID(playerID);
+                    ExtTMDataSet.GiocatoriNSkillRow gsr = this[ix].GiocatoriNSkill.FindByPlayerID(playerID);
 
                     if (gsr == null) continue;
 
@@ -3415,12 +3295,6 @@ namespace TMRecorder
                     gsr.Rou = (decimal)value;
                 }
 
-                ExtTMDataSet.PortieriNSkillRow psr = actualDts.PortieriNSkill.FindByPlayerID(ID);
-                if (psr != null)
-                {
-                    psr.Rou = (decimal)value;
-                }
-
                 actualDts.RecalculateSpecData(PFun, ID);
             }
             else if (item == "Nome")
@@ -3429,12 +3303,6 @@ namespace TMRecorder
                 if (gsr != null)
                 {
                     gsr.Nome = (string)value;
-                }
-
-                ExtTMDataSet.PortieriNSkillRow psr = actualDts.PortieriNSkill.FindByPlayerID(ID);
-                if (psr != null)
-                {
-                    psr.Nome = (string)value;
                 }
             }
         }

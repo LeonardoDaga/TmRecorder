@@ -755,7 +755,7 @@ namespace FieldFormationControl
         //    _titletip += ")";
         }
 
-        internal void SetData(ExtraDS.GiocatoriRow gr, ExtTMDataSet.PortieriNSkillRow gnsr)
+        internal void SetDataGk(ExtraDS.GiocatoriRow gr, ExtTMDataSet.GiocatoriNSkillRow gnsr)
         {
             this.PlName = gr.Nome;
             this.Rules = gr.FP;

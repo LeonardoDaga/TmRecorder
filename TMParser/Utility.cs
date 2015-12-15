@@ -75,26 +75,8 @@ namespace TMRecorder
             sv += SkillVariation.Calc(actual.Tec, last.Tec);
             sv += SkillVariation.Calc(actual.Tes, last.Tes);
             sv += SkillVariation.Calc(actual.Fin, last.Fin);
-            sv += SkillVariation.Calc(actual.Tir, last.Tir);
-            sv += SkillVariation.Calc(actual.Cal, last.Cal);
-
-            return sv;
-        }
-
-        public static SkillVariation Calc(ExtTMDataSet.GKHistoryRow actual,
-                                          ExtTMDataSet.GKHistoryRow last)
-        {
-            SkillVariation sv = new SkillVariation();
-            sv += SkillVariation.Calc(actual.For, last.For);
-            sv += SkillVariation.Calc(actual.Res, last.Res);
-            sv += SkillVariation.Calc(actual.Vel, last.Vel);
-            sv += SkillVariation.Calc(actual.Pre, last.Pre);
-            sv += SkillVariation.Calc(actual.Uno, last.Uno);
-            sv += SkillVariation.Calc(actual.Rif, last.Rif);
-            sv += SkillVariation.Calc(actual.Aer, last.Aer);
-            sv += SkillVariation.Calc(actual.Ele, last.Ele);
-            sv += SkillVariation.Calc(actual.Com, last.Com);
-            sv += SkillVariation.Calc(actual.Tir, last.Tir);
+            sv += SkillVariation.Calc(actual.Lon, last.Lon);
+            sv += SkillVariation.Calc(actual.Set, last.Set);
 
             return sv;
         }

@@ -1002,9 +1002,9 @@ namespace TMRecorder
             }
             else
             {
-                dataGridGiocatori.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'A'");
-                dataGridGiocatoriB.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'B'");
-                dataGridPortieri.DataSource = History.actualDts.PortieriNSkill;
+                dataGridGiocatori.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'A' AND FPn > 0");
+                dataGridGiocatoriB.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'B' AND FPn > 0");
+                dataGridPortieri.DataSource = History.actualDts.GiocatoriNSkill.Select("FPn = 0");
                 ShowActualPlayers(History.actualDts.Date);
                 dataGridPlayersInfo.DataSource = extraDS.Giocatori;
             }
@@ -1027,9 +1027,9 @@ namespace TMRecorder
 
             if (History.actualDts == null) return;
 
-            dataGridGiocatori.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'A'");
-            dataGridGiocatoriB.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'B'");
-            dataGridPortieri.DataSource = History.actualDts.PortieriNSkill;
+            dataGridGiocatori.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'A' AND FPn > 0");
+            dataGridGiocatoriB.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'B' AND FPn > 0");
+            dataGridPortieri.DataSource = History.actualDts.GiocatoriNSkill.Select("FPn = 0");
 
             if (toolDataList.SelectedIndex == 0) return;
 
@@ -1139,15 +1139,20 @@ namespace TMRecorder
             EvidenceSkillsPortieriForGains();
         }
 
+        private void EvidenceSkillsGiocatori(DataGridView dgGiocatori)
+        {
+            EvidenceSkillsGiocatoriForQuality(dgGiocatori, -1);
+            EvidenceSkillsGiocatoriForGains(dgGiocatori);
+        }
+
         private void EvidenceSkillsPortieriForQuality(int plID)
         {
             for (int i = 0; i < dataGridPortieri.Rows.Count; i++)
             {
                 if (plID != -1)
                 {
-                    System.Windows.Forms.DataGridViewRow dvr = dataGridPortieri.Rows[i];
-                    DataRowView drv = (DataRowView)dvr.DataBoundItem;
-                    ExtTMDataSet.PortieriNSkillRow gsr = (ExtTMDataSet.PortieriNSkillRow)drv.Row;
+                    DataGridViewRow dvr = dataGridPortieri.Rows[i];
+                    ExtTMDataSet.GiocatoriNSkillRow gsr = (ExtTMDataSet.GiocatoriNSkillRow)dvr.DataBoundItem;
 
                     if (plID != gsr.PlayerID)
                         continue;
@@ -1306,13 +1311,13 @@ namespace TMRecorder
             {
                 int ID = (int)dataGridPortieri[0, i].Value;
 
-                ExtTMDataSet.GKHistoryDataTable table = History.GetGKHistory(ID);
+                ExtTMDataSet.PlayerHistoryDataTable table = History.GetPlayerHistory(ID);
 
                 // Find the index corresponding to datetime
                 int ix = 0;
                 for (; ix < table.Rows.Count; ix++)
                 {
-                    ExtTMDataSet.GKHistoryRow gk = (ExtTMDataSet.GKHistoryRow)table.Rows[ix];
+                    ExtTMDataSet.PlayerHistoryRow gk = (ExtTMDataSet.PlayerHistoryRow)table.Rows[ix];
                     if (gk.Date.Date == dt) break;
                 }
 
@@ -1324,15 +1329,15 @@ namespace TMRecorder
                 int ixlast = ix;
                 for (; ixlast >= 0; ixlast--)
                 {
-                    ExtTMDataSet.GKHistoryRow gk = (ExtTMDataSet.GKHistoryRow)table.Rows[ixlast];
+                    ExtTMDataSet.PlayerHistoryRow gk = (ExtTMDataSet.PlayerHistoryRow)table.Rows[ixlast];
                     TmWeek tmwLast = new TmWeek(gk.Date);
                     if (tmwLast.absweek < tmwActual.absweek) break;
                 }
 
                 if (ixlast < 0) continue;
 
-                ExtTMDataSet.GKHistoryRow actual = (ExtTMDataSet.GKHistoryRow)table.Rows[ix];
-                ExtTMDataSet.GKHistoryRow last = (ExtTMDataSet.GKHistoryRow)table.Rows[ixlast];
+                ExtTMDataSet.PlayerHistoryRow actual = (ExtTMDataSet.PlayerHistoryRow)table.Rows[ix];
+                ExtTMDataSet.PlayerHistoryRow last = (ExtTMDataSet.PlayerHistoryRow)table.Rows[ixlast];
 
                 EvidenceDiffForColumn(dataGridPortieri, actual.ASI, last.ASI, i, 5);
                 EvidenceDiffForColumn(dataGridPortieri, actual.For, last.For, i, 6);
@@ -1418,21 +1423,21 @@ namespace TMRecorder
             {
                 int ID = (int)dataGridPortieri[0, i].Value;
 
-                ExtTMDataSet.GKHistoryDataTable table = History.GetGKHistory(ID);
+                ExtTMDataSet.PlayerHistoryDataTable table = History.GetPlayerHistory(ID);
 
                 // Find the index corresponding to datetime
                 int ix = 0;
                 for (; ix < table.Rows.Count; ix++)
                 {
-                    ExtTMDataSet.GKHistoryRow gk = (ExtTMDataSet.GKHistoryRow)table.Rows[ix];
+                    ExtTMDataSet.PlayerHistoryRow gk = (ExtTMDataSet.PlayerHistoryRow)table.Rows[ix];
                     if (gk.Date == dt) break;
                 }
 
                 if (ix == table.Rows.Count) continue;
                 if (ix == 0) continue;
 
-                ExtTMDataSet.GKHistoryRow actual = (ExtTMDataSet.GKHistoryRow)table.Rows[ix];
-                ExtTMDataSet.GKHistoryRow last = (ExtTMDataSet.GKHistoryRow)table.Rows[ix - 1];
+                ExtTMDataSet.PlayerHistoryRow actual = (ExtTMDataSet.PlayerHistoryRow)table.Rows[ix];
+                ExtTMDataSet.PlayerHistoryRow last = (ExtTMDataSet.PlayerHistoryRow)table.Rows[ix - 1];
 
                 sv += SkillVariation.Calc(actual, last);
 
@@ -1484,6 +1489,9 @@ namespace TMRecorder
                 //if (ix == table.Rows.Count) continue;
                 if (ix == 0) continue;
 
+                ExtTMDataSet.PlayerHistoryRow actual = (ExtTMDataSet.PlayerHistoryRow)table.Rows[ix];
+                    if (actual.IsFinNull()) continue;
+
                 int ixlast = ix;
                 for (; ixlast >= 0; ixlast--)
                 {
@@ -1494,7 +1502,6 @@ namespace TMRecorder
 
                 if (ixlast < 0) continue;
 
-                ExtTMDataSet.PlayerHistoryRow actual = (ExtTMDataSet.PlayerHistoryRow)table.Rows[ix];
                 ExtTMDataSet.PlayerHistoryRow last = (ExtTMDataSet.PlayerHistoryRow)table.Rows[ixlast];
 
                 EvidenceDiffForColumn(dgv, actual.ASI, last.ASI, i, 6);
@@ -1510,8 +1517,8 @@ namespace TMRecorder
                 EvidenceDiffForColumn(dgv, actual.Tec, last.Tec, i, 17);
                 EvidenceDiffForColumn(dgv, actual.Tes, last.Tes, i, 18);
                 EvidenceDiffForColumn(dgv, actual.Fin, last.Fin, i, 19);
-                EvidenceDiffForColumn(dgv, actual.Tir, last.Tir, i, 20);
-                EvidenceDiffForColumn(dgv, actual.Cal, last.Cal, i, 21);
+                EvidenceDiffForColumn(dgv, actual.Lon, last.Lon, i, 20);
+                EvidenceDiffForColumn(dgv, actual.Set, last.Set, i, 21);
             }
         }
 
@@ -1576,9 +1583,9 @@ namespace TMRecorder
                 }
                 else
                 {
-                    dataGridGiocatori.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'A'");
-                    dataGridGiocatoriB.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'B'");
-                    dataGridPortieri.DataSource = History.actualDts.PortieriNSkill;
+                    dataGridGiocatori.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'A' AND FPn > 0");
+                    dataGridGiocatoriB.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'B' AND FPn > 0");
+                    dataGridPortieri.DataSource = History.actualDts.GiocatoriNSkill.Select("FPn = 0");
                 }
 
                 UpdateTeamDateList();
@@ -1609,7 +1616,7 @@ namespace TMRecorder
 
             int ID = (int)dataGridPortieri[0, e.RowIndex].Value;
 
-            GKForm pf = new GKForm(History.actualDts.PortieriNSkill, History, ID, AllSeasons);
+            PlayerForm pf = new PlayerForm(History.actualDts.GiocatoriNSkill, History, ID, AllSeasons);
 
             pf.ShowDialog();
 
@@ -1697,18 +1704,18 @@ namespace TMRecorder
             int PlayerID = -1;
             if (dgGiocatori == dataGridPortieri)
             {
-                ExtTMDataSet.PortieriNSkillRow selPlayer = null;
+                ExtTMDataSet.GiocatoriNSkillRow selPlayer = null;
                 if (o.GetType() == typeof(DataGridViewCellEventArgs))
                 {
                     DataGridViewCellEventArgs e = (DataGridViewCellEventArgs)o;
 
                     DataRowView drv = (DataRowView)dgGiocatori.Rows[e.RowIndex].DataBoundItem;
-                    selPlayer = (ExtTMDataSet.PortieriNSkillRow)drv.Row;
+                    selPlayer = (ExtTMDataSet.GiocatoriNSkillRow)drv.Row;
                 }
                 else if (o.GetType() == typeof(EventArgs))
                 {
                     DataRowView drv = (DataRowView)dgGiocatori.SelectedRows[0].DataBoundItem;
-                    selPlayer = (ExtTMDataSet.PortieriNSkillRow)drv.Row;
+                    selPlayer = (ExtTMDataSet.GiocatoriNSkillRow)drv.Row;
                 }
 
                 PlayerID = selPlayer.PlayerID;
@@ -1765,7 +1772,7 @@ namespace TMRecorder
             }
             else
             {
-                GKForm pf = new GKForm(History.actualDts.PortieriNSkill, History, playerID, AllSeasons);
+                PlayerForm pf = new PlayerForm(History.actualDts.GiocatoriNSkill, History, playerID, AllSeasons);
 
                 pf.ShowDialog();
 
@@ -1937,9 +1944,9 @@ namespace TMRecorder
 
             if (History.actualDts != null)
             {
-                dataGridGiocatori.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'A'");
-                dataGridGiocatoriB.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'B'");
-                dataGridPortieri.DataSource = History.actualDts.PortieriNSkill;
+                dataGridGiocatori.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'A' AND FPn > 0");
+                dataGridGiocatoriB.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'B' AND FPn > 0");
+                dataGridPortieri.DataSource = History.actualDts.GiocatoriNSkill.Select("FPn = 0");
             }
 
             isDirty = true;
@@ -1980,8 +1987,8 @@ namespace TMRecorder
                 History.PlayersDS.SetSquad(ID, "A");
             }
 
-            dataGridGiocatori.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'A'");
-            dataGridGiocatoriB.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'B'");
+            dataGridGiocatori.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'A' AND FPn > 0");
+            dataGridGiocatoriB.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'B' AND FPn > 0");
 
             FillForDifferenceGiocatori();
             EvidenceSkillsGiocatoriForQuality();
@@ -1998,8 +2005,8 @@ namespace TMRecorder
                 History.PlayersDS.SetSquad(ID, "B");
             }
 
-            dataGridGiocatori.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'A'");
-            dataGridGiocatoriB.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'B'");
+            dataGridGiocatori.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'A' AND FPn > 0");
+            dataGridGiocatoriB.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'B' AND FPn > 0");
 
             FillForDifferenceGiocatori();
             EvidenceSkillsGiocatoriForQuality();
@@ -2030,11 +2037,11 @@ namespace TMRecorder
 
             if (dgv == dataGridGiocatori)
             {
-                dataGridGiocatori.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'A'", property);
+                dataGridGiocatori.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'A' AND FPn > 0", property);
             }
             else
             {
-                dataGridGiocatoriB.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'B'", property);
+                dataGridGiocatoriB.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'B' AND FPn > 0", property);
             }
 
             FillForDifferenceGiocatori(dgv);
@@ -3711,7 +3718,7 @@ namespace TMRecorder
             if (dgGiocatori == dataGridPortieri)
             {
                 DataRowView drv = (DataRowView)dgGiocatori.SelectedRows[0].DataBoundItem;
-                ExtTMDataSet.PortieriNSkillRow selPlayer = (ExtTMDataSet.PortieriNSkillRow)drv.Row;
+                ExtTMDataSet.GiocatoriNSkillRow selPlayer = (ExtTMDataSet.GiocatoriNSkillRow)drv.Row;
                 playerID = selPlayer.PlayerID;
             }
             else
@@ -3749,7 +3756,7 @@ namespace TMRecorder
             if (dgGiocatori == dataGridPortieri)
             {
                 DataRowView drv = (DataRowView)dgGiocatori.SelectedRows[0].DataBoundItem;
-                ExtTMDataSet.PortieriNSkillRow selPlayer = (ExtTMDataSet.PortieriNSkillRow)drv.Row;
+                ExtTMDataSet.GiocatoriNSkillRow selPlayer = (ExtTMDataSet.GiocatoriNSkillRow)drv.Row;
                 playerID = selPlayer.PlayerID;
             }
             else
@@ -3962,9 +3969,9 @@ namespace TMRecorder
 
             if (History.actualDts != null)
             {
-                dataGridGiocatori.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'A'");
-                dataGridGiocatoriB.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'B'");
-                dataGridPortieri.DataSource = History.actualDts.PortieriNSkill;
+                dataGridGiocatori.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'A' AND FPn > 0");
+                dataGridGiocatoriB.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'B' AND FPn > 0");
+                dataGridPortieri.DataSource = History.actualDts.GiocatoriNSkill.Select("FPn = 0");
             }
 
             isDirty = true;

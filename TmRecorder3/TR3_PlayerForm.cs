@@ -273,8 +273,8 @@ namespace TmRecorder3
             yv[1] = (double)gnsr.Cro;
             yv[2] = (double)gnsr.Tec;
             yv[3] = (double)gnsr.Fin;
-            yv[4] = (double)gnsr.Tir;
-            yv[5] = (double)gnsr.Cal;
+            yv[4] = (double)gnsr.Lon;
+            yv[5] = (double)gnsr.Set;
 
             // Generate a red bar with "Skill Value" in the legend
             trainingPane.CurveList.Clear();

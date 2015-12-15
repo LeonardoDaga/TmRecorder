@@ -184,7 +184,7 @@ namespace TMRecorder
                     continue;
                 }
 
-                ExtTMDataSet.PortieriNSkillRow pr = extDS.PortieriNSkill.FindByPlayerID(row.PlayerID);
+                ExtTMDataSet.GiocatoriNSkillRow pr = extDS.GiocatoriNSkill.FindByPlayerID(row.PlayerID);
                 if (pr != null)
                 {
                     float skVal = pr.PO;

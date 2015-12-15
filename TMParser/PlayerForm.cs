@@ -118,8 +118,8 @@ namespace TMRecorder
 
             if (playerDatarow.FPn == 0)
             {
-                // FillSkillGraph_Gk(table);
-                // FillSpecsGraph_Gk(table);
+                FillSkillGraph_Gk(table);
+                FillSpecsGraph_Gk(table);
                 FillTrainingTable_Gk(playerDatarow.PlayerID);
                 if (tabControlPlayerHistory.TabPages.Contains(tabPageTrainingAndPotential))
                     tabControlPlayerHistory.TabPages.Remove(tabPageTrainingAndPotential);
@@ -282,12 +282,15 @@ namespace TMRecorder
             if (gr.ScoutGiudizio.Contains("Spe=12;")) y[3] = 20;
             if (gr.ScoutGiudizio.Contains("Spe=13;")) y[4] = 20;
             if (gr.ScoutGiudizio.Contains("Spe=14;")) y[5] = 20;
-            yv[0] = (double)gnsr.Pas;
-            yv[1] = (double)gnsr.Cro;
-            yv[2] = (double)gnsr.Tec;
-            yv[3] = (double)gnsr.Fin;
-            yv[4] = (double)gnsr.Tir;
-            yv[5] = (double)gnsr.Cal;
+            yv[0] = (double)gnsr.Pas_Ele;
+            yv[1] = (double)gnsr.Cro_Com;
+            yv[2] = (double)gnsr.Tec_Tir;
+            if (!gnsr.IsFinNull())
+            {
+                yv[3] = (double)gnsr.Fin;
+                yv[4] = (double)gnsr.Lon;
+                yv[5] = (double)gnsr.Set;
+            }
 
             // Generate a red bar with "Skill Value" in the legend
             trainingPane.CurveList.Clear();
@@ -346,10 +349,10 @@ namespace TMRecorder
             if (gr.ScoutGiudizio.Contains("Spe=5;")) y[1] = 20;
             if (gr.ScoutGiudizio.Contains("Spe=6;")) y[2] = 20;
             if (gr.ScoutGiudizio.Contains("Spe=7;")) y[3] = 20;
-            yv[0] = (double)gnsr.Mar;
-            yv[1] = (double)gnsr.Con;
-            yv[2] = (double)gnsr.Wor;
-            yv[3] = (double)gnsr.Pos;
+            yv[0] = (double)gnsr.Mar_Pre;
+            yv[1] = (double)gnsr.Con_Uno;
+            yv[2] = (double)gnsr.Wor_Rif;
+            yv[3] = (double)gnsr.Pos_Aer;
 
             // Generate a red bar with "Skill Value" in the legend
             trainingPane.CurveList.Clear();
@@ -408,7 +411,7 @@ namespace TMRecorder
             yv[0] = (double)gnsr.For;
             yv[1] = (double)gnsr.Res;
             yv[2] = (double)gnsr.Vel;
-            yv[3] = (double)gnsr.Tes;
+            yv[3] = (double)gnsr.Tes_Lan;
 
             // Generate a red bar with "Skill Value" in the legend
             trainingPane.CurveList.Clear();
@@ -643,7 +646,7 @@ namespace TMRecorder
                 string swRelease = "Sw Release:" + Application.ProductName + "("
                     + Application.ProductVersion + ")";
                 string info = "";
-                info += "iActualPlayer:" + actualPlayerCnt.ToString() + "\r\n";
+                info += "actualPlayerCnt:" + actualPlayerCnt.ToString() + "\r\n";
                 info += "cmbSeason.SelectedItem:" + cmbSeason.SelectedItem.ToString() + "\r\n";
                 info += "Program.Setts.MatchTypes:" + Program.Setts.MatchTypes + "\r\n";
 
@@ -1156,7 +1159,7 @@ namespace TMRecorder
             playerData.PlayerRow = teamDS.GiocatoriNSkill.FromExtraDSGiocatoriRow(playerDatarow, gRow);
         }
 
-        internal void FillSkillGraph_Gk(ExtTMDataSet.GKHistoryDataTable table)
+        internal void FillSkillGraph_Gk(ExtTMDataSet.PlayerHistoryDataTable table)
         {
             MasterPane master = graphSkills.MasterPane;
 
@@ -1189,7 +1192,7 @@ namespace TMRecorder
 
             for (int i = 0; i < table.Rows.Count; i++)
             {
-                ExtTMDataSet.GKHistoryRow pr = (ExtTMDataSet.GKHistoryRow)table.Rows[i];
+                ExtTMDataSet.PlayerHistoryRow pr = (ExtTMDataSet.PlayerHistoryRow)table.Rows[i];
 
                 dDataFor[i] = (double)pr.For;
                 dDataVel[i] = (double)pr.Vel;
@@ -1434,20 +1437,24 @@ namespace TMRecorder
             {
                 ExtTMDataSet.PlayerHistoryRow pr = (ExtTMDataSet.PlayerHistoryRow)table.Rows[i];
 
-                dDataCal[i] = (double)pr.Cal;
-                dDataCon[i] = (double)pr.Con;
-                dDataCro[i] = (double)pr.Cro;
-                dDataFin[i] = (double)pr.Fin;
+                if (!pr.IsFinNull())
+                {
+                    dDataCal[i] = (double)pr.Set;
+                    dDataFin[i] = (double)pr.Fin;
+                    dDataTir[i] = (double)pr.Lon;
+                }
+
+                dDataCon[i] = (double)pr.Con_Uno;
+                dDataCro[i] = (double)pr.Cro_Com;
                 dDataFor[i] = (double)pr.For;
-                dDataHea[i] = (double)pr.Tes;
-                dDataMar[i] = (double)pr.Mar;
-                dDataPas[i] = (double)pr.Pas;
-                dDataPos[i] = (double)pr.Pos;
+                dDataHea[i] = (double)pr.Tes_Lan;
+                dDataMar[i] = (double)pr.Mar_Pre;
+                dDataPas[i] = (double)pr.Pas_Ele;
+                dDataPos[i] = (double)pr.Pos_Aer;
                 dDataRes[i] = (double)pr.Res;
-                dDataTec[i] = (double)pr.Tec;
-                dDataTir[i] = (double)pr.Tir;
+                dDataTec[i] = (double)pr.Tec_Tir;
                 dDataVel[i] = (double)pr.Vel;
-                dDataWor[i] = (double)pr.Wor;
+                dDataWor[i] = (double)pr.Wor_Rif;
                 xdate[i] = (double)new XDate(pr.Date);
             }
 
@@ -1707,7 +1714,7 @@ namespace TMRecorder
             {
                 ExtTMDataSet.PlayerHistoryRow pr = (ExtTMDataSet.PlayerHistoryRow)table.Rows[i];
 
-                dDC[i] = pr.DC;
+                dDC[i] = pr.DC_GK;
                 dDL[i] = pr.DL;
                 dDR[i] = pr.DR;
                 dDMC[i] = pr.DMC;
@@ -1914,6 +1921,75 @@ namespace TMRecorder
                 // Manually set the x axis range
                 //pane.YAxis.Scale.Min = 0;
                 //pane.YAxis.Scale.Max = 100;
+                pane.YAxis.Scale.MajorStep = 5;
+                pane.YAxis.Scale.MinorStep = 1;
+
+                master.Add(pane);
+            }
+
+            // Tell ZedGraph to auto layout all the panes
+            using (Graphics g = graphSkills.CreateGraphics())
+            {
+                master.SetLayout(g, PaneLayout.SquareColPreferred);
+                master.AxisChange(g);
+            }
+        }
+
+        internal void FillSpecsGraph_Gk(ExtTMDataSet.PlayerHistoryDataTable table)
+        {
+            MasterPane master = graphSpecs.MasterPane;
+
+            // Remove the default pane that comes with the ZedGraphControl.MasterPane
+            master.PaneList.Clear();
+
+            // Set the master pane title
+            master.Title.Text = "Specialities History";
+            master.Title.IsVisible = true;
+
+            // Fill the axis background with a color gradient
+            master.Fill = new Fill(Color.FromArgb(255, 255, 245), Color.FromArgb(255, 255, 190), 90F);
+
+            // Set the margins and the space between panes to 10 points
+            master.Margin.All = 10;
+            master.InnerPaneGap = 10;
+
+            double[] dGK = new double[table.Rows.Count];
+            double[] xdate = new double[table.Rows.Count];
+
+            for (int i = 0; i < table.Rows.Count; i++)
+            {
+                ExtTMDataSet.PlayerHistoryRow pr = (ExtTMDataSet.PlayerHistoryRow)table.Rows[i];
+
+                dGK[i] = pr.DC_GK;
+                xdate[i] = (double)new XDate(pr.Date);
+            }
+
+            LineItem myCurve;
+
+            // 1o grafico
+            {
+                GraphPane pane = new GraphPane();
+
+                pane.Title.Text = "GK Speciality";
+                pane.YAxis.Title.Text = "Specs Value";
+                pane.XAxis.Title.Text = "Weeks";
+                pane.XAxis.Type = AxisType.Date;
+                pane.XAxis.Scale.MajorStep = 7;
+                pane.XAxis.Scale.MinorStep = 7;
+                pane.XAxis.Scale.MajorUnit = DateUnit.Day;
+                pane.XAxis.Scale.Format = "TW";
+
+                // Fill the axis background with a color gradient
+                pane.Chart.Fill = new Fill(Color.FromArgb(255, 255, 245), Color.FromArgb(255, 255, 190), 90F);
+
+                // Generate a red curve with "For" in the legend
+                myCurve = pane.AddCurve("GK", xdate, dGK, Color.DarkGreen);
+
+                // Make the symbols opaque by filling them with white
+                myCurve.Symbol.Type = SymbolType.Circle;
+                myCurve.Symbol.Fill = new Fill(Color.White);
+
+                // Manually set the x axis range
                 pane.YAxis.Scale.MajorStep = 5;
                 pane.YAxis.Scale.MinorStep = 1;
 

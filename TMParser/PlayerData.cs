@@ -32,10 +32,10 @@ namespace TMRecorder
                 lblRes.Text = pr.Res.ToString();
                 lblTec.Text = pr.Tec.ToString();
                 lblTes.Text = pr.Tes.ToString();
-                lblDis.Text = pr.Tir.ToString();
+                lblDis.Text = pr.Lon.ToString();
                 lblVel.Text = pr.Vel.ToString();
                 lblImp.Text = pr.Wor.ToString();
-                lblCP.Text = pr.Cal.ToString();
+                lblCP.Text = pr.Set.ToString();
             }
         }
     }

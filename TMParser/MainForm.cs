@@ -1702,55 +1702,34 @@ namespace TMRecorder
                 return;
 
             int PlayerID = -1;
-            if (dgGiocatori == dataGridPortieri)
+            if (o.GetType() == typeof(DataGridViewCellEventArgs))
             {
-                ExtTMDataSet.GiocatoriNSkillRow selPlayer = null;
-                if (o.GetType() == typeof(DataGridViewCellEventArgs))
-                {
-                    DataGridViewCellEventArgs e = (DataGridViewCellEventArgs)o;
+                DataGridViewCellEventArgs e = (DataGridViewCellEventArgs)o;
 
+                if (dgGiocatori.Rows[e.RowIndex].DataBoundItem.GetType() == typeof(DataRowView))
+                {
                     DataRowView drv = (DataRowView)dgGiocatori.Rows[e.RowIndex].DataBoundItem;
-                    selPlayer = (ExtTMDataSet.GiocatoriNSkillRow)drv.Row;
+                    ExtraDS.GiocatoriRow selPlayer = (ExtraDS.GiocatoriRow)drv.Row;
+                    PlayerID = selPlayer.PlayerID;
                 }
-                else if (o.GetType() == typeof(EventArgs))
+                else
+                {
+                    ExtTMDataSet.GiocatoriNSkillRow selPlayer = (ExtTMDataSet.GiocatoriNSkillRow)dgGiocatori.Rows[e.RowIndex].DataBoundItem;
+                    PlayerID = selPlayer.PlayerID;
+                }
+            }
+            else if (o.GetType() == typeof(EventArgs))
+            {
+                if (dgGiocatori.SelectedRows[0].DataBoundItem.GetType() == typeof(DataRowView))
                 {
                     DataRowView drv = (DataRowView)dgGiocatori.SelectedRows[0].DataBoundItem;
-                    selPlayer = (ExtTMDataSet.GiocatoriNSkillRow)drv.Row;
+                    ExtraDS.GiocatoriRow selPlayer = (ExtraDS.GiocatoriRow)drv.Row;
+                    PlayerID = selPlayer.PlayerID;
                 }
-
-                PlayerID = selPlayer.PlayerID;
-            }
-            else
-            {
-                if (o.GetType() == typeof(DataGridViewCellEventArgs))
+                else
                 {
-                    DataGridViewCellEventArgs e = (DataGridViewCellEventArgs)o;
-
-                    if (dgGiocatori.Rows[e.RowIndex].DataBoundItem.GetType() == typeof(DataRowView))
-                    {
-                        DataRowView drv = (DataRowView)dgGiocatori.Rows[e.RowIndex].DataBoundItem;
-                        ExtraDS.GiocatoriRow selPlayer = (ExtraDS.GiocatoriRow)drv.Row;
-                        PlayerID = selPlayer.PlayerID;
-                    }
-                    else
-                    {
-                        ExtTMDataSet.GiocatoriNSkillRow selPlayer = (ExtTMDataSet.GiocatoriNSkillRow)dgGiocatori.Rows[e.RowIndex].DataBoundItem;
-                        PlayerID = selPlayer.PlayerID;
-                    }
-                }
-                else if (o.GetType() == typeof(EventArgs))
-                {
-                    if (dgGiocatori.SelectedRows[0].DataBoundItem.GetType() == typeof(DataRowView))
-                    {
-                        DataRowView drv = (DataRowView)dgGiocatori.SelectedRows[0].DataBoundItem;
-                        ExtraDS.GiocatoriRow selPlayer = (ExtraDS.GiocatoriRow)drv.Row;
-                        PlayerID = selPlayer.PlayerID;
-                    }
-                    else
-                    {
-                        ExtTMDataSet.GiocatoriNSkillRow selPlayer = (ExtTMDataSet.GiocatoriNSkillRow)dgGiocatori.SelectedRows[0].DataBoundItem;
-                        PlayerID = selPlayer.PlayerID;
-                    }
+                    ExtTMDataSet.GiocatoriNSkillRow selPlayer = (ExtTMDataSet.GiocatoriNSkillRow)dgGiocatori.SelectedRows[0].DataBoundItem;
+                    PlayerID = selPlayer.PlayerID;
                 }
             }
 

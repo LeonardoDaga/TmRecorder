@@ -1205,6 +1205,7 @@ namespace Common
                     float[] f = value;
 
                     DC_GK = f[0];
+                    if (f.Length == 1) return;
                     DR = f[1];
                     DL = f[2];
                     DMC = f[3];

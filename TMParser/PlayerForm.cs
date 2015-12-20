@@ -486,7 +486,7 @@ namespace TMRecorder
             trainingPane.BarSettings.Base = BarBase.Y;
             trainingPane.YAxis.Type = AxisType.Text;
             trainingPane.YAxis.Scale.TextLabels = labels;
-            trainingPane.XAxis.Scale.Max = 10;
+            trainingPane.XAxis.Scale.Max = 20;
 
             // Fill the axis background with a color gradient
             trainingPane.Chart.Fill = new Fill(Color.White, Color.LightGoldenrodYellow, 45.0F);

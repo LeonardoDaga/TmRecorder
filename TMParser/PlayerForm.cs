@@ -221,6 +221,16 @@ namespace TMRecorder
             finDataGridViewTextBoxColumn.Visible = false;
             setDataGridViewTextBoxColumn.Visible = false;
             lonDataGridViewTextBoxColumn.Visible = false;
+            trainingTypesColumn.Visible = false;
+
+            this.marDataGridViewTextBoxColumn.HeaderText = Current.Language.Han;
+            this.conDataGridViewTextBoxColumn.HeaderText = Current.Language.One;
+            this.worDataGridViewTextBoxColumn.HeaderText = Current.Language.Ref;
+            this.posDataGridViewTextBoxColumn.HeaderText = Current.Language.Ari;
+            this.pasDataGridViewTextBoxColumn.HeaderText = Current.Language.Jum;
+            this.croDataGridViewTextBoxColumn.HeaderText = Current.Language.Com;
+            this.tecDataGridViewTextBoxColumn.HeaderText = Current.Language.Kic;
+            this.tesDataGridViewTextBoxColumn.HeaderText = Current.Language.Thr;
 
             playerTraining.Clear();
 
@@ -234,6 +244,19 @@ namespace TMRecorder
             finDataGridViewTextBoxColumn.Visible = true;
             setDataGridViewTextBoxColumn.Visible = true;
             lonDataGridViewTextBoxColumn.Visible = true;
+            trainingTypesColumn.Visible = true;
+
+            this.marDataGridViewTextBoxColumn.HeaderText = Current.Language.Mar;
+            this.conDataGridViewTextBoxColumn.HeaderText = Current.Language.Tak;
+            this.worDataGridViewTextBoxColumn.HeaderText = Current.Language.Wor;
+            this.posDataGridViewTextBoxColumn.HeaderText = Current.Language.Pos;
+            this.pasDataGridViewTextBoxColumn.HeaderText = Current.Language.Pas;
+            this.croDataGridViewTextBoxColumn.HeaderText = Current.Language.Cro;
+            this.tecDataGridViewTextBoxColumn.HeaderText = Current.Language.Tec;
+            this.tesDataGridViewTextBoxColumn.HeaderText = Current.Language.Hea;
+            this.finDataGridViewTextBoxColumn.HeaderText = Current.Language.Fin;
+            this.lonDataGridViewTextBoxColumn.HeaderText = Current.Language.Lon;
+            this.setDataGridViewTextBoxColumn.HeaderText = Current.Language.Set;
 
             playerTraining.Clear();
 
@@ -2331,6 +2354,7 @@ namespace TMRecorder
             if (tsi == null)
             {
                 // gKToolStripMenuItem.DropDownItems.Clear();
+                gkGoalkeepersToolStripMenuItem.DropDownItems.Clear();
                 dDefendersToolStripMenuItem.DropDownItems.Clear();
                 dMDefenderMidfieldersToolStripMenuItem.DropDownItems.Clear();
                 mMidfieldersToolStripMenuItem.DropDownItems.Clear();
@@ -2350,7 +2374,8 @@ namespace TMRecorder
 
                 if (fp == "GK")
                 {
-                    // gKToolStripMenuItem.DropDownItems.Add(itsi);
+                    if (!FindItemInMenu(gkGoalkeepersToolStripMenuItem, itsi.Text))
+                        gkGoalkeepersToolStripMenuItem.DropDownItems.Add(itsi);
                 }
                 if ((fp == "DC") || (fp == "DL") || (fp == "DR"))
                 {

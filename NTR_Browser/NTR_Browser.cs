@@ -233,24 +233,54 @@ namespace NTR_WebBrowser
 
             try
             {
+                OperatingSystem os = Environment.OSVersion;
+                PlatformID pid = os.Platform;
                 DirectoryInfo di = new DirectoryInfo(xulDir);
-                if (di.Exists)
+                switch (pid)
                 {
-                    FileInfo[] fis = di.GetFiles("xul.dll");
-                    if (fis.Length == 0)
-                    {
-                        string message = string.Format("The folder {0} does not contain the xul DLL. Press OK to select another folder, otherwise press CANCEL to close the application.", xulDir)
-                            + string.Format("\nIf you want to download XUL, see instructions in {0}", TM_Pages.TmrWebSiteXul);
-                        if (MessageBox.Show(message, "XP and Linux versions need XUL!", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
+                    case PlatformID.Win32NT:
+                    case PlatformID.Win32S:
+                    case PlatformID.Win32Windows:
+                        if (di.Exists)
+                        {
+                            FileInfo[] fis = di.GetFiles("xul.dll");
+                            if (fis.Length == 0)
+                            {
+                                string message = string.Format("The folder {0} does not contain the xul DLL. Press OK to select another folder, otherwise press CANCEL to close the application.", xulDir)
+                                    + string.Format("\nIf you want to download XUL, see instructions in {0}", TM_Pages.TmrWebSiteXul);
+                                if (MessageBox.Show(message, "XP and Linux versions need XUL!", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
+                                    xulFound = false;
+                            }
+                            else
+                                xulFound = true;
+                        }
+                        else
+                        {
                             xulFound = false;
-                    }
-                    else
-                        xulFound = true;
-                }
-                else
-                {
-                    xulFound = false;
-                }
+                        }
+                        break;
+                    case PlatformID.Unix:
+                        if (di.Exists)
+                        {
+                            FileInfo[] fis = di.GetFiles("xulrunner");
+                            if (fis.Length == 0)
+                            {
+                                string message = string.Format("The folder {0} does not contain the xul DLL. Press OK to select another folder, otherwise press CANCEL to close the application.", xulDir)
+                                    + string.Format("\nIf you want to download XUL, see instructions in {0}", TM_Pages.TmrWebSiteXul);
+                                if (MessageBox.Show(message, "XP and Linux versions need XUL!", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
+                                    xulFound = false;
+                            }
+                            else
+                                xulFound = true;
+                        }
+                        else
+                        {
+                            xulFound = false;
+                        }
+                        break;
+                    default:
+                        break;
+                }           
             }
             catch (Exception)
             {
@@ -719,17 +749,6 @@ namespace NTR_WebBrowser
 
             try
             {
-                using (AutoJSContext java = new AutoJSContext(webBrowser.Window.JSContext))
-                {
-                    string result;
-                    if (!java.EvaluateScript(Resources.get_players_training_loader,
-                        (nsISupports)webBrowser.Window.DomWindow,
-                        out result))
-                    {
-                        pl_data = result;
-                    }
-                }
-
                 pl_data = AppendScriptAndExecute(Resources.get_players_training_loader,
                                                 "get_players_training()");
             }

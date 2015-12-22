@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using Gecko;
 using NTR_WebBrowser.Properties;
 using Common;
 using System.IO;
 using System.Collections.Generic;
+using mshtml;
 
 namespace NTR_WebBrowser
 {
@@ -102,7 +102,7 @@ namespace NTR_WebBrowser
         public int ActualPlayerID { get; private set; }
         public ReportParser SelectedReportParser { get; set; }
 
-        private GeckoWebBrowser webBrowser;
+        private WebBrowser webBrowser;
 
         public event ImportedContentHandler ImportedContent;
 
@@ -112,7 +112,7 @@ namespace NTR_WebBrowser
 
             if (!IsInDesignMode())
             {
-                webBrowser = new GeckoWebBrowser();
+                webBrowser = new WebBrowser();
                 webBrowser.Location = new System.Drawing.Point(3, 54);
                 webBrowser.Width = this.Width - 6;
                 webBrowser.Height = this.Height - 44;
@@ -120,42 +120,12 @@ namespace NTR_WebBrowser
                     | System.Windows.Forms.AnchorStyles.Left)
                     | System.Windows.Forms.AnchorStyles.Right)));
                 this.webBrowser.Name = "webBrowser";
-                this.webBrowser.UseHttpActivityObserver = false;
-                this.webBrowser.DocumentCompleted += new System.EventHandler<Gecko.Events.GeckoDocumentCompletedEventArgs>(this.webBrowser_DocumentCompleted);
-                this.webBrowser.ProgressChanged += new System.EventHandler<Gecko.GeckoProgressEventArgs>(this.webBrowser_ProgressChanged);
+                this.webBrowser.DocumentCompleted += webBrowser_DocumentCompleted;
+                this.webBrowser.ProgressChanged += webBrowser_ProgressChanged;
                 this.webBrowser.Navigating += WebBrowser_Navigating;
-                this.webBrowser.WindowClosed += WebBrowser_WindowClosed;
                 this.webBrowser.Visible = true;
                 this.Controls.Add(webBrowser);
             }
-        }
-
-        private void WebBrowser_WindowClosed(object sender, EventArgs e)
-        {
-            //webBrowser.Stop();
-            //webBrowser.Dispose();            
-        }
-
-        private void WebBrowser_Navigating(object sender, Gecko.Events.GeckoNavigatingEventArgs e)
-        {
-            string address = e.Uri.AbsoluteUri;
-
-            if ((address.Contains(TM_Pages.Players)) && (address != StartnavigationAddress))
-            {
-                int playerID = 0;
-                string number = HTML_Parser.GetNumberAfter(address, TM_Pages.Players);
-                if (int.TryParse(number, out playerID))
-                {
-                    if (playerID != ActualPlayerID)
-                    {
-                        webBrowser.Stop();
-                        GotoPlayer(playerID, this.navigationType);
-                    }
-                }
-            }
-
-            NavigationAddress = address;
-            StartnavigationAddress = address;
         }
 
         public static bool IsInDesignMode()
@@ -165,11 +135,6 @@ namespace NTR_WebBrowser
                 return true;
             }
             return false;
-        }
-
-        public void SetXUL(string xulRunnerPath)
-        {
-            Gecko.Xpcom.Initialize(xulRunnerPath);
         }
 
         private void NTR_Browser_Load(object sender, EventArgs e)
@@ -187,43 +152,6 @@ namespace NTR_WebBrowser
 
         public bool CheckXulInitialization()
         {
-            string xulRunnerPath = Properties.Settings.Default.xulRunnerPath;
-
-            if (!XulInitialized)
-            {
-                bool xulFound = CheckXulDir(xulRunnerPath);
-
-                if (!xulFound)
-                {
-                    FolderBrowserDialog fbd = new FolderBrowserDialog();
-                    fbd.SelectedPath = xulRunnerPath;
-                    fbd.Description = "Select the Folder where the XUL dll is located";
-                    if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                    {
-                        xulRunnerPath = fbd.SelectedPath;
-                        xulFound = CheckXulDir(xulRunnerPath);
-                    }
-                }
-
-                if (!xulFound)
-                {
-                    MessageBox.Show("This application needs XUL, sorry");
-                    return false;
-                }
-
-                if (xulFound)
-                {
-                    SetXUL(xulRunnerPath);
-                    XulInitialized = true;
-                }
-            }
-
-            if (xulRunnerPath != Properties.Settings.Default.xulRunnerPath)
-            {
-                Properties.Settings.Default.xulRunnerPath = xulRunnerPath;
-                Properties.Settings.Default.Save();
-            }
-
             return true;
         }
 
@@ -300,7 +228,7 @@ namespace NTR_WebBrowser
 
         private void tsbUpdate_Click(object sender, EventArgs e)
         {
-            webBrowser.Reload();
+            webBrowser.Refresh();
         }
 
         #region Getting Browser Content functions
@@ -385,7 +313,7 @@ namespace NTR_WebBrowser
             }
             else
             {
-                doctext = "Doc Text: \n" + webBrowser.Document.TextContent;
+                doctext = "Doc Text: \n" + webBrowser.DocumentText;
             }
 
             return doctext;
@@ -399,9 +327,9 @@ namespace NTR_WebBrowser
             return resultBase + resultExtra;
         }
 
-        public string ParsePlayerPage_Extras(GeckoDocument htmlDocument)
+        public string ParsePlayerPage_Extras(HtmlDocument htmlDocument)
         {
-            GeckoElement hidden = htmlDocument.GetElementById("hidden_skill_table");
+            HtmlElement hidden = htmlDocument.GetElementById("hidden_skill_table");
             var element = hidden.GetElementsByTagName("td");
 
             string result = "";
@@ -429,13 +357,13 @@ namespace NTR_WebBrowser
             return result;
         }
 
-        public string ParsePlayerPage(GeckoDocument htmlDocument)
+        public string ParsePlayerPage(HtmlDocument htmlDocument)
         {
-            GeckoElement element = htmlDocument.GetElementById("player_scout_new");
-            var elementCollection = element.GetElementsByTagName("tr");
+            HtmlElement element = htmlDocument.GetElementById("player_scout_new");
+            HtmlElementCollection elementCollection = element.GetElementsByTagName("tr");
 
             string result = "";
-            string page = ((Gecko.GeckoHtmlElement)htmlDocument.DocumentElement).InnerHtml;
+            string page = webBrowser.DocumentText;
 
             // Import only the report to analyze it
             string report = HTML_Parser.CutBefore(page, "player_scout_new");
@@ -463,26 +391,26 @@ namespace NTR_WebBrowser
                 string ScoutGiudizio = "";
                 string ScoutInfo = "";
 
-                foreach (var child in element.ChildNodes)
+                foreach (var child in element.Children)
                 {
-                    if (((Gecko.GeckoHtmlElement)child).InnerHtml.Contains("<tbody>"))
+                    if (((HtmlElement)child).InnerHtml.Contains("<tbody>"))
                     {
-                        var rows = ((Gecko.GeckoHtmlElement)child).GetElementsByTagName("tr");
+                        var rows = ((HtmlElement)child).GetElementsByTagName("tr");
                         foreach (var row in rows)
                         {
-                            var cols = ((Gecko.GeckoHtmlElement)row).GetElementsByTagName("td");
+                            var cols = ((HtmlElement)row).GetElementsByTagName("td");
 
-                            if ((cols == null) || (cols.Length < 8))
+                            if ((cols == null) || (cols.Count < 8))
                                 continue;
 
-                            string name = ((Gecko.GeckoHtmlElement)(cols[0])).InnerHtml;
-                            string sen = ((Gecko.GeckoHtmlElement)(cols[1])).InnerHtml;
-                            string yth = ((Gecko.GeckoHtmlElement)(cols[2])).InnerHtml;
-                            string phy = ((Gecko.GeckoHtmlElement)(cols[3])).InnerHtml;
-                            string tac = ((Gecko.GeckoHtmlElement)(cols[4])).InnerHtml;
-                            string tec = ((Gecko.GeckoHtmlElement)(cols[5])).InnerHtml;
-                            string dev = ((Gecko.GeckoHtmlElement)(cols[6])).InnerHtml;
-                            string psy = ((Gecko.GeckoHtmlElement)(cols[7])).InnerHtml;
+                            string name = ((HtmlElement)(cols[0])).InnerHtml;
+                            string sen = ((HtmlElement)(cols[1])).InnerHtml;
+                            string yth = ((HtmlElement)(cols[2])).InnerHtml;
+                            string phy = ((HtmlElement)(cols[3])).InnerHtml;
+                            string tac = ((HtmlElement)(cols[4])).InnerHtml;
+                            string tec = ((HtmlElement)(cols[5])).InnerHtml;
+                            string dev = ((HtmlElement)(cols[6])).InnerHtml;
+                            string psy = ((HtmlElement)(cols[7])).InnerHtml;
 
                             ScoutInfo += "Name:" + name;
                             ScoutInfo += ",Sen:" + sen;
@@ -496,17 +424,17 @@ namespace NTR_WebBrowser
 
                         ScoutInfo = ScoutInfo.TrimEnd('|');
                     }
-                    else if (((Gecko.GeckoHtmlElement)child).InnerHtml.Contains("report_header"))
+                    else if (((HtmlElement)child).InnerHtml.Contains("report_header"))
                     {
-                        var div = ((Gecko.GeckoHtmlElement)child).GetElementsByTagName("div");
+                        var div = ((HtmlElement)child).GetElementsByTagName("div");
 
-                        ScoutName += HTML_Parser.GetTag(((Gecko.GeckoHtmlElement)(div[0])).InnerHtml, "strong") + "|";
+                        ScoutName += HTML_Parser.GetTag(((HtmlElement)(div[0])).InnerHtml, "strong") + "|";
 
-                        string date = HTML_Parser.GetTag(((Gecko.GeckoHtmlElement)(div[0])).InnerHtml, "span").TrimStart('(').TrimEnd(')');
+                        string date = HTML_Parser.GetTag(((HtmlElement)(div[0])).InnerHtml, "span").TrimStart('(').TrimEnd(')');
                         DateTime dt = DateTime.Parse(date);
                         ScoutDate += TmWeek.ToSWDString(dt) + "|";
 
-                        string age = HTML_Parser.GetFirstNumberInString(((Gecko.GeckoHtmlElement)(div[2])).InnerHtml);
+                        string age = HTML_Parser.GetFirstNumberInString(((HtmlElement)(div[2])).InnerHtml);
 
                         string giudizio = "";
                         giudizio += "Age:" + age + ",";
@@ -523,7 +451,7 @@ namespace NTR_WebBrowser
                         int aggressivity = 0;
                         int potential = 0;
 
-                        string field = ((Gecko.GeckoHtmlElement)(div[3])).InnerHtml;
+                        string field = ((HtmlElement)(div[3])).InnerHtml;
                         if (field.Contains(this.SelectedReportParser.Dict["Keys"][(int)ReportParser.Keys.Potential]))
                         {
                             // It's the potential
@@ -540,9 +468,9 @@ namespace NTR_WebBrowser
                             return "";
                         }
 
-                        if (div.Length > 5)
+                        if (div.Count > 5)
                         {
-                            field = ((Gecko.GeckoHtmlElement)(div[4])).InnerHtml;
+                            field = ((HtmlElement)(div[4])).InnerHtml;
                             if (field.Contains(SelectedReportParser.Dict["Keys"][(int)ReportParser.Keys.BloomStatus]))
                             {
                                 // It's the bloom status
@@ -558,7 +486,7 @@ namespace NTR_WebBrowser
                                 }
                             }
 
-                            field = ((Gecko.GeckoHtmlElement)(div[5])).InnerHtml;
+                            field = ((HtmlElement)(div[5])).InnerHtml;
                             if (field.Contains(SelectedReportParser.Dict["Keys"][(int)ReportParser.Keys.DevStatus]))
                             {
                                 // It's the DevStatus
@@ -566,7 +494,7 @@ namespace NTR_WebBrowser
                                 dev_status = SelectedReportParser.find("Development", devstats[1]);
                             }
 
-                            field = ((Gecko.GeckoHtmlElement)(div[6])).InnerHtml;
+                            field = ((HtmlElement)(div[6])).InnerHtml;
                             if (field.Contains(SelectedReportParser.Dict["Keys"][(int)ReportParser.Keys.Speciality]))
                             {
                                 // It's the Speciality
@@ -581,7 +509,7 @@ namespace NTR_WebBrowser
                                 }
                             }
 
-                            field = ((Gecko.GeckoHtmlElement)child).InnerHtml;
+                            field = ((HtmlElement)child).InnerHtml;
                             if (field.Contains("Should Develop:"))
                             {
                                 physique = SelectedReportParser.find("Physique", field, physique);
@@ -719,19 +647,8 @@ namespace NTR_WebBrowser
 
             try
             {
-                using (AutoJSContext java = new AutoJSContext(webBrowser.Window.JSContext))
-                {
-                    string result;
-                    if (!java.EvaluateScript(Resources.get_players_training_loader,
-                        (nsISupports)webBrowser.Window.DomWindow,
-                        out result))
-                    {
-                        pl_data = result;
-                    }
-                }
-
                 pl_data = AppendScriptAndExecute(Resources.get_players_training_loader,
-                                                "get_players_training()");
+                                                "get_players_training");
             }
             catch (Exception ex)
             {
@@ -750,26 +667,24 @@ namespace NTR_WebBrowser
 
         private void AppendScript(string script)
         {
-            GeckoElement scriptEl = webBrowser.Document.CreateElement("script");
-            scriptEl.TextContent = script;
-            webBrowser.Document.Head.AppendChild(scriptEl);
+            HtmlElement head = webBrowser.Document.GetElementsByTagName("head")[0];
+            HtmlElement scriptEl = webBrowser.Document.CreateElement("script");
+            IHTMLScriptElement element = (IHTMLScriptElement)scriptEl.DomElement;
+            element.text = script;
+            HtmlElement res = head.AppendChild(scriptEl);
         }
 
         private string ExecuteScript(string command)
         {
             string pl_data;
 
-            using (var java = new AutoJSContext(webBrowser.Window.JSContext))
+            try
             {
-                try
-                {
-                    JsVal result = java.EvaluateScript(command, webBrowser.Window.DomWindow);
-                    pl_data = result.ToString();
-                }
-                catch (Exception ex)
-                {
-                    pl_data = "";
-                }
+                pl_data = (string)webBrowser.Document.InvokeScript("get_players");
+            }
+            catch (Exception)
+            {
+                pl_data = "";
             }
 
             return pl_data;
@@ -783,7 +698,7 @@ namespace NTR_WebBrowser
             try
             {
                 pl_data = AppendScriptAndExecute(Resources.players_loader,
-                                                "get_players()");
+                                                "get_players");
             }
             catch (Exception ex)
             {
@@ -800,7 +715,7 @@ namespace NTR_WebBrowser
             try
             {
                 pl_data = AppendScriptAndExecute(Resources.player_info_loader,
-                                                "get_player_info()");
+                                                "get_player_info");
             }
             catch (Exception ex)
             {
@@ -818,9 +733,9 @@ namespace NTR_WebBrowser
             {
                 AppendScript(Resources.match_loader);
 
-                string lineup = ExecuteScript("get_lineup()");
-                string match_info = ExecuteScript("get_match_info()");
-                string report = ExecuteScript("get_report()");
+                string lineup = ExecuteScript("get_lineup");
+                string match_info = ExecuteScript("get_match_info");
+                string report = ExecuteScript("get_report");
 
                 matches_data = "<TABLE>" + lineup + "</TABLE>" +
                     "<TABLE>" + match_info + "</TABLE>" +
@@ -846,7 +761,7 @@ namespace NTR_WebBrowser
             try
             {
                 fix_data = AppendScriptAndExecute(Resources.fixture_loader,
-                                                "get_fixture()");
+                                                "get_fixture");
             }
             catch (Exception ex)
             {
@@ -863,7 +778,7 @@ namespace NTR_WebBrowser
             try
             {
                 fix_data = AppendScriptAndExecute(Resources.training_loader,
-                                                "get_training()");
+                                                "get_training");
             }
             catch (Exception ex)
             {
@@ -989,15 +904,41 @@ namespace NTR_WebBrowser
         //    file.Close();
         //}
 
-        private void webBrowser_DocumentCompleted(object sender, Gecko.Events.GeckoDocumentCompletedEventArgs e)
+
+        private void webBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
             if (ActualPlayerID > 0)
             {
-                AppendScriptAndExecute(Resources.RatingR2_user, "ApplyRatingR2()");
+                AppendScriptAndExecute(Resources.RatingR2_user, "ApplyRatingR2");
             }
         }
 
-        private void webBrowser_ProgressChanged(object sender, GeckoProgressEventArgs e)
+        private void WebBrowser_Navigating(object sender, WebBrowserNavigatingEventArgs e)
+        {
+            string address = e.Url.AbsoluteUri;
+
+            if (!address.Contains(TM_Pages.Home) || (address.Contains("http://trophymanager.com/banners")))
+                return;
+
+            if ((address.Contains(TM_Pages.Players)) && (address != StartnavigationAddress))
+            {
+                int playerID = 0;
+                string number = HTML_Parser.GetNumberAfter(address, TM_Pages.Players);
+                if (int.TryParse(number, out playerID))
+                {
+                    if (playerID != ActualPlayerID)
+                    {
+                        webBrowser.Stop();
+                        GotoPlayer(playerID, this.navigationType);
+                    }
+                }
+            }
+
+            NavigationAddress = address;
+            StartnavigationAddress = address;
+        }
+
+        private void webBrowser_ProgressChanged(object sender, WebBrowserProgressChangedEventArgs e)
         {
             if (e.CurrentProgress <= 0)
             {
@@ -1039,7 +980,7 @@ namespace NTR_WebBrowser
                     " page_refresh(); } }, \"json\");}";
 
                 AppendScriptAndExecute(function,
-                                       "club_login()");
+                                       "club_login");
             }
             catch (Exception ex)
             {
@@ -1057,7 +998,7 @@ namespace NTR_WebBrowser
                     " page_refresh(); } }, \"json\");}";
 
                 AppendScriptAndExecute(function,
-                                       "club_int_change()");
+                                       "club_int_change");
             }
             catch (Exception ex)
             {

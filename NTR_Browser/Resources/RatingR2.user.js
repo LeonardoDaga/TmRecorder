@@ -107,355 +107,363 @@
     /* VL */["Verdediger Centraal", "Verdediger Links", "Verdediger Rechts", "Verdedigende Middenvelder Centraal", "Verdedigende Middenvelder Links", "Verdedigende Middenvelder Rechts", "Middenvelder Centraal", "Middenvelder Links", "Middenvelder Rechts", "Aanvallende Middenvelder Centraal", "Aanvallende Middenvelder Links", "Aanvallende Middenvelder Rechts", "Aanvaller", "Doelman"],
     /* BR */["Zagueiro Central", "Zagueiro Esquerdo", "Zagueiro Direito", "Volante Central", "Volante Esquerdo", "Volante Direito", "Meio-Campista Central", "Meio-Campista Esquerdo", "Meio-Campista Direito", "Meia Ofensivo Central", "Meia Ofensivo Esquerdo", "Meia Ofensivo Direito", "Atacante", "Goleiro"]]
 
-    if (location.href.indexOf("/players/") != -1) {
+    try
+    {
+        if (location.href.indexOf("/players/") != -1) {
 
-        // positionIndex is the array of skill priority for this player.
-        // skills is an array of skills for each user
+            // positionIndex is the array of skill priority for this player.
+            // skills is an array of skills for each user
 
-        document.calculateSkill = function (positionIndex, skills) {
+            document.calculateSkill = function (positionIndex, skills) {
 
-            var totSkill = 0;
-            for (var i = 0; i < positions[positionIndex].length; i++) {
-                if (skills[i] > 0) {
-                    totSkill += skills[i] * document.calculateSkillWeight(positions[positionIndex], weights[positionIndex], i);
+                var totSkill = 0;
+                for (var i = 0; i < positions[positionIndex].length; i++) {
+                    if (skills[i] > 0) {
+                        totSkill += skills[i] * document.calculateSkillWeight(positions[positionIndex], weights[positionIndex], i);
+                    }
                 }
-            }
 
-            totSkill = totSkill / 200;
-            totSkill = Math.round(totSkill * 1000) / 1000;
+                totSkill = totSkill / 200;
+                totSkill = Math.round(totSkill * 1000) / 1000;
 
-            return totSkill;
-        };
+                return totSkill;
+            };
 
-        document.calculateSkillWeight = function (positionWeightLevels, weights, index) {
-            var weight = 0;
-            weight = weights[positionWeightLevels[index] - 1] / document.numberAtWeight(positionWeightLevels, positionWeightLevels[index]) * 10;
-            return weight;
-        };
+            document.calculateSkillWeight = function (positionWeightLevels, weights, index) {
+                var weight = 0;
+                weight = weights[positionWeightLevels[index] - 1] / document.numberAtWeight(positionWeightLevels, positionWeightLevels[index]) * 10;
+                return weight;
+            };
 
-        document.numberAtWeight = function (positionWeightLevels, value) {
-            var count = 0;
-            for (var i = 0; i < positionWeightLevels.length; i++) {
-                if (positionWeightLevels[i] == value) {
-                    count++;
+            document.numberAtWeight = function (positionWeightLevels, value) {
+                var count = 0;
+                for (var i = 0; i < positionWeightLevels.length; i++) {
+                    if (positionWeightLevels[i] == value) {
+                        count++;
+                    }
                 }
-            }
-            return count;
-        };
+                return count;
+            };
 
-        document.findPositionIndex = function (position) {
-            var index = -1;
-            for (var i = 0; i < positionFullNames.length; i++) {
-                for (var j = 0; j < positionFullNames[i].length; j++) {
-                    if (position.indexOf(positionFullNames[i][j]) == 0) return j;
+            document.findPositionIndex = function (position) {
+                var index = -1;
+                for (var i = 0; i < positionFullNames.length; i++) {
+                    for (var j = 0; j < positionFullNames[i].length; j++) {
+                        if (position.indexOf(positionFullNames[i][j]) == 0) return j;
+                    }
                 }
-            }
-            return index;
-        };
+                return index;
+            };
 
-        document.getSkills = function (table) {
-            var skillArray = [];
-            var tableData = table.getElementsByTagName("td");
-            if (tableData.length > 1) {
-                for (var i = 0; i < 2; i++) {
-                    for (var j = i; j < tableData.length; j += 2) {
-                        if (tableData[j].innerHTML.indexOf("star.png") > 0) {
-                            skillArray.push(20);
-                        }
-                        else if (tableData[j].innerHTML.indexOf("star_silver.png") > 0) {
-                            skillArray.push(19);
-                        }
-                        else if (tableData[j].textContent.length != 0) {
-                            skillArray.push(tableData[j].textContent);
+            document.getSkills = function (table) {
+                var skillArray = [];
+                var tableData = table.getElementsByTagName("td");
+                if (tableData.length > 1) {
+                    for (var i = 0; i < 2; i++) {
+                        for (var j = i; j < tableData.length; j += 2) {
+                            if (tableData[j].innerHTML.indexOf("star.png") > 0) {
+                                skillArray.push(20);
+                            }
+                            else if (tableData[j].innerHTML.indexOf("star_silver.png") > 0) {
+                                skillArray.push(19);
+                            }
+                            else if (tableData[j].textContent.length != 0) {
+                                skillArray.push(tableData[j].textContent);
+                            }
                         }
                     }
                 }
+                return skillArray;
+            };
+
+            function funFix(i) {
+                i = (Math.round(i * 100) / 100).toFixed(2);
+                return i;
             }
-            return skillArray;
-        };
 
-        function funFix(i) {
-            i = (Math.round(i * 100) / 100).toFixed(2);
-            return i;
-        }
-
-        function funFix2(i) {
-            i = (Math.round(i * 10) / 10).toFixed(1);
-            return i;
-        }
-
-        document.createTR = function (table, SKarray) {
-            var tr = document.createElement("tr");
-            var th = document.createElement("th");
-            th.innerHTML = "SK1";
-            tr.appendChild(th);
-            var td = document.createElement("td");
-            td.setAttribute("class", "align_center");
-            td.innerHTML = SKarray[0];
-            tr.appendChild(td);
-            var th = document.createElement("th");
-            th.innerHTML = "SK2";
-            tr.appendChild(th);
-            var td = document.createElement("td");
-            td.setAttribute("class", "align_center");
-            if (SKarray[1] == 0) {
-                td.innerHTML = "N/A";
-            } else {
-                td.innerHTML = SKarray[1];
+            function funFix2(i) {
+                i = (Math.round(i * 10) / 10).toFixed(1);
+                return i;
             }
-            tr.appendChild(td);
-            table.appendChild(tr);
-        };
 
-        function computeSK(table, skills) {
-            var SKs = [0, 0];
-            var REREC = [[], [], []];
-            var FP = [];
-            var positionCell = document.getElementsByClassName("favposition long")[0].childNodes;
-            var positionArray = [];
-            if (positionCell.length == 1) {
-                positionArray[0] = positionCell[0].textContent;
-            } else if (positionCell.length == 2) {
-                positionArray[0] = positionCell[0].textContent + positionCell[1].textContent;
-            } else if (positionCell[1].className == "split") {
-                positionArray[0] = positionCell[0].textContent + positionCell[3].textContent;
-                positionArray[1] = positionCell[2].textContent + positionCell[3].textContent;
-            } else if (positionCell[3].className == "f") {
-                positionArray[0] = positionCell[0].textContent + positionCell[1].textContent;
-                positionArray[1] = positionCell[3].textContent;
-            } else {
-                positionArray[0] = positionCell[0].textContent + positionCell[1].textContent;
-                positionArray[1] = positionCell[0].textContent + positionCell[3].textContent;
-            }
-            var gettr = document.getElementsByTagName("tr");
-            var SI = new String(gettr[6].getElementsByTagName("td")[0].innerHTML).replace(/,/g, "");
-            var rou = gettr[8].getElementsByTagName("td")[0].innerHTML;
-            rou = Math.pow(5 / 3, Math.LOG2E * Math.log(rou * 10)) * 0.4;
-            for (var i = 0; i < positionArray.length; i++) {
-                var positionIndex = document.findPositionIndex(positionArray[i]);
-                FP[i] = positionIndex;
-                FP[i + 1] = FP[i];
-                if (positionIndex > -1) {
-                    SKs[i] = document.calculateSkill(positionIndex, skills);
+            document.createTR = function (table, SKarray) {
+                var tr = document.createElement("tr");
+                var th = document.createElement("th");
+                th.innerHTML = "SK1";
+                tr.appendChild(th);
+                var td = document.createElement("td");
+                td.setAttribute("class", "align_center");
+                td.innerHTML = SKarray[0];
+                tr.appendChild(td);
+                var th = document.createElement("th");
+                th.innerHTML = "SK2";
+                tr.appendChild(th);
+                var td = document.createElement("td");
+                td.setAttribute("class", "align_center");
+                if (SKarray[1] == 0) {
+                    td.innerHTML = "N/A";
+                } else {
+                    td.innerHTML = SKarray[1];
                 }
-                if (i == 0) REREC = document.calculateREREC(positionIndex, skills, SI, rou);
-            }
+                tr.appendChild(td);
+                table.appendChild(tr);
+            };
 
-            var SI = new String(gettr[6].getElementsByTagName("td")[0].innerHTML).replace(/,/g, "");
-
-            if (positionIndex == 13) {
-                var phySum = skills[0] * 1 + skills[1] * 1 + skills[2] * 1 + skills[7] * 1;
-                var tacSum = skills[4] * 1 + skills[6] * 1 + skills[8] * 1;
-                var tecSum = skills[3] * 1 + skills[5] * 1 + skills[9] * 1 + skills[10] * 1;
-                var weight = 48717927500;
-            }
-            else {
-                var phySum = skills[0] * 1 + skills[1] * 1 + skills[2] * 1 + skills[10] * 1;
-                var tacSum = skills[3] * 1 + skills[4] * 1 + skills[5] * 1 + skills[6] * 1;
-                var tecSum = skills[7] * 1 + skills[8] * 1 + skills[9] * 1 + skills[11] * 1 + skills[12] * 1 + skills[13] * 1;
-                var weight = 263533760000;
-            }
-            var allSum = phySum + tacSum + tecSum;
-            var remainder = funFix2(Math.pow(2, Math.log(weight * SI) / Math.log(Math.pow(2, 7))) - allSum);
-
-            var recth = document.createElement("div");
-            var rectd = document.createElement("div");
-            var ratth = document.createElement("div");
-            var rattd = document.createElement("div");
-            rectd.setAttribute("style", "color: gold;");
-            rattd.setAttribute("style", "color: gold;");
-
-            var FP2 = [FP[0], FP[1]];
-            for (i = 0; i < FP.length; i++) {
-                for (j = 0; 2 + j <= FP[i]; j += 2) FP[i]--;
-            }
-            if (FP[0] != FP[1]) {
-                rectd.innerHTML = REREC[0][FP[0]] + "/" + REREC[0][FP[1]];
-                rattd.innerHTML = REREC[2][FP[0]] + "/" + REREC[2][FP[1]];
-                var ratingR2 = rattd.innerHTML;
-                var rouEffect = funFix(REREC[2][FP[0]] * 1 - REREC[1][FP[0]] * 1) + "/" + funFix(REREC[2][FP[1]] * 1 - REREC[1][FP[1]] * 1);
-                var R2Pure = REREC[1][FP[0]] + "/" + REREC[1][FP[1]];
-            }
-            else {
-                rectd.innerHTML = REREC[0][FP[0]];
-                rattd.innerHTML = REREC[2][FP[0]];
-                var ratingR2 = rattd.innerHTML;
-                var rouEffect = funFix(REREC[2][FP[0]] * 1 - REREC[1][FP[0]] * 1);
-                var R2Pure = REREC[1][FP[0]];
-            }
-            recth.innerHTML = "<b style=\"color: gold;\">REREC</b>";
-            ratth.innerHTML = "<b style=\"color: gold;\">RatingR2</b>";
-            gettr[5].getElementsByTagName("th")[0].appendChild(recth);
-            gettr[5].getElementsByTagName("td")[0].appendChild(rectd);
-            gettr[8].getElementsByTagName("th")[0].appendChild(ratth);
-            gettr[8].getElementsByTagName("td")[0].appendChild(rattd);
-
-            seasonTI();
-
-            if (document.getElementsByClassName("gk")[0] == null) var peak = [4, 4, 6];
-            else var peak = [4, 3, 4];
-            var div_area = document.createElement('div');
-            div_area.innerHTML = "<div style=\"position: absolute; z-index: 1; width: 175px; margin-top: 20px; background: #5F8D2D; padding-left: 5px; color: gold; border: 2px #333333 outset; display:inline;\"><p style=\"text-decoration: underline;\"><b>PlayerData+:<\p><table style=\"margin-top: -1em; margin-bottom: 1em;\"><tr><td>PhySum: </td><td>" + phySum + " (" + Math.round(phySum / peak[0] * 5) + "%)</td></tr><tr><td>TacSum: </td><td>" + tacSum + " (" + Math.round(tacSum / peak[1] * 5) + "%)</td></tr><tr><td>TecSum: </td><td>" + tecSum + " (" + Math.round(tecSum / peak[2] * 5) + "%)</td></tr><tr><td>AllSum: </td><td>" + allSum + " + " + remainder + " </td></tr><tr><td>&nbsp;</td></tr><tr><td>RatingR2: </td><td>" + ratingR2 + " </td></tr><tr><td>RouEffect: </td><td>" + rouEffect + " </td></tr><tr><td>Rating-Pure: </td><td>" + R2Pure + "</td></tr></table></b></div>";
-            document.getElementsByClassName("box")[0].appendChild(div_area);
-
-            document.createTR(table, SKs);
-
-            var hidden = document.getElementById("hidden_skill_table").getElementsByTagName("td");
-            if (hidden[0].innerHTML != "") {
-                var x;
-                for (var i = 0; i < 4; i++) {
-                    x = hidden[i].getAttribute("tooltip").match(/\d+/);
-                    if (x < 10) x = " " + x;
-                    hidden[i].setAttribute("style", "white-space: nowrap;");
-                    hidden[i].innerHTML += " (" + x + "/20)";
+            function computeSK(table, skills) {
+                var SKs = [0, 0];
+                var REREC = [[], [], []];
+                var FP = [];
+                var positionCell = document.getElementsByClassName("favposition long")[0].childNodes;
+                var positionArray = [];
+                if (positionCell.length == 1) {
+                    positionArray[0] = positionCell[0].textContent;
+                } else if (positionCell.length == 2) {
+                    positionArray[0] = positionCell[0].textContent + positionCell[1].textContent;
+                } else if (positionCell[1].className == "split") {
+                    positionArray[0] = positionCell[0].textContent + positionCell[3].textContent;
+                    positionArray[1] = positionCell[2].textContent + positionCell[3].textContent;
+                } else if (positionCell[3].className == "f") {
+                    positionArray[0] = positionCell[0].textContent + positionCell[1].textContent;
+                    positionArray[1] = positionCell[3].textContent;
+                } else {
+                    positionArray[0] = positionCell[0].textContent + positionCell[1].textContent;
+                    positionArray[1] = positionCell[0].textContent + positionCell[3].textContent;
                 }
-                if (positionIndex != 13) {
-                    var div = document.createElement("div");
-                    div.setAttribute("style", "position: absolute; z-index: 1; width: 175px; margin-top: 240px; background: #5F8D2D; padding-left: 5px; border: 2px #333333 outset; display:inline;");
-                    div.innerHTML = "<p><b>RatingR2: All Positions</b></p>";
-                    var table2 = document.createElement("table");
-                    table2.setAttribute("border", "1");
-                    table2.setAttribute("bordercolor", "YellowGreen");
-                    table2.setAttribute("style", "width: 170px; margin-bottom: 7px;");
-                    var tbody = document.createElement("tbody");
-                    tbody.setAttribute("align", "center");
-                    var adapt = hidden[3].getAttribute("tooltip").match(/\d+/);
-                    var R2all = [REREC[2][1], REREC[2][0], REREC[2][1], REREC[2][3], REREC[2][2], REREC[2][3], REREC[2][5], REREC[2][4], REREC[2][5], REREC[2][7], REREC[2][6], REREC[2][7], REREC[2][8]];
-                    for (var i = 0; i < 5; i++) {
-                        var tr = document.createElement("tr");
-                        for (var j = 0; j < 3; j++) {
-                            var num = (4 - i) * 3 + j;
-                            var td = document.createElement("td");
-                            if (num < 12 || num == 13) {
-                                if (num == 13) num--;
-                                if (positionsAll[FP2[0]][num] > positionsAll[FP2[1]][num]) positionsAll[FP2[0]][num] = positionsAll[FP2[1]][num];
-                                td.innerHTML = funFix(R2all[num] * (1 - (20 - adapt) * positionsAll[FP2[0]][num] / 200));
+                var gettr = document.getElementsByTagName("tr");
+                var SI = new String(gettr[6].getElementsByTagName("td")[0].innerHTML).replace(/,/g, "");
+                var rou = gettr[8].getElementsByTagName("td")[0].innerHTML;
+                rou = Math.pow(5 / 3, Math.LOG2E * Math.log(rou * 10)) * 0.4;
+                for (var i = 0; i < positionArray.length; i++) {
+                    var positionIndex = document.findPositionIndex(positionArray[i]);
+                    FP[i] = positionIndex;
+                    FP[i + 1] = FP[i];
+                    if (positionIndex > -1) {
+                        SKs[i] = document.calculateSkill(positionIndex, skills);
+                    }
+                    if (i == 0) REREC = document.calculateREREC(positionIndex, skills, SI, rou);
+                }
+
+                var SI = new String(gettr[6].getElementsByTagName("td")[0].innerHTML).replace(/,/g, "");
+
+                if (positionIndex == 13) {
+                    var phySum = skills[0] * 1 + skills[1] * 1 + skills[2] * 1 + skills[7] * 1;
+                    var tacSum = skills[4] * 1 + skills[6] * 1 + skills[8] * 1;
+                    var tecSum = skills[3] * 1 + skills[5] * 1 + skills[9] * 1 + skills[10] * 1;
+                    var weight = 48717927500;
+                }
+                else {
+                    var phySum = skills[0] * 1 + skills[1] * 1 + skills[2] * 1 + skills[10] * 1;
+                    var tacSum = skills[3] * 1 + skills[4] * 1 + skills[5] * 1 + skills[6] * 1;
+                    var tecSum = skills[7] * 1 + skills[8] * 1 + skills[9] * 1 + skills[11] * 1 + skills[12] * 1 + skills[13] * 1;
+                    var weight = 263533760000;
+                }
+                var allSum = phySum + tacSum + tecSum;
+                var remainder = funFix2(Math.pow(2, Math.log(weight * SI) / Math.log(Math.pow(2, 7))) - allSum);
+
+                var recth = document.createElement("div");
+                var rectd = document.createElement("div");
+                var ratth = document.createElement("div");
+                var rattd = document.createElement("div");
+                rectd.setAttribute("style", "color: gold;");
+                rattd.setAttribute("style", "color: gold;");
+
+                var FP2 = [FP[0], FP[1]];
+                for (i = 0; i < FP.length; i++) {
+                    for (j = 0; 2 + j <= FP[i]; j += 2) FP[i]--;
+                }
+                if (FP[0] != FP[1]) {
+                    rectd.innerHTML = REREC[0][FP[0]] + "/" + REREC[0][FP[1]];
+                    rattd.innerHTML = REREC[2][FP[0]] + "/" + REREC[2][FP[1]];
+                    var ratingR2 = rattd.innerHTML;
+                    var rouEffect = funFix(REREC[2][FP[0]] * 1 - REREC[1][FP[0]] * 1) + "/" + funFix(REREC[2][FP[1]] * 1 - REREC[1][FP[1]] * 1);
+                    var R2Pure = REREC[1][FP[0]] + "/" + REREC[1][FP[1]];
+                }
+                else {
+                    rectd.innerHTML = REREC[0][FP[0]];
+                    rattd.innerHTML = REREC[2][FP[0]];
+                    var ratingR2 = rattd.innerHTML;
+                    var rouEffect = funFix(REREC[2][FP[0]] * 1 - REREC[1][FP[0]] * 1);
+                    var R2Pure = REREC[1][FP[0]];
+                }
+                recth.innerHTML = "<b style=\"color: gold;\">REREC</b>";
+                ratth.innerHTML = "<b style=\"color: gold;\">RatingR2</b>";
+                gettr[5].getElementsByTagName("th")[0].appendChild(recth);
+                gettr[5].getElementsByTagName("td")[0].appendChild(rectd);
+                gettr[8].getElementsByTagName("th")[0].appendChild(ratth);
+                gettr[8].getElementsByTagName("td")[0].appendChild(rattd);
+
+                seasonTI();
+
+                if (document.getElementsByClassName("gk")[0] == null) var peak = [4, 4, 6];
+                else var peak = [4, 3, 4];
+                var div_area = document.createElement('div');
+                div_area.innerHTML = "<div style=\"position: absolute; z-index: 1; width: 175px; margin-top: 20px; background: #5F8D2D; padding-left: 5px; color: gold; border: 2px #333333 outset; display:inline;\"><p style=\"text-decoration: underline;\"><b>PlayerData+:<\p><table style=\"margin-top: -1em; margin-bottom: 1em;\"><tr><td>PhySum: </td><td>" + phySum + " (" + Math.round(phySum / peak[0] * 5) + "%)</td></tr><tr><td>TacSum: </td><td>" + tacSum + " (" + Math.round(tacSum / peak[1] * 5) + "%)</td></tr><tr><td>TecSum: </td><td>" + tecSum + " (" + Math.round(tecSum / peak[2] * 5) + "%)</td></tr><tr><td>AllSum: </td><td>" + allSum + " + " + remainder + " </td></tr><tr><td>&nbsp;</td></tr><tr><td>RatingR2: </td><td>" + ratingR2 + " </td></tr><tr><td>RouEffect: </td><td>" + rouEffect + " </td></tr><tr><td>Rating-Pure: </td><td>" + R2Pure + "</td></tr></table></b></div>";
+                document.getElementsByClassName("box")[0].appendChild(div_area);
+
+                document.createTR(table, SKs);
+
+                var hidden = document.getElementById("hidden_skill_table").getElementsByTagName("td");
+                if (hidden[0].innerHTML != "") {
+                    var x;
+                    for (var i = 0; i < 4; i++) {
+                        x = hidden[i].getAttribute("tooltip").match(/\d+/);
+                        if (x < 10) x = " " + x;
+                        hidden[i].setAttribute("style", "white-space: nowrap;");
+                        hidden[i].innerHTML += " (" + x + "/20)";
+                    }
+                    if (positionIndex != 13) {
+                        var div = document.createElement("div");
+                        div.setAttribute("style", "position: absolute; z-index: 1; width: 175px; margin-top: 240px; background: #5F8D2D; padding-left: 5px; border: 2px #333333 outset; display:inline;");
+                        div.innerHTML = "<p><b>RatingR2: All Positions</b></p>";
+                        var table2 = document.createElement("table");
+                        table2.setAttribute("border", "1");
+                        table2.setAttribute("bordercolor", "YellowGreen");
+                        table2.setAttribute("style", "width: 170px; margin-bottom: 7px;");
+                        var tbody = document.createElement("tbody");
+                        tbody.setAttribute("align", "center");
+                        var adapt = hidden[3].getAttribute("tooltip").match(/\d+/);
+                        var R2all = [REREC[2][1], REREC[2][0], REREC[2][1], REREC[2][3], REREC[2][2], REREC[2][3], REREC[2][5], REREC[2][4], REREC[2][5], REREC[2][7], REREC[2][6], REREC[2][7], REREC[2][8]];
+                        for (var i = 0; i < 5; i++) {
+                            var tr = document.createElement("tr");
+                            for (var j = 0; j < 3; j++) {
+                                var num = (4 - i) * 3 + j;
+                                var td = document.createElement("td");
+                                if (num < 12 || num == 13) {
+                                    if (num == 13) num--;
+                                    if (positionsAll[FP2[0]][num] > positionsAll[FP2[1]][num]) positionsAll[FP2[0]][num] = positionsAll[FP2[1]][num];
+                                    td.innerHTML = funFix(R2all[num] * (1 - (20 - adapt) * positionsAll[FP2[0]][num] / 200));
+                                }
+                                else td.innerHTML = "";
+                                tr.appendChild(td);
                             }
-                            else td.innerHTML = "";
+                            tbody.appendChild(tr);
+                        }
+                        table2.appendChild(tbody);
+                        div.appendChild(table2);
+                        document.getElementsByClassName("box")[0].appendChild(div);
+                    }
+                }
+
+                if (positionIndex != 13) {
+                    var table2 = document.createElement("table");
+                    var tbody = document.createElement("tbody");
+                    table2.setAttribute("border", "1");
+                    table2.setAttribute("bordercolor", "#6C9922");
+                    table2.innerHTML = "<thead><tr><th></th><th>DC</th><th>DLR</th><th>DMC</th><th>DMLR</th><th>MC</th><th>MLR</th><th>OMC</th><th>OMLR</th><th>F</th></tr></thead>";
+                    tbody.setAttribute("align", "center");
+                    var tr = document.createElement("tr");
+
+                    for (var i = 0; i < 3; i += 2) {
+                        var th = document.createElement("th");
+                        if (i == 0) th.innerHTML = "REC";
+                        else th.innerHTML = "R2";
+                        tr.appendChild(th);
+
+                        for (var j = 0; j < 9; j++) {
+                            var td = document.createElement("td");
+                            if (REREC[i][j] * 1 >= 100) REREC[i][j] = funFix2(REREC[i][j] * 1);
+                            td.innerHTML = REREC[i][j];
                             tr.appendChild(td);
                         }
                         tbody.appendChild(tr);
+                        table2.appendChild(tbody);
+
+                        var tr = document.createElement("tr");
+                        var th = document.createElement("th");
+                        th.setAttribute("colspan", "4");
+                        th.setAttribute("align", "center");
+                        th.appendChild(table2);
                     }
-                    table2.appendChild(tbody);
-                    div.appendChild(table2);
-                    document.getElementsByClassName("box")[0].appendChild(div);
-                }
-            }
-
-            if (positionIndex != 13) {
-                var table2 = document.createElement("table");
-                var tbody = document.createElement("tbody");
-                table2.setAttribute("border", "1");
-                table2.setAttribute("bordercolor", "#6C9922");
-                table2.innerHTML = "<thead><tr><th></th><th>DC</th><th>DLR</th><th>DMC</th><th>DMLR</th><th>MC</th><th>MLR</th><th>OMC</th><th>OMLR</th><th>F</th></tr></thead>";
-                tbody.setAttribute("align", "center");
-                var tr = document.createElement("tr");
-
-                for (var i = 0; i < 3; i += 2) {
-                    var th = document.createElement("th");
-                    if (i == 0) th.innerHTML = "REC";
-                    else th.innerHTML = "R2";
                     tr.appendChild(th);
-
-                    for (var j = 0; j < 9; j++) {
-                        var td = document.createElement("td");
-                        if (REREC[i][j] * 1 >= 100) REREC[i][j] = funFix2(REREC[i][j] * 1);
-                        td.innerHTML = REREC[i][j];
-                        tr.appendChild(td);
-                    }
-                    tbody.appendChild(tr);
-                    table2.appendChild(tbody);
-
-                    var tr = document.createElement("tr");
-                    var th = document.createElement("th");
-                    th.setAttribute("colspan", "4");
-                    th.setAttribute("align", "center");
-                    th.appendChild(table2);
+                    table.appendChild(tr);
                 }
-                tr.appendChild(th);
-                table.appendChild(tr);
+
             }
 
-        }
-
-        document.calculateREREC = function (positionIndex, skills, SI, rou) {
-            var rec = [];			// REREC
-            var ratingR = [];		// RatingR2
-            var ratingR2 = [];		// RatingR2 + routine
-            var skillSum = 0;
-            if (positionIndex == 13) {
-                var skillWeightSum = Math.pow(SI, 0.143) / 0.02979;			// GK Skillsum
-                var weight = 48717927500;
-            }
-            else {
-                var skillWeightSum = Math.pow(SI, 1 / 6.99194) / 0.02336483;	// Other Skillsum
-                var weight = 263533760000;
-            }
-            for (var i = 0; i < skills.length; i++) {
-                skillSum += parseInt(skills[i]);
-            }
-            for (i = 0; 2 + i <= positionIndex; i += 2) {		// TrExMaとRECのweight表のずれ修正
-                positionIndex--;
-            }
-            skillWeightSum -= skillSum;			// REREC remainder
-            var remainder = Math.round((Math.pow(2, Math.log(weight * SI) / Math.log(Math.pow(2, 7))) - skillSum) * 10) / 10;		// RatingR2 remainder
-            for (var i = 0; i < 10; i++) {
-                rec[i] = 0;
-                ratingR[i] = 0;
-            }
-            for (var j = 0; j < 9; j++) {		// All position
-                var remainderWeight = 0;		// REREC remainder weight sum
-                var remainderWeight2 = 0;		// RatingR2 remainder weight sum
-                var not20 = 0;					// 20以外のスキル数
-                if (positionIndex == 9) j = 9;	// GK
-
-                for (var i = 0; i < weightR[positionIndex].length; i++) {
-                    rec[j] += skills[i] * weightR[j][i];
-                    ratingR[j] += skills[i] * weightR2[j][i];
-                    if (skills[i] != 20) {
-                        remainderWeight += weightR[j][i];
-                        remainderWeight2 += weightR2[j][i];
-                        not20 += 1;
-                    }
+            document.calculateREREC = function (positionIndex, skills, SI, rou) {
+                var rec = [];			// REREC
+                var ratingR = [];		// RatingR2
+                var ratingR2 = [];		// RatingR2 + routine
+                var skillSum = 0;
+                if (positionIndex == 13) {
+                    var skillWeightSum = Math.pow(SI, 0.143) / 0.02979;			// GK Skillsum
+                    var weight = 48717927500;
                 }
-                rec[j] += skillWeightSum * remainderWeight / not20;		//REREC Score
-                if (positionIndex == 9) rec[j] *= 1.27;					//GK
-                rec[j] = funFix((rec[j] - recLast[0][j]) / recLast[1][j]);
-                ratingR[j] += remainder * remainderWeight2 / not20;
-                ratingR2[j] = funFix(ratingR[j] * (1 + rou * rou_factor));
-                ratingR[j] = funFix(ratingR[j]);
-                if (positionIndex == 9) j = 9;		// Loop end
+                else {
+                    var skillWeightSum = Math.pow(SI, 1 / 6.99194) / 0.02336483;	// Other Skillsum
+                    var weight = 263533760000;
+                }
+                for (var i = 0; i < skills.length; i++) {
+                    skillSum += parseInt(skills[i]);
+                }
+                for (i = 0; 2 + i <= positionIndex; i += 2) {		// TrExMaとRECのweight表のずれ修正
+                    positionIndex--;
+                }
+                skillWeightSum -= skillSum;			// REREC remainder
+                var remainder = Math.round((Math.pow(2, Math.log(weight * SI) / Math.log(Math.pow(2, 7))) - skillSum) * 10) / 10;		// RatingR2 remainder
+                for (var i = 0; i < 10; i++) {
+                    rec[i] = 0;
+                    ratingR[i] = 0;
+                }
+                for (var j = 0; j < 9; j++) {		// All position
+                    var remainderWeight = 0;		// REREC remainder weight sum
+                    var remainderWeight2 = 0;		// RatingR2 remainder weight sum
+                    var not20 = 0;					// 20以外のスキル数
+                    if (positionIndex == 9) j = 9;	// GK
+
+                    for (var i = 0; i < weightR[positionIndex].length; i++) {
+                        rec[j] += skills[i] * weightR[j][i];
+                        ratingR[j] += skills[i] * weightR2[j][i];
+                        if (skills[i] != 20) {
+                            remainderWeight += weightR[j][i];
+                            remainderWeight2 += weightR2[j][i];
+                            not20 += 1;
+                        }
+                    }
+                    rec[j] += skillWeightSum * remainderWeight / not20;		//REREC Score
+                    if (positionIndex == 9) rec[j] *= 1.27;					//GK
+                    rec[j] = funFix((rec[j] - recLast[0][j]) / recLast[1][j]);
+                    ratingR[j] += remainder * remainderWeight2 / not20;
+                    ratingR2[j] = funFix(ratingR[j] * (1 + rou * rou_factor));
+                    ratingR[j] = funFix(ratingR[j]);
+                    if (positionIndex == 9) j = 9;		// Loop end
+                }
+
+                var recAndRating = [rec, ratingR, ratingR2];
+                return recAndRating;
+            };
+
+            function seasonTI() {
+                var sith = document.createElement("div");
+                var sitd = document.createElement("div");
+                var gettr = document.getElementsByTagName("tr");
+                var SI = new String(gettr[6].getElementsByTagName("td")[0].innerHTML).replace(/,/g, "");
+                var wage = new String(gettr[4].getElementsByTagName("span")[0].innerHTML).replace(/,/g, "");
+                if (wage == 27000 || wage == 30000) {
+                    sitd.innerHTML = "---";
+                }
+                else {
+                    if (document.getElementsByClassName("gk")[0] == null) var weight = 263533760000;
+                    else var weight = 48717927500;
+                    var TI = Math.pow(2, Math.log(weight * SI) / Math.log(Math.pow(2, 7))) - Math.pow(2, Math.log(weight * wage / wage_rate) / Math.log(Math.pow(2, 7)));
+                    sitd.innerHTML = Math.round(TI * 10);
+                }
+                sith.innerHTML = "<b>Season TI</b>";
+                gettr[6].getElementsByTagName("th")[0].appendChild(sith);
+                gettr[6].getElementsByTagName("td")[0].appendChild(sitd);
             }
 
-            var recAndRating = [rec, ratingR, ratingR2];
-            return recAndRating;
-        };
-
-        function seasonTI() {
-            var sith = document.createElement("div");
-            var sitd = document.createElement("div");
-            var gettr = document.getElementsByTagName("tr");
-            var SI = new String(gettr[6].getElementsByTagName("td")[0].innerHTML).replace(/,/g, "");
-            var wage = new String(gettr[4].getElementsByTagName("span")[0].innerHTML).replace(/,/g, "");
-            if (wage == 27000 || wage == 30000) {
-                sitd.innerHTML = "---";
-            }
-            else {
-                if (document.getElementsByClassName("gk")[0] == null) var weight = 263533760000;
-                else var weight = 48717927500;
-                var TI = Math.pow(2, Math.log(weight * SI) / Math.log(Math.pow(2, 7))) - Math.pow(2, Math.log(weight * wage / wage_rate) / Math.log(Math.pow(2, 7)));
-                sitd.innerHTML = Math.round(TI * 10);
-            }
-            sith.innerHTML = "<b>Season TI</b>";
-            gettr[6].getElementsByTagName("th")[0].appendChild(sith);
-            gettr[6].getElementsByTagName("td")[0].appendChild(sitd);
+            (function () {
+                var playerTable = document.getElementsByClassName("skill_table zebra")[0];
+                var skillArray = document.getSkills(playerTable);
+                var SKs = computeSK(playerTable, skillArray);
+            })();
         }
+    }
+    catch(err)
+    {
 
-        (function () {
-            var playerTable = document.getElementsByClassName("skill_table zebra")[0];
-            var skillArray = document.getSkills(playerTable);
-            var SKs = computeSK(playerTable, skillArray);
-        })();
     }
 
+    return "";
 }

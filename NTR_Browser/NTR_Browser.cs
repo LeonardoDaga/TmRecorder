@@ -680,7 +680,7 @@ namespace NTR_WebBrowser
 
             try
             {
-                pl_data = (string)webBrowser.Document.InvokeScript("get_players");
+                pl_data = (string)webBrowser.Document.InvokeScript(command);
             }
             catch (Exception)
             {
@@ -910,6 +910,11 @@ namespace NTR_WebBrowser
             if (ActualPlayerID > 0)
             {
                 AppendScriptAndExecute(Resources.RatingR2_user, "ApplyRatingR2");
+                tsbPlayersNavigationType.Visible = true;
+            }
+            else
+            {
+                tsbPlayersNavigationType.Visible = false;
             }
         }
 
@@ -1035,6 +1040,7 @@ namespace NTR_WebBrowser
 
         public void GotoPlayer(int playerID, PlayerNavigationType playerNavigationType)
         {
+            webBrowser.Stop();
             ActualPlayerID = playerID;
 
             if (playerNavigationType == PlayerNavigationType.NavigateProfiles)

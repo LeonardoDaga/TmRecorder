@@ -61,18 +61,17 @@ function get_match_info()
     
     match_id = 0;
     
-    
-    
-    home_id = match_data["club"]["home"]["id"];
-    away_id = match_data["club"]["away"]["id"];
-    
-    // match_data
-    match_info = match_data["match_data"];
-	
 	strout += "<MATCH_INFO>";
-
+    
 	try
 	{
+    
+        home_id = match_data["club"]["home"]["id"];
+        away_id = match_data["club"]["away"]["id"];
+    
+        // match_data
+        match_info = match_data["match_data"];	
+
 	    if (match_info["forfeit"])	strout += ";forfait=yes";
 		
 		strout += ";home_id=" + home_id;
@@ -114,6 +113,7 @@ function get_match_info()
 	{
 		strout += ";Javascript error=" + err;
 	}
+
 	strout += "</MATCH_INFO>";
 	return strout;
 }
@@ -122,16 +122,16 @@ function get_report()
 {
     strout = "";
 
-    // report
-    match_info = match_data["match_data"];
-    report = match_data["report"];
-	
-	last_min = match_info["last_min"];	
-	
 	strout += "<REPORT>";
-
 	try
 	{
+        // report
+        match_info = match_data["match_data"];
+        report = match_data["report"];
+	
+	    last_min = match_info["last_min"];	
+	
+
 		for (var i=0; i<last_min; i++) 
 		{
 		    if(!report[i]) continue;

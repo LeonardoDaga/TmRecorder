@@ -193,6 +193,7 @@
             this.tsbPlayersNavigationType.Size = new System.Drawing.Size(59, 33);
             this.tsbPlayersNavigationType.Text = "Profiles";
             this.tsbPlayersNavigationType.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tsbPlayersNavigationType.Visible = false;
             // 
             // navigateProfilesToolStripMenuItem
             // 

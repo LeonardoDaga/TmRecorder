@@ -1981,6 +1981,9 @@ namespace Common
             string[] scoutVotesArray = dictValues["ScoutVoto"].Split('|');
             string[] scoutReviewsArray = dictValues["ScoutGiudizio"].Split('|');
 
+            if ((scoutNamesArray.Length == 1) && (scoutNamesArray[0] == ""))
+                return;
+
             List<ScoutReview> srList = new List<ScoutReview>();
 
             for (int i=0; i<scoutNamesArray.Length; i++)

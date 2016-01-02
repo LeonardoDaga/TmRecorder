@@ -702,24 +702,24 @@ namespace NTR_Db
             Invalidate();
         }
 
-        public void MergeContent(Content content)
-        {
-            NTR_SquadDb mergeDB = content.squadDB;
+        //public void MergeContent(Content content)
+        //{
+        //    NTR_SquadDb mergeDB = content.squadDB;
 
-            if (mergeDB == null)
-            {
-                MessageBox.Show("Error loading the content of the page");
-                return;
-            }
+        //    if (mergeDB == null)
+        //    {
+        //        MessageBox.Show("Error loading the content of the page");
+        //        return;
+        //    }
 
-            squadDB.Merge(mergeDB);
+        //    squadDB.Merge(mergeDB);
 
-            squadDB.UpdateDecimals(content);
+        //    squadDB.UpdateDecimals(content);
 
-            latestDataWeek = content.Week;
+        //    latestDataWeek = content.Week;
 
-            Invalidate();
-        }
+        //    Invalidate();
+        //}
 
         private void Invalidate()
         {

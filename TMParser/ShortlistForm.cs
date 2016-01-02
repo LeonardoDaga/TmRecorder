@@ -10,6 +10,7 @@ using System.IO;
 using Common;
 using Languages;
 using mshtml;
+using NTR_Db;
 
 namespace TMRecorder
 {
@@ -18,41 +19,30 @@ namespace TMRecorder
         bool isDirty = false;
         TeamDS History_TeamDS = null;
         bool updateDeletedPlayers = true;
+        private Seasons AllSeasons;
+        private TeamHistory History;
 
-        public ShortlistForm(ref TeamDS teamDS_in)
+        public ShortlistForm(Seasons allSeasons, TeamHistory history)
         {
+            AllSeasons = allSeasons;
+            History = history;
+
             InitializeComponent();
 
-            History_TeamDS = teamDS_in;
-
-            teamDS.CopyFrom(History_TeamDS);
+            updateOnlyListedPlayersToolStripMenuItem.Checked = Program.Setts.ShortlistUploadOnlyListedPlayers;
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             teamDS.CopyTo(History_TeamDS);
-            History_TeamDS.Save(Program.Setts.DefaultDirectory, "Shortlist.3.xml");
+            AllSeasons.SaveShortlist(Program.Setts.DefaultDirectory, "Shortlist.5.xml");
         }
 
         private void ShortlistForm_Load(object sender, EventArgs e)
         {
+            AllSeasons.LoadShortlist(Program.Setts.DefaultDirectory, "Shortlist.5.xml");
             LoadGains();
-
             UpdateTables();
-
-            tsBrowsePlayers.Visible = false;
-        }
-
-        private bool CheckLicense(string p, bool ask)
-        {
-            bool licenseChecked = true;
-
-            double hashstr = (double)Program.Setts.MainSquadID.ToString().GetHashCode();
-
-            UInt64 checkCode = (UInt64)(hashstr / (Int64)(DateTime.Now.Year / 2) * Math.E * 1000);
-            licenseChecked = (Program.Setts.LicenseCode == checkCode);
-
-            return licenseChecked;
         }
 
         private void LoadGains()
@@ -83,7 +73,7 @@ namespace TMRecorder
 
             string navigationAddress = "http://trophymanager.com/players/" + PlayerID.ToString() + "/";
 
-            webBrowser.Navigate(navigationAddress);
+            webBrowser.Goto(navigationAddress);
             startnavigationAddress = navigationAddress;
 
             tabControl.SelectedTab = tabBrowser;
@@ -108,7 +98,7 @@ namespace TMRecorder
 
             string navigationAddress = "http://trophymanager.com/players/" + PlayerID.ToString() + "/#/page/scout/";
 
-            webBrowser.Navigate(navigationAddress);
+            webBrowser.Goto(navigationAddress);
             startnavigationAddress = navigationAddress;
 
             tabControl.SelectedTab = tabBrowser;
@@ -129,10 +119,10 @@ namespace TMRecorder
             DataRowView drv = (DataRowView)row.DataBoundItem;
             TeamDS.GiocatoriNSkillRow gsr = (TeamDS.GiocatoriNSkillRow)drv.Row;
 
-            //NTR_PlayerForm pf = new NTR_PlayerForm(teamDS, gsr.PlayerID, teamDS.Squad);
-            //pf.ShowDialog();
+            PlayerFormSL pf = new PlayerFormSL(History.actualDts.GiocatoriNSkill, History, gsr.PlayerID, AllSeasons);
+            pf.ShowDialog();
 
-            //if (pf.isDirty) isDirty = true;
+            if (pf.isDirty) isDirty = true;
         }
 
         private void dgGiocatori_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -141,122 +131,16 @@ namespace TMRecorder
         }
 
         string doctext = "";
-        private void tsbImport_Click(object sender, EventArgs e)
+        private void webBrowser_ImportedContent(string content, string address)
         {
-            if (startnavigationAddress == "") return;
+            if (address.Contains("/shortlist/"))
+                content = "NewTM - Shortlist;\n" + content;
+            else if (address.Contains("/transfer/"))
+                content = "NewTM - Transfer;\n" + content;
 
-            if (startnavigationAddress.StartsWith("http://trophymanager.com/banners"))
-            {
-                return;
-            }
-
-            try
-            {
-                doctext = GetWebBrowserContent(startnavigationAddress);
-            }
-            catch (FileNotFoundException)
-            {
-                doctext = "";
-            }
-
-            if (doctext == "")
-            {
-                foreach (HtmlElement hel in webBrowser.Document.All)
-                {
-                    if (hel.InnerHtml != null)
-                        doctext += hel.InnerHtml;
-                }
-            }
-
-            string page = doctext;
-
-            SaveImportedFile(page, webBrowser.Url);
-
-            if (startnavigationAddress.Contains("/shortlist/"))
-                page = "SourceURL:<NewTM - Shortlist>\n" + page;
-            else if (startnavigationAddress.Contains("klubhus_squad.php"))
-                page = "SourceURL:<NewTM - Clubhouse>\n" + page;
-            else
-            {
-                if (MessageBox.Show("Cannot import this page here. Here you can import only shortlists.\n" +
-                    "Pressing OK, you send a report to Atletico Granata that will try to detect the reason of the error.",
-                    "Import error", MessageBoxButtons.OKCancel) == DialogResult.OK)
-                {
-                    string swRelease = "Sw Release:" + Application.ProductName + "("
-                       + Application.ProductVersion + ")";
-                    page = "Navigation Address: " + startnavigationAddress + "\n" + page;
-                    Exception ex = new Exception("Navigation error");
-                    SendFileTo.ErrorReport.Send(ex, page, Environment.StackTrace, swRelease);
-                }
-                return;
-            }
-
-            if ((!page.Contains("NewTM - Shortlist"))&&
-                (!page.Contains("NewTM - Clubhouse")))
-            {
-                return;
-            }
-
-            LoadHTMLfile_newPage(page);
+            LoadHTMLfile_newPage(content);
 
             UpdateTables();
-        }
-
-        private string GetWebBrowserContent(string startnavigationAddress)
-        {
-            string doctext = "";
-
-            if (startnavigationAddress.Contains("/shortlist/"))
-            {
-                doctext = Import_Shortlist_Adv();
-                if ((doctext == "") || (doctext == null))
-                {
-                    if (doctext == null)
-                        doctext = "GBC error: failed importing players  (text is null)";
-                    else
-                        doctext = "GBC error: failed importing players  (text is empty)";
-
-                    FileInfo fi = new FileInfo(Program.Setts.DatafilePath + "\\shortlist_loader.js");
-                    if (!fi.Exists)
-                    {
-                        doctext += "\nThe js does not exists in " + Program.Setts.DatafilePath;
-                    }
-                    else
-                    {
-                        doctext += "\nJs content (in " + Program.Setts.DatafilePath + "): \n";
-                        doctext += System.IO.File.ReadAllText(Program.Setts.DatafilePath + "\\shortlist_loader.js");
-                    }
-                    doctext += "\n";
-                }
-            }
-            else
-            {
-                doctext = "Doc Text: \n" + webBrowser.DocumentText;
-            }
-
-            return doctext;
-        }
-
-        private string Import_Shortlist_Adv()
-        {
-            string pl_data = "";
-
-            try
-            {
-                HtmlElement head = webBrowser.Document.GetElementsByTagName("head")[0];
-                HtmlElement scriptEl = webBrowser.Document.CreateElement("script");
-                IHTMLScriptElement element = (IHTMLScriptElement)scriptEl.DomElement;
-
-                element.text = System.IO.File.ReadAllText(Program.Setts.DatafilePath + "\\shortlist_loader.js");
-                HtmlElement res = head.AppendChild(scriptEl);
-                pl_data = (string)webBrowser.Document.InvokeScript("get_shortlist");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-            return pl_data;
         }
 
         private void SaveImportedFile(string page, Uri url)
@@ -319,15 +203,16 @@ namespace TMRecorder
             {
                 teamDS.LoadShortlistFromHTML_New(page, updateDeletedPlayers, dt);
 
+                AllSeasons.LoadShortlist(page);
+
                 isDirty = true;
                 return;
             }
-            else if (page.Contains("TM - Shortlist"))
+            else if (page.Contains("NewTM - Transfer"))
             {
-                if (page.Contains("var players_ar"))
-                    teamDS.LoadNewShortlistFromHTML(page, updateDeletedPlayers, dt);
-                else
-                    teamDS.LoadShortlistFromHTML(page, updateDeletedPlayers, dt);
+                teamDS.LoadTransferlistFromHTML_New(page, updateDeletedPlayers, dt);
+
+                AllSeasons.LoadTransferList(page);
 
                 isDirty = true;
                 return;
@@ -579,190 +464,25 @@ namespace TMRecorder
         string navigationAddress = "";
         string startnavigationAddress = "";
 
-        private void tsbNext_Click(object sender, EventArgs e)
-        {
-            webBrowser.GoForward();
-        }
-
-        private void tsbPrev_Click(object sender, EventArgs e)
-        {
-            webBrowser.GoBack();
-        }
-
         private void gotoMToolStripMenuItem_Click(object sender, EventArgs e)
         {
             navigationAddress = "http://trophymanager.com/";
-            webBrowser.Navigate(navigationAddress);
+            webBrowser.Goto(navigationAddress);
             startnavigationAddress = navigationAddress;
         }
 
         private void gotoAdobeFlashplayerPageToolStripMenuItem_Click(object sender, EventArgs e)
         {
             navigationAddress = "http://www.adobe.com/products/flashplayer/";
-            webBrowser.Navigate(navigationAddress);
+            webBrowser.Goto(navigationAddress);
             startnavigationAddress = navigationAddress;
         }
 
         private void tsbShortlist_Click(object sender, EventArgs e)
         {
             navigationAddress = "http://trophymanager.com/shortlist/#misc";
-            webBrowser.Navigate(navigationAddress);
+            webBrowser.Goto(navigationAddress);
             startnavigationAddress = navigationAddress;
-        }
-
-        private void webBrowser_ProgressChanged(object sender, WebBrowserProgressChangedEventArgs e)
-        {
-            if (e.CurrentProgress <= 0)
-            {
-                if (webBrowser.ReadyState == WebBrowserReadyState.Complete)
-                {
-                    tsbProgressText.Text = "100%";
-                    tsbProgressBar.ForeColor = Color.Green;
-                    tsbProgressBar.Value = 100;
-                }
-                return;
-            }
-            
-            int perc = 0;
-            if (e.MaximumProgress == 0)
-                perc = 0;
-            else
-                perc = (int)((e.CurrentProgress * 100) / e.MaximumProgress);
-
-            if (perc < 0) perc = 0;
-            if (perc > 100) perc = 100;
-            tsbProgressBar.Value = perc;
-            tsbProgressText.Text = perc.ToString() + "%";
-            tsbProgressBar.ForeColor = Color.Blue;
-        }
-
-        private void webBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
-        {
-            if (e.Url.ToString() != navigationAddress) return;
-
-            // this.Text = "TMR Browser - Navigation Complete";
-            tsbProgressBar.ForeColor = Color.Green;
-        }
-
-        private void webBrowser_Navigating(object sender, WebBrowserNavigatingEventArgs e)
-        {
-            string address = e.Url.ToString();
-
-            if (address.Contains("banners")) return;
-
-            if (address.StartsWith("http://trophymanager.com/livematch.php?matchid="))
-            {
-                string kampid = address.Split('=')[1];
-                navigationAddress = "http://trophymanager.com/matches/" + kampid + "/";
-                webBrowser.Navigate(navigationAddress);
-                startnavigationAddress = navigationAddress;
-            }
-            else if (address.StartsWith("http://trophymanager.com/"))
-            {
-                navigationAddress = address;
-                startnavigationAddress = navigationAddress;
-
-                if (startnavigationAddress.Contains("showprofile.php?playerid="))
-                {
-
-                    lastBarPlayer = int.Parse(HTML_Parser.GetNumberAfter(startnavigationAddress, "playerid="));
-
-                    TeamDS.GiocatoriNSkillRow gRow = teamDS.GiocatoriNSkill.FindByPlayerID(lastBarPlayer);
-
-                    if (gRow == null)
-                    {
-                        tsBrowsePlayers.Visible = false;
-                        return;
-                    }
-
-                    tsBrowsePlayers.Visible = true;
-
-                    //tsbNumberOfReviews.Text = gRow.ScoutReviews.Length + " Scout Reviews stored";
-
-                    tsbPlayers.Text = "[" + gRow.FP + "] " + gRow.Nome;
-
-                    AddMenuItem(tsbPlayers, "", null);
-                    for (int i = 0; i < teamDS.GiocatoriNSkill.Count; i++)
-                    {
-                        ToolStripItem tsi = new ToolStripMenuItem();
-                        tsi.Text = "[" + teamDS.GiocatoriNSkill[i].FP + "] " + teamDS.GiocatoriNSkill[i].Nome;
-                        tsi.Tag = teamDS.GiocatoriNSkill[i].PlayerID;
-                        tsi.Click += ChangePlayer_Click;
-                        AddMenuItem(tsbPlayers, teamDS.GiocatoriNSkill[i].FP, tsi);
-                    }
-                }
-                else
-                {
-                    tsBrowsePlayers.Visible = false;
-                }
-            }
-            else
-            {
-                navigationAddress = address;
-            }
-
-            tsbProgressBar.Value = 0;
-            tsbProgressText.Text = "0%";
-            tsbProgressBar.ForeColor = Color.Blue;
-        }
-
-        private void AddMenuItem(ToolStripDropDownButton tsbPlayers, string FP, ToolStripItem tsi)
-        {
-            if (tsi == null)
-            {
-                gKToolStripMenuItem.DropDownItems.Clear();
-                dDefendersToolStripMenuItem.DropDownItems.Clear();
-                dMDefenderMidfieldersToolStripMenuItem.DropDownItems.Clear();
-                mMidfieldersToolStripMenuItem.DropDownItems.Clear();
-                oMOffenderMidfieldersToolStripMenuItem.DropDownItems.Clear();
-                fForwardsToolStripMenuItem.DropDownItems.Clear();
-                return;
-            }
-
-            string[] fps = FP.Split('/');
-
-            foreach (string fp in fps)
-            {
-                ToolStripItem itsi = new ToolStripMenuItem();
-                itsi.Click += ChangePlayer_Click;
-                itsi.Text = tsi.Text;
-                itsi.Tag = tsi.Tag;
-
-                if (fp == "GK")
-                {
-                    if (gKToolStripMenuItem.DropDownItems.Count > 20) continue;
-                    gKToolStripMenuItem.DropDownItems.Add(itsi);
-                }
-                if ((fp == "DC") || (fp == "DL") || (fp == "DR"))
-                {
-                    if (dDefendersToolStripMenuItem.DropDownItems.Count > 20) continue;
-                    if (!FindItemInMenu(dDefendersToolStripMenuItem, itsi.Text))
-                        dDefendersToolStripMenuItem.DropDownItems.Add(itsi);
-                }
-                if ((fp == "DMC") || (fp == "DML") || (fp == "DMR"))
-                {
-                    if (dMDefenderMidfieldersToolStripMenuItem.DropDownItems.Count > 20) continue;
-                    if (!FindItemInMenu(dMDefenderMidfieldersToolStripMenuItem, itsi.Text))
-                        dMDefenderMidfieldersToolStripMenuItem.DropDownItems.Add(itsi);
-                }
-                if ((fp == "MC") || (fp == "ML") || (fp == "MR"))
-                {
-                    if (mMidfieldersToolStripMenuItem.DropDownItems.Count > 20) continue;
-                    if (!FindItemInMenu(mMidfieldersToolStripMenuItem, itsi.Text))
-                        mMidfieldersToolStripMenuItem.DropDownItems.Add(itsi);
-                }
-                if ((fp == "OMC") || (fp == "OML") || (fp == "OMR"))
-                {
-                    if (oMOffenderMidfieldersToolStripMenuItem.DropDownItems.Count > 20) continue;
-                    if (!FindItemInMenu(oMOffenderMidfieldersToolStripMenuItem, itsi.Text))
-                        oMOffenderMidfieldersToolStripMenuItem.DropDownItems.Add(itsi);
-                }
-                if (fp == "FC")
-                {
-                    if (fForwardsToolStripMenuItem.DropDownItems.Count > 20) continue;
-                    fForwardsToolStripMenuItem.DropDownItems.Add(itsi);
-                }
-            }
         }
 
         private bool FindItemInMenu(ToolStripMenuItem menu, string text)
@@ -778,96 +498,6 @@ namespace TMRecorder
             }
             return found;
         }
-
-        #region Player Profiles Navigation
-        enum NavigationType
-        {
-            NavigateProfiles,
-            NavigateReports
-        }
-
-        NavigationType navigationType = NavigationType.NavigateProfiles;
-        int lastBarPlayer = 0;
-
-        private void tsbPrevPlayer_Click(object sender, EventArgs e)
-        {
-            TeamDS.GiocatoriNSkillRow gRow = teamDS.GiocatoriNSkill.FindByPlayerID(lastBarPlayer);
-
-            int i = 0;
-            for (; i < teamDS.GiocatoriNSkill.Count; i++)
-                if (gRow == teamDS.GiocatoriNSkill[i]) break;
-
-            i--;
-            if (i == -1) i = teamDS.GiocatoriNSkill.Count - 1;
-
-            navigationAddress = "http://trophymanager.com/showprofile.php?playerid=" +
-                teamDS.GiocatoriNSkill[i].PlayerID.ToString();
-            if (navigationType == NavigationType.NavigateReports)
-                navigationAddress += "&scout_mode=1";
-            webBrowser.Navigate(navigationAddress);
-            startnavigationAddress = navigationAddress;
-        }
-
-        private void tsbNextPlayer_Click(object sender, EventArgs e)
-        {
-            TeamDS.GiocatoriNSkillRow gRow = teamDS.GiocatoriNSkill.FindByPlayerID(lastBarPlayer);
-
-            int i = 0;
-            for (; i < teamDS.GiocatoriNSkill.Count; i++)
-                if (gRow == teamDS.GiocatoriNSkill[i]) break;
-
-            i++;
-            if (i == teamDS.GiocatoriNSkill.Count) i = 0;
-
-            navigationAddress = "http://trophymanager.com/showprofile.php?playerid=" +
-                teamDS.GiocatoriNSkill[i].PlayerID.ToString();
-            if (navigationType == NavigationType.NavigateReports)
-                navigationAddress += "&scout_mode=1";
-            webBrowser.Navigate(navigationAddress);
-            startnavigationAddress = navigationAddress;
-        }
-
-        private void navigateProfilesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            tsbNavigationType.Text = navigateProfilesToolStripMenuItem.Text;
-            tsbNavigationType.Image = navigateProfilesToolStripMenuItem.Image;
-
-            if (navigationType != NavigationType.NavigateProfiles)
-            {
-                navigationType = NavigationType.NavigateProfiles;
-                navigationAddress = "http://trophymanager.com/showprofile.php?playerid=" +
-                    lastBarPlayer.ToString();
-                webBrowser.Navigate(navigationAddress);
-                startnavigationAddress = navigationAddress;
-            }
-        }
-
-        private void navigateReportsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            tsbNavigationType.Text = navigateReportsToolStripMenuItem.Text;
-            tsbNavigationType.Image = navigateReportsToolStripMenuItem.Image;
-
-            if (navigationType != NavigationType.NavigateReports)
-            {
-                navigationType = NavigationType.NavigateReports;
-                navigationAddress = "http://trophymanager.com/showprofile.php?playerid=" +
-                    lastBarPlayer.ToString() + "&scout_mode=1";
-                webBrowser.Navigate(navigationAddress);
-                startnavigationAddress = navigationAddress;
-            }
-        }
-
-        private void ChangePlayer_Click(object sender, EventArgs e)
-        {
-            ToolStripMenuItem tsi = (ToolStripMenuItem)sender;
-            navigationAddress = "http://trophymanager.com/showprofile.php?playerid=" +
-                tsi.Tag.ToString();
-            if (navigationType == NavigationType.NavigateReports)
-                navigationAddress += "&scout_mode=1";
-            webBrowser.Navigate(navigationAddress);
-            startnavigationAddress = navigationAddress;
-        }
-        #endregion
 
         private void ShortlistForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -913,6 +543,8 @@ namespace TMRecorder
                 {
                     TeamDS.GiocatoriNSkillRow gnsr = teamDS.GiocatoriNSkill.FindByPlayerID(id);
                     teamDS.GiocatoriNSkill.RemoveGiocatoriNSkillRow(gnsr);
+
+
                 }
 
                 isDirty = true;
@@ -922,12 +554,6 @@ namespace TMRecorder
         private void dgPortieri_Sorted(object sender, EventArgs e)
         {
             UpdateTables(dgPortieri);
-        }
-
-        private void dontUpdateTheDeletedPlayersToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            updateDeletedPlayers = !updateDeletedPlayers;
-            dontUpdateTheDeletedPlayersToolStripMenuItem.Checked = !updateDeletedPlayers;
         }
 
         private void openPlayersTeamPageInTrophyBrowserToolStripMenuItem_Click(object sender, EventArgs e)
@@ -949,7 +575,7 @@ namespace TMRecorder
 
             string navigationAddress = "http://trophymanager.com/club/" + TeamID.ToString() + "/squad/";
 
-            webBrowser.Navigate(navigationAddress);
+            webBrowser.Goto(navigationAddress);
             startnavigationAddress = navigationAddress;
 
             tabControl.SelectedTab = tabBrowser;
@@ -985,6 +611,11 @@ namespace TMRecorder
         private void toolStripContainer1_TopToolStripPanel_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void updateOnlyListedPlayersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            updateDeletedPlayers = !updateOnlyListedPlayersToolStripMenuItem.Checked;
         }
     }
 }

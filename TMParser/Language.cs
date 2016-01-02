@@ -288,6 +288,45 @@ namespace TMRecorder
         }
     }
 
+    partial class PlayerFormSL
+    {
+        public void SetLanguage()
+        {
+            this.PlayerAge.HeaderText = Current.Language.Age;
+            this.tmR_AgeColumn1.HeaderText = Current.Language.Age;
+            this.tmR_DateColumn1.HeaderText = Current.Language.Week;
+            this.dataGridViewTextBoxColumn1.HeaderText = Current.Language.Str;
+            this.dataGridViewTextBoxColumn2.HeaderText = Current.Language.Res;
+            this.dataGridViewTextBoxColumn3.HeaderText = Current.Language.Pac;
+            this.dataGridViewTextBoxColumn4.HeaderText = Current.Language.Mar;
+            this.dataGridViewTextBoxColumn5.HeaderText = Current.Language.Tak;
+            this.dataGridViewTextBoxColumn6.HeaderText = Current.Language.Wor;
+            this.dataGridViewTextBoxColumn7.HeaderText = Current.Language.Pos;
+            this.dataGridViewTextBoxColumn8.HeaderText = Current.Language.Pas;
+            this.dataGridViewTextBoxColumn9.HeaderText = Current.Language.Cro;
+            this.dataGridViewTextBoxColumn10.HeaderText = Current.Language.Tec;
+            this.dataGridViewTextBoxColumn11.HeaderText = Current.Language.Hea;
+            this.dataGridViewTextBoxColumn12.HeaderText = Current.Language.Fin;
+            this.dataGridViewTextBoxColumn13.HeaderText = Current.Language.Tir;
+            this.dataGridViewTextBoxColumn14.HeaderText = Current.Language.CP;
+            this.dataGridViewTextBoxColumn15.HeaderText = "TI";
+            this.dataGridViewTextBoxColumn16.HeaderText = Current.Language.Trainer;
+            this.dataGridViewTextBoxColumn17.HeaderText = Current.Language.Program;
+            this.dataGridViewTextBoxColumn18.HeaderText = "%";
+            this.tabControlPlayerHistory.Text = Current.Language.TrainingPotential;
+            this.label5.Text = Current.Language.Notes;
+            this.groupBox2.Text = Current.Language.PlayerInfo;
+            this.toolStripLabel2.Text = Current.Language.Browse;
+            this.toolStripButton1.Text = Current.Language.PrevPlayer;
+            this.toolStripButton2.Text = Current.Language.NextPlayer;
+            this.toolStripLabel1.Text = Current.Language.Edit;
+            this.toolStripButton4.Text = Current.Language.ExplorePlayer;
+            this.toolStripButton3.Text = Current.Language.ExportHistoryToExcel;
+            this.tsbComputeGrowth.Text = Current.Language.ComputeGrowth;
+            this.Text = Current.Language.PlayerHistory;
+        }
+    }
+
     partial class StartInfoBox
     {
         public void SetLanguage()

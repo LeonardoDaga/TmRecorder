@@ -222,6 +222,7 @@ namespace TMRecorder
             sb.Def("MatchAnalysisFileSave", false);
             sb.Def("ExtraTeams", "");
             sb.Def("TeamDataFolder", appDataFolder);
+            sb.Def("ShortlistUploadOnlyListedPlayers", false);
 
             sb.Def("DebugFunction", 0);
 
@@ -512,6 +513,12 @@ namespace TMRecorder
         {
             get { return (string)sb["SquadFilename"]; }
             set { sb["SquadFilename"] = value; }
+        }
+
+        public bool ShortlistUploadOnlyListedPlayers
+        {
+            get { return (bool)sb["ShortlistUploadOnlyListedPlayers"]; }
+            set { sb["ShortlistUploadOnlyListedPlayers"] = value; }
         }
 
         public void SetDisk(string disk)

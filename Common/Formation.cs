@@ -845,6 +845,26 @@ namespace Common
             return pl;
         }
 
+        public Player SetPlayer(NTR_SquadDb.PlayerPerfRow row)
+        {
+            Player pl = FindPlayer(row.Position.ToUpper());
+            if (pl == null) return null;
+
+            pl.name = row.PlayerRow.Name;
+            pl.pf = row.Position;
+            pl.vote = (int)row.Vote;
+            pl.playerID = row.PlayerID;
+
+            if (row.IsNumberNull())
+                pl.number = -1;
+            else
+                pl.number = row.Number;
+
+            pl.visible = true;
+
+            return pl;
+        }
+
         public Player SetPlayer(MatchDS.OppsTeamPerfRow row)
         {
             Player pl = FindPlayer(row.Position.ToUpper());
@@ -889,6 +909,7 @@ namespace Common
 
             return "";
         }
+
 
         /*
         public void Save(string filename)

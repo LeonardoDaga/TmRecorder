@@ -61,7 +61,11 @@ namespace FieldFormationControl
             {
                 listplayers[i] = new ListPlayer();
 
-                listplayers[i].SetData(gr[i], extTMDataSet.GiocatoriNSkill.FindByPlayerID(gr[i].PlayerID));
+                if (gr[i].FPn == 0)
+                    listplayers[i].SetDataGk(gr[i], extTMDataSet.GiocatoriNSkill.FindByPlayerID(gr[i].PlayerID));
+                else
+                    listplayers[i].SetData(gr[i], extTMDataSet.GiocatoriNSkill.FindByPlayerID(gr[i].PlayerID));
+
                 listplayers[i].MouseDown += PlayersList_MouseDown;
                 listplayers[i].MouseUp += PlayersList_MouseUp;
                 listplayers[i].MouseMove += PlayersList_MouseMove;

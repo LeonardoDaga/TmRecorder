@@ -220,7 +220,7 @@ namespace TMRecorder
         {
             Formation f = new Formation(eFormationTypes.Type_Empty);
 
-            foreach (MatchDS.YourTeamPerfRow row in matchDS.YourTeamPerf)
+            foreach (NTR_SquadDb.PlayerPerfRow row in mi.matchData.YourPlayerPerf)
             {
                 Player pl = f.SetPlayer(row);
                 ExtraDS.GiocatoriRow gr = extraDS.Giocatori.FindByPlayerID(row.PlayerID);
@@ -432,13 +432,6 @@ namespace TMRecorder
             MatchItem mi = (MatchItem)tcmbMatchList.SelectedItem;
 
             matchDS = new Common.MatchDS();
-
-            string namefile = Path.Combine(Program.Setts.DefaultDirectory, "Match_" + mi.matchID + ".xml");
-            FileInfo fi = new FileInfo(namefile);
-
-            if (!fi.Exists) return;
-
-            matchDS.ReadXml(Path.Combine(Program.Setts.DefaultDirectory, "Match_" + mi.matchID + ".xml"));
 
             FillField(mi);
 

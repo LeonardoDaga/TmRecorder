@@ -19,7 +19,6 @@ namespace NTR_WebBrowser
             Players,
         };
 
-
         private string _defaultDirectory = "";
         public string DefaultDirectory
         {
@@ -27,6 +26,24 @@ namespace NTR_WebBrowser
             set
             {
                 _defaultDirectory = value;
+            }
+        }
+
+        public bool ShowTransfer
+        {
+            get { return tsbTransferPage.Visible; }
+            set
+            {
+                tsbTransferPage.Visible = value;
+            }
+        }
+
+        public bool ShowShortlist
+        {
+            get { return tsbShortList.Visible; }
+            set
+            {
+                tsbShortList.Visible = value;
             }
         }
 
@@ -296,12 +313,40 @@ namespace NTR_WebBrowser
                 doctext = Import_Training();
                 if (string.IsNullOrEmpty(doctext))
                 {
-                    doctext = doctext == null ? 
-                        "GBC error: failed importing training  (text is null)" : 
+                    doctext = doctext == null ?
+                        "GBC error: failed importing training  (text is null)" :
                         "GBC error: failed importing training  (text is empty)";
 
 
                     doctext += "\nJs content (in " + Resources.training_loader;
+
+                    doctext += "\n";
+                }
+            }
+            else if (StartnavigationAddress.Contains("/shortlist/"))
+            {
+                doctext = Import_Shortlist_Adv();
+                if (string.IsNullOrEmpty(doctext))
+                {
+                    doctext = doctext == null ?
+                        "GBC error: failed importing shortlist (text is null)" :
+                        "GBC error: failed importing shortlist (text is empty)";
+
+                    doctext += "\nJs content (in " + Resources.shortlist_loader;
+
+                    doctext += "\n";
+                }
+            }
+            else if (StartnavigationAddress.Contains("/transfer/"))
+            {
+                doctext = Import_Transfer_Adv();
+                if (string.IsNullOrEmpty(doctext))
+                {
+                    doctext = doctext == null ?
+                        "GBC error: failed importing shortlist (text is null)" :
+                        "GBC error: failed importing shortlist (text is empty)";
+
+                    doctext += "\nJs content (in " + Resources.shortlist_loader;
 
                     doctext += "\n";
                 }
@@ -649,6 +694,40 @@ namespace NTR_WebBrowser
             {
                 pl_data = AppendScriptAndExecute(Resources.get_players_training_loader,
                                                 "get_players_training");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return pl_data;
+        }
+
+        private string Import_Shortlist_Adv()
+        {
+            string pl_data = "";
+
+            try
+            {
+                pl_data = AppendScriptAndExecute(Resources.shortlist_loader,
+                                                "get_shortlist");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return pl_data;
+        }
+
+        private string Import_Transfer_Adv()
+        {
+            string pl_data = "";
+
+            try
+            {
+                pl_data = AppendScriptAndExecute(Resources.transfer_loader,
+                                                "get_transfer");
             }
             catch (Exception ex)
             {
@@ -1075,6 +1154,16 @@ namespace NTR_WebBrowser
         private void NTR_Browser_Resize(object sender, EventArgs e)
         {
             tbTxtAddress.Width = this.Width - 260;
+        }
+
+        private void tsbShortList_Click(object sender, EventArgs e)
+        {
+            Goto(TM_Pages.Shortlist);
+        }
+
+        private void tsbTransferPage_Click(object sender, EventArgs e)
+        {
+            Goto(TM_Pages.Transfer);
         }
     }
 }

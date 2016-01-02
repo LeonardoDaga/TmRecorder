@@ -10,7 +10,7 @@ namespace NTR_Common
 
         public bool NormalizeGains;
 
-        public GainDS GDS;
+        public Common.GainDS GDS;
 
         public string[] position = new string[] { "DC", "DR", "DL", "DMC", "DMR", "DML", "MC", "MR", "ML", "OMC", "OMR", "OML", "FC" };
 

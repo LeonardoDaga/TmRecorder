@@ -167,6 +167,26 @@ namespace NTR_WebBrowser.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Lens {
+            get {
+                object obj = ResourceManager.GetObject("Lens", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Lens2 {
+            get {
+                object obj = ResourceManager.GetObject("Lens2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to function get_lineup()
         ///{
         ///	strout = &quot;&quot;;
@@ -315,6 +335,16 @@ namespace NTR_WebBrowser.Properties {
         public static string transfer_loader {
             get {
                 return ResourceManager.GetString("transfer_loader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap TwoArrows {
+            get {
+                object obj = ResourceManager.GetObject("TwoArrows", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

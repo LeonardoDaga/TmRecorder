@@ -16,6 +16,8 @@ namespace Common
         public const string Players = "http://trophymanager.com/players/";
         public const string Scouts = "http://trophymanager.com/scouts/";
         public const string Training = "http://trophymanager.com/training/";
+        public const string Shortlist = "http://trophymanager.com/shortlist/";
+        public const string Transfer = "http://trophymanager.com/transfer/";
     }
 
     public class WindowWrapper : System.Windows.Forms.IWin32Window
@@ -403,6 +405,7 @@ namespace Common
                 case 25: return new int[] { 0, 6 };
                 case 26: return new int[] { 2, 8 };
                 case 27: return new int[] { 1, 7 };
+                case 29: return new int[] { 0, 12 };
                 case 30: return new int[] { 3, -1 };
                 case 31: return new int[] { 3, 5 };
                 case 32: return new int[] { 3, 4 };
@@ -466,6 +469,8 @@ namespace Common
                 case "ML/DL": return 26;
                 case "DR/MR": return 27;
                 case "MR/DR": return 27;
+                case "DC/FC": return 29;
+                case "FC/DC": return 29;
                 case "DMC": return 30;
                 case "DMC/DML": return 31;
                 case "DMC/DMR": return 32;

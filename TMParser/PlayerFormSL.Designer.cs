@@ -3,7 +3,7 @@ using NTR_Controls;
 
 namespace TMRecorder
 {
-    partial class PlayerForm
+    partial class PlayerFormSL
     {
         /// <summary>
         /// Required designer variable.
@@ -32,45 +32,12 @@ namespace TMRecorder
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PlayerForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PlayerFormSL));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControlPlayerHistory = new System.Windows.Forms.TabControl();
-            this.tabSkills = new System.Windows.Forms.TabPage();
-            this.graphSkills = new ZedGraph.ZedGraphControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.graphASI = new ZedGraph.ZedGraphControl();
-            this.chkShowTGI = new System.Windows.Forms.CheckBox();
-            this.graphTI = new ZedGraph.ZedGraphControl();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.graphInjuries = new ZedGraph.ZedGraphControl();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.graphSpecs = new ZedGraph.ZedGraphControl();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
-            this.lblSeason = new System.Windows.Forms.ToolStripLabel();
-            this.cmbSeason = new System.Windows.Forms.ToolStripComboBox();
-            this.chkNormalized = new System.Windows.Forms.ToolStripButton();
-            this.chkShowPosition = new System.Windows.Forms.ToolStripButton();
-            this.graphPerf = new ZedGraph.ZedGraphControl();
-            this.tabPageTrainingAndPotential = new System.Windows.Forms.TabPage();
-            this.toolStrip3 = new System.Windows.Forms.ToolStrip();
-            this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.whatToDoHereToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripDropDownButton3 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.getPotentialForThisPlayerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
-            this.splitContainer4 = new System.Windows.Forms.SplitContainer();
-            this.graphTrainingPsychology = new ZedGraph.ZedGraphControl();
-            this.graphTrainingPhisics = new ZedGraph.ZedGraphControl();
-            this.btnGetVotenSkillAuto = new System.Windows.Forms.Button();
-            this.splitContainer5 = new System.Windows.Forms.SplitContainer();
-            this.graphTrainingTactics = new ZedGraph.ZedGraphControl();
-            this.graphTrainingTechnics = new ZedGraph.ZedGraphControl();
             this.tabPlayerScouting = new System.Windows.Forms.TabPage();
             this.label3 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -106,7 +73,7 @@ namespace TMRecorder
             this.tagsBarTec = new Common.TagsBar();
             this.tagsBarTac = new Common.TagsBar();
             this.tagsBarPhy = new Common.TagsBar();
-            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.tabPlayerTraining = new System.Windows.Forms.TabPage();
             this.dgTraining = new NTR_Controls.AeroDataGrid();
             this.PlayerAge = new DataGridViewCustomColumns.TMR_AgeColumn(this.components);
             this.absWeekDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_DateColumn(this.components);
@@ -248,35 +215,11 @@ namespace TMRecorder
             this.playerData = new NTR_Common.NTR_PlayerData();
             this.teamDS = new NTR_Common.TeamDS();
             this.tabControlPlayerHistory.SuspendLayout();
-            this.tabSkills.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
-            this.splitContainer2.Panel1.SuspendLayout();
-            this.splitContainer2.Panel2.SuspendLayout();
-            this.splitContainer2.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
-            this.tabPage4.SuspendLayout();
-            this.toolStrip2.SuspendLayout();
-            this.tabPageTrainingAndPotential.SuspendLayout();
-            this.toolStrip3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
-            this.splitContainer3.Panel1.SuspendLayout();
-            this.splitContainer3.Panel2.SuspendLayout();
-            this.splitContainer3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
-            this.splitContainer4.Panel1.SuspendLayout();
-            this.splitContainer4.Panel2.SuspendLayout();
-            this.splitContainer4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).BeginInit();
-            this.splitContainer5.Panel1.SuspendLayout();
-            this.splitContainer5.Panel2.SuspendLayout();
-            this.splitContainer5.SuspendLayout();
             this.tabPlayerScouting.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgScouts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.scoutsNReviews)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgReviews)).BeginInit();
-            this.tabPage6.SuspendLayout();
+            this.tabPlayerTraining.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgTraining)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trainingBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.playerTraining)).BeginInit();
@@ -306,14 +249,8 @@ namespace TMRecorder
             this.tabControlPlayerHistory.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControlPlayerHistory.Controls.Add(this.tabSkills);
-            this.tabControlPlayerHistory.Controls.Add(this.tabPage1);
-            this.tabControlPlayerHistory.Controls.Add(this.tabPage2);
-            this.tabControlPlayerHistory.Controls.Add(this.tabPage3);
-            this.tabControlPlayerHistory.Controls.Add(this.tabPage4);
-            this.tabControlPlayerHistory.Controls.Add(this.tabPageTrainingAndPotential);
+            this.tabControlPlayerHistory.Controls.Add(this.tabPlayerTraining);
             this.tabControlPlayerHistory.Controls.Add(this.tabPlayerScouting);
-            this.tabControlPlayerHistory.Controls.Add(this.tabPage6);
             this.tabControlPlayerHistory.Controls.Add(this.tabPlayerBrowser);
             this.tabControlPlayerHistory.Location = new System.Drawing.Point(257, 28);
             this.tabControlPlayerHistory.Name = "tabControlPlayerHistory";
@@ -321,770 +258,6 @@ namespace TMRecorder
             this.tabControlPlayerHistory.Size = new System.Drawing.Size(711, 548);
             this.tabControlPlayerHistory.TabIndex = 3;
             this.tabControlPlayerHistory.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
-            // 
-            // tabSkills
-            // 
-            this.tabSkills.Controls.Add(this.graphSkills);
-            this.tabSkills.Location = new System.Drawing.Point(4, 22);
-            this.tabSkills.Name = "tabSkills";
-            this.tabSkills.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSkills.Size = new System.Drawing.Size(703, 522);
-            this.tabSkills.TabIndex = 0;
-            this.tabSkills.Text = "Skills";
-            this.tabSkills.UseVisualStyleBackColor = true;
-            // 
-            // graphSkills
-            // 
-            this.graphSkills.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.graphSkills.EditButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphSkills.EditModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.None)));
-            this.graphSkills.IsAutoScrollRange = false;
-            this.graphSkills.IsEnableHEdit = false;
-            this.graphSkills.IsEnableHPan = true;
-            this.graphSkills.IsEnableHZoom = true;
-            this.graphSkills.IsEnableVEdit = false;
-            this.graphSkills.IsEnableVPan = true;
-            this.graphSkills.IsEnableVZoom = true;
-            this.graphSkills.IsPrintFillPage = true;
-            this.graphSkills.IsPrintKeepAspectRatio = true;
-            this.graphSkills.IsScrollY2 = false;
-            this.graphSkills.IsShowContextMenu = true;
-            this.graphSkills.IsShowCopyMessage = true;
-            this.graphSkills.IsShowCursorValues = false;
-            this.graphSkills.IsShowHScrollBar = false;
-            this.graphSkills.IsShowPointValues = false;
-            this.graphSkills.IsShowVScrollBar = false;
-            this.graphSkills.IsSynchronizeXAxes = false;
-            this.graphSkills.IsSynchronizeYAxes = false;
-            this.graphSkills.IsZoomOnMouseCenter = false;
-            this.graphSkills.LinkButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphSkills.LinkModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.None)));
-            this.graphSkills.Location = new System.Drawing.Point(3, 3);
-            this.graphSkills.Name = "graphSkills";
-            this.graphSkills.PanButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphSkills.PanButtons2 = System.Windows.Forms.MouseButtons.Middle;
-            this.graphSkills.PanModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.None)));
-            this.graphSkills.PanModifierKeys2 = System.Windows.Forms.Keys.None;
-            this.graphSkills.PointDateFormat = "g";
-            this.graphSkills.PointValueFormat = "G";
-            this.graphSkills.ScrollMaxX = 0D;
-            this.graphSkills.ScrollMaxY = 0D;
-            this.graphSkills.ScrollMaxY2 = 0D;
-            this.graphSkills.ScrollMinX = 0D;
-            this.graphSkills.ScrollMinY = 0D;
-            this.graphSkills.ScrollMinY2 = 0D;
-            this.graphSkills.Size = new System.Drawing.Size(697, 516);
-            this.graphSkills.TabIndex = 0;
-            this.graphSkills.ZoomButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphSkills.ZoomButtons2 = System.Windows.Forms.MouseButtons.None;
-            this.graphSkills.ZoomModifierKeys = System.Windows.Forms.Keys.None;
-            this.graphSkills.ZoomModifierKeys2 = System.Windows.Forms.Keys.None;
-            this.graphSkills.ZoomStepFraction = 0.1D;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.splitContainer2);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(703, 522);
-            this.tabPage1.TabIndex = 1;
-            this.tabPage1.Text = "ASI";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // splitContainer2
-            // 
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(3, 3);
-            this.splitContainer2.Name = "splitContainer2";
-            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer2.Panel1
-            // 
-            this.splitContainer2.Panel1.Controls.Add(this.linkLabel1);
-            this.splitContainer2.Panel1.Controls.Add(this.graphASI);
-            // 
-            // splitContainer2.Panel2
-            // 
-            this.splitContainer2.Panel2.Controls.Add(this.chkShowTGI);
-            this.splitContainer2.Panel2.Controls.Add(this.graphTI);
-            this.splitContainer2.Size = new System.Drawing.Size(697, 516);
-            this.splitContainer2.SplitterDistance = 246;
-            this.splitContainer2.TabIndex = 2;
-            // 
-            // linkLabel1
-            // 
-            this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel1.Location = new System.Drawing.Point(588, 1);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(108, 12);
-            this.linkLabel1.TabIndex = 2;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Delta ASI - By FS Paystu";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
-            // 
-            // graphASI
-            // 
-            this.graphASI.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.graphASI.EditButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphASI.EditModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.None)));
-            this.graphASI.IsAutoScrollRange = false;
-            this.graphASI.IsEnableHEdit = false;
-            this.graphASI.IsEnableHPan = true;
-            this.graphASI.IsEnableHZoom = true;
-            this.graphASI.IsEnableVEdit = false;
-            this.graphASI.IsEnableVPan = true;
-            this.graphASI.IsEnableVZoom = true;
-            this.graphASI.IsPrintFillPage = true;
-            this.graphASI.IsPrintKeepAspectRatio = true;
-            this.graphASI.IsScrollY2 = false;
-            this.graphASI.IsShowContextMenu = true;
-            this.graphASI.IsShowCopyMessage = true;
-            this.graphASI.IsShowCursorValues = false;
-            this.graphASI.IsShowHScrollBar = false;
-            this.graphASI.IsShowPointValues = false;
-            this.graphASI.IsShowVScrollBar = false;
-            this.graphASI.IsSynchronizeXAxes = false;
-            this.graphASI.IsSynchronizeYAxes = false;
-            this.graphASI.IsZoomOnMouseCenter = false;
-            this.graphASI.LinkButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphASI.LinkModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.None)));
-            this.graphASI.Location = new System.Drawing.Point(0, 0);
-            this.graphASI.Name = "graphASI";
-            this.graphASI.PanButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphASI.PanButtons2 = System.Windows.Forms.MouseButtons.Middle;
-            this.graphASI.PanModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.None)));
-            this.graphASI.PanModifierKeys2 = System.Windows.Forms.Keys.None;
-            this.graphASI.PointDateFormat = "g";
-            this.graphASI.PointValueFormat = "G";
-            this.graphASI.ScrollMaxX = 0D;
-            this.graphASI.ScrollMaxY = 0D;
-            this.graphASI.ScrollMaxY2 = 0D;
-            this.graphASI.ScrollMinX = 0D;
-            this.graphASI.ScrollMinY = 0D;
-            this.graphASI.ScrollMinY2 = 0D;
-            this.graphASI.Size = new System.Drawing.Size(697, 246);
-            this.graphASI.TabIndex = 1;
-            this.graphASI.ZoomButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphASI.ZoomButtons2 = System.Windows.Forms.MouseButtons.None;
-            this.graphASI.ZoomModifierKeys = System.Windows.Forms.Keys.None;
-            this.graphASI.ZoomModifierKeys2 = System.Windows.Forms.Keys.None;
-            this.graphASI.ZoomStepFraction = 0.1D;
-            // 
-            // chkShowTGI
-            // 
-            this.chkShowTGI.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chkShowTGI.AutoSize = true;
-            this.chkShowTGI.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkShowTGI.Location = new System.Drawing.Point(625, 6);
-            this.chkShowTGI.Name = "chkShowTGI";
-            this.chkShowTGI.Size = new System.Drawing.Size(65, 16);
-            this.chkShowTGI.TabIndex = 3;
-            this.chkShowTGI.Text = "Show TGI";
-            this.chkShowTGI.UseVisualStyleBackColor = true;
-            this.chkShowTGI.CheckedChanged += new System.EventHandler(this.chkShowTGI_CheckedChanged);
-            // 
-            // graphTI
-            // 
-            this.graphTI.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.graphTI.EditButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphTI.EditModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.None)));
-            this.graphTI.IsAutoScrollRange = false;
-            this.graphTI.IsEnableHEdit = false;
-            this.graphTI.IsEnableHPan = true;
-            this.graphTI.IsEnableHZoom = true;
-            this.graphTI.IsEnableVEdit = false;
-            this.graphTI.IsEnableVPan = true;
-            this.graphTI.IsEnableVZoom = true;
-            this.graphTI.IsPrintFillPage = true;
-            this.graphTI.IsPrintKeepAspectRatio = true;
-            this.graphTI.IsScrollY2 = false;
-            this.graphTI.IsShowContextMenu = true;
-            this.graphTI.IsShowCopyMessage = true;
-            this.graphTI.IsShowCursorValues = false;
-            this.graphTI.IsShowHScrollBar = false;
-            this.graphTI.IsShowPointValues = false;
-            this.graphTI.IsShowVScrollBar = false;
-            this.graphTI.IsSynchronizeXAxes = false;
-            this.graphTI.IsSynchronizeYAxes = false;
-            this.graphTI.IsZoomOnMouseCenter = false;
-            this.graphTI.LinkButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphTI.LinkModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.None)));
-            this.graphTI.Location = new System.Drawing.Point(0, 0);
-            this.graphTI.Name = "graphTI";
-            this.graphTI.PanButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphTI.PanButtons2 = System.Windows.Forms.MouseButtons.Middle;
-            this.graphTI.PanModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.None)));
-            this.graphTI.PanModifierKeys2 = System.Windows.Forms.Keys.None;
-            this.graphTI.PointDateFormat = "g";
-            this.graphTI.PointValueFormat = "G";
-            this.graphTI.ScrollMaxX = 0D;
-            this.graphTI.ScrollMaxY = 0D;
-            this.graphTI.ScrollMaxY2 = 0D;
-            this.graphTI.ScrollMinX = 0D;
-            this.graphTI.ScrollMinY = 0D;
-            this.graphTI.ScrollMinY2 = 0D;
-            this.graphTI.Size = new System.Drawing.Size(697, 266);
-            this.graphTI.TabIndex = 2;
-            this.graphTI.ZoomButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphTI.ZoomButtons2 = System.Windows.Forms.MouseButtons.None;
-            this.graphTI.ZoomModifierKeys = System.Windows.Forms.Keys.None;
-            this.graphTI.ZoomModifierKeys2 = System.Windows.Forms.Keys.None;
-            this.graphTI.ZoomStepFraction = 0.1D;
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.graphInjuries);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(703, 522);
-            this.tabPage2.TabIndex = 2;
-            this.tabPage2.Text = "Injuries";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // graphInjuries
-            // 
-            this.graphInjuries.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.graphInjuries.EditButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphInjuries.EditModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.None)));
-            this.graphInjuries.IsAutoScrollRange = false;
-            this.graphInjuries.IsEnableHEdit = false;
-            this.graphInjuries.IsEnableHPan = true;
-            this.graphInjuries.IsEnableHZoom = true;
-            this.graphInjuries.IsEnableVEdit = false;
-            this.graphInjuries.IsEnableVPan = true;
-            this.graphInjuries.IsEnableVZoom = true;
-            this.graphInjuries.IsPrintFillPage = true;
-            this.graphInjuries.IsPrintKeepAspectRatio = true;
-            this.graphInjuries.IsScrollY2 = false;
-            this.graphInjuries.IsShowContextMenu = true;
-            this.graphInjuries.IsShowCopyMessage = true;
-            this.graphInjuries.IsShowCursorValues = false;
-            this.graphInjuries.IsShowHScrollBar = false;
-            this.graphInjuries.IsShowPointValues = false;
-            this.graphInjuries.IsShowVScrollBar = false;
-            this.graphInjuries.IsSynchronizeXAxes = false;
-            this.graphInjuries.IsSynchronizeYAxes = false;
-            this.graphInjuries.IsZoomOnMouseCenter = false;
-            this.graphInjuries.LinkButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphInjuries.LinkModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.None)));
-            this.graphInjuries.Location = new System.Drawing.Point(3, 3);
-            this.graphInjuries.Name = "graphInjuries";
-            this.graphInjuries.PanButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphInjuries.PanButtons2 = System.Windows.Forms.MouseButtons.Middle;
-            this.graphInjuries.PanModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.None)));
-            this.graphInjuries.PanModifierKeys2 = System.Windows.Forms.Keys.None;
-            this.graphInjuries.PointDateFormat = "g";
-            this.graphInjuries.PointValueFormat = "G";
-            this.graphInjuries.ScrollMaxX = 0D;
-            this.graphInjuries.ScrollMaxY = 0D;
-            this.graphInjuries.ScrollMaxY2 = 0D;
-            this.graphInjuries.ScrollMinX = 0D;
-            this.graphInjuries.ScrollMinY = 0D;
-            this.graphInjuries.ScrollMinY2 = 0D;
-            this.graphInjuries.Size = new System.Drawing.Size(697, 516);
-            this.graphInjuries.TabIndex = 2;
-            this.graphInjuries.ZoomButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphInjuries.ZoomButtons2 = System.Windows.Forms.MouseButtons.None;
-            this.graphInjuries.ZoomModifierKeys = System.Windows.Forms.Keys.None;
-            this.graphInjuries.ZoomModifierKeys2 = System.Windows.Forms.Keys.None;
-            this.graphInjuries.ZoomStepFraction = 0.1D;
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.graphSpecs);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(703, 522);
-            this.tabPage3.TabIndex = 3;
-            this.tabPage3.Text = "Specs";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // graphSpecs
-            // 
-            this.graphSpecs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.graphSpecs.EditButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphSpecs.EditModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.None)));
-            this.graphSpecs.IsAutoScrollRange = false;
-            this.graphSpecs.IsEnableHEdit = false;
-            this.graphSpecs.IsEnableHPan = true;
-            this.graphSpecs.IsEnableHZoom = true;
-            this.graphSpecs.IsEnableVEdit = false;
-            this.graphSpecs.IsEnableVPan = true;
-            this.graphSpecs.IsEnableVZoom = true;
-            this.graphSpecs.IsPrintFillPage = true;
-            this.graphSpecs.IsPrintKeepAspectRatio = true;
-            this.graphSpecs.IsScrollY2 = false;
-            this.graphSpecs.IsShowContextMenu = true;
-            this.graphSpecs.IsShowCopyMessage = true;
-            this.graphSpecs.IsShowCursorValues = false;
-            this.graphSpecs.IsShowHScrollBar = false;
-            this.graphSpecs.IsShowPointValues = false;
-            this.graphSpecs.IsShowVScrollBar = false;
-            this.graphSpecs.IsSynchronizeXAxes = false;
-            this.graphSpecs.IsSynchronizeYAxes = false;
-            this.graphSpecs.IsZoomOnMouseCenter = false;
-            this.graphSpecs.LinkButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphSpecs.LinkModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.None)));
-            this.graphSpecs.Location = new System.Drawing.Point(3, 3);
-            this.graphSpecs.Name = "graphSpecs";
-            this.graphSpecs.PanButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphSpecs.PanButtons2 = System.Windows.Forms.MouseButtons.Middle;
-            this.graphSpecs.PanModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.None)));
-            this.graphSpecs.PanModifierKeys2 = System.Windows.Forms.Keys.None;
-            this.graphSpecs.PointDateFormat = "g";
-            this.graphSpecs.PointValueFormat = "G";
-            this.graphSpecs.ScrollMaxX = 0D;
-            this.graphSpecs.ScrollMaxY = 0D;
-            this.graphSpecs.ScrollMaxY2 = 0D;
-            this.graphSpecs.ScrollMinX = 0D;
-            this.graphSpecs.ScrollMinY = 0D;
-            this.graphSpecs.ScrollMinY2 = 0D;
-            this.graphSpecs.Size = new System.Drawing.Size(697, 516);
-            this.graphSpecs.TabIndex = 1;
-            this.graphSpecs.ZoomButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphSpecs.ZoomButtons2 = System.Windows.Forms.MouseButtons.None;
-            this.graphSpecs.ZoomModifierKeys = System.Windows.Forms.Keys.None;
-            this.graphSpecs.ZoomModifierKeys2 = System.Windows.Forms.Keys.None;
-            this.graphSpecs.ZoomStepFraction = 0.1D;
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.toolStrip2);
-            this.tabPage4.Controls.Add(this.graphPerf);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(703, 522);
-            this.tabPage4.TabIndex = 4;
-            this.tabPage4.Text = "Performances";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // toolStrip2
-            // 
-            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lblSeason,
-            this.cmbSeason,
-            this.chkNormalized,
-            this.chkShowPosition});
-            this.toolStrip2.Location = new System.Drawing.Point(3, 3);
-            this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(697, 25);
-            this.toolStrip2.TabIndex = 7;
-            this.toolStrip2.Text = "toolStrip2";
-            // 
-            // lblSeason
-            // 
-            this.lblSeason.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSeason.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.lblSeason.Name = "lblSeason";
-            this.lblSeason.Size = new System.Drawing.Size(48, 22);
-            this.lblSeason.Text = "Season";
-            // 
-            // cmbSeason
-            // 
-            this.cmbSeason.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbSeason.Name = "cmbSeason";
-            this.cmbSeason.Size = new System.Drawing.Size(95, 25);
-            this.cmbSeason.SelectedIndexChanged += new System.EventHandler(this.cmbSeason_SelectedIndexChanged);
-            // 
-            // chkNormalized
-            // 
-            this.chkNormalized.CheckOnClick = true;
-            this.chkNormalized.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.chkNormalized.Image = ((System.Drawing.Image)(resources.GetObject("chkNormalized.Image")));
-            this.chkNormalized.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.chkNormalized.Name = "chkNormalized";
-            this.chkNormalized.Size = new System.Drawing.Size(104, 22);
-            this.chkNormalized.Text = "Normalized (OFF)";
-            this.chkNormalized.CheckedChanged += new System.EventHandler(this.chkNormalized_CheckedChanged);
-            // 
-            // chkShowPosition
-            // 
-            this.chkShowPosition.CheckOnClick = true;
-            this.chkShowPosition.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.chkShowPosition.Image = ((System.Drawing.Image)(resources.GetObject("chkShowPosition.Image")));
-            this.chkShowPosition.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.chkShowPosition.Name = "chkShowPosition";
-            this.chkShowPosition.Size = new System.Drawing.Size(118, 22);
-            this.chkShowPosition.Text = "Show Position (OFF)";
-            this.chkShowPosition.CheckedChanged += new System.EventHandler(this.chkNormalized_CheckedChanged);
-            // 
-            // graphPerf
-            // 
-            this.graphPerf.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.graphPerf.EditButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphPerf.EditModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.None)));
-            this.graphPerf.IsAutoScrollRange = false;
-            this.graphPerf.IsEnableHEdit = false;
-            this.graphPerf.IsEnableHPan = true;
-            this.graphPerf.IsEnableHZoom = true;
-            this.graphPerf.IsEnableVEdit = false;
-            this.graphPerf.IsEnableVPan = true;
-            this.graphPerf.IsEnableVZoom = true;
-            this.graphPerf.IsPrintFillPage = true;
-            this.graphPerf.IsPrintKeepAspectRatio = true;
-            this.graphPerf.IsScrollY2 = false;
-            this.graphPerf.IsShowContextMenu = true;
-            this.graphPerf.IsShowCopyMessage = true;
-            this.graphPerf.IsShowCursorValues = false;
-            this.graphPerf.IsShowHScrollBar = false;
-            this.graphPerf.IsShowPointValues = false;
-            this.graphPerf.IsShowVScrollBar = false;
-            this.graphPerf.IsSynchronizeXAxes = false;
-            this.graphPerf.IsSynchronizeYAxes = false;
-            this.graphPerf.IsZoomOnMouseCenter = false;
-            this.graphPerf.LinkButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphPerf.LinkModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.None)));
-            this.graphPerf.Location = new System.Drawing.Point(3, 31);
-            this.graphPerf.Name = "graphPerf";
-            this.graphPerf.PanButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphPerf.PanButtons2 = System.Windows.Forms.MouseButtons.Middle;
-            this.graphPerf.PanModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.None)));
-            this.graphPerf.PanModifierKeys2 = System.Windows.Forms.Keys.None;
-            this.graphPerf.PointDateFormat = "g";
-            this.graphPerf.PointValueFormat = "G";
-            this.graphPerf.ScrollMaxX = 0D;
-            this.graphPerf.ScrollMaxY = 0D;
-            this.graphPerf.ScrollMaxY2 = 0D;
-            this.graphPerf.ScrollMinX = 0D;
-            this.graphPerf.ScrollMinY = 0D;
-            this.graphPerf.ScrollMinY2 = 0D;
-            this.graphPerf.Size = new System.Drawing.Size(697, 485);
-            this.graphPerf.TabIndex = 2;
-            this.graphPerf.ZoomButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphPerf.ZoomButtons2 = System.Windows.Forms.MouseButtons.None;
-            this.graphPerf.ZoomModifierKeys = System.Windows.Forms.Keys.None;
-            this.graphPerf.ZoomModifierKeys2 = System.Windows.Forms.Keys.None;
-            this.graphPerf.ZoomStepFraction = 0.1D;
-            // 
-            // tabPageTrainingAndPotential
-            // 
-            this.tabPageTrainingAndPotential.Controls.Add(this.toolStrip3);
-            this.tabPageTrainingAndPotential.Controls.Add(this.splitContainer3);
-            this.tabPageTrainingAndPotential.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabPageTrainingAndPotential.Location = new System.Drawing.Point(4, 22);
-            this.tabPageTrainingAndPotential.Name = "tabPageTrainingAndPotential";
-            this.tabPageTrainingAndPotential.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageTrainingAndPotential.Size = new System.Drawing.Size(703, 522);
-            this.tabPageTrainingAndPotential.TabIndex = 5;
-            this.tabPageTrainingAndPotential.Text = "Training & Potential";
-            this.tabPageTrainingAndPotential.UseVisualStyleBackColor = true;
-            // 
-            // toolStrip3
-            // 
-            this.toolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripDropDownButton2,
-            this.toolStripDropDownButton3});
-            this.toolStrip3.Location = new System.Drawing.Point(3, 3);
-            this.toolStrip3.Name = "toolStrip3";
-            this.toolStrip3.Size = new System.Drawing.Size(697, 25);
-            this.toolStrip3.TabIndex = 8;
-            this.toolStrip3.Text = "toolStrip3";
-            // 
-            // toolStripDropDownButton2
-            // 
-            this.toolStripDropDownButton2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.whatToDoHereToolStripMenuItem});
-            this.toolStripDropDownButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton2.Image")));
-            this.toolStripDropDownButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton2.Name = "toolStripDropDownButton2";
-            this.toolStripDropDownButton2.Size = new System.Drawing.Size(61, 22);
-            this.toolStripDropDownButton2.Text = "Help";
-            // 
-            // whatToDoHereToolStripMenuItem
-            // 
-            this.whatToDoHereToolStripMenuItem.Name = "whatToDoHereToolStripMenuItem";
-            this.whatToDoHereToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
-            this.whatToDoHereToolStripMenuItem.Text = "What To Do Here?";
-            this.whatToDoHereToolStripMenuItem.Click += new System.EventHandler(this.whatToDoHereToolStripMenuItem_Click);
-            // 
-            // toolStripDropDownButton3
-            // 
-            this.toolStripDropDownButton3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.getPotentialForThisPlayerToolStripMenuItem});
-            this.toolStripDropDownButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton3.Image")));
-            this.toolStripDropDownButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton3.Name = "toolStripDropDownButton3";
-            this.toolStripDropDownButton3.Size = new System.Drawing.Size(150, 22);
-            this.toolStripDropDownButton3.Text = "Analyse Scout Review";
-            // 
-            // getPotentialForThisPlayerToolStripMenuItem
-            // 
-            this.getPotentialForThisPlayerToolStripMenuItem.Name = "getPotentialForThisPlayerToolStripMenuItem";
-            this.getPotentialForThisPlayerToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
-            this.getPotentialForThisPlayerToolStripMenuItem.Text = "Get Potentials for this Player";
-            this.getPotentialForThisPlayerToolStripMenuItem.Click += new System.EventHandler(this.getPotentialForThisPlayerToolStripMenuItem_Click);
-            // 
-            // splitContainer3
-            // 
-            this.splitContainer3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer3.Location = new System.Drawing.Point(0, 30);
-            this.splitContainer3.Name = "splitContainer3";
-            this.splitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer3.Panel1
-            // 
-            this.splitContainer3.Panel1.Controls.Add(this.splitContainer4);
-            // 
-            // splitContainer3.Panel2
-            // 
-            this.splitContainer3.Panel2.Controls.Add(this.splitContainer5);
-            this.splitContainer3.Size = new System.Drawing.Size(700, 492);
-            this.splitContainer3.SplitterDistance = 246;
-            this.splitContainer3.SplitterWidth = 2;
-            this.splitContainer3.TabIndex = 7;
-            // 
-            // splitContainer4
-            // 
-            this.splitContainer4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer4.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer4.Name = "splitContainer4";
-            // 
-            // splitContainer4.Panel1
-            // 
-            this.splitContainer4.Panel1.Controls.Add(this.graphTrainingPsychology);
-            // 
-            // splitContainer4.Panel2
-            // 
-            this.splitContainer4.Panel2.Controls.Add(this.graphTrainingPhisics);
-            this.splitContainer4.Panel2.Controls.Add(this.btnGetVotenSkillAuto);
-            this.splitContainer4.Size = new System.Drawing.Size(700, 246);
-            this.splitContainer4.SplitterDistance = 347;
-            this.splitContainer4.SplitterWidth = 2;
-            this.splitContainer4.TabIndex = 7;
-            // 
-            // graphTrainingPsychology
-            // 
-            this.graphTrainingPsychology.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.graphTrainingPsychology.EditButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphTrainingPsychology.EditModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.None)));
-            this.graphTrainingPsychology.IsAutoScrollRange = false;
-            this.graphTrainingPsychology.IsEnableHEdit = false;
-            this.graphTrainingPsychology.IsEnableHPan = true;
-            this.graphTrainingPsychology.IsEnableHZoom = true;
-            this.graphTrainingPsychology.IsEnableVEdit = false;
-            this.graphTrainingPsychology.IsEnableVPan = true;
-            this.graphTrainingPsychology.IsEnableVZoom = true;
-            this.graphTrainingPsychology.IsPrintFillPage = true;
-            this.graphTrainingPsychology.IsPrintKeepAspectRatio = true;
-            this.graphTrainingPsychology.IsScrollY2 = false;
-            this.graphTrainingPsychology.IsShowContextMenu = true;
-            this.graphTrainingPsychology.IsShowCopyMessage = true;
-            this.graphTrainingPsychology.IsShowCursorValues = false;
-            this.graphTrainingPsychology.IsShowHScrollBar = false;
-            this.graphTrainingPsychology.IsShowPointValues = false;
-            this.graphTrainingPsychology.IsShowVScrollBar = false;
-            this.graphTrainingPsychology.IsSynchronizeXAxes = false;
-            this.graphTrainingPsychology.IsSynchronizeYAxes = false;
-            this.graphTrainingPsychology.IsZoomOnMouseCenter = false;
-            this.graphTrainingPsychology.LinkButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphTrainingPsychology.LinkModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.None)));
-            this.graphTrainingPsychology.Location = new System.Drawing.Point(0, 0);
-            this.graphTrainingPsychology.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.graphTrainingPsychology.Name = "graphTrainingPsychology";
-            this.graphTrainingPsychology.PanButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphTrainingPsychology.PanButtons2 = System.Windows.Forms.MouseButtons.Middle;
-            this.graphTrainingPsychology.PanModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.None)));
-            this.graphTrainingPsychology.PanModifierKeys2 = System.Windows.Forms.Keys.None;
-            this.graphTrainingPsychology.PointDateFormat = "g";
-            this.graphTrainingPsychology.PointValueFormat = "G";
-            this.graphTrainingPsychology.ScrollMaxX = 0D;
-            this.graphTrainingPsychology.ScrollMaxY = 0D;
-            this.graphTrainingPsychology.ScrollMaxY2 = 0D;
-            this.graphTrainingPsychology.ScrollMinX = 0D;
-            this.graphTrainingPsychology.ScrollMinY = 0D;
-            this.graphTrainingPsychology.ScrollMinY2 = 0D;
-            this.graphTrainingPsychology.Size = new System.Drawing.Size(347, 246);
-            this.graphTrainingPsychology.TabIndex = 6;
-            this.graphTrainingPsychology.ZoomButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphTrainingPsychology.ZoomButtons2 = System.Windows.Forms.MouseButtons.None;
-            this.graphTrainingPsychology.ZoomModifierKeys = System.Windows.Forms.Keys.None;
-            this.graphTrainingPsychology.ZoomModifierKeys2 = System.Windows.Forms.Keys.None;
-            this.graphTrainingPsychology.ZoomStepFraction = 0.1D;
-            // 
-            // graphTrainingPhisics
-            // 
-            this.graphTrainingPhisics.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.graphTrainingPhisics.EditButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphTrainingPhisics.EditModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.None)));
-            this.graphTrainingPhisics.IsAutoScrollRange = false;
-            this.graphTrainingPhisics.IsEnableHEdit = false;
-            this.graphTrainingPhisics.IsEnableHPan = true;
-            this.graphTrainingPhisics.IsEnableHZoom = true;
-            this.graphTrainingPhisics.IsEnableVEdit = false;
-            this.graphTrainingPhisics.IsEnableVPan = true;
-            this.graphTrainingPhisics.IsEnableVZoom = true;
-            this.graphTrainingPhisics.IsPrintFillPage = true;
-            this.graphTrainingPhisics.IsPrintKeepAspectRatio = true;
-            this.graphTrainingPhisics.IsScrollY2 = false;
-            this.graphTrainingPhisics.IsShowContextMenu = true;
-            this.graphTrainingPhisics.IsShowCopyMessage = true;
-            this.graphTrainingPhisics.IsShowCursorValues = false;
-            this.graphTrainingPhisics.IsShowHScrollBar = false;
-            this.graphTrainingPhisics.IsShowPointValues = false;
-            this.graphTrainingPhisics.IsShowVScrollBar = false;
-            this.graphTrainingPhisics.IsSynchronizeXAxes = false;
-            this.graphTrainingPhisics.IsSynchronizeYAxes = false;
-            this.graphTrainingPhisics.IsZoomOnMouseCenter = false;
-            this.graphTrainingPhisics.LinkButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphTrainingPhisics.LinkModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.None)));
-            this.graphTrainingPhisics.Location = new System.Drawing.Point(0, 0);
-            this.graphTrainingPhisics.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.graphTrainingPhisics.Name = "graphTrainingPhisics";
-            this.graphTrainingPhisics.PanButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphTrainingPhisics.PanButtons2 = System.Windows.Forms.MouseButtons.Middle;
-            this.graphTrainingPhisics.PanModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.None)));
-            this.graphTrainingPhisics.PanModifierKeys2 = System.Windows.Forms.Keys.None;
-            this.graphTrainingPhisics.PointDateFormat = "g";
-            this.graphTrainingPhisics.PointValueFormat = "G";
-            this.graphTrainingPhisics.ScrollMaxX = 0D;
-            this.graphTrainingPhisics.ScrollMaxY = 0D;
-            this.graphTrainingPhisics.ScrollMaxY2 = 0D;
-            this.graphTrainingPhisics.ScrollMinX = 0D;
-            this.graphTrainingPhisics.ScrollMinY = 0D;
-            this.graphTrainingPhisics.ScrollMinY2 = 0D;
-            this.graphTrainingPhisics.Size = new System.Drawing.Size(351, 246);
-            this.graphTrainingPhisics.TabIndex = 6;
-            this.graphTrainingPhisics.ZoomButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphTrainingPhisics.ZoomButtons2 = System.Windows.Forms.MouseButtons.None;
-            this.graphTrainingPhisics.ZoomModifierKeys = System.Windows.Forms.Keys.None;
-            this.graphTrainingPhisics.ZoomModifierKeys2 = System.Windows.Forms.Keys.None;
-            this.graphTrainingPhisics.ZoomStepFraction = 0.1D;
-            // 
-            // btnGetVotenSkillAuto
-            // 
-            this.btnGetVotenSkillAuto.Location = new System.Drawing.Point(186, -31);
-            this.btnGetVotenSkillAuto.Name = "btnGetVotenSkillAuto";
-            this.btnGetVotenSkillAuto.Size = new System.Drawing.Size(85, 41);
-            this.btnGetVotenSkillAuto.TabIndex = 4;
-            this.btnGetVotenSkillAuto.Text = "Get Automatically";
-            this.btnGetVotenSkillAuto.UseVisualStyleBackColor = true;
-            this.btnGetVotenSkillAuto.Click += new System.EventHandler(this.btnGetVotenSkillAuto_Click);
-            // 
-            // splitContainer5
-            // 
-            this.splitContainer5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer5.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer5.Name = "splitContainer5";
-            // 
-            // splitContainer5.Panel1
-            // 
-            this.splitContainer5.Panel1.Controls.Add(this.graphTrainingTactics);
-            // 
-            // splitContainer5.Panel2
-            // 
-            this.splitContainer5.Panel2.Controls.Add(this.graphTrainingTechnics);
-            this.splitContainer5.Size = new System.Drawing.Size(700, 244);
-            this.splitContainer5.SplitterDistance = 347;
-            this.splitContainer5.SplitterWidth = 2;
-            this.splitContainer5.TabIndex = 7;
-            // 
-            // graphTrainingTactics
-            // 
-            this.graphTrainingTactics.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.graphTrainingTactics.EditButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphTrainingTactics.EditModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.None)));
-            this.graphTrainingTactics.IsAutoScrollRange = false;
-            this.graphTrainingTactics.IsEnableHEdit = false;
-            this.graphTrainingTactics.IsEnableHPan = true;
-            this.graphTrainingTactics.IsEnableHZoom = true;
-            this.graphTrainingTactics.IsEnableVEdit = false;
-            this.graphTrainingTactics.IsEnableVPan = true;
-            this.graphTrainingTactics.IsEnableVZoom = true;
-            this.graphTrainingTactics.IsPrintFillPage = true;
-            this.graphTrainingTactics.IsPrintKeepAspectRatio = true;
-            this.graphTrainingTactics.IsScrollY2 = false;
-            this.graphTrainingTactics.IsShowContextMenu = true;
-            this.graphTrainingTactics.IsShowCopyMessage = true;
-            this.graphTrainingTactics.IsShowCursorValues = false;
-            this.graphTrainingTactics.IsShowHScrollBar = false;
-            this.graphTrainingTactics.IsShowPointValues = false;
-            this.graphTrainingTactics.IsShowVScrollBar = false;
-            this.graphTrainingTactics.IsSynchronizeXAxes = false;
-            this.graphTrainingTactics.IsSynchronizeYAxes = false;
-            this.graphTrainingTactics.IsZoomOnMouseCenter = false;
-            this.graphTrainingTactics.LinkButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphTrainingTactics.LinkModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.None)));
-            this.graphTrainingTactics.Location = new System.Drawing.Point(0, 0);
-            this.graphTrainingTactics.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.graphTrainingTactics.Name = "graphTrainingTactics";
-            this.graphTrainingTactics.PanButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphTrainingTactics.PanButtons2 = System.Windows.Forms.MouseButtons.Middle;
-            this.graphTrainingTactics.PanModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.None)));
-            this.graphTrainingTactics.PanModifierKeys2 = System.Windows.Forms.Keys.None;
-            this.graphTrainingTactics.PointDateFormat = "g";
-            this.graphTrainingTactics.PointValueFormat = "G";
-            this.graphTrainingTactics.ScrollMaxX = 0D;
-            this.graphTrainingTactics.ScrollMaxY = 0D;
-            this.graphTrainingTactics.ScrollMaxY2 = 0D;
-            this.graphTrainingTactics.ScrollMinX = 0D;
-            this.graphTrainingTactics.ScrollMinY = 0D;
-            this.graphTrainingTactics.ScrollMinY2 = 0D;
-            this.graphTrainingTactics.Size = new System.Drawing.Size(347, 244);
-            this.graphTrainingTactics.TabIndex = 6;
-            this.graphTrainingTactics.ZoomButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphTrainingTactics.ZoomButtons2 = System.Windows.Forms.MouseButtons.None;
-            this.graphTrainingTactics.ZoomModifierKeys = System.Windows.Forms.Keys.None;
-            this.graphTrainingTactics.ZoomModifierKeys2 = System.Windows.Forms.Keys.None;
-            this.graphTrainingTactics.ZoomStepFraction = 0.1D;
-            // 
-            // graphTrainingTechnics
-            // 
-            this.graphTrainingTechnics.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.graphTrainingTechnics.EditButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphTrainingTechnics.EditModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.None)));
-            this.graphTrainingTechnics.IsAutoScrollRange = false;
-            this.graphTrainingTechnics.IsEnableHEdit = false;
-            this.graphTrainingTechnics.IsEnableHPan = true;
-            this.graphTrainingTechnics.IsEnableHZoom = true;
-            this.graphTrainingTechnics.IsEnableVEdit = false;
-            this.graphTrainingTechnics.IsEnableVPan = true;
-            this.graphTrainingTechnics.IsEnableVZoom = true;
-            this.graphTrainingTechnics.IsPrintFillPage = true;
-            this.graphTrainingTechnics.IsPrintKeepAspectRatio = true;
-            this.graphTrainingTechnics.IsScrollY2 = false;
-            this.graphTrainingTechnics.IsShowContextMenu = true;
-            this.graphTrainingTechnics.IsShowCopyMessage = true;
-            this.graphTrainingTechnics.IsShowCursorValues = false;
-            this.graphTrainingTechnics.IsShowHScrollBar = false;
-            this.graphTrainingTechnics.IsShowPointValues = false;
-            this.graphTrainingTechnics.IsShowVScrollBar = false;
-            this.graphTrainingTechnics.IsSynchronizeXAxes = false;
-            this.graphTrainingTechnics.IsSynchronizeYAxes = false;
-            this.graphTrainingTechnics.IsZoomOnMouseCenter = false;
-            this.graphTrainingTechnics.LinkButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphTrainingTechnics.LinkModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.None)));
-            this.graphTrainingTechnics.Location = new System.Drawing.Point(0, 0);
-            this.graphTrainingTechnics.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.graphTrainingTechnics.Name = "graphTrainingTechnics";
-            this.graphTrainingTechnics.PanButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphTrainingTechnics.PanButtons2 = System.Windows.Forms.MouseButtons.Middle;
-            this.graphTrainingTechnics.PanModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.None)));
-            this.graphTrainingTechnics.PanModifierKeys2 = System.Windows.Forms.Keys.None;
-            this.graphTrainingTechnics.PointDateFormat = "g";
-            this.graphTrainingTechnics.PointValueFormat = "G";
-            this.graphTrainingTechnics.ScrollMaxX = 0D;
-            this.graphTrainingTechnics.ScrollMaxY = 0D;
-            this.graphTrainingTechnics.ScrollMaxY2 = 0D;
-            this.graphTrainingTechnics.ScrollMinX = 0D;
-            this.graphTrainingTechnics.ScrollMinY = 0D;
-            this.graphTrainingTechnics.ScrollMinY2 = 0D;
-            this.graphTrainingTechnics.Size = new System.Drawing.Size(351, 244);
-            this.graphTrainingTechnics.TabIndex = 6;
-            this.graphTrainingTechnics.ZoomButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphTrainingTechnics.ZoomButtons2 = System.Windows.Forms.MouseButtons.None;
-            this.graphTrainingTechnics.ZoomModifierKeys = System.Windows.Forms.Keys.None;
-            this.graphTrainingTechnics.ZoomModifierKeys2 = System.Windows.Forms.Keys.None;
-            this.graphTrainingTechnics.ZoomStepFraction = 0.1D;
             // 
             // tabPlayerScouting
             // 
@@ -1161,15 +334,15 @@ namespace TMRecorder
             this.psychologyDataGridViewTextBoxColumn});
             this.dgScouts.DataMember = "Scouts";
             this.dgScouts.DataSource = this.scoutsNReviews;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.NullValue = "-";
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgScouts.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.NullValue = "-";
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgScouts.DefaultCellStyle = dataGridViewCellStyle5;
             this.dgScouts.Location = new System.Drawing.Point(6, 29);
             this.dgScouts.Name = "dgScouts";
             this.dgScouts.RowHeadersWidth = 20;
@@ -1274,15 +447,15 @@ namespace TMRecorder
             this.aggressivityDataGridViewTextBoxColumn});
             this.dgReviews.DataMember = "Review";
             this.dgReviews.DataSource = this.scoutsNReviews;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.NullValue = "-";
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgReviews.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.NullValue = "-";
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgReviews.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgReviews.Location = new System.Drawing.Point(6, 191);
             this.dgReviews.Name = "dgReviews";
             this.dgReviews.RowHeadersWidth = 20;
@@ -1603,16 +776,16 @@ namespace TMRecorder
             0,
             0});
             // 
-            // tabPage6
+            // tabPlayerTraining
             // 
-            this.tabPage6.Controls.Add(this.dgTraining);
-            this.tabPage6.Location = new System.Drawing.Point(4, 22);
-            this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(703, 522);
-            this.tabPage6.TabIndex = 6;
-            this.tabPage6.Text = "Player Training";
-            this.tabPage6.UseVisualStyleBackColor = true;
+            this.tabPlayerTraining.Controls.Add(this.dgTraining);
+            this.tabPlayerTraining.Location = new System.Drawing.Point(4, 22);
+            this.tabPlayerTraining.Name = "tabPlayerTraining";
+            this.tabPlayerTraining.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPlayerTraining.Size = new System.Drawing.Size(703, 522);
+            this.tabPlayerTraining.TabIndex = 6;
+            this.tabPlayerTraining.Text = "Player Training";
+            this.tabPlayerTraining.UseVisualStyleBackColor = true;
             // 
             // dgTraining
             // 
@@ -2028,8 +1201,8 @@ namespace TMRecorder
             // 
             this.ratDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
             this.ratDataGridViewTextBoxColumn.DataPropertyName = "Rat";
-            dataGridViewCellStyle3.Format = "N1";
-            this.ratDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Format = "N1";
+            this.ratDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle7;
             this.ratDataGridViewTextBoxColumn.HeaderText = "Rat";
             this.ratDataGridViewTextBoxColumn.MinimumWidth = 33;
             this.ratDataGridViewTextBoxColumn.Name = "ratDataGridViewTextBoxColumn";
@@ -2908,8 +2081,8 @@ namespace TMRecorder
             // 
             this.dataGridViewTextBoxColumn19.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
             this.dataGridViewTextBoxColumn19.DataPropertyName = "Rat";
-            dataGridViewCellStyle4.Format = "N1";
-            this.dataGridViewTextBoxColumn19.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Format = "N1";
+            this.dataGridViewTextBoxColumn19.DefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridViewTextBoxColumn19.HeaderText = "Rat";
             this.dataGridViewTextBoxColumn19.MinimumWidth = 33;
             this.dataGridViewTextBoxColumn19.Name = "dataGridViewTextBoxColumn19";
@@ -2940,7 +2113,7 @@ namespace TMRecorder
             this.teamDS.last_week_loaded = -1;
             this.teamDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // PlayerForm
+            // PlayerFormSL
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -2951,48 +2124,18 @@ namespace TMRecorder
             this.Controls.Add(this.tabControlPlayerHistory);
             this.Controls.Add(this.toolStrip1);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Name = "PlayerForm";
+            this.Name = "PlayerFormSL";
             this.Text = "Player History";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PlayerForm_FormClosing);
             this.Load += new System.EventHandler(this.PlayerForm_Load);
             this.SizeChanged += new System.EventHandler(this.PlayerForm_SizeChanged);
             this.tabControlPlayerHistory.ResumeLayout(false);
-            this.tabSkills.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.splitContainer2.Panel1.ResumeLayout(false);
-            this.splitContainer2.Panel1.PerformLayout();
-            this.splitContainer2.Panel2.ResumeLayout(false);
-            this.splitContainer2.Panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
-            this.splitContainer2.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage4.ResumeLayout(false);
-            this.tabPage4.PerformLayout();
-            this.toolStrip2.ResumeLayout(false);
-            this.toolStrip2.PerformLayout();
-            this.tabPageTrainingAndPotential.ResumeLayout(false);
-            this.tabPageTrainingAndPotential.PerformLayout();
-            this.toolStrip3.ResumeLayout(false);
-            this.toolStrip3.PerformLayout();
-            this.splitContainer3.Panel1.ResumeLayout(false);
-            this.splitContainer3.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
-            this.splitContainer3.ResumeLayout(false);
-            this.splitContainer4.Panel1.ResumeLayout(false);
-            this.splitContainer4.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
-            this.splitContainer4.ResumeLayout(false);
-            this.splitContainer5.Panel1.ResumeLayout(false);
-            this.splitContainer5.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).EndInit();
-            this.splitContainer5.ResumeLayout(false);
             this.tabPlayerScouting.ResumeLayout(false);
             this.tabPlayerScouting.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgScouts)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.scoutsNReviews)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgReviews)).EndInit();
-            this.tabPage6.ResumeLayout(false);
+            this.tabPlayerTraining.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgTraining)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trainingBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.playerTraining)).EndInit();
@@ -3025,12 +2168,6 @@ namespace TMRecorder
         #endregion
 
         private System.Windows.Forms.TabControl tabControlPlayerHistory;
-        private System.Windows.Forms.TabPage tabSkills;
-        private ZedGraph.ZedGraphControl graphSkills;
-        private System.Windows.Forms.TabPage tabPage2;
-        private ZedGraph.ZedGraphControl graphInjuries;
-        private System.Windows.Forms.TabPage tabPage3;
-        private ZedGraph.ZedGraphControl graphSpecs;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtNotes;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -3042,23 +2179,13 @@ namespace TMRecorder
         private System.Windows.Forms.ToolStripButton toolStripButton4;
         private System.Windows.Forms.ToolStripLabel toolStripLabel2;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.SplitContainer splitContainer2;
-        private ZedGraph.ZedGraphControl graphASI;
-        private ZedGraph.ZedGraphControl graphTI;
-        private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.CheckBox chkShowTGI;
         private System.Windows.Forms.ToolStripButton toolStripButton3;
-        private System.Windows.Forms.TabPage tabPage4;
-        private ZedGraph.ZedGraphControl graphPerf;
         private System.Windows.Forms.ToolStripButton tsbComputeGrowth;
-        private System.Windows.Forms.TabPage tabPageTrainingAndPotential;
         public System.Windows.Forms.BindingSource scoutsBindingSource;
         public ExtraDS extraDS;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.Button btnGetVotenSkillAuto;
         public ReportAnalysis ReportAnalysis;
-        private System.Windows.Forms.TabPage tabPage6;
+        private System.Windows.Forms.TabPage tabPlayerTraining;
         private AeroDataGrid dgTraining;
         private System.Windows.Forms.BindingSource trainingBindingSource;
         private DataGridViewCustomColumns.TMR_AgeColumn tmR_AgeColumn1;
@@ -3081,23 +2208,6 @@ namespace TMRecorder
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn16;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn17;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn18;
-        private System.Windows.Forms.ToolStrip toolStrip2;
-        private System.Windows.Forms.ToolStripLabel lblSeason;
-        private System.Windows.Forms.ToolStripComboBox cmbSeason;
-        private System.Windows.Forms.ToolStripButton chkNormalized;
-        private System.Windows.Forms.ToolStripButton chkShowPosition;
-        private ZedGraph.ZedGraphControl graphTrainingPsychology;
-        private ZedGraph.ZedGraphControl graphTrainingTechnics;
-        private ZedGraph.ZedGraphControl graphTrainingTactics;
-        private ZedGraph.ZedGraphControl graphTrainingPhisics;
-        private System.Windows.Forms.SplitContainer splitContainer3;
-        private System.Windows.Forms.SplitContainer splitContainer4;
-        private System.Windows.Forms.SplitContainer splitContainer5;
-        private System.Windows.Forms.ToolStrip toolStrip3;
-        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton2;
-        private System.Windows.Forms.ToolStripMenuItem whatToDoHereToolStripMenuItem;
-        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton3;
-        private System.Windows.Forms.ToolStripMenuItem getPotentialForThisPlayerToolStripMenuItem;
         private System.Windows.Forms.TabPage tabPlayerBrowser;
         private System.Windows.Forms.ToolStripDropDownButton tsbPlayers;
         private System.Windows.Forms.ToolStripMenuItem dDefendersToolStripMenuItem;

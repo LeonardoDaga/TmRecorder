@@ -232,11 +232,11 @@
       <DependentUpon>Languages.resx</DependentUpon>
     </Compile>
     <Compile Include="MySettings.cs" />
-    <Compile Include="NTR_PlayerData.cs">
-      <SubType>UserControl</SubType>
+    <Compile Include="PlayerFormSL.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="NTR_PlayerData.Designer.cs">
-      <DependentUpon>NTR_PlayerData.cs</DependentUpon>
+    <Compile Include="PlayerFormSL.Designer.cs">
+      <DependentUpon>PlayerFormSL.cs</DependentUpon>
     </Compile>
     <Compile Include="PlayerForm.cs">
       <SubType>Form</SubType>
@@ -433,10 +433,6 @@
       <SubType>Designer</SubType>
       <DependentUpon>MatchStats.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NTR_PlayerData.resx">
-      <DependentUpon>NTR_PlayerData.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="OptionsForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>OptionsForm.cs</DependentUpon>
@@ -444,6 +440,10 @@
     <EmbeddedResource Include="PlayerData.resx">
       <SubType>Designer</SubType>
       <DependentUpon>PlayerData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PlayerFormSL.resx">
+      <DependentUpon>PlayerFormSL.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="PlayerForm.resx">
       <SubType>Designer</SubType>

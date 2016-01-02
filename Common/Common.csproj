@@ -291,6 +291,14 @@
       <DependentUpon>NationsDS.xsd</DependentUpon>
     </Compile>
     <Compile Include="News.cs" />
+    <Compile Include="NTR_SquadDb.cs">
+      <DependentUpon>NTR_SquadDb.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="NTR_SquadDb.Designer.cs">
+      <DependentUpon>NTR_SquadDb.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Pop3MailClient.cs" />
     <Compile Include="ProgressForm.cs">
       <SubType>Form</SubType>
@@ -542,6 +550,17 @@
     </None>
     <None Include="NationsDS.xss">
       <DependentUpon>NationsDS.xsd</DependentUpon>
+    </None>
+    <None Include="NTR_SquadDb.xsc">
+      <DependentUpon>NTR_SquadDb.xsd</DependentUpon>
+    </None>
+    <None Include="NTR_SquadDb.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>NTR_SquadDb.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="NTR_SquadDb.xss">
+      <DependentUpon>NTR_SquadDb.xsd</DependentUpon>
     </None>
     <None Include="ReportAnalysis.xsc">
       <DependentUpon>ReportAnalysis.xsd</DependentUpon>

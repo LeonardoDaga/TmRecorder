@@ -229,6 +229,15 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="Shortlist" msprop:Generator_TableClassName="ShortlistDataTable" msprop:Generator_TableVarName="tableShortlist" msprop:Generator_RowChangedName="ShortlistRowChanged" msprop:Generator_TablePropName="Shortlist" msprop:Generator_RowDeletingName="ShortlistRowDeleting" msprop:Generator_RowChangingName="ShortlistRowChanging" msprop:Generator_RowEvHandlerName="ShortlistRowChangeEventHandler" msprop:Generator_RowDeletedName="ShortlistRowDeleted" msprop:Generator_RowClassName="ShortlistRow" msprop:Generator_UserTableName="Shortlist" msprop:Generator_RowEvArgName="ShortlistRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PlayerID" msprop:Generator_ColumnVarNameInTable="columnPlayerID" msprop:Generator_ColumnPropNameInRow="PlayerID" msprop:Generator_ColumnPropNameInTable="PlayerIDColumn" msprop:Generator_UserColumnName="PlayerID" type="xs:int" />
+              <xs:element name="Bid" msprop:Generator_ColumnVarNameInTable="columnBid" msprop:Generator_ColumnPropNameInRow="Bid" msprop:Generator_ColumnPropNameInTable="BidColumn" msprop:Generator_UserColumnName="Bid" type="xs:int" minOccurs="0" />
+              <xs:element name="TimeExpire" msprop:Generator_ColumnVarNameInTable="columnTimeExpire" msprop:Generator_ColumnPropNameInRow="TimeExpire" msprop:Generator_ColumnPropNameInTable="TimeExpireColumn" msprop:Generator_UserColumnName="TimeExpire" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
@@ -291,6 +300,10 @@
       <xs:selector xpath=".//mstns:ActionsDecoder" />
       <xs:field xpath="mstns:ActionCode" />
     </xs:unique>
+    <xs:unique name="Shortlist_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Shortlist" />
+      <xs:field xpath="mstns:PlayerID" />
+    </xs:unique>
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
@@ -307,6 +320,7 @@
       <msdata:Relationship name="Team_YTeam" msdata:parent="Team" msdata:child="Match" msdata:parentkey="TeamID" msdata:childkey="YTeamID" msprop:Generator_UserChildTable="Match" msprop:Generator_ChildPropName="GetMatchRowsByTeam_YTeam" msprop:Generator_UserRelationName="Team_YTeam" msprop:Generator_ParentPropName="TeamRowByTeam_YTeam" msprop:Generator_RelationVarName="relationTeam_YTeam" msprop:Generator_UserParentTable="Team" />
       <msdata:Relationship name="Team_OTeam" msdata:parent="Team" msdata:child="Match" msdata:parentkey="TeamID" msdata:childkey="OTeamID" msprop:Generator_UserChildTable="Match" msprop:Generator_ChildPropName="GetMatchRowsByTeam_OTeam" msprop:Generator_UserRelationName="Team_OTeam" msprop:Generator_ParentPropName="TeamRowByTeam_OTeam" msprop:Generator_RelationVarName="relationTeam_OTeam" msprop:Generator_UserParentTable="Team" />
       <msdata:Relationship name="Team_ReserveOf" msdata:parent="Team" msdata:child="Team" msdata:parentkey="TeamID" msdata:childkey="ReserveOf" msprop:Generator_UserChildTable="Team" msprop:Generator_ChildPropName="GetTeamRows" msprop:Generator_UserRelationName="Team_ReserveOf" msprop:Generator_ParentPropName="TeamRowParent" msprop:Generator_RelationVarName="relationTeam_ReserveOf" msprop:Generator_UserParentTable="Team" />
+      <msdata:Relationship name="Player_Shortlist" msdata:parent="Player" msdata:child="Shortlist" msdata:parentkey="PlayerID" msdata:childkey="PlayerID" msprop:Generator_UserChildTable="Shortlist" msprop:Generator_ChildPropName="GetShortlistRows" msprop:Generator_UserRelationName="Player_Shortlist" msprop:Generator_RelationVarName="relationPlayer_Shortlist" msprop:Generator_UserParentTable="Player" msprop:Generator_ParentPropName="PlayerRow" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

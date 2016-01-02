@@ -139,7 +139,7 @@
             this.ContentPanel = new System.Windows.Forms.ToolStripContentPanel();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
-            this.nTR_SquadDb = new NTR_Db.NTR_SquadDb();
+            this.nTR_SquadDb = new Common.NTR_SquadDb();
             this.DB = new NTR_Db.Data(this.components);
             this.varDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.openPlayerProfilePageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -1491,7 +1491,7 @@
 
         #endregion
 
-        private NTR_Db.NTR_SquadDb nTR_SquadDb;
+        private Common.NTR_SquadDb nTR_SquadDb;
         private System.Windows.Forms.BindingSource varDataBindingSource;
         private NTR_Db.Data DB;
         private System.Windows.Forms.ToolStrip tsMainBar;

@@ -46,6 +46,8 @@
             this.tsbPlayersNavigationType = new System.Windows.Forms.ToolStripDropDownButton();
             this.navigateProfilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.navigateReportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsbShortList = new System.Windows.Forms.ToolStripButton();
+            this.tsbTransferPage = new System.Windows.Forms.ToolStripButton();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.tbTxtAddress = new System.Windows.Forms.ToolStripTextBox();
@@ -68,7 +70,9 @@
             this.toolStripSeparator1,
             this.tsLabelAddedMenu,
             this.tsmFile,
-            this.tsbPlayersNavigationType});
+            this.tsbPlayersNavigationType,
+            this.tsbShortList,
+            this.tsbTransferPage});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(874, 36);
@@ -213,6 +217,27 @@
             this.navigateReportsToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.navigateReportsToolStripMenuItem.Click += new System.EventHandler(this.navigateReportsToolStripMenuItem_Click);
             // 
+            // tsbShortList
+            // 
+            this.tsbShortList.Image = global::NTR_WebBrowser.Properties.Resources.Lens2;
+            this.tsbShortList.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbShortList.Name = "tsbShortList";
+            this.tsbShortList.Size = new System.Drawing.Size(57, 33);
+            this.tsbShortList.Text = "ShortList";
+            this.tsbShortList.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tsbShortList.ToolTipText = "Shortlist";
+            this.tsbShortList.Click += new System.EventHandler(this.tsbShortList_Click);
+            // 
+            // tsbTransferPage
+            // 
+            this.tsbTransferPage.Image = global::NTR_WebBrowser.Properties.Resources.TwoArrows;
+            this.tsbTransferPage.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbTransferPage.Name = "tsbTransferPage";
+            this.tsbTransferPage.Size = new System.Drawing.Size(82, 33);
+            this.tsbTransferPage.Text = "Transfer Page";
+            this.tsbTransferPage.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tsbTransferPage.Click += new System.EventHandler(this.tsbTransferPage_Click);
+            // 
             // toolStrip2
             // 
             this.toolStrip2.AutoSize = false;
@@ -309,5 +334,7 @@
         private System.Windows.Forms.ToolStripLabel toolStripLabel3;
         private System.Windows.Forms.ToolStripProgressBar tsbProgressBar;
         private System.Windows.Forms.ToolStripLabel tsbProgressText;
+        private System.Windows.Forms.ToolStripButton tsbShortList;
+        private System.Windows.Forms.ToolStripButton tsbTransferPage;
     }
 }

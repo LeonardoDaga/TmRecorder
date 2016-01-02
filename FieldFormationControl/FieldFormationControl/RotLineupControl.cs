@@ -422,7 +422,7 @@ namespace FieldFormationControl
             O_ShowFormationPlayers(lastO_Formation);
         }
 
-        public Player SetPlayer(Formation f, NTR_SquadDb.PlayerPerfRow row)
+        public Player SetPlayer(Formation f, Common.NTR_SquadDb.PlayerPerfRow row)
         {
             Player pl = f.FindPlayer(row.Position.ToUpper());
             if (pl == null) return null;

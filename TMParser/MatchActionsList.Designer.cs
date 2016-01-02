@@ -69,7 +69,7 @@ namespace TMRecorder
             // 
             // actionsDataTableBindingSource
             // 
-            this.actionsDataTableBindingSource.DataSource = typeof(NTR_Db.NTR_SquadDb.ActionsDataTable);
+            this.actionsDataTableBindingSource.DataSource = typeof(Common.NTR_SquadDb.ActionsDataTable);
             // 
             // tmR_ActionsColumn1
             // 

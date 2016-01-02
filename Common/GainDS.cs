@@ -62,6 +62,19 @@ namespace Common
             return (float)this.SkillFPGain[skill][pos + 1];
         }
 
+        public decimal K_FPn_Max(int skill, int FPn)
+        {
+            int[] FpVect = Tm_Utility.FPnToFPvector(FPn);
+
+            float k = 0;
+            if (FpVect[1] == -1)
+                k = (float)this.SkillFPGain[skill][FpVect[0] + 1];
+            else
+                k = System.Math.Max((float)this.SkillFPGain[skill][FpVect[0] + 1],
+                             (float)this.SkillFPGain[skill][FpVect[1] + 1]);
+            return (decimal)k;
+        }
+
         /// <summary>
         /// Gain reduction for the out-of-position
         /// </summary>
@@ -202,6 +215,12 @@ namespace Common
         {
             float k = A_FP(row, col);
             return (k + ada / 20.0f * (A_max - k));
+        }
+
+        public decimal A_Ada(int row, int col, decimal ada)
+        {
+            float k = A_FP(row, col);
+            return (decimal)(k + (float)(ada / 20.0M) * (A_max - k));
         }
     }
 }

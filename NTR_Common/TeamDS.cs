@@ -678,6 +678,8 @@ namespace NTR_Common
 
                 for (int skill = 0; skill < 13; skill++)
                 {
+                    if (this[skillCol[skill]] == DBNull.Value)
+                        continue;
                     float fval = (float)((decimal)this[skillCol[skill]]);
                     DC += 0.1f * gds.K_FP(skill, 0) * fval;
                     DR += 0.1f * gds.K_FP(skill, 1) * fval;
@@ -1374,6 +1376,82 @@ namespace NTR_Common
 
                 string filename = "dbinfo." + DateTime.Now.Hour.ToString() +
                     DateTime.Now.Minute.ToString() + ".tmreport.txt";
+                string pathfilename = Path.Combine(Path.GetTempPath(), filename);
+                FileInfo fi = new FileInfo(pathfilename);
+
+                this.WriteXml(fi.FullName);
+
+                StreamReader file = new StreamReader(fi.FullName);
+                info += "PlayersDS:\r\n" + file.ReadToEnd();
+                file.Close();
+
+                db_TrophyDataSet.WriteXml(fi.FullName);
+
+                file = new StreamReader(fi.FullName);
+                info += "TDS:\r\n" + file.ReadToEnd();
+                file.Close();
+
+                info += "isReserves:" + isReserves.ToString();
+                info += "player:" + player.ToString();
+                info += "Squad:" + originalSquadString;
+
+                ErrorReport.Send(e, info, Environment.StackTrace, swRelease);
+                MessageBox.Show(Current.Language.SorryTheImportingProcessHasFailedIfYouClickedOkTheInfoOfTheErrorHave +
+                    Current.Language.BeenSentToLedLennonThatWillRemoveThisBugAsSoonAsPossible);
+            }
+        }
+
+        public void LoadTransferlistFromHTML_New(string page, bool updateDeletedPlayers, DateTime timeOfData)
+        {
+            string originalSquadString = page;
+            Db_TrophyDataSet db_TrophyDataSet = null;
+            short isReserves = 0;
+            int player = 0;
+            bool newData = false;
+
+            try
+            {
+                string squad = page;
+                squad = HTML_Parser.ConvertUnicodes_Text(squad);
+                squad = HTML_Parser.ConvertUnicodes_MoreText(squad);
+
+                string[] plRows = squad.Split('\n');
+
+                // Row 0 is the table header
+                for (player = 0; player < plRows.Length; player++)
+                {
+                    AlarmInfo ai = new AlarmInfo();
+
+                    if (!plRows[player].Contains("id=")) continue;
+
+                    int ID = Squad.ParseTransferPlayer(timeOfData, plRows[player], ref ai);
+
+                    if (ID == -1) continue;
+
+                    if (GiocatoriNSkill.FindByPlayerID(ID) == null)
+                    {
+                        if (!updateDeletedPlayers)
+                        {
+                            Squad.Remove(ID);
+                            continue;
+                        }
+                    }
+
+                    newData = true;
+                    this.GiocatoriNSkill.AddPlayer(ID, Squad[ID], GD, ai);
+                }
+
+                if (newData) last_week_loaded = TmWeek.thisWeek().absweek;
+            }
+            catch (Exception e)
+            {
+                string swRelease = "Sw Release:" + Application.ProductName + "("
+                    + Application.ProductVersion + ")";
+
+                string info = "";
+
+                string filename = "dbinfo." + DateTime.Now.Hour.ToString() +
+                    DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString() + ".tmreport.txt";
                 string pathfilename = Path.Combine(Path.GetTempPath(), filename);
                 FileInfo fi = new FileInfo(pathfilename);
 

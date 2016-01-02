@@ -36,6 +36,21 @@ namespace NTR_Db
             }
         }
 
+        public void SaveShortlist(string defaultDirectory, string filename)
+        {
+            string teamDataFile = Path.Combine(defaultDirectory, filename);
+            seasonsDB.Shortlist.WriteXml(teamDataFile);
+        }
+
+        public void LoadShortlist(string defaultDirectory, string filename)
+        {
+            string teamDataFile = Path.Combine(defaultDirectory, filename);
+            FileInfo fi = new FileInfo(teamDataFile);
+            if (!fi.Exists)
+                return;
+            seasonsDB.Shortlist.ReadXml(teamDataFile);
+        }
+
         private TeamList _ownedSquadsList = null;
         public TeamList OwnedSquadsList
         {
@@ -260,6 +275,153 @@ namespace NTR_Db
             //        select new MatchData(c)).OrderBy(p => p.Date).ToList();
         }
 
+        public void LoadTransferList(string page)
+        {
+            string[] lines = page.Split('\n');
+
+            foreach (string line in lines)
+            {
+                if (!line.Contains("id="))
+                    continue;
+
+                Dictionary<string, string> items = HTML_Parser.CreateDictionary(line, ';');
+
+                var pr = this.seasonsDB.Player.NewPlayerRow();
+                pr.Name = items["name"];
+                pr.PlayerID = int.Parse(items["id"]);
+
+                string age = items["age"];
+                int years = int.Parse(age.Split('.')[0]);
+                int months = 0;
+                if (age.Split('.').Length > 1)
+                    months = int.Parse(age.Split('.')[1]);
+                pr.wBorn = TmWeek.GetBornWeekFromAge(DateTime.Now, months, years);
+                pr.Nationality = items["nat"];
+                pr.FP = TM_Compatible.ConvertNewFP(items["fp"]).ToUpper();
+                pr.FPn = Tm_Utility.FPToNumber(pr.FP);
+                seasonsDB.Player.AddPlayerRow(pr);
+
+                var hr = seasonsDB.HistData.NewHistDataRow();
+                hr.PlayerID = pr.PlayerID;
+                hr.Week = TmWeek.thisWeek().absweek;
+                hr.For = decimal.Parse(items["str"]);
+                hr.Res = decimal.Parse(items["sta"]);
+                hr.Vel = decimal.Parse(items["pac"]);
+                if (pr.FPn > 0)
+                {
+                    hr.Mar = decimal.Parse(items["mar"]);
+                    hr.Con = decimal.Parse(items["tac"]);
+                    hr.Wor = decimal.Parse(items["wor"]);
+                    hr.Pos = decimal.Parse(items["pos"]);
+                    hr.Pas = decimal.Parse(items["pas"]);
+                    hr.Cro = decimal.Parse(items["cro"]);
+                    hr.Tec = decimal.Parse(items["tec"]);
+                    hr.Tes = decimal.Parse(items["hea"]);
+                    hr.Fin = decimal.Parse(items["fin"]);
+                    hr.Dis = decimal.Parse(items["lon"]);
+                    hr.Cal = decimal.Parse(items["set"]);
+                }
+                else
+                {
+                    hr.Pre = decimal.Parse(items["han"]);
+                    hr.Uno = decimal.Parse(items["one"]);
+                    hr.Rif = decimal.Parse(items["ref"]);
+                    hr.Aer = decimal.Parse(items["ari"]);
+                    hr.Ele = decimal.Parse(items["jum"]);
+                    hr.Com = decimal.Parse(items["com"]);
+                    hr.Tir = decimal.Parse(items["kic"]);
+                    hr.Lan = decimal.Parse(items["thr"]);
+                }
+                hr.ASI = int.Parse(items["asi"]);
+                seasonsDB.HistData.AddHistDataRow(hr);
+
+                var tr = seasonsDB.TempData.NewTempDataRow();
+                tr.PlayerID = pr.PlayerID;
+                tr.Rec = decimal.Parse(items["rec"]);
+
+                if (items["routine"] != "null")
+                    tr.Rou = decimal.Parse(items["routine"]);
+                seasonsDB.TempData.AddTempDataRow(tr);
+
+                var sr = seasonsDB.Shortlist.NewShortlistRow();
+                sr.PlayerID = pr.PlayerID;
+                sr.Bid = int.Parse(items["bid"]);
+                sr.TimeExpire = DateTime.Now.AddSeconds(double.Parse(items["time"]));
+                seasonsDB.Shortlist.AddShortlistRow(sr);
+            }
+        }
+
+        public void LoadShortlist(string page)
+        {
+            string[] lines = page.Split('\n');
+
+            foreach(string line in lines)
+            {
+                if (!line.Contains("id="))
+                    continue;
+                Dictionary<string, string> items = HTML_Parser.CreateDictionary(line, ';');
+
+                int playerID = int.Parse(items["id"]);
+
+                var pr = seasonsDB.Player.FindByPlayerID(playerID);
+                if (pr == null)
+                {
+                    pr = seasonsDB.Player.NewPlayerRow();
+                    pr.Name = items["name"];
+                    pr.PlayerID = int.Parse(items["id"]);
+                    pr.wBorn = Common.TmWeek.GetBornWeekFromAge(int.Parse(items["age"]));
+                    pr.Nationality = items["country"];
+                    pr.FP = TM_Compatible.ConvertNewFP(items["fp"]).ToUpper();
+                    pr.FPn = Tm_Utility.FPToNumber(pr.FP);
+                    seasonsDB.Player.AddPlayerRow(pr);
+                }
+
+                var hr = seasonsDB.HistData.NewHistDataRow();
+                hr.PlayerID = pr.PlayerID;
+                hr.Week = TmWeek.thisWeek().absweek;
+                if (pr.FPn > 0)
+                {
+                    hr.Mar = decimal.Parse(items["mar"]);
+                    hr.Con = decimal.Parse(items["tac"]);
+                    hr.Wor = decimal.Parse(items["wor"]);
+                    hr.Pos = decimal.Parse(items["pos"]);
+                    hr.Pas = decimal.Parse(items["pas"]);
+                    hr.Cro = decimal.Parse(items["cro"]);
+                    hr.Tec = decimal.Parse(items["tec"]);
+                    hr.Tes = decimal.Parse(items["hea"]);
+                    hr.Fin = decimal.Parse(items["fin"]);
+                    hr.Dis = decimal.Parse(items["lon"]);
+                    hr.Cal = decimal.Parse(items["set"]);
+                }
+                else
+                {
+                    hr.Pre = decimal.Parse(items["han"]);
+                    hr.Uno = decimal.Parse(items["one"]);
+                    hr.Rif = decimal.Parse(items["ref"]);
+                    hr.Aer = decimal.Parse(items["ari"]);
+                    hr.Ele = decimal.Parse(items["jum"]);
+                    hr.Com = decimal.Parse(items["com"]);
+                    hr.Tir = decimal.Parse(items["kic"]);
+                    hr.Lan = decimal.Parse(items["thr"]);
+                }
+                hr.ASI = int.Parse(items["asi"]);
+                seasonsDB.HistData.AddHistDataRow(hr);
+
+                var tr = seasonsDB.TempData.NewTempDataRow();
+                tr.PlayerID = pr.PlayerID;
+                tr.Rec = decimal.Parse(items["rec"]);
+                tr.Rou = decimal.Parse(items["routine"]);
+                tr.Wage = int.Parse(items["wage"]);
+                seasonsDB.TempData.AddTempDataRow(tr);
+
+                var sr = seasonsDB.Shortlist.NewShortlistRow();
+                sr.PlayerID = pr.PlayerID;
+                sr.Bid = int.Parse(items["curbid"]);
+                sr.TimeExpire = DateTime.Now.AddSeconds(double.Parse(items[""]));
+                seasonsDB.Shortlist.AddShortlistRow(sr);
+            }
+        }
+
         public void LoadSeasonsFromVersion3(string dirPath, ref SplashForm sf,
             bool trace)
         {
@@ -466,6 +628,16 @@ namespace NTR_Db
             }
 
             Invalidate();
+        }
+
+        public MatchData GetMatch(int matchID)
+        {
+            NTR_SquadDb.MatchRow mr = seasonsDB.Match.FindByMatchID(matchID);
+
+            if (mr != null)
+                return new MatchData(mr);
+            else
+                return null;
         }
 
         public void LoadActionDecoder5(ref SplashForm sf, string actionDecoderFilePath)

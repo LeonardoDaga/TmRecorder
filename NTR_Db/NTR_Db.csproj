@@ -37,17 +37,6 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="NTR_SquadDb.xsc">
-      <DependentUpon>NTR_SquadDb.xsd</DependentUpon>
-    </None>
-    <None Include="NTR_SquadDb.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>NTR_SquadDb.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="NTR_SquadDb.xss">
-      <DependentUpon>NTR_SquadDb.xsd</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -73,14 +62,6 @@
       <DependentUpon>Data.cs</DependentUpon>
     </Compile>
     <Compile Include="NTR_Formation.cs" />
-    <Compile Include="NTR_SquadDb.cs">
-      <DependentUpon>NTR_SquadDb.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="NTR_SquadDb.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>NTR_SquadDb.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Season.cs" />
   </ItemGroup>
   <ItemGroup>

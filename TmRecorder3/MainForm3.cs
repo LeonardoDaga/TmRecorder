@@ -986,7 +986,7 @@ namespace TmRecorder3
         private void ntrBrowser_ImportedContent(Content content)
         {
             // Check if there is already a week in the code
-            DB.MergeContent(content);
+            //DB.MergeContent(content);
 
             DB.Save(Program.Setts.DefaultDirectory);
 

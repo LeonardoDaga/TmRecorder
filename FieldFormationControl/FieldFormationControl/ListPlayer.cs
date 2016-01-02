@@ -626,7 +626,7 @@ namespace FieldFormationControl
             _skills += SkillCheck(gnsr.Wor + gnsr.Pos, 24, 30, (int)(eSkills.Tactician));
             _skills += SkillCheck(gnsr.Pas + gnsr.Tec, 24, 30, (int)(eSkills.Playmaker));
             _skills += SkillCheck(gnsr.Vel + gnsr.Cro + gnsr.Tec, 36, 45, (int)(eSkills.Winger));
-            _skills += SkillCheck(gnsr.Fin + gnsr.Tir, 24, 30, (int)(eSkills.Finisher));
+            _skills += SkillCheck(gnsr.Fin + gnsr.Lon, 24, 30, (int)(eSkills.Finisher));
             _skills += SkillCheck(gnsr.Tes, 12, 15, (int)(eSkills.Header));
 
         //    string skString = "";

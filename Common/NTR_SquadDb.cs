@@ -5,14 +5,14 @@ using System.Data;
 using System.IO;
 using System.Linq;
 
-namespace NTR_Db
+namespace Common
 {
 
     public partial class NTR_SquadDb
     {
         partial class PlayerDataTable
         {
-            internal void ReadSafeXml(string fullName)
+            public void ReadSafeXml(string fullName)
             {
                 this.DataSet.EnforceConstraints = false;
                 ReadXml(fullName);
@@ -46,7 +46,7 @@ namespace NTR_Db
 
         partial class ActionsDataTable
         {
-            internal void WriteXmlBySeason(string dirPath)
+            public void WriteXmlBySeason(string dirPath)
             {
                 var actionTable = new NTR_SquadDb.ActionsDataTable();
 
@@ -78,7 +78,7 @@ namespace NTR_Db
 
         partial class HistDataDataTable
         {
-            internal void WriteXmlBySeason(string dirPath)
+            public void WriteXmlBySeason(string dirPath)
             {
                 var histTable = new NTR_SquadDb.HistDataDataTable();
 
@@ -113,7 +113,7 @@ namespace NTR_Db
         {
         }
 
-        public NTR_Common.GainDS GDS { get; set; }
+        public Common.GainDS GDS { get; set; }
 
         public void Invalidate()
         {
@@ -322,48 +322,48 @@ namespace NTR_Db
 
         }
 
-        internal void UpdateDecimals(Content content)
-        {
-            int newWeek = content.Week;
+        //internal void UpdateDecimals(Content content)
+        //{
+        //    int newWeek = content.Week;
 
-            // Find the closest week to the input week
-            int closestWeek = -1;
-            foreach (int week in this.WeeksWithData)
-            {
-                if (week >= newWeek) continue;
+        //    // Find the closest week to the input week
+        //    int closestWeek = -1;
+        //    foreach (int week in this.WeeksWithData)
+        //    {
+        //        if (week >= newWeek) continue;
 
-                if (newWeek - week < newWeek - closestWeek)
-                    closestWeek = week;
-            }
+        //        if (newWeek - week < newWeek - closestWeek)
+        //            closestWeek = week;
+        //    }
 
-            if (closestWeek == -1)
-                return;
+        //    if (closestWeek == -1)
+        //        return;
 
-            foreach (PlayerRow playerRow in content.squadDB.Player)
-            {
-                int idPlayer = playerRow.PlayerID;
+        //    foreach (PlayerRow playerRow in content.squadDB.Player)
+        //    {
+        //        int idPlayer = playerRow.PlayerID;
 
-                // Get relative history rows
-                HistDataRow newRow = HistData.FindByPlayerIDWeek(idPlayer, newWeek);
-                HistDataRow oldRow = HistData.FindByPlayerIDWeek(idPlayer, closestWeek);
+        //        // Get relative history rows
+        //        HistDataRow newRow = HistData.FindByPlayerIDWeek(idPlayer, newWeek);
+        //        HistDataRow oldRow = HistData.FindByPlayerIDWeek(idPlayer, closestWeek);
 
-                if (oldRow == null)
-                    continue;
+        //        if (oldRow == null)
+        //            continue;
 
-                int numSkillToUpdate = (playerRow.FPn == 0) ? 11 : 14;
-                for (int i = 0; i < numSkillToUpdate; i++)
-                {
-                    int trainStep = Tm_Training.TrCode2ToTrValue(newRow.Training, (Tm_Training.eTrainingType)(i + 1));
+        //        int numSkillToUpdate = (playerRow.FPn == 0) ? 11 : 14;
+        //        for (int i = 0; i < numSkillToUpdate; i++)
+        //        {
+        //            int trainStep = Tm_Training.TrCode2ToTrValue(newRow.Training, (Tm_Training.eTrainingType)(i + 1));
 
-                    if (trainStep == 1)
-                        newRow[4 + i] = (decimal)oldRow[4 + i] + 0.1M;
-                    else if (trainStep == -1)
-                        newRow[4 + i] = (decimal)oldRow[4 + i] - 0.1M;
-                    else if (trainStep == 0)
-                        newRow[4 + i] = (decimal)oldRow[4 + i];
-                }
-            }
-        }
+        //            if (trainStep == 1)
+        //                newRow[4 + i] = (decimal)oldRow[4 + i] + 0.1M;
+        //            else if (trainStep == -1)
+        //                newRow[4 + i] = (decimal)oldRow[4 + i] - 0.1M;
+        //            else if (trainStep == 0)
+        //                newRow[4 + i] = (decimal)oldRow[4 + i];
+        //        }
+        //    }
+        //}
 
         public void UpdateDecimalsHistory()
         {

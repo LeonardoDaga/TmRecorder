@@ -65,7 +65,10 @@ namespace NTR_Common
             // Row0: Numero
             fdr.Numero = 0;
 
-            fdr.TeamID = data["club"];
+            if (data.ContainsKey("club"))
+                fdr.TeamID = data["club"];
+            else
+                fdr.TeamID = data["club_id"];
 
             // Row3: Età
             int age = int.Parse(data["age"]);

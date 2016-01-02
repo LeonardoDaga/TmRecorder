@@ -29,11 +29,11 @@ namespace NTR_Db
         /// </summary>
         private void InitializeComponent()
         {
-            this.gainDS = new NTR_Common.GainDS();
+            this.gainDS = new Common.GainDS();
             this.trainersSkillsDS = new Common.TrainersSkills();
             this.nationsDS = new Common.NationsDS();
             this.scoutSkillsDS = new Common.ScoutsNReviews();
-            this.squadDB = new NTR_Db.NTR_SquadDb();
+            this.squadDB = new Common.NTR_SquadDb();
             ((System.ComponentModel.ISupportInitialize)(this.gainDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trainersSkillsDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nationsDS)).BeginInit();
@@ -76,9 +76,9 @@ namespace NTR_Db
 
         public Common.TrainersSkills trainersSkillsDS;
         public Common.NationsDS nationsDS;
-        private GainDS gainDS;
+        private Common.GainDS gainDS;
         private Common.ScoutsNReviews scoutSkillsDS;
-        public NTR_SquadDb squadDB;
+        public Common.NTR_SquadDb squadDB;
 
     }
 }

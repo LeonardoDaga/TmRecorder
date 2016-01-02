@@ -572,7 +572,7 @@ namespace TMRecorder
 
                 var playerPerfList = allSeasons.GetPlayerPerfList(actPlayerID, season);
 
-                foreach (NTR_Db.NTR_SquadDb.PlayerPerfRow ppr in playerPerfList)
+                foreach (Common.NTR_SquadDb.PlayerPerfRow ppr in playerPerfList)
                 {
                     if (ppr.IsVoteNull()) continue;
 

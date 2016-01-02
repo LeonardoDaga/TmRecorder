@@ -476,10 +476,27 @@ namespace Common
             }
         }
 
+        public decimal Value(decimal x)
+        {
+            if (Params == null) return 1.0M;
+
+            switch (Type)
+            {
+                case FunctionType.Linear: return Linear(x);
+                default: return 1.0M;
+            }
+        }
+
         private float Linear(float x)
         {
             if (Params.Length >= 2) return Params[0] + x * Params[1];
             else return 1.0F;
+        }
+
+        private decimal Linear(decimal x)
+        {
+            if (Params.Length >= 2) return (decimal)(Params[0] + (float)x * Params[1]);
+            else return 1.0M;
         }
 
         public static FunctionType FromName(string type)

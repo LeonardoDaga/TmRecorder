@@ -1,4 +1,7 @@
-﻿namespace TMRecorder
+﻿using NTR_Controls;
+using NTR_Db;
+
+namespace TMRecorder
 {
     partial class ShortlistForm
     {
@@ -29,43 +32,39 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle53 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle54 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle41 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle42 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle43 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle44 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle45 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle46 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle47 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle48 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle49 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle50 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle51 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle52 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle60 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle61 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle55 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle56 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle57 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle58 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle59 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ShortlistForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
-            this.tabControl = new System.Windows.Forms.TabControl();
-            this.tabPlayers = new System.Windows.Forms.TabPage();
-            this.dgGiocatori = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.openPlayersPropertyPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openPlayersPageInTheTrophyManagerWebsiteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -73,52 +72,12 @@
             this.openPlayersTeamPageInTrophyBrowserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bindPL = new System.Windows.Forms.BindingSource(this.components);
             this.teamDS = new NTR_Common.TeamDS();
-            this.tabGK = new System.Windows.Forms.TabPage();
-            this.dgPortieri = new System.Windows.Forms.DataGridView();
             this.bindGK = new System.Windows.Forms.BindingSource(this.components);
-            this.tabBrowser = new System.Windows.Forms.TabPage();
-            this.toolStripContainer3 = new System.Windows.Forms.ToolStripContainer();
-            this.webBrowser = new System.Windows.Forms.WebBrowser();
-            this.tsBrowserMain = new System.Windows.Forms.ToolStrip();
-            this.toolStripLabel5 = new System.Windows.Forms.ToolStripLabel();
-            this.tsbPrev = new System.Windows.Forms.ToolStripButton();
-            this.tsbNext = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
-            this.tsbShortlist = new System.Windows.Forms.ToolStripButton();
-            this.toolStripDropDownButton11 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.gotoMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gotoAdobeFlashplayerPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
-            this.tsbProgressBar = new System.Windows.Forms.ToolStripProgressBar();
-            this.tsbProgressText = new System.Windows.Forms.ToolStripLabel();
-            this.tsbImport = new System.Windows.Forms.ToolStripButton();
-            this.tsBrowsePlayers = new System.Windows.Forms.ToolStrip();
-            this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
-            this.tsbPrevPlayer = new System.Windows.Forms.ToolStripButton();
-            this.tsbNextPlayer = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabel9 = new System.Windows.Forms.ToolStripLabel();
-            this.tsbPlayers = new System.Windows.Forms.ToolStripDropDownButton();
-            this.gKToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dDefendersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dMDefenderMidfieldersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mMidfieldersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.oMOffenderMidfieldersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fForwardsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsbNavigationType = new System.Windows.Forms.ToolStripDropDownButton();
-            this.navigateProfilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.navigateReportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.tsbFile = new System.Windows.Forms.ToolStripDropDownButton();
-            this.loadFromFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.cutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dontUpdateTheDeletedPlayersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.playersDS = new NTR_Common.PlayersDS();
+            this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
+            this.tabControl = new System.Windows.Forms.TabControl();
+            this.tabPlayers = new System.Windows.Forms.TabPage();
+            this.dgGiocatori = new NTR_Controls.AeroDataGrid();
             this.nomeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ageDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_AgeColumn(this.components);
             this.nationalityDataGridViewTextBoxColumn1 = new DataGridViewCustomColumns.TMR_NationColumn(this.components);
@@ -159,6 +118,8 @@
             this.Team = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ends = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Notes = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabGK = new System.Windows.Forms.TabPage();
+            this.dgPortieri = new NTR_Controls.AeroDataGrid();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tmR_AgeColumn1 = new DataGridViewCustomColumns.TMR_AgeColumn(this.components);
             this.tmR_NationColumn1 = new DataGridViewCustomColumns.TMR_NationColumn(this.components);
@@ -184,27 +145,93 @@
             this.Bid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ImportedNotes = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabBrowser = new System.Windows.Forms.TabPage();
+            this.webBrowser = new NTR_WebBrowser.NTR_Browser();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.tsbFile = new System.Windows.Forms.ToolStripDropDownButton();
+            this.loadFromFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.cutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteSelectedPlayersFromVisualizationAndDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.updateOnlyListedPlayersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindPL)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teamDS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindGK)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playersDS)).BeginInit();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabPlayers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgGiocatori)).BeginInit();
-            this.contextMenuStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindPL)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teamDS)).BeginInit();
             this.tabGK.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPortieri)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindGK)).BeginInit();
             this.tabBrowser.SuspendLayout();
-            this.toolStripContainer3.ContentPanel.SuspendLayout();
-            this.toolStripContainer3.TopToolStripPanel.SuspendLayout();
-            this.toolStripContainer3.SuspendLayout();
-            this.tsBrowserMain.SuspendLayout();
-            this.tsBrowsePlayers.SuspendLayout();
             this.toolStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.playersDS)).BeginInit();
             this.SuspendLayout();
+            // 
+            // contextMenuStrip
+            // 
+            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openPlayersPropertyPageToolStripMenuItem,
+            this.openPlayersPageInTheTrophyManagerWebsiteToolStripMenuItem,
+            this.toolStripMenuItem4,
+            this.openPlayersTeamPageInTrophyBrowserToolStripMenuItem});
+            this.contextMenuStrip.Name = "contextMenuStrip";
+            this.contextMenuStrip.Size = new System.Drawing.Size(329, 92);
+            // 
+            // openPlayersPropertyPageToolStripMenuItem
+            // 
+            this.openPlayersPropertyPageToolStripMenuItem.Name = "openPlayersPropertyPageToolStripMenuItem";
+            this.openPlayersPropertyPageToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
+            this.openPlayersPropertyPageToolStripMenuItem.Text = "Open Player\'s property page [double click]";
+            this.openPlayersPropertyPageToolStripMenuItem.Click += new System.EventHandler(this.openPlayersPropertyPageToolStripMenuItem_Click);
+            // 
+            // openPlayersPageInTheTrophyManagerWebsiteToolStripMenuItem
+            // 
+            this.openPlayersPageInTheTrophyManagerWebsiteToolStripMenuItem.Name = "openPlayersPageInTheTrophyManagerWebsiteToolStripMenuItem";
+            this.openPlayersPageInTheTrophyManagerWebsiteToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
+            this.openPlayersPageInTheTrophyManagerWebsiteToolStripMenuItem.Text = "Open Players Profile Page in the Trophy Browser";
+            this.openPlayersPageInTheTrophyManagerWebsiteToolStripMenuItem.Click += new System.EventHandler(this.openPlayersPageInTheTrophyManagerWebsiteToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(328, 22);
+            this.toolStripMenuItem4.Text = "Open Players Scouts Page in the Trophy Browser";
+            this.toolStripMenuItem4.Click += new System.EventHandler(this.openPlayersScoutPageInTheTrophyManagerWebsiteToolStripMenuItem_Click);
+            // 
+            // openPlayersTeamPageInTrophyBrowserToolStripMenuItem
+            // 
+            this.openPlayersTeamPageInTrophyBrowserToolStripMenuItem.Name = "openPlayersTeamPageInTrophyBrowserToolStripMenuItem";
+            this.openPlayersTeamPageInTrophyBrowserToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
+            this.openPlayersTeamPageInTrophyBrowserToolStripMenuItem.Text = "Open Player\'s Team Page in Trophy Browser";
+            this.openPlayersTeamPageInTrophyBrowserToolStripMenuItem.Click += new System.EventHandler(this.openPlayersTeamPageInTrophyBrowserToolStripMenuItem_Click);
+            // 
+            // bindPL
+            // 
+            this.bindPL.DataMember = "GiocatoriNSkill";
+            this.bindPL.DataSource = this.teamDS;
+            this.bindPL.Filter = "FPn>0";
+            // 
+            // teamDS
+            // 
+            this.teamDS.DataSetName = "TeamDS";
+            this.teamDS.last_week_loaded = -1;
+            this.teamDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // bindGK
+            // 
+            this.bindGK.DataMember = "GiocatoriNSkill";
+            this.bindGK.DataSource = this.teamDS;
+            this.bindGK.Filter = "FPn=0";
+            // 
+            // playersDS
+            // 
+            this.playersDS.DataSetName = "PlayersData";
+            this.playersDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // toolStripContainer1
             // 
@@ -254,14 +281,14 @@
             this.dgGiocatori.AllowUserToDeleteRows = false;
             this.dgGiocatori.AllowUserToOrderColumns = true;
             this.dgGiocatori.AutoGenerateColumns = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgGiocatori.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle33.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle33.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
+            dataGridViewCellStyle33.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle33.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle33.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle33.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgGiocatori.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle33;
             this.dgGiocatori.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgGiocatori.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nomeDataGridViewTextBoxColumn1,
@@ -305,566 +332,34 @@
             this.Ends,
             this.Notes});
             this.dgGiocatori.ContextMenuStrip = this.contextMenuStrip;
+            this.dgGiocatori.DataCollection = null;
             this.dgGiocatori.DataSource = this.bindPL;
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle21.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle21.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.5F);
-            dataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgGiocatori.DefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle53.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle53.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle53.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.5F);
+            dataGridViewCellStyle53.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle53.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle53.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle53.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgGiocatori.DefaultCellStyle = dataGridViewCellStyle53;
             this.dgGiocatori.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgGiocatori.Location = new System.Drawing.Point(3, 3);
             this.dgGiocatori.Name = "dgGiocatori";
             this.dgGiocatori.ReadOnly = true;
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle22.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgGiocatori.RowHeadersDefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle54.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle54.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle54.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle54.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle54.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle54.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle54.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgGiocatori.RowHeadersDefaultCellStyle = dataGridViewCellStyle54;
             this.dgGiocatori.RowHeadersWidth = 20;
             this.dgGiocatori.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgGiocatori.Size = new System.Drawing.Size(871, 318);
             this.dgGiocatori.TabIndex = 0;
             this.dgGiocatori.Sorted += new System.EventHandler(this.dgGiocatori_Sorted);
             this.dgGiocatori.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgGiocatori_MouseDoubleClick);
-            // 
-            // contextMenuStrip
-            // 
-            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openPlayersPropertyPageToolStripMenuItem,
-            this.openPlayersPageInTheTrophyManagerWebsiteToolStripMenuItem,
-            this.toolStripMenuItem4,
-            this.openPlayersTeamPageInTrophyBrowserToolStripMenuItem});
-            this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(330, 92);
-            // 
-            // openPlayersPropertyPageToolStripMenuItem
-            // 
-            this.openPlayersPropertyPageToolStripMenuItem.Name = "openPlayersPropertyPageToolStripMenuItem";
-            this.openPlayersPropertyPageToolStripMenuItem.Size = new System.Drawing.Size(329, 22);
-            this.openPlayersPropertyPageToolStripMenuItem.Text = "Open Player\'s property page [double click]";
-            this.openPlayersPropertyPageToolStripMenuItem.Click += new System.EventHandler(this.openPlayersPropertyPageToolStripMenuItem_Click);
-            // 
-            // openPlayersPageInTheTrophyManagerWebsiteToolStripMenuItem
-            // 
-            this.openPlayersPageInTheTrophyManagerWebsiteToolStripMenuItem.Name = "openPlayersPageInTheTrophyManagerWebsiteToolStripMenuItem";
-            this.openPlayersPageInTheTrophyManagerWebsiteToolStripMenuItem.Size = new System.Drawing.Size(329, 22);
-            this.openPlayersPageInTheTrophyManagerWebsiteToolStripMenuItem.Text = "Open Players Profile Page in the Trophy Browser";
-            this.openPlayersPageInTheTrophyManagerWebsiteToolStripMenuItem.Click += new System.EventHandler(this.openPlayersPageInTheTrophyManagerWebsiteToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem4
-            // 
-            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(329, 22);
-            this.toolStripMenuItem4.Text = "Open Players Scouts Page in the Trophy Browser";
-            this.toolStripMenuItem4.Click += new System.EventHandler(this.openPlayersScoutPageInTheTrophyManagerWebsiteToolStripMenuItem_Click);
-            // 
-            // openPlayersTeamPageInTrophyBrowserToolStripMenuItem
-            // 
-            this.openPlayersTeamPageInTrophyBrowserToolStripMenuItem.Name = "openPlayersTeamPageInTrophyBrowserToolStripMenuItem";
-            this.openPlayersTeamPageInTrophyBrowserToolStripMenuItem.Size = new System.Drawing.Size(329, 22);
-            this.openPlayersTeamPageInTrophyBrowserToolStripMenuItem.Text = "Open Player\'s Team Page in Trophy Browser";
-            this.openPlayersTeamPageInTrophyBrowserToolStripMenuItem.Click += new System.EventHandler(this.openPlayersTeamPageInTrophyBrowserToolStripMenuItem_Click);
-            // 
-            // bindPL
-            // 
-            this.bindPL.DataMember = "GiocatoriNSkill";
-            this.bindPL.DataSource = this.teamDS;
-            this.bindPL.Filter = "FPn>0";
-            // 
-            // teamDS
-            // 
-            this.teamDS.DataSetName = "TeamDS";
-            this.teamDS.last_week_loaded = -1;
-            this.teamDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // tabGK
-            // 
-            this.tabGK.Controls.Add(this.dgPortieri);
-            this.tabGK.Location = new System.Drawing.Point(4, 22);
-            this.tabGK.Name = "tabGK";
-            this.tabGK.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGK.Size = new System.Drawing.Size(877, 324);
-            this.tabGK.TabIndex = 1;
-            this.tabGK.Text = "GKs";
-            this.tabGK.UseVisualStyleBackColor = true;
-            // 
-            // dgPortieri
-            // 
-            this.dgPortieri.AllowUserToAddRows = false;
-            this.dgPortieri.AllowUserToDeleteRows = false;
-            this.dgPortieri.AllowUserToOrderColumns = true;
-            this.dgPortieri.AutoGenerateColumns = false;
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle23.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
-            dataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgPortieri.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle23;
-            this.dgPortieri.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgPortieri.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn2,
-            this.tmR_AgeColumn1,
-            this.tmR_NationColumn1,
-            this.tmR_FpColumn1,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn6,
-            this.dataGridViewTextBoxColumn7,
-            this.dataGridViewTextBoxColumn8,
-            this.dataGridViewTextBoxColumn9,
-            this.dataGridViewTextBoxColumn10,
-            this.dataGridViewTextBoxColumn11,
-            this.dataGridViewTextBoxColumn12,
-            this.dataGridViewTextBoxColumn13,
-            this.dataGridViewTextBoxColumn14,
-            this.dataGridViewTextBoxColumn19,
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn16,
-            this.dataGridViewTextBoxColumn15,
-            this.CStrGK,
-            this.dataGridViewTextBoxColumn32,
-            this.Bid,
-            this.dataGridViewTextBoxColumn18,
-            this.ImportedNotes});
-            this.dgPortieri.DataSource = this.bindGK;
-            dataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle31.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle31.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.5F);
-            dataGridViewCellStyle31.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle31.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle31.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle31.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgPortieri.DefaultCellStyle = dataGridViewCellStyle31;
-            this.dgPortieri.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgPortieri.Location = new System.Drawing.Point(3, 3);
-            this.dgPortieri.Name = "dgPortieri";
-            this.dgPortieri.ReadOnly = true;
-            dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle32.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle32.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle32.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle32.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle32.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle32.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgPortieri.RowHeadersDefaultCellStyle = dataGridViewCellStyle32;
-            this.dgPortieri.RowHeadersWidth = 20;
-            this.dgPortieri.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgPortieri.Size = new System.Drawing.Size(871, 318);
-            this.dgPortieri.TabIndex = 1;
-            this.dgPortieri.Sorted += new System.EventHandler(this.dgPortieri_Sorted);
-            this.dgPortieri.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgGiocatori_MouseDoubleClick);
-            // 
-            // bindGK
-            // 
-            this.bindGK.DataMember = "GiocatoriNSkill";
-            this.bindGK.DataSource = this.teamDS;
-            this.bindGK.Filter = "FPn=0";
-            // 
-            // tabBrowser
-            // 
-            this.tabBrowser.Controls.Add(this.toolStripContainer3);
-            this.tabBrowser.Location = new System.Drawing.Point(4, 22);
-            this.tabBrowser.Name = "tabBrowser";
-            this.tabBrowser.Padding = new System.Windows.Forms.Padding(3);
-            this.tabBrowser.Size = new System.Drawing.Size(877, 324);
-            this.tabBrowser.TabIndex = 2;
-            this.tabBrowser.Text = "Trophy Browser";
-            this.tabBrowser.UseVisualStyleBackColor = true;
-            // 
-            // toolStripContainer3
-            // 
-            // 
-            // toolStripContainer3.ContentPanel
-            // 
-            this.toolStripContainer3.ContentPanel.Controls.Add(this.webBrowser);
-            this.toolStripContainer3.ContentPanel.Size = new System.Drawing.Size(871, 268);
-            this.toolStripContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.toolStripContainer3.Location = new System.Drawing.Point(3, 3);
-            this.toolStripContainer3.Name = "toolStripContainer3";
-            this.toolStripContainer3.Size = new System.Drawing.Size(871, 318);
-            this.toolStripContainer3.TabIndex = 1;
-            this.toolStripContainer3.Text = "toolStripContainer3";
-            // 
-            // toolStripContainer3.TopToolStripPanel
-            // 
-            this.toolStripContainer3.TopToolStripPanel.Controls.Add(this.tsBrowserMain);
-            this.toolStripContainer3.TopToolStripPanel.Controls.Add(this.tsBrowsePlayers);
-            // 
-            // webBrowser
-            // 
-            this.webBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.webBrowser.Location = new System.Drawing.Point(0, 0);
-            this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowser.Name = "webBrowser";
-            this.webBrowser.ScriptErrorsSuppressed = true;
-            this.webBrowser.Size = new System.Drawing.Size(871, 268);
-            this.webBrowser.TabIndex = 1;
-            this.webBrowser.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser_DocumentCompleted);
-            this.webBrowser.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.webBrowser_Navigating);
-            this.webBrowser.ProgressChanged += new System.Windows.Forms.WebBrowserProgressChangedEventHandler(this.webBrowser_ProgressChanged);
-            // 
-            // tsBrowserMain
-            // 
-            this.tsBrowserMain.Dock = System.Windows.Forms.DockStyle.None;
-            this.tsBrowserMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripLabel5,
-            this.tsbPrev,
-            this.tsbNext,
-            this.toolStripSeparator8,
-            this.toolStripLabel2,
-            this.tsbShortlist,
-            this.toolStripDropDownButton11,
-            this.toolStripSeparator11,
-            this.toolStripLabel4,
-            this.tsbProgressBar,
-            this.tsbProgressText,
-            this.tsbImport});
-            this.tsBrowserMain.Location = new System.Drawing.Point(3, 0);
-            this.tsBrowserMain.Name = "tsBrowserMain";
-            this.tsBrowserMain.Size = new System.Drawing.Size(660, 25);
-            this.tsBrowserMain.TabIndex = 1;
-            this.tsBrowserMain.Text = "toolStrip4";
-            // 
-            // toolStripLabel5
-            // 
-            this.toolStripLabel5.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripLabel5.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.toolStripLabel5.Name = "toolStripLabel5";
-            this.toolStripLabel5.Size = new System.Drawing.Size(67, 22);
-            this.toolStripLabel5.Text = "Navigation";
-            // 
-            // tsbPrev
-            // 
-            this.tsbPrev.Image = ((System.Drawing.Image)(resources.GetObject("tsbPrev.Image")));
-            this.tsbPrev.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbPrev.Name = "tsbPrev";
-            this.tsbPrev.Size = new System.Drawing.Size(50, 22);
-            this.tsbPrev.Text = "Prev";
-            this.tsbPrev.Click += new System.EventHandler(this.tsbPrev_Click);
-            // 
-            // tsbNext
-            // 
-            this.tsbNext.Image = ((System.Drawing.Image)(resources.GetObject("tsbNext.Image")));
-            this.tsbNext.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbNext.Name = "tsbNext";
-            this.tsbNext.Size = new System.Drawing.Size(51, 22);
-            this.tsbNext.Text = "Next";
-            this.tsbNext.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.tsbNext.Click += new System.EventHandler(this.tsbNext_Click);
-            // 
-            // toolStripSeparator8
-            // 
-            this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripLabel2
-            // 
-            this.toolStripLabel2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripLabel2.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(61, 22);
-            this.toolStripLabel2.Text = "TM Pages";
-            // 
-            // tsbShortlist
-            // 
-            this.tsbShortlist.Image = ((System.Drawing.Image)(resources.GetObject("tsbShortlist.Image")));
-            this.tsbShortlist.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbShortlist.Name = "tsbShortlist";
-            this.tsbShortlist.Size = new System.Drawing.Size(99, 22);
-            this.tsbShortlist.Text = "Shortlist Page";
-            this.tsbShortlist.Click += new System.EventHandler(this.tsbShortlist_Click);
-            // 
-            // toolStripDropDownButton11
-            // 
-            this.toolStripDropDownButton11.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.gotoMToolStripMenuItem,
-            this.gotoAdobeFlashplayerPageToolStripMenuItem});
-            this.toolStripDropDownButton11.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton11.Image")));
-            this.toolStripDropDownButton11.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton11.Name = "toolStripDropDownButton11";
-            this.toolStripDropDownButton11.Size = new System.Drawing.Size(54, 22);
-            this.toolStripDropDownButton11.Text = "File";
-            // 
-            // gotoMToolStripMenuItem
-            // 
-            this.gotoMToolStripMenuItem.Name = "gotoMToolStripMenuItem";
-            this.gotoMToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
-            this.gotoMToolStripMenuItem.Text = "Goto Main TrophyManager page";
-            this.gotoMToolStripMenuItem.Click += new System.EventHandler(this.gotoMToolStripMenuItem_Click);
-            // 
-            // gotoAdobeFlashplayerPageToolStripMenuItem
-            // 
-            this.gotoAdobeFlashplayerPageToolStripMenuItem.Name = "gotoAdobeFlashplayerPageToolStripMenuItem";
-            this.gotoAdobeFlashplayerPageToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
-            this.gotoAdobeFlashplayerPageToolStripMenuItem.Text = "Goto Adobe Flashplayer page";
-            this.gotoAdobeFlashplayerPageToolStripMenuItem.Click += new System.EventHandler(this.gotoAdobeFlashplayerPageToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator11
-            // 
-            this.toolStripSeparator11.Name = "toolStripSeparator11";
-            this.toolStripSeparator11.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripLabel4
-            // 
-            this.toolStripLabel4.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripLabel4.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.toolStripLabel4.Name = "toolStripLabel4";
-            this.toolStripLabel4.Size = new System.Drawing.Size(87, 22);
-            this.toolStripLabel4.Text = "Load progress";
-            // 
-            // tsbProgressBar
-            // 
-            this.tsbProgressBar.Name = "tsbProgressBar";
-            this.tsbProgressBar.Size = new System.Drawing.Size(92, 22);
-            this.tsbProgressBar.Step = 5;
-            // 
-            // tsbProgressText
-            // 
-            this.tsbProgressText.Name = "tsbProgressText";
-            this.tsbProgressText.Size = new System.Drawing.Size(10, 22);
-            this.tsbProgressText.Text = " ";
-            // 
-            // tsbImport
-            // 
-            this.tsbImport.BackColor = System.Drawing.SystemColors.Control;
-            this.tsbImport.Image = ((System.Drawing.Image)(resources.GetObject("tsbImport.Image")));
-            this.tsbImport.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbImport.Name = "tsbImport";
-            this.tsbImport.Size = new System.Drawing.Size(63, 22);
-            this.tsbImport.Text = "Import";
-            this.tsbImport.Click += new System.EventHandler(this.tsbImport_Click);
-            // 
-            // tsBrowsePlayers
-            // 
-            this.tsBrowsePlayers.Dock = System.Windows.Forms.DockStyle.None;
-            this.tsBrowsePlayers.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripLabel6,
-            this.tsbPrevPlayer,
-            this.tsbNextPlayer,
-            this.toolStripSeparator10,
-            this.toolStripLabel9,
-            this.tsbPlayers,
-            this.toolStripSeparator12,
-            this.tsbNavigationType});
-            this.tsBrowsePlayers.Location = new System.Drawing.Point(3, 25);
-            this.tsBrowsePlayers.Name = "tsBrowsePlayers";
-            this.tsBrowsePlayers.Size = new System.Drawing.Size(640, 25);
-            this.tsBrowsePlayers.TabIndex = 2;
-            this.tsBrowsePlayers.Text = "toolStrip2";
-            // 
-            // toolStripLabel6
-            // 
-            this.toolStripLabel6.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripLabel6.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.toolStripLabel6.Name = "toolStripLabel6";
-            this.toolStripLabel6.Size = new System.Drawing.Size(93, 22);
-            this.toolStripLabel6.Text = "Browse Players";
-            // 
-            // tsbPrevPlayer
-            // 
-            this.tsbPrevPlayer.Image = ((System.Drawing.Image)(resources.GetObject("tsbPrevPlayer.Image")));
-            this.tsbPrevPlayer.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbPrevPlayer.Name = "tsbPrevPlayer";
-            this.tsbPrevPlayer.Size = new System.Drawing.Size(50, 22);
-            this.tsbPrevPlayer.Text = "Prev";
-            this.tsbPrevPlayer.Click += new System.EventHandler(this.tsbPrevPlayer_Click);
-            // 
-            // tsbNextPlayer
-            // 
-            this.tsbNextPlayer.Image = ((System.Drawing.Image)(resources.GetObject("tsbNextPlayer.Image")));
-            this.tsbNextPlayer.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbNextPlayer.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbNextPlayer.Name = "tsbNextPlayer";
-            this.tsbNextPlayer.Size = new System.Drawing.Size(51, 22);
-            this.tsbNextPlayer.Text = "Next";
-            this.tsbNextPlayer.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.tsbNextPlayer.Click += new System.EventHandler(this.tsbNextPlayer_Click);
-            // 
-            // toolStripSeparator10
-            // 
-            this.toolStripSeparator10.Name = "toolStripSeparator10";
-            this.toolStripSeparator10.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripLabel9
-            // 
-            this.toolStripLabel9.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripLabel9.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.toolStripLabel9.Name = "toolStripLabel9";
-            this.toolStripLabel9.Size = new System.Drawing.Size(43, 22);
-            this.toolStripLabel9.Text = "Player";
-            // 
-            // tsbPlayers
-            // 
-            this.tsbPlayers.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.gKToolStripMenuItem,
-            this.dDefendersToolStripMenuItem,
-            this.dMDefenderMidfieldersToolStripMenuItem,
-            this.mMidfieldersToolStripMenuItem,
-            this.oMOffenderMidfieldersToolStripMenuItem,
-            this.fForwardsToolStripMenuItem});
-            this.tsbPlayers.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsbPlayers.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.tsbPlayers.Image = ((System.Drawing.Image)(resources.GetObject("tsbPlayers.Image")));
-            this.tsbPlayers.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbPlayers.Name = "tsbPlayers";
-            this.tsbPlayers.Size = new System.Drawing.Size(254, 22);
-            this.tsbPlayers.Text = "[FC] Robert \"O Baixinho\" Scherpenzeel";
-            // 
-            // gKToolStripMenuItem
-            // 
-            this.gKToolStripMenuItem.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.gKToolStripMenuItem.Name = "gKToolStripMenuItem";
-            this.gKToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
-            this.gKToolStripMenuItem.Text = "GK - Goalkeepers";
-            // 
-            // dDefendersToolStripMenuItem
-            // 
-            this.dDefendersToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.dDefendersToolStripMenuItem.Name = "dDefendersToolStripMenuItem";
-            this.dDefendersToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
-            this.dDefendersToolStripMenuItem.Text = "D - Defenders";
-            // 
-            // dMDefenderMidfieldersToolStripMenuItem
-            // 
-            this.dMDefenderMidfieldersToolStripMenuItem.ForeColor = System.Drawing.Color.Lime;
-            this.dMDefenderMidfieldersToolStripMenuItem.Name = "dMDefenderMidfieldersToolStripMenuItem";
-            this.dMDefenderMidfieldersToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
-            this.dMDefenderMidfieldersToolStripMenuItem.Text = "DM - Defender/Midfielders";
-            // 
-            // mMidfieldersToolStripMenuItem
-            // 
-            this.mMidfieldersToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.mMidfieldersToolStripMenuItem.Name = "mMidfieldersToolStripMenuItem";
-            this.mMidfieldersToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
-            this.mMidfieldersToolStripMenuItem.Text = "M - Midfielders";
-            // 
-            // oMOffenderMidfieldersToolStripMenuItem
-            // 
-            this.oMOffenderMidfieldersToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.oMOffenderMidfieldersToolStripMenuItem.Name = "oMOffenderMidfieldersToolStripMenuItem";
-            this.oMOffenderMidfieldersToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
-            this.oMOffenderMidfieldersToolStripMenuItem.Text = "OM - Offender/Midfielders";
-            // 
-            // fForwardsToolStripMenuItem
-            // 
-            this.fForwardsToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.fForwardsToolStripMenuItem.Name = "fForwardsToolStripMenuItem";
-            this.fForwardsToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
-            this.fForwardsToolStripMenuItem.Text = "F - Forwards";
-            // 
-            // toolStripSeparator12
-            // 
-            this.toolStripSeparator12.Name = "toolStripSeparator12";
-            this.toolStripSeparator12.Size = new System.Drawing.Size(6, 25);
-            // 
-            // tsbNavigationType
-            // 
-            this.tsbNavigationType.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.navigateProfilesToolStripMenuItem,
-            this.navigateReportsToolStripMenuItem});
-            this.tsbNavigationType.Image = ((System.Drawing.Image)(resources.GetObject("tsbNavigationType.Image")));
-            this.tsbNavigationType.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbNavigationType.Name = "tsbNavigationType";
-            this.tsbNavigationType.Size = new System.Drawing.Size(125, 22);
-            this.tsbNavigationType.Text = "Navigate Profiles";
-            // 
-            // navigateProfilesToolStripMenuItem
-            // 
-            this.navigateProfilesToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("navigateProfilesToolStripMenuItem.Image")));
-            this.navigateProfilesToolStripMenuItem.Name = "navigateProfilesToolStripMenuItem";
-            this.navigateProfilesToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.navigateProfilesToolStripMenuItem.Text = "Navigate Profiles";
-            this.navigateProfilesToolStripMenuItem.Click += new System.EventHandler(this.navigateProfilesToolStripMenuItem_Click);
-            // 
-            // navigateReportsToolStripMenuItem
-            // 
-            this.navigateReportsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("navigateReportsToolStripMenuItem.Image")));
-            this.navigateReportsToolStripMenuItem.Name = "navigateReportsToolStripMenuItem";
-            this.navigateReportsToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.navigateReportsToolStripMenuItem.Text = "Navigate Reports";
-            this.navigateReportsToolStripMenuItem.Click += new System.EventHandler(this.navigateReportsToolStripMenuItem_Click);
-            // 
-            // toolStrip1
-            // 
-            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbFile,
-            this.toolStripDropDownButton1});
-            this.toolStrip1.Location = new System.Drawing.Point(3, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(122, 25);
-            this.toolStrip1.TabIndex = 0;
-            // 
-            // tsbFile
-            // 
-            this.tsbFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.loadFromFileToolStripMenuItem,
-            this.saveToolStripMenuItem});
-            this.tsbFile.Image = ((System.Drawing.Image)(resources.GetObject("tsbFile.Image")));
-            this.tsbFile.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbFile.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbFile.Name = "tsbFile";
-            this.tsbFile.Size = new System.Drawing.Size(54, 22);
-            this.tsbFile.Text = "File";
-            // 
-            // loadFromFileToolStripMenuItem
-            // 
-            this.loadFromFileToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("loadFromFileToolStripMenuItem.Image")));
-            this.loadFromFileToolStripMenuItem.Name = "loadFromFileToolStripMenuItem";
-            this.loadFromFileToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.loadFromFileToolStripMenuItem.Text = "Load From Backup Files...";
-            this.loadFromFileToolStripMenuItem.Click += new System.EventHandler(this.loadFromFileToolStripMenuItem_Click);
-            // 
-            // saveToolStripMenuItem
-            // 
-            this.saveToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripMenuItem.Image")));
-            this.saveToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.saveToolStripMenuItem.Text = "Save";
-            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
-            // 
-            // toolStripDropDownButton1
-            // 
-            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cutToolStripMenuItem,
-            this.dontUpdateTheDeletedPlayersToolStripMenuItem});
-            this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
-            this.toolStripDropDownButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(56, 22);
-            this.toolStripDropDownButton1.Text = "Edit";
-            // 
-            // cutToolStripMenuItem
-            // 
-            this.cutToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("cutToolStripMenuItem.Image")));
-            this.cutToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
-            this.cutToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
-            this.cutToolStripMenuItem.Text = "Delete Player";
-            this.cutToolStripMenuItem.Click += new System.EventHandler(this.cutToolStripMenuItem_Click);
-            // 
-            // dontUpdateTheDeletedPlayersToolStripMenuItem
-            // 
-            this.dontUpdateTheDeletedPlayersToolStripMenuItem.Name = "dontUpdateTheDeletedPlayersToolStripMenuItem";
-            this.dontUpdateTheDeletedPlayersToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
-            this.dontUpdateTheDeletedPlayersToolStripMenuItem.Text = "Don\'t Update the Deleted Players";
-            this.dontUpdateTheDeletedPlayersToolStripMenuItem.Click += new System.EventHandler(this.dontUpdateTheDeletedPlayersToolStripMenuItem_Click);
-            // 
-            // playersDS
-            // 
-            this.playersDS.DataSetName = "PlayersData";
-            this.playersDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // nomeDataGridViewTextBoxColumn1
             // 
@@ -886,6 +381,7 @@
             this.ageDataGridViewTextBoxColumn.ReadOnly = true;
             this.ageDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ageDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.ageDataGridViewTextBoxColumn.When = new System.DateTime(2015, 12, 27, 10, 9, 51, 210);
             this.ageDataGridViewTextBoxColumn.Width = 32;
             // 
             // nationalityDataGridViewTextBoxColumn1
@@ -1080,9 +576,9 @@
             // rouDataGridViewTextBoxColumn1
             // 
             this.rouDataGridViewTextBoxColumn1.DataPropertyName = "Rou";
-            dataGridViewCellStyle2.Format = "N1";
-            dataGridViewCellStyle2.NullValue = "-";
-            this.rouDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle34.Format = "N1";
+            dataGridViewCellStyle34.NullValue = "-";
+            this.rouDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle34;
             this.rouDataGridViewTextBoxColumn1.HeaderText = "Rou";
             this.rouDataGridViewTextBoxColumn1.Name = "rouDataGridViewTextBoxColumn1";
             this.rouDataGridViewTextBoxColumn1.ReadOnly = true;
@@ -1092,9 +588,9 @@
             // cTI
             // 
             this.cTI.DataPropertyName = "cTI";
-            dataGridViewCellStyle3.Format = "N1";
-            dataGridViewCellStyle3.NullValue = "-";
-            this.cTI.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle35.Format = "N1";
+            dataGridViewCellStyle35.NullValue = "-";
+            this.cTI.DefaultCellStyle = dataGridViewCellStyle35;
             this.cTI.HeaderText = "cTI";
             this.cTI.Name = "cTI";
             this.cTI.ReadOnly = true;
@@ -1104,9 +600,9 @@
             // SSD
             // 
             this.SSD.DataPropertyName = "SSD";
-            dataGridViewCellStyle4.Format = "N1";
-            dataGridViewCellStyle4.NullValue = "-";
-            this.SSD.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle36.Format = "N1";
+            dataGridViewCellStyle36.NullValue = "-";
+            this.SSD.DefaultCellStyle = dataGridViewCellStyle36;
             this.SSD.HeaderText = "SSD";
             this.SSD.Name = "SSD";
             this.SSD.ReadOnly = true;
@@ -1125,9 +621,9 @@
             // CStr
             // 
             this.CStr.DataPropertyName = "CStr";
-            dataGridViewCellStyle5.Format = "N2";
-            dataGridViewCellStyle5.NullValue = null;
-            this.CStr.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle37.Format = "N2";
+            dataGridViewCellStyle37.NullValue = null;
+            this.CStr.DefaultCellStyle = dataGridViewCellStyle37;
             this.CStr.HeaderText = "CStr";
             this.CStr.Name = "CStr";
             this.CStr.ReadOnly = true;
@@ -1137,8 +633,8 @@
             // dCDataGridViewTextBoxColumn1
             // 
             this.dCDataGridViewTextBoxColumn1.DataPropertyName = "DC";
-            dataGridViewCellStyle6.Format = "N1";
-            this.dCDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle38.Format = "N1";
+            this.dCDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle38;
             this.dCDataGridViewTextBoxColumn1.HeaderText = "DC";
             this.dCDataGridViewTextBoxColumn1.Name = "dCDataGridViewTextBoxColumn1";
             this.dCDataGridViewTextBoxColumn1.ReadOnly = true;
@@ -1147,8 +643,8 @@
             // dRDataGridViewTextBoxColumn1
             // 
             this.dRDataGridViewTextBoxColumn1.DataPropertyName = "DR";
-            dataGridViewCellStyle7.Format = "N1";
-            this.dRDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle39.Format = "N1";
+            this.dRDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle39;
             this.dRDataGridViewTextBoxColumn1.HeaderText = "DR";
             this.dRDataGridViewTextBoxColumn1.Name = "dRDataGridViewTextBoxColumn1";
             this.dRDataGridViewTextBoxColumn1.ReadOnly = true;
@@ -1157,8 +653,8 @@
             // dLDataGridViewTextBoxColumn1
             // 
             this.dLDataGridViewTextBoxColumn1.DataPropertyName = "DL";
-            dataGridViewCellStyle8.Format = "N1";
-            this.dLDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle40.Format = "N1";
+            this.dLDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle40;
             this.dLDataGridViewTextBoxColumn1.HeaderText = "DL";
             this.dLDataGridViewTextBoxColumn1.Name = "dLDataGridViewTextBoxColumn1";
             this.dLDataGridViewTextBoxColumn1.ReadOnly = true;
@@ -1167,8 +663,8 @@
             // dMCDataGridViewTextBoxColumn1
             // 
             this.dMCDataGridViewTextBoxColumn1.DataPropertyName = "DMC";
-            dataGridViewCellStyle9.Format = "N1";
-            this.dMCDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle41.Format = "N1";
+            this.dMCDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle41;
             this.dMCDataGridViewTextBoxColumn1.HeaderText = "DMC";
             this.dMCDataGridViewTextBoxColumn1.Name = "dMCDataGridViewTextBoxColumn1";
             this.dMCDataGridViewTextBoxColumn1.ReadOnly = true;
@@ -1177,8 +673,8 @@
             // dMRDataGridViewTextBoxColumn1
             // 
             this.dMRDataGridViewTextBoxColumn1.DataPropertyName = "DMR";
-            dataGridViewCellStyle10.Format = "N1";
-            this.dMRDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle42.Format = "N1";
+            this.dMRDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle42;
             this.dMRDataGridViewTextBoxColumn1.HeaderText = "DMR";
             this.dMRDataGridViewTextBoxColumn1.Name = "dMRDataGridViewTextBoxColumn1";
             this.dMRDataGridViewTextBoxColumn1.ReadOnly = true;
@@ -1187,8 +683,8 @@
             // dMLDataGridViewTextBoxColumn1
             // 
             this.dMLDataGridViewTextBoxColumn1.DataPropertyName = "DML";
-            dataGridViewCellStyle11.Format = "N1";
-            this.dMLDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle43.Format = "N1";
+            this.dMLDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle43;
             this.dMLDataGridViewTextBoxColumn1.HeaderText = "DML";
             this.dMLDataGridViewTextBoxColumn1.Name = "dMLDataGridViewTextBoxColumn1";
             this.dMLDataGridViewTextBoxColumn1.ReadOnly = true;
@@ -1197,8 +693,8 @@
             // mCDataGridViewTextBoxColumn1
             // 
             this.mCDataGridViewTextBoxColumn1.DataPropertyName = "MC";
-            dataGridViewCellStyle12.Format = "N1";
-            this.mCDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle44.Format = "N1";
+            this.mCDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle44;
             this.mCDataGridViewTextBoxColumn1.HeaderText = "MC";
             this.mCDataGridViewTextBoxColumn1.Name = "mCDataGridViewTextBoxColumn1";
             this.mCDataGridViewTextBoxColumn1.ReadOnly = true;
@@ -1207,8 +703,8 @@
             // mRDataGridViewTextBoxColumn1
             // 
             this.mRDataGridViewTextBoxColumn1.DataPropertyName = "MR";
-            dataGridViewCellStyle13.Format = "N1";
-            this.mRDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle45.Format = "N1";
+            this.mRDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle45;
             this.mRDataGridViewTextBoxColumn1.HeaderText = "MR";
             this.mRDataGridViewTextBoxColumn1.Name = "mRDataGridViewTextBoxColumn1";
             this.mRDataGridViewTextBoxColumn1.ReadOnly = true;
@@ -1217,8 +713,8 @@
             // mLDataGridViewTextBoxColumn1
             // 
             this.mLDataGridViewTextBoxColumn1.DataPropertyName = "ML";
-            dataGridViewCellStyle14.Format = "N1";
-            this.mLDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle46.Format = "N1";
+            this.mLDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle46;
             this.mLDataGridViewTextBoxColumn1.HeaderText = "ML";
             this.mLDataGridViewTextBoxColumn1.Name = "mLDataGridViewTextBoxColumn1";
             this.mLDataGridViewTextBoxColumn1.ReadOnly = true;
@@ -1227,8 +723,8 @@
             // oMCDataGridViewTextBoxColumn1
             // 
             this.oMCDataGridViewTextBoxColumn1.DataPropertyName = "OMC";
-            dataGridViewCellStyle15.Format = "N1";
-            this.oMCDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle47.Format = "N1";
+            this.oMCDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle47;
             this.oMCDataGridViewTextBoxColumn1.HeaderText = "OMC";
             this.oMCDataGridViewTextBoxColumn1.Name = "oMCDataGridViewTextBoxColumn1";
             this.oMCDataGridViewTextBoxColumn1.ReadOnly = true;
@@ -1237,8 +733,8 @@
             // oMRDataGridViewTextBoxColumn1
             // 
             this.oMRDataGridViewTextBoxColumn1.DataPropertyName = "OMR";
-            dataGridViewCellStyle16.Format = "N1";
-            this.oMRDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle48.Format = "N1";
+            this.oMRDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle48;
             this.oMRDataGridViewTextBoxColumn1.HeaderText = "OMR";
             this.oMRDataGridViewTextBoxColumn1.Name = "oMRDataGridViewTextBoxColumn1";
             this.oMRDataGridViewTextBoxColumn1.ReadOnly = true;
@@ -1247,8 +743,8 @@
             // oMLDataGridViewTextBoxColumn1
             // 
             this.oMLDataGridViewTextBoxColumn1.DataPropertyName = "OML";
-            dataGridViewCellStyle17.Format = "N1";
-            this.oMLDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle49.Format = "N1";
+            this.oMLDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle49;
             this.oMLDataGridViewTextBoxColumn1.HeaderText = "OML";
             this.oMLDataGridViewTextBoxColumn1.Name = "oMLDataGridViewTextBoxColumn1";
             this.oMLDataGridViewTextBoxColumn1.ReadOnly = true;
@@ -1257,8 +753,8 @@
             // fCDataGridViewTextBoxColumn1
             // 
             this.fCDataGridViewTextBoxColumn1.DataPropertyName = "FC";
-            dataGridViewCellStyle18.Format = "N1";
-            this.fCDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle50.Format = "N1";
+            this.fCDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle50;
             this.fCDataGridViewTextBoxColumn1.HeaderText = "FC";
             this.fCDataGridViewTextBoxColumn1.Name = "fCDataGridViewTextBoxColumn1";
             this.fCDataGridViewTextBoxColumn1.ReadOnly = true;
@@ -1268,9 +764,9 @@
             // 
             this.Team.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.Team.DataPropertyName = "Bid";
-            dataGridViewCellStyle19.Format = "N0";
-            dataGridViewCellStyle19.NullValue = "-";
-            this.Team.DefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle51.Format = "N0";
+            dataGridViewCellStyle51.NullValue = "-";
+            this.Team.DefaultCellStyle = dataGridViewCellStyle51;
             this.Team.HeaderText = "Bid";
             this.Team.Name = "Team";
             this.Team.ReadOnly = true;
@@ -1281,9 +777,9 @@
             // 
             this.Ends.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.Ends.DataPropertyName = "Ends";
-            dataGridViewCellStyle20.Format = "dd/MM hh:mm";
-            dataGridViewCellStyle20.NullValue = "-";
-            this.Ends.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle52.Format = "dd/MM hh:mm";
+            dataGridViewCellStyle52.NullValue = "-";
+            this.Ends.DefaultCellStyle = dataGridViewCellStyle52;
             this.Ends.HeaderText = "Bid End";
             this.Ends.Name = "Ends";
             this.Ends.ReadOnly = true;
@@ -1296,6 +792,87 @@
             this.Notes.HeaderText = "Notes";
             this.Notes.Name = "Notes";
             this.Notes.ReadOnly = true;
+            // 
+            // tabGK
+            // 
+            this.tabGK.Controls.Add(this.dgPortieri);
+            this.tabGK.Location = new System.Drawing.Point(4, 22);
+            this.tabGK.Name = "tabGK";
+            this.tabGK.Padding = new System.Windows.Forms.Padding(3);
+            this.tabGK.Size = new System.Drawing.Size(877, 324);
+            this.tabGK.TabIndex = 1;
+            this.tabGK.Text = "GKs";
+            this.tabGK.UseVisualStyleBackColor = true;
+            // 
+            // dgPortieri
+            // 
+            this.dgPortieri.AllowUserToAddRows = false;
+            this.dgPortieri.AllowUserToDeleteRows = false;
+            this.dgPortieri.AllowUserToOrderColumns = true;
+            this.dgPortieri.AutoGenerateColumns = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgPortieri.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgPortieri.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgPortieri.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn2,
+            this.tmR_AgeColumn1,
+            this.tmR_NationColumn1,
+            this.tmR_FpColumn1,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5,
+            this.dataGridViewTextBoxColumn6,
+            this.dataGridViewTextBoxColumn7,
+            this.dataGridViewTextBoxColumn8,
+            this.dataGridViewTextBoxColumn9,
+            this.dataGridViewTextBoxColumn10,
+            this.dataGridViewTextBoxColumn11,
+            this.dataGridViewTextBoxColumn12,
+            this.dataGridViewTextBoxColumn13,
+            this.dataGridViewTextBoxColumn14,
+            this.dataGridViewTextBoxColumn19,
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn16,
+            this.dataGridViewTextBoxColumn15,
+            this.CStrGK,
+            this.dataGridViewTextBoxColumn32,
+            this.Bid,
+            this.dataGridViewTextBoxColumn18,
+            this.ImportedNotes});
+            this.dgPortieri.DataCollection = null;
+            this.dgPortieri.DataSource = this.bindGK;
+            dataGridViewCellStyle60.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle60.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle60.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.5F);
+            dataGridViewCellStyle60.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle60.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle60.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle60.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgPortieri.DefaultCellStyle = dataGridViewCellStyle60;
+            this.dgPortieri.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgPortieri.Location = new System.Drawing.Point(3, 3);
+            this.dgPortieri.Name = "dgPortieri";
+            this.dgPortieri.ReadOnly = true;
+            dataGridViewCellStyle61.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle61.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle61.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle61.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle61.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle61.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle61.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgPortieri.RowHeadersDefaultCellStyle = dataGridViewCellStyle61;
+            this.dgPortieri.RowHeadersWidth = 20;
+            this.dgPortieri.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgPortieri.Size = new System.Drawing.Size(871, 318);
+            this.dgPortieri.TabIndex = 1;
+            this.dgPortieri.Sorted += new System.EventHandler(this.dgPortieri_Sorted);
+            this.dgPortieri.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgGiocatori_MouseDoubleClick);
             // 
             // dataGridViewTextBoxColumn2
             // 
@@ -1316,6 +893,7 @@
             this.tmR_AgeColumn1.ReadOnly = true;
             this.tmR_AgeColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.tmR_AgeColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.tmR_AgeColumn1.When = new System.DateTime(2015, 12, 27, 10, 9, 51, 680);
             this.tmR_AgeColumn1.Width = 32;
             // 
             // tmR_NationColumn1
@@ -1477,9 +1055,9 @@
             // dataGridViewTextBoxColumn19
             // 
             this.dataGridViewTextBoxColumn19.DataPropertyName = "Rou";
-            dataGridViewCellStyle24.Format = "N1";
-            dataGridViewCellStyle24.NullValue = "-";
-            this.dataGridViewTextBoxColumn19.DefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle21.Format = "N1";
+            dataGridViewCellStyle21.NullValue = "-";
+            this.dataGridViewTextBoxColumn19.DefaultCellStyle = dataGridViewCellStyle21;
             this.dataGridViewTextBoxColumn19.HeaderText = "Rou";
             this.dataGridViewTextBoxColumn19.Name = "dataGridViewTextBoxColumn19";
             this.dataGridViewTextBoxColumn19.ReadOnly = true;
@@ -1488,9 +1066,9 @@
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.DataPropertyName = "cTI";
-            dataGridViewCellStyle25.Format = "N1";
-            dataGridViewCellStyle25.NullValue = "-";
-            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle25;
+            dataGridViewCellStyle22.Format = "N1";
+            dataGridViewCellStyle22.NullValue = "-";
+            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle22;
             this.dataGridViewTextBoxColumn1.HeaderText = "cTI";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.ReadOnly = true;
@@ -1500,9 +1078,9 @@
             // dataGridViewTextBoxColumn16
             // 
             this.dataGridViewTextBoxColumn16.DataPropertyName = "SSD";
-            dataGridViewCellStyle26.Format = "N1";
-            dataGridViewCellStyle26.NullValue = "-";
-            this.dataGridViewTextBoxColumn16.DefaultCellStyle = dataGridViewCellStyle26;
+            dataGridViewCellStyle55.Format = "N1";
+            dataGridViewCellStyle55.NullValue = "-";
+            this.dataGridViewTextBoxColumn16.DefaultCellStyle = dataGridViewCellStyle55;
             this.dataGridViewTextBoxColumn16.HeaderText = "SSD";
             this.dataGridViewTextBoxColumn16.Name = "dataGridViewTextBoxColumn16";
             this.dataGridViewTextBoxColumn16.ReadOnly = true;
@@ -1521,9 +1099,9 @@
             // CStrGK
             // 
             this.CStrGK.DataPropertyName = "CStr";
-            dataGridViewCellStyle27.Format = "N2";
-            dataGridViewCellStyle27.NullValue = "-";
-            this.CStrGK.DefaultCellStyle = dataGridViewCellStyle27;
+            dataGridViewCellStyle56.Format = "N2";
+            dataGridViewCellStyle56.NullValue = "-";
+            this.CStrGK.DefaultCellStyle = dataGridViewCellStyle56;
             this.CStrGK.HeaderText = "CStar";
             this.CStrGK.Name = "CStrGK";
             this.CStrGK.ReadOnly = true;
@@ -1533,8 +1111,8 @@
             // dataGridViewTextBoxColumn32
             // 
             this.dataGridViewTextBoxColumn32.DataPropertyName = "GK";
-            dataGridViewCellStyle28.Format = "N1";
-            this.dataGridViewTextBoxColumn32.DefaultCellStyle = dataGridViewCellStyle28;
+            dataGridViewCellStyle57.Format = "N1";
+            this.dataGridViewTextBoxColumn32.DefaultCellStyle = dataGridViewCellStyle57;
             this.dataGridViewTextBoxColumn32.HeaderText = "GK";
             this.dataGridViewTextBoxColumn32.Name = "dataGridViewTextBoxColumn32";
             this.dataGridViewTextBoxColumn32.ReadOnly = true;
@@ -1543,9 +1121,9 @@
             // Bid
             // 
             this.Bid.DataPropertyName = "Bid";
-            dataGridViewCellStyle29.Format = "N0";
-            dataGridViewCellStyle29.NullValue = "-";
-            this.Bid.DefaultCellStyle = dataGridViewCellStyle29;
+            dataGridViewCellStyle58.Format = "N0";
+            dataGridViewCellStyle58.NullValue = "-";
+            this.Bid.DefaultCellStyle = dataGridViewCellStyle58;
             this.Bid.HeaderText = "Bid";
             this.Bid.Name = "Bid";
             this.Bid.ReadOnly = true;
@@ -1555,9 +1133,9 @@
             // 
             this.dataGridViewTextBoxColumn18.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.dataGridViewTextBoxColumn18.DataPropertyName = "Ends";
-            dataGridViewCellStyle30.Format = "dd/MM hh:mm";
-            dataGridViewCellStyle30.NullValue = "-";
-            this.dataGridViewTextBoxColumn18.DefaultCellStyle = dataGridViewCellStyle30;
+            dataGridViewCellStyle59.Format = "dd/MM hh:mm";
+            dataGridViewCellStyle59.NullValue = "-";
+            this.dataGridViewTextBoxColumn18.DefaultCellStyle = dataGridViewCellStyle59;
             this.dataGridViewTextBoxColumn18.HeaderText = "Bid End";
             this.dataGridViewTextBoxColumn18.Name = "dataGridViewTextBoxColumn18";
             this.dataGridViewTextBoxColumn18.ReadOnly = true;
@@ -1571,6 +1149,110 @@
             this.ImportedNotes.Name = "ImportedNotes";
             this.ImportedNotes.ReadOnly = true;
             // 
+            // tabBrowser
+            // 
+            this.tabBrowser.Controls.Add(this.webBrowser);
+            this.tabBrowser.Location = new System.Drawing.Point(4, 22);
+            this.tabBrowser.Name = "tabBrowser";
+            this.tabBrowser.Padding = new System.Windows.Forms.Padding(3);
+            this.tabBrowser.Size = new System.Drawing.Size(877, 324);
+            this.tabBrowser.TabIndex = 2;
+            this.tabBrowser.Text = "Trophy Browser";
+            this.tabBrowser.UseVisualStyleBackColor = true;
+            // 
+            // webBrowser
+            // 
+            this.webBrowser.DefaultDirectory = "";
+            this.webBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.webBrowser.Location = new System.Drawing.Point(3, 3);
+            this.webBrowser.Name = "webBrowser";
+            this.webBrowser.NavigationAddress = "";
+            this.webBrowser.NavigationMode = NTR_WebBrowser.NTR_Browser.eNavigationMode.Main;
+            this.webBrowser.SelectedReportParser = null;
+            this.webBrowser.ShowShortlist = true;
+            this.webBrowser.ShowTransfer = true;
+            this.webBrowser.Size = new System.Drawing.Size(871, 318);
+            this.webBrowser.StartnavigationAddress = "";
+            this.webBrowser.TabIndex = 0;
+            this.webBrowser.ImportedContent += new NTR_WebBrowser.ImportedContentHandler(this.webBrowser_ImportedContent);
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbFile,
+            this.toolStripDropDownButton1});
+            this.toolStrip1.Location = new System.Drawing.Point(3, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(122, 25);
+            this.toolStrip1.TabIndex = 0;
+            // 
+            // tsbFile
+            // 
+            this.tsbFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.loadFromFileToolStripMenuItem,
+            this.saveToolStripMenuItem});
+            this.tsbFile.Image = ((System.Drawing.Image)(resources.GetObject("tsbFile.Image")));
+            this.tsbFile.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbFile.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbFile.Name = "tsbFile";
+            this.tsbFile.Size = new System.Drawing.Size(54, 22);
+            this.tsbFile.Text = "File";
+            // 
+            // loadFromFileToolStripMenuItem
+            // 
+            this.loadFromFileToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("loadFromFileToolStripMenuItem.Image")));
+            this.loadFromFileToolStripMenuItem.Name = "loadFromFileToolStripMenuItem";
+            this.loadFromFileToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.loadFromFileToolStripMenuItem.Text = "Load From Backup Files...";
+            this.loadFromFileToolStripMenuItem.Click += new System.EventHandler(this.loadFromFileToolStripMenuItem_Click);
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripMenuItem.Image")));
+            this.saveToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+            // 
+            // toolStripDropDownButton1
+            // 
+            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cutToolStripMenuItem,
+            this.deleteSelectedPlayersFromVisualizationAndDatabaseToolStripMenuItem,
+            this.updateOnlyListedPlayersToolStripMenuItem});
+            this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
+            this.toolStripDropDownButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(56, 22);
+            this.toolStripDropDownButton1.Text = "Edit";
+            // 
+            // cutToolStripMenuItem
+            // 
+            this.cutToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("cutToolStripMenuItem.Image")));
+            this.cutToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
+            this.cutToolStripMenuItem.Size = new System.Drawing.Size(363, 22);
+            this.cutToolStripMenuItem.Text = "Delete Selected Players from visualization";
+            this.cutToolStripMenuItem.Click += new System.EventHandler(this.cutToolStripMenuItem_Click);
+            // 
+            // deleteSelectedPlayersFromVisualizationAndDatabaseToolStripMenuItem
+            // 
+            this.deleteSelectedPlayersFromVisualizationAndDatabaseToolStripMenuItem.Image = global::TMRecorder.Properties.Resources.Waste;
+            this.deleteSelectedPlayersFromVisualizationAndDatabaseToolStripMenuItem.Name = "deleteSelectedPlayersFromVisualizationAndDatabaseToolStripMenuItem";
+            this.deleteSelectedPlayersFromVisualizationAndDatabaseToolStripMenuItem.Size = new System.Drawing.Size(363, 22);
+            this.deleteSelectedPlayersFromVisualizationAndDatabaseToolStripMenuItem.Text = "Delete selected players from visualization and database";
+            // 
+            // updateOnlyListedPlayersToolStripMenuItem
+            // 
+            this.updateOnlyListedPlayersToolStripMenuItem.CheckOnClick = true;
+            this.updateOnlyListedPlayersToolStripMenuItem.Name = "updateOnlyListedPlayersToolStripMenuItem";
+            this.updateOnlyListedPlayersToolStripMenuItem.Size = new System.Drawing.Size(363, 22);
+            this.updateOnlyListedPlayersToolStripMenuItem.Text = "Update Only listed players";
+            this.updateOnlyListedPlayersToolStripMenuItem.Click += new System.EventHandler(this.updateOnlyListedPlayersToolStripMenuItem_Click);
+            // 
             // ShortlistForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1582,6 +1264,11 @@
             this.Text = "Shortlist Form";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ShortlistForm_FormClosing);
             this.Load += new System.EventHandler(this.ShortlistForm_Load);
+            this.contextMenuStrip.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.bindPL)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teamDS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindGK)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playersDS)).EndInit();
             this.toolStripContainer1.ContentPanel.ResumeLayout(false);
             this.toolStripContainer1.TopToolStripPanel.ResumeLayout(false);
             this.toolStripContainer1.TopToolStripPanel.PerformLayout();
@@ -1590,25 +1277,11 @@
             this.tabControl.ResumeLayout(false);
             this.tabPlayers.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgGiocatori)).EndInit();
-            this.contextMenuStrip.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.bindPL)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.teamDS)).EndInit();
             this.tabGK.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgPortieri)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindGK)).EndInit();
             this.tabBrowser.ResumeLayout(false);
-            this.toolStripContainer3.ContentPanel.ResumeLayout(false);
-            this.toolStripContainer3.TopToolStripPanel.ResumeLayout(false);
-            this.toolStripContainer3.TopToolStripPanel.PerformLayout();
-            this.toolStripContainer3.ResumeLayout(false);
-            this.toolStripContainer3.PerformLayout();
-            this.tsBrowserMain.ResumeLayout(false);
-            this.tsBrowserMain.PerformLayout();
-            this.tsBrowsePlayers.ResumeLayout(false);
-            this.tsBrowsePlayers.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.playersDS)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1619,10 +1292,10 @@
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage tabPlayers;
-        private System.Windows.Forms.DataGridView dgGiocatori;
+        private AeroDataGrid dgGiocatori;
         private System.Windows.Forms.BindingSource bindPL;
         private System.Windows.Forms.TabPage tabGK;
-        private System.Windows.Forms.DataGridView dgPortieri;
+        private AeroDataGrid dgPortieri;
         private System.Windows.Forms.BindingSource bindGK;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem openPlayersPropertyPageToolStripMenuItem;
@@ -1630,46 +1303,10 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
         private System.Windows.Forms.ToolStripMenuItem cutToolStripMenuItem;
-        private System.Windows.Forms.TabPage tabBrowser;
-        private System.Windows.Forms.ToolStripContainer toolStripContainer3;
-        private System.Windows.Forms.WebBrowser webBrowser;
-        private System.Windows.Forms.ToolStrip tsBrowserMain;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel5;
-        private System.Windows.Forms.ToolStripButton tsbPrev;
-        private System.Windows.Forms.ToolStripButton tsbNext;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel2;
-        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton11;
-        private System.Windows.Forms.ToolStripMenuItem gotoMToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem gotoAdobeFlashplayerPageToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel4;
-        private System.Windows.Forms.ToolStripProgressBar tsbProgressBar;
-        private System.Windows.Forms.ToolStripLabel tsbProgressText;
-        private System.Windows.Forms.ToolStripButton tsbImport;
-        private System.Windows.Forms.ToolStrip tsBrowsePlayers;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel6;
-        private System.Windows.Forms.ToolStripButton tsbPrevPlayer;
-        private System.Windows.Forms.ToolStripButton tsbNextPlayer;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel9;
-        private System.Windows.Forms.ToolStripDropDownButton tsbPlayers;
-        private System.Windows.Forms.ToolStripMenuItem gKToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem dDefendersToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem dMDefenderMidfieldersToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mMidfieldersToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem oMOffenderMidfieldersToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem fForwardsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
-        private System.Windows.Forms.ToolStripDropDownButton tsbNavigationType;
-        private System.Windows.Forms.ToolStripMenuItem navigateProfilesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem navigateReportsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripButton tsbShortlist;
         private System.Windows.Forms.ToolStripDropDownButton tsbFile;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         public NTR_Common.TeamDS teamDS;
         public NTR_Common.PlayersDS playersDS;
-        private System.Windows.Forms.ToolStripMenuItem dontUpdateTheDeletedPlayersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openPlayersTeamPageInTrophyBrowserToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadFromFileToolStripMenuItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn nomeDataGridViewTextBoxColumn1;
@@ -1737,5 +1374,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Bid;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn18;
         private System.Windows.Forms.DataGridViewTextBoxColumn ImportedNotes;
+        private System.Windows.Forms.TabPage tabBrowser;
+        private NTR_WebBrowser.NTR_Browser webBrowser;
+        private System.Windows.Forms.ToolStripMenuItem deleteSelectedPlayersFromVisualizationAndDatabaseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem updateOnlyListedPlayersToolStripMenuItem;
     }
 }

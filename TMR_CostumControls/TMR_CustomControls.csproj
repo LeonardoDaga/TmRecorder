@@ -56,7 +56,7 @@
     <OutputPath>bin\x86\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugType>full</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
@@ -79,14 +79,6 @@
     <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Common, Version=1.3.3.0, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Common\bin\Debug\Common.dll</HintPath>
-    </Reference>
-    <Reference Include="Languages, Version=1.2.0.0, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Multilanguage\bin\Debug\Languages.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -122,6 +114,14 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{dfee4c9b-f9fc-4186-945f-27518e4fceb7}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Multilanguage\Languages.csproj">
+      <Project>{e0e469c1-bfb5-4ec0-93f1-f019c9101110}</Project>
+      <Name>Languages</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NTR_Common\NTR_Common.csproj">
       <Project>{D32F5344-D291-42FC-8B6E-4183864E2D77}</Project>
       <Name>NTR_Common</Name>

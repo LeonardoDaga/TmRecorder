@@ -74,10 +74,7 @@ namespace TMRecorder
 
             Program.Setts.Initialize(args);
 
-            BrowserEmulationVersion currentEmulationVersion = InternetExplorerBrowserEmulation.GetBrowserEmulationVersion();
-            if (currentEmulationVersion == BrowserEmulationVersion.Default)
-                currentEmulationVersion = BrowserEmulationVersion.Version8;
-            InternetExplorerBrowserEmulation.SetBrowserEmulationVersion(currentEmulationVersion);
+            InternetExplorerBrowserEmulation.SetBrowserEmulationVersion(BrowserEmulationVersion.Default);
 
             InitializeComponent();
 
@@ -2951,7 +2948,7 @@ namespace TMRecorder
                 HtmlElement head = webBrowser.Document.GetElementsByTagName("head")[0];
                 HtmlElement scriptEl = webBrowser.Document.CreateElement("script");
                 IHTMLScriptElement element = (IHTMLScriptElement)scriptEl.DomElement;
-                element.text = System.IO.File.ReadAllText(Program.Setts.DatafilePath + "\\RatingR2.user.js");
+                element.text = Resources.RatingR2_user;
                 head.AppendChild(scriptEl);
                 webBrowser.Document.InvokeScript("ApplyRatingR2");
             }
@@ -3234,16 +3231,8 @@ namespace TMRecorder
                     else
                         doctext = "GBC error: failed importing players  (text is empty)";
 
-                    FileInfo fi = new FileInfo(Program.Setts.DatafilePath + "\\match_loader.js");
-                    if (!fi.Exists)
-                    {
-                        doctext += "\nThe js does not exists in " + Program.Setts.DatafilePath;
-                    }
-                    else
-                    {
-                        doctext += "\nJs content (in " + Program.Setts.DatafilePath + "): \n";
-                        doctext += System.IO.File.ReadAllText(Program.Setts.DatafilePath + "\\match_loader.js");
-                    }
+                                            doctext += "\nJs content (in Resources): \n";
+                    doctext += Resources.match_loader;
                     doctext += "\n";
                 }
             }
@@ -3257,16 +3246,8 @@ namespace TMRecorder
                     else
                         doctext = "GBC error: failed importing players  (text is empty)";
 
-                    FileInfo fi = new FileInfo(Program.Setts.DatafilePath + "\\players_loader.js");
-                    if (!fi.Exists)
-                    {
-                        doctext += "\nThe js does not exists in " + Program.Setts.DatafilePath;
-                    }
-                    else
-                    {
-                        doctext += "\nJs content (in " + Program.Setts.DatafilePath + "): \n";
-                        doctext += System.IO.File.ReadAllText(Program.Setts.DatafilePath + "\\players_loader.js");
-                    }
+                    doctext += "\nJs content (in Resources): \n";
+                    doctext += Resources.players_loader;
                     doctext += "\n";
                 }
 
@@ -3280,16 +3261,8 @@ namespace TMRecorder
                         else
                             training_doctext = "GBC error: failed importing players training  (text is empty)";
 
-                        FileInfo fi = new FileInfo(Program.Setts.DatafilePath + "\\get_players_training_loader.js");
-                        if (!fi.Exists)
-                        {
-                            training_doctext += "\nThe js does not exists in " + Program.Setts.DatafilePath;
-                        }
-                        else
-                        {
-                            training_doctext += "\nJs content (in " + Program.Setts.DatafilePath + "): \n";
-                            training_doctext += System.IO.File.ReadAllText(Program.Setts.DatafilePath + "\\get_players_training_loader.js");
-                        }
+                        training_doctext += "\nJs content (in Resources): \n";
+                        training_doctext += Resources.get_players_training_loader;
                         training_doctext += "\n";
                     }
 
@@ -3310,16 +3283,8 @@ namespace TMRecorder
                     else
                         doctext = "GBC error: failed importing players  (text is empty)";
 
-                    FileInfo fi = new FileInfo(Program.Setts.DatafilePath + "\\fixture_loader.js");
-                    if (!fi.Exists)
-                    {
-                        doctext += "\nThe js does not exists in " + Program.Setts.DatafilePath;
-                    }
-                    else
-                    {
-                        doctext += "\nJs content (in " + Program.Setts.DatafilePath + "): \n";
-                        doctext += System.IO.File.ReadAllText(Program.Setts.DatafilePath + "\\fixture_loader.js");
-                    }
+                    doctext += "\nJs content (in Resources): \n";
+                    doctext += Resources.fixture_loader;
                     doctext += "\n";
                 }
             }
@@ -3333,16 +3298,8 @@ namespace TMRecorder
                     else
                         doctext = "GBC error: failed importing training  (text is empty)";
 
-                    FileInfo fi = new FileInfo(Program.Setts.DatafilePath + "\\training_loader.js");
-                    if (!fi.Exists)
-                    {
-                        doctext += "\nThe js does not exists in " + Program.Setts.DatafilePath;
-                    }
-                    else
-                    {
-                        doctext += "\nJs content (in " + Program.Setts.DatafilePath + "): \n";
-                        doctext += System.IO.File.ReadAllText(Program.Setts.DatafilePath + "\\training_loader.js");
-                    }
+                    doctext += "\nJs content (in Resources): \n";
+                    doctext += Resources.training_loader;
                     doctext += "\n";
                 }
             }
@@ -3364,7 +3321,7 @@ namespace TMRecorder
                 HtmlElement scriptEl = webBrowser.Document.CreateElement("script");
                 IHTMLScriptElement element = (IHTMLScriptElement)scriptEl.DomElement;
 
-                element.text = System.IO.File.ReadAllText(Program.Setts.DatafilePath + "\\get_players_training_loader.js");
+                element.text = Resources.get_players_training_loader;
                 HtmlElement res = head.AppendChild(scriptEl);
                 pl_data = (string)webBrowser.Document.InvokeScript("get_players_training");
             }
@@ -3386,7 +3343,7 @@ namespace TMRecorder
                 HtmlElement scriptEl = webBrowser.Document.CreateElement("script");
                 IHTMLScriptElement element = (IHTMLScriptElement)scriptEl.DomElement;
 
-                element.text = System.IO.File.ReadAllText(Program.Setts.DatafilePath + "\\players_loader.js");
+                element.text = Resources.players_loader;
                 HtmlElement res = head.AppendChild(scriptEl);
                 pl_data = (string)webBrowser.Document.InvokeScript("get_players");
             }
@@ -3434,7 +3391,7 @@ namespace TMRecorder
                 HtmlElement scriptEl = webBrowser.Document.CreateElement("script");
                 IHTMLScriptElement element = (IHTMLScriptElement)scriptEl.DomElement;
 
-                element.text = System.IO.File.ReadAllText(Program.Setts.DatafilePath + "\\match_loader.js");
+                element.text = Resources.match_loader;
                 HtmlElement res = head.AppendChild(scriptEl);
                 string lineup = (string)webBrowser.Document.InvokeScript("get_lineup");
                 string match_info = (string)webBrowser.Document.InvokeScript("get_match_info");
@@ -3467,7 +3424,7 @@ namespace TMRecorder
                 HtmlElement scriptEl = webBrowser.Document.CreateElement("script");
                 IHTMLScriptElement element = (IHTMLScriptElement)scriptEl.DomElement;
 
-                element.text = System.IO.File.ReadAllText(Program.Setts.DatafilePath + "\\fixture_loader.js");
+                element.text = Resources.fixture_loader;
                 HtmlElement res = head.AppendChild(scriptEl);
                 fix_data = (string)webBrowser.Document.InvokeScript("get_fixture");
             }
@@ -3489,7 +3446,7 @@ namespace TMRecorder
                 HtmlElement scriptEl = webBrowser.Document.CreateElement("script");
                 IHTMLScriptElement element = (IHTMLScriptElement)scriptEl.DomElement;
 
-                element.text = System.IO.File.ReadAllText(Program.Setts.DatafilePath + "\\training_loader.js");
+                element.text = Resources.training_loader;
                 HtmlElement res = head.AppendChild(scriptEl);
                 fix_data = (string)webBrowser.Document.InvokeScript("get_training");
             }
@@ -3772,7 +3729,7 @@ namespace TMRecorder
                 tabControl1.SelectedTab = tabBrowser;
 
             }
-            navigationAddress = "http://tmr.insyde.it/";
+            navigationAddress = "http://trophymanager.com/";
             webBrowser.Navigate(navigationAddress);
             startnavigationAddress = navigationAddress;
         }
@@ -4948,12 +4905,12 @@ namespace TMRecorder
 
         private void dataGridPlayersInfo_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            dataGridPlayersInfo_CellDoubleClick(sender, (object)e);
         }
 
         private void tsmGotoPlayerPageInBrowser_Click(object sender, DataGridViewCellEventArgs e)
         {
-
+            tsmGotoPlayerPageInBrowser_Click(sender, (object)e);
         }
 
         private void loginTrophyManagercomToolStripMenuItem_Click(object sender, EventArgs e)

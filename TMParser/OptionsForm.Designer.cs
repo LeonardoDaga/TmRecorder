@@ -95,9 +95,11 @@ namespace TMRecorder
             this.button2 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabGenerali = new System.Windows.Forms.TabPage();
+            this.btnResetWindows = new System.Windows.Forms.Button();
             this.cmbIEVersions = new System.Windows.Forms.ComboBox();
             this.btnActionAnalysisFile = new System.Windows.Forms.Button();
             this.txtActionsAnalysisFile = new System.Windows.Forms.TextBox();
+            this.label27 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.chkUseTMBrowser = new System.Windows.Forms.CheckBox();
@@ -302,8 +304,6 @@ namespace TMRecorder
             this.dataGridViewTextBoxColumn62 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn63 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.btnResetWindows = new System.Windows.Forms.Button();
-            this.label27 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabGenerali.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nationNamesBindingSource)).BeginInit();
@@ -445,6 +445,16 @@ namespace TMRecorder
             this.tabGenerali.Text = "Generics";
             this.tabGenerali.UseVisualStyleBackColor = true;
             // 
+            // btnResetWindows
+            // 
+            this.btnResetWindows.Location = new System.Drawing.Point(233, 191);
+            this.btnResetWindows.Name = "btnResetWindows";
+            this.btnResetWindows.Size = new System.Drawing.Size(97, 23);
+            this.btnResetWindows.TabIndex = 21;
+            this.btnResetWindows.Text = "Reset";
+            this.btnResetWindows.UseVisualStyleBackColor = true;
+            this.btnResetWindows.Click += new System.EventHandler(this.btnResetWindows_Click);
+            // 
             // cmbIEVersions
             // 
             this.cmbIEVersions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -453,6 +463,7 @@ namespace TMRecorder
             this.cmbIEVersions.Name = "cmbIEVersions";
             this.cmbIEVersions.Size = new System.Drawing.Size(277, 21);
             this.cmbIEVersions.TabIndex = 20;
+            this.cmbIEVersions.Visible = false;
             this.cmbIEVersions.SelectedIndexChanged += new System.EventHandler(this.cmbIEVersions_SelectedIndexChanged);
             // 
             // btnActionAnalysisFile
@@ -475,6 +486,15 @@ namespace TMRecorder
             this.txtActionsAnalysisFile.Size = new System.Drawing.Size(462, 20);
             this.txtActionsAnalysisFile.TabIndex = 18;
             // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(9, 196);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(218, 13);
+            this.label27.TabIndex = 17;
+            this.label27.Text = "Reset TmRecorder windows (dialog) Position";
+            // 
             // label26
             // 
             this.label26.AutoSize = true;
@@ -483,6 +503,7 @@ namespace TMRecorder
             this.label26.Size = new System.Drawing.Size(114, 13);
             this.label26.TabIndex = 17;
             this.label26.Text = "Browser version to use";
+            this.label26.Visible = false;
             // 
             // label5
             // 
@@ -2908,25 +2929,6 @@ namespace TMRecorder
             this.dataGridViewTextBoxColumn63.DataPropertyName = "Review";
             this.dataGridViewTextBoxColumn63.HeaderText = "Review";
             this.dataGridViewTextBoxColumn63.Name = "dataGridViewTextBoxColumn63";
-            // 
-            // btnResetWindows
-            // 
-            this.btnResetWindows.Location = new System.Drawing.Point(233, 191);
-            this.btnResetWindows.Name = "btnResetWindows";
-            this.btnResetWindows.Size = new System.Drawing.Size(97, 23);
-            this.btnResetWindows.TabIndex = 21;
-            this.btnResetWindows.Text = "Reset";
-            this.btnResetWindows.UseVisualStyleBackColor = true;
-            this.btnResetWindows.Click += new System.EventHandler(this.btnResetWindows_Click);
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(9, 196);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(218, 13);
-            this.label27.TabIndex = 17;
-            this.label27.Text = "Reset TmRecorder windows (dialog) Position";
             // 
             // OptionsForm
             // 

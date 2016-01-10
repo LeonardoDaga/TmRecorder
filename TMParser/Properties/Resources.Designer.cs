@@ -61,6 +61,29 @@ namespace TMRecorder.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to players = {};
+        ///post_players = {};
+        ///players_by_id = {}; // array of player_id : i - in player[i];
+        ///on_field = {};
+        ///on_subs = {};
+        ///on_field_assoc = {};
+        ///formation_by_pos = {};
+        ///positions = {};
+        ///
+        ///function tactics_init(callback)
+        ///{
+        ///	data = {};
+        ///	
+        ///	data[&quot;formation&quot;] = {&quot;0&quot;:&quot;gk&quot;, &quot;1&quot;:&quot;dl&quot;, &quot;2&quot;:&quot;dcl&quot;, &quot;3&quot;:&quot;dcr&quot;, &quot;4&quot;:&quot;dr&quot;, &quot;5&quot;:&quot;ml&quot;, &quot;6&quot;:&quot;mcl&quot;, &quot;7&quot;:&quot;mcr&quot;, &quot;8&quot;:&quot;mr&quot;, &quot;9&quot;:&quot;fcl&quot;, &quot;10&quot;:&quot;fcr&quot;};
+        ///	data[&quot;formation_by_pos&quot;] = {&quot;0&quot;:&quot;11&quot;, &quot;1&quot;:&quot;1&quot;, &quot;2&quot;:&quot;2&quot;, &quot;3&quot;:null, &quot;4&quot;:&quot;3&quot;, &quot;5&quot;:&quot;4&quot;, &quot;6&quot;:null, &quot;7&quot;:null, &quot;8&quot;:null, &quot;9&quot;:null,  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string assistant_manager {
+            get {
+                return ResourceManager.GetString("assistant_manager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Coach {
@@ -71,12 +94,227 @@ namespace TMRecorder.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to function get_fixture()
+        ///{
+        ///	strout = &quot;no data&quot;;
+        ///	match_count = 0;
+        ///	
+        ///	var data = fixture_data;
+        ///	if (data == null) return &quot;Javascript error: data doesn&apos;t exists&quot;;
+        ///	strout = &quot;&quot;;
+        ///
+        ///	try {
+        ///	    // Get data from months
+        ///	    for (var i in data) {
+        ///	        match_count++;
+        ///	        var month = data[i];
+        ///
+        ///	        for (var j in month[&quot;matches&quot;]) {
+        ///	            var match = month[&quot;matches&quot;][j];
+        ///	            if (match) {
+        ///	                strout += &quot;date=&quot; + match[&quot;date&quot;];
+        ///	                strout += &quot;;id=&quot;  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string fixture_loader {
+            get {
+                return ResourceManager.GetString("fixture_loader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to function get_players_training()
+        ///{
+        ///	strout = &quot;no data&quot;;
+        ///
+        ///	try
+        ///	{
+        ///		if (arrows == null) return &quot;Javascript error: arrows is null&quot;;
+        ///		strout = &quot;&quot;;
+        ///
+        ///		// Get data from months
+        ///		for (var i in arrows)
+        ///		{
+        ///			strout += &quot;player=&quot; + i + &quot;;&quot;;
+        ///			strout += &quot;ti=&quot; + arrows[i].ti + &quot;;&quot;;
+        ///			for (j = 0; j &lt; arrows[i].raise.length; j++)
+        ///			{
+        ///				strout += j + &quot;=&quot; + arrows[i].raise[j] + &quot;;&quot;;
+        ///			}
+        ///			strout += &quot;\n&quot;;
+        ///		}
+        ///	}
+        ///	catch (err)
+        ///	{
+        ///		strout += &quot;;Javascript error = &quot; + err;
+        ///	}
+        ///	return strout;
+        ///}.
+        /// </summary>
+        internal static string get_players_training_loader {
+            get {
+                return ResourceManager.GetString("get_players_training_loader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to function get_lineup()
+        ///{
+        ///	strout = &quot;&quot;;
+        ///
+        ///	try
+        ///	{
+        ///		// lineup
+        ///		lineup = match_data[&quot;lineup&quot;];
+        ///
+        ///		strout += &quot;&lt;LINEUP_HOME&gt;&quot;;
+        ///		for (var i in lineup[&quot;home&quot;])
+        ///		{
+        ///			var lineup_data = lineup[&quot;home&quot;][i];
+        ///
+        ///			strout += &quot;\r\n&lt;PL&gt;&quot;;
+        ///			strout += &quot;age=&quot; + lineup_data[&quot;age&quot;];
+        ///			strout += &quot;;fp=&quot; + lineup_data[&quot;fp&quot;];
+        ///			strout += &quot;;mom=&quot; + lineup_data[&quot;mom&quot;];
+        ///			strout += &quot;;name=&quot; + lineup_data[&quot;name&quot;];
+        ///			strout += &quot;;no=&quot; + lineup_data[&quot;no&quot;];
+        ///			strout += &quot;;player_id=&quot; + lineup_data[&quot;player_id&quot;];
+        /// [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string match_loader {
+            get {
+                return ResourceManager.GetString("match_loader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to function get_player_info()
+        ///{
+        ///	strout = &quot;no data&quot;;
+        ///
+        ///	ths = [&quot;id&quot;, &quot;name&quot;, &quot;age&quot;, &quot;asi&quot;, &quot;str&quot;, &quot;sta&quot;, &quot;pac&quot;, &quot;mar&quot;, &quot;tac&quot;, &quot;wor&quot;, &quot;pos&quot;, &quot;pas&quot;, &quot;cro&quot;, &quot;tec&quot;,
+        ///			&quot;hea&quot;, &quot;fin&quot;, &quot;lon&quot;, &quot;set&quot;, &quot;rec&quot;, &quot;routine&quot;, &quot;nat&quot;, &quot;club_id&quot;, &quot;club_name&quot;, &quot;time&quot;, &quot;bid&quot;];
+        ///	gk_ths = [&quot;id&quot;, &quot;name&quot;, &quot;age&quot;, &quot;asi&quot;, &quot;str&quot;, &quot;sta&quot;, &quot;pac&quot;, &quot;han&quot;, &quot;one&quot;, &quot;ref&quot;, &quot;ari&quot;, &quot;jum&quot;, &quot;com&quot;, &quot;kic&quot;, &quot;thr&quot;,
+        ///			&quot;rec&quot;, &quot;routine&quot;, &quot;nat&quot;, &quot;club_id&quot;, &quot;club_name&quot;, &quot;time&quot;, &quot;bid&quot;];
+        ///
+        ///	if (transfer_info_ar == null) return strout;
+        ///	strout = &quot;&quot;;
+        ///
+        ///	 [rest of string wa....
+        /// </summary>
+        internal static string player_info_loader {
+            get {
+                return ResourceManager.GetString("player_info_loader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to function get_players()
+        ///{
+        ///	strout = &quot;no data&quot;;
+        ///
+        ///	ths = [&quot;id&quot;, &quot;no&quot;, &quot;name&quot;, &quot;age&quot;, &quot;fp&quot;, &quot;str&quot;, &quot;sta&quot;, &quot;pac&quot;, &quot;mar&quot;, &quot;tac&quot;, &quot;wor&quot;, &quot;pos&quot;, &quot;pas&quot;, &quot;cro&quot;, &quot;tec&quot;, &quot;hea&quot;, &quot;fin&quot;, &quot;lon&quot;, &quot;set&quot;, &quot;rec&quot;, &quot;rat&quot;, &quot;routine&quot;, &quot;wage&quot;, &quot;asi&quot;, &quot;inj&quot;, &quot;ban_points&quot;, &quot;retire&quot;, &quot;country&quot;, &quot;goals&quot;, &quot;assists&quot;, &quot;gp&quot;, &quot;cards&quot;, &quot;mom&quot;, &quot;club&quot;, &quot;txt&quot;, &quot;ban&quot;];
+        ///	gk_ths = [&quot;id&quot;, &quot;no&quot;, &quot;name&quot;, &quot;age&quot;, &quot;fp&quot;, &quot;str&quot;, &quot;sta&quot;, &quot;pac&quot;, &quot;han&quot;, &quot;one&quot;, &quot;ref&quot;, &quot;ari&quot;, &quot;jum&quot;, &quot;com&quot;, &quot;kic&quot;, &quot;thr&quot;, &quot;rec&quot;, &quot;rat&quot;....
+        /// </summary>
+        internal static string players_loader {
+            get {
+                return ResourceManager.GetString("players_loader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to function ApplyRatingR2() {
+        ///
+        ///    var rou_factor = 0.00405;
+        ///    var wage_rate = 27.55 * 0.9;
+        ///
+        ///    // Array to setup the weights of particular skills for each player&apos;s actual ability
+        ///    // This is the direct weight to be given to each skill.
+        ///    // Array maps to these skills:
+        ///    //				   [Str,Sta,Pac,Mar,Tac,Wor,Pos,Pas,Cro,Tec,Hea,Fin,Lon,Set]
+        ///    var positions = [[1, 3, 1, 1, 1, 3, 3, 2, 2, 2, 1, 3, 3, 3], // D C
+        ///                     [2, 3, 1, 1, 1, 3, 3, 2, 2, 2, 2, 3, 3, 3], // D L
+        ///            [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string RatingR2_user {
+            get {
+                return ResourceManager.GetString("RatingR2_user", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to function get_shortlist()
+        ///{
+        ///	strout = &quot;no data&quot;;
+        ///
+        ///	ths = [&quot;id&quot;, &quot;name&quot;, &quot;age&quot;, &quot;club&quot;, &quot;country&quot;, &quot;fp&quot;, &quot;str&quot;, &quot;sta&quot;, &quot;pac&quot;, &quot;mar&quot;, &quot;tac&quot;, &quot;wor&quot;, &quot;pos&quot;, &quot;pas&quot;, &quot;cro&quot;, &quot;tec&quot;, &quot;hea&quot;, &quot;fin&quot;, &quot;lon&quot;, &quot;set&quot;, &quot;rec&quot;, &quot;asi&quot;, &quot;routine&quot;, &quot;timeleft&quot;, &quot;curbid&quot;, &quot;bid&quot;, &quot;assists&quot;, &quot;goals&quot;, &quot;productivity&quot;, &quot;wage&quot;, &quot;gp&quot;, &quot;mom&quot;];
+        ///	gk_ths = [&quot;id&quot;, &quot;name&quot;, &quot;age&quot;, &quot;club&quot;, &quot;country&quot;, &quot;fp&quot;, &quot;str&quot;, &quot;sta&quot;, &quot;pac&quot;, &quot;han&quot;, &quot;one&quot;, &quot;ref&quot;, &quot;ari&quot;, &quot;jum&quot;, &quot;com&quot;, &quot;kic&quot;, &quot;thr&quot;, &quot;rec&quot;, &quot;asi&quot;, &quot;routine&quot;, &quot;timeleft....
+        /// </summary>
+        internal static string shortlist_loader {
+            get {
+                return ResourceManager.GetString("shortlist_loader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap TMRBrowser {
             get {
                 object obj = ResourceManager.GetObject("TMRBrowser", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to function get_training()
+        ///{
+        ///	strout = &quot;&quot;;
+        ///
+        ///	try
+        ///	{
+        ///		// lineup
+        ///		for (var i in players_list)
+        ///		{
+        ///			var player_data = players_list[i];
+        ///
+        ///			strout += &quot;id=&quot; + player_data[&quot;id&quot;];
+        ///			strout += &quot;;training=&quot; + player_data[&quot;training&quot;];
+        ///			strout += &quot;;\n&quot;;
+        ///		}
+        ///	}
+        ///	catch (err)
+        ///	{
+        ///		strout += &quot;;Javascript error = &quot; + err;
+        ///	}
+        ///		
+        ///	return strout;
+        ///}
+        ///.
+        /// </summary>
+        internal static string training_loader {
+            get {
+                return ResourceManager.GetString("training_loader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to function get_transfer()
+        ///{
+        ///	strout = &quot;no data&quot;;
+        ///
+        ///	ths = [&quot;id&quot;, &quot;name&quot;, &quot;age&quot;, &quot;asi&quot;, &quot;str&quot;, &quot;sta&quot;, &quot;pac&quot;, &quot;mar&quot;, &quot;tac&quot;, &quot;wor&quot;, &quot;pos&quot;, &quot;pas&quot;, &quot;cro&quot;, &quot;tec&quot;,
+        ///			&quot;hea&quot;, &quot;fin&quot;, &quot;lon&quot;, &quot;set&quot;, &quot;rec&quot;, &quot;routine&quot;, &quot;nat&quot;, &quot;club_id&quot;, &quot;club_name&quot;, &quot;time&quot;, &quot;bid&quot;];
+        ///	gk_ths = [&quot;id&quot;, &quot;name&quot;, &quot;age&quot;, &quot;asi&quot;, &quot;str&quot;, &quot;sta&quot;, &quot;pac&quot;, &quot;han&quot;, &quot;one&quot;, &quot;ref&quot;, &quot;ari&quot;, &quot;jum&quot;, &quot;com&quot;, &quot;kic&quot;, &quot;thr&quot;,
+        ///			&quot;rec&quot;, &quot;routine&quot;, &quot;nat&quot;, &quot;club_id&quot;, &quot;club_name&quot;, &quot;time&quot;, &quot;bid&quot;];
+        ///
+        ///	if (transfer_info_ar == null) return strout;
+        ///	strout = &quot;&quot;;
+        ///
+        ///	try [rest of string wa....
+        /// </summary>
+        internal static string transfer_loader {
+            get {
+                return ResourceManager.GetString("transfer_loader", resourceCulture);
             }
         }
         

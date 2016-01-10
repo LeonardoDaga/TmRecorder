@@ -530,21 +530,21 @@ namespace TMRecorder
 
         private void cmbIEVersions_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BrowserEmulationVersion version;
+            //BrowserEmulationVersion version;
 
-            version = (BrowserEmulationVersion)cmbIEVersions.SelectedItem;
+            //version = (BrowserEmulationVersion)cmbIEVersions.SelectedItem;
 
-            if (InternetExplorerBrowserEmulation.GetBrowserEmulationVersion() != version)
-            {
-                if (MessageBox.Show("The IE version used will change only after the restart of TmRecorder. Continue?", "TmRecorder: Change internal Browser version", MessageBoxButtons.YesNo) == DialogResult.No)
-                    return;
+            //if (InternetExplorerBrowserEmulation.GetBrowserEmulationVersion() != version)
+            //{
+            //    if (MessageBox.Show("The IE version used will change only after the restart of TmRecorder. Continue?", "TmRecorder: Change internal Browser version", MessageBoxButtons.YesNo) == DialogResult.No)
+            //        return;
 
-                // apply the new emulation version
-                if (!InternetExplorerBrowserEmulation.SetBrowserEmulationVersion(version))
-                {
-                    MessageBox.Show("Failed to update browser emulation version.", "TmRecorder: Change internal Browser version", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-            }
+            //    // apply the new emulation version
+            //    if (!InternetExplorerBrowserEmulation.SetBrowserEmulationVersion(version))
+            //    {
+            //        MessageBox.Show("Failed to update browser emulation version.", "TmRecorder: Change internal Browser version", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            //    }
+            //}
 
         }
 

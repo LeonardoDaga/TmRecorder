@@ -775,7 +775,7 @@ namespace TMRecorder
             scoutsNReviews.Scouts.Clear();
             foreach (ExtraDS.ScoutsRow sr in History.PlayersDS.Scouts)
             {
-                ScoutsNReviews.ScoutsRow srn = scoutsNReviews.Scouts.NewScoutsRow();
+                Common.ScoutsNReviews.ScoutsRow srn = scoutsNReviews.Scouts.NewScoutsRow();
                 srn.Name = sr.Name;
                 srn.Physical = sr.Physical;
                 srn.Psychology = sr.Psychology;

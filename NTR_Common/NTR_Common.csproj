@@ -92,16 +92,6 @@
       <DependentUpon>AlarmForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ItemDictionary.cs" />
-    <Compile Include="NTR_Functions.cs" />
-    <Compile Include="GainDS.cs">
-      <DependentUpon>GainDS.xsd</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="GainDS.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GainDS.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Data.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -133,7 +123,6 @@
     </Compile>
     <Compile Include="TeamDS.cs">
       <DependentUpon>TeamDS.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="TeamDS.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -142,7 +131,6 @@
     </Compile>
     <Compile Include="PlayersDS.cs">
       <DependentUpon>PlayersDS.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="PlayersDS.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -154,17 +142,6 @@
     <Compile Include="TM_Parser.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="GainDS.xsc">
-      <DependentUpon>GainDS.xsd</DependentUpon>
-    </None>
-    <None Include="GainDS.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>GainDS.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="GainDS.xss">
-      <DependentUpon>GainDS.xsd</DependentUpon>
-    </None>
     <None Include="NTR_Common_TmRecorder.pfx" />
     <None Include="SquadDS.xsc">
       <DependentUpon>SquadDS.xsd</DependentUpon>

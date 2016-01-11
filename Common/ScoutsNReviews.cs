@@ -39,41 +39,6 @@ namespace Common
                 sr.Technical = short.Parse(scoutInfo["Tec"]);
                 sr.Youth = short.Parse(scoutInfo["Yth"]);
                 this.isDirty = true;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             }
         }
 

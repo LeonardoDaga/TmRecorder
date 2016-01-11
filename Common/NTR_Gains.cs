@@ -1,9 +1,9 @@
 ﻿using System.Data;
-using Common;
 using System;
-namespace NTR_Common
+
+namespace Common
 {
-    partial class NTRGains
+    partial class NTR_Gains
     {
         public string GainDSfilename = "";
         public float[] K_DEM = null;
@@ -11,7 +11,7 @@ namespace NTR_Common
         string[] fpSkill = new string[] { "Str", "Sta", "Pac", "Mar", "Tak", "Wor", "Pos", "Pas", "Cro", "Tec", "Hea", "Fin", "Lon", "Set" };
         string[] gkSkill = new string[] { "Str", "Sta", "Pac", "Han", "One", "Ref", "Ari", "Jum", "Com", "Kic", "Thr" };
         float _Amax = 0.0f;
-        public Function funRou = new Function();
+        public NTR_Function funRou = new NTR_Function();
         public bool NormalizeGains = false;
 
         partial class SkillFPGainDataTable
@@ -183,13 +183,13 @@ namespace NTR_Common
             Set_KSum_Gain();
         }
 
-        internal decimal A_Ada(int row, int col, decimal ada)
+        public decimal A_Ada(int row, int col, decimal ada)
         {
             decimal k = (decimal)A_FP(row, col);
             return (k + ada / 20.0M * ((decimal)A_max - k));
         }
 
-        internal float A_Ada(int row, int col, float ada)
+        public float A_Ada(int row, int col, float ada)
         {
             float k = A_FP(row, col);
             return (k + (float)ada / 20.0f * (A_max - k));

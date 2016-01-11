@@ -105,7 +105,7 @@ namespace NTR_Common
         }
 
         #region Gain Set Management
-        public GainDS GD = new GainDS();
+        public NTR_Gains GD = new NTR_Gains();
         public bool LoadGains(string gainSetName)
         {
             FileInfo fi = new FileInfo(gainSetName);
@@ -258,7 +258,7 @@ namespace NTR_Common
 
         partial class GiocatoriNSkillDataTable
         {
-            internal void AddPlayer(int ID, PlayersDS plData, GainDS gd, AlarmInfo ai)
+            internal void AddPlayer(int ID, PlayersDS plData, NTR_Gains gd, AlarmInfo ai)
             {
                 TeamDS.GiocatoriNSkillRow gsr = this.FindByPlayerID(ID);
 
@@ -652,7 +652,7 @@ namespace NTR_Common
                 set { _Wor_Rif = value; }
             }
 
-            public void SetFP(GainDS gds)
+            public void SetFP(NTR_Gains gds)
             {
                 if (IsForNull())
                 {
@@ -1242,7 +1242,7 @@ namespace NTR_Common
             }
         }
 
-        public void RecalculateSpecData(GainDS gainDS)
+        public void RecalculateSpecData(NTR_Gains gainDS)
         {
             foreach (TeamDS.GiocatoriNSkillRow gsr in this.GiocatoriNSkill)
             {

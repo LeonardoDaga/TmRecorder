@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace NTR_Common
+namespace Common
 {
     public abstract class NTR_GainFunction
     {
@@ -10,7 +10,7 @@ namespace NTR_Common
 
         public bool NormalizeGains;
 
-        public Common.GainDS GDS;
+        public NTR_Gains GDS;
 
         public string[] position = new string[] { "DC", "DR", "DL", "DMC", "DMR", "DML", "MC", "MR", "ML", "OMC", "OMR", "OML", "FC" };
 
@@ -417,15 +417,15 @@ namespace NTR_Common
         }
     }
 
-    public class Function
+    public class NTR_Function
     {
-        public Function(FunctionType function, float[] pars)
+        public NTR_Function(FunctionType function, float[] pars)
         {
             Params = pars;
             Type = function;
         }
 
-        public Function()
+        public NTR_Function()
         {
             Params = null;
             Type = FunctionType.Linear;

@@ -637,7 +637,7 @@ namespace NTR_Db
             // SCOUTS
             foreach (ExtraDS.ScoutsRow esr in extraDS.Scouts)
             {
-                ScoutsNReviews.ScoutsRow ssr = scoutSkillsDS.Scouts.NewScoutsRow();
+                Common.ScoutsNReviews.ScoutsRow ssr = scoutSkillsDS.Scouts.NewScoutsRow();
                 ssr.ItemArray = esr.ItemArray;
                 scoutSkillsDS.Scouts.AddScoutsRow(ssr);
             }
@@ -1076,6 +1076,11 @@ namespace NTR_Db
         public decimal OMR { get { return Atts[(int)eAttitude.OMR]; } }
         public decimal OML { get { return Atts[(int)eAttitude.OML]; } }
         public decimal FC { get { return Atts[(int)eAttitude.FC]; } }
+
+        public PlayerData(NTR_SquadDb.ShortlistRow sr)
+        {
+
+        }
 
         public PlayerData(NTR_SquadDb.HistDataRow thisWeek, int absPrevWeek)
         {

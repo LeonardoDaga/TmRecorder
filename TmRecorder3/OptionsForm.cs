@@ -1,4 +1,5 @@
-﻿using NTR_Common;
+﻿using Common;
+using NTR_Common;
 using NTR_Db;
 using System;
 using System.Collections.Generic;
@@ -135,28 +136,28 @@ namespace TmRecorder3
             set { chkEvidenceGains.Checked = value; }
         }
 
-        public Function.FunctionType RoutineFunction
+        public NTR_Function.FunctionType RoutineFunction
         {
             get
             {
                 switch (cmbRoutineFunction.SelectedIndex)
                 {
-                    case 0: return Function.FunctionType.Linear;
-                    case 1: return Function.FunctionType.Exponential;
-                    case 2: return Function.FunctionType.Log;
-                    case 3: return Function.FunctionType.Quadratic;
-                    default: return Function.FunctionType.None;
+                    case 0: return NTR_Function.FunctionType.Linear;
+                    case 1: return NTR_Function.FunctionType.Exponential;
+                    case 2: return NTR_Function.FunctionType.Log;
+                    case 3: return NTR_Function.FunctionType.Quadratic;
+                    default: return NTR_Function.FunctionType.None;
                 }
             }
             set
             {
                 switch (value)
                 {
-                    case Function.FunctionType.Linear: cmbRoutineFunction.SelectedIndex = 0; break;
-                    case Function.FunctionType.Exponential: cmbRoutineFunction.SelectedIndex = 1; break;
-                    case Function.FunctionType.Log: cmbRoutineFunction.SelectedIndex = 2; break;
-                    case Function.FunctionType.Quadratic: cmbRoutineFunction.SelectedIndex = 3; break;
-                    case Function.FunctionType.None: cmbRoutineFunction.SelectedIndex = 4; break;
+                    case NTR_Function.FunctionType.Linear: cmbRoutineFunction.SelectedIndex = 0; break;
+                    case NTR_Function.FunctionType.Exponential: cmbRoutineFunction.SelectedIndex = 1; break;
+                    case NTR_Function.FunctionType.Log: cmbRoutineFunction.SelectedIndex = 2; break;
+                    case NTR_Function.FunctionType.Quadratic: cmbRoutineFunction.SelectedIndex = 3; break;
+                    case NTR_Function.FunctionType.None: cmbRoutineFunction.SelectedIndex = 4; break;
                 }
             }
         }

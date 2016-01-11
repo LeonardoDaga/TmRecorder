@@ -2939,7 +2939,7 @@ namespace TMRecorder
 
         private void shortlistToolToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ShortlistForm sf = new ShortlistForm(AllSeasons, History);
+            ShortlistForm sf = new ShortlistForm();
             sf.Show();
         }
 

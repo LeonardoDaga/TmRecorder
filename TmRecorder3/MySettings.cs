@@ -223,10 +223,10 @@ namespace TmRecorder3
             get { return Gain_Function.FromName((string)sb["GainFunction"]); }
             set { sb["GainFunction"] = Gain_Function.ToString(value); }
         }
-        public NTR_Common.Function.FunctionType RouFunction
+        public NTR_Function.FunctionType RouFunction
         {
-            get { return NTR_Common.Function.FromName((string)sb["RouFunction"]); }
-            set { sb["RouFunction"] = NTR_Common.Function.ToString(value); }
+            get { return NTR_Function.FromName((string)sb["RouFunction"]); }
+            set { sb["RouFunction"] = NTR_Function.ToString(value); }
         }
         public float[] RouParams
         {

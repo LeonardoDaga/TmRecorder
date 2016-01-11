@@ -29,7 +29,7 @@ namespace NTR_Db
         /// </summary>
         private void InitializeComponent()
         {
-            this.gainDS = new Common.GainDS();
+            this.gainDS = new Common.NTR_Gains();
             this.trainersSkillsDS = new Common.TrainersSkills();
             this.nationsDS = new Common.NationsDS();
             this.scoutSkillsDS = new Common.ScoutsNReviews();
@@ -76,7 +76,7 @@ namespace NTR_Db
 
         public Common.TrainersSkills trainersSkillsDS;
         public Common.NationsDS nationsDS;
-        private Common.GainDS gainDS;
+        private Common.NTR_Gains gainDS;
         private Common.ScoutsNReviews scoutSkillsDS;
         public Common.NTR_SquadDb squadDB;
 

@@ -113,7 +113,40 @@ namespace Common
         {
         }
 
-        public Common.GainDS GDS { get; set; }
+        public NTR_Gains GDS { get; set; }
+
+        public bool LoadGains(string gainSetName)
+        {
+            if (GDS == null)
+                GDS = new NTR_Gains();
+
+            FileInfo fi = new FileInfo(gainSetName);
+
+            if (fi.Exists)
+            {
+                GDS.Clear();
+
+                try
+                {
+                    GDS.ReadXml(gainSetName);
+                }
+                catch (Exception)
+                {
+                    System.Windows.Forms.MessageBox.Show("The read of the Gain set " +
+                        gainSetName + " has generated an error. The default gainset has been selected.\n Please change the gain set using the Options panel");
+                    GDS.SetDefaultValues();
+                    return false;
+                }
+
+                GDS.GainDSfilename = gainSetName;
+                return true;
+            }
+            else
+            {
+                GDS.SetDefaultValues();
+                return false;
+            }
+        }
 
         public void Invalidate()
         {

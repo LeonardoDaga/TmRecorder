@@ -11,6 +11,9 @@ using Common;
 using Languages;
 using mshtml;
 using NTR_Db;
+using DataGridViewCustomColumns;
+using NTR_Controls;
+using System.Linq;
 
 namespace TMRecorder
 {
@@ -19,14 +22,12 @@ namespace TMRecorder
         bool isDirty = false;
         TeamDS History_TeamDS = null;
         bool updateDeletedPlayers = true;
-        private Seasons AllSeasons;
-        private TeamHistory History;
+        private NTR_SquadDb DB;
+        List<NTR_Db.PlayerData> plShortlist;
+        List<NTR_Db.PlayerData> gkShortlist;
 
-        public ShortlistForm(Seasons allSeasons, TeamHistory history)
+        public ShortlistForm()
         {
-            AllSeasons = allSeasons;
-            History = history;
-
             InitializeComponent();
 
             updateOnlyListedPlayersToolStripMenuItem.Checked = Program.Setts.ShortlistUploadOnlyListedPlayers;
@@ -34,26 +35,44 @@ namespace TMRecorder
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            teamDS.CopyTo(History_TeamDS);
-            AllSeasons.SaveShortlist(Program.Setts.DefaultDirectory, "Shortlist.5.xml");
+            DB.WriteXml("Shortlist.5.xml");
         }
 
         private void ShortlistForm_Load(object sender, EventArgs e)
         {
-            AllSeasons.LoadShortlist(Program.Setts.DefaultDirectory, "Shortlist.5.xml");
-            LoadGains();
-            UpdateTables();
+            LoadShortlist();
+
+            FormatPlayersGrid();
+            FormatPlayersGridGK();
+
+            CreateShortlist();
+        }
+
+        private void LoadShortlist()
+        {
+            DB.ReadXml("Shortlist.5.xml");
+        }
+
+        private void CreateShortlist()
+        {
+            var tempshortlist = (from c in DB.Shortlist
+                                 select new NTR_Db.PlayerData(c));
+
+            plShortlist = (from c in tempshortlist
+                           where c.FPn > 0
+                           select c).OrderBy(p => p.FPn).ToList();
+            gkShortlist = (from c in tempshortlist
+                           where c.FPn == 0
+                           select c).ToList();
+
+            dgPlayers.DataCollection = plShortlist;
+            dgPlayersGK.DataCollection = gkShortlist;
         }
 
         private void LoadGains()
         {
-            if (teamDS.LoadGains(Program.Setts.GainSet))
-            {
-                Program.Setts.GainSet = teamDS.GD.GainDSfilename;
-                Program.Setts.Save();
-            }
-
-            teamDS.GD.NormalizeGains = Program.Setts.NormalizeGains;
+            DB.LoadGains(Program.Setts.GainSet);
+            DB.GDS..NormalizeGains = Program.Setts.NormalizeGains;
         }
 
         private void openPlayersPageInTheTrophyManagerWebsiteToolStripMenuItem_Click(object sender, EventArgs e)
@@ -61,9 +80,9 @@ namespace TMRecorder
             DataGridView dgv;
 
             if (tabControl.SelectedTab == tabPlayers)
-                dgv = dgGiocatori;
+                dgv = dgPlayers;
             else
-                dgv = dgPortieri;
+                dgv = dgPlayersGK;
 
             DataGridViewRow row = dgv.SelectedRows[0];
 
@@ -84,9 +103,9 @@ namespace TMRecorder
             DataGridView dgv;
 
             if (tabControl.SelectedTab == tabPlayers)
-                dgv = dgGiocatori;
+                dgv = dgPlayers;
             else
-                dgv = dgPortieri;
+                dgv = dgPlayersGK;
 
             if (dgv.SelectedRows.Count < 1) return;
 
@@ -109,9 +128,9 @@ namespace TMRecorder
             DataGridView dgv;
 
             if (tabControl.SelectedTab == tabPlayers)
-                dgv = dgGiocatori;
+                dgv = dgPlayers;
             else
-                dgv = dgPortieri;
+                dgv = dgPlayersGK;
 
             if (dgv.SelectedRows.Count < 1) return;
 
@@ -119,7 +138,7 @@ namespace TMRecorder
             DataRowView drv = (DataRowView)row.DataBoundItem;
             TeamDS.GiocatoriNSkillRow gsr = (TeamDS.GiocatoriNSkillRow)drv.Row;
 
-            PlayerFormSL pf = new PlayerFormSL(History.actualDts.GiocatoriNSkill, History, gsr.PlayerID, AllSeasons);
+            PlayerFormSL pf = new PlayerFormSL(teamDS.GiocatoriNSkill, History, gsr.PlayerID, AllSeasons);
             pf.ShowDialog();
 
             if (pf.isDirty) isDirty = true;
@@ -228,13 +247,13 @@ namespace TMRecorder
 
         private void UpdateTables(DataGridView dgv)
         {
-            if (dgv == dgGiocatori)
+            if (dgv == dgPlayers)
             {
                 tabControl.SelectedTab = tabPlayers;
                 EvidenceSkillsGiocatoriForGains();
                 EvidenceSkillsGiocatoriForQuality(-1);
             }
-            if (dgv == dgPortieri)
+            if (dgv == dgPlayersGK)
             {
                 tabControl.SelectedTab = tabGK;
                 EvidenceSkillsPortieriForGains();
@@ -259,7 +278,7 @@ namespace TMRecorder
 
         private void EvidenceSkillsGiocatoriForGains()
         {
-            DataGridView dgv = dgGiocatori;
+            DataGridView dgv = dgPlayers;
 
             if (!Program.Setts.EvidenceGain)
             {
@@ -326,7 +345,7 @@ namespace TMRecorder
 
         private void EvidenceSkillsGiocatoriForQuality(int plID)
         {
-            DataGridView dgv = dgGiocatori;
+            DataGridView dgv = dgPlayers;
 
             for (int i = 0; i < dgv.Rows.Count; i++)
             {
@@ -363,7 +382,7 @@ namespace TMRecorder
 
         private void EvidenceSkillsPortieriForQuality(int plID)
         {
-            DataGridView dgv = dgPortieri;
+            DataGridView dgv = dgPlayersGK;
 
             for (int i = 0; i < dgv.Rows.Count; i++)
             {
@@ -379,7 +398,7 @@ namespace TMRecorder
                 // Evidenzia solo le colonne degli skills
                 for (int j = 21; j < 22; j++)
                 {
-                    float f = (float)dgPortieri[j, i].Value;
+                    float f = (float)dgPlayersGK[j, i].Value;
                     if (f > 100) f = 100;
                     if (f < 0) f = 0;
 
@@ -390,7 +409,7 @@ namespace TMRecorder
                     Style.SelectionBackColor = Color.FromArgb(0, 192, 0);
                     Style.Format = "N1";
 
-                    dgPortieri[j, i].Style = Style;
+                    dgPlayersGK[j, i].Style = Style;
                 }
 
                 if (plID != -1)
@@ -401,18 +420,18 @@ namespace TMRecorder
         {
             if (!Program.Setts.EvidenceGain)
             {
-                for (int i = 0; i < dgPortieri.Rows.Count; i++)
+                for (int i = 0; i < dgPlayersGK.Rows.Count; i++)
                 {
                     for (int j = 0; j < 11; j++)
                     {
-                        dgPortieri[j + 5, i].Style = dgPortieri[j + 6, i].OwningColumn.DefaultCellStyle;
+                        dgPlayersGK[j + 5, i].Style = dgPlayersGK[j + 6, i].OwningColumn.DefaultCellStyle;
                     }
                 }
                 return;
             }
 
 
-            for (int i = 0; i < dgPortieri.Rows.Count; i++)
+            for (int i = 0; i < dgPlayersGK.Rows.Count; i++)
             {
                 // Evidenzia solo le colonne degli skills
                 for (int j = 0; j < 11; j++)
@@ -421,7 +440,7 @@ namespace TMRecorder
 
                     ColorUtilities.SelectGainColor(teamDS.GD.K_GK(j) / 1.5f, ref Style);
 
-                    dgPortieri[j + 5, i].Style = Style;
+                    dgPlayersGK[j + 5, i].Style = Style;
                 }
             }
         }
@@ -458,7 +477,7 @@ namespace TMRecorder
 
         private void dgGiocatori_Sorted(object sender, EventArgs e)
         {
-            UpdateTables(dgGiocatori);
+            UpdateTables(dgPlayers);
         }
 
         string navigationAddress = "";
@@ -517,8 +536,8 @@ namespace TMRecorder
         {
             DataGridView dgv = null;
 
-            if (tabControl.SelectedTab == tabPlayers) dgv = dgGiocatori;
-            if (tabControl.SelectedTab == tabGK) dgv = dgPortieri;
+            if (tabControl.SelectedTab == tabPlayers) dgv = dgPlayers;
+            if (tabControl.SelectedTab == tabGK) dgv = dgPlayersGK;
 
             if (dgv.SelectedRows.Count > 0)
             {
@@ -553,7 +572,7 @@ namespace TMRecorder
 
         private void dgPortieri_Sorted(object sender, EventArgs e)
         {
-            UpdateTables(dgPortieri);
+            UpdateTables(dgPlayersGK);
         }
 
         private void openPlayersTeamPageInTrophyBrowserToolStripMenuItem_Click(object sender, EventArgs e)
@@ -561,9 +580,9 @@ namespace TMRecorder
             DataGridView dgv;
 
             if (tabControl.SelectedTab == tabPlayers)
-                dgv = dgGiocatori;
+                dgv = dgPlayers;
             else
-                dgv = dgPortieri;
+                dgv = dgPlayersGK;
 
             if (dgv.SelectedRows.Count < 1) return;
 
@@ -617,5 +636,130 @@ namespace TMRecorder
         {
             updateDeletedPlayers = !updateOnlyListedPlayersToolStripMenuItem.Checked;
         }
+
+        private void FormatPlayersGrid()
+        {
+            dgPlayers.AutoGenerateColumns = false;
+
+            dgPlayers.Columns.Clear();
+            DataGridViewColumn numCol = dgPlayers.AddColumn("N", "Number", 20, AG_Style.Numeric | AG_Style.Frozen | AG_Style.N0);
+            dgPlayers.AddColumn("FP", "FPn", 42, AG_Style.FavPosition | AG_Style.Frozen);
+            dgPlayers.AddColumn("Name", "NameEx", 60, AG_Style.NameInj | AG_Style.Frozen | AG_Style.ResizeAllCells);
+            dgPlayers.AddColumn("Age", "wBorn", 32, AG_Style.Age | AG_Style.Frozen);
+            dgPlayers.AddColumn("Nat", "Nationality", 28, AG_Style.Nationality | AG_Style.Frozen);
+            TMR_NumDecColumn dgvc = (TMR_NumDecColumn)dgPlayers.AddColumn("ASI", "ASI", 49, AG_Style.NumDec | AG_Style.Frozen);
+            dgvc.CellColorStyles = CellColorStyleList.DefaultGainColorStyle();
+            dgvc = (TMR_NumDecColumn)dgPlayers.AddColumn("TI", "TI", 32, AG_Style.NumDec | AG_Style.Frozen);
+            dgvc.CellColorStyles = CellColorStyleList.DefaultGainColorStyle();
+
+            AddPlayersSkillColumn("Str");
+            AddPlayersSkillColumn("Pac");
+            AddPlayersSkillColumn("Sta");
+
+            AddPlayersSkillColumn("Mar");
+            AddPlayersSkillColumn("Tac");
+            AddPlayersSkillColumn("Wor");
+            AddPlayersSkillColumn("Pos");
+            AddPlayersSkillColumn("Pas");
+            AddPlayersSkillColumn("Cro");
+            AddPlayersSkillColumn("Tec");
+            AddPlayersSkillColumn("Hea");
+            AddPlayersSkillColumn("Fin");
+            AddPlayersSkillColumn("Lon");
+            AddPlayersSkillColumn("Set");
+
+            dgPlayers.AddColumn("Rou", "Rou", 30, AG_Style.Numeric | AG_Style.RightJustified);
+            dgPlayers.AddColumn("SSD", "SSD", 30, AG_Style.Numeric | AG_Style.RightJustified);
+            dgPlayers.AddColumn("CStr", "CStr", 30, AG_Style.Numeric | AG_Style.RightJustified);
+
+            DataGridViewCellStyle dgvcsPosCells = new DataGridViewCellStyle();
+            dgvcsPosCells.Format = "N1";
+
+            AddPlayersFpColumn("DC", dgvcsPosCells);
+            AddPlayersFpColumn("DL", dgvcsPosCells);
+            AddPlayersFpColumn("DR", dgvcsPosCells);
+            AddPlayersFpColumn("DMC", dgvcsPosCells);
+            AddPlayersFpColumn("DML", dgvcsPosCells);
+            AddPlayersFpColumn("DMR", dgvcsPosCells);
+
+            AddPlayersFpColumn("MC", dgvcsPosCells);
+            AddPlayersFpColumn("ML", dgvcsPosCells);
+            AddPlayersFpColumn("MR", dgvcsPosCells);
+            AddPlayersFpColumn("OMC", dgvcsPosCells);
+            AddPlayersFpColumn("OML", dgvcsPosCells);
+            AddPlayersFpColumn("OMR", dgvcsPosCells);
+
+            AddPlayersFpColumn("FC", dgvcsPosCells);
+        }
+
+        private void FormatPlayersGridGK()
+        {
+            dgPlayersGK.AutoGenerateColumns = false;
+
+            dgPlayersGK.Columns.Clear();
+            DataGridViewColumn numCol = dgPlayersGK.AddColumn("N", "Number", 20, AG_Style.Numeric | AG_Style.Frozen | AG_Style.N0);
+            dgPlayersGK.AddColumn("Name", "NameEx", 60, AG_Style.NameInj | AG_Style.Frozen | AG_Style.ResizeAllCells);
+            dgPlayersGK.AddColumn("Age", "wBorn", 32, AG_Style.Age | AG_Style.Frozen);
+            dgPlayersGK.AddColumn("Nat", "Nationality", 28, AG_Style.Nationality | AG_Style.Frozen);
+            TMR_NumDecColumn dgvc = (TMR_NumDecColumn)dgPlayersGK.AddColumn("ASI", "ASI", 49, AG_Style.NumDec | AG_Style.Frozen);
+            dgvc.CellColorStyles = CellColorStyleList.DefaultGainColorStyle();
+            dgvc = (TMR_NumDecColumn)dgPlayersGK.AddColumn("TI", "TI", 32, AG_Style.NumDec | AG_Style.Frozen);
+            dgvc.CellColorStyles = CellColorStyleList.DefaultGainColorStyle();
+
+            AddPlayersSkillColumnGK("Str");
+            AddPlayersSkillColumnGK("Pac");
+            AddPlayersSkillColumnGK("Sta");
+
+            AddPlayersSkillColumnGK("Han");
+            AddPlayersSkillColumnGK("One");
+            AddPlayersSkillColumnGK("Ref");
+            AddPlayersSkillColumnGK("Ari");
+            AddPlayersSkillColumnGK("Jum");
+            AddPlayersSkillColumnGK("Com");
+            AddPlayersSkillColumnGK("Kic");
+            AddPlayersSkillColumnGK("Thr");
+
+            dgPlayersGK.AddColumn("Rou", "Rou", 30, AG_Style.Numeric | AG_Style.RightJustified);
+            dgPlayersGK.AddColumn("SSD", "SSD", 30, AG_Style.Numeric | AG_Style.RightJustified);
+            dgPlayersGK.AddColumn("CStr", "CStr", 30, AG_Style.Numeric | AG_Style.RightJustified);
+
+            DataGridViewCellStyle dgvcsPosCells = new DataGridViewCellStyle();
+            dgvcsPosCells.Format = "N1";
+
+            AddPlayersFpColumnGK("GK", dgvcsPosCells);
+        }
+
+        #region Grid formatting
+        private void AddPlayersFpColumn(string skill, DataGridViewCellStyle dgvcsPosCells)
+        {
+            TMR_NumDecColumn dgvc = (TMR_NumDecColumn)dgPlayers.AddColumn(skill, skill, 30, AG_Style.NumDec, dgvcsPosCells);
+            dgvc.CellColorStyles = CellColorStyleList.DefaultFpColorStyle();
+        }
+
+        private void AddPlayersSkillColumn(string skill)
+        {
+            TMR_NumDecColumn dgvc = (TMR_NumDecColumn)dgPlayers.AddColumn(skill, skill, 25, AG_Style.NumDec);
+            if (Program.Setts.EvidenceGain)
+                dgvc.CellColorStyles = CellColorStyleList.DefaultGainColorStyle();
+            else
+                dgvc.CellColorStyles = CellColorStyleList.NoGainColorStyle();
+        }
+
+        private void AddPlayersFpColumnGK(string skill, DataGridViewCellStyle dgvcsPosCells)
+        {
+            TMR_NumDecColumn dgvc = (TMR_NumDecColumn)dgPlayersGK.AddColumn(skill, skill, 30, AG_Style.NumDec, dgvcsPosCells);
+            dgvc.CellColorStyles = CellColorStyleList.DefaultFpColorStyle();
+        }
+
+        private void AddPlayersSkillColumnGK(string skill)
+        {
+            TMR_NumDecColumn dgvc = (TMR_NumDecColumn)dgPlayersGK.AddColumn(skill, skill, 26, AG_Style.NumDec);
+            if (Program.Setts.EvidenceGain)
+                dgvc.CellColorStyles = CellColorStyleList.DefaultGainColorStyle();
+            else
+                dgvc.CellColorStyles = CellColorStyleList.NoGainColorStyle();
+        }
+        #endregion
+
     }
 }

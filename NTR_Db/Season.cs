@@ -286,9 +286,24 @@ namespace NTR_Db
 
                 Dictionary<string, string> items = HTML_Parser.CreateDictionary(line, ';');
 
-                var pr = this.seasonsDB.Player.NewPlayerRow();
-                pr.Name = items["name"];
-                pr.PlayerID = int.Parse(items["id"]);
+                int playerID = int.Parse(items["id"]);
+                var pr = this.seasonsDB.Player.FindByPlayerID(playerID);
+                if (pr == null)
+                {
+                    pr = this.seasonsDB.Player.NewPlayerRow();
+                    pr.Name = items["name"];
+                    pr.PlayerID = int.Parse(items["id"]);
+                    seasonsDB.Player.AddPlayerRow(pr);
+                }
+
+                var hr = seasonsDB.HistData.FindByPlayerIDWeek(playerID, TmWeek.thisWeek().absweek);
+                if (hr == null)
+                {
+                    hr = seasonsDB.HistData.NewHistDataRow();
+                    hr.PlayerID = pr.PlayerID;
+                    hr.Week = TmWeek.thisWeek().absweek;
+                    seasonsDB.HistData.AddHistDataRow(hr);
+                }
 
                 string age = items["age"];
                 int years = int.Parse(age.Split('.')[0]);
@@ -299,11 +314,7 @@ namespace NTR_Db
                 pr.Nationality = items["nat"];
                 pr.FP = TM_Compatible.ConvertNewFP(items["fp"]).ToUpper();
                 pr.FPn = Tm_Utility.FPToNumber(pr.FP);
-                seasonsDB.Player.AddPlayerRow(pr);
 
-                var hr = seasonsDB.HistData.NewHistDataRow();
-                hr.PlayerID = pr.PlayerID;
-                hr.Week = TmWeek.thisWeek().absweek;
                 hr.For = decimal.Parse(items["str"]);
                 hr.Res = decimal.Parse(items["sta"]);
                 hr.Vel = decimal.Parse(items["pac"]);
@@ -333,21 +344,30 @@ namespace NTR_Db
                     hr.Lan = decimal.Parse(items["thr"]);
                 }
                 hr.ASI = int.Parse(items["asi"]);
-                seasonsDB.HistData.AddHistDataRow(hr);
 
-                var tr = seasonsDB.TempData.NewTempDataRow();
-                tr.PlayerID = pr.PlayerID;
+                var tr = seasonsDB.TempData.FindByPlayerID(playerID);
+                if (tr == null)
+                {
+                    tr = seasonsDB.TempData.NewTempDataRow();
+                    tr.PlayerID = pr.PlayerID;
+                    seasonsDB.TempData.AddTempDataRow(tr);
+                }
+
                 tr.Rec = decimal.Parse(items["rec"]);
 
                 if (items["routine"] != "null")
                     tr.Rou = decimal.Parse(items["routine"]);
-                seasonsDB.TempData.AddTempDataRow(tr);
 
-                var sr = seasonsDB.Shortlist.NewShortlistRow();
-                sr.PlayerID = pr.PlayerID;
+                var sr = seasonsDB.Shortlist.FindByPlayerID(playerID);
+                if (sr == null)
+                {
+                    sr = seasonsDB.Shortlist.NewShortlistRow();
+                    sr.PlayerID = pr.PlayerID;
+                    seasonsDB.Shortlist.AddShortlistRow(sr);
+                }
+
                 sr.Bid = int.Parse(items["bid"]);
                 sr.TimeExpire = DateTime.Now.AddSeconds(double.Parse(items["time"]));
-                seasonsDB.Shortlist.AddShortlistRow(sr);
             }
         }
 
@@ -416,8 +436,11 @@ namespace NTR_Db
 
                 var sr = seasonsDB.Shortlist.NewShortlistRow();
                 sr.PlayerID = pr.PlayerID;
-                sr.Bid = int.Parse(items["curbid"]);
-                sr.TimeExpire = DateTime.Now.AddSeconds(double.Parse(items[""]));
+                if (items["curbid"] != "null")
+                {
+                    sr.Bid = int.Parse(items["curbid"].Replace(",", ""));
+                    sr.TimeExpire = DateTime.Now.AddSeconds(double.Parse(items["timeleft"]));
+                }
                 seasonsDB.Shortlist.AddShortlistRow(sr);
             }
         }
@@ -901,7 +924,8 @@ namespace NTR_Db
 
         public List<Team> GetOwnedAndImportedTeams()
         {
-            List<Team> teams = GetOwnedTeams();
+            List<Team> teams = new List<Team>();
+            teams.AddRange(GetOwnedTeams());
 
             var importedTeams = (from c in seasonsDB.Team
                                  where ((!c.IsImportedNull()) && (c.Imported))

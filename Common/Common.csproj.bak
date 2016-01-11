@@ -292,14 +292,12 @@
     </Compile>
     <Compile Include="News.cs" />
     <Compile Include="NTR_Functions.cs" />
-    <Compile Include="NTR_Gains.Designer.cs">
-      <DependentUpon>NTR_Gains.xsd</DependentUpon>
+    <Compile Include="NTR_GainDS.Designer.cs">
+      <DependentUpon>NTR_GainDS.xsd</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="NTR_Gains.cs">
-      <DependentUpon>NTR_Gains.xsd</DependentUpon>
-    </Compile>
+    <Compile Include="NTR_Gains.cs" />
     <Compile Include="NTR_SquadDb.cs">
       <DependentUpon>NTR_SquadDb.xsd</DependentUpon>
     </Compile>
@@ -560,16 +558,16 @@
     <None Include="NationsDS.xss">
       <DependentUpon>NationsDS.xsd</DependentUpon>
     </None>
-    <None Include="NTR_Gains.xsc">
-      <DependentUpon>NTR_Gains.xsd</DependentUpon>
+    <None Include="NTR_GainDS.xsc">
+      <DependentUpon>NTR_GainDS.xsd</DependentUpon>
     </None>
-    <None Include="NTR_Gains.xsd">
+    <None Include="NTR_GainDS.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>NTR_Gains.Designer.cs</LastGenOutput>
+      <LastGenOutput>NTR_GainDS.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="NTR_Gains.xss">
-      <DependentUpon>NTR_Gains.xsd</DependentUpon>
+    <None Include="NTR_GainDS.xss">
+      <DependentUpon>NTR_GainDS.xsd</DependentUpon>
     </None>
     <None Include="NTR_SquadDb.xsc">
       <DependentUpon>NTR_SquadDb.xsd</DependentUpon>

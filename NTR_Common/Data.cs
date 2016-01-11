@@ -427,7 +427,7 @@ namespace NTR_Common
             scoutSkillsDS.Clear();
             foreach (ExtraDS.ScoutsRow esr in extraDS.Scouts)
             {
-                ScoutsNReviews.ScoutsRow ssr = scoutSkillsDS.Scouts.NewScoutsRow();
+                Common.ScoutsNReviews.ScoutsRow ssr = scoutSkillsDS.Scouts.NewScoutsRow();
                 ssr.ItemArray = esr.ItemArray;
                 scoutSkillsDS.Scouts.AddScoutsRow(ssr);
             }

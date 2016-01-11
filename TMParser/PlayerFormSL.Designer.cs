@@ -2232,13 +2232,7 @@ namespace TMRecorder
         private System.Windows.Forms.DataGridViewTextBoxColumn tacticalDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn technicalDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn psychologyDataGridViewTextBoxColumn;
-        private ScoutsNReviews scoutsNReviews;
-        private System.Windows.Forms.DataGridViewTextBoxColumn explosionDataGridViewTextBoxColumn;
-        private DataGridViewCustomColumns.TMR_ReportColumn physicalDataGridViewTextBoxColumn;
-        private DataGridViewCustomColumns.TMR_ReportColumn tacticalDataGridViewTextBoxColumn;
-        private DataGridViewCustomColumns.TMR_ReportColumn technicalDataGridViewTextBoxColumn;
-        private DataGridViewCustomColumns.TMR_ReportColumn leadershipDataGridViewTextBoxColumn;
-        private DataGridViewCustomColumns.TMR_ReportColumn professionalityDataGridViewTextBoxColumn;
+        private Common.ScoutsNReviews scoutsNReviews;
         private System.Windows.Forms.DataGridViewTextBoxColumn scoutIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ageDataGridViewTextBoxColumn;

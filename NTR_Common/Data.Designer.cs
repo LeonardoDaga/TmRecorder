@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.teamDS = new NTR_Common.TeamDS();
-            this.gainDS = new NTR_Common.GainDS();
+            this.gainDS = new Common.NTR_Gains();
             this.trainersSkillsDS = new Common.TrainersSkills();
             this.nationsDS = new Common.NationsDS();
             this.scoutSkillsDS = new Common.ScoutsNReviews();
@@ -76,7 +76,7 @@
         public Common.TrainersSkills trainersSkillsDS;
         public Common.NationsDS nationsDS;
         public TeamDS teamDS;
-        private GainDS gainDS;
+        private Common.NTR_Gains gainDS;
         private Common.ScoutsNReviews scoutSkillsDS;
 
     }

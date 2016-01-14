@@ -12,7 +12,29 @@ namespace Common
         string[] gkSkill = new string[] { "Str", "Sta", "Pac", "Han", "One", "Ref", "Ari", "Jum", "Com", "Kic", "Thr" };
         float _Amax = 0.0f;
         public NTR_Function funRou = new NTR_Function();
-        public bool NormalizeGains = false;
+
+        private NTR_GainFunction _funGain = null;
+        public NTR_GainFunction FunGain
+        {
+            get { return _funGain; }
+            set
+            {
+                _funGain = value;
+                FunGain.NormalizeGains = _normalizeGains;
+            }
+        }
+
+        private bool _normalizeGains;
+        public bool NormalizeGains
+        {
+            get { return _normalizeGains; }
+            set
+            {
+                _normalizeGains = value;
+                if (_funGain != null)
+                    _funGain.NormalizeGains = _normalizeGains;
+            }
+        }
 
         partial class SkillFPGainDataTable
         {
@@ -63,10 +85,10 @@ namespace Common
 
             float k = 0;
             if (FpVect[1] == -1)
-                k = (float)this.SkillFPGain[skill][FpVect[0]+1];
+                k = (float)this.SkillFPGain[skill][FpVect[0] + 1];
             else
-                k = Math.Max((float)this.SkillFPGain[skill][FpVect[0]+1],
-                             (float)this.SkillFPGain[skill][FpVect[1]+1]);
+                k = Math.Max((float)this.SkillFPGain[skill][FpVect[0] + 1],
+                             (float)this.SkillFPGain[skill][FpVect[1] + 1]);
             return (decimal)k;
         }
         public float A_FP(int aspec, int spec)

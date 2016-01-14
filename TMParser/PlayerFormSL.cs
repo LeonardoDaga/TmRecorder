@@ -340,7 +340,7 @@ namespace TMRecorder
             }
 
             scoutsNReviews.Review.Clear();
-            scoutsNReviews.FillTables(gRow, History.reportParser);
+            //scoutsNReviews.FillTables(gRow, History.reportParser);
 
             reviewDataTableBindingSource.Filter = "PlayerID=" + gRow.PlayerID.ToString();
 

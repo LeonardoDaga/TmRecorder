@@ -158,6 +158,7 @@ namespace TMRecorder
             this.dgPlayers.AllowUserToAddRows = false;
             this.dgPlayers.AllowUserToDeleteRows = false;
             this.dgPlayers.AllowUserToOrderColumns = true;
+            this.dgPlayers.AutoGenerateColumns = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
@@ -193,7 +194,6 @@ namespace TMRecorder
             this.dgPlayers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgPlayers.Size = new System.Drawing.Size(861, 318);
             this.dgPlayers.TabIndex = 0;
-            this.dgPlayers.Sorted += new System.EventHandler(this.dgGiocatori_Sorted);
             this.dgPlayers.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgGiocatori_MouseDoubleClick);
             // 
             // tabGK
@@ -212,6 +212,7 @@ namespace TMRecorder
             this.dgPlayersGK.AllowUserToAddRows = false;
             this.dgPlayersGK.AllowUserToDeleteRows = false;
             this.dgPlayersGK.AllowUserToOrderColumns = true;
+            this.dgPlayersGK.AutoGenerateColumns = false;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F);
@@ -269,8 +270,8 @@ namespace TMRecorder
             this.webBrowser.NavigationAddress = "";
             this.webBrowser.NavigationMode = NTR_WebBrowser.NTR_Browser.eNavigationMode.Main;
             this.webBrowser.SelectedReportParser = null;
-            this.webBrowser.ShowShortlist = false;
-            this.webBrowser.ShowTransfer = false;
+            this.webBrowser.ShowShortlist = true;
+            this.webBrowser.ShowTransfer = true;
             this.webBrowser.Size = new System.Drawing.Size(861, 318);
             this.webBrowser.StartnavigationAddress = "";
             this.webBrowser.TabIndex = 0;
@@ -380,6 +381,11 @@ namespace TMRecorder
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
 
+        }
+
+        private void DgPlayers_Sorted(object sender, System.EventArgs e)
+        {
+            throw new System.NotImplementedException();
         }
 
         #endregion

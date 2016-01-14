@@ -95,6 +95,7 @@ namespace NTR_Controls
         public DataGridViewColumn AddColumn(string Title, string Property, int width, AG_Style styles, string description = "")
         {
             DataGridViewColumn dgv = null;
+            DataGridViewCellStyle dgvCellStyle = new DataGridViewCellStyle();
 
             if ((int)(styles & AG_Style.Numeric) > 0)
             {
@@ -107,6 +108,10 @@ namespace NTR_Controls
             else if ((int)(styles & AG_Style.String) > 0)
             {
                 dgv = new DataGridViewTextBoxColumn();
+            }
+            else if ((int)(styles & AG_Style.Checkbox) > 0)
+            {
+                dgv = new DataGridViewCheckBoxColumn();
             }
             else if ((int)(styles & AG_Style.FavPosition) > 0)
             {
@@ -140,6 +145,12 @@ namespace NTR_Controls
             {
                 dgv = new NTR_ImgColumn(imgContainer.GetImageList(ImgContainer.ImgListType.StarsLine));
             }
+            else if ((int)(styles & AG_Style.Time_ddmm_hhmm) > 0)
+            {
+                dgv = new DataGridViewTextBoxColumn();
+                dgvCellStyle.NullValue = "-";
+                dgvCellStyle.Format = "dd/MM HH:mm";
+            }
 
             dgv.Name = Title;
             dgv.DataPropertyName = Property;
@@ -152,17 +163,23 @@ namespace NTR_Controls
             dgv.Frozen = ((int)(styles & AG_Style.Frozen) > 0);
 
             if ((int)(styles & AG_Style.ResizeAllCells) > 0)
+            {
+                dgv.AutoSizeMode = DataGridViewAutoSizeColumnMode.NotSet;
+                dgv.Width = width;
                 dgv.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            }
 
             if ((int)(styles & AG_Style.RightJustified) > 0)
-                dgv.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                dgvCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
-            if ((int)(styles & AG_Style.N1) > 0)
-                dgv.DefaultCellStyle.Format = "N1";
+            if ((int)(styles & AG_Style.N2) == (int)AG_Style.N2)
+                dgvCellStyle.Format = "N2";
+            else if ((int)(styles & AG_Style.N1) > 0)
+                dgvCellStyle.Format = "N1";
+            else if ((int)(styles & AG_Style.N0) > 0)
+                dgvCellStyle.Format = "N0";
 
-            if ((int)(styles & AG_Style.N0) > 0)
-                dgv.DefaultCellStyle.Format = "N0";
-
+            dgv.DefaultCellStyle = dgvCellStyle.Clone();
             return dgv;
         }
 
@@ -200,9 +217,12 @@ namespace NTR_Controls
         RightJustified = 0x200,
         N1 = 0x400,
         N0 = 0x800,
+        N2 = 0xC00,
         FormatString = 0x1000,
         MatchType = 0x2000,
         Stars = 0x4000,
         TextAndImage = 0x8000,
+        Checkbox = 0x10000,
+        Time_ddmm_hhmm = 0x20000,
     }
 }

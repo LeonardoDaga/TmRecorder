@@ -18,6 +18,16 @@ namespace Common
         {
         }
 
+        private bool _normalizeGains;
+        public bool NormalizeGains
+        {
+            get { return _normalizeGains; }
+            set
+            {
+                _normalizeGains = value;
+            }
+        }
+
         public new XmlReadMode ReadXml(string namefile)
         {
             XmlReadMode xlmRM = base.ReadXml(namefile);

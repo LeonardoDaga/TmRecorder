@@ -5743,6 +5743,8 @@ namespace Common {
             
             private global::System.Data.DataColumn columnTimeExpire;
             
+            private global::System.Data.DataColumn columnAlarmTime;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public ShortlistDataTable() {
@@ -5802,6 +5804,14 @@ namespace Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn AlarmTimeColumn {
+                get {
+                    return this.columnAlarmTime;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -5837,12 +5847,13 @@ namespace Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ShortlistRow AddShortlistRow(PlayerRow parentPlayerRowByPlayer_Shortlist, int Bid, System.DateTime TimeExpire) {
+            public ShortlistRow AddShortlistRow(PlayerRow parentPlayerRowByPlayer_Shortlist, decimal Bid, System.DateTime TimeExpire, System.DateTime AlarmTime) {
                 ShortlistRow rowShortlistRow = ((ShortlistRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         Bid,
-                        TimeExpire};
+                        TimeExpire,
+                        AlarmTime};
                 if ((parentPlayerRowByPlayer_Shortlist != null)) {
                     columnValuesArray[0] = parentPlayerRowByPlayer_Shortlist[0];
                 }
@@ -5878,6 +5889,7 @@ namespace Common {
                 this.columnPlayerID = base.Columns["PlayerID"];
                 this.columnBid = base.Columns["Bid"];
                 this.columnTimeExpire = base.Columns["TimeExpire"];
+                this.columnAlarmTime = base.Columns["AlarmTime"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5885,10 +5897,12 @@ namespace Common {
             private void InitClass() {
                 this.columnPlayerID = new global::System.Data.DataColumn("PlayerID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPlayerID);
-                this.columnBid = new global::System.Data.DataColumn("Bid", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnBid = new global::System.Data.DataColumn("Bid", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnBid);
                 this.columnTimeExpire = new global::System.Data.DataColumn("TimeExpire", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTimeExpire);
+                this.columnAlarmTime = new global::System.Data.DataColumn("AlarmTime", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAlarmTime);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnPlayerID}, true));
                 this.columnPlayerID.AllowDBNull = false;
@@ -9756,10 +9770,10 @@ namespace Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int Bid {
+            public decimal Bid {
                 get {
                     try {
-                        return ((int)(this[this.tableShortlist.BidColumn]));
+                        return ((decimal)(this[this.tableShortlist.BidColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'Bid\' in table \'Shortlist\' is DBNull.", e);
@@ -9783,6 +9797,22 @@ namespace Common {
                 }
                 set {
                     this[this.tableShortlist.TimeExpireColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime AlarmTime {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableShortlist.AlarmTimeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'AlarmTime\' in table \'Shortlist\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableShortlist.AlarmTimeColumn] = value;
                 }
             }
             
@@ -9819,6 +9849,18 @@ namespace Common {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetTimeExpireNull() {
                 this[this.tableShortlist.TimeExpireColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsAlarmTimeNull() {
+                return this.IsNull(this.tableShortlist.AlarmTimeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetAlarmTimeNull() {
+                this[this.tableShortlist.AlarmTimeColumn] = global::System.Convert.DBNull;
             }
         }
         

@@ -35,25 +35,38 @@ namespace TMRecorder
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DB.WriteXml("Shortlist.5.xml");
+            FileInfo fi = new FileInfo(Path.Combine(Program.Setts.DefaultDirectory, "Shortlist.5.xml"));
+
+            DB.WriteXml(fi.FullName);
         }
 
         private void ShortlistForm_Load(object sender, EventArgs e)
         {
+            DB = new NTR_SquadDb();
+
+            LoadGains();
+
             LoadShortlist();
 
             FormatPlayersGrid();
             FormatPlayersGridGK();
 
-            CreateShortlist();
+            UpdateShortlist();
+
+            dgPlayers.ColumnHeaderMouseClick += dgPlayers_ColumnHeaderMouseClick;
+            dgPlayersGK.ColumnHeaderMouseClick += dgPlayersGK_ColumnHeaderMouseClick;
         }
 
         private void LoadShortlist()
         {
-            DB.ReadXml("Shortlist.5.xml");
+            DB.Clear();
+
+            FileInfo fi = new FileInfo(Path.Combine(Program.Setts.DefaultDirectory, "Shortlist.5.xml"));
+            if (fi.Exists)
+                DB.ReadXml(fi.FullName);
         }
 
-        private void CreateShortlist()
+        private void UpdateShortlist()
         {
             var tempshortlist = (from c in DB.Shortlist
                                  select new NTR_Db.PlayerData(c));
@@ -72,7 +85,7 @@ namespace TMRecorder
         private void LoadGains()
         {
             DB.LoadGains(Program.Setts.GainSet);
-            DB.GDS..NormalizeGains = Program.Setts.NormalizeGains;
+            DB.GDS.NormalizeGains = Program.Setts.NormalizeGains;
         }
 
         private void openPlayersPageInTheTrophyManagerWebsiteToolStripMenuItem_Click(object sender, EventArgs e)
@@ -86,9 +99,8 @@ namespace TMRecorder
 
             DataGridViewRow row = dgv.SelectedRows[0];
 
-            DataRowView drv = (DataRowView)row.DataBoundItem;
-            TeamDS.GiocatoriNSkillRow gsr = (TeamDS.GiocatoriNSkillRow)drv.Row;
-            int PlayerID = gsr.PlayerID;
+            NTR_Db.PlayerData playerData = (NTR_Db.PlayerData)row.DataBoundItem;
+            int PlayerID = playerData.playerID;
 
             string navigationAddress = "http://trophymanager.com/players/" + PlayerID.ToString() + "/";
 
@@ -111,9 +123,8 @@ namespace TMRecorder
 
             DataGridViewRow row = dgv.SelectedRows[0];
 
-            DataRowView drv = (DataRowView)row.DataBoundItem;
-            TeamDS.GiocatoriNSkillRow gsr = (TeamDS.GiocatoriNSkillRow)drv.Row;
-            int PlayerID = gsr.PlayerID;
+            NTR_Db.PlayerData playerData = (NTR_Db.PlayerData)row.DataBoundItem;
+            int PlayerID = playerData.playerID;
 
             string navigationAddress = "http://trophymanager.com/players/" + PlayerID.ToString() + "/#/page/scout/";
 
@@ -135,10 +146,9 @@ namespace TMRecorder
             if (dgv.SelectedRows.Count < 1) return;
 
             DataGridViewRow row = dgv.SelectedRows[0];
-            DataRowView drv = (DataRowView)row.DataBoundItem;
-            TeamDS.GiocatoriNSkillRow gsr = (TeamDS.GiocatoriNSkillRow)drv.Row;
+            NTR_Db.PlayerData playerData = (NTR_Db.PlayerData)row.DataBoundItem;
 
-            PlayerFormSL pf = new PlayerFormSL(teamDS.GiocatoriNSkill, History, gsr.PlayerID, AllSeasons);
+            PlayerFormSL pf = new PlayerFormSL(playerData);
             pf.ShowDialog();
 
             if (pf.isDirty) isDirty = true;
@@ -156,13 +166,17 @@ namespace TMRecorder
                 content = "NewTM - Shortlist;\n" + content;
             else if (address.Contains("/transfer/"))
                 content = "NewTM - Transfer;\n" + content;
+            else
+                return;
+
+            SaveImportedFile(content, address);
 
             LoadHTMLfile_newPage(content);
 
-            UpdateTables();
+            UpdateShortlist();
         }
 
-        private void SaveImportedFile(string page, Uri url)
+        private void SaveImportedFile(string page, string address)
         {
             // Check the existence of the folder
             DirectoryInfo di = new DirectoryInfo(Path.Combine(Program.Setts.DefaultDirectory, "ImportedPages"));
@@ -172,17 +186,19 @@ namespace TMRecorder
             }
 
             string filedate = TmWeek.ToSWDString(DateTime.Now);
+            string filetime = DateTime.Now.ToLongTimeString().Replace(":","");
+            string filename = "";
 
-            string filename = url.LocalPath.Replace(".php", "").Replace("/", "");
-
-            if (filename == "shortlist")
+            if (address.Contains("shortlist"))
             {
-                filename += "_" + filedate + ".htm";
+                filename = "shortlist_" + filedate + "_" + filetime + ".htm";
             }
-            else if (filename == "klubhus_squad")
+            else if (address.Contains("transfer"))
             {
-                filename += "_" + filedate + ".htm";
+                filename = "transfer_" + filedate + "_" + filetime + ".htm";
             }
+            else
+                return;
 
             FileInfo fi = new FileInfo(Path.Combine(di.FullName, filename));
 
@@ -220,282 +236,22 @@ namespace TMRecorder
 
             if (page.Contains("NewTM - Shortlist"))
             {
-                teamDS.LoadShortlistFromHTML_New(page, updateDeletedPlayers, dt);
-
-                AllSeasons.LoadShortlist(page);
+                DB.LoadShortlist(page);
 
                 isDirty = true;
                 return;
             }
             else if (page.Contains("NewTM - Transfer"))
             {
-                teamDS.LoadTransferlistFromHTML_New(page, updateDeletedPlayers, dt);
-
-                AllSeasons.LoadTransferList(page);
+                DB.LoadTransferList(page);
 
                 isDirty = true;
                 return;
             }
-            else if (page.Contains("TM - Clubhouse"))
-            {
-                teamDS.LoadClubhouseFromHTML(page, updateDeletedPlayers, dt);
-
-                isDirty = true;
-                return;
-            }
-        }
-
-        private void UpdateTables(DataGridView dgv)
-        {
-            if (dgv == dgPlayers)
-            {
-                tabControl.SelectedTab = tabPlayers;
-                EvidenceSkillsGiocatoriForGains();
-                EvidenceSkillsGiocatoriForQuality(-1);
-            }
-            if (dgv == dgPlayersGK)
-            {
-                tabControl.SelectedTab = tabGK;
-                EvidenceSkillsPortieriForGains();
-                EvidenceSkillsPortieriForQuality(-1);
-            }
-        }
-
-        private void UpdateTables()
-        {
-            TabPage lastSelectedTab = tabControl.SelectedTab;
-
-            tabControl.SelectedTab = tabPlayers;
-            EvidenceSkillsGiocatoriForGains(); 
-            EvidenceSkillsGiocatoriForQuality(-1);
-
-            tabControl.SelectedTab = tabGK;
-            EvidenceSkillsPortieriForGains();
-            EvidenceSkillsPortieriForQuality(-1);
-
-            tabControl.SelectedTab = lastSelectedTab;
-        }
-
-        private void EvidenceSkillsGiocatoriForGains()
-        {
-            DataGridView dgv = dgPlayers;
-
-            if (!Program.Setts.EvidenceGain)
-            {
-                for (int i = 0; i < dgv.Rows.Count; i++)
-                {
-                    for (int j = 0; j < 14; j++)
-                    {
-                        dgv[j + 5, i].Style = dgv[j + 6, i].OwningColumn.DefaultCellStyle;
-                    }
-                }
-                return;
-            }
-
-            string[] spec = new string[] { "DC", "DR", "DL", "DMC", "DMR", 
-                "DML", "MC", "MR", "ML", "OMC", "OMR", "OML", "FC" };
-            for (int i = 0; i < dgv.Rows.Count; i++)
-            {
-                System.Windows.Forms.DataGridViewRow dvr = dgv.Rows[i];
-                DataRowView dr = (DataRowView)dvr.DataBoundItem;
-                TeamDS.GiocatoriNSkillRow gsr = (TeamDS.GiocatoriNSkillRow)dr.Row;
-
-                string FP = gsr.FP;
-                string[] FPs = FP.Split('/');
-
-                if (FPs.Length == 1)
-                {
-                    int n;
-                    for (n = 0; n < 13; n++)
-                        if (FP == spec[n]) break;
-
-                    // Evidenzia solo le colonne degli skills
-                    for (int j = 0; j < 14; j++)
-                    {
-                        DataGridViewCellStyle Style = new DataGridViewCellStyle();
-
-                        ColorUtilities.SelectGainColor(teamDS.GD.K_FP(j, n), ref Style);
-
-                        dgv[j + 5, i].Style = Style;
-                    }
-                }
-                else
-                {
-                    int n1, n2;
-                    for (n1 = 0; n1 < 13; n1++)
-                        if (FPs[0] == spec[n1]) break;
-                    for (n2 = 0; n2 < 13; n2++)
-                        if (FPs[1] == spec[n2]) break;
-                    string FP1 = FPs[0];
-                    string FP2 = FPs[1];
-
-                    // Evidenzia solo le colonne degli skills
-                    for (int j = 0; j < 14; j++)
-                    {
-                        DataGridViewCellStyle Style = new DataGridViewCellStyle();
-
-                        float maxGain = Math.Max(teamDS.GD.K_FP(j, n1), teamDS.GD.K_FP(j, n2));
-                        ColorUtilities.SelectGainColor(maxGain, ref Style);
-
-                        dgv[j + 5, i].Style = Style;
-                    }
-                }
-            }
-        }
-
-        private void EvidenceSkillsGiocatoriForQuality(int plID)
-        {
-            DataGridView dgv = dgPlayers;
-
-            for (int i = 0; i < dgv.Rows.Count; i++)
-            {
-                if (plID != -1)
-                {
-                    System.Windows.Forms.DataGridViewRow dvr = dgv.Rows[i];
-                    TeamDS.GiocatoriNSkillRow gsr = (TeamDS.GiocatoriNSkillRow)dvr.DataBoundItem;
-
-                    if (plID != gsr.PlayerID)
-                        continue;
-                }
-
-                // Evidenzia solo le colonne degli skills
-                for (int j = 24; j < 37; j++)
-                {
-                    float f = (float)dgv[j, i].Value;
-                    if (f > 100) f = 100;
-                    if (f < 0) f = 0;
-
-                    DataGridViewCellStyle Style = new DataGridViewCellStyle();
-
-                    SelectStyleColor(f, ref Style);
-                    Style.BackColor = Color.FromArgb(0, 64, 0);
-                    Style.SelectionBackColor = Color.FromArgb(0, 192, 0);
-                    Style.Format = "N1";
-
-                    dgv[j, i].Style = Style;
-                }
-
-                if (plID != -1)
-                    return;
-            }
-        }
-
-        private void EvidenceSkillsPortieriForQuality(int plID)
-        {
-            DataGridView dgv = dgPlayersGK;
-
-            for (int i = 0; i < dgv.Rows.Count; i++)
-            {
-                if (plID != -1)
-                {
-                    System.Windows.Forms.DataGridViewRow dvr = dgv.Rows[i];
-                    TeamDS.GiocatoriNSkillRow gsr = (TeamDS.GiocatoriNSkillRow)dvr.DataBoundItem;
-
-                    if (plID != gsr.PlayerID)
-                        continue;
-                }
-
-                // Evidenzia solo le colonne degli skills
-                for (int j = 21; j < 22; j++)
-                {
-                    float f = (float)dgPlayersGK[j, i].Value;
-                    if (f > 100) f = 100;
-                    if (f < 0) f = 0;
-
-                    DataGridViewCellStyle Style = new DataGridViewCellStyle();
-
-                    SelectStyleColor(f, ref Style);
-                    Style.BackColor = Color.FromArgb(0, 64, 0);
-                    Style.SelectionBackColor = Color.FromArgb(0, 192, 0);
-                    Style.Format = "N1";
-
-                    dgPlayersGK[j, i].Style = Style;
-                }
-
-                if (plID != -1)
-                    return;
-            }
-        }
-        private void EvidenceSkillsPortieriForGains()
-        {
-            if (!Program.Setts.EvidenceGain)
-            {
-                for (int i = 0; i < dgPlayersGK.Rows.Count; i++)
-                {
-                    for (int j = 0; j < 11; j++)
-                    {
-                        dgPlayersGK[j + 5, i].Style = dgPlayersGK[j + 6, i].OwningColumn.DefaultCellStyle;
-                    }
-                }
-                return;
-            }
-
-
-            for (int i = 0; i < dgPlayersGK.Rows.Count; i++)
-            {
-                // Evidenzia solo le colonne degli skills
-                for (int j = 0; j < 11; j++)
-                {
-                    DataGridViewCellStyle Style = new DataGridViewCellStyle();
-
-                    ColorUtilities.SelectGainColor(teamDS.GD.K_GK(j) / 1.5f, ref Style);
-
-                    dgPlayersGK[j + 5, i].Style = Style;
-                }
-            }
-        }
-        private static void SelectStyleColor(float f, ref DataGridViewCellStyle Style)
-        {
-            switch ((int)(f / 10))
-            {
-                case 0:
-                case 1:
-                    Style.SelectionForeColor = Style.ForeColor = Color.RoyalBlue;
-                    break;
-                case 2:
-                    Style.SelectionForeColor = Style.ForeColor = Color.Cyan;
-                    break;
-                case 3:
-                case 4:
-                    Style.SelectionForeColor = Style.ForeColor = Color.Lime;
-                    break;
-                case 5:
-                    Style.SelectionForeColor = Style.ForeColor = Color.Yellow;
-                    break;
-                case 6:
-                    Style.SelectionForeColor = Style.ForeColor = Color.Salmon;
-                    break;
-                case 7:
-                case 8:
-                    Style.SelectionForeColor = Style.ForeColor = Color.Red;
-                    break;
-                default:
-                    Style.SelectionForeColor = Style.ForeColor = Color.Violet;
-                    break;
-            }
-        }
-
-        private void dgGiocatori_Sorted(object sender, EventArgs e)
-        {
-            UpdateTables(dgPlayers);
         }
 
         string navigationAddress = "";
         string startnavigationAddress = "";
-
-        private void gotoMToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            navigationAddress = "http://trophymanager.com/";
-            webBrowser.Goto(navigationAddress);
-            startnavigationAddress = navigationAddress;
-        }
-
-        private void gotoAdobeFlashplayerPageToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            navigationAddress = "http://www.adobe.com/products/flashplayer/";
-            webBrowser.Goto(navigationAddress);
-            startnavigationAddress = navigationAddress;
-        }
 
         private void tsbShortlist_Click(object sender, EventArgs e)
         {
@@ -526,53 +282,54 @@ namespace TMRecorder
                     "Close Shortlist form", MessageBoxButtons.YesNo);
                 if (dr == DialogResult.Yes)
                 {
-                    teamDS.CopyTo(History_TeamDS);
-                    History_TeamDS.Save(Program.Setts.DefaultDirectory, "Shortlist.3.xml");
+                    FileInfo fi = new FileInfo(Path.Combine(Program.Setts.DefaultDirectory, "Shortlist.5.xml"));
+
+                    DB.WriteXml(fi.FullName);
                 }
             }
         }
 
         private void cutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DataGridView dgv = null;
+            //DataGridView dgv = null;
 
-            if (tabControl.SelectedTab == tabPlayers) dgv = dgPlayers;
-            if (tabControl.SelectedTab == tabGK) dgv = dgPlayersGK;
+            //if (tabControl.SelectedTab == tabPlayers) dgv = dgPlayers;
+            //if (tabControl.SelectedTab == tabGK) dgv = dgPlayersGK;
 
-            if (dgv.SelectedRows.Count > 0)
-            {
-                string names = ""; 
+            //if (dgv.SelectedRows.Count > 0)
+            //{
+            //    string names = ""; 
 
-                int[] plToRemove = new int[dgv.SelectedRows.Count];
-                for (int i = 0; i < dgv.SelectedRows.Count; i++)
-                {
-                    DataRowView drv = (DataRowView)dgv.SelectedRows[i].DataBoundItem;
-                    TeamDS.GiocatoriNSkillRow gnsr = (TeamDS.GiocatoriNSkillRow)drv.Row;
-                    names += gnsr.Nome + ",";
-                    plToRemove[i] = gnsr.PlayerID;
-                }
+            //    int[] plToRemove = new int[dgv.SelectedRows.Count];
+            //    for (int i = 0; i < dgv.SelectedRows.Count; i++)
+            //    {
+            //        DataRowView drv = (DataRowView)dgv.SelectedRows[i].DataBoundItem;
+            //        TeamDS.GiocatoriNSkillRow gnsr = (TeamDS.GiocatoriNSkillRow)drv.Row;
+            //        names += gnsr.Nome + ",";
+            //        plToRemove[i] = gnsr.PlayerID;
+            //    }
 
-                names = names.TrimEnd(',');
+            //    names = names.TrimEnd(',');
 
-                DialogResult dr = MessageBox.Show("Delete the selected players (" + names + ")?", "Remove players", 
-                    MessageBoxButtons.YesNo);
-                if (dr == DialogResult.No) return;
+            //    DialogResult dr = MessageBox.Show("Delete the selected players (" + names + ")?", "Remove players", 
+            //        MessageBoxButtons.YesNo);
+            //    if (dr == DialogResult.No) return;
 
-                foreach (int id in plToRemove)
-                {
-                    TeamDS.GiocatoriNSkillRow gnsr = teamDS.GiocatoriNSkill.FindByPlayerID(id);
-                    teamDS.GiocatoriNSkill.RemoveGiocatoriNSkillRow(gnsr);
+            //    foreach (int id in plToRemove)
+            //    {
+            //        TeamDS.GiocatoriNSkillRow gnsr = teamDS.GiocatoriNSkill.FindByPlayerID(id);
+            //        teamDS.GiocatoriNSkill.RemoveGiocatoriNSkillRow(gnsr);
 
 
-                }
+            //    }
 
-                isDirty = true;
-            }
+            //    isDirty = true;
+            //}
         }
 
         private void dgPortieri_Sorted(object sender, EventArgs e)
         {
-            UpdateTables(dgPlayersGK);
+            //UpdateTables(dgPlayersGK);
         }
 
         private void openPlayersTeamPageInTrophyBrowserToolStripMenuItem_Click(object sender, EventArgs e)
@@ -602,28 +359,28 @@ namespace TMRecorder
 
         private void loadFromFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // Check the existence of the folder
-            DirectoryInfo di = new DirectoryInfo(Path.Combine(Program.Setts.DefaultDirectory, "ImportedPages"));
+            //// Check the existence of the folder
+            //DirectoryInfo di = new DirectoryInfo(Path.Combine(Program.Setts.DefaultDirectory, "ImportedPages"));
 
-            OpenFileDialog openFileDialog = new OpenFileDialog();
+            //OpenFileDialog openFileDialog = new OpenFileDialog();
 
-            openFileDialog.InitialDirectory = di.FullName;
-            openFileDialog.FileName = "shortlist_*.htm";
-            openFileDialog.Filter = "HTML file (*.htm;*.html)|*.htm;*.html|All Files (*.*)|*.*";
+            //openFileDialog.InitialDirectory = di.FullName;
+            //openFileDialog.FileName = "shortlist_*.htm";
+            //openFileDialog.Filter = "HTML file (*.htm;*.html)|*.htm;*.html|All Files (*.*)|*.*";
 
-            DateTime dt = DateTime.Today;
+            //DateTime dt = DateTime.Today;
 
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                StreamReader file = new StreamReader(openFileDialog.FileName);
-                string page = file.ReadToEnd();
-                file.Close();
+            //if (openFileDialog.ShowDialog() == DialogResult.OK)
+            //{
+            //    StreamReader file = new StreamReader(openFileDialog.FileName);
+            //    string page = file.ReadToEnd();
+            //    file.Close();
 
-                page = "SourceURL:<TM - Shortlist>\n" + page;
-                LoadHTMLfile_newPage(page, true);
+            //    page = "SourceURL:<TM - Shortlist>\n" + page;
+            //    LoadHTMLfile_newPage(page, true);
 
-                UpdateTables();
-            }
+            //    UpdateTables();
+            //}
 
         }
 
@@ -637,12 +394,21 @@ namespace TMRecorder
             updateDeletedPlayers = !updateOnlyListedPlayersToolStripMenuItem.Checked;
         }
 
+        private void dgPlayers_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            dgPlayers.AeroDataGrid_ColumnHeaderMouseClick<PlayerData>(sender, e);
+        }
+
+        private void dgPlayersGK_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            dgPlayersGK.AeroDataGrid_ColumnHeaderMouseClick<PlayerData>(sender, e);
+        }
+
         private void FormatPlayersGrid()
         {
             dgPlayers.AutoGenerateColumns = false;
 
             dgPlayers.Columns.Clear();
-            DataGridViewColumn numCol = dgPlayers.AddColumn("N", "Number", 20, AG_Style.Numeric | AG_Style.Frozen | AG_Style.N0);
             dgPlayers.AddColumn("FP", "FPn", 42, AG_Style.FavPosition | AG_Style.Frozen);
             dgPlayers.AddColumn("Name", "NameEx", 60, AG_Style.NameInj | AG_Style.Frozen | AG_Style.ResizeAllCells);
             dgPlayers.AddColumn("Age", "wBorn", 32, AG_Style.Age | AG_Style.Frozen);
@@ -670,7 +436,8 @@ namespace TMRecorder
 
             dgPlayers.AddColumn("Rou", "Rou", 30, AG_Style.Numeric | AG_Style.RightJustified);
             dgPlayers.AddColumn("SSD", "SSD", 30, AG_Style.Numeric | AG_Style.RightJustified);
-            dgPlayers.AddColumn("CStr", "CStr", 30, AG_Style.Numeric | AG_Style.RightJustified);
+            dgPlayers.AddColumn("CStr", "CStr", 30, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N2);
+            dgPlayers.AddColumn("Rec", "Rec", 30, AG_Style.Numeric | AG_Style.RightJustified);
 
             DataGridViewCellStyle dgvcsPosCells = new DataGridViewCellStyle();
             dgvcsPosCells.Format = "N1";
@@ -690,6 +457,10 @@ namespace TMRecorder
             AddPlayersFpColumn("OMR", dgvcsPosCells);
 
             AddPlayersFpColumn("FC", dgvcsPosCells);
+
+            var col = dgPlayers.AddColumn("Bid(Ml)", "BidValue", 45, AG_Style.Numeric | AG_Style.N2, "Bid in Millions");
+            col.DefaultCellStyle.NullValue = "-";
+            dgPlayers.AddColumn("Bid End", "BidEnd", 69, AG_Style.Time_ddmm_hhmm);
         }
 
         private void FormatPlayersGridGK()
@@ -697,7 +468,6 @@ namespace TMRecorder
             dgPlayersGK.AutoGenerateColumns = false;
 
             dgPlayersGK.Columns.Clear();
-            DataGridViewColumn numCol = dgPlayersGK.AddColumn("N", "Number", 20, AG_Style.Numeric | AG_Style.Frozen | AG_Style.N0);
             dgPlayersGK.AddColumn("Name", "NameEx", 60, AG_Style.NameInj | AG_Style.Frozen | AG_Style.ResizeAllCells);
             dgPlayersGK.AddColumn("Age", "wBorn", 32, AG_Style.Age | AG_Style.Frozen);
             dgPlayersGK.AddColumn("Nat", "Nationality", 28, AG_Style.Nationality | AG_Style.Frozen);
@@ -721,12 +491,17 @@ namespace TMRecorder
 
             dgPlayersGK.AddColumn("Rou", "Rou", 30, AG_Style.Numeric | AG_Style.RightJustified);
             dgPlayersGK.AddColumn("SSD", "SSD", 30, AG_Style.Numeric | AG_Style.RightJustified);
-            dgPlayersGK.AddColumn("CStr", "CStr", 30, AG_Style.Numeric | AG_Style.RightJustified);
+            dgPlayersGK.AddColumn("CStr", "CStr", 30, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N2);
+            dgPlayersGK.AddColumn("Rec", "Rec", 30, AG_Style.Numeric | AG_Style.RightJustified);
 
             DataGridViewCellStyle dgvcsPosCells = new DataGridViewCellStyle();
             dgvcsPosCells.Format = "N1";
 
             AddPlayersFpColumnGK("GK", dgvcsPosCells);
+
+            var col = dgPlayersGK.AddColumn("Bid(Ml)", "BidValue", 45, AG_Style.Numeric | AG_Style.N2, "Bid in Millions");
+            col.DefaultCellStyle.NullValue = "-";
+            dgPlayersGK.AddColumn("Bid End", "BidEnd", 69, AG_Style.Time_ddmm_hhmm);
         }
 
         #region Grid formatting

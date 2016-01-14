@@ -1,5 +1,6 @@
 using Common;
 using NTR_Controls;
+using NTR_Db;
 
 namespace TMRecorder
 {
@@ -2346,5 +2347,11 @@ namespace TMRecorder
         private System.Windows.Forms.DataGridViewTextBoxColumn tIDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn trainingTypesColumn;
         private DataGridViewCustomColumns.TMR_TrainSkillColumn programDataGridViewTextBoxColumn;
+        private NTR_Db.PlayerData playerData1;
+
+        public PlayerFormSL(NTR_Db.PlayerData playerData1)
+        {
+            this.playerData1 = playerData1;
+        }
     }
 }

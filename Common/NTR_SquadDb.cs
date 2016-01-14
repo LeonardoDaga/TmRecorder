@@ -10,6 +10,193 @@ namespace Common
 
     public partial class NTR_SquadDb
     {
+        partial class ShortlistDataTable
+        {
+        }
+
+        public void LoadTransferList(string page)
+        {
+            string[] lines = page.Split('\n');
+
+            foreach (string line in lines)
+            {
+                if (!line.Contains("id="))
+                    continue;
+
+                Dictionary<string, string> items = HTML_Parser.CreateDictionary(line, ';');
+
+                int playerID = int.Parse(items["id"]);
+                var pr = this.Player.FindByPlayerID(playerID);
+                if (pr == null)
+                {
+                    pr = this.Player.NewPlayerRow();
+                    pr.Name = items["name"];
+                    pr.PlayerID = int.Parse(items["id"]);
+                    Player.AddPlayerRow(pr);
+                }
+
+                var hr = HistData.FindByPlayerIDWeek(playerID, TmWeek.thisWeek().absweek);
+                if (hr == null)
+                {
+                    hr = HistData.NewHistDataRow();
+                    hr.PlayerID = pr.PlayerID;
+                    hr.Week = TmWeek.thisWeek().absweek;
+                    HistData.AddHistDataRow(hr);
+                }
+
+                string age = items["age"];
+                int years = int.Parse(age.Split('.')[0]);
+                int months = 0;
+                if (age.Split('.').Length > 1)
+                    months = int.Parse(age.Split('.')[1]);
+                pr.wBorn = TmWeek.GetBornWeekFromAge(DateTime.Now, months, years);
+                pr.Nationality = items["nat"];
+                pr.FP = TM_Compatible.ConvertNewFP(items["fp"]).ToUpper();
+                pr.FPn = Tm_Utility.FPToNumber(pr.FP);
+
+                hr.For = decimal.Parse(items["str"]);
+                hr.Res = decimal.Parse(items["sta"]);
+                hr.Vel = decimal.Parse(items["pac"]);
+                if (pr.FPn > 0)
+                {
+                    hr.Mar = decimal.Parse(items["mar"]);
+                    hr.Con = decimal.Parse(items["tac"]);
+                    hr.Wor = decimal.Parse(items["wor"]);
+                    hr.Pos = decimal.Parse(items["pos"]);
+                    hr.Pas = decimal.Parse(items["pas"]);
+                    hr.Cro = decimal.Parse(items["cro"]);
+                    hr.Tec = decimal.Parse(items["tec"]);
+                    hr.Tes = decimal.Parse(items["hea"]);
+                    hr.Fin = decimal.Parse(items["fin"]);
+                    hr.Dis = decimal.Parse(items["lon"]);
+                    hr.Cal = decimal.Parse(items["set"]);
+                }
+                else
+                {
+                    hr.Pre = decimal.Parse(items["han"]);
+                    hr.Uno = decimal.Parse(items["one"]);
+                    hr.Rif = decimal.Parse(items["ref"]);
+                    hr.Aer = decimal.Parse(items["ari"]);
+                    hr.Ele = decimal.Parse(items["jum"]);
+                    hr.Com = decimal.Parse(items["com"]);
+                    hr.Tir = decimal.Parse(items["kic"]);
+                    hr.Lan = decimal.Parse(items["thr"]);
+                }
+                hr.ASI = int.Parse(items["asi"]);
+
+                var tr = TempData.FindByPlayerID(playerID);
+                if (tr == null)
+                {
+                    tr = TempData.NewTempDataRow();
+                    tr.PlayerID = pr.PlayerID;
+                    TempData.AddTempDataRow(tr);
+                }
+
+                tr.Rec = decimal.Parse(items["rec"]);
+
+                if (items["routine"] != "null")
+                    tr.Rou = decimal.Parse(items["routine"]);
+
+                var sr = Shortlist.FindByPlayerID(playerID);
+                if (sr == null)
+                {
+                    sr = Shortlist.NewShortlistRow();
+                    sr.PlayerID = pr.PlayerID;
+                    Shortlist.AddShortlistRow(sr);
+                }
+
+                sr.Bid = int.Parse(items["bid"]);
+                sr.TimeExpire = DateTime.Now.AddSeconds(double.Parse(items["time"]));
+            }
+        }
+
+        public void LoadShortlist(string page)
+        {
+            string[] lines = page.Split('\n');
+
+            foreach (string line in lines)
+            {
+                if (!line.Contains("id="))
+                    continue;
+                Dictionary<string, string> items = HTML_Parser.CreateDictionary(line, ';');
+
+                int playerID = int.Parse(items["id"]);
+
+                var pr = Player.FindByPlayerID(playerID);
+                if (pr == null)
+                {
+                    pr = Player.NewPlayerRow();
+                    pr.Name = items["name"];
+                    pr.PlayerID = int.Parse(items["id"]);
+                    pr.wBorn = Common.TmWeek.GetBornWeekFromAge(int.Parse(items["age"]));
+                    pr.Nationality = items["country"];
+                    pr.FP = TM_Compatible.ConvertNewFP(items["fp"]).ToUpper();
+                    pr.FPn = Tm_Utility.FPToNumber(pr.FP);
+                    Player.AddPlayerRow(pr);
+                }
+
+                int thisWeek = TmWeek.thisWeek().absweek;
+                var hr = HistData.FindByPlayerIDWeek(playerID, thisWeek);
+                if (hr == null)
+                {
+                    hr = HistData.NewHistDataRow();
+                    hr.PlayerID = pr.PlayerID;
+                    hr.Week = thisWeek;
+                    HistData.AddHistDataRow(hr);
+                }
+
+                hr.For = decimal.Parse(items["str"]);
+                hr.Res = decimal.Parse(items["sta"]);
+                hr.Vel = decimal.Parse(items["pac"]);
+                if (pr.FPn > 0)
+                {
+                    hr.Mar = decimal.Parse(items["mar"]);
+                    hr.Con = decimal.Parse(items["tac"]);
+                    hr.Wor = decimal.Parse(items["wor"]);
+                    hr.Pos = decimal.Parse(items["pos"]);
+                    hr.Pas = decimal.Parse(items["pas"]);
+                    hr.Cro = decimal.Parse(items["cro"]);
+                    hr.Tec = decimal.Parse(items["tec"]);
+                    hr.Tes = decimal.Parse(items["hea"]);
+                    hr.Fin = decimal.Parse(items["fin"]);
+                    hr.Dis = decimal.Parse(items["lon"]);
+                    hr.Cal = decimal.Parse(items["set"]);
+                }
+                else
+                {
+                    hr.Pre = decimal.Parse(items["han"]);
+                    hr.Uno = decimal.Parse(items["one"]);
+                    hr.Rif = decimal.Parse(items["ref"]);
+                    hr.Aer = decimal.Parse(items["ari"]);
+                    hr.Ele = decimal.Parse(items["jum"]);
+                    hr.Com = decimal.Parse(items["com"]);
+                    hr.Tir = decimal.Parse(items["kic"]);
+                    hr.Lan = decimal.Parse(items["thr"]);
+                }
+                hr.ASI = int.Parse(items["asi"]);
+
+                var tr = TempData.FindByPlayerID(playerID);
+                if (tr == null)
+                {
+                    tr = TempData.NewTempDataRow();
+                    tr.PlayerID = pr.PlayerID;
+                    TempData.AddTempDataRow(tr);
+                }
+                tr.Rec = decimal.Parse(items["rec"]);
+                tr.Rou = decimal.Parse(items["routine"]);
+                tr.Wage = int.Parse(items["wage"]);
+
+                var sr = Shortlist.NewShortlistRow();
+                sr.PlayerID = pr.PlayerID;
+                if (items["curbid"] != "null")
+                {
+                    sr.Bid = int.Parse(items["curbid"].Replace(",", ""));
+                    sr.TimeExpire = DateTime.Now.AddSeconds(double.Parse(items["timeleft"]));
+                }
+                Shortlist.AddShortlistRow(sr);
+            }
+        }
+
         partial class PlayerDataTable
         {
             public void ReadSafeXml(string fullName)
@@ -113,12 +300,12 @@ namespace Common
         {
         }
 
-        public NTR_Gains GDS { get; set; }
+        public GainDS GDS { get; set; }
 
         public bool LoadGains(string gainSetName)
         {
             if (GDS == null)
-                GDS = new NTR_Gains();
+                GDS = new GainDS();
 
             FileInfo fi = new FileInfo(gainSetName);
 
@@ -128,6 +315,7 @@ namespace Common
 
                 try
                 {
+                    GDS.EnforceConstraints = false;
                     GDS.ReadXml(gainSetName);
                 }
                 catch (Exception)

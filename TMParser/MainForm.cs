@@ -2940,7 +2940,7 @@ namespace TMRecorder
         private void shortlistToolToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShortlistForm sf = new ShortlistForm();
-            sf.Show();
+            sf.ShowDialog();
         }
 
         private void toolStripMenu_SetBloomingAge_Click(object sender, EventArgs e)

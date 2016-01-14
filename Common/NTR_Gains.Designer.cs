@@ -273,7 +273,7 @@ namespace Common {
         private void InitClass() {
             this.DataSetName = "NTR_Gains";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/Gain.xsd";
+            this.Namespace = "http://tempuri.org/NTR_Gains.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
             this.tableSkillFPGain = new SkillFPGainDataTable();

@@ -233,8 +233,9 @@
           <xs:complexType>
             <xs:sequence>
               <xs:element name="PlayerID" msprop:Generator_ColumnVarNameInTable="columnPlayerID" msprop:Generator_ColumnPropNameInRow="PlayerID" msprop:Generator_ColumnPropNameInTable="PlayerIDColumn" msprop:Generator_UserColumnName="PlayerID" type="xs:int" />
-              <xs:element name="Bid" msprop:Generator_ColumnVarNameInTable="columnBid" msprop:Generator_ColumnPropNameInRow="Bid" msprop:Generator_ColumnPropNameInTable="BidColumn" msprop:Generator_UserColumnName="Bid" type="xs:int" minOccurs="0" />
+              <xs:element name="Bid" msprop:Generator_ColumnVarNameInTable="columnBid" msprop:Generator_ColumnPropNameInRow="Bid" msprop:Generator_ColumnPropNameInTable="BidColumn" msprop:Generator_UserColumnName="Bid" type="xs:decimal" minOccurs="0" />
               <xs:element name="TimeExpire" msprop:Generator_ColumnVarNameInTable="columnTimeExpire" msprop:Generator_ColumnPropNameInRow="TimeExpire" msprop:Generator_ColumnPropNameInTable="TimeExpireColumn" msprop:Generator_UserColumnName="TimeExpire" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="AlarmTime" msprop:Generator_ColumnVarNameInTable="columnAlarmTime" msprop:Generator_ColumnPropNameInRow="AlarmTime" msprop:Generator_ColumnPropNameInTable="AlarmTimeColumn" msprop:Generator_UserColumnName="AlarmTime" type="xs:dateTime" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

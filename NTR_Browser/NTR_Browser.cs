@@ -240,7 +240,8 @@ namespace NTR_WebBrowser
         {
             string importedPage = GetHiddenBrowserContent();
 
-            ImportedContent(importedPage, NavigationAddress);
+            if (ImportedContent != null)
+                ImportedContent(importedPage, NavigationAddress);
         }
 
         private void tsbUpdate_Click(object sender, EventArgs e)

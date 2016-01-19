@@ -54,12 +54,13 @@ namespace TMRecorder
             this.webBrowser = new NTR_WebBrowser.NTR_Browser();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsbFile = new System.Windows.Forms.ToolStripDropDownButton();
-            this.loadFromFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.cutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteSelectedPlayersFromVisualizationAndDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateOnlyListedPlayersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clearShortlistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clearShortlistDBforgetAllPastImportedDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
@@ -270,8 +271,8 @@ namespace TMRecorder
             this.webBrowser.NavigationAddress = "";
             this.webBrowser.NavigationMode = NTR_WebBrowser.NTR_Browser.eNavigationMode.Main;
             this.webBrowser.SelectedReportParser = null;
-            this.webBrowser.ShowShortlist = true;
-            this.webBrowser.ShowTransfer = true;
+            this.webBrowser.ShowShortlist = false;
+            this.webBrowser.ShowTransfer = false;
             this.webBrowser.Size = new System.Drawing.Size(861, 318);
             this.webBrowser.StartnavigationAddress = "";
             this.webBrowser.TabIndex = 0;
@@ -285,13 +286,12 @@ namespace TMRecorder
             this.toolStripDropDownButton1});
             this.toolStrip1.Location = new System.Drawing.Point(3, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(122, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(153, 25);
             this.toolStrip1.TabIndex = 0;
             // 
             // tsbFile
             // 
             this.tsbFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.loadFromFileToolStripMenuItem,
             this.saveToolStripMenuItem});
             this.tsbFile.Image = ((System.Drawing.Image)(resources.GetObject("tsbFile.Image")));
             this.tsbFile.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
@@ -300,20 +300,12 @@ namespace TMRecorder
             this.tsbFile.Size = new System.Drawing.Size(54, 22);
             this.tsbFile.Text = "File";
             // 
-            // loadFromFileToolStripMenuItem
-            // 
-            this.loadFromFileToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("loadFromFileToolStripMenuItem.Image")));
-            this.loadFromFileToolStripMenuItem.Name = "loadFromFileToolStripMenuItem";
-            this.loadFromFileToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.loadFromFileToolStripMenuItem.Text = "Load From Backup Files...";
-            this.loadFromFileToolStripMenuItem.Click += new System.EventHandler(this.loadFromFileToolStripMenuItem_Click);
-            // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripMenuItem.Image")));
             this.saveToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(98, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
@@ -322,7 +314,9 @@ namespace TMRecorder
             this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cutToolStripMenuItem,
             this.deleteSelectedPlayersFromVisualizationAndDatabaseToolStripMenuItem,
-            this.updateOnlyListedPlayersToolStripMenuItem});
+            this.updateOnlyListedPlayersToolStripMenuItem,
+            this.clearShortlistToolStripMenuItem,
+            this.clearShortlistDBforgetAllPastImportedDataToolStripMenuItem});
             this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
             this.toolStripDropDownButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -335,24 +329,37 @@ namespace TMRecorder
             this.cutToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("cutToolStripMenuItem.Image")));
             this.cutToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
-            this.cutToolStripMenuItem.Size = new System.Drawing.Size(363, 22);
-            this.cutToolStripMenuItem.Text = "Delete Selected Players from visualization";
+            this.cutToolStripMenuItem.Size = new System.Drawing.Size(358, 22);
+            this.cutToolStripMenuItem.Text = "Remove Selected Players from list";
             this.cutToolStripMenuItem.Click += new System.EventHandler(this.cutToolStripMenuItem_Click);
             // 
             // deleteSelectedPlayersFromVisualizationAndDatabaseToolStripMenuItem
             // 
             this.deleteSelectedPlayersFromVisualizationAndDatabaseToolStripMenuItem.Image = global::TMRecorder.Properties.Resources.Waste;
             this.deleteSelectedPlayersFromVisualizationAndDatabaseToolStripMenuItem.Name = "deleteSelectedPlayersFromVisualizationAndDatabaseToolStripMenuItem";
-            this.deleteSelectedPlayersFromVisualizationAndDatabaseToolStripMenuItem.Size = new System.Drawing.Size(363, 22);
-            this.deleteSelectedPlayersFromVisualizationAndDatabaseToolStripMenuItem.Text = "Delete selected players from visualization and database";
+            this.deleteSelectedPlayersFromVisualizationAndDatabaseToolStripMenuItem.Size = new System.Drawing.Size(358, 22);
+            this.deleteSelectedPlayersFromVisualizationAndDatabaseToolStripMenuItem.Text = "Remove Selected Players from list and DB";
             // 
             // updateOnlyListedPlayersToolStripMenuItem
             // 
             this.updateOnlyListedPlayersToolStripMenuItem.CheckOnClick = true;
             this.updateOnlyListedPlayersToolStripMenuItem.Name = "updateOnlyListedPlayersToolStripMenuItem";
-            this.updateOnlyListedPlayersToolStripMenuItem.Size = new System.Drawing.Size(363, 22);
+            this.updateOnlyListedPlayersToolStripMenuItem.Size = new System.Drawing.Size(358, 22);
             this.updateOnlyListedPlayersToolStripMenuItem.Text = "Update Only listed players";
             this.updateOnlyListedPlayersToolStripMenuItem.Click += new System.EventHandler(this.updateOnlyListedPlayersToolStripMenuItem_Click);
+            // 
+            // clearShortlistToolStripMenuItem
+            // 
+            this.clearShortlistToolStripMenuItem.Name = "clearShortlistToolStripMenuItem";
+            this.clearShortlistToolStripMenuItem.Size = new System.Drawing.Size(358, 22);
+            this.clearShortlistToolStripMenuItem.Text = "Clear Shortlist";
+            this.clearShortlistToolStripMenuItem.Click += new System.EventHandler(this.clearShortlistToolStripMenuItem_Click);
+            // 
+            // clearShortlistDBforgetAllPastImportedDataToolStripMenuItem
+            // 
+            this.clearShortlistDBforgetAllPastImportedDataToolStripMenuItem.Name = "clearShortlistDBforgetAllPastImportedDataToolStripMenuItem";
+            this.clearShortlistDBforgetAllPastImportedDataToolStripMenuItem.Size = new System.Drawing.Size(358, 22);
+            this.clearShortlistDBforgetAllPastImportedDataToolStripMenuItem.Text = "Clear Shortlist DB (forget all previously imported data)";
             // 
             // ShortlistForm
             // 
@@ -362,7 +369,7 @@ namespace TMRecorder
             this.Controls.Add(this.toolStripContainer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ShortlistForm";
-            this.Text = "Shortlist Form";
+            this.Text = "Players Shortlist";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ShortlistForm_FormClosing);
             this.Load += new System.EventHandler(this.ShortlistForm_Load);
             this.contextMenuStrip.ResumeLayout(false);
@@ -406,10 +413,11 @@ namespace TMRecorder
         private System.Windows.Forms.ToolStripDropDownButton tsbFile;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openPlayersTeamPageInTrophyBrowserToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem loadFromFileToolStripMenuItem;
         private System.Windows.Forms.TabPage tabBrowser;
         private NTR_WebBrowser.NTR_Browser webBrowser;
         private System.Windows.Forms.ToolStripMenuItem deleteSelectedPlayersFromVisualizationAndDatabaseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem updateOnlyListedPlayersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem clearShortlistToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem clearShortlistDBforgetAllPastImportedDataToolStripMenuItem;
     }
 }

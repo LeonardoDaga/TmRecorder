@@ -529,7 +529,7 @@ namespace Common
             return -1;
         }
 
-        public static string NumberToFP(int FPn)
+        public static string FPnToFP(int FPn)
         {
             switch (FPn)
             {
@@ -873,10 +873,20 @@ namespace Common
 
         public string ToAge(DateTime tmnow)
         {
-            TmWeek tmwnow = new TmWeek(tmnow);
-            int nWeek = tmwnow.absweek - this.absweek;
-            TmWeek tmYears = new TmWeek(nWeek);
-            return tmYears.Years.ToString() + "y " + tmYears.Months.ToString() + "m";
+            if (tmnow == tmDay0)
+            {
+                TmWeek tmwnow = new TmWeek(tmnow);
+                int nWeek = this.absweek - tmwnow.absweek;
+                TmWeek tmYears = new TmWeek(nWeek);
+                return tmYears.Years.ToString() + "y " + tmYears.Months.ToString() + "m";
+            }
+            else
+            {
+                TmWeek tmwnow = new TmWeek(tmnow);
+                int nWeek = tmwnow.absweek - this.absweek;
+                TmWeek tmYears = new TmWeek(nWeek);
+                return tmYears.Years.ToString() + "y " + tmYears.Months.ToString() + "m";
+            }
         }
 
         public static int GetSeason(DateTime dateTime)

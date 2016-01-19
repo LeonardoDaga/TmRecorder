@@ -9,7 +9,7 @@ using NTR_Common;
 using Common;
 using System.Diagnostics;
 
-namespace NTR_Common
+namespace NTR_Db
 {
     public partial class NTR_PlayerData : UserControl
     {
@@ -258,7 +258,7 @@ namespace NTR_Common
                     else
                         lblInjuryPro.Text = "-";
 
-                    string FP = Tm_Utility.NumberToFP(pr.FPn);
+                    string FP = Tm_Utility.FPnToFP(pr.FPn);
 
                     string[] FPs = FP.Split('/');
                     if (FPs.Length == 1)
@@ -364,6 +364,231 @@ namespace NTR_Common
                 catch(Exception e)
                 { }
             }
+        }
+
+        public void SetPlayerData(PlayerData plData)
+        {
+            try
+            {
+                if (plData.FPn != 0)
+                {
+                    lblAdaCapt.Visible = true;
+                    lblFinCapt.Visible = true;
+                    lblSetCapt.Visible = true;
+                    lblLonCapt.Visible = true;
+                    lblAda.Visible = true;
+                    lblFin.Visible = true;
+                    lblCP.Visible = true;
+                    lblDis.Visible = true;
+
+                    lblTakCapt.Text = "Tak";
+                    lblCroCapt.Text = "Cro";
+                    lblFinCapt.Text = "Fin";
+                    lblStrCapt.Text = "Str";
+                    lblMarCapt.Text = "Mar";
+                    lblPasCapt.Text = "Pas";
+                    lblPosCapt.Text = "Pos";
+                    lblStaCapt.Text = "Sta";
+                    lblTecCapt.Text = "Tec";
+                    lblHeaCapt.Text = "Hea";
+                    lblLonCapt.Text = "Lon";
+                    lblPacCapt.Text = "Pac";
+                    lblWorCapt.Text = "Wor";
+                    lblSetCapt.Text = "Set";
+
+                    lblCon.Text = plData.Tac.ToString();
+                    lblCro.Text = plData.Cro.ToString();
+                    lblFin.Text = plData.Fin.ToString();
+                    lblFor.Text = plData.Str.ToString();
+                    lblMar.Text = plData.Mar.ToString();
+                    lblPas.Text = plData.Pas.ToString();
+                    lblPos.Text = plData.Pos.ToString();
+                    lblRes.Text = plData.Sta.ToString();
+                    lblTec.Text = plData.Tec.ToString();
+                    lblTes.Text = plData.Hea.ToString();
+                    lblDis.Text = plData.Lon.ToString();
+                    lblVel.Text = plData.Pac.ToString();
+                    lblImp.Text = plData.Wor.ToString();
+                    lblCP.Text = plData.Set.ToString();
+
+                    if (plData.Ada > 0)
+                        lblAda.Text = plData.Ada.ToString() + "/20";
+                    else
+                        lblAda.Text = "- ";
+                }
+                else
+                {
+                    lblAdaCapt.Visible = false;
+                    lblFinCapt.Visible = false;
+                    lblSetCapt.Visible = false;
+                    lblLonCapt.Visible = false;
+                    lblAda.Visible = false;
+                    lblFin.Visible = false;
+                    lblCP.Visible = false;
+                    lblDis.Visible = false;
+
+                    lblTakCapt.Text = "One";
+                    lblCroCapt.Text = "Com";
+                    lblStrCapt.Text = "Str";
+                    lblMarCapt.Text = "Han";
+                    lblPasCapt.Text = "Jum";
+                    lblPosCapt.Text = "Ari";
+                    lblStaCapt.Text = "Sta";
+                    lblTecCapt.Text = "Kic";
+                    lblHeaCapt.Text = "Thr";
+                    lblPacCapt.Text = "Pac";
+                    lblWorCapt.Text = "Ref";
+
+                    lblCon.Text = plData.Tac.ToString();
+                    lblCro.Text = plData.Cro.ToString();
+                    lblFor.Text = plData.Str.ToString();
+                    lblMar.Text = plData.Mar.ToString();
+                    lblPas.Text = plData.Pas.ToString();
+                    lblPos.Text = plData.Pos.ToString();
+                    lblRes.Text = plData.Sta.ToString();
+                    lblTec.Text = plData.Tec.ToString();
+                    lblTes.Text = plData.Hea.ToString();
+                    lblVel.Text = plData.Pac.ToString();
+                    lblImp.Text = plData.Wor.ToString();
+                }
+
+                if (plData != null)
+                    lblRou.Text = plData.Rou.ToString();
+                else
+                    lblRou.Text = "-";
+
+                lblASI.Text = plData.ASI.ToString();
+                TmWeek born = new TmWeek(plData.wBorn);
+                lblAge.Text = born.ToAge(DateTime.Today);
+
+                lblSOi.Text = "-";
+
+                lblSsd.Text = plData.SSD.ToString("N2");
+
+                lblName.Text = plData.Name;
+
+                lblWage.Text = plData.Wage.ToString();
+
+                int injWeeks = 0;
+                int banWeeks = 0;
+                int teamB = 0;
+
+                if (injWeeks == 0)
+                {
+                    pctInj.Visible = false;
+                    lblInjDays.Visible = false;
+                }
+                else
+                {
+                    pctInj.Visible = true;
+                    lblInjDays.Visible = true;
+                    lblInjDays.Text = injWeeks.ToString();
+                }
+
+                pctBan.Visible = false;
+                lblBanDays.Visible = false;
+
+                pctTeamB.Visible = (teamB != 0);
+                pctRetiring.Visible = false; // TODO!!
+
+                lblCRec.Text = plData.CStr.ToString("N1") + "/5";
+                lblRec.Text = plData.Rec.ToString("N1") + "/5";
+
+                int ix = flagImgList.Images.IndexOfKey(plData.Nationality.ToString() + ".png");
+                pictFlag.Image = flagImgList.Images[ix];
+
+                if (plData.Professionalism == null)
+                    lblProfessionalism.Text = "-";
+                else
+                    lblProfessionalism.Text = plData.Professionalism.ToString();
+
+                if (plData.Aggressivity == null)
+                    lblAggression.Text = "-";
+                else
+                    lblAggression.Text = plData.Aggressivity.ToString();
+
+                if (plData.Leadership == null)
+                    lblLea.Text = "-";
+                else
+                    lblLea.Text = plData.Leadership.ToString();
+
+                if (plData.Potential == null)
+                    lblPot.Text = "-";
+                else
+                    lblPot.Text = plData.Potential.ToString();
+
+                if (plData.Inj != 0)
+                    lblInjuryPro.Text = plData.Inj.ToString() + "/20";
+                else
+                    lblInjuryPro.Text = "-";
+
+                string FP = Tm_Utility.FPnToFP(plData.FPn);
+
+                string[] FPs = FP.Split('/');
+                if (FPs.Length == 1)
+                {
+                    lblFP1.Text = FPs[0];
+                    SetLabelBack(lblFP1, FPs[0]);
+                    lblFP2.Visible = false;
+                }
+                else if (FPs.Length == 2)
+                {
+                    lblFP1.Text = FPs[0];
+                    lblFP2.Text = FPs[1];
+                    SetLabelBack(lblFP1, FPs[0]);
+                    SetLabelBack(lblFP2, FPs[1]);
+                    lblFP2.Visible = true;
+                }
+
+                RatingR2 R2 = plData.CalculateREREC();
+
+                int[] FPv = Tm_Utility.FPnToFPvector(plData.FPn);
+
+                lblR2Rat1.Text = R2.ratingR2[FPv[0]].ToString("N1");
+                lblReRec1.Text = R2.rec[FPv[0]].ToString("N2");
+                lblRouEff1.Text = (R2.ratingR2[FPv[0]] - R2.ratingR[FPv[0]]).ToString("N1");
+                lblRsSk1.Text = FPs[0];
+                SetLabelBack(lblRsSk1, FPs[0]);
+
+                lblR2Rat2.Visible = (FPv[1] != -1);
+                lblReRec2.Visible = (FPv[1] != -1);
+                lblRouEff2.Visible = (FPv[1] != -1);
+                lblRsSk2.Visible = (FPv[1] != -1);
+
+                if (FPv[1] != -1)
+                {
+                    lblR2Rat2.Text = R2.ratingR2[FPv[1]].ToString("N1");
+                    lblReRec2.Text = R2.rec[FPv[1]].ToString("N2");
+                    lblRouEff2.Text = (R2.ratingR2[FPv[1]] - R2.ratingR[FPv[1]]).ToString("N1");
+                    lblRsSk2.Text = FPs[1];
+                    SetLabelBack(lblRsSk2, FPs[1]);
+                }
+
+                Color labelColor;
+
+                foreach (Label label in phyLabels)
+                {
+                    label.ForeColor = Color.Gainsboro;
+                    if (label.Font.Bold)
+                        label.Font = new Font(label.Font, FontStyle.Regular);
+                }
+
+                foreach (Label label in tecLabels)
+                {
+                    label.ForeColor = Color.Gainsboro;
+                    if (label.Font.Bold)
+                        label.Font = new Font(label.Font, FontStyle.Regular);
+                }
+
+                foreach (Label label in tacLabels)
+                {
+                    label.ForeColor = Color.Gainsboro;
+                    if (label.Font.Bold)
+                        label.Font = new Font(label.Font, FontStyle.Regular);
+                }
+            }
+            catch(Exception e)
+            { }
         }
 
         private void SetLabelBack(Label lblFP, string FP)

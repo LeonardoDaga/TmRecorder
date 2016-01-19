@@ -308,6 +308,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="PlayerTraining.Designer.cs">
+      <DependentUpon>PlayerTraining.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Pop3MailClient.cs" />
     <Compile Include="ProgressForm.cs">
       <SubType>Form</SubType>
@@ -581,6 +586,17 @@
     </None>
     <None Include="NTR_SquadDb.xss">
       <DependentUpon>NTR_SquadDb.xsd</DependentUpon>
+    </None>
+    <None Include="PlayerTraining.xsc">
+      <DependentUpon>PlayerTraining.xsd</DependentUpon>
+    </None>
+    <None Include="PlayerTraining.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PlayerTraining.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="PlayerTraining.xss">
+      <DependentUpon>PlayerTraining.xsd</DependentUpon>
     </None>
     <None Include="ReportAnalysis.xsc">
       <DependentUpon>ReportAnalysis.xsd</DependentUpon>

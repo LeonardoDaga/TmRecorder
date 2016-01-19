@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="trainingBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>149, 55</value>
+  </metadata>
+  <metadata name="playerTraining.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>705, 17</value>
+  </metadata>
   <metadata name="scoutsNReviews.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>244, 94</value>
   </metadata>
@@ -213,35 +219,11 @@
         BgUAAAAFTm8uIDIGBgAAAAVOby4gMwYHAAAABU5vLiA0BggAAAAFTm8uIDUGCQAAAAVOby4gNg0CCw==
 </value>
   </data>
-  <metadata name="PlayerAge.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="trainingBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>149, 55</value>
-  </metadata>
-  <metadata name="PlayerAge.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="trainingBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>149, 55</value>
-  </metadata>
-  <metadata name="playerTraining.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>705, 17</value>
-  </metadata>
-  <metadata name="playerTraining.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>705, 17</value>
-  </metadata>
   <metadata name="scoutsDataTableBindingSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 94</value>
   </metadata>
   <metadata name="performancesBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>889, 55</value>
-  </metadata>
-  <metadata name="performancesBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>889, 55</value>
-  </metadata>
-  <metadata name="gameTableDS.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>835, 16</value>
   </metadata>
   <metadata name="gameTableDS.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>835, 16</value>
@@ -294,17 +276,6 @@
         HMUzzWHjJmY6atUfDl4h7gJWVQj6jpaVoqkQtUCQfIm14hsxTC6Kf1Gv11uYwfSeAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="toolStripButton3.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEzSURBVDhPnVGhdoQwEOQTTmKRSCQWGYnEIiNPYiORlVgk
-        EolFIk9ikSeR090l6YWU62s77+1b2MzMTiAyxiAyEf7bo9+Qfu725a9orO4rASN09+EE37n2gOGLfbIv
-        dty3CVz3TfK8ICKTz9yDY4kOoYmcWzFXEidy7nSnBA6+CUeNebPKMDYldHoYON1lAn829Z0In3NDZTC2
-        SuaXCXyx6+M4oasSbFMrNegs4FoiIxRzv2UaWRzj0WlJYtTtxH2boGhW1DRuB1CKXQx0nsqsaABlnpiW
-        hbhWEIINGI+dDJYdO5GXfkD5AZQtQMFQtdv1X2Do7iU2I33Mww+Kt1PVZJTq9ZUg7BKbDPqZ7ksGFW3l
-        63CvSMwL8ruXwO/875N6pntucpX8vlLkFWm9ybOrtF7wCbqPlo0X6HkrAAAAAElFTkSuQmCC
-</value>
-  </data>
   <data name="tsbComputeGrowth.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -339,9 +310,6 @@
   </metadata>
   <metadata name="scoutsBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>349, 17</value>
-  </metadata>
-  <metadata name="extraDS.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>514, 17</value>
   </metadata>
   <metadata name="extraDS.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>514, 17</value>

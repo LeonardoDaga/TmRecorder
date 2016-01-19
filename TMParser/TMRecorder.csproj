@@ -244,11 +244,6 @@
     <Compile Include="PlayerForm.Designer.cs">
       <DependentUpon>PlayerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="PlayerTraining.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PlayerTraining.xsd</DependentUpon>
-    </Compile>
     <Compile Include="AsyncProgressForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -631,17 +626,6 @@
     <Content Include="Datafiles\LedNygaardDataSet.tmgain.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="PlayerTraining.xsc">
-      <DependentUpon>PlayerTraining.xsd</DependentUpon>
-    </None>
-    <None Include="PlayerTraining.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>PlayerTraining.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="PlayerTraining.xss">
-      <DependentUpon>PlayerTraining.xsd</DependentUpon>
-    </None>
     <None Include="Resources\TMRBrowser.ico" />
     <Content Include="Datafiles\RUSCheratte.tmgain.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

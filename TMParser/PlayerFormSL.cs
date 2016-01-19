@@ -15,90 +15,94 @@ using SendFileTo;
 using NTR_Common;
 using mshtml;
 using NTR_WebBrowser;
+using NTR_Db;
+using System.Linq;
+using NTR_Controls;
+using DataGridViewCustomColumns;
 
 namespace TMRecorder
 {
     public partial class PlayerFormSL : Form
     {
-        private TeamHistory History;
-        public TeamDS.GiocatoriNSkillDataTable GDT;
-        private int actualPlayerCnt;
+        private int selectedPlayerCnt;
         private bool playerInfoChanged = false;
         public bool isDirty = false;
-        public NTR_Db.Seasons allSeasons = null;
-        public int actPlayerID
+        NTR_SquadDb DB = null;
+        ReportParser reportParser;
+
+        public int selectedPlayerID
         {
             get
             {
-                TeamDS.GiocatoriNSkillRow playerDatarow = (TeamDS.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
-                return playerDatarow.PlayerID;
+                return selectedPlayerData.playerID;
             }
         }
 
         public int Wage
         {
-            set { playerData.Wage = value; }
+            set { playerDataCnt.Wage = value; }
         }
         
         public decimal BloomAgeView
         {
-            set {playerData.BloomAge = value; }
+            set {playerDataCnt.BloomAge = value; }
         }
 
-        public PlayerFormSL(TeamDS.GiocatoriNSkillDataTable gdt,
-                         NTR_Db.Seasons allseason)
-        {
-            // Only for debug
-            InitializeComponent();
-
-            SetLanguage();
-
-            this.allSeasons = allseason;
-
-            GDT = gdt;
-        }
-
-        public PlayerFormSL(TeamDS.GiocatoriNSkillDataTable gdt,
-                         TeamHistory hist,
-                         int ID,
-                         NTR_Db.Seasons allseasons)
+        public PlayerFormSL(NTR_Db.PlayerData playerData,
+                            ReportParser reportParser)
         {
             InitializeComponent();
 
             SetLanguage();
 
-            this.allSeasons = allseasons;
+            DB = playerData.DB;
+            selectedPlayerData = playerData;
 
-            History = hist;
+            int playerID = playerData.playerID;
 
-            GDT = gdt;
+            NTR_SquadDb.ShortlistRow sr = DB.Shortlist.FindByPlayerID(playerID);
 
-            TeamDS.GiocatoriNSkillRow row = gdt.FindByPlayerID(ID);
-            for (int n = 0; n < gdt.Rows.Count; n++)
+            for (int n = 0; n < DB.Shortlist.Rows.Count; n++)
             {
-                if (row == gdt.Rows[n])
+                if (sr == DB.Shortlist.Rows[n])
                 {
-                    actualPlayerCnt = n;
+                    selectedPlayerCnt = n;
                     break;
                 }
             }
 
-            Initialize();            
+            GetPlayerHistory();
 
-            chkNormalized_CheckedChanged(null, EventArgs.Empty);
+            this.reportParser = reportParser;
 
-            webBrowser.SelectedReportParser = History.reportParser;
-            webBrowser.GotoPlayer(ID, NTR_Browser.PlayerNavigationType.NavigateReports);
+            Initialize();
+
+            webBrowser.SelectedReportParser = this.reportParser;
+
+            webBrowser.GotoPlayer(selectedPlayerID, NTR_Browser.PlayerNavigationType.NavigateReports);
+        }
+
+        public void GetPlayerHistory()
+        {
+            var playerHRCollection = (from c in DB.HistData
+                                      where (c.PlayerID == selectedPlayerID)
+                                      select c);
+
+            var playerHistoryList = playerHRCollection.OrderBy(p => p.Week).ToList();
+
+            playerHistory = new PlayerHistory(playerHistoryList);
         }
 
         public void Initialize(int playerID)
         {
-            for (int n = 0; n < GDT.Rows.Count; n++)
+            NTR_SquadDb.ShortlistRow sr = DB.Shortlist.FindByPlayerID(playerID);
+
+            for (int n = 0; n < DB.Shortlist.Rows.Count; n++)
             {
-                ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[n];
-                if (playerDatarow.PlayerID == playerID)
+                if (sr == DB.Shortlist.Rows[n])
                 {
-                    actualPlayerCnt = n;
+                    selectedPlayerCnt = n;
+                    selectedPlayerData = new NTR_Db.PlayerData(sr);
                     break;
                 }
             }
@@ -106,30 +110,29 @@ namespace TMRecorder
             Initialize();
         }
 
+        public void InitializeByCount(int playerCnt)
+        {
+            selectedPlayerCnt = playerCnt;
+
+            NTR_SquadDb.ShortlistRow sr = (NTR_SquadDb.ShortlistRow)DB.Shortlist.Rows[playerCnt];
+
+            selectedPlayerData = new NTR_Db.PlayerData(sr);
+
+            Initialize();
+        }
+
         public void Initialize()
         {
-            TeamDS.GiocatoriNSkillRow playerDatarow = (TeamDS.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
+            FillBaseData(selectedPlayerData);
 
-            ExtTMDataSet.PlayerHistoryDataTable table = History.GetPlayerHistory(playerDatarow.PlayerID);
-
-            FillBaseData(playerDatarow);
-
-            if (playerDatarow.FPn == 0)
-            {
-                FillTrainingTable_Gk(playerDatarow.PlayerID);
-            }
-            else
-            {
-                FillTrainingTable_Pl(playerDatarow.PlayerID);
-            }
-
-            FillPlayerInfo(true);
+            FormatTrainingGrid();
+            UpdateTrainingList();
 
             playerInfoChanged = false;
 
-            SetupTagsBars(History.reportParser);
+            SetupTagsBars(reportParser);
 
-            FillPlayerBar(playerDatarow.PlayerID);
+            FillPlayerBar(selectedPlayerData.playerID);
 
             if (tabControlPlayerHistory.SelectedTab == tabPlayerBrowser)
             {
@@ -139,26 +142,89 @@ namespace TMRecorder
             this.Refresh();
         }
 
-        private void FillTagsBars(ExtraDS.GiocatoriRow gRow)
+        private void UpdateTrainingList()
         {
-            if (!gRow.IsAggressivityNull())
-                tagsBarAgg.Value = (decimal)gRow.Aggressivity / 5M + 1;
-            else
-                tagsBarAgg.Value = 0;
+            GetPlayerHistory();
 
-            if (!gRow.IsProfessionalismNull())
-                tagsBarPro.Value = (decimal)gRow.Professionalism / 5M + 1;
-            else
-                tagsBarPro.Value = 0;
+            List<NTR_Db.PlayerData> trainingDataList = new List<NTR_Db.PlayerData>();
 
-            if (!gRow.IsLeadershipNull())
-                tagsBarLea.Value = (decimal)gRow.Leadership / 5M + 1;
-            else
-                tagsBarLea.Value = 0;
+            for (int i = 0; i < playerHistory.Count - 1; i++)
+            {
+                trainingDataList.Add(new NTR_Db.PlayerData(playerHistory[i+1], playerHistory[i]));
+            }
+            trainingDataList.Add(new NTR_Db.PlayerData(playerHistory[playerHistory.Count - 1], null));
 
-            tagsBarPhy.Value = (decimal)gRow.Physics;
-            tagsBarTac.Value = (decimal)gRow.Tactics;
-            tagsBarTec.Value = (decimal)gRow.Technics;
+            dgTraining.DataCollection = trainingDataList;
+        }
+
+        private void FormatTrainingGrid()
+        {
+            dgTraining.AutoGenerateColumns = false;
+
+            dgTraining.Columns.Clear();
+            TMR_AgeColumn colAge = (TMR_AgeColumn)dgTraining.AddColumn("Age", "wBorn", 32, AG_Style.Age | AG_Style.Frozen);
+            TMR_AgeColumn colWeek = (TMR_AgeColumn)dgTraining.AddColumn("Week", "Week", 50, AG_Style.Age | AG_Style.Frozen);
+            TMR_NumDecColumn dgvc = (TMR_NumDecColumn)dgTraining.AddColumn("ASI", "ASI", 49, AG_Style.NumDec | AG_Style.Frozen);
+            dgvc.CellColorStyles = CellColorStyleList.DefaultGainColorStyle();
+
+            AddTrainingSkillColumn("Str");
+            AddTrainingSkillColumn("Pac");
+            AddTrainingSkillColumn("Sta");
+
+            if (selectedPlayerData.FPn == 0)
+            {
+                AddTrainingSkillColumn("Han");
+                AddTrainingSkillColumn("One");
+                AddTrainingSkillColumn("Ref");
+                AddTrainingSkillColumn("Ari");
+                AddTrainingSkillColumn("Jum");
+                AddTrainingSkillColumn("Com");
+                AddTrainingSkillColumn("Kic");
+                AddTrainingSkillColumn("Thr");
+            }
+            else
+            {
+                AddTrainingSkillColumn("Mar");
+                AddTrainingSkillColumn("Tac");
+                AddTrainingSkillColumn("Wor");
+                AddTrainingSkillColumn("Pos");
+                AddTrainingSkillColumn("Pas");
+                AddTrainingSkillColumn("Cro");
+                AddTrainingSkillColumn("Tec");
+                AddTrainingSkillColumn("Hea");
+                AddTrainingSkillColumn("Fin");
+                AddTrainingSkillColumn("Lon");
+                AddTrainingSkillColumn("Set");
+            }
+
+            colAge.When = DateTime.Now;
+            colWeek.When = TmWeek.tmDay0;
+        }
+
+        private void AddTrainingSkillColumn(string skill)
+        {
+            string translatedSkill = Current.Language.Get(skill);
+            TMR_NumDecColumn dgvc = (TMR_NumDecColumn)dgTraining.AddColumn(translatedSkill, skill, 25, AG_Style.NumDec);
+            if (Program.Setts.EvidenceGain)
+                dgvc.CellColorStyles = CellColorStyleList.DefaultGainColorStyle();
+            else
+                dgvc.CellColorStyles = CellColorStyleList.NoGainColorStyle();
+        }
+
+        private void FillTagsBars(NTR_Db.PlayerData selectedPlayerData)
+        {
+            if (selectedPlayerData.Aggressivity != null)
+                tagsBarAgg.Value = (decimal)selectedPlayerData.Aggressivity / 5M + 1;
+            if (selectedPlayerData.Professionalism != null)
+                tagsBarPro.Value = (decimal)selectedPlayerData.Professionalism / 5M + 1;
+            if (selectedPlayerData.Leadership != null)
+                tagsBarLea.Value = (decimal)selectedPlayerData.Leadership / 5M + 1;
+            if (selectedPlayerData.Physics != null)
+                tagsBarPhy.Value = (decimal)selectedPlayerData.Physics;
+            if (selectedPlayerData.Tactics != null)
+                tagsBarTac.Value = (decimal)selectedPlayerData.Tactics;
+            if (selectedPlayerData.Technics != null)
+                tagsBarTec.Value = (decimal)selectedPlayerData.Technics;
         }
 
         private void SetupTagsBars(ReportParser reportParser)
@@ -189,55 +255,6 @@ namespace TMRecorder
                 tagsBar.Tags.Add(key.Value);
             }
             tagsBar.Invalidate();       
-        }
-
-        private void FillTrainingTable_Gk(int playerID)
-        {
-            finDataGridViewTextBoxColumn.Visible = false;
-            setDataGridViewTextBoxColumn.Visible = false;
-            lonDataGridViewTextBoxColumn.Visible = false;
-            trainingTypesColumn.Visible = false;
-
-            this.marDataGridViewTextBoxColumn.HeaderText = Current.Language.Han;
-            this.conDataGridViewTextBoxColumn.HeaderText = Current.Language.One;
-            this.worDataGridViewTextBoxColumn.HeaderText = Current.Language.Ref;
-            this.posDataGridViewTextBoxColumn.HeaderText = Current.Language.Ari;
-            this.pasDataGridViewTextBoxColumn.HeaderText = Current.Language.Jum;
-            this.croDataGridViewTextBoxColumn.HeaderText = Current.Language.Com;
-            this.tecDataGridViewTextBoxColumn.HeaderText = Current.Language.Kic;
-            this.tesDataGridViewTextBoxColumn.HeaderText = Current.Language.Thr;
-
-            playerTraining.Clear();
-
-            History.FillGKTrainingTable(playerTraining, playerID);
-
-            dgTraining.SetWhen(DateTime.Now);
-        }
-
-        private void FillTrainingTable_Pl(int playerID)
-        {
-            finDataGridViewTextBoxColumn.Visible = true;
-            setDataGridViewTextBoxColumn.Visible = true;
-            lonDataGridViewTextBoxColumn.Visible = true;
-            trainingTypesColumn.Visible = true;
-
-            this.marDataGridViewTextBoxColumn.HeaderText = Current.Language.Mar;
-            this.conDataGridViewTextBoxColumn.HeaderText = Current.Language.Tak;
-            this.worDataGridViewTextBoxColumn.HeaderText = Current.Language.Wor;
-            this.posDataGridViewTextBoxColumn.HeaderText = Current.Language.Pos;
-            this.pasDataGridViewTextBoxColumn.HeaderText = Current.Language.Pas;
-            this.croDataGridViewTextBoxColumn.HeaderText = Current.Language.Cro;
-            this.tecDataGridViewTextBoxColumn.HeaderText = Current.Language.Tec;
-            this.tesDataGridViewTextBoxColumn.HeaderText = Current.Language.Hea;
-            this.finDataGridViewTextBoxColumn.HeaderText = Current.Language.Fin;
-            this.lonDataGridViewTextBoxColumn.HeaderText = Current.Language.Lon;
-            this.setDataGridViewTextBoxColumn.HeaderText = Current.Language.Set;
-
-            playerTraining.Clear();
-
-            History.FillPLTrainingTable(playerTraining, playerID);
-
-            dgTraining.SetWhen(DateTime.Now);
         }
 
         /// <summary>
@@ -319,10 +336,11 @@ namespace TMRecorder
             }
         }
 
+        /*
         private void FillPlayerInfo(bool reset)
         {
-            TeamDS.GiocatoriNSkillRow playerDatarow = (TeamDS.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
-            TeamDS.GiocatoriNSkillRow gRow = teamDS.GiocatoriNSkill.FindByPlayerID(playerDatarow.PlayerID);
+            TeamDS.GiocatoriNSkillRow playerDatarow = (TeamDS.GiocatoriNSkillRow)GDT.Rows[selectedPlayerCnt];
+            TeamDS.GiocatoriNSkillRow selectedPlayerData = teamDS.GiocatoriNSkill.FindByPlayerID(playerDatarow.PlayerID);
 
             scoutsNReviews.Scouts.Clear();
             foreach (ExtraDS.ScoutsRow sr in History.PlayersDS.Scouts)
@@ -340,11 +358,11 @@ namespace TMRecorder
             }
 
             scoutsNReviews.Review.Clear();
-            //scoutsNReviews.FillTables(gRow, History.reportParser);
+            //scoutsNReviews.FillTables(selectedPlayerData, History.reportParser);
 
-            reviewDataTableBindingSource.Filter = "PlayerID=" + gRow.PlayerID.ToString();
+            reviewDataTableBindingSource.Filter = "PlayerID=" + selectedPlayerData.PlayerID.ToString();
 
-            txtNotes.Text = gRow.Notes;
+            txtNotes.Text = selectedPlayerData.Notes;
 
             foreach (DataGridViewColumn col in dgReviews.Columns)
             {
@@ -354,80 +372,54 @@ namespace TMRecorder
                         (DataGridViewCustomColumns.TMR_ReportColumn)col;
 
                     repCol.reportParser = History.reportParser;
-                    repCol.FPn = gRow.FPn;
+                    repCol.FPn = selectedPlayerData.FPn;
                 }
             }
-
-            //FillTagsBars(gRow);
-
-            //string gameTable = "";
-            //if (!gRow.IsGameTableNull())
-            //    gameTable = gRow.GameTable;
-            //gameTableDS.LoadSeasonsStrings(gameTable);
-
-            //if (gRow.wBloomStart != -1) 
-            //    BloomAgeView = (gRow.wBloomStart - gRow.wBorn) / 12;
-            //else
-            //    BloomAgeView = -1M;
         }
 
         private void StorePlayerInfo()
         {
-            TeamDS.GiocatoriNSkillRow playerDatarow = (TeamDS.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
-            ExtraDS.GiocatoriRow gRow = History.PlayersDS.Giocatori.FindByPlayerID(playerDatarow.PlayerID);
-            gRow.Note = txtNotes.Text;
+            TeamDS.GiocatoriNSkillRow playerDatarow = (TeamDS.GiocatoriNSkillRow)GDT.Rows[selectedPlayerCnt];
+            ExtraDS.GiocatoriRow selectedPlayerData = History.PlayersDS.Giocatori.FindByPlayerID(playerDatarow.PlayerID);
+            selectedPlayerData.Note = txtNotes.Text;
         }
-
-        private void FillBaseData(TeamDS.GiocatoriNSkillRow playerDatarow)
+        */
+        private void FillBaseData(NTR_Db.PlayerData playerData)
         {
-            ExtraDS.GiocatoriRow gRow = History.PlayersDS.Giocatori.FindByPlayerID(playerDatarow.PlayerID);
-
-            playerData.PlayerRow = playerDatarow;
+            playerDataCnt.SetPlayerData(playerData);
         }
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-            actualPlayerCnt++;
+            selectedPlayerCnt++;
 
-            if (actualPlayerCnt > GDT.Rows.Count - 1)
+            if (selectedPlayerCnt > DB.Shortlist.Rows.Count - 1)
             {
-                actualPlayerCnt = 0;
+                selectedPlayerCnt = 0;
             }
 
-            Initialize();
+            InitializeByCount(selectedPlayerCnt);
 
-            webBrowser.GotoPlayer(actPlayerID, NTR_Browser.PlayerNavigationType.NavigateReports);
+            webBrowser.GotoPlayer(selectedPlayerID, NTR_Browser.PlayerNavigationType.NavigateReports);
         }
 
         private void btnPrev_Click(object sender, EventArgs e)
         {
-            actualPlayerCnt--;
+            selectedPlayerCnt--;
 
-            if (actualPlayerCnt < 0)
+            if (selectedPlayerCnt < 0)
             {
-                actualPlayerCnt = GDT.Rows.Count - 1;
+                selectedPlayerCnt = DB.Shortlist.Rows.Count - 1;
             }
 
-            Initialize();
+            InitializeByCount(selectedPlayerCnt);
 
-            webBrowser.GotoPlayer(actPlayerID, NTR_Browser.PlayerNavigationType.NavigateReports);
+            webBrowser.GotoPlayer(selectedPlayerID, NTR_Browser.PlayerNavigationType.NavigateReports);
         }
 
         private void txtNotes_TextChanged(object sender, EventArgs e)
         {
             playerInfoChanged = true;
-        }
-
-        private void playersMainPageToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
-            Clipboard.SetText("http://trophymanager.com/players/" + playerDatarow.PlayerID.ToString());
-        }
-
-        private void playersScoutPageToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
-            Clipboard.SetText("http://trophymanager.com/players/" + playerDatarow.PlayerID.ToString() + "/#/page/scout/");
         }
 
         private void openPlayerPageToolStripMenuItem_Click(object sender, EventArgs e)
@@ -444,162 +436,51 @@ namespace TMRecorder
             Process.Start(startInfo);
         }
 
-        private void chkShowTGI_CheckedChanged(object sender, EventArgs e)
-        {
-            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
-            ExtTMDataSet.PlayerHistoryDataTable table = History.GetPlayerHistory(playerDatarow.PlayerID);
-            Program.Setts.Save();
-        }
-
-        private void exportInExcelFormat_Click(object sender, EventArgs e)
-        {
-            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
-            ExtTMDataSet.PlayerHistoryDataTable table = History.GetPlayerHistory(playerDatarow.PlayerID);
-            ExtraDS.GiocatoriRow gRow = History.PlayersDS.Giocatori.FindByPlayerID(playerDatarow.PlayerID);
-            WeekHistorical whTI = new WeekHistorical(gRow.TSI);
-            WeekHistorical whASI = new WeekHistorical(whTI.lastWeek);
-
-            for (int i = 0; i < table.Rows.Count; i++)
-            {
-                ExtTMDataSet.PlayerHistoryRow pr = (ExtTMDataSet.PlayerHistoryRow)table.Rows[i];
-                whASI.Set(pr.Date, pr.ASI);
-            }
-
-            int iniWeek = Math.Min(whASI.lastWeek.absweek, whTI.lastWeek.absweek);
-            int thisWeek = TmWeek.thisWeek().absweek;
-
-            string dates = TmWeek.GenerateDatesString(iniWeek, thisWeek, '\t');
-            string asiHist = whASI.GenerateHistoryString(iniWeek, thisWeek, '\t');
-            string tiHist = whTI.GenerateHistoryString(iniWeek, thisWeek, '\t');
-
-            Clipboard.SetText("Date\t" + dates +
-                "\r\nASI\t" + asiHist +
-                "\r\nTI\t" + tiHist);
-
-            MessageBox.Show("The history of the player has been copied into the clipboard. \n" +
-                "Open now Excel and paste into a sheet", "Copy to Excel");
-        }
-
-        private void chkNormalized_CheckedChanged(object sender, EventArgs e)
-        {
-            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
-            Program.Setts.Save();
-        }
-
-        private void cmbSeason_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            chkNormalized_CheckedChanged(null, EventArgs.Empty);
-        }
-
         private void tsbComputeGrowth_Click(object sender, EventArgs e)
         {
-            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
-            ExtTMDataSet.PlayerHistoryDataTable table = History.GetPlayerHistory(playerDatarow.PlayerID);
-
-            ExtraDS.GiocatoriRow gRow = History.PlayersDS.Giocatori.FindByPlayerID(playerDatarow.PlayerID);
-
-
             ComputeBloom cb = new ComputeBloom();
-            cb.ActualASI = gRow.ASI;
-            cb.CurrentSkillSum = (decimal)Tm_Utility.ASItoSkSum((decimal)gRow.ASI, false);
-            cb.RealSkillSum = playerDatarow.SkillSum;
+            cb.ActualASI = selectedPlayerData.ASI.actual;
+            cb.CurrentSkillSum = (decimal)Tm_Utility.ASItoSkSum((decimal)selectedPlayerData.ASI.actual, false);
+            cb.RealSkillSum = selectedPlayerData.SkillSum.actual;
 
-            WeekHistorical whTI = new WeekHistorical(gRow.TSI);
-            if (!float.IsNaN(whTI.ActualTI))
-                cb.ActualTI = (decimal)whTI.ActualTI;
-            else
-                cb.ActualTI = 0;
+            cb.ActualTI = 0;
 
-            cb.PlayerNameAndID = gRow.Nome + "\n(" + gRow.PlayerID.ToString() + ")";
+            cb.PlayerNameAndID = selectedPlayerData.Name + "\n(" + selectedPlayerID.ToString() + ")";
 
-            if (gRow.wBloomStart == -1)
-            {
-                gRow.wBloomStart = whTI.FindBloomStart();
-
-                cb.AgeStartOfBloom = (gRow.wBloomStart - gRow.wBorn) / 12;
-                cb.ExplosionTI = gRow.ExplosionTI;
-                cb.AfterBloomingTI = gRow.AfterBloomTI;
-                cb.BeforeExplosionTI = gRow.BeforeExplTI;
-            }
-            else
-            {
-                cb.AgeStartOfBloom = (gRow.wBloomStart - gRow.wBorn) / 12;
-                cb.ExplosionTI = gRow.ExplosionTI;
-                cb.AfterBloomingTI = gRow.AfterBloomTI;
-                cb.BeforeExplosionTI = gRow.BeforeExplTI;
-            }
+            cb.AgeStartOfBloom = (selectedPlayerData.wBloomStart - selectedPlayerData.wBorn) / 12;
+            cb.ExplosionTI = selectedPlayerData.ExplosionTI;
+            cb.AfterBloomingTI = selectedPlayerData.AfterBloomTI;
+            cb.BeforeExplosionTI = selectedPlayerData.BeforeExplTI;
 
             int savedBloomStart = cb.AgeStartOfBloom;
 
             cb.isGK = false;
-            cb.PlayerBornWeek = gRow.wBorn;
+            cb.PlayerBornWeek = selectedPlayerData.wBorn;
             cb.ShowDialog();
 
             if ((savedBloomStart != cb.AgeStartOfBloom) ||
-                (gRow.ExplosionTI != cb.ExplosionTI) ||
-                (gRow.AfterBloomTI != cb.AfterBloomingTI) ||
-                (gRow.BeforeExplTI != cb.BeforeExplosionTI))
+                (selectedPlayerData.ExplosionTI != cb.ExplosionTI) ||
+                (selectedPlayerData.AfterBloomTI != cb.AfterBloomingTI) ||
+                (selectedPlayerData.BeforeExplTI != cb.BeforeExplosionTI))
             {
-                gRow.wBloomStart = gRow.wBorn + cb.AgeStartOfBloom * 12;
-                gRow.ExplosionTI = cb.ExplosionTI;
-                gRow.AfterBloomTI = cb.AfterBloomingTI;
-                gRow.BeforeExplTI = cb.BeforeExplosionTI;
-                gRow.isDirty = true;
+                selectedPlayerData.wBloomStart = selectedPlayerData.wBorn + cb.AgeStartOfBloom * 12;
+                selectedPlayerData.ExplosionTI = cb.ExplosionTI;
+                selectedPlayerData.AfterBloomTI = cb.AfterBloomingTI;
+                selectedPlayerData.BeforeExplTI = cb.BeforeExplosionTI;
+                selectedPlayerData.isBloomDataDirty = true;
                 isDirty = true;
             }
-            gRow.isDirty = true;
-            gRow.Asi25 = (decimal)(int)cb.ASI25;
-            gRow.Asi30 = (decimal)(int)cb.ASI30;
-        }
 
-        private void btnGetVotenSkillAuto_Click(object sender, EventArgs e)
-        {
-            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
-
-            FileInfo fi = new FileInfo(Program.Setts.ReportAnalysisFile);
-
-            ReportAnalysis.Clear();
-            if (fi.Exists)
-                ReportAnalysis.ReadXml(Program.Setts.ReportAnalysisFile);
-
-            History.PlayersDS.ParseScoutReviewForHiddenData(ReportAnalysis, playerDatarow.PlayerID);
-        }
-
-        private void toolStripDropDownButton1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void chkNormalized_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void whatToDoHereToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Set here which is the potential of your player as is indicated from the scouts.\n" +
-                "Remember that each scout has the a different ability of reviewing a skill of player, \n" +
-                "so set the potential accordingly. These values will be used to find which is the best \n" +
-                "training program for your player.");
-        }
-
-        private void getPotentialForThisPlayerToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
-
-            FileInfo fi = new FileInfo(Program.Setts.ReportAnalysisFile);
-
-            ReportAnalysis.Clear();
-            if (fi.Exists)
-                ReportAnalysis.ReadXml(Program.Setts.ReportAnalysisFile);
-
-            History.PlayersDS.ParseScoutReviewForHiddenData(ReportAnalysis, playerDatarow.PlayerID);
+            selectedPlayerData.isBloomDataDirty = true;
+            selectedPlayerData.Asi25 = (decimal)(int)cb.ASI25;
+            selectedPlayerData.Asi30 = (decimal)(int)cb.ASI30;
         }
 
         string navigationAddress = "";
         string startnavigationAddress = "";
         private void tsbLoadPlayerPage_Click(object sender, EventArgs e)
         {
-            webBrowser.GotoPlayer(actPlayerID, NTR_Browser.PlayerNavigationType.NavigateReports);
+            webBrowser.GotoPlayer(selectedPlayerID, NTR_Browser.PlayerNavigationType.NavigateReports);
         }
 
         #region Player Profiles Navigation
@@ -611,6 +492,9 @@ namespace TMRecorder
 
         NavigationType navigationType = NavigationType.NavigateReports;
         int lastBarPlayer = 0;
+        private PlayerHistory playerHistory;
+        private NTR_Db.PlayerData selectedPlayerData;
+
         private void ChangePlayer_Click(object sender, EventArgs e)
         {
             ToolStripMenuItem tsi = (ToolStripMenuItem)sender;
@@ -629,28 +513,24 @@ namespace TMRecorder
 
         private void FillPlayerBar(int playerID)
         {
-            TeamDS.GiocatoriNSkillRow gRow = (TeamDS.GiocatoriNSkillRow)GDT.FindByPlayerID(playerID);
-
-            if (gRow == null)
-            {
-                //tsBrowsePlayers.Visible = false;
-                return;
-            }
 
             //tsBrowsePlayers.Visible = true;
 
-            //tsbNumberOfReviews.Text = gRow.ScoutReviews.Length + " Scout Reviews stored";
+            //tsbNumberOfReviews.Text = selectedPlayerData.ScoutReviews.Length + " Scout Reviews stored";
 
-            tsbPlayers.Text = "[" + gRow.FP + "] " + gRow.Nome.Split('|')[0];
+            tsbPlayers.Text = "[" + Tm_Utility.FPnToFP(selectedPlayerData.FPn) + "] " + selectedPlayerData.Name;
 
             AddMenuItem(tsbPlayers, "", null);
-            for (int i = 0; i < GDT.Count; i++)
+            foreach(NTR_SquadDb.ShortlistRow sr in DB.Shortlist)
             {
                 ToolStripItem tsi = new ToolStripMenuItem();
-                tsi.Text = "[" + GDT[i].FP + "] " + GDT[i].Nome.Split('|')[0];
-                tsi.Tag = GDT[i].PlayerID;
+                NTR_Db.PlayerData pd = new NTR_Db.PlayerData(sr);
+
+                string FP = Tm_Utility.FPnToFP(pd.FPn);
+                tsi.Text = "[" + FP + "] " + pd.Name;
+                tsi.Tag = pd.playerID;
                 tsi.Click += ChangePlayer_Click;
-                AddMenuItem(tsbPlayers, GDT[i].FP, tsi);
+                AddMenuItem(tsbPlayers, FP, tsi);
             }
         }
         #endregion
@@ -810,54 +690,58 @@ namespace TMRecorder
 
         private void webBrowser_ImportedContent(string content, string address)
         {
-            TeamDS.GiocatoriNSkillRow playerDatarow = (TeamDS.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
-            ExtraDS.GiocatoriRow gRow = History.PlayersDS.Giocatori.FindByPlayerID(playerDatarow.PlayerID);
+            selectedPlayerData.ParsePageContent(content);
 
-            scoutsNReviews.FillScoutsInfo(content);
+            selectedPlayerData.FillScoutsInfo(content);
 
-            ExtraDS.ParsePlayerPage_NTR(content, ref gRow);
+            selectedPlayerData.ParseReviewsToSpecialities(reportParser);
 
-            // Aggiorna i dati di basi
-            playerDatarow.FP = gRow.FP;
-            playerDatarow.FPn = gRow.FPn;
+            FillBaseData(selectedPlayerData);
+
+            FillTagsBars(selectedPlayerData);
 
             isDirty = true;
-
-            ExtTMDataSet.PlayerHistoryDataTable table = History.GetPlayerHistory(playerDatarow.PlayerID);
-            // FillTIGraph(table);
-
-            gRow.ParseReviewsToSpecialities(scoutsNReviews, History.reportParser);
-
-            gRow.ComputeBloomingFromGiudizio(scoutsNReviews);
-
-            FillBaseData(playerDatarow);
-
-            UpdateHistoryScouts();
-
-            scoutsNReviews.Review.Clear();
-            scoutsNReviews.FillTables(gRow, History.reportParser);
-
-            FillTagsBars(gRow);
-
-            gRow.isDirty = true;
         }
 
         private void UpdateHistoryScouts()
         {
-            History.PlayersDS.Scouts.Clear();
-            foreach (var sr in scoutsNReviews.Scouts)
+            //History.PlayersDS.Scouts.Clear();
+            //foreach (var sr in scoutsNReviews.Scouts)
+            //{
+            //    var srn = History.PlayersDS.Scouts.NewScoutsRow();
+            //    srn.Name = sr.Name;
+            //    srn.Physical = sr.Physical;
+            //    srn.Psychology = sr.Psychology;
+            //    srn.Development = sr.Development;
+            //    srn.Senior = sr.Senior;
+            //    srn.Youth = sr.Youth;
+            //    srn.Tactical = sr.Tactical;
+            //    srn.Technical = sr.Technical;
+            //    History.PlayersDS.Scouts.AddScoutsRow(srn);
+            //}
+        }
+    }
+
+    public class PlayerHistory : List<NTR_SquadDb.HistDataRow>
+    {
+        public PlayerHistory(List<NTR_SquadDb.HistDataRow> s)
+        {
+            this.Clear();
+            this.AddRange(s);
+        }
+
+        internal string getTIs()
+        {
+            string TIs = "";
+
+            if (this.Count > 0)
+                TIs = (new TmWeek(this[0].Week)).ToString();
+
+            foreach (NTR_SquadDb.HistDataRow hr in this)
             {
-                var srn = History.PlayersDS.Scouts.NewScoutsRow();
-                srn.Name = sr.Name;
-                srn.Physical = sr.Physical;
-                srn.Psychology = sr.Psychology;
-                srn.Development = sr.Development;
-                srn.Senior = sr.Senior;
-                srn.Youth = sr.Youth;
-                srn.Tactical = sr.Tactical;
-                srn.Technical = sr.Technical;
-                History.PlayersDS.Scouts.AddScoutsRow(srn);
+                TIs += ";" + hr.TI.ToString();
             }
+            return TIs;
         }
     }
 }

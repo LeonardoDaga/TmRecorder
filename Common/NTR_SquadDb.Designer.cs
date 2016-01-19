@@ -845,6 +845,14 @@ namespace Common {
             
             private global::System.Data.DataColumn columnForceInTeam;
             
+            private global::System.Data.DataColumn columnPhy;
+            
+            private global::System.Data.DataColumn columnTec;
+            
+            private global::System.Data.DataColumn columnTac;
+            
+            private global::System.Data.DataColumn columnInj;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public PlayerDataTable() : 
@@ -1033,6 +1041,38 @@ namespace Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn PhyColumn {
+                get {
+                    return this.columnPhy;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TecColumn {
+                get {
+                    return this.columnTec;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TacColumn {
+                get {
+                    return this.columnTac;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn InjColumn {
+                get {
+                    return this.columnInj;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1086,7 +1126,11 @@ namespace Common {
                         int Calc, 
                         bool BTeam, 
                         TeamRow parentTeamRowByTeam_Player, 
-                        bool ForceInTeam) {
+                        bool ForceInTeam, 
+                        decimal Phy, 
+                        decimal Tec, 
+                        decimal Tac, 
+                        decimal Inj) {
                 PlayerRow rowPlayerRow = ((PlayerRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         PlayerID,
@@ -1106,7 +1150,11 @@ namespace Common {
                         Calc,
                         BTeam,
                         null,
-                        ForceInTeam};
+                        ForceInTeam,
+                        Phy,
+                        Tec,
+                        Tac,
+                        Inj};
                 if ((parentTeamRowByTeam_Player != null)) {
                     columnValuesArray[16] = parentTeamRowByTeam_Player[0];
                 }
@@ -1134,7 +1182,11 @@ namespace Common {
                         int FPn, 
                         bool BTeam, 
                         TeamRow parentTeamRowByTeam_Player, 
-                        bool ForceInTeam) {
+                        bool ForceInTeam, 
+                        decimal Phy, 
+                        decimal Tec, 
+                        decimal Tac, 
+                        decimal Inj) {
                 PlayerRow rowPlayerRow = ((PlayerRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         PlayerID,
@@ -1154,7 +1206,11 @@ namespace Common {
                         null,
                         BTeam,
                         null,
-                        ForceInTeam};
+                        ForceInTeam,
+                        Phy,
+                        Tec,
+                        Tac,
+                        Inj};
                 if ((parentTeamRowByTeam_Player != null)) {
                     columnValuesArray[16] = parentTeamRowByTeam_Player[0];
                 }
@@ -1205,6 +1261,10 @@ namespace Common {
                 this.columnBTeam = base.Columns["BTeam"];
                 this.columnTeamID = base.Columns["TeamID"];
                 this.columnForceInTeam = base.Columns["ForceInTeam"];
+                this.columnPhy = base.Columns["Phy"];
+                this.columnTec = base.Columns["Tec"];
+                this.columnTac = base.Columns["Tac"];
+                this.columnInj = base.Columns["Inj"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1246,6 +1306,14 @@ namespace Common {
                 base.Columns.Add(this.columnTeamID);
                 this.columnForceInTeam = new global::System.Data.DataColumn("ForceInTeam", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnForceInTeam);
+                this.columnPhy = new global::System.Data.DataColumn("Phy", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPhy);
+                this.columnTec = new global::System.Data.DataColumn("Tec", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTec);
+                this.columnTac = new global::System.Data.DataColumn("Tac", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTac);
+                this.columnInj = new global::System.Data.DataColumn("Inj", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnInj);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnPlayerID}, true));
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("PlayerTeamKey", new global::System.Data.DataColumn[] {
@@ -1982,11 +2050,11 @@ namespace Common {
             
             private global::System.Data.DataColumn columnScoutID;
             
-            private global::System.Data.DataColumn columnVoto;
-            
-            private global::System.Data.DataColumn columnGiudizio;
-            
             private global::System.Data.DataColumn columnDate;
+            
+            private global::System.Data.DataColumn columnReview;
+            
+            private global::System.Data.DataColumn columnVote;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -2039,25 +2107,25 @@ namespace Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn VotoColumn {
-                get {
-                    return this.columnVoto;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn GiudizioColumn {
-                get {
-                    return this.columnGiudizio;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn DateColumn {
                 get {
                     return this.columnDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ReviewColumn {
+                get {
+                    return this.columnReview;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn VoteColumn {
+                get {
+                    return this.columnVote;
                 }
             }
             
@@ -2098,14 +2166,14 @@ namespace Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ScoutReviewRow AddScoutReviewRow(PlayerRow parentPlayerRowByPlayer_ScoutReview, ScoutRow parentScoutRowByScout_ScoutReview, string Voto, string Giudizio, string Date) {
+            public ScoutReviewRow AddScoutReviewRow(PlayerRow parentPlayerRowByPlayer_ScoutReview, ScoutRow parentScoutRowByScout_ScoutReview, System.DateTime Date, string Review, int Vote) {
                 ScoutReviewRow rowScoutReviewRow = ((ScoutReviewRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         null,
-                        Voto,
-                        Giudizio,
-                        Date};
+                        Date,
+                        Review,
+                        Vote};
                 if ((parentPlayerRowByPlayer_ScoutReview != null)) {
                     columnValuesArray[0] = parentPlayerRowByPlayer_ScoutReview[0];
                 }
@@ -2119,7 +2187,7 @@ namespace Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ScoutReviewRow FindByPlayerIDScoutIDDate(int PlayerID, int ScoutID, string Date) {
+            public ScoutReviewRow FindByPlayerIDScoutIDDate(int PlayerID, int ScoutID, System.DateTime Date) {
                 return ((ScoutReviewRow)(this.Rows.Find(new object[] {
                             PlayerID,
                             ScoutID,
@@ -2145,9 +2213,9 @@ namespace Common {
             internal void InitVars() {
                 this.columnPlayerID = base.Columns["PlayerID"];
                 this.columnScoutID = base.Columns["ScoutID"];
-                this.columnVoto = base.Columns["Voto"];
-                this.columnGiudizio = base.Columns["Giudizio"];
                 this.columnDate = base.Columns["Date"];
+                this.columnReview = base.Columns["Review"];
+                this.columnVote = base.Columns["Vote"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2157,26 +2225,22 @@ namespace Common {
                 base.Columns.Add(this.columnPlayerID);
                 this.columnScoutID = new global::System.Data.DataColumn("ScoutID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnScoutID);
-                this.columnVoto = new global::System.Data.DataColumn("Voto", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnVoto);
-                this.columnGiudizio = new global::System.Data.DataColumn("Giudizio", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnGiudizio);
-                this.columnDate = new global::System.Data.DataColumn("Date", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnDate = new global::System.Data.DataColumn("Date", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDate);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("ScoutReviewKey", new global::System.Data.DataColumn[] {
+                this.columnReview = new global::System.Data.DataColumn("Review", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnReview);
+                this.columnVote = new global::System.Data.DataColumn("Vote", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnVote);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("PlayerScoutDateKey", new global::System.Data.DataColumn[] {
                                 this.columnPlayerID,
                                 this.columnScoutID,
                                 this.columnDate}, true));
                 this.columnPlayerID.AllowDBNull = false;
                 this.columnScoutID.AllowDBNull = false;
                 this.columnScoutID.Caption = "PlayerID";
-                this.columnVoto.Caption = "ScoutVoto";
-                this.columnVoto.DefaultValue = ((string)("0"));
-                this.columnGiudizio.Caption = "ScoutGiudizio";
-                this.columnGiudizio.DefaultValue = ((string)("-"));
                 this.columnDate.AllowDBNull = false;
-                this.columnDate.Caption = "ScoutDate";
-                this.columnDate.DefaultValue = ((string)("01/01/1970"));
+                this.columnReview.Caption = "ScoutGiudizio";
+                this.columnReview.DefaultValue = ((string)("-"));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2900,6 +2964,7 @@ namespace Common {
                                 this.columnScoutID}, false));
                 this.columnScoutID.AllowDBNull = false;
                 this.columnScoutID.Unique = true;
+                this.columnName.AllowDBNull = false;
                 this.columnName.Caption = "ScoutVoto";
                 this.columnName.DefaultValue = ((string)("0"));
                 this.columnYth.Caption = "Sen";
@@ -6332,6 +6397,70 @@ namespace Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal Phy {
+                get {
+                    try {
+                        return ((decimal)(this[this.tablePlayer.PhyColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Phy\' in table \'Player\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePlayer.PhyColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal Tec {
+                get {
+                    try {
+                        return ((decimal)(this[this.tablePlayer.TecColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Tec\' in table \'Player\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePlayer.TecColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal Tac {
+                get {
+                    try {
+                        return ((decimal)(this[this.tablePlayer.TacColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Tac\' in table \'Player\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePlayer.TacColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal Inj {
+                get {
+                    try {
+                        return ((decimal)(this[this.tablePlayer.InjColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Inj\' in table \'Player\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePlayer.InjColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public TeamRow TeamRow {
                 get {
                     return ((TeamRow)(this.GetParentRow(this.Table.ParentRelations["Team_Player"])));
@@ -6543,6 +6672,54 @@ namespace Common {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetForceInTeamNull() {
                 this[this.tablePlayer.ForceInTeamColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsPhyNull() {
+                return this.IsNull(this.tablePlayer.PhyColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetPhyNull() {
+                this[this.tablePlayer.PhyColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsTecNull() {
+                return this.IsNull(this.tablePlayer.TecColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetTecNull() {
+                this[this.tablePlayer.TecColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsTacNull() {
+                return this.IsNull(this.tablePlayer.TacColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetTacNull() {
+                this[this.tablePlayer.TacColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsInjNull() {
+                return this.IsNull(this.tablePlayer.InjColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetInjNull() {
+                this[this.tablePlayer.InjColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7219,44 +7396,44 @@ namespace Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Voto {
+            public System.DateTime Date {
                 get {
-                    try {
-                        return ((string)(this[this.tableScoutReview.VotoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Voto\' in table \'ScoutReview\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableScoutReview.VotoColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Giudizio {
-                get {
-                    try {
-                        return ((string)(this[this.tableScoutReview.GiudizioColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Giudizio\' in table \'ScoutReview\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableScoutReview.GiudizioColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Date {
-                get {
-                    return ((string)(this[this.tableScoutReview.DateColumn]));
+                    return ((global::System.DateTime)(this[this.tableScoutReview.DateColumn]));
                 }
                 set {
                     this[this.tableScoutReview.DateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Review {
+                get {
+                    try {
+                        return ((string)(this[this.tableScoutReview.ReviewColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Review\' in table \'ScoutReview\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableScoutReview.ReviewColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int Vote {
+                get {
+                    try {
+                        return ((int)(this[this.tableScoutReview.VoteColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Vote\' in table \'ScoutReview\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableScoutReview.VoteColumn] = value;
                 }
             }
             
@@ -7284,26 +7461,26 @@ namespace Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsVotoNull() {
-                return this.IsNull(this.tableScoutReview.VotoColumn);
+            public bool IsReviewNull() {
+                return this.IsNull(this.tableScoutReview.ReviewColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetVotoNull() {
-                this[this.tableScoutReview.VotoColumn] = global::System.Convert.DBNull;
+            public void SetReviewNull() {
+                this[this.tableScoutReview.ReviewColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsGiudizioNull() {
-                return this.IsNull(this.tableScoutReview.GiudizioColumn);
+            public bool IsVoteNull() {
+                return this.IsNull(this.tableScoutReview.VoteColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetGiudizioNull() {
-                this[this.tableScoutReview.GiudizioColumn] = global::System.Convert.DBNull;
+            public void SetVoteNull() {
+                this[this.tableScoutReview.VoteColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -7569,12 +7746,7 @@ namespace Common {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string Name {
                 get {
-                    try {
-                        return ((string)(this[this.tableScout.NameColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Name\' in table \'Scout\' is DBNull.", e);
-                    }
+                    return ((string)(this[this.tableScout.NameColumn]));
                 }
                 set {
                     this[this.tableScout.NameColumn] = value;
@@ -7691,18 +7863,6 @@ namespace Common {
                 set {
                     this[this.tableScout.PsyColumn] = value;
                 }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsNameNull() {
-                return this.IsNull(this.tableScout.NameColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetNameNull() {
-                this[this.tableScout.NameColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

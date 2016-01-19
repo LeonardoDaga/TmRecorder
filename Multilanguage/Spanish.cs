@@ -30,7 +30,12 @@ namespace Languages {
         
         public Spanish() {
         }
-        
+
+        public string Get(string value)
+        {
+            return ResourceManager.GetString(value, resourceCulture);
+        }
+
         /// <summary>
         ///   Restituisce l'istanza di ResourceManager nella cache utilizzata da questa classe.
         /// </summary>

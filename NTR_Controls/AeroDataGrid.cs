@@ -81,8 +81,17 @@ namespace NTR_Controls
             }
 
             EnumerableRowCollection<T> collectionToReorder = _dataCollection as EnumerableRowCollection<T>;
-            var orderedDataCollection = collectionToReorder.Order(dgvColumn.DataPropertyName, lastOrderCommand.isAscending);
-            dataBindingSource.DataSource = orderedDataCollection;
+            if (collectionToReorder != null)
+            {
+                var orderedDataCollection = collectionToReorder.Order(dgvColumn.DataPropertyName, lastOrderCommand.isAscending);
+                dataBindingSource.DataSource = orderedDataCollection;
+            }
+            else
+            {
+                List<T> listToReorder = _dataCollection as List<T>;
+                var orderedDataCollection = listToReorder.Order(dgvColumn.DataPropertyName, lastOrderCommand.isAscending);
+                dataBindingSource.DataSource = orderedDataCollection;
+            }
         }
 
         public DataGridViewColumn AddColumn(string Title, string Property, int width, AG_Style styles,

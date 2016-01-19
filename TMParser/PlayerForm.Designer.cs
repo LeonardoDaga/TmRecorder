@@ -128,7 +128,7 @@ namespace TMRecorder
             this.trainingTypesColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.programDataGridViewTextBoxColumn = new DataGridViewCustomColumns.TMR_TrainSkillColumn(this.components);
             this.trainingBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.playerTraining = new TMRecorder.PlayerTraining();
+            this.playerTraining = new Common.PlayerTraining();
             this.tabPlayerBrowser = new System.Windows.Forms.TabPage();
             this.webBrowser = new NTR_WebBrowser.NTR_Browser();
             this.scoutsDataTableBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
@@ -245,7 +245,7 @@ namespace TMRecorder
             this.dataGridViewTextBoxColumn18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.playerData = new NTR_Common.NTR_PlayerData();
+            this.playerData = new NTR_Db.NTR_PlayerData();
             this.teamDS = new NTR_Common.TeamDS();
             this.tabControlPlayerHistory.SuspendLayout();
             this.tabSkills.SuspendLayout();
@@ -3162,7 +3162,7 @@ namespace TMRecorder
         private System.Windows.Forms.DataGridViewTextBoxColumn cardsDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ratDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ratDevDataGridViewTextBoxColumn;
-        private NTR_Common.NTR_PlayerData playerData;
+        private NTR_Db.NTR_PlayerData playerData;
         private DataGridViewCustomColumns.TMR_ReportColumn tmR_ReportColumn2;
         private DataGridViewCustomColumns.TMR_ReportColumn tmR_ReportColumn3;
         private DataGridViewCustomColumns.TMR_ReportColumn tmR_ReportColumn4;

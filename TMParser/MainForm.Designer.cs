@@ -3165,6 +3165,7 @@ namespace TMRecorder
             this.dgMatches.Size = new System.Drawing.Size(527, 421);
             this.dgMatches.TabIndex = 10;
             this.dgMatches.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgMatches_CellDoubleClick);
+            this.dgMatches.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgMatches_ColumnHeaderMouseClick);
             this.dgMatches.SelectionChanged += new System.EventHandler(this.dgMatches_SelectionChanged);
             // 
             // groupBox4
@@ -3536,6 +3537,7 @@ namespace TMRecorder
             this.dgYourTeamPerf.Size = new System.Drawing.Size(320, 380);
             this.dgYourTeamPerf.TabIndex = 11;
             this.dgYourTeamPerf.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tsmGotoPlayerPageInBrowser_Click);
+            this.dgYourTeamPerf.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgYourTeamPerf_ColumnHeaderMouseClick);
             // 
             // playersPerfMenuStrip
             // 
@@ -3623,6 +3625,7 @@ namespace TMRecorder
             this.dgOppsTeamPerf.Size = new System.Drawing.Size(320, 380);
             this.dgOppsTeamPerf.TabIndex = 11;
             this.dgOppsTeamPerf.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tsmGotoPlayerPageInBrowser_Click);
+            this.dgOppsTeamPerf.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgOppsTeamPerf_ColumnHeaderMouseClick);
             // 
             // matchStats
             // 

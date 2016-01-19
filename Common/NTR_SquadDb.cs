@@ -14,6 +14,13 @@ namespace Common
         {
         }
 
+        public void FillGKTrainingTable(PlayerTraining playerTraining, int playerID)
+        {
+            PlayerRow egr = Player.FindByPlayerID(playerID);
+        }
+
+
+
         public void LoadTransferList(string page)
         {
             string[] lines = page.Split('\n');
@@ -134,6 +141,12 @@ namespace Common
                     pr.FPn = Tm_Utility.FPToNumber(pr.FP);
                     Player.AddPlayerRow(pr);
                 }
+                else
+                {
+                    int wBorn = Common.TmWeek.GetBornWeekFromAge(int.Parse(items["age"]));
+                    if (wBorn < pr.wBorn)
+                        pr.wBorn = wBorn;
+                }
 
                 int thisWeek = TmWeek.thisWeek().absweek;
                 var hr = HistData.FindByPlayerIDWeek(playerID, thisWeek);
@@ -186,14 +199,17 @@ namespace Common
                 tr.Rou = decimal.Parse(items["routine"]);
                 tr.Wage = int.Parse(items["wage"]);
 
-                var sr = Shortlist.NewShortlistRow();
-                sr.PlayerID = pr.PlayerID;
+                var sr = Shortlist.FindByPlayerID(playerID);
+                if (sr == null)
+                {
+                    sr.PlayerID = pr.PlayerID;
+                    Shortlist.AddShortlistRow(sr);
+                }
                 if (items["curbid"] != "null")
                 {
                     sr.Bid = int.Parse(items["curbid"].Replace(",", ""));
                     sr.TimeExpire = DateTime.Now.AddSeconds(double.Parse(items["timeleft"]));
                 }
-                Shortlist.AddShortlistRow(sr);
             }
         }
 

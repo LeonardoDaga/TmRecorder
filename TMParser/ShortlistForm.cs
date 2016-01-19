@@ -20,15 +20,20 @@ namespace TMRecorder
     public partial class ShortlistForm : Form
     {
         bool isDirty = false;
-        TeamDS History_TeamDS = null;
-        bool updateDeletedPlayers = true;
         private NTR_SquadDb DB;
         List<NTR_Db.PlayerData> plShortlist;
         List<NTR_Db.PlayerData> gkShortlist;
 
-        public ShortlistForm()
+        bool uploadOnlyListedPlayers
+        {
+            get { return updateOnlyListedPlayersToolStripMenuItem.Checked; }
+        }
+
+        public ShortlistForm(ReportParser reportParser)
         {
             InitializeComponent();
+
+            this.reportParser = reportParser;
 
             updateOnlyListedPlayersToolStripMenuItem.Checked = Program.Setts.ShortlistUploadOnlyListedPlayers;
         }
@@ -48,7 +53,7 @@ namespace TMRecorder
 
             LoadShortlist();
 
-            FormatPlayersGrid();
+            FormatPlayersGridPl();
             FormatPlayersGridGK();
 
             UpdateShortlist();
@@ -148,10 +153,14 @@ namespace TMRecorder
             DataGridViewRow row = dgv.SelectedRows[0];
             NTR_Db.PlayerData playerData = (NTR_Db.PlayerData)row.DataBoundItem;
 
-            PlayerFormSL pf = new PlayerFormSL(playerData);
+            PlayerFormSL pf = new PlayerFormSL(playerData, this.reportParser);
             pf.ShowDialog();
 
-            if (pf.isDirty) isDirty = true;
+            if (pf.isDirty)
+            {
+                isDirty = true;
+                UpdateShortlist();
+            }
         }
 
         private void dgGiocatori_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -252,6 +261,7 @@ namespace TMRecorder
 
         string navigationAddress = "";
         string startnavigationAddress = "";
+        private readonly ReportParser reportParser;
 
         private void tsbShortlist_Click(object sender, EventArgs e)
         {
@@ -357,33 +367,6 @@ namespace TMRecorder
             tabControl.SelectedTab = tabBrowser;
         }
 
-        private void loadFromFileToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //// Check the existence of the folder
-            //DirectoryInfo di = new DirectoryInfo(Path.Combine(Program.Setts.DefaultDirectory, "ImportedPages"));
-
-            //OpenFileDialog openFileDialog = new OpenFileDialog();
-
-            //openFileDialog.InitialDirectory = di.FullName;
-            //openFileDialog.FileName = "shortlist_*.htm";
-            //openFileDialog.Filter = "HTML file (*.htm;*.html)|*.htm;*.html|All Files (*.*)|*.*";
-
-            //DateTime dt = DateTime.Today;
-
-            //if (openFileDialog.ShowDialog() == DialogResult.OK)
-            //{
-            //    StreamReader file = new StreamReader(openFileDialog.FileName);
-            //    string page = file.ReadToEnd();
-            //    file.Close();
-
-            //    page = "SourceURL:<TM - Shortlist>\n" + page;
-            //    LoadHTMLfile_newPage(page, true);
-
-            //    UpdateTables();
-            //}
-
-        }
-
         private void toolStripContainer1_TopToolStripPanel_Click(object sender, EventArgs e)
         {
 
@@ -391,20 +374,20 @@ namespace TMRecorder
 
         private void updateOnlyListedPlayersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            updateDeletedPlayers = !updateOnlyListedPlayersToolStripMenuItem.Checked;
+            updateOnlyListedPlayersToolStripMenuItem.Checked = !updateOnlyListedPlayersToolStripMenuItem.Checked;
         }
 
         private void dgPlayers_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            dgPlayers.AeroDataGrid_ColumnHeaderMouseClick<PlayerData>(sender, e);
+            dgPlayers.AeroDataGrid_ColumnHeaderMouseClick<NTR_Db.PlayerData>(sender, e);
         }
 
         private void dgPlayersGK_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            dgPlayersGK.AeroDataGrid_ColumnHeaderMouseClick<PlayerData>(sender, e);
+            dgPlayersGK.AeroDataGrid_ColumnHeaderMouseClick<NTR_Db.PlayerData>(sender, e);
         }
 
-        private void FormatPlayersGrid()
+        private void FormatPlayersGridPl()
         {
             dgPlayers.AutoGenerateColumns = false;
 
@@ -513,7 +496,8 @@ namespace TMRecorder
 
         private void AddPlayersSkillColumn(string skill)
         {
-            TMR_NumDecColumn dgvc = (TMR_NumDecColumn)dgPlayers.AddColumn(skill, skill, 25, AG_Style.NumDec);
+            string translatedSkill = Current.Language.Get(skill);
+            TMR_NumDecColumn dgvc = (TMR_NumDecColumn)dgPlayers.AddColumn(translatedSkill, skill, 25, AG_Style.NumDec);
             if (Program.Setts.EvidenceGain)
                 dgvc.CellColorStyles = CellColorStyleList.DefaultGainColorStyle();
             else
@@ -528,7 +512,8 @@ namespace TMRecorder
 
         private void AddPlayersSkillColumnGK(string skill)
         {
-            TMR_NumDecColumn dgvc = (TMR_NumDecColumn)dgPlayersGK.AddColumn(skill, skill, 26, AG_Style.NumDec);
+            string translatedSkill = Current.Language.Get(skill);
+            TMR_NumDecColumn dgvc = (TMR_NumDecColumn)dgPlayersGK.AddColumn(translatedSkill, skill, 26, AG_Style.NumDec);
             if (Program.Setts.EvidenceGain)
                 dgvc.CellColorStyles = CellColorStyleList.DefaultGainColorStyle();
             else
@@ -536,5 +521,10 @@ namespace TMRecorder
         }
         #endregion
 
+        private void clearShortlistToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DB.Shortlist.Clear();
+            UpdateShortlist();
+        }
     }
 }

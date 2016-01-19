@@ -1,7 +1,45 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace Common
 {
+    public class ListTrainingDataSet : List<TrainingDataSet>
+    {
+        public bool sorted = false;
 
+        internal TrainingDataSet LastTraining()
+        {
+            if (!sorted)
+            {
+                this.Sort(CompareTrainingByDate);
+                sorted = true;
+            }
+
+            return this[0];
+        }
+
+        public new void Add(TrainingDataSet tds)
+        {
+            base.Add(tds);
+            sorted = false;
+        }
+
+        public new void Insert(int index, TrainingDataSet tds)
+        {
+            base.Insert(index, tds);
+            sorted = false;
+        }
+
+        public static int CompareTrainingByDate(TrainingDataSet tds1, TrainingDataSet tds2)
+        {
+            if (tds1.WeekNoData[0].Date == tds2.WeekNoData[0].Date)
+                return 0;
+            else if (tds1.WeekNoData[0].Date > tds2.WeekNoData[0].Date)
+                return -1;
+            else
+                return 1;
+        }
+    }
 
     partial class TrainingDataSet
     {

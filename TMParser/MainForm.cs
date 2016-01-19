@@ -2939,7 +2939,7 @@ namespace TMRecorder
 
         private void shortlistToolToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ShortlistForm sf = new ShortlistForm();
+            ShortlistForm sf = new ShortlistForm(History.reportParser);
             sf.ShowDialog();
         }
 
@@ -3640,7 +3640,8 @@ namespace TMRecorder
             tabControl1.SelectedTab = tabBrowser;
 
             string matchAddr = GetMatchAddress(sender, o);
-            webBrowser.Goto(matchAddr);
+            if (matchAddr != "")
+                webBrowser.Goto(matchAddr);
         }
 
         private string GetMatchAddress(object sender, object o)
@@ -3662,6 +3663,7 @@ namespace TMRecorder
             if (o.GetType() == typeof(DataGridViewCellEventArgs))
             {
                 DataGridViewCellEventArgs e = (DataGridViewCellEventArgs)o;
+                if (e.RowIndex == -1) return "";
                 selPlayer = (PlayerPerfData)dgPerfPlayers.Rows[e.RowIndex].DataBoundItem;
             }
             else if (o.GetType() == typeof(EventArgs))
@@ -3788,7 +3790,8 @@ namespace TMRecorder
             tabControl1.SelectedTab = tabBrowser;
 
             string matchAddress = GetMatchAddress(sender, o);
-            Process.Start(matchAddress);
+            if (matchAddress != "")
+                Process.Start(matchAddress);
         }
 
         private void dataGridPlayersInfo_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -3956,6 +3959,21 @@ namespace TMRecorder
             isDirty = true;
 
             SetLastTeam();
+        }
+
+        private void dgMatches_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            dgMatches.AeroDataGrid_ColumnHeaderMouseClick<NTR_Db.MatchData>(sender, e);
+        }
+
+        private void dgYourTeamPerf_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            dgYourTeamPerf.AeroDataGrid_ColumnHeaderMouseClick<NTR_Db.PlayerPerfData>(sender, e);
+        }
+
+        private void dgOppsTeamPerf_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            dgOppsTeamPerf.AeroDataGrid_ColumnHeaderMouseClick<NTR_Db.PlayerPerfData>(sender, e);
         }
 
     }

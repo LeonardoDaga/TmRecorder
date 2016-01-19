@@ -45,6 +45,10 @@
               <xs:element name="BTeam" msprop:Generator_ColumnVarNameInTable="columnBTeam" msprop:Generator_ColumnPropNameInRow="BTeam" msprop:Generator_ColumnPropNameInTable="BTeamColumn" msprop:Generator_UserColumnName="BTeam" type="xs:boolean" minOccurs="0" />
               <xs:element name="TeamID" msprop:Generator_ColumnVarNameInTable="columnTeamID" msprop:Generator_ColumnPropNameInRow="TeamID" msprop:Generator_ColumnPropNameInTable="TeamIDColumn" msprop:Generator_UserColumnName="TeamID" type="xs:int" minOccurs="0" />
               <xs:element name="ForceInTeam" msprop:Generator_ColumnVarNameInTable="columnForceInTeam" msprop:Generator_ColumnPropNameInRow="ForceInTeam" msprop:Generator_ColumnPropNameInTable="ForceInTeamColumn" msprop:Generator_UserColumnName="ForceInTeam" type="xs:boolean" minOccurs="0" />
+              <xs:element name="Phy" msprop:Generator_ColumnVarNameInTable="columnPhy" msprop:Generator_ColumnPropNameInRow="Phy" msprop:Generator_ColumnPropNameInTable="PhyColumn" msprop:Generator_UserColumnName="Phy" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Tec" msprop:Generator_ColumnVarNameInTable="columnTec" msprop:Generator_ColumnPropNameInRow="Tec" msprop:Generator_ColumnPropNameInTable="TecColumn" msprop:Generator_UserColumnName="Tec" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Tac" msprop:Generator_ColumnVarNameInTable="columnTac" msprop:Generator_ColumnPropNameInRow="Tac" msprop:Generator_ColumnPropNameInTable="TacColumn" msprop:Generator_UserColumnName="Tac" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Inj" msprop:Generator_ColumnVarNameInTable="columnInj" msprop:Generator_ColumnPropNameInRow="Inj" msprop:Generator_ColumnPropNameInTable="InjColumn" msprop:Generator_UserColumnName="Inj" type="xs:decimal" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -80,9 +84,9 @@
             <xs:sequence>
               <xs:element name="PlayerID" msprop:Generator_ColumnVarNameInTable="columnPlayerID" msprop:Generator_ColumnPropNameInRow="PlayerID" msprop:Generator_ColumnPropNameInTable="PlayerIDColumn" msprop:Generator_UserColumnName="PlayerID" type="xs:int" />
               <xs:element name="ScoutID" msdata:Caption="PlayerID" msprop:Generator_ColumnVarNameInTable="columnScoutID" msprop:Generator_ColumnPropNameInRow="ScoutID" msprop:Generator_ColumnPropNameInTable="ScoutIDColumn" msprop:Generator_UserColumnName="ScoutID" type="xs:int" />
-              <xs:element name="Voto" msdata:Caption="ScoutVoto" msprop:Generator_ColumnVarNameInTable="columnVoto" msprop:Generator_ColumnPropNameInRow="Voto" msprop:Generator_ColumnPropNameInTable="VotoColumn" msprop:Generator_UserColumnName="Voto" type="xs:string" default="0" minOccurs="0" />
-              <xs:element name="Giudizio" msdata:Caption="ScoutGiudizio" msprop:Generator_ColumnVarNameInTable="columnGiudizio" msprop:Generator_ColumnPropNameInRow="Giudizio" msprop:Generator_ColumnPropNameInTable="GiudizioColumn" msprop:Generator_UserColumnName="Giudizio" type="xs:string" default="-" minOccurs="0" />
-              <xs:element name="Date" msdata:Caption="ScoutDate" msprop:Generator_ColumnVarNameInTable="columnDate" msprop:Generator_ColumnPropNameInRow="Date" msprop:Generator_ColumnPropNameInTable="DateColumn" msprop:Generator_UserColumnName="Date" type="xs:string" default="01/01/1970" />
+              <xs:element name="Date" msprop:Generator_ColumnVarNameInTable="columnDate" msprop:Generator_ColumnPropNameInRow="Date" msprop:Generator_ColumnPropNameInTable="DateColumn" msprop:Generator_UserColumnName="Date" type="xs:dateTime" />
+              <xs:element name="Review" msdata:Caption="ScoutGiudizio" msprop:Generator_ColumnVarNameInTable="columnReview" msprop:Generator_ColumnPropNameInRow="Review" msprop:Generator_ColumnPropNameInTable="ReviewColumn" msprop:Generator_UserColumnName="Review" type="xs:string" default="-" minOccurs="0" />
+              <xs:element name="Vote" msprop:Generator_ColumnVarNameInTable="columnVote" msprop:Generator_ColumnPropNameInRow="Vote" msprop:Generator_ColumnPropNameInTable="VoteColumn" msprop:Generator_UserColumnName="Vote" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -104,7 +108,7 @@
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ScoutID" msprop:Generator_ColumnVarNameInTable="columnScoutID" msprop:Generator_ColumnPropNameInRow="ScoutID" msprop:Generator_ColumnPropNameInTable="ScoutIDColumn" msprop:Generator_UserColumnName="ScoutID" type="xs:int" />
-              <xs:element name="Name" msdata:Caption="ScoutVoto" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" type="xs:string" default="0" minOccurs="0" />
+              <xs:element name="Name" msdata:Caption="ScoutVoto" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" type="xs:string" default="0" />
               <xs:element name="Sen" msprop:Generator_ColumnVarNameInTable="columnSen" msprop:Generator_ColumnPropNameInRow="Sen" msprop:Generator_ColumnPropNameInTable="SenColumn" msprop:Generator_UserColumnName="Sen" type="xs:short" minOccurs="0" />
               <xs:element name="Yth" msdata:Caption="Sen" msprop:Generator_ColumnVarNameInTable="columnYth" msprop:Generator_ColumnPropNameInRow="Yth" msprop:Generator_ColumnPropNameInTable="YthColumn" msprop:Generator_UserColumnName="Yth" type="xs:short" minOccurs="0" />
               <xs:element name="Phy" msdata:Caption="Sen" msprop:Generator_ColumnVarNameInTable="columnPhy" msprop:Generator_ColumnPropNameInRow="Phy" msprop:Generator_ColumnPropNameInTable="PhyColumn" msprop:Generator_UserColumnName="Phy" type="xs:short" minOccurs="0" />
@@ -260,7 +264,7 @@
       <xs:field xpath="mstns:PlayerID" />
       <xs:field xpath="mstns:Week" />
     </xs:unique>
-    <xs:unique name="ScoutReviewKey" msdata:PrimaryKey="true">
+    <xs:unique name="PlayerScoutDateKey" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:ScoutReview" />
       <xs:field xpath="mstns:PlayerID" />
       <xs:field xpath="mstns:ScoutID" />

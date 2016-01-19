@@ -1167,7 +1167,7 @@ namespace TmRecorder3
 
             RoutineView = selectedPlayer.Rou;
 
-            PrefPos = Tm_Utility.NumberToFP(selectedPlayer.FPn);
+            PrefPos = Tm_Utility.FPnToFP(selectedPlayer.FPn);
         }
 
         private void UpdatePlayerRoutine()

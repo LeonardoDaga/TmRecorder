@@ -124,28 +124,6 @@
     <value>17, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="loadFromFileToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        R0lGODlhEAAQAIcAAAAAABYSDhgTDh4ZFCkiGzUuJUM6LltKIVtLIlJIOWFWRGJfWW9iTnJlUHtuV0xn
-        k09okU9pkFNqjlRrjV90lGB0lXiJoZZyH593G4BnI4FpJal8FYd5YLSCD76ICI+AZo+EdZKHd5OId5SK
-        dZWLeZWKepeMepmOepiOfZqQfp2RfKGVf8eMBM2PAM2FENSME9uiLuWgJOmoKeuqLuysMe6wNPCzN/K2
-        O/W5P9GpVtSyatO+fve7QfW8Qfe+RvrBSfrETPzFS/zHTv7JUf/LVf/NVP/NWP/OXP/PX//QX+DFfezS
-        ef/RYv/TZf/UZ//TaP/Wa/vUcf/Ycf/YdP/aev/de//cfpyRgJ+Ugp+Vg5uUjIGRpoKRpoeVqqOZhqOa
-        hqaagaWciKeeiaqfg6+jhqigi6uhiaqhjauijq2ki66kiqykj7OmiLCmjLCnjrGojbeqirmsi8e6jM7C
-        id7EgNrSoO/XgfHcif3egf7dgP/fgf/ghP/ijPLhkvPmmvvrn/3omP7omPbqoPbup/nupvfwqwAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        ACH/C05FVFNDQVBFMi4wAwEBAAAh+QQBAACGACwAAAAAEAAQAAAIywANCRxIsKDBglssdDlYsMJALoYo
-        GFpDkSLDCRHW1ClUiNCfMwYlQHiAZlDHP4CiiPGCJYUJEQPLCPIYiIqTmzhhCgzj50+gOHHgsCEzBswK
-        FSdIiPjSBxAdN3j2SN2jp8oUKDm0ZLnD542cKTiTFAnCA0YDQ1fsKGmT54kTJkaE+LhBQ8MIQyiWpJkj
-        pcmRIT9w1JDhAoHAEjvUWEFCBEgPGzNivMiwQGAIMzpaaGbhocMGDBcODATxgYMDBgoSGChAYEAAAQxj
-        CwwIADs=
-</value>
-  </data>
   <data name="saveToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         R0lGODlhEAAOAIcAAAAAABA5pSExQiFCpSFKtTExYzE5czE5pTFCQjFCpTFKtTFStUI5c0I5hEJChEJC

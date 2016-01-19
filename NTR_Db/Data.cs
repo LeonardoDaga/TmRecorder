@@ -11,6 +11,7 @@ using Languages;
 using NTR_Common;
 using System.IO.Compression;
 using System.Drawing;
+using System.Linq;
 
 namespace NTR_Db
 {
@@ -896,9 +897,11 @@ namespace NTR_Db
     {
         private NTR_SquadDb.HistDataRow thisWeek;
         private NTR_SquadDb.HistDataRow prevWeek;
+        public NTR_SquadDb DB { get; }
 
         private bool isAttsComputed = false;
         private bool isSumComputed = false;
+        private bool isDirty = false;
 
         private void dirt()
         {
@@ -1088,7 +1091,7 @@ namespace NTR_Db
 
             var pr = sr.PlayerRow;
 
-            NTR_SquadDb DB = (NTR_SquadDb)sr.Table.DataSet;
+            DB = (NTR_SquadDb)sr.Table.DataSet;
             GFun.GDS = DB.GDS;
 
             Name = pr.Name;
@@ -1247,7 +1250,7 @@ namespace NTR_Db
             // TODO: Complete member initialization
             this.thisWeek = thisWeek;
 
-            NTR_SquadDb DB = (NTR_SquadDb)thisWeek.Table.DataSet;
+            DB = (NTR_SquadDb)thisWeek.Table.DataSet;
             GFun.GDS = DB.GDS;
 
             playerID = thisWeek.PlayerID;
@@ -1260,12 +1263,34 @@ namespace NTR_Db
             else
                 prevWeek = null;
 
+            FillWithWeeks(thisWeek, prevWeek);
+        }
+
+        public PlayerData(NTR_SquadDb.HistDataRow thisWeek, NTR_SquadDb.HistDataRow prevWeek)
+        {
+            // TODO: Complete member initialization
+            this.thisWeek = thisWeek;
+
+            DB = (NTR_SquadDb)thisWeek.Table.DataSet;
+            GFun.GDS = DB.GDS;
+
+            playerID = thisWeek.PlayerID;
+
+            FillWithWeeks(thisWeek, prevWeek);
+        }
+
+        public void FillWithWeeks(NTR_SquadDb.HistDataRow thisWeek, NTR_SquadDb.HistDataRow prevWeek)
+        { 
             Name = thisWeek.PlayerRow.Name;
             Week = thisWeek.Week;
-            Inj = thisWeek.Inj;
-            Ban = thisWeek.Ban;
 
-            Number = thisWeek.PlayerRow.No;
+            if (!thisWeek.IsInjNull())
+                Inj = thisWeek.Inj;
+            if (!thisWeek.IsBanNull())
+                Ban = thisWeek.Ban;
+            if (!thisWeek.PlayerRow.IsNoNull())
+                Number = thisWeek.PlayerRow.No;
+
             FPn = thisWeek.PlayerRow.FPn;
             wBorn = thisWeek.PlayerRow.wBorn;
 
@@ -1278,7 +1303,8 @@ namespace NTR_Db
 
             if (tdr != null)
             {
-                Rou = tdr.Rou;
+                if(!tdr.IsRouNull())
+                    Rou = tdr.Rou;
 
                 if (!tdr.IsNoteNull())
                     Note = tdr.Note;
@@ -1333,14 +1359,12 @@ namespace NTR_Db
             else
             {
                 ASI = new intvar(thisWeek.ASI);
-                try
-                {
+                
+                if (!thisWeek.Is_TINull())
                     TI = new intvar((int)(thisWeek._TI), int.MinValue);
-                }
-                catch
-                {
+                else
                     TI = new intvar(0, 0);
-                }
+
                 Str = new decvar(thisWeek.For, decimal.MinValue, 10 * DB.GDS.K_FPn_Max((int)eSkill.Str, FPn));
                 Pac = new decvar(thisWeek.Vel, decimal.MinValue, 10 * DB.GDS.K_FPn_Max((int)eSkill.Pac, FPn));
                 Sta = new decvar(thisWeek.Res, decimal.MinValue, 10 * DB.GDS.K_FPn_Max((int)eSkill.Sta, FPn));
@@ -1370,6 +1394,15 @@ namespace NTR_Db
 
             if (!tdr.IsRecNull())
                 Rec = tdr.Rec/2.0M;
+
+            NTR_SquadDb.PlayerRow pr = DB.Player.FindByPlayerID(thisWeek.PlayerID);
+
+            if (!pr.IsAggNull()) this.Aggressivity = pr.Agg;
+            if (!pr.IsLeaNull()) this.Leadership = pr.Lea;
+            if (!pr.IsProNull()) this.Professionalism = pr.Pro;
+            if (!pr.IsPhyNull()) this.Physics = pr.Phy;
+            if (!pr.IsTacNull()) this.Tactics = pr.Tac;
+            if (!pr.IsTecNull()) this.Technics = pr.Tec;
         }
 
 
@@ -1530,7 +1563,7 @@ namespace NTR_Db
         public object BidValue
         {
             get { return _bidValue; }
-            set { _bidEnd = value; }
+            set { _bidValue = value; }
         }
         public object _bidEnd = null;
         public object BidEnd
@@ -1544,6 +1577,16 @@ namespace NTR_Db
                 _bidEnd = value;
             }
         }
+
+        public object Aggressivity { get; set; }
+        public object Professionalism { get; set; }
+        public object Leadership { get; set; }
+        public object Physics { get; set; }
+        public object Technics { get; set; }
+        public object Tactics { get; set; }
+        public string Speciality { get; private set; }
+        public object Potential { get; private set; }
+        public bool HiddenRevealed { get; private set; }
 
         private void ParseBloomValues()
         {
@@ -1566,6 +1609,337 @@ namespace NTR_Db
             wBloomData += ";" + _asi30.ToString();
             wBloomData += ";" + _asi25.ToString();
         }
+
+        public void ParseReviewsToSpecialities(ReportParser reportParser)
+        {
+            float Tec = 0; float f_Tec = 0;
+            float Tac = 0; float f_Tac = 0;
+            float Pro = 0; float f_Pro = 0;
+            float Lea = 0; float f_Lea = 0;
+            float Agg = 0; float f_Agg = 0;
+            float Phy = 0; float f_Phy = 0;
+            float Pot = 0; float f_Pot = 0;
+
+            var Scouts = DB.Scout;
+            var playerData = DB.Player.FindByPlayerID(playerID);
+            NTR_SquadDb.ScoutReviewRow[] Reviews = playerData.GetScoutReviewRows();
+
+            // Reset professionality
+            for (int i = 0; i < Reviews.Length; i++)
+            {
+                string review = Reviews[i].Review.Replace(":", "=");
+                Dictionary<string, string> dict = HTML_Parser.CreateDictionary(review, ',');
+
+                var sr = (from c in Scouts where c.ScoutID == Reviews[i].ScoutID select c).First();
+
+                if (sr == null)
+                {
+                    sr = Scouts.NewScoutRow();
+                    sr.Tec = 5;
+                    sr.Tac = 5;
+                    sr.Psy = 5;
+                    sr.Phy = 5;
+                    sr.Dev = 5;
+                    sr.Sen = 5;
+                    sr.Name = "Scout " + i.ToString();
+                }
+
+                if (dict.ContainsKey("Tec"))
+                {
+                    Tec += float.Parse(dict["Tec"]) * (float)sr.Tec;
+                    f_Tec += (float)sr.Tec;
+                }
+                if (dict.ContainsKey("Pot"))
+                {
+                    Pot += float.Parse(dict["Pot"]) * (float)sr.Dev;
+                    f_Pot += (float)sr.Dev;
+                }
+                if (dict.ContainsKey("Tac"))
+                {
+                    Tac += float.Parse(dict["Tac"]) * (float)sr.Tac;
+                    f_Tac += (float)sr.Tac;
+                }
+                if (dict.ContainsKey("Pro"))
+                {
+                    Pro += float.Parse(dict["Pro"]) * (float)sr.Psy;
+                    f_Pro += (float)sr.Psy;
+                }
+                if (dict.ContainsKey("Lea"))
+                {
+                    Lea += float.Parse(dict["Lea"]) * (float)sr.Psy;
+                    f_Lea += (float)sr.Psy;
+                }
+                if (dict.ContainsKey("Agg"))
+                {
+                    Agg += float.Parse(dict["Agg"]) * (float)sr.Psy;
+                    f_Agg += (float)sr.Psy;
+                }
+                if (dict.ContainsKey("Phy"))
+                {
+                    Phy += float.Parse(dict["Phy"]) * (float)sr.Phy;
+                    f_Phy += (float)sr.Phy;
+                }
+                if (dict.ContainsKey("Spe"))
+                {
+                    int spec = int.Parse(dict["Spe"]);
+                    string skill = reportParser.Dict["Player_Skill"][spec];
+                    Speciality = skill.Substring(0, 3);
+                }
+
+                //if (dict.ContainsKey("Dev")) rrow.Development = short.Parse(dict["Dev"]);
+                //if (dict.ContainsKey("Blo")) rrow.Blooming = short.Parse(dict["Blo"]);
+                //if (dict.ContainsKey("BlS")) rrow.BloomingStatus = short.Parse(dict["BlS"]);
+                //if (dict.ContainsKey("Age")) rrow.Age = short.Parse(dict["Age"]);
+                //if (dict.ContainsKey("Spe")) rrow.Speciality = short.Parse(dict["Spe"]);
+
+            }
+
+            if (!HiddenRevealed)
+            {
+                Professionalism = null;
+                Aggressivity = null;
+                if (f_Pro != 0) Professionalism = (Pro / f_Pro - 1) * 5;
+                if (f_Agg != 0) Aggressivity = (Agg / f_Agg - 1) * 5;
+            }
+
+            Leadership = null;
+
+            if (f_Lea != 0) Leadership = (Lea / f_Lea - 1) * 5;
+            if (f_Phy != 0) Physics = (decimal)(Phy / f_Phy - 1) * 6.66M;
+            if (f_Tec != 0) Technics = (decimal)(Tec / f_Tec - 1) * 6.66M;
+            if (f_Tac != 0) Tactics = (decimal)(Tac / f_Tac - 1) * 6.66M;
+            if (f_Pot != 0) Potential = Pot / f_Pot;
+
+            if (Professionalism != null) playerData.Pro = (float)Professionalism;
+            if (Aggressivity != null) playerData.Agg = (float)Aggressivity;
+            if (Leadership != null) playerData.Lea = (float)Leadership;
+            if (Physics != null) playerData.Phy = (decimal)Physics;
+            if (Technics != null) playerData.Tec = (decimal)Technics;
+            if (Tactics != null) playerData.Tac = (decimal)Tactics;
+        }
+
+        public void ParsePageContent(string page)
+        {
+            Dictionary<string, string> dictValues = HTML_Parser.CreateDictionary(page, ';');
+
+            // Filling the player data
+            Name = dictValues["PlayerName"];
+            FPn = int.Parse(dictValues["FPn"]);
+            wBorn = int.Parse(dictValues["BornWeek"]);
+            Wage = int.Parse(dictValues["Wage"]);
+            Rou = decimal.Parse(dictValues["Routine"]);
+
+            if (Week != TmWeek.thisWeek().absweek)
+            {
+                ASI.prev = ASI.actual;
+                ASI.actual = int.Parse(dictValues["ASI"]);
+            }
+
+            // Filling the DB
+            NTR_SquadDb.PlayerRow pr = DB.Player.FindByPlayerID(playerID);
+            pr.Name = Name;
+            pr.FPn = FPn;
+            pr.wBorn = wBorn;
+
+            if (dictValues.ContainsKey("Aggressivity"))
+            {
+                // Hidden values are available
+                Aggressivity = int.Parse(dictValues["Aggressivity"]);
+                Inj = short.Parse(dictValues["InjPron"]);
+                Professionalism = int.Parse(dictValues["Professionalism"]);
+                Ada = int.Parse(dictValues["Ada"]);
+
+                // Filling the DB
+                pr.Agg = (float)Aggressivity;
+                pr.Inj = Inj;
+                pr.Pro = (float)Professionalism;
+                pr.Ada = Ada;
+            }
+
+            NTR_SquadDb.HistDataRow hr = DB.HistData.FindByPlayerIDWeek(playerID, TmWeek.thisWeek().absweek);
+            if (hr == null)
+            {
+                hr = DB.HistData.NewHistDataRow();
+                hr.PlayerID = playerID;
+                hr.Week = TmWeek.thisWeek().absweek;
+                DB.HistData.AddHistDataRow(hr);
+            }
+
+            hr.ASI = int.Parse(dictValues["ASI"]);
+
+            NTR_SquadDb.TempDataRow tr = DB.TempData.FindByPlayerID(playerID);
+            if (tr == null)
+            {
+                tr = DB.TempData.NewTempDataRow();
+                tr.PlayerID = playerID;
+                DB.TempData.AddTempDataRow(tr);
+            }
+
+            tr.Wage = Wage;
+            tr.Rou = Rou;
+
+            string[] scoutNamesArray = dictValues["ScoutName"].Split('|');
+            string[] scoutDatesArray = dictValues["ScoutDate"].Split('|');
+            string[] scoutVotesArray = dictValues["ScoutVoto"].Split('|');
+            string[] scoutReviewsArray = dictValues["ScoutGiudizio"].Split('|');
+
+            if ((scoutNamesArray.Length == 1) && (scoutNamesArray[0] == ""))
+                return;
+
+            for (int i = 0; i < scoutNamesArray.Length; i++)
+            {
+                string scoutName = scoutNamesArray[i];
+                DateTime reviewDate = TmWeek.SWDtoDateTime(scoutDatesArray[i]);
+
+                NTR_SquadDb.ScoutRow sr = (from c in DB.Scout where c.Name == scoutName select c).First();
+
+                if (sr == null)
+                {
+                    sr = DB.Scout.NewScoutRow();
+                    sr.Name = scoutName;
+                    DB.Scout.AddScoutRow(sr);
+                }
+
+                NTR_SquadDb.ScoutReviewRow srr = DB.ScoutReview.FindByPlayerIDScoutIDDate(playerID, sr.ScoutID, reviewDate);
+
+                if (srr == null)
+                {
+                    srr = DB.ScoutReview.NewScoutReviewRow();
+                    srr.PlayerID = playerID;
+                    srr.ScoutID = sr.ScoutID;
+                    srr.Date = reviewDate;
+                    DB.ScoutReview.AddScoutReviewRow(srr);
+                }
+
+                srr.Review = scoutReviewsArray[i];
+                srr.Vote = int.Parse(scoutVotesArray[i]);
+            }
+        }
+
+        public void FillScoutsInfo(string content)
+        {
+            Dictionary<string, string> dictValues = HTML_Parser.CreateDictionary(content, ';');
+
+            string scoutsInfo = dictValues["ScoutInfo"].Replace(":", "=");
+
+            string[] scouts = scoutsInfo.Split('|');
+
+            Dictionary<string, string> scoutInfo = new Dictionary<string, string>();
+            foreach (string scout in scouts)
+            {
+                scoutInfo = HTML_Parser.CreateDictionary(scout, ',');
+
+                var srScouts = (from c in DB.Scout where c.Name == scoutInfo["Name"] select c);
+
+                NTR_SquadDb.ScoutRow sr = null;
+                if (srScouts.Count() > 0)
+                    sr = srScouts.First();
+
+                if (sr == null)
+                {
+                    sr = DB.Scout.NewScoutRow();
+                    sr.Name = scoutInfo["Name"];
+                    sr.ScoutID = DB.Scout.Count;
+                    DB.Scout.AddScoutRow(sr);
+                }
+
+                sr.Dev = short.Parse(scoutInfo["Dev"]);
+                sr.Phy = short.Parse(scoutInfo["Phy"]);
+                sr.Psy = short.Parse(scoutInfo["Psy"]);
+                sr.Sen = short.Parse(scoutInfo["Sen"]);
+                sr.Tac = short.Parse(scoutInfo["Tac"]);
+                sr.Tec = short.Parse(scoutInfo["Tec"]);
+                sr.Yth = short.Parse(scoutInfo["Yth"]);
+            }
+        }
+
+        /// <summary>
+        /// This function returns REREC values (3 values, rec, ratingR2 and ratingR2 modified by
+        /// the routine
+        /// </summary>
+        /// <param name="gnsRow"></param>
+        /// <returns></returns>
+        public RatingR2 CalculateREREC()
+        {
+            decimal skillWeightSum, weight;
+            decimal SI = ASI.actual;
+            decimal rou = Rou;
+
+            RatingR2 R2 = new RatingR2();
+
+            if (FPn == 0) // The player is a GK
+            {
+                skillWeightSum = (decimal)(Math.Pow((double)SI, 0.143) / 0.02979);
+                weight = 48717927500;
+            }
+            else
+            {
+                skillWeightSum = (decimal)(Math.Pow((double)SI, 1 / 6.99194) / 0.02336483);
+                weight = 263533760000;
+            }
+
+            decimal skillSum = SkillSum.actual;
+
+            // REREC remainder
+            skillWeightSum -= skillSum;
+
+            // RatingR2 remainder
+            var remainder = Math.Round((Math.Pow(2.0, Math.Log((double)(weight * SI)) / Math.Log(Math.Pow(2, 7))) - (double)skillSum) * 10.0) / 10.0;
+
+            int[] positionIndex = RatingR2.GetPositionIndex(FPn);
+
+            for (int n = 0; n < 2; n++)
+            {
+                for (int i = 0; i <= positionIndex[n] - 2; i += 2)
+                {		// TrExMaとRECのweight表のずれ修正
+                    positionIndex[n]--;
+                }
+
+                for (int i = 0; i < 10; i++)
+                {
+                    R2.rec[i] = 0;
+                    R2.ratingR[i] = 0;
+                }
+
+                for (var j = 0; j < 9; j++) // All position
+                {
+                    var remainderWeight = 0.0;		// REREC remainder weight sum
+                    var remainderWeight2 = 0.0;		// RatingR2 remainder weight sum
+                    var not20 = 0;					// 20以外のスキル数
+                    if (positionIndex[n] == 9) j = 9;	// GK
+
+                    for (var i = 0; i < 14; i++)
+                    {
+                        R2.rec[j] += Skills[i].actual * (decimal)RatingR2.weightR[j, i];
+                        R2.ratingR[j] += Skills[i].actual * (decimal)RatingR2.weightR2[j, i];
+
+                        if (Skills[i].actual != 20M)
+                        {
+                            remainderWeight += RatingR2.weightR[j, i];
+                            remainderWeight2 += RatingR2.weightR2[j, i];
+                            not20 += 1;
+                        }
+                    }
+
+                    R2.rec[j] += (decimal)(skillWeightSum * (decimal)remainderWeight / (decimal)not20);		//REREC Score
+
+                    if (positionIndex[n] == 9)
+                        R2.rec[j] *= 1.27M;					//GK
+
+                    R2.rec[j] = RatingR2.funFix((decimal)(((double)R2.rec[j] - RatingR2.recLast[0, j]) / RatingR2.recLast[1, j]));
+                    R2.ratingR[j] += (decimal)(remainder * remainderWeight2 / not20);
+                    R2.ratingR2[j] = RatingR2.funFix(R2.ratingR[j] * (1M + rou * RatingR2.rou_factor));
+                    R2.ratingR[j] = RatingR2.funFix(R2.ratingR[j]);
+
+                    if (positionIndex[n] == 9)
+                        j = 9;		// Loop end
+                }
+            }
+
+            R2.TransformToTMR();
+            return R2;
+        }
+
         #endregion
 
     }

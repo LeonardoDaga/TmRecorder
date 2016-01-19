@@ -191,7 +191,9 @@ namespace Languages {
         string BeenSentToLedLennonThatWillRemoveThisBugAsSoonAsPossible {
             get;
         }
-        
+
+        string Get(string skill);
+
         /// <summary>
         ///   Cerca una stringa localizzata simile a Best Skills.
         /// </summary>

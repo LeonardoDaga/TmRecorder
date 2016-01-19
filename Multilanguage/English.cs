@@ -60,6 +60,11 @@ namespace Languages {
             }
         }
         
+        public string Get(string value)
+        {
+            return ResourceManager.GetString(value, resourceCulture);
+        }
+
         /// <summary>
         ///   Cerca una stringa localizzata simile a Ability.
         /// </summary>

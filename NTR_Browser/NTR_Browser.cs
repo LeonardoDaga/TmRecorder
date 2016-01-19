@@ -405,8 +405,6 @@ namespace NTR_WebBrowser
 
         public string ParsePlayerPage(HtmlDocument htmlDocument)
         {
-            HtmlElement element = htmlDocument.GetElementById("player_scout_new");
-            HtmlElementCollection elementCollection = element.GetElementsByTagName("tr");
 
             string result = "";
             string page = webBrowser.DocumentText;
@@ -429,8 +427,57 @@ namespace NTR_WebBrowser
             int FPn = Tm_Utility.FPToNumber(playerFp);                
 
             int i = 0;
+            if (page.Contains("info_table"))
+            {
+                var elements = htmlDocument.All;
+                foreach(var element in elements)
+                {
+                    HtmlElement htmlElement = (HtmlElement)element;
+                    if (htmlElement.InnerHtml == null) continue;
+                    if (htmlElement.InnerHtml.Contains("info_table") && (htmlElement.TagName == "DIV"))
+                    {
+                        if (htmlElement.Children.Count == 0) continue;
+                        if (htmlElement.Children[0].Children.Count == 0) continue;
+                        if (htmlElement.Children[0].Children[0].Children.Count == 9)
+                        {
+                            // Parse Age
+                            var childAge = htmlElement.Children[0].Children[0].Children[2];
+
+                            string yearsStr = childAge.InnerText;
+                            string strYear = HTML_Parser.GetFirstNumberInString(yearsStr);
+                            int pos = yearsStr.IndexOf(strYear) + strYear.Length;
+                            string monthsStr = yearsStr.Substring(pos);
+                            string strMonth = HTML_Parser.GetFirstNumberInString(monthsStr);
+                            int year = int.Parse(strYear);
+                            int month = int.Parse(strMonth);
+                            result += ";BornWeek=" + TmWeek.GetBornWeekFromAge(DateTime.Now, month, year).ToString();
+
+                            string wageStr = htmlElement.Children[0].Children[0].Children[4].InnerText;
+                            wageStr = wageStr.Replace(",", "");
+                            string strWage = HTML_Parser.GetFirstNumberInString(wageStr);
+                            int wage = int.Parse(strWage);
+                            result += ";Wage=" + wage.ToString();
+
+                            string siStr = htmlElement.Children[0].Children[0].Children[6].InnerText;
+                            siStr = siStr.Replace(",", "");
+                            string strSI = HTML_Parser.GetFirstNumberInString(siStr);
+                            int ASI = int.Parse(strSI);
+                            result += ";ASI=" + ASI.ToString();
+
+                            string rouStr = htmlElement.Children[0].Children[0].Children[8].InnerText;
+                            rouStr = rouStr.Replace(",", "").Replace(",", "").Replace("RatingR2\r\n", "");
+                            string strRou = HTML_Parser.GetFirstFloatInString(rouStr);
+                            decimal Routine = decimal.Parse(strRou);
+                            result += ";Routine=" + Routine.ToString();
+                        }
+                    }
+                }
+            }
+
             if (page.Contains("id=\"tabplayer_scout_new"))
             {
+                HtmlElement element = htmlDocument.GetElementById("player_scout_new");
+
                 string ScoutName = "";
                 string ScoutDate = "";
                 string ScoutVoto = "";

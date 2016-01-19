@@ -1,4 +1,4 @@
-namespace NTR_Common
+namespace NTR_Db
 {
     partial class NTR_PlayerData
     {
@@ -1450,5 +1450,6 @@ namespace NTR_Common
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pctTeamB;
         private System.Windows.Forms.LinkLabel linkLabel1;
+        private global::NTR_Db.PlayerData playerData;      
     }
 }

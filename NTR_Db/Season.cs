@@ -1105,16 +1105,88 @@ namespace NTR_Db
             return cnt;
         }
 
+        private bool LoadForfaitMatch(string page, bool quiet = false)
+        {
+            string match_info_str = HTML_Parser.GetTag(page, "MATCH_INFO");
+
+            string matchIdStr = HTML_Parser.GetNumberAfter(page, "http://trophymanager.com/matches/");
+            int matchId = int.Parse(matchIdStr);
+
+            NTR_SquadDb.MatchRow matchRow = seasonsDB.Match.FindByMatchID(matchId);
+            if (matchRow == null)
+            {
+                matchRow = seasonsDB.Match.NewMatchRow();
+                matchRow.MatchID = matchId;
+                seasonsDB.Match.AddMatchRow(matchRow);
+            }
+
+            Dictionary<string, string> match_info = HTML_Parser.CreateDictionary(match_info_str.Trim(';'), ';');
+
+            int homeTeamId = int.Parse(match_info["home_id"]);
+            int awayTeamId = int.Parse(match_info["away_id"]);
+
+            NTR_SquadDb.TeamRow homeTeamRow = seasonsDB.Team.FindByTeamID(homeTeamId);
+            if (homeTeamRow == null)
+            {
+                homeTeamRow = seasonsDB.Team.NewTeamRow();
+                homeTeamRow.TeamID = homeTeamId;
+                seasonsDB.Team.AddTeamRow(homeTeamRow);
+            }
+            homeTeamRow.Nick = match_info["home_nick"];
+
+            NTR_SquadDb.TeamRow awayTeamRow = seasonsDB.Team.FindByTeamID(awayTeamId);
+            if (awayTeamRow == null)
+            {
+                awayTeamRow = seasonsDB.Team.NewTeamRow();
+                awayTeamRow.TeamID = awayTeamId;
+                seasonsDB.Team.AddTeamRow(awayTeamRow);
+            }
+            awayTeamRow.Nick = match_info["away_nick"];
+
+            matchRow.Analyzed = 2;
+            matchRow.Report = true;
+
+            matchRow.Stadium = match_info["stadium"];
+
+            if ((!homeTeamRow.IsOwnerNull()) && homeTeamRow.Owner)
+                matchRow.isHome = true;
+            else if ((!awayTeamRow.IsOwnerNull()) && awayTeamRow.Owner)
+                matchRow.isHome = false;
+            else if ((!homeTeamRow.IsImportedNull()) && homeTeamRow.Imported)
+                matchRow.isHome = true;
+            else
+                matchRow.isHome = false;
+
+            int yourTeamId = matchRow.isHome ? homeTeamId : awayTeamId;
+            int oppsTeamId = matchRow.isHome ? awayTeamId : homeTeamId;
+
+            matchRow.OTeamID = oppsTeamId;
+            matchRow.YTeamID = yourTeamId;
+
+            // Getting pitch and weather data
+            matchRow.Pitch = match_info["sprinklers"] + ";" +
+                 match_info["draining"] + ";" +
+                 match_info["heating"] + ";" +
+                 match_info["pitch_condition"] + ";" +
+                 match_info["pitchcover"];
+            matchRow.Weather = match_info["weather"];
+
+            matchRow.Score = match_info["score"];
+
+            return true;
+        }
+
         public bool LoadMatch(string page, bool quiet = false)
         {
+            if (page.Contains("forfait=yes"))
+                return LoadForfaitMatch(page, quiet);
+
             if (page.Contains("Javascript error")) return false;
 
             string lineup_home_str = HTML_Parser.GetTag(page, "LINEUP_HOME");
             string lineup_away_str = HTML_Parser.GetTag(page, "LINEUP_AWAY");
             string match_info_str = HTML_Parser.GetTag(page, "MATCH_INFO");
             string report = HTML_Parser.GetTag(page, "REPORT");
-
-            if (match_info_str.Contains("forfait=yes")) return false;
 
             string[] att_styles = { "Bal", "Bal", "Count", "Wing", "Short", "Long", "Filt" };
             string[] mentality = { "Norm", "VeDef", "Def", "SlDef", "Norm", "SlOff", "Off", "VrOff" };
@@ -1778,6 +1850,7 @@ namespace NTR_Db
                 return false;
             }
         }
+
 
         public class PlayerStats
         {

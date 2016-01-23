@@ -141,6 +141,7 @@ namespace NTR_WebBrowser
                 this.webBrowser.ProgressChanged += webBrowser_ProgressChanged;
                 this.webBrowser.Navigating += WebBrowser_Navigating;
                 this.webBrowser.Visible = true;
+                this.webBrowser.ScriptErrorsSuppressed = true;
                 this.Controls.Add(webBrowser);
             }
         }
@@ -376,6 +377,7 @@ namespace NTR_WebBrowser
         public string ParsePlayerPage_Extras(HtmlDocument htmlDocument)
         {
             HtmlElement hidden = htmlDocument.GetElementById("hidden_skill_table");
+            if (hidden == null) return "";
             var element = hidden.GetElementsByTagName("td");
 
             string result = "";
@@ -430,7 +432,7 @@ namespace NTR_WebBrowser
             if (page.Contains("info_table"))
             {
                 var elements = htmlDocument.All;
-                foreach(var element in elements)
+                foreach (var element in elements)
                 {
                     HtmlElement htmlElement = (HtmlElement)element;
                     if (htmlElement.InnerHtml == null) continue;
@@ -471,6 +473,26 @@ namespace NTR_WebBrowser
                             result += ";Routine=" + Routine.ToString();
                         }
                     }
+                    else if (htmlElement.InnerHtml.Contains("skill_table") && (htmlElement.TagName == "DIV"))
+                    {
+                        string text = htmlElement.InnerText.Replace("\r\n", ",").Trim(',');
+                        text = text.Replace(",,", ",");
+                        string[] strArray = text.Split(',');
+                        result += ";Str=" + strArray[1];
+                        result += ";Pas=" + strArray[3];
+                        result += ";Sta=" + strArray[5];
+                        result += ";Cro=" + strArray[7];
+                        result += ";Vel=" + strArray[9];
+                        result += ";Tec=" + strArray[11];
+                        result += ";Mar=" + strArray[13];
+                        result += ";Hea=" + strArray[15];
+                        result += ";Tak=" + strArray[17];
+                        result += ";Fin=" + strArray[19];
+                        result += ";Wor=" + strArray[21];
+                        result += ";Lon=" + strArray[23];
+                        result += ";Pos=" + strArray[25];
+                        result += ";Set=" + strArray[27];
+                    }
                 }
             }
 
@@ -484,6 +506,7 @@ namespace NTR_WebBrowser
                 string ScoutGiudizio = "";
                 string ScoutInfo = "";
 
+                if (element != null)
                 foreach (var child in element.Children)
                 {
                     if (((HtmlElement)child).InnerHtml.Contains("<tbody>"))
@@ -603,7 +626,7 @@ namespace NTR_WebBrowser
                             }
 
                             field = ((HtmlElement)child).InnerHtml;
-                            if (field.Contains("Should Develop:"))
+                            try
                             {
                                 physique = SelectedReportParser.find("Physique", field, physique);
                                 technics = SelectedReportParser.find("Technics", field, technics);
@@ -612,6 +635,8 @@ namespace NTR_WebBrowser
                                 leadership = SelectedReportParser.find("Charisma", field, leadership);
                                 professionalism = SelectedReportParser.find("Professionalism", field, professionalism);
                             }
+                            catch(Exception)
+                            { }
 
                             if (physique != 0) giudizio += "Phy:" + physique + ",";
                             if (technics != 0) giudizio += "Tec:" + technics + ",";

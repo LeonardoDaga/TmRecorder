@@ -72,7 +72,16 @@ function get_match_info()
         // match_data
         match_info = match_data["match_data"];	
 
-	    if (match_info["forfeit"])	strout += ";forfait=yes";
+        if (match_info["forfeit"])
+        {
+            strout += ";forfait=yes";
+            if (match_info["forfeit"]["side"] == "home")
+                strout += ";forfait_side=home;score=0-3";
+            else if (match_info["forfeit"]["side"] == "away")
+                strout += ";forfait_side=away;score=3-0";
+            else
+                strout += ";forfait_side=both;score=0-0";
+        }
 		
 		strout += ";home_id=" + home_id;
 		strout += ";away_id=" + away_id;
@@ -82,21 +91,10 @@ function get_match_info()
 		strout += ";away_nick=" + match_data["club"]["away"]["club_nick"];
 		strout += ";home_fans=" + match_data["club"]["home"]["fanclub"];
 		strout += ";away_fans=" + match_data["club"]["away"]["fanclub"];
-		strout += ";home_attstyle=" + match_info["attacking_style"]["home"];
-		strout += ";away_attstyle=" + match_info["attacking_style"]["away"];
-		strout += ";home_mentality=" + match_info["mentality"]["home"];
-		strout += ";away_mentality=" + match_info["mentality"]["away"];
-		
 		strout += ";home_color=" + match_data["club"]["home"]["colors"]["club_color1"];
 		strout += ";away_color=" + match_data["club"]["away"]["colors"]["club_color1"];
-	
-		strout += ";attendance=" + match_info["attendance"];
-		strout += ";captain_home=" + match_info["captain"]["home"];
-		strout += ";captain_away=" + match_info["captain"]["away"];
-		strout += ";possession_home=" + match_info["possession"]["home"];
-		strout += ";possession_away=" + match_info["possession"]["away"];
-	
 		strout += ";stadium=" + match_data["club"]["home"]["stadium"];
+	
 		strout += ";capacity=" + match_info["venue"]["capacity"];
 		strout += ";city=" + match_info["venue"]["city"];
 		strout += ";name=" + match_info["venue"]["name"];
@@ -108,6 +106,17 @@ function get_match_info()
 		strout += ";pitchcover=" + match_info["venue"]["pitchcover"];
 		strout += ";matchtype=" + match_info["venue"]["matchtype"];
 		strout += ";kickoff=" + match_info["venue"]["kickoff"];
+
+		strout += ";home_attstyle=" + match_info["attacking_style"]["home"];
+		strout += ";away_attstyle=" + match_info["attacking_style"]["away"];
+		strout += ";home_mentality=" + match_info["mentality"]["home"];
+		strout += ";away_mentality=" + match_info["mentality"]["away"];
+		
+		strout += ";attendance=" + match_info["attendance"];
+		strout += ";captain_home=" + match_info["captain"]["home"];
+		strout += ";captain_away=" + match_info["captain"]["away"];
+		strout += ";possession_home=" + match_info["possession"]["home"];
+		strout += ";possession_away=" + match_info["possession"]["away"];	
 	}
 	catch (err)
 	{

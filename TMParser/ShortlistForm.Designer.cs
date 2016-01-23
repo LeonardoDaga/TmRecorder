@@ -271,8 +271,8 @@ namespace TMRecorder
             this.webBrowser.NavigationAddress = "";
             this.webBrowser.NavigationMode = NTR_WebBrowser.NTR_Browser.eNavigationMode.Main;
             this.webBrowser.SelectedReportParser = null;
-            this.webBrowser.ShowShortlist = false;
-            this.webBrowser.ShowTransfer = false;
+            this.webBrowser.ShowShortlist = true;
+            this.webBrowser.ShowTransfer = true;
             this.webBrowser.Size = new System.Drawing.Size(861, 318);
             this.webBrowser.StartnavigationAddress = "";
             this.webBrowser.TabIndex = 0;
@@ -360,6 +360,7 @@ namespace TMRecorder
             this.clearShortlistDBforgetAllPastImportedDataToolStripMenuItem.Name = "clearShortlistDBforgetAllPastImportedDataToolStripMenuItem";
             this.clearShortlistDBforgetAllPastImportedDataToolStripMenuItem.Size = new System.Drawing.Size(358, 22);
             this.clearShortlistDBforgetAllPastImportedDataToolStripMenuItem.Text = "Clear Shortlist DB (forget all previously imported data)";
+            this.clearShortlistDBforgetAllPastImportedDataToolStripMenuItem.Click += new System.EventHandler(this.clearShortlistDBforgetAllPastImportedDataToolStripMenuItem_Click);
             // 
             // ShortlistForm
             // 

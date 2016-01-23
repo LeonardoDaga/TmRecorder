@@ -1722,6 +1722,8 @@ namespace NTR_Db
         {
             Dictionary<string, string> dictValues = HTML_Parser.CreateDictionary(page, ';');
 
+            if (!dictValues.ContainsKey("BornWeek")) return;
+
             // Filling the player data
             Name = dictValues["PlayerName"];
             FPn = int.Parse(dictValues["FPn"]);
@@ -1732,8 +1734,9 @@ namespace NTR_Db
             if (Week != TmWeek.thisWeek().absweek)
             {
                 ASI.prev = ASI.actual;
-                ASI.actual = int.Parse(dictValues["ASI"]);
             }
+
+            ASI.actual = int.Parse(dictValues["ASI"]);
 
             // Filling the DB
             NTR_SquadDb.PlayerRow pr = DB.Player.FindByPlayerID(playerID);
@@ -1766,6 +1769,30 @@ namespace NTR_Db
             }
 
             hr.ASI = int.Parse(dictValues["ASI"]);
+
+            hr.For = decimal.Parse(dictValues["Str"]);
+            hr.Pas = decimal.Parse(dictValues["Pas"]);
+            hr.Res = decimal.Parse(dictValues["Sta"]);
+            hr.Cro = decimal.Parse(dictValues["Cro"]);
+            hr.Vel = decimal.Parse(dictValues["Vel"]);
+            hr.Tec = decimal.Parse(dictValues["Tec"]);
+            hr.Mar = decimal.Parse(dictValues["Mar"]);
+            hr.Tes = decimal.Parse(dictValues["Hea"]);
+            hr.Wor = decimal.Parse(dictValues["Wor"]);
+            hr.Dis = decimal.Parse(dictValues["Lon"]);
+            hr.Pos = decimal.Parse(dictValues["Pos"]);
+            hr.Cal = decimal.Parse(dictValues["Set"]);
+
+            var phr = DB.HistData.FindByPlayerIDWeek(playerID, TmWeek.thisWeek().absweek - 1);
+            if (phr != null)
+            {
+                var weight = 48717927500;
+                if (pr.FPn == 0)
+                    weight = 263533760000;
+
+                // Compute TI
+                hr.TI = Math.Round((decimal)(Math.Pow(2, Math.Log(weight * hr.ASI) / Math.Log(Math.Pow(2, 7))) - Math.Pow(2, Math.Log(weight * phr.ASI) / Math.Log(Math.Pow(2, 7))))*10M);
+            }
 
             NTR_SquadDb.TempDataRow tr = DB.TempData.FindByPlayerID(playerID);
             if (tr == null)
@@ -1821,6 +1848,7 @@ namespace NTR_Db
             Dictionary<string, string> dictValues = HTML_Parser.CreateDictionary(content, ';');
 
             string scoutsInfo = dictValues["ScoutInfo"].Replace(":", "=");
+            if (scoutsInfo.Length == 0) return;
 
             string[] scouts = scoutsInfo.Split('|');
 
@@ -2103,6 +2131,10 @@ namespace NTR_Db
             }
 
             Score = new MatchScore(mr.Score, IsHome);
+
+            if (mr.Analyzed == 2)
+                Score.forfait = true;
+
             ScoreString = mr.Score;
             ScoreString.backColor = Score.ScoreColor;
 
@@ -2264,12 +2296,15 @@ namespace NTR_Db
         public int home;
         public int away;
         public bool valid = true;
+        public bool forfait = false;
 
         public Color ScoreColor
         {
             get
             {
-                if (!valid)
+                if (forfait)
+                    return Color.Beige;
+                else if (!valid)
                     return Color.LightGray;
                 else if (home == away)
                     return Color.FromArgb(230,230,0);
@@ -2314,6 +2349,8 @@ namespace NTR_Db
 
         public override string ToString()
         {
+            if (forfait)
+                return "ff";
             if (!valid)
                 return "np";
             return string.Format("{0}-{1}", home, away);
@@ -2321,6 +2358,8 @@ namespace NTR_Db
 
         public string Inverse()
         {
+            if (forfait)
+                return "ff";
             if (!valid)
                 return "np";
 

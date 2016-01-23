@@ -245,14 +245,14 @@ namespace TMRecorder
 
             if (page.Contains("NewTM - Shortlist"))
             {
-                DB.LoadShortlist(page);
+                DB.LoadShortlist(page, uploadOnlyListedPlayers);
 
                 isDirty = true;
                 return;
             }
             else if (page.Contains("NewTM - Transfer"))
             {
-                DB.LoadTransferList(page);
+                DB.LoadTransferList(page, uploadOnlyListedPlayers);
 
                 isDirty = true;
                 return;
@@ -374,7 +374,7 @@ namespace TMRecorder
 
         private void updateOnlyListedPlayersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            updateOnlyListedPlayersToolStripMenuItem.Checked = !updateOnlyListedPlayersToolStripMenuItem.Checked;
+            //updateOnlyListedPlayersToolStripMenuItem.Checked = !updateOnlyListedPlayersToolStripMenuItem.Checked;
         }
 
         private void dgPlayers_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -523,7 +523,19 @@ namespace TMRecorder
 
         private void clearShortlistToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (MessageBox.Show("This operation will delete only the players from the list. Data of the players' history will remain in the DB.", "Clear shortlist", MessageBoxButtons.OKCancel) == DialogResult.Cancel)
+                return;
+
             DB.Shortlist.Clear();
+            UpdateShortlist();
+        }
+
+        private void clearShortlistDBforgetAllPastImportedDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("This operation will delete all the data from the Shortlist DB (not the one of your team), even the data related to the players' history", "Clear shortlist", MessageBoxButtons.OKCancel) == DialogResult.Cancel)
+                return;
+
+            DB.Clear();
             UpdateShortlist();
         }
     }

@@ -146,13 +146,15 @@ namespace TMRecorder
         {
             GetPlayerHistory();
 
+            if (playerHistory.Count == 0) return;
+
             List<NTR_Db.PlayerData> trainingDataList = new List<NTR_Db.PlayerData>();
 
             for (int i = 0; i < playerHistory.Count - 1; i++)
             {
                 trainingDataList.Add(new NTR_Db.PlayerData(playerHistory[i+1], playerHistory[i]));
             }
-            trainingDataList.Add(new NTR_Db.PlayerData(playerHistory[playerHistory.Count - 1], null));
+            trainingDataList.Add(new NTR_Db.PlayerData(playerHistory[0], null));
 
             dgTraining.DataCollection = trainingDataList;
         }
@@ -166,6 +168,8 @@ namespace TMRecorder
             TMR_AgeColumn colWeek = (TMR_AgeColumn)dgTraining.AddColumn("Week", "Week", 50, AG_Style.Age | AG_Style.Frozen);
             TMR_NumDecColumn dgvc = (TMR_NumDecColumn)dgTraining.AddColumn("ASI", "ASI", 49, AG_Style.NumDec | AG_Style.Frozen);
             dgvc.CellColorStyles = CellColorStyleList.DefaultGainColorStyle();
+            TMR_NumDecColumn dgvcTI = (TMR_NumDecColumn)dgTraining.AddColumn("TI", "TI", 49, AG_Style.NumDec | AG_Style.Frozen);
+            dgvcTI.CellColorStyles = CellColorStyleList.DefaultGainColorStyle();
 
             AddTrainingSkillColumn("Str");
             AddTrainingSkillColumn("Pac");
@@ -699,6 +703,10 @@ namespace TMRecorder
             FillBaseData(selectedPlayerData);
 
             FillTagsBars(selectedPlayerData);
+
+            GetPlayerHistory();
+
+            UpdateTrainingList();
 
             isDirty = true;
         }

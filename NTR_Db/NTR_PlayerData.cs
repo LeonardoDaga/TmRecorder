@@ -396,20 +396,20 @@ namespace NTR_Db
                     lblWorCapt.Text = "Wor";
                     lblSetCapt.Text = "Set";
 
-                    lblCon.Text = plData.Tac.ToString();
-                    lblCro.Text = plData.Cro.ToString();
-                    lblFin.Text = plData.Fin.ToString();
-                    lblFor.Text = plData.Str.ToString();
-                    lblMar.Text = plData.Mar.ToString();
-                    lblPas.Text = plData.Pas.ToString();
-                    lblPos.Text = plData.Pos.ToString();
-                    lblRes.Text = plData.Sta.ToString();
-                    lblTec.Text = plData.Tec.ToString();
-                    lblTes.Text = plData.Hea.ToString();
-                    lblDis.Text = plData.Lon.ToString();
-                    lblVel.Text = plData.Pac.ToString();
-                    lblImp.Text = plData.Wor.ToString();
-                    lblCP.Text = plData.Set.ToString();
+                    lblCon.Text = plData.Tac.actual.ToString();
+                    lblCro.Text = plData.Cro.actual.ToString();
+                    lblFin.Text = plData.Fin.actual.ToString();
+                    lblFor.Text = plData.Str.actual.ToString();
+                    lblMar.Text = plData.Mar.actual.ToString();
+                    lblPas.Text = plData.Pas.actual.ToString();
+                    lblPos.Text = plData.Pos.actual.ToString();
+                    lblRes.Text = plData.Sta.actual.ToString();
+                    lblTec.Text = plData.Tec.actual.ToString();
+                    lblTes.Text = plData.Hea.actual.ToString();
+                    lblDis.Text = plData.Lon.actual.ToString();
+                    lblVel.Text = plData.Pac.actual.ToString();
+                    lblImp.Text = plData.Wor.actual.ToString();
+                    lblCP.Text = plData.Set.actual.ToString();
 
                     if (plData.Ada > 0)
                         lblAda.Text = plData.Ada.ToString() + "/20";
@@ -439,17 +439,17 @@ namespace NTR_Db
                     lblPacCapt.Text = "Pac";
                     lblWorCapt.Text = "Ref";
 
-                    lblCon.Text = plData.Tac.ToString();
-                    lblCro.Text = plData.Cro.ToString();
-                    lblFor.Text = plData.Str.ToString();
-                    lblMar.Text = plData.Mar.ToString();
-                    lblPas.Text = plData.Pas.ToString();
-                    lblPos.Text = plData.Pos.ToString();
-                    lblRes.Text = plData.Sta.ToString();
-                    lblTec.Text = plData.Tec.ToString();
-                    lblTes.Text = plData.Hea.ToString();
-                    lblVel.Text = plData.Pac.ToString();
-                    lblImp.Text = plData.Wor.ToString();
+                    lblCon.Text = plData.Tac.actual.ToString();
+                    lblCro.Text = plData.Cro.actual.ToString();
+                    lblFor.Text = plData.Str.actual.ToString();
+                    lblMar.Text = plData.Mar.actual.ToString();
+                    lblPas.Text = plData.Pas.actual.ToString();
+                    lblPos.Text = plData.Pos.actual.ToString();
+                    lblRes.Text = plData.Sta.actual.ToString();
+                    lblTec.Text = plData.Tec.actual.ToString();
+                    lblTes.Text = plData.Hea.actual.ToString();
+                    lblVel.Text = plData.Pac.actual.ToString();
+                    lblImp.Text = plData.Wor.actual.ToString();
                 }
 
                 if (plData != null)
@@ -457,7 +457,7 @@ namespace NTR_Db
                 else
                     lblRou.Text = "-";
 
-                lblASI.Text = plData.ASI.ToString();
+                lblASI.Text = plData.ASI.actual.ToString();
                 TmWeek born = new TmWeek(plData.wBorn);
                 lblAge.Text = born.ToAge(DateTime.Today);
 

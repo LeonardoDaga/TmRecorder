@@ -21,7 +21,7 @@ namespace Common
 
 
 
-        public void LoadTransferList(string page)
+        public void LoadTransferList(string page, bool uploadOnlyListedPlayers = false)
         {
             string[] lines = page.Split('\n');
 
@@ -33,6 +33,11 @@ namespace Common
                 Dictionary<string, string> items = HTML_Parser.CreateDictionary(line, ';');
 
                 int playerID = int.Parse(items["id"]);
+
+                var sr = Shortlist.FindByPlayerID(playerID);
+                if ((sr == null) && uploadOnlyListedPlayers)
+                    continue;
+
                 var pr = this.Player.FindByPlayerID(playerID);
                 if (pr == null)
                 {
@@ -99,12 +104,22 @@ namespace Common
                     TempData.AddTempDataRow(tr);
                 }
 
+                var phr = HistData.FindByPlayerIDWeek(playerID, TmWeek.thisWeek().absweek - 1);
+                if (phr != null)
+                {
+                    var weight = 48717927500;
+                    if (pr.FPn == 0)
+                        weight = 263533760000;
+
+                    // Compute TI
+                    hr.TI = Math.Round((decimal)(Math.Pow(2, Math.Log(weight * hr.ASI) / Math.Log(Math.Pow(2, 7))) - Math.Pow(2, Math.Log(weight * phr.ASI) / Math.Log(Math.Pow(2, 7)))) * 10M);
+                }
+
                 tr.Rec = decimal.Parse(items["rec"]);
 
                 if (items["routine"] != "null")
                     tr.Rou = decimal.Parse(items["routine"]);
 
-                var sr = Shortlist.FindByPlayerID(playerID);
                 if (sr == null)
                 {
                     sr = Shortlist.NewShortlistRow();
@@ -117,7 +132,7 @@ namespace Common
             }
         }
 
-        public void LoadShortlist(string page)
+        public void LoadShortlist(string page, bool uploadOnlyListedPlayers = false)
         {
             string[] lines = page.Split('\n');
 
@@ -128,6 +143,10 @@ namespace Common
                 Dictionary<string, string> items = HTML_Parser.CreateDictionary(line, ';');
 
                 int playerID = int.Parse(items["id"]);
+
+                var sr = Shortlist.FindByPlayerID(playerID);
+                if ((sr == null) && uploadOnlyListedPlayers)
+                    continue;
 
                 var pr = Player.FindByPlayerID(playerID);
                 if (pr == null)
@@ -188,6 +207,17 @@ namespace Common
                 }
                 hr.ASI = int.Parse(items["asi"]);
 
+                var phr = HistData.FindByPlayerIDWeek(playerID, TmWeek.thisWeek().absweek - 1);
+                if (phr != null)
+                {
+                    var weight = 48717927500;
+                    if (pr.FPn == 0)
+                        weight = 263533760000;
+
+                    // Compute TI
+                    hr.TI = Math.Round((decimal)(Math.Pow(2, Math.Log(weight * hr.ASI) / Math.Log(Math.Pow(2, 7))) - Math.Pow(2, Math.Log(weight * phr.ASI) / Math.Log(Math.Pow(2, 7)))) * 10M);
+                }
+
                 var tr = TempData.FindByPlayerID(playerID);
                 if (tr == null)
                 {
@@ -199,9 +229,9 @@ namespace Common
                 tr.Rou = decimal.Parse(items["routine"]);
                 tr.Wage = int.Parse(items["wage"]);
 
-                var sr = Shortlist.FindByPlayerID(playerID);
                 if (sr == null)
                 {
+                    sr = Shortlist.NewShortlistRow();
                     sr.PlayerID = pr.PlayerID;
                     Shortlist.AddShortlistRow(sr);
                 }

@@ -94,6 +94,33 @@ namespace DataGridViewCustomColumns
             return newList;
         }
 
+        public static CellColorStyleList DefaultSOiColorStyle()
+        {
+            CellColorStyleList newList = new CellColorStyleList();
+            newList.Type = ListType.DefaultFp;
+
+            Color backGrnd = Color.FromArgb(0, 0, 64);
+
+            newList.Add(new CellColorStyle(-100, 0, Color.White, Color.Black,
+                Color.FromArgb(255, 255, 255), Color.Blue));
+            newList.Add(new CellColorStyle(0, 20, backGrnd, Color.RoyalBlue,
+                Color.Teal, Color.RoyalBlue));
+            newList.Add(new CellColorStyle(20, 30, backGrnd, Color.Cyan,
+                Color.Teal, Color.Cyan));
+            newList.Add(new CellColorStyle(30, 50, backGrnd, Color.Lime,
+                Color.Teal, Color.Lime));
+            newList.Add(new CellColorStyle(50, 60, backGrnd, Color.Yellow,
+                Color.Teal, Color.Yellow));
+            newList.Add(new CellColorStyle(60, 70, backGrnd, Color.Salmon,
+                Color.Teal, Color.Salmon));
+            newList.Add(new CellColorStyle(70, 85, backGrnd, Color.Red,
+                Color.Teal, Color.Red));
+            newList.Add(new CellColorStyle(85, 100, backGrnd, Color.Violet,
+                Color.Teal, Color.Violet));
+            return newList;
+
+        }
+
         public static CellColorStyleList DefaultFpColorStyle()
         {
             CellColorStyleList newList = new CellColorStyleList();

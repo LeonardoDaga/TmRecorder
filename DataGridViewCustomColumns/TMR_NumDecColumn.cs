@@ -219,7 +219,7 @@ namespace DataGridViewCustomColumns
 
                 SizeF szf = new SizeF(0, 0);
 
-                if (this.OwningColumn.DataPropertyName == "ASI")
+                if ((this.OwningColumn.DataPropertyName == "ASI") || (this.OwningColumn.DataPropertyName == "TI"))
                     filterASIvalue = true;
 
                 if ((dgc.CellColorStyles != null) && (dgc.CellColorStyles.Type == CellColorStyleList.ListType.DefaultFp))

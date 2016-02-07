@@ -398,8 +398,6 @@ namespace TMRecorder
             dgPlayers.AddColumn("Nat", "Nationality", 28, AG_Style.Nationality | AG_Style.Frozen);
             TMR_NumDecColumn dgvc = (TMR_NumDecColumn)dgPlayers.AddColumn("ASI", "ASI", 49, AG_Style.NumDec | AG_Style.Frozen);
             dgvc.CellColorStyles = CellColorStyleList.DefaultGainColorStyle();
-            dgvc = (TMR_NumDecColumn)dgPlayers.AddColumn("TI", "TI", 32, AG_Style.NumDec | AG_Style.Frozen);
-            dgvc.CellColorStyles = CellColorStyleList.DefaultGainColorStyle();
 
             AddPlayersSkillColumn("Str");
             AddPlayersSkillColumn("Pac");
@@ -419,8 +417,10 @@ namespace TMRecorder
 
             dgPlayers.AddColumn("Rou", "Rou", 30, AG_Style.Numeric | AG_Style.RightJustified);
             dgPlayers.AddColumn("SSD", "SSD", 30, AG_Style.Numeric | AG_Style.RightJustified);
-            dgPlayers.AddColumn("CStr", "CStr", 30, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N2);
+            dgPlayers.AddColumn("CRec", "CStr", 30, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N2);
             dgPlayers.AddColumn("Rec", "Rec", 30, AG_Style.Numeric | AG_Style.RightJustified);
+            dgvc = (TMR_NumDecColumn)dgPlayers.AddColumn("TI", "TI", 32, AG_Style.NumDec | AG_Style.Frozen);
+            dgvc.CellColorStyles = CellColorStyleList.DefaultGainColorStyle();
 
             DataGridViewCellStyle dgvcsPosCells = new DataGridViewCellStyle();
             dgvcsPosCells.Format = "N1";
@@ -456,8 +456,6 @@ namespace TMRecorder
             dgPlayersGK.AddColumn("Nat", "Nationality", 28, AG_Style.Nationality | AG_Style.Frozen);
             TMR_NumDecColumn dgvc = (TMR_NumDecColumn)dgPlayersGK.AddColumn("ASI", "ASI", 49, AG_Style.NumDec | AG_Style.Frozen);
             dgvc.CellColorStyles = CellColorStyleList.DefaultGainColorStyle();
-            dgvc = (TMR_NumDecColumn)dgPlayersGK.AddColumn("TI", "TI", 32, AG_Style.NumDec | AG_Style.Frozen);
-            dgvc.CellColorStyles = CellColorStyleList.DefaultGainColorStyle();
 
             AddPlayersSkillColumnGK("Str");
             AddPlayersSkillColumnGK("Pac");
@@ -474,8 +472,10 @@ namespace TMRecorder
 
             dgPlayersGK.AddColumn("Rou", "Rou", 30, AG_Style.Numeric | AG_Style.RightJustified);
             dgPlayersGK.AddColumn("SSD", "SSD", 30, AG_Style.Numeric | AG_Style.RightJustified);
-            dgPlayersGK.AddColumn("CStr", "CStr", 30, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N2);
+            dgPlayersGK.AddColumn("CRec", "CStr", 30, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N2);
             dgPlayersGK.AddColumn("Rec", "Rec", 30, AG_Style.Numeric | AG_Style.RightJustified);
+            dgvc = (TMR_NumDecColumn)dgPlayersGK.AddColumn("TI", "TI", 32, AG_Style.NumDec | AG_Style.Frozen);
+            dgvc.CellColorStyles = CellColorStyleList.DefaultGainColorStyle();
 
             DataGridViewCellStyle dgvcsPosCells = new DataGridViewCellStyle();
             dgvcsPosCells.Format = "N1";

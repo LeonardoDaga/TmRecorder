@@ -411,6 +411,8 @@ namespace Common {
             
             private global::System.Data.DataColumn columnwBloomData;
             
+            private global::System.Data.DataColumn columnisRetire;
+            
             private global::System.Data.DataColumn columnisYoungTeam;
             
             private global::System.Data.DataColumn columnTrainingAbilities;
@@ -714,6 +716,14 @@ namespace Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn isRetireColumn {
+                get {
+                    return this.columnisRetire;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn isYoungTeamColumn {
                 get {
                     return this.columnisYoungTeam;
@@ -845,6 +855,7 @@ namespace Common {
                         string RoutineUpdates, 
                         decimal Routine, 
                         string wBloomData, 
+                        bool isRetire, 
                         short isYoungTeam, 
                         string TrainingAbilities, 
                         int FPn, 
@@ -886,6 +897,7 @@ namespace Common {
                         RoutineUpdates,
                         Routine,
                         wBloomData,
+                        isRetire,
                         isYoungTeam,
                         TrainingAbilities,
                         FPn,
@@ -954,6 +966,7 @@ namespace Common {
                 this.columnRoutineUpdates = base.Columns["RoutineUpdates"];
                 this.columnRoutine = base.Columns["Routine"];
                 this.columnwBloomData = base.Columns["wBloomData"];
+                this.columnisRetire = base.Columns["isRetire"];
                 this.columnisYoungTeam = base.Columns["isYoungTeam"];
                 this.columnTrainingAbilities = base.Columns["TrainingAbilities"];
                 this.columnFPn = base.Columns["FPn"];
@@ -1029,6 +1042,8 @@ namespace Common {
                 base.Columns.Add(this.columnRoutine);
                 this.columnwBloomData = new global::System.Data.DataColumn("wBloomData", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnwBloomData);
+                this.columnisRetire = new global::System.Data.DataColumn("isRetire", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnisRetire);
                 this.columnisYoungTeam = new global::System.Data.DataColumn("isYoungTeam", typeof(short), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnisYoungTeam);
                 this.columnTrainingAbilities = new global::System.Data.DataColumn("TrainingAbilities", typeof(string), null, global::System.Data.MappingType.Element);
@@ -1069,6 +1084,7 @@ namespace Common {
                 this.columnAvTSI.DefaultValue = ((float)(0F));
                 this.columnwBorn.DefaultValue = ((int)(-9999));
                 this.columnRoutine.DefaultValue = ((decimal)(0m));
+                this.columnisRetire.DefaultValue = ((bool)(false));
                 this.columnisYoungTeam.DefaultValue = ((short)(0));
             }
             
@@ -2371,6 +2387,22 @@ namespace Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool isRetire {
+                get {
+                    try {
+                        return ((bool)(this[this.tableGiocatori.isRetireColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'isRetire\' in table \'Giocatori\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGiocatori.isRetireColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public short isYoungTeam {
                 get {
                     try {
@@ -2843,6 +2875,18 @@ namespace Common {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetwBloomDataNull() {
                 this[this.tableGiocatori.wBloomDataColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsisRetireNull() {
+                return this.IsNull(this.tableGiocatori.isRetireColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetisRetireNull() {
+                this[this.tableGiocatori.isRetireColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

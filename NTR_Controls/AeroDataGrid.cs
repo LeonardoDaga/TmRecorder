@@ -101,6 +101,22 @@ namespace NTR_Controls
             return AddColumn(Title, Property, width, styles);
         }
 
+
+        public void AddFpColumn(string skill, DataGridViewCellStyle dgvcsPosCells, int size = 30)
+        {
+            TMR_NumDecColumn dgvc = (TMR_NumDecColumn)this.AddColumn(skill, skill, size, AG_Style.NumDec, dgvcsPosCells);
+            dgvc.CellColorStyles = CellColorStyleList.DefaultFpColorStyle();
+        }
+
+        public void AddSkColumn(string skill, bool evidenceGain, int size = 25)
+        {
+            TMR_NumDecColumn dgvc = (TMR_NumDecColumn)this.AddColumn(skill, skill, size, AG_Style.NumDec);
+            if (evidenceGain)
+                dgvc.CellColorStyles = CellColorStyleList.DefaultGainColorStyle();
+            else
+                dgvc.CellColorStyles = CellColorStyleList.NoGainColorStyle();
+        }
+
         public DataGridViewColumn AddColumn(string Title, string Property, int width, AG_Style styles, string description = "")
         {
             DataGridViewColumn dgv = null;
@@ -149,6 +165,10 @@ namespace NTR_Controls
             else if ((int)(styles & AG_Style.MatchType) > 0)
             {
                 dgv = new TMR_MatchTypeColumn();
+            }
+            else if ((int)(styles & AG_Style.HiddenSkill) > 0)
+            {
+                dgv = new NTR_HiddenSkillColumn();
             }
             else if ((int)(styles & AG_Style.Stars) > 0)
             {
@@ -233,5 +253,6 @@ namespace NTR_Controls
         TextAndImage = 0x8000,
         Checkbox = 0x10000,
         Time_ddmm_hhmm = 0x20000,
+        HiddenSkill = 0x40000,
     }
 }

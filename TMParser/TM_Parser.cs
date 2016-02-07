@@ -1216,7 +1216,9 @@ namespace TMRecorder
                 row.Squalificato = 4 + int.Parse(data["ban"].Substring(1));
 
             int retire = 0;
-            int.TryParse(data["retire"], out retire);
+
+            if (data["retire"] != "")
+                retire = int.Parse(data["retire"]);
             row.Retire = retire;
 
             row.Note = data["txt"];
@@ -1335,7 +1337,7 @@ namespace TMRecorder
             row.Note = data["txt"];
             row.TIs = data["TIs"].Replace(",", ";");
 
-            row.Rec = int.Parse(data["rec"]);
+            row.Rec = decimal.Parse(data["rec"]) / 2.0M;
 
             if (!data.ContainsKey("ban") || (data["ban"][0] != 'r'))
                 row.Squalificato = int.Parse(data["ban_points"]);
@@ -1365,11 +1367,6 @@ namespace TMRecorder
 
             // Row0: Numero
             row.Numero = int.Parse(data["no"]);
-
-            if (data["inj"] != "null")
-                row.Infortunato = int.Parse(data["inj"]);
-            else
-                row.Infortunato = 0;
 
             //row.Squalificato = int.Parse(data["ban"]);
             row.Nome = data["name"].Replace("  ", " ");
@@ -1403,10 +1400,20 @@ namespace TMRecorder
             row.Rating = decimal.Parse(data["rat"], Common.CommGlobal.ciUs);
             row.GP = int.Parse(data["gp"]);
 
+            if (!data.ContainsKey("ban") || (data["ban"][0] != 'r'))
+                row.Squalificato = int.Parse(data["ban_points"]);
+            else
+                row.Squalificato = 4 + int.Parse(data["ban"].Substring(1));
+
             if (data["inj"] != "null")
                 row.Infortunato = int.Parse(data["inj"]);
             else
                 row.Infortunato = 0;
+
+            if (data["retire"] == "")
+                row.Retire = 0;
+            else
+                row.Retire = int.Parse(data["retire"]);
 
             int TeamID = int.Parse(data["club"]);
             row.IsReserve = (short)((TeamID == Program.Setts.MainSquadID) ? 0 : 1);

@@ -163,11 +163,16 @@ namespace TMRecorder
 
                 dP[0] = 1;
 
-                History = new TeamHistory();
-
                 sf = new SplashForm("TM - Team Recorder",
                     "Release " + Application.ProductVersion,
                     "Starting Application...");
+
+                History = new TeamHistory();
+
+                dP[1] = 1;
+                sf.UpdateStatusMessage(2, "Loading gains...");
+                LoadGains();
+
 
                 dP[0] = 2;
 
@@ -228,6 +233,10 @@ namespace TMRecorder
                 if (Program.Setts.InstallationDirectory == ".\\")
                     Program.Setts.InstallationDirectory = Application.StartupPath;
 
+                FormatPlayersGrid(dataGridGiocatori);
+                FormatPlayersGrid(dataGridGiocatoriB);
+                FormatPlayersGridGK();
+
                 if (!LoadData())
                 {
                     dP[0] = 6; dP[1] = 0;
@@ -261,8 +270,6 @@ namespace TMRecorder
                     tsbMatchSquadA.Text = "Squad";
                     tsbMatchSquadB.Visible = false;
                 }
-
-                UpdateShownGrid();
             }
             catch (Exception ex)
             {
@@ -281,10 +288,6 @@ namespace TMRecorder
 
         private bool LoadData()
         {
-            dP[1] = 1;
-            sf.UpdateStatusMessage(2, "Loading gains...");
-            LoadGains();
-
             dP[1] = 3;
             sf.UpdateStatusMessage(5, "Loading History...");
             bool res = LoadHistory();
@@ -312,9 +315,6 @@ namespace TMRecorder
             dP[1] = 10;
 
             bool showCstr = true;
-            dataGridGiocatori.Columns["CStrA"].Visible = showCstr;
-            dataGridGiocatoriB.Columns["CStrB"].Visible = showCstr;
-            dataGridPortieri.Columns["CStrGK"].Visible = showCstr;
 
             History.reportParser = new ReportParser(Program.Setts.ReportParsingFile);
 
@@ -567,6 +567,9 @@ namespace TMRecorder
             dgOppsTeamPerf.AddColumn("Rou", "Rou", 30, AG_Style.Numeric | AG_Style.N1);
         }
 
+        /// <summary>
+        /// Aggiorna la lista delle date per le quali sono presenti dati
+        /// </summary>
         private void UpdateTeamDateList()
         {
             toolDataList.Items.Clear();
@@ -794,8 +797,6 @@ namespace TMRecorder
                 Program.Setts.PlayerType = of.PlayerType;
                 Program.Setts.EvidenceGain = of.EvidenceGains;
                 Program.Setts.TeamMatchesShowMatches = of.ShowMatchOptions;
-                EvidenceSkillsGiocatoriForGains();
-                EvidenceSkillsPortieriForGains();
                 evidenceSkillsForGainsToolStripMenuItem.Checked = Program.Setts.EvidenceGain;
                 evidenceSkillsForGainsMenuItem2.Checked = Program.Setts.EvidenceGain;
 
@@ -824,9 +825,6 @@ namespace TMRecorder
 
                 if (History.actualDts != null)
                     History.actualDts.RecalculateSpecData(History.PFun);
-
-                dP[2]++;
-                EvidenceSkillsGiocatoriForQuality();
 
                 dP[2]++;
                 if ((Program.Setts.NormalizeGains != of.NormalizeGains) ||
@@ -991,25 +989,119 @@ namespace TMRecorder
 
         private void SetLastTeam()
         {
-            History.actualDts = History.LastTeam();
+            var last2Weeks = History.Last2Weeks(DateTime.Now);
 
-            if (History.actualDts == null)
-            {
-                dataGridGiocatori.DataSource = null;
-                dataGridGiocatoriB.DataSource = null;
-                dataGridPortieri.DataSource = null;
-                dataGridPlayersInfo.DataSource = null;
-            }
-            else
-            {
-                dataGridGiocatori.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'A' AND FPn > 0");
-                dataGridGiocatoriB.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'B' AND FPn > 0");
-                dataGridPortieri.DataSource = History.actualDts.GiocatoriNSkill.Select("FPn = 0");
-                ShowActualPlayers(History.actualDts.Date);
-                dataGridPlayersInfo.DataSource = extraDS.Giocatori;
-            }
+            if (last2Weeks[0] != null)
+                History.actualDts = last2Weeks[0];
+
+            LoadTeamOnGrids(DateTime.Now);
 
             UpdateTeamDateList();
+        }
+
+        private void FormatPlayersGrid(AeroDataGrid dgPlayers)
+        {
+            dgPlayers.AutoGenerateColumns = false;
+
+            dgPlayers.Columns.Clear();
+            DataGridViewColumn numCol = dgPlayers.AddColumn("N", "Number", 20, AG_Style.Numeric | AG_Style.Frozen | AG_Style.N0);
+            dgPlayers.AddColumn("FP", "FPn", 42, AG_Style.FavPosition | AG_Style.Frozen);
+            dgPlayers.AddColumn("Name", "NameEx", 60, AG_Style.NameInj | AG_Style.Frozen | AG_Style.ResizeAllCells);
+            dgPlayers.AddColumn("Age", "wBorn", 32, AG_Style.Age | AG_Style.Frozen);
+            dgPlayers.AddColumn("Nat", "Nationality", 28, AG_Style.Nationality | AG_Style.Frozen);
+            TMR_NumDecColumn dgvc = (TMR_NumDecColumn)dgPlayers.AddColumn("ASI", "ASI", 49, AG_Style.NumDec | AG_Style.Frozen);
+            dgvc.CellColorStyles = CellColorStyleList.DefaultGainColorStyle();
+
+            bool evidenceGain = Program.Setts.EvidenceGain;
+
+            dgPlayers.AddSkColumn("Str", evidenceGain);
+            dgPlayers.AddSkColumn("Pac", evidenceGain);
+            dgPlayers.AddSkColumn("Sta", evidenceGain);
+
+            dgPlayers.AddSkColumn("Mar", evidenceGain);
+            dgPlayers.AddSkColumn("Tac", evidenceGain);
+            dgPlayers.AddSkColumn("Wor", evidenceGain);
+            dgPlayers.AddSkColumn("Pos", evidenceGain);
+            dgPlayers.AddSkColumn("Pas", evidenceGain);
+            dgPlayers.AddSkColumn("Cro", evidenceGain);
+            dgPlayers.AddSkColumn("Tec", evidenceGain);
+            dgPlayers.AddSkColumn("Hea", evidenceGain);
+            dgPlayers.AddSkColumn("Fin", evidenceGain);
+            dgPlayers.AddSkColumn("Lon", evidenceGain);
+            dgPlayers.AddSkColumn("Set", evidenceGain);
+
+            dgPlayers.AddColumn("Rou", "Rou", 30, AG_Style.Numeric | AG_Style.RightJustified);
+            dgPlayers.AddColumn("SSD", "SSD", 30, AG_Style.Numeric | AG_Style.RightJustified);
+            dgPlayers.AddColumn("CRec", "CStr", 30, AG_Style.Numeric | AG_Style.RightJustified);
+            dgPlayers.AddColumn("Rec", "Rec", 30, AG_Style.Numeric | AG_Style.RightJustified);
+            dgvc = (TMR_NumDecColumn)dgPlayers.AddColumn("TI", "TI", 32, AG_Style.NumDec);
+            dgvc.CellColorStyles = CellColorStyleList.DefaultGainColorStyle();
+
+            DataGridViewCellStyle dgvcsPosCells = new DataGridViewCellStyle();
+            dgvcsPosCells.Format = "N1";
+
+            dgPlayers.AddFpColumn("DC", dgvcsPosCells);
+            dgPlayers.AddFpColumn("DL", dgvcsPosCells);
+            dgPlayers.AddFpColumn("DR", dgvcsPosCells);
+            dgPlayers.AddFpColumn("DMC", dgvcsPosCells);
+            dgPlayers.AddFpColumn("DML", dgvcsPosCells);
+            dgPlayers.AddFpColumn("DMR", dgvcsPosCells);
+
+            dgPlayers.AddFpColumn("MC", dgvcsPosCells);
+            dgPlayers.AddFpColumn("ML", dgvcsPosCells);
+            dgPlayers.AddFpColumn("MR", dgvcsPosCells);
+            dgPlayers.AddFpColumn("OMC", dgvcsPosCells);
+            dgPlayers.AddFpColumn("OML", dgvcsPosCells);
+            dgPlayers.AddFpColumn("OMR", dgvcsPosCells);
+
+            dgPlayers.AddFpColumn("FC", dgvcsPosCells);
+
+            dgvc = (TMR_NumDecColumn)dgPlayers.AddColumn("SOi", "OSi", 32, AG_Style.NumDec | AG_Style.N2);
+            dgvc.CellColorStyles = CellColorStyleList.DefaultSOiColorStyle();
+            NTR_HiddenSkillColumn dghs = (NTR_HiddenSkillColumn)dgPlayers.AddColumn("Hid", "HidSk", 26, AG_Style.HiddenSkill);
+        }
+
+        private void FormatPlayersGridGK()
+        {
+            dataGridPortieri.AutoGenerateColumns = false;
+
+            dataGridPortieri.Columns.Clear();
+            DataGridViewColumn numCol = dataGridPortieri.AddColumn("N", "Number", 20, AG_Style.Numeric | AG_Style.Frozen | AG_Style.N0);
+            dataGridPortieri.AddColumn("Name", "NameEx", 60, AG_Style.NameInj | AG_Style.Frozen | AG_Style.ResizeAllCells);
+            dataGridPortieri.AddColumn("Age", "wBorn", 32, AG_Style.Age | AG_Style.Frozen);
+            dataGridPortieri.AddColumn("Nat", "Nationality", 28, AG_Style.Nationality | AG_Style.Frozen);
+            TMR_NumDecColumn dgvc = (TMR_NumDecColumn)dataGridPortieri.AddColumn("ASI", "ASI", 49, AG_Style.NumDec | AG_Style.Frozen);
+            dgvc.CellColorStyles = CellColorStyleList.DefaultGainColorStyle();
+
+            bool evidenceGain = Program.Setts.EvidenceGain;
+
+            dataGridPortieri.AddSkColumn("Str", evidenceGain, 26);
+            dataGridPortieri.AddSkColumn("Pac", evidenceGain, 26);
+            dataGridPortieri.AddSkColumn("Sta", evidenceGain, 26);
+
+            dataGridPortieri.AddSkColumn("Han", evidenceGain, 26);
+            dataGridPortieri.AddSkColumn("One", evidenceGain, 26);
+            dataGridPortieri.AddSkColumn("Ref", evidenceGain, 26);
+            dataGridPortieri.AddSkColumn("Ari", evidenceGain, 26);
+            dataGridPortieri.AddSkColumn("Jum", evidenceGain, 26);
+            dataGridPortieri.AddSkColumn("Com", evidenceGain, 26);
+            dataGridPortieri.AddSkColumn("Kic", evidenceGain, 26);
+            dataGridPortieri.AddSkColumn("Thr", evidenceGain, 26);
+
+            dataGridPortieri.AddColumn("Rou", "Rou", 30, AG_Style.Numeric | AG_Style.RightJustified);
+            dataGridPortieri.AddColumn("SSD", "SSD", 30, AG_Style.Numeric | AG_Style.RightJustified);
+            dataGridPortieri.AddColumn("CRec", "CStr", 30, AG_Style.Numeric | AG_Style.RightJustified);
+            dataGridPortieri.AddColumn("Rec", "Rec", 30, AG_Style.Numeric | AG_Style.RightJustified);
+            dgvc = (TMR_NumDecColumn)dataGridPortieri.AddColumn("TI", "TI", 32, AG_Style.NumDec | AG_Style.Frozen);
+            dgvc.CellColorStyles = CellColorStyleList.DefaultGainColorStyle();
+
+            DataGridViewCellStyle dgvcsPosCells = new DataGridViewCellStyle();
+            dgvcsPosCells.Format = "N1";
+
+            dataGridPortieri.AddFpColumn("GK", dgvcsPosCells);
+
+            dgvc = (TMR_NumDecColumn)dataGridPortieri.AddColumn("SOi", "OSi", 32, AG_Style.NumDec | AG_Style.N2);
+            dgvc.CellColorStyles = CellColorStyleList.DefaultSOiColorStyle();
         }
 
         private void SaveHistory()
@@ -1023,23 +1115,8 @@ namespace TMRecorder
         private void toolDataList_SelectedIndexChanged(object sender, EventArgs e)
         {
             DateTime dt = DateTime.Parse((string)toolDataList.SelectedItem);
-            History.actualDts = History.DSfromDate(dt);
 
-            if (History.actualDts == null) return;
-
-            dataGridGiocatori.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'A' AND FPn > 0");
-            dataGridGiocatoriB.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'B' AND FPn > 0");
-            dataGridPortieri.DataSource = History.actualDts.GiocatoriNSkill.Select("FPn = 0");
-
-            if (toolDataList.SelectedIndex == 0) return;
-
-            InvalidateGrids();
-
-            UpdateShownGrid();
-
-            ShowActualPlayers(dt);
-
-            dataGridPlayersInfo.DataSource = extraDS.Giocatori;
+            LoadTeamOnGrids(dt);
         }
 
         private void InvalidateGrids()
@@ -1069,123 +1146,13 @@ namespace TMRecorder
             dataGridGiocatoriB.SetWhen(dt);
             dataGridPortieri.SetWhen(dt);
             dataGridPlayersInfo.SetWhen(dt);
+
             History.FillActualPlayersList(extraDS, dt);
-        }
-
-        private void EvidenceSkillsGiocatoriForQuality()
-        {
-            EvidenceSkillsGiocatoriForQuality(dataGridGiocatori, -1);
-            EvidenceSkillsGiocatoriForQuality(dataGridGiocatoriB, -1);
-        }
-
-        private void EvidenceSkillsPlayerForQuality(int ID,
-            bool isYoung, bool isGK)
-        {
-            if (isGK)
-                EvidenceSkillsPortieriForQuality(ID);
-            else if (!isYoung)
-                EvidenceSkillsGiocatoriForQuality(dataGridGiocatori, ID);
-            else
-                EvidenceSkillsGiocatoriForQuality(dataGridGiocatoriB, ID);
-        }
-
-        private void EvidenceSkillsGiocatoriForQuality(DataGridView dgv, int plID)
-        {
-            EvidenceSkillsGiocatoriForGains(dgv);
-
-            for (int i = 0; i < dgv.Rows.Count; i++)
-            {
-                if (plID != -1)
-                {
-                    System.Windows.Forms.DataGridViewRow dvr = dgv.Rows[i];
-                    ExtTMDataSet.GiocatoriNSkillRow gsr = (ExtTMDataSet.GiocatoriNSkillRow)dvr.DataBoundItem;
-
-                    if (plID != gsr.PlayerID)
-                        continue;
-                }
-
-                // Evidenzia solo le colonne degli skills
-                for (int j = 26; j < 40; j++)
-                {
-                    object o = dgv[j, i].Value;
-
-                    float f = 0f;
-                    if (o.GetType() == typeof(float))
-                        f = (float)o;
-                    else if (o.GetType() == typeof(decimal))
-                        f = (float)(decimal)o;
-
-                    if (f > 100) f = 100;
-                    if (f < 0) f = 0;
-
-                    DataGridViewCellStyle Style = new DataGridViewCellStyle();
-
-                    SelectStyleColor(f, Style);
-                    // Style.Format = "N0";
-                    // Style.Font = new Font("Arial Narrow", 8);
-
-                    dgv[j, i].Style = Style;
-                    // dgv.Columns[j].Width = 24;
-                }
-
-                if (plID != -1)
-                    return;
-            }
-        }
-
-        private void EvidenceSkillsPortieri()
-        {
-            EvidenceSkillsPortieriForQuality(-1);
-            EvidenceSkillsPortieriForGains();
-        }
-
-        private void EvidenceSkillsGiocatori(DataGridView dgGiocatori)
-        {
-            EvidenceSkillsGiocatoriForQuality(dgGiocatori, -1);
-            EvidenceSkillsGiocatoriForGains(dgGiocatori);
-        }
-
-        private void EvidenceSkillsPortieriForQuality(int plID)
-        {
-            for (int i = 0; i < dataGridPortieri.Rows.Count; i++)
-            {
-                if (plID != -1)
-                {
-                    DataGridViewRow dvr = dataGridPortieri.Rows[i];
-                    ExtTMDataSet.GiocatoriNSkillRow gsr = (ExtTMDataSet.GiocatoriNSkillRow)dvr.DataBoundItem;
-
-                    if (plID != gsr.PlayerID)
-                        continue;
-                }
-
-                // Evidenzia solo le colonne degli skills
-                for (int j = 21; j < 23; j++)
-                {
-                    float f = (float)dataGridPortieri[j, i].Value;
-                    if (f > 100) f = 100;
-                    if (f < 0) f = 0;
-
-                    DataGridViewCellStyle Style = new DataGridViewCellStyle();
-
-                    SelectStyleColor(f, Style);
-
-                    dataGridPortieri[j, i].Style = Style;
-                }
-
-                if (plID != -1)
-                    return;
-            }
         }
 
         private static void SelectStyleColor(float f, DataGridViewCellStyle Style)
         {
             Style.SelectionForeColor = Style.ForeColor = Common.Utility.GradeColor(f);
-        }
-
-        private void EvidenceSkillsGiocatoriForGains()
-        {
-            EvidenceSkillsGiocatoriForGains(dataGridGiocatori);
-            EvidenceSkillsGiocatoriForGains(dataGridGiocatoriB);
         }
 
         float[] ComputeGains(string fp)
@@ -1233,124 +1200,6 @@ namespace TMRecorder
             }
 
             return gains;
-        }
-
-        private void EvidenceSkillsGiocatoriForGains(DataGridView dgv)
-        {
-            if (!Program.Setts.EvidenceGain)
-            {
-                for (int i = 0; i < dgv.Rows.Count; i++)
-                {
-                    for (int j = 0; j < 14; j++)
-                    {
-                        dgv[j + 8, i].Style = dgv[j + 8, i].OwningColumn.DefaultCellStyle;
-                    }
-                }
-                return;
-            }
-
-            for (int i = 0; i < dgv.Rows.Count; i++)
-            {
-                System.Windows.Forms.DataGridViewRow dvr = dgv.Rows[i];
-                ExtTMDataSet.GiocatoriNSkillRow gsr = (ExtTMDataSet.GiocatoriNSkillRow)dvr.DataBoundItem;
-
-                float[] gains = ComputeGains(gsr.FP);
-
-                for (int j = 0; j < 14; j++)
-                {
-                    DataGridViewCellStyle Style = new DataGridViewCellStyle();
-
-                    ColorUtilities.SelectGainColor(gains[j], ref Style);
-
-                    dgv[j + 8, i].Style = Style;
-                }
-            }
-        }
-
-        private void EvidenceSkillsPortieriForGains()
-        {
-            if (!Program.Setts.EvidenceGain)
-            {
-                for (int i = 0; i < dataGridPortieri.Rows.Count; i++)
-                {
-                    for (int j = 0; j < 11; j++)
-                    {
-                        dataGridPortieri[j + 6, i].Style = dataGridPortieri[j + 6, i].OwningColumn.DefaultCellStyle;
-                    }
-                }
-                return;
-            }
-
-
-            for (int i = 0; i < dataGridPortieri.Rows.Count; i++)
-            {
-                // Evidenzia solo le colonne degli skills
-                for (int j = 0; j < 11; j++)
-                {
-                    DataGridViewCellStyle Style = new DataGridViewCellStyle();
-
-                    ColorUtilities.SelectGainColor(History.GD.K_GK(j) / 1.5f, ref Style);
-
-                    dataGridPortieri[j + 6, i].Style = Style;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Evidence the difference of the skills respect to the last week
-        /// </summary>
-        private void FillForDifferencePortieri()
-        {
-            if (toolDataList.SelectedItem == null) return;
-
-            DateTime dt = DateTime.Parse((string)toolDataList.SelectedItem);
-
-            if (History.Count < 2) return;
-
-            for (int i = 0; i < dataGridPortieri.Rows.Count; i++)
-            {
-                int ID = (int)dataGridPortieri[0, i].Value;
-
-                ExtTMDataSet.PlayerHistoryDataTable table = History.GetPlayerHistory(ID);
-
-                // Find the index corresponding to datetime
-                int ix = 0;
-                for (; ix < table.Rows.Count; ix++)
-                {
-                    ExtTMDataSet.PlayerHistoryRow gk = (ExtTMDataSet.PlayerHistoryRow)table.Rows[ix];
-                    if (gk.Date.Date == dt) break;
-                }
-
-                TmWeek tmwActual = new TmWeek(dt);
-
-                if (ix == table.Rows.Count) continue;
-                if (ix == 0) continue;
-
-                int ixlast = ix;
-                for (; ixlast >= 0; ixlast--)
-                {
-                    ExtTMDataSet.PlayerHistoryRow gk = (ExtTMDataSet.PlayerHistoryRow)table.Rows[ixlast];
-                    TmWeek tmwLast = new TmWeek(gk.Date);
-                    if (tmwLast.absweek < tmwActual.absweek) break;
-                }
-
-                if (ixlast < 0) continue;
-
-                ExtTMDataSet.PlayerHistoryRow actual = (ExtTMDataSet.PlayerHistoryRow)table.Rows[ix];
-                ExtTMDataSet.PlayerHistoryRow last = (ExtTMDataSet.PlayerHistoryRow)table.Rows[ixlast];
-
-                EvidenceDiffForColumn(dataGridPortieri, actual.ASI, last.ASI, i, 5);
-                EvidenceDiffForColumn(dataGridPortieri, actual.For, last.For, i, 6);
-                EvidenceDiffForColumn(dataGridPortieri, actual.Res, last.Res, i, 7);
-                EvidenceDiffForColumn(dataGridPortieri, actual.Vel, last.Vel, i, 8);
-                EvidenceDiffForColumn(dataGridPortieri, actual.Pre, last.Pre, i, 9);
-                EvidenceDiffForColumn(dataGridPortieri, actual.Uno, last.Uno, i, 10);
-                EvidenceDiffForColumn(dataGridPortieri, actual.Rif, last.Rif, i, 11);
-                EvidenceDiffForColumn(dataGridPortieri, actual.Aer, last.Aer, i, 12);
-                EvidenceDiffForColumn(dataGridPortieri, actual.Ele, last.Ele, i, 13);
-                EvidenceDiffForColumn(dataGridPortieri, actual.Com, last.Com, i, 14);
-                EvidenceDiffForColumn(dataGridPortieri, actual.Tir, last.Tir, i, 15);
-            }
         }
 
         private SkillVariation CalcForDifference()
@@ -1447,122 +1296,6 @@ namespace TMRecorder
             return sv;
         }
 
-        private void FillForDifferenceGiocatori()
-        {
-            FillForDifferenceGiocatori(dataGridGiocatori);
-            FillForDifferenceGiocatori(dataGridGiocatoriB);
-        }
-
-        private void FillForDifferenceGiocatori(DataGridView dgv)
-        {
-            if (toolDataList.SelectedItem == null) return;
-
-            DateTime dt = DateTime.Parse((string)toolDataList.SelectedItem);
-
-            if (History.Count < 2) return;
-
-            for (int i = 0; i < dgv.Rows.Count; i++)
-            {
-                int ID = 0;
-
-                try
-                {
-                    ID = (int)dgv[0, i].Value;
-                }
-                catch (System.Reflection.TargetInvocationException)
-                {
-                    continue;
-                }
-
-                ExtTMDataSet.PlayerHistoryDataTable table = History.GetPlayerHistory(ID);
-
-                // Find the index corresponding to datetime
-                int ix = 0;
-                for (; ix < table.Rows.Count; ix++)
-                {
-                    ExtTMDataSet.PlayerHistoryRow pl = (ExtTMDataSet.PlayerHistoryRow)table.Rows[ix];
-                    if (pl.Date.Date == dt) break;
-                }
-
-                TmWeek tmwActual = new TmWeek(dt);
-
-                //if (ix == table.Rows.Count) continue;
-                if (ix == 0) continue;
-
-                ExtTMDataSet.PlayerHistoryRow actual = (ExtTMDataSet.PlayerHistoryRow)table.Rows[ix];
-                    if (actual.IsFinNull()) continue;
-
-                int ixlast = ix;
-                for (; ixlast >= 0; ixlast--)
-                {
-                    ExtTMDataSet.PlayerHistoryRow pl = (ExtTMDataSet.PlayerHistoryRow)table.Rows[ixlast];
-                    TmWeek tmwLast = new TmWeek(pl.Date);
-                    if (tmwLast.absweek < tmwActual.absweek) break;
-                }
-
-                if (ixlast < 0) continue;
-
-                ExtTMDataSet.PlayerHistoryRow last = (ExtTMDataSet.PlayerHistoryRow)table.Rows[ixlast];
-
-                EvidenceDiffForColumn(dgv, actual.ASI, last.ASI, i, 6);
-                EvidenceDiffForColumn(dgv, actual.For, last.For, i, 8);
-                EvidenceDiffForColumn(dgv, actual.Res, last.Res, i, 9);
-                EvidenceDiffForColumn(dgv, actual.Vel, last.Vel, i, 10);
-                EvidenceDiffForColumn(dgv, actual.Mar, last.Mar, i, 11);
-                EvidenceDiffForColumn(dgv, actual.Con, last.Con, i, 12);
-                EvidenceDiffForColumn(dgv, actual.Wor, last.Wor, i, 13);
-                EvidenceDiffForColumn(dgv, actual.Pos, last.Pos, i, 14);
-                EvidenceDiffForColumn(dgv, actual.Pas, last.Pas, i, 15);
-                EvidenceDiffForColumn(dgv, actual.Cro, last.Cro, i, 16);
-                EvidenceDiffForColumn(dgv, actual.Tec, last.Tec, i, 17);
-                EvidenceDiffForColumn(dgv, actual.Tes, last.Tes, i, 18);
-                EvidenceDiffForColumn(dgv, actual.Fin, last.Fin, i, 19);
-                EvidenceDiffForColumn(dgv, actual.Lon, last.Lon, i, 20);
-                EvidenceDiffForColumn(dgv, actual.Set, last.Set, i, 21);
-            }
-        }
-
-        private void EvidenceDiffForColumn(DataGridView dg, decimal actualval, decimal lastval, int row, int col)
-        {
-            DataGridViewCellStyle IncStyle = new DataGridViewCellStyle();
-            IncStyle.Font = new Font(dg.DefaultCellStyle.Font, FontStyle.Regular);
-            IncStyle.ForeColor = Color.Green;
-            DataGridViewCellStyle DecStyle = new DataGridViewCellStyle();
-            DecStyle.Font = new Font(dg.DefaultCellStyle.Font, FontStyle.Regular);
-            DecStyle.ForeColor = Color.Red;
-            DataGridViewCellStyle NormStyle = new DataGridViewCellStyle();
-            NormStyle.Font = dg.DefaultCellStyle.Font;
-
-            TMR_NumDecCell ndc = (TMR_NumDecCell)dg[col, row];
-
-            if (ndc.OwningColumn.HeaderText == "ASI")
-                ndc.filterASIvalue = true;
-
-            ndc.Style = NormStyle;
-            if ((int)actualval > (int)lastval)
-            {
-                ndc.Style = IncStyle;
-                ndc.Tag = 2;
-            }
-            else if (actualval > lastval)
-            {
-                ndc.Tag = 1;
-            }
-            else if ((int)actualval < (int)lastval)
-            {
-                ndc.Style = DecStyle;
-                ndc.Tag = -2;
-            }
-            else if (actualval < lastval)
-            {
-                ndc.Tag = -1;
-            }
-            else
-            {
-                ndc.Tag = 0;
-            }
-        }
-
         private void deleteDataSetToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (toolDataList.SelectedItem == null) return;
@@ -1573,35 +1306,18 @@ namespace TMRecorder
                 History.DeleteDay(Program.Setts.DefaultDirectory,
                                     dt);
 
-                History.actualDts = History.LastTeam();
-
-                if (History.actualDts == null)
-                {
-                    dataGridGiocatori.DataSource = null;
-                    dataGridGiocatoriB.DataSource = null;
-                    dataGridPortieri.DataSource = null;
-                }
-                else
-                {
-                    dataGridGiocatori.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'A' AND FPn > 0");
-                    dataGridGiocatoriB.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'B' AND FPn > 0");
-                    dataGridPortieri.DataSource = History.actualDts.GiocatoriNSkill.Select("FPn = 0");
-                }
-
-                UpdateTeamDateList();
+                LoadTeamOnGrids(DateTime.Now);
             }
         }
 
         private void dataGridGiocatori_Sorted(object sender, EventArgs e)
         {
             InvalidateGrids(sender);
-            UpdateShownGrid();
         }
 
         private void dataGridPortieri_Sorted(object sender, EventArgs e)
         {
             InvalidateGrids(sender);
-            UpdateShownGrid();
         }
 
         private void MainForm_Paint(object sender, PaintEventArgs e)
@@ -1628,7 +1344,6 @@ namespace TMRecorder
             foreach (ExtraDS.GiocatoriRow grow in History.PlayersDS.Giocatori)
             {
                 if (!grow.isDirty) continue;
-                EvidenceSkillsPlayerForQuality(grow.PlayerID, grow.isYoungTeam == 1, grow.FPn == 0);
 
                 ExtraDS.GiocatoriRow egrow = extraDS.FindByPlayerID(grow.PlayerID);
                 egrow.Routine = grow.Routine;
@@ -1712,6 +1427,12 @@ namespace TMRecorder
                     ExtraDS.GiocatoriRow selPlayer = (ExtraDS.GiocatoriRow)drv.Row;
                     PlayerID = selPlayer.PlayerID;
                 }
+                else if (dgGiocatori.Rows[e.RowIndex].DataBoundItem.GetType() == typeof(NTR_Db.PlayerData))
+                {
+                    NTR_Db.PlayerData playerData = (NTR_Db.PlayerData)dgGiocatori.Rows[e.RowIndex].DataBoundItem;
+                    ExtTMDataSet.GiocatoriNSkillRow selPlayer = History.actualDts.GiocatoriNSkill.FindByPlayerID(playerData.playerID);
+                    PlayerID = selPlayer.PlayerID;
+                }
                 else
                 {
                     ExtTMDataSet.GiocatoriNSkillRow selPlayer = (ExtTMDataSet.GiocatoriNSkillRow)dgGiocatori.Rows[e.RowIndex].DataBoundItem;
@@ -1728,8 +1449,8 @@ namespace TMRecorder
                 }
                 else
                 {
-                    ExtTMDataSet.GiocatoriNSkillRow selPlayer = (ExtTMDataSet.GiocatoriNSkillRow)dgGiocatori.SelectedRows[0].DataBoundItem;
-                    PlayerID = selPlayer.PlayerID;
+                    NTR_Db.PlayerData selPlayer = (NTR_Db.PlayerData)dgGiocatori.SelectedRows[0].DataBoundItem;
+                    PlayerID = selPlayer.playerID;
                 }
             }
 
@@ -1766,7 +1487,6 @@ namespace TMRecorder
             foreach (ExtraDS.GiocatoriRow grow in History.PlayersDS.Giocatori)
             {
                 if (!grow.isDirty) continue;
-                EvidenceSkillsPlayerForQuality(grow.PlayerID, grow.isYoungTeam == 1, grow.FPn == 0);
 
                 ExtraDS.GiocatoriRow egrow = extraDS.FindByPlayerID(grow.PlayerID);
 
@@ -1919,18 +1639,44 @@ namespace TMRecorder
 
             History.LoadSquadFileFromExcelForm(dt);
 
-            History.actualDts = History.LastTeam();
-
-            if (History.actualDts != null)
-            {
-                dataGridGiocatori.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'A' AND FPn > 0");
-                dataGridGiocatoriB.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'B' AND FPn > 0");
-                dataGridPortieri.DataSource = History.actualDts.GiocatoriNSkill.Select("FPn = 0");
-            }
+            LoadTeamOnGrids(DateTime.Now);
 
             isDirty = true;
 
             UpdateTeamDateList();
+        }
+
+        void LoadTeamOnGrids(DateTime dateFrom)
+        {
+            var last2Weeks = History.Last2Weeks(dateFrom);
+
+
+            if (last2Weeks[0] == null)
+            {
+                dataGridGiocatori.DataCollection = null;
+                dataGridGiocatoriB.DataCollection = null;
+                dataGridPortieri.DataCollection = null;
+                dataGridPlayersInfo.DataSource = null;
+                return;
+            }
+
+            var players = (from c in last2Weeks[0].GiocatoriNSkill
+                           select new NTR_Db.PlayerData(c, last2Weeks, History.GD));
+
+            var teamAPlayers = (from c in players
+                                where c.TeamSq == "A" && c.FPn > 0
+                                select c).ToList();
+            var teamBPlayers = (from c in players
+                                where c.TeamSq == "B" && c.FPn > 0
+                                select c).ToList();
+            var gkPlayers = (from c in players where c.FPn == 0 select c).ToList();
+
+            dataGridGiocatori.DataCollection = teamAPlayers;
+            dataGridGiocatoriB.DataCollection = teamBPlayers;
+            dataGridPortieri.DataCollection = gkPlayers;
+
+            ShowActualPlayers(dateFrom);
+            dataGridPlayersInfo.DataSource = extraDS.Giocatori;
         }
 
         private void recalculatePlayersScoutVoteMeanToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1959,73 +1705,35 @@ namespace TMRecorder
         {
             foreach (DataGridViewRow dgvr in dataGridGiocatoriB.SelectedRows)
             {
-                int ID = (int)dgvr.Cells[0].Value;
+                NTR_Db.PlayerData player = (NTR_Db.PlayerData)dgvr.Cells[0].OwningRow.DataBoundItem;
 
-                History.actualDts.MovePlayerToOtherTeam(ID, "A");
-                extraDS.SetSquad(ID, "A");
-                History.PlayersDS.SetSquad(ID, "A");
+                History.actualDts.MovePlayerToOtherTeam(player.playerID, "A");
+                extraDS.SetSquad(player.playerID, "A");
+                History.PlayersDS.SetSquad(player.playerID, "A");
             }
 
-            dataGridGiocatori.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'A' AND FPn > 0");
-            dataGridGiocatoriB.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'B' AND FPn > 0");
-
-            FillForDifferenceGiocatori();
-            EvidenceSkillsGiocatoriForQuality();
+            LoadTeamOnGrids(DateTime.Now);
         }
 
         private void movePlayerToBTeamToolStripMenuItem_Click(object sender, EventArgs e)
         {
             foreach (DataGridViewRow dgvr in dataGridGiocatori.SelectedRows)
             {
-                int ID = (int)dgvr.Cells[0].Value;
+                NTR_Db.PlayerData player = (NTR_Db.PlayerData)dgvr.Cells[0].OwningRow.DataBoundItem;
 
-                History.actualDts.MovePlayerToOtherTeam(ID, "B");
-                extraDS.SetSquad(ID, "B");
-                History.PlayersDS.SetSquad(ID, "B");
+                History.actualDts.MovePlayerToOtherTeam(player.playerID, "B");
+                extraDS.SetSquad(player.playerID, "B");
+                History.PlayersDS.SetSquad(player.playerID, "B");
             }
 
-            dataGridGiocatori.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'A' AND FPn > 0");
-            dataGridGiocatoriB.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'B' AND FPn > 0");
-
-            FillForDifferenceGiocatori();
-            EvidenceSkillsGiocatoriForQuality();
+            LoadTeamOnGrids(DateTime.Now);
         }
 
         private void dataGridGiocatori_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            DataGridView dgv = sender as DataGridView;
+            AeroDataGrid aeroGrid = (AeroDataGrid)sender;
 
-            string property = dgv.Columns[e.ColumnIndex].DataPropertyName;
-
-            if (property == "FPn")
-            {
-                if (lastPropertySort == property + " ASC" + dgv.Name)
-                    property = property + " DESC";
-                else
-                    property = property + " ASC";
-            }
-            else
-            {
-                if (lastPropertySort == property + " DESC" + dgv.Name)
-                    property = property + " ASC";
-                else
-                    property = property + " DESC";
-            }
-
-            lastPropertySort = property + dgv.Name;
-
-            if (dgv == dataGridGiocatori)
-            {
-                dataGridGiocatori.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'A' AND FPn > 0", property);
-            }
-            else
-            {
-                dataGridGiocatoriB.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'B' AND FPn > 0", property);
-            }
-
-            FillForDifferenceGiocatori(dgv);
-            EvidenceSkillsGiocatoriForQuality(dgv, -1);
-            EvidenceSkillsGiocatoriForGains(dgv);
+            aeroGrid.AeroDataGrid_ColumnHeaderMouseClick<NTR_Db.PlayerData>(sender, e);
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2811,7 +2519,6 @@ namespace TMRecorder
                         editingPlayerRow.Ada = (decimal)e.Value;
                         History.UpdatePlayerDB(editingPlayerRow.PlayerID, "Ada",
                             editingPlayerRow.Ada);
-                        EvidenceSkillsPlayerForQuality(editingPlayerRow.PlayerID, isGK, isYoung);
                     }
                     break;
                 case "Name":
@@ -2827,7 +2534,6 @@ namespace TMRecorder
                         editingPlayerRow.Routine = (decimal)e.Value;
                         History.UpdatePlayerDB(editingPlayerRow.PlayerID, "Rou",
                             editingPlayerRow.Routine);
-                        EvidenceSkillsPlayerForQuality(editingPlayerRow.PlayerID, isYoung, isGK);
                     }
                     break;
                 case "AfterBloomTI": editingPlayerRow.AfterBloomTI = (decimal)e.Value; break;
@@ -2849,9 +2555,6 @@ namespace TMRecorder
         {
             Program.Setts.EvidenceGain = !Program.Setts.EvidenceGain;
             Program.Setts.Save();
-
-            EvidenceSkillsPortieriForGains();
-            EvidenceSkillsGiocatoriForGains();
 
             evidenceSkillsForGainsToolStripMenuItem.Checked = Program.Setts.EvidenceGain;
             evidenceSkillsForGainsMenuItem2.Checked = Program.Setts.EvidenceGain;
@@ -3204,37 +2907,10 @@ namespace TMRecorder
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            UpdateShownGrid();
         }
 
         private void UpdateShownGrid()
         {
-            if (tabControl1.SelectedTab == tabATeamPage)
-            {
-                if (gridUpdateStatus[(int)e_GridTab.SQUAD_A])
-                    return;
-                FillForDifferenceGiocatori(dataGridGiocatori);
-                EvidenceSkillsGiocatoriForQuality(dataGridGiocatori, -1);
-                gridUpdateStatus[(int)e_GridTab.SQUAD_A] = true;
-            }
-
-            if (tabControl1.SelectedTab == tabBTeamPage)
-            {
-                if (gridUpdateStatus[(int)e_GridTab.SQUAD_B])
-                    return;
-                FillForDifferenceGiocatori(dataGridGiocatoriB);
-                EvidenceSkillsGiocatoriForQuality(dataGridGiocatoriB, -1);
-                gridUpdateStatus[(int)e_GridTab.SQUAD_B] = true;
-            }
-
-            if (tabControl1.SelectedTab == tabGK)
-            {
-                if (gridUpdateStatus[(int)e_GridTab.SQUAD_GK])
-                    return;
-                FillForDifferencePortieri();
-                EvidenceSkillsPortieri();
-                gridUpdateStatus[(int)e_GridTab.SQUAD_GK] = true;
-            }
         }
 
         private void parseMatchesForMentalityAndAttackingStyleToolStripMenuItem_Click(object sender, EventArgs e)
@@ -3698,9 +3374,8 @@ namespace TMRecorder
             int playerID; 
             if (dgGiocatori == dataGridPortieri)
             {
-                DataRowView drv = (DataRowView)dgGiocatori.SelectedRows[0].DataBoundItem;
-                ExtTMDataSet.GiocatoriNSkillRow selPlayer = (ExtTMDataSet.GiocatoriNSkillRow)drv.Row;
-                playerID = selPlayer.PlayerID;
+                NTR_Db.PlayerData selPlayer = (NTR_Db.PlayerData)dgGiocatori.SelectedRows[0].DataBoundItem;
+                playerID = selPlayer.playerID;
             }
             else
             {
@@ -3712,8 +3387,8 @@ namespace TMRecorder
                 }
                 else
                 {
-                    ExtTMDataSet.GiocatoriNSkillRow selPlayer = (ExtTMDataSet.GiocatoriNSkillRow)dgGiocatori.SelectedRows[0].DataBoundItem;
-                    playerID = selPlayer.PlayerID;
+                    NTR_Db.PlayerData selPlayer = (NTR_Db.PlayerData)dgGiocatori.SelectedRows[0].DataBoundItem;
+                    playerID = selPlayer.playerID;
                 }
             }
 
@@ -3736,9 +3411,8 @@ namespace TMRecorder
             int playerID;
             if (dgGiocatori == dataGridPortieri)
             {
-                DataRowView drv = (DataRowView)dgGiocatori.SelectedRows[0].DataBoundItem;
-                ExtTMDataSet.GiocatoriNSkillRow selPlayer = (ExtTMDataSet.GiocatoriNSkillRow)drv.Row;
-                playerID = selPlayer.PlayerID;
+                NTR_Db.PlayerData selPlayer = (NTR_Db.PlayerData)dgGiocatori.SelectedRows[0].DataBoundItem;
+                playerID = selPlayer.playerID;
             }
             else
             {
@@ -3750,8 +3424,8 @@ namespace TMRecorder
                 }
                 else
                 {
-                    ExtTMDataSet.GiocatoriNSkillRow selPlayer = (ExtTMDataSet.GiocatoriNSkillRow)dgGiocatori.SelectedRows[0].DataBoundItem;
-                    playerID = selPlayer.PlayerID;
+                    NTR_Db.PlayerData selPlayer = (NTR_Db.PlayerData)dgGiocatori.SelectedRows[0].DataBoundItem;
+                    playerID = selPlayer.playerID;
                 }
             }
 
@@ -3903,7 +3577,6 @@ namespace TMRecorder
                         History.LoadSquad_NewTm(dt, pages[0]);
                         isDirty = true;
                         InvalidateGrids();
-                        UpdateShownGrid();
                     }
                     catch (Exception)
                     {
@@ -3929,14 +3602,14 @@ namespace TMRecorder
                     History.LoadTraining_NewTM2(dt, pages[1], quiet);
                     isDirty = true;
                     InvalidateGrids();
-                    UpdateShownGrid();
+                    LoadTeamOnGrids(DateTime.Now);
                 }
                 else if (Program.Setts.PlayerType == 1)
                 {
                     History.LoadSquad_NewTm(dt, pages[0]);
                     isDirty = true;
                     InvalidateGrids();
-                    UpdateShownGrid();
+                    LoadTeamOnGrids(DateTime.Now);
                 }
             }
 

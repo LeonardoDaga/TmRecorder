@@ -110,6 +110,41 @@ namespace Common
         public abstract decimal GetPSP_GK(decimal[] atts, decimal Età);
         #endregion
 
+        #region OSi Computation
+        public decimal GetOSi(float[] atts, float[] skills)
+        {
+            decimal[] datts = new decimal[atts.Length];
+            decimal[] dskills = new decimal[skills.Length];
+
+            for (int i = 0; i < atts.Length; i++)
+                datts[i] = (decimal)atts[i];
+            for (int i = 0; i < skills.Length; i++)
+                dskills[i] = (decimal)skills[i];
+
+            if (atts.Length > 1)
+            {
+                return GetOSi_PL(datts, dskills);
+            }
+            else
+            {
+                return GetOSi_GK(datts, dskills);
+            }
+        }
+        public decimal GetOSi(decimal[] atts, decimal[] skills)
+        {
+            if (atts.Length > 1)
+            {
+                return GetOSi_PL(atts, skills);
+            }
+            else
+            {
+                return GetOSi_GK(atts, skills);
+            }
+        }
+        public abstract decimal GetOSi_PL(decimal[] atts, decimal[] skills);
+        public abstract decimal GetOSi_GK(decimal[] atts, decimal[] skills);
+        #endregion
+
         public enum FunctionType
         {
             RusCheratte, AtleticoCassina, None
@@ -218,6 +253,50 @@ namespace Common
             PO[0] = PO[0] * kRou;
 
             return PO;
+        }
+
+        public override decimal GetOSi_PL(decimal[] atts, decimal[] skills)
+        {
+            decimal AttMax = 0;
+            // Find the maximum speciality result
+            AttMax = Math.Max(DC, DL);
+            AttMax = Math.Max(AttMax, DR);
+            AttMax = Math.Max(AttMax, DMC);
+            AttMax = Math.Max(AttMax, DMR);
+            AttMax = Math.Max(AttMax, DML);
+            AttMax = Math.Max(AttMax, MC);
+            AttMax = Math.Max(AttMax, ML);
+            AttMax = Math.Max(AttMax, MR);
+            AttMax = Math.Max(AttMax, OMC);
+            AttMax = Math.Max(AttMax, OML);
+            AttMax = Math.Max(AttMax, OMR);
+            AttMax = Math.Max(AttMax, FC);
+
+            decimal skillsSum = 0.0M;
+            foreach (decimal skill in skills)
+            {
+                skillsSum += skill;
+            }
+
+            decimal OSi = (100M - (skillsSum * 5 - AttMax) / 10.0M) * AttMax / 50M;
+            decimal k = (AttMax * AttMax * AttMax) / (27000M + (AttMax * AttMax * AttMax));
+            return k * OSi * (OSi / 25M);
+        }
+
+        public override decimal GetOSi_GK(decimal[] atts, decimal[] skills)
+        {
+            decimal GK = atts[0];
+
+            decimal SkS = 0.0M;
+            foreach (decimal skill in skills)
+            {
+                SkS += skill;
+            }
+
+            // return GK / (skillsSum / 110f);
+            decimal OSi = (100M - (SkS * 5 - GK) / 10.0M) * GK / 50M;
+            decimal k = (GK * GK * GK) / (27000M + (GK * GK * GK));
+            return k * OSi * (OSi / 50M);
         }
 
         public override decimal GetPSP_PL(decimal[] atts, decimal Età)
@@ -383,6 +462,50 @@ namespace Common
             PO[0] = PO[0] * kRou;
 
             return PO;
+        }
+
+        public override decimal GetOSi_PL(decimal[] atts, decimal[] skills)
+        {
+            decimal AttMax = 0;
+            // Find the maximum speciality result
+            AttMax = Math.Max(DC, DL);
+            AttMax = Math.Max(AttMax, DR);
+            AttMax = Math.Max(AttMax, DMC);
+            AttMax = Math.Max(AttMax, DMR);
+            AttMax = Math.Max(AttMax, DML);
+            AttMax = Math.Max(AttMax, MC);
+            AttMax = Math.Max(AttMax, ML);
+            AttMax = Math.Max(AttMax, MR);
+            AttMax = Math.Max(AttMax, OMC);
+            AttMax = Math.Max(AttMax, OML);
+            AttMax = Math.Max(AttMax, OMR);
+            AttMax = Math.Max(AttMax, FC);
+
+            decimal skillsSum = 0.0M;
+            foreach (decimal skill in skills)
+            {
+                skillsSum += skill;
+            }
+
+            decimal OSi = (100M - (skillsSum * 5 - AttMax) / 10.0M) * AttMax / 50M;
+            decimal k = (AttMax * AttMax * AttMax) / (27000M + (AttMax * AttMax * AttMax));
+            return k * OSi * (OSi / 25M);
+        }
+
+        public override decimal GetOSi_GK(decimal[] atts, decimal[] skills)
+        {
+            decimal GK = atts[0];
+
+            decimal SkS = 0.0M;
+            foreach (decimal skill in skills)
+            {
+                SkS += skill;
+            }
+
+            // return GK / (skillsSum / 110f);
+            decimal OSi = (100M - (SkS * 5 - GK) / 10.0M) * GK / 50M;
+            decimal k = (GK * GK * GK) / (27000M + (GK * GK * GK));
+            return k * OSi * (OSi / 50M);
         }
 
         public override decimal GetPSP_PL(decimal[] atts, decimal Età)

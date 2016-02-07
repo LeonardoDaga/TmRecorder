@@ -2,8 +2,8 @@ function get_players()
 {
 	strout = "no data";
 
-	ths = ["id", "no", "name", "age", "fp", "str", "sta", "pac", "mar", "tac", "wor", "pos", "pas", "cro", "tec", "hea", "fin", "lon", "set", "rec", "rat", "routine", "wage", "asi", "inj", "ban_points", "retire", "country", "goals", "assists", "gp", "cards", "mom", "club", "txt"];
-	gk_ths = ["id", "no", "name", "age", "fp", "str", "sta", "pac", "han", "one", "ref", "ari", "jum", "com", "kic", "thr", "rec", "rat", "routine", "wage", "asi", "inj", "ban_points", "retire", "country", "goals", "assists", "gp", "cards", "mom", "club", "txt"];
+	ths = ["id", "no", "name", "age", "fp", "str", "sta", "pac", "mar", "tac", "wor", "pos", "pas", "cro", "tec", "hea", "fin", "lon", "set", "rec", "rat", "routine", "wage", "asi", "inj", "ban_points", "retire", "country", "goals", "assists", "gp", "cards", "mom", "club", "txt", "ban"];
+	gk_ths = ["id", "no", "name", "age", "fp", "str", "sta", "pac", "han", "one", "ref", "ari", "jum", "com", "kic", "thr", "rec", "rat", "routine", "wage", "asi", "inj", "ban_points", "retire", "country", "goals", "assists", "gp", "cards", "mom", "club", "txt", "ban"];
 
 	if (players_ar == null) return "Javascript error: players_ar is null";
 	strout = "";

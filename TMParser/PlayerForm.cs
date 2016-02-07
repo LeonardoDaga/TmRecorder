@@ -2436,6 +2436,7 @@ namespace TMRecorder
             this.SuspendLayout();
             this.Controls.Remove(this.webBrowser);
             this.ResumeLayout(false);
+            webBrowser.Stop();
             webBrowser.Dispose();
             webBrowser = null;
         }

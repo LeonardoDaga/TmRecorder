@@ -1238,5 +1238,10 @@ namespace NTR_WebBrowser
         {
             Goto(TM_Pages.Transfer);
         }
+
+        public void Stop()
+        {
+            webBrowser.Stop();
+        }
     }
 }

@@ -10,6 +10,7 @@ using SendFileTo;
 using Languages;
 using System.Diagnostics;
 using NTR_Common;
+using System.Linq;
 
 namespace TMRecorder
 {
@@ -108,13 +109,12 @@ namespace TMRecorder
 
         public TeamHistory()
         {
-            //if (Program.Setts.GainFunction == Gain_Function.FunctionType.RusCheratte)
-            //    PFun = new RusCheratte_Function();
-            //else if (Program.Setts.GainFunction == Gain_Function.FunctionType.AtleticoCassina)
-            //    PFun = new AtleticoCassina_Function();
-            //else
-            //    PFun = new RusCheratte_Function();
-            PFun = new RusCheratte_Function();
+            if (Program.Setts.GainFunction == Gain_Function.FunctionType.RusCheratte)
+                PFun = new RusCheratte_Function();
+            else if (Program.Setts.GainFunction == Gain_Function.FunctionType.AtleticoCassina)
+                PFun = new AtleticoCassina_Function();
+            else
+                PFun = new RusCheratte_Function();
 
             PFun.gds = new Common.GainDS();
 
@@ -318,12 +318,12 @@ namespace TMRecorder
 
             for (; ix < this.Count; ix++)
             {
-                if (this[ix].Date < db_TrophyDataSet.Date) continue;
+                if (this[ix].Date.Date < db_TrophyDataSet.Date.Date) continue;
 
                 break;
             }
 
-            if ((ix < this.Count) && (this[ix].Date == db_TrophyDataSet.Date))
+            if ((ix < this.Count) && (this[ix].Date.Date == db_TrophyDataSet.Date.Date))
             {
                 // Dataset already exist: substitute data
                 ExtTMDataSet eds = this[ix];
@@ -397,7 +397,7 @@ namespace TMRecorder
                         }
 
                         row.Nome = grow.Nome + "|" + row.Infortunato.ToString() + "|" + row.Squalificato.ToString()
-                                    + "|" + grow.isYoungTeam.ToString();
+                                    + "|" + grow.isYoungTeam.ToString() + "|" + (grow.isRetire ? 1 : 0).ToString();
 
                         decimal professionalism = -1;
                         if (!grow.IsProfessionalismNull())
@@ -439,7 +439,8 @@ namespace TMRecorder
                         }
 
                         prow.Nome = grow.Nome + "|" + prow.Infortunato.ToString() + "|" + prow.Squalificato.ToString()
-                                    + "|" + grow.isYoungTeam.ToString();
+                                    + "|" + grow.isYoungTeam.ToString() + "|" + (grow.isRetire ? 1 : 0).ToString();
+
                         continue;
                     }
                 }
@@ -455,7 +456,7 @@ namespace TMRecorder
                         row.Rou = grow.Routine;
                         row.TI = grow.LastTI;
                         row.Nome = grow.Nome + "|" + row.Infortunato.ToString() + "|" + row.Squalificato.ToString()
-                                    + "|" + grow.isYoungTeam.ToString();
+                                    + "|" + grow.isYoungTeam.ToString() + "|" + (grow.isRetire ? 1 : 0).ToString();
                         int wDiff = TmWeek.GetTmAbsWk(DateTime.Now) - TmWeek.GetTmAbsWk(tds.Date);
 
                         if (!grow.IswBornNull())
@@ -497,7 +498,7 @@ namespace TMRecorder
                         prow.Rou = grow.Routine;
                         prow.TI = grow.LastTI;
                         prow.Nome = grow.Nome + "|" + prow.Infortunato.ToString() + "|" + prow.Squalificato.ToString()
-                                    + "|" + grow.isYoungTeam.ToString();
+                                    + "|" + grow.isYoungTeam.ToString() + "|" + (grow.isRetire ? 1 : 0).ToString();
 
                         int wDiff = TmWeek.GetTmAbsWk(DateTime.Now) - TmWeek.GetTmAbsWk(tds.Date);
                         if (!grow.IswBornNull())
@@ -819,6 +820,36 @@ namespace TMRecorder
 
             if (this.Count == 0) return null;
             return this[this.Count - 1];
+        }
+
+        internal ExtTMDataSet[] Last2Weeks(DateTime beforeDate)
+        {
+            ExtTMDataSet[] lastDS = new ExtTMDataSet[2];
+
+            if (this.Count == 0)
+                return lastDS;
+            else if (this.Count == 1)
+            {
+                lastDS[0] = this[0];
+                lastDS[1] = null;
+                return lastDS;
+            }
+            
+            var weeks = (from c in this
+                         where c.Date <= beforeDate.AddDays(1)
+                         select c).OrderByDescending(p => p.Date).ToList();
+
+            lastDS[0] = weeks[0];
+            int absweek = TmWeek.GetTmAbsWk(weeks[0].Date);
+            DateTime lastWeek = TmWeek.TmWeekToDate(absweek-1);
+
+            var weekBefore = (from c in this
+                         where c.Date <= lastWeek.AddDays(7)
+                         select c).OrderByDescending(p => p.Date).ToList();
+
+            lastDS[1] = weekBefore[0];
+
+            return lastDS;
         }
 
         internal string[] DataDateList()

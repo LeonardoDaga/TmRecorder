@@ -117,6 +117,16 @@ namespace Common
                 }
             }
 
+
+            internal decimal TI(DateTime date)
+            {
+                WeekHistorical whTI = new WeekHistorical(TSI);
+
+                var value = whTI.GetWeekVal(TmWeek.GetTmAbsWk(date));
+
+                return (decimal)value;
+            }
+
             public DateTime[] ScoutDates
             {
                 get
@@ -1227,6 +1237,7 @@ namespace Common
                     else
                         gRow.Routine = 0;
                     gRow.isYoungTeam = isReserves;
+                    gRow.isRetire = (gr.Retire == 1);
                     gRow.wBorn = TmWeek.GetBornWeekFromAge(DateTime.Now, 0, gRow.Età);
                     TmWeek age = TmWeek.GetAge(gRow.wBorn, DateTime.Now);
 
@@ -1253,6 +1264,8 @@ namespace Common
                         gRow.ASI = gr.ASI;
                         gRow.Nationality = gr.Nationality;
                         gRow.isYoungTeam = isReserves;
+                        gRow.isRetire = (gr.Retire == 1);
+
                         if (!gr.IsRoutineNull())
                             gRow.Routine = gr.Routine;
                         else
@@ -1286,6 +1299,7 @@ namespace Common
                     gRow.Età = gr.Età;
                     gRow.ASI = gr.ASI;
                     gRow.isYoungTeam = isReserves;
+                    gRow.isRetire = (gr.Retire == 1);
                     if (!gr.IsRoutineNull())
                         gRow.Routine = gr.Routine;
                     else
@@ -1311,6 +1325,8 @@ namespace Common
                         TmWeek age = TmWeek.GetAge(gRow.wBorn, DateTime.Now);
                         if (age.Years < gRow.Età)
                             gRow.wBorn = TmWeek.GetBornWeekFromAge(DateTime.Now, 0, gRow.Età);
+
+                        gRow.isRetire = (gr.Retire == 1);
 
                         gRow.ASI = gr.ASI;
                         gRow.Nationality = gr.Nationality;
@@ -1370,6 +1386,7 @@ namespace Common
                     else
                         gRow.Routine = 0;
                     gRow.isYoungTeam = gr.IsReserve;
+                    gRow.isRetire = (gr.Retire == 1);
 
                     TmWeek age = TmWeek.GetAge(gRow.wBorn, DateTime.Now);
 
@@ -1395,6 +1412,7 @@ namespace Common
                         gRow.ASI = gr.ASI;
                         gRow.Nationality = gr.Nationality;
                         gRow.isYoungTeam = gr.IsReserve;
+                        gRow.isRetire = (gr.Retire == 1);
 
                         if (!gr.IsRecNull())
                             gRow.Rec = gr.Rec;
@@ -1443,6 +1461,7 @@ namespace Common
                     gRow.Età = gr.Età;
                     gRow.ASI = gr.ASI;
                     gRow.isYoungTeam = gr.IsReserve;
+                    gRow.isRetire = (gr.Retire == 1);
 
                     string TIs = gr.TIs;
                     gRow.SetTI(tds.Date, TIs);
@@ -1486,6 +1505,8 @@ namespace Common
                         gRow.ASI = gr.ASI;
                         gRow.Nationality = gr.Nationality;
                         gRow.isYoungTeam = gr.IsReserve;
+                        gRow.isRetire = (gr.Retire == 1);
+
                         if (!gr.IsRoutineNull())
                             gRow.Routine = gr.Routine;
                         else
@@ -1722,7 +1743,7 @@ namespace Common
             HtmlElement element = htmlDocument.GetElementById("player_scout_new");
             HtmlElementCollection elementCollection = element.GetElementsByTagName("tr");
 
-            foreach(HtmlElement row in elementCollection)
+            foreach (HtmlElement row in elementCollection)
             {
                 string strRow = row.InnerText;
 
@@ -1986,7 +2007,7 @@ namespace Common
 
             List<ScoutReview> srList = new List<ScoutReview>();
 
-            for (int i=0; i<scoutNamesArray.Length; i++)
+            for (int i = 0; i < scoutNamesArray.Length; i++)
             {
                 ScoutReview sr = new ScoutReview();
                 sr.ScoutName = scoutNamesArray[i];

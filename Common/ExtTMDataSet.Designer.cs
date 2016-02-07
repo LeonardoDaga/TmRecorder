@@ -262,19 +262,7 @@ namespace Common {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializePortieriNSkill() {
-            return false;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private bool ShouldSerializePlayerHistory() {
-            return false;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeGKHistory() {
             return false;
         }
         
@@ -369,31 +357,31 @@ namespace Common {
             
             private global::System.Data.DataColumn columnVel;
             
-            private global::System.Data.DataColumn columnMar;
+            private global::System.Data.DataColumn columnMar_Pre;
             
-            private global::System.Data.DataColumn columnCon;
+            private global::System.Data.DataColumn columnCon_Uno;
             
-            private global::System.Data.DataColumn columnWor;
+            private global::System.Data.DataColumn columnWor_Rif;
             
-            private global::System.Data.DataColumn columnPos;
+            private global::System.Data.DataColumn columnPos_Aer;
             
-            private global::System.Data.DataColumn columnPas;
+            private global::System.Data.DataColumn columnPas_Ele;
             
-            private global::System.Data.DataColumn columnCro;
+            private global::System.Data.DataColumn columnCro_Com;
             
-            private global::System.Data.DataColumn columnTec;
+            private global::System.Data.DataColumn columnTec_Tir;
             
-            private global::System.Data.DataColumn columnTes;
+            private global::System.Data.DataColumn columnTes_Lan;
             
             private global::System.Data.DataColumn columnFin;
             
-            private global::System.Data.DataColumn columnTir;
+            private global::System.Data.DataColumn columnLon;
             
-            private global::System.Data.DataColumn columnCal;
+            private global::System.Data.DataColumn columnSet;
             
             private global::System.Data.DataColumn columnASI;
             
-            private global::System.Data.DataColumn columnDC;
+            private global::System.Data.DataColumn columnDC_GK;
             
             private global::System.Data.DataColumn columnDR;
             
@@ -496,65 +484,65 @@ namespace Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn MarColumn {
+            public global::System.Data.DataColumn Mar_PreColumn {
                 get {
-                    return this.columnMar;
+                    return this.columnMar_Pre;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn ConColumn {
+            public global::System.Data.DataColumn Con_UnoColumn {
                 get {
-                    return this.columnCon;
+                    return this.columnCon_Uno;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn WorColumn {
+            public global::System.Data.DataColumn Wor_RifColumn {
                 get {
-                    return this.columnWor;
+                    return this.columnWor_Rif;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn PosColumn {
+            public global::System.Data.DataColumn Pos_AerColumn {
                 get {
-                    return this.columnPos;
+                    return this.columnPos_Aer;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn PasColumn {
+            public global::System.Data.DataColumn Pas_EleColumn {
                 get {
-                    return this.columnPas;
+                    return this.columnPas_Ele;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CroColumn {
+            public global::System.Data.DataColumn Cro_ComColumn {
                 get {
-                    return this.columnCro;
+                    return this.columnCro_Com;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn TecColumn {
+            public global::System.Data.DataColumn Tec_TirColumn {
                 get {
-                    return this.columnTec;
+                    return this.columnTec_Tir;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn TesColumn {
+            public global::System.Data.DataColumn Tes_LanColumn {
                 get {
-                    return this.columnTes;
+                    return this.columnTes_Lan;
                 }
             }
             
@@ -568,17 +556,17 @@ namespace Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn TirColumn {
+            public global::System.Data.DataColumn LonColumn {
                 get {
-                    return this.columnTir;
+                    return this.columnLon;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CalColumn {
+            public global::System.Data.DataColumn SetColumn {
                 get {
-                    return this.columnCal;
+                    return this.columnSet;
                 }
             }
             
@@ -592,9 +580,9 @@ namespace Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn DCColumn {
+            public global::System.Data.DataColumn DC_GKColumn {
                 get {
-                    return this.columnDC;
+                    return this.columnDC_GK;
                 }
             }
             
@@ -875,19 +863,19 @@ namespace Common {
                 this.columnFor = base.Columns["For"];
                 this.columnRes = base.Columns["Res"];
                 this.columnVel = base.Columns["Vel"];
-                this.columnMar = base.Columns["Mar_Pre"];
-                this.columnCon = base.Columns["Con_Uno"];
-                this.columnWor = base.Columns["Wor_Rif"];
-                this.columnPos = base.Columns["Pos_Aer"];
-                this.columnPas = base.Columns["Pas_Ele"];
-                this.columnCro = base.Columns["Cro_Com"];
-                this.columnTec = base.Columns["Tec_Tir"];
-                this.columnTes = base.Columns["Tes_Lan"];
+                this.columnMar_Pre = base.Columns["Mar_Pre"];
+                this.columnCon_Uno = base.Columns["Con_Uno"];
+                this.columnWor_Rif = base.Columns["Wor_Rif"];
+                this.columnPos_Aer = base.Columns["Pos_Aer"];
+                this.columnPas_Ele = base.Columns["Pas_Ele"];
+                this.columnCro_Com = base.Columns["Cro_Com"];
+                this.columnTec_Tir = base.Columns["Tec_Tir"];
+                this.columnTes_Lan = base.Columns["Tes_Lan"];
                 this.columnFin = base.Columns["Fin"];
-                this.columnTir = base.Columns["Lon"];
-                this.columnCal = base.Columns["Set"];
+                this.columnLon = base.Columns["Lon"];
+                this.columnSet = base.Columns["Set"];
                 this.columnASI = base.Columns["ASI"];
-                this.columnDC = base.Columns["DC_GK"];
+                this.columnDC_GK = base.Columns["DC_GK"];
                 this.columnDR = base.Columns["DR"];
                 this.columnDL = base.Columns["DL"];
                 this.columnDMC = base.Columns["DMC"];
@@ -918,32 +906,32 @@ namespace Common {
                 base.Columns.Add(this.columnRes);
                 this.columnVel = new global::System.Data.DataColumn("Vel", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnVel);
-                this.columnMar = new global::System.Data.DataColumn("Mar_Pre", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnMar);
-                this.columnCon = new global::System.Data.DataColumn("Con_Uno", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCon);
-                this.columnWor = new global::System.Data.DataColumn("Wor_Rif", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnWor);
-                this.columnPos = new global::System.Data.DataColumn("Pos_Aer", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPos);
-                this.columnPas = new global::System.Data.DataColumn("Pas_Ele", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPas);
-                this.columnCro = new global::System.Data.DataColumn("Cro_Com", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCro);
-                this.columnTec = new global::System.Data.DataColumn("Tec_Tir", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTec);
-                this.columnTes = new global::System.Data.DataColumn("Tes_Lan", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTes);
+                this.columnMar_Pre = new global::System.Data.DataColumn("Mar_Pre", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMar_Pre);
+                this.columnCon_Uno = new global::System.Data.DataColumn("Con_Uno", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCon_Uno);
+                this.columnWor_Rif = new global::System.Data.DataColumn("Wor_Rif", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnWor_Rif);
+                this.columnPos_Aer = new global::System.Data.DataColumn("Pos_Aer", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPos_Aer);
+                this.columnPas_Ele = new global::System.Data.DataColumn("Pas_Ele", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPas_Ele);
+                this.columnCro_Com = new global::System.Data.DataColumn("Cro_Com", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCro_Com);
+                this.columnTec_Tir = new global::System.Data.DataColumn("Tec_Tir", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTec_Tir);
+                this.columnTes_Lan = new global::System.Data.DataColumn("Tes_Lan", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTes_Lan);
                 this.columnFin = new global::System.Data.DataColumn("Fin", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFin);
-                this.columnTir = new global::System.Data.DataColumn("Lon", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTir);
-                this.columnCal = new global::System.Data.DataColumn("Set", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCal);
+                this.columnLon = new global::System.Data.DataColumn("Lon", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLon);
+                this.columnSet = new global::System.Data.DataColumn("Set", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSet);
                 this.columnASI = new global::System.Data.DataColumn("ASI", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnASI);
-                this.columnDC = new global::System.Data.DataColumn("DC_GK", typeof(float), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDC);
+                this.columnDC_GK = new global::System.Data.DataColumn("DC_GK", typeof(float), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDC_GK);
                 this.columnDR = new global::System.Data.DataColumn("DR", typeof(float), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDR);
                 this.columnDL = new global::System.Data.DataColumn("DL", typeof(float), null, global::System.Data.MappingType.Element);
@@ -982,10 +970,10 @@ namespace Common {
                                 this.columnDate}, true));
                 this.columnDate.AllowDBNull = false;
                 this.columnDate.Unique = true;
-                this.columnDC.DefaultValue = ((float)(0F));
+                this.columnDC_GK.DefaultValue = ((float)(0F));
                 this.columnDR.DefaultValue = ((float)(0F));
                 this.columnDL.DefaultValue = ((float)(0F));
-                this.columnDMC.Caption = "DC_GK";
+                this.columnDMC.Caption = "DC";
                 this.columnDMC.DefaultValue = ((float)(0F));
                 this.columnDMR.Caption = "DL";
                 this.columnDMR.DefaultValue = ((float)(0F));
@@ -1409,31 +1397,31 @@ namespace Common {
             
             private global::System.Data.DataColumn columnVel;
             
-            private global::System.Data.DataColumn columnMar;
+            private global::System.Data.DataColumn columnMar_Pre;
             
-            private global::System.Data.DataColumn columnCon;
+            private global::System.Data.DataColumn columnCon_Uno;
             
-            private global::System.Data.DataColumn columnWor;
+            private global::System.Data.DataColumn columnWor_Rif;
             
-            private global::System.Data.DataColumn columnPos;
+            private global::System.Data.DataColumn columnPos_Aer;
             
-            private global::System.Data.DataColumn columnPas;
+            private global::System.Data.DataColumn columnPas_Ele;
             
-            private global::System.Data.DataColumn columnCro;
+            private global::System.Data.DataColumn columnCro_Com;
             
-            private global::System.Data.DataColumn columnTec;
+            private global::System.Data.DataColumn columnTec_Tir;
             
-            private global::System.Data.DataColumn columnTes;
+            private global::System.Data.DataColumn columnTes_Lan;
             
             private global::System.Data.DataColumn columnFin;
             
-            private global::System.Data.DataColumn columnTir;
+            private global::System.Data.DataColumn columnLon;
             
-            private global::System.Data.DataColumn columnCal;
+            private global::System.Data.DataColumn columnSet;
             
             private global::System.Data.DataColumn columnASI;
             
-            private global::System.Data.DataColumn columnDC;
+            private global::System.Data.DataColumn columnDC_GK;
             
             private global::System.Data.DataColumn columnDR;
             
@@ -1600,65 +1588,65 @@ namespace Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn MarColumn {
+            public global::System.Data.DataColumn Mar_PreColumn {
                 get {
-                    return this.columnMar;
+                    return this.columnMar_Pre;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn ConColumn {
+            public global::System.Data.DataColumn Con_UnoColumn {
                 get {
-                    return this.columnCon;
+                    return this.columnCon_Uno;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn WorColumn {
+            public global::System.Data.DataColumn Wor_RifColumn {
                 get {
-                    return this.columnWor;
+                    return this.columnWor_Rif;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn PosColumn {
+            public global::System.Data.DataColumn Pos_AerColumn {
                 get {
-                    return this.columnPos;
+                    return this.columnPos_Aer;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn PasColumn {
+            public global::System.Data.DataColumn Pas_EleColumn {
                 get {
-                    return this.columnPas;
+                    return this.columnPas_Ele;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CroColumn {
+            public global::System.Data.DataColumn Cro_ComColumn {
                 get {
-                    return this.columnCro;
+                    return this.columnCro_Com;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn TecColumn {
+            public global::System.Data.DataColumn Tec_TirColumn {
                 get {
-                    return this.columnTec;
+                    return this.columnTec_Tir;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn TesColumn {
+            public global::System.Data.DataColumn Tes_LanColumn {
                 get {
-                    return this.columnTes;
+                    return this.columnTes_Lan;
                 }
             }
             
@@ -1672,17 +1660,17 @@ namespace Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn TirColumn {
+            public global::System.Data.DataColumn LonColumn {
                 get {
-                    return this.columnTir;
+                    return this.columnLon;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CalColumn {
+            public global::System.Data.DataColumn SetColumn {
                 get {
-                    return this.columnCal;
+                    return this.columnSet;
                 }
             }
             
@@ -1696,9 +1684,9 @@ namespace Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn DCColumn {
+            public global::System.Data.DataColumn DC_GKColumn {
                 get {
-                    return this.columnDC;
+                    return this.columnDC_GK;
                 }
             }
             
@@ -2077,19 +2065,19 @@ namespace Common {
                 this.columnFor = base.Columns["For"];
                 this.columnRes = base.Columns["Res"];
                 this.columnVel = base.Columns["Vel"];
-                this.columnMar = base.Columns["Mar_Pre"];
-                this.columnCon = base.Columns["Con_Uno"];
-                this.columnWor = base.Columns["Wor_Rif"];
-                this.columnPos = base.Columns["Pos_Aer"];
-                this.columnPas = base.Columns["Pas_Ele"];
-                this.columnCro = base.Columns["Cro_Com"];
-                this.columnTec = base.Columns["Tec_Tir"];
-                this.columnTes = base.Columns["Tes_Lan"];
+                this.columnMar_Pre = base.Columns["Mar_Pre"];
+                this.columnCon_Uno = base.Columns["Con_Uno"];
+                this.columnWor_Rif = base.Columns["Wor_Rif"];
+                this.columnPos_Aer = base.Columns["Pos_Aer"];
+                this.columnPas_Ele = base.Columns["Pas_Ele"];
+                this.columnCro_Com = base.Columns["Cro_Com"];
+                this.columnTec_Tir = base.Columns["Tec_Tir"];
+                this.columnTes_Lan = base.Columns["Tes_Lan"];
                 this.columnFin = base.Columns["Fin"];
-                this.columnTir = base.Columns["Lon"];
-                this.columnCal = base.Columns["Set"];
+                this.columnLon = base.Columns["Lon"];
+                this.columnSet = base.Columns["Set"];
                 this.columnASI = base.Columns["ASI"];
-                this.columnDC = base.Columns["DC_GK"];
+                this.columnDC_GK = base.Columns["DC_GK"];
                 this.columnDR = base.Columns["DR"];
                 this.columnDL = base.Columns["DL"];
                 this.columnDMC = base.Columns["DMC"];
@@ -2140,32 +2128,32 @@ namespace Common {
                 base.Columns.Add(this.columnRes);
                 this.columnVel = new global::System.Data.DataColumn("Vel", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnVel);
-                this.columnMar = new global::System.Data.DataColumn("Mar_Pre", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnMar);
-                this.columnCon = new global::System.Data.DataColumn("Con_Uno", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCon);
-                this.columnWor = new global::System.Data.DataColumn("Wor_Rif", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnWor);
-                this.columnPos = new global::System.Data.DataColumn("Pos_Aer", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPos);
-                this.columnPas = new global::System.Data.DataColumn("Pas_Ele", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPas);
-                this.columnCro = new global::System.Data.DataColumn("Cro_Com", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCro);
-                this.columnTec = new global::System.Data.DataColumn("Tec_Tir", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTec);
-                this.columnTes = new global::System.Data.DataColumn("Tes_Lan", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTes);
+                this.columnMar_Pre = new global::System.Data.DataColumn("Mar_Pre", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMar_Pre);
+                this.columnCon_Uno = new global::System.Data.DataColumn("Con_Uno", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCon_Uno);
+                this.columnWor_Rif = new global::System.Data.DataColumn("Wor_Rif", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnWor_Rif);
+                this.columnPos_Aer = new global::System.Data.DataColumn("Pos_Aer", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPos_Aer);
+                this.columnPas_Ele = new global::System.Data.DataColumn("Pas_Ele", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPas_Ele);
+                this.columnCro_Com = new global::System.Data.DataColumn("Cro_Com", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCro_Com);
+                this.columnTec_Tir = new global::System.Data.DataColumn("Tec_Tir", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTec_Tir);
+                this.columnTes_Lan = new global::System.Data.DataColumn("Tes_Lan", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTes_Lan);
                 this.columnFin = new global::System.Data.DataColumn("Fin", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFin);
-                this.columnTir = new global::System.Data.DataColumn("Lon", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTir);
-                this.columnCal = new global::System.Data.DataColumn("Set", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCal);
+                this.columnLon = new global::System.Data.DataColumn("Lon", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLon);
+                this.columnSet = new global::System.Data.DataColumn("Set", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSet);
                 this.columnASI = new global::System.Data.DataColumn("ASI", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnASI);
-                this.columnDC = new global::System.Data.DataColumn("DC_GK", typeof(float), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDC);
+                this.columnDC_GK = new global::System.Data.DataColumn("DC_GK", typeof(float), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDC_GK);
                 this.columnDR = new global::System.Data.DataColumn("DR", typeof(float), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDR);
                 this.columnDL = new global::System.Data.DataColumn("DL", typeof(float), null, global::System.Data.MappingType.Element);
@@ -2224,10 +2212,10 @@ namespace Common {
                 this.columnNumero.AllowDBNull = false;
                 this.columnNome.MaxLength = 50;
                 this.columnFP.MaxLength = 50;
-                this.columnDC.DefaultValue = ((float)(0F));
+                this.columnDC_GK.DefaultValue = ((float)(0F));
                 this.columnDR.DefaultValue = ((float)(0F));
                 this.columnDL.DefaultValue = ((float)(0F));
-                this.columnDMC.Caption = "DC_GK";
+                this.columnDMC.Caption = "DC";
                 this.columnDMC.DefaultValue = ((float)(0F));
                 this.columnDMR.Caption = "DL";
                 this.columnDMR.DefaultValue = ((float)(0F));
@@ -2379,7 +2367,6 @@ namespace Common {
             }
         }
         
-        
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
@@ -2458,14 +2445,14 @@ namespace Common {
             public decimal Mar_Pre {
                 get {
                     try {
-                        return ((decimal)(this[this.tablePlayerHistory.MarColumn]));
+                        return ((decimal)(this[this.tablePlayerHistory.Mar_PreColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'Mar_Pre\' in table \'PlayerHistory\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tablePlayerHistory.MarColumn] = value;
+                    this[this.tablePlayerHistory.Mar_PreColumn] = value;
                 }
             }
             
@@ -2474,14 +2461,14 @@ namespace Common {
             public decimal Con_Uno {
                 get {
                     try {
-                        return ((decimal)(this[this.tablePlayerHistory.ConColumn]));
+                        return ((decimal)(this[this.tablePlayerHistory.Con_UnoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'Con_Uno\' in table \'PlayerHistory\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tablePlayerHistory.ConColumn] = value;
+                    this[this.tablePlayerHistory.Con_UnoColumn] = value;
                 }
             }
             
@@ -2490,14 +2477,14 @@ namespace Common {
             public decimal Wor_Rif {
                 get {
                     try {
-                        return ((decimal)(this[this.tablePlayerHistory.WorColumn]));
+                        return ((decimal)(this[this.tablePlayerHistory.Wor_RifColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'Wor_Rif\' in table \'PlayerHistory\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tablePlayerHistory.WorColumn] = value;
+                    this[this.tablePlayerHistory.Wor_RifColumn] = value;
                 }
             }
             
@@ -2506,14 +2493,14 @@ namespace Common {
             public decimal Pos_Aer {
                 get {
                     try {
-                        return ((decimal)(this[this.tablePlayerHistory.PosColumn]));
+                        return ((decimal)(this[this.tablePlayerHistory.Pos_AerColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'Pos_Aer\' in table \'PlayerHistory\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tablePlayerHistory.PosColumn] = value;
+                    this[this.tablePlayerHistory.Pos_AerColumn] = value;
                 }
             }
             
@@ -2522,14 +2509,14 @@ namespace Common {
             public decimal Pas_Ele {
                 get {
                     try {
-                        return ((decimal)(this[this.tablePlayerHistory.PasColumn]));
+                        return ((decimal)(this[this.tablePlayerHistory.Pas_EleColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'Pas_Ele\' in table \'PlayerHistory\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tablePlayerHistory.PasColumn] = value;
+                    this[this.tablePlayerHistory.Pas_EleColumn] = value;
                 }
             }
             
@@ -2538,14 +2525,14 @@ namespace Common {
             public decimal Cro_Com {
                 get {
                     try {
-                        return ((decimal)(this[this.tablePlayerHistory.CroColumn]));
+                        return ((decimal)(this[this.tablePlayerHistory.Cro_ComColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'Cro_Com\' in table \'PlayerHistory\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tablePlayerHistory.CroColumn] = value;
+                    this[this.tablePlayerHistory.Cro_ComColumn] = value;
                 }
             }
             
@@ -2554,14 +2541,14 @@ namespace Common {
             public decimal Tec_Tir {
                 get {
                     try {
-                        return ((decimal)(this[this.tablePlayerHistory.TecColumn]));
+                        return ((decimal)(this[this.tablePlayerHistory.Tec_TirColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'Tec_Tir\' in table \'PlayerHistory\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tablePlayerHistory.TecColumn] = value;
+                    this[this.tablePlayerHistory.Tec_TirColumn] = value;
                 }
             }
             
@@ -2570,14 +2557,14 @@ namespace Common {
             public decimal Tes_Lan {
                 get {
                     try {
-                        return ((decimal)(this[this.tablePlayerHistory.TesColumn]));
+                        return ((decimal)(this[this.tablePlayerHistory.Tes_LanColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'Tes_Lan\' in table \'PlayerHistory\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tablePlayerHistory.TesColumn] = value;
+                    this[this.tablePlayerHistory.Tes_LanColumn] = value;
                 }
             }
             
@@ -2602,14 +2589,14 @@ namespace Common {
             public decimal Lon {
                 get {
                     try {
-                        return ((decimal)(this[this.tablePlayerHistory.TirColumn]));
+                        return ((decimal)(this[this.tablePlayerHistory.LonColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'Lon\' in table \'PlayerHistory\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tablePlayerHistory.TirColumn] = value;
+                    this[this.tablePlayerHistory.LonColumn] = value;
                 }
             }
             
@@ -2618,14 +2605,14 @@ namespace Common {
             public decimal Set {
                 get {
                     try {
-                        return ((decimal)(this[this.tablePlayerHistory.CalColumn]));
+                        return ((decimal)(this[this.tablePlayerHistory.SetColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'Set\' in table \'PlayerHistory\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tablePlayerHistory.CalColumn] = value;
+                    this[this.tablePlayerHistory.SetColumn] = value;
                 }
             }
             
@@ -2650,14 +2637,14 @@ namespace Common {
             public float DC_GK {
                 get {
                     try {
-                        return ((float)(this[this.tablePlayerHistory.DCColumn]));
+                        return ((float)(this[this.tablePlayerHistory.DC_GKColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'DC_GK\' in table \'PlayerHistory\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tablePlayerHistory.DCColumn] = value;
+                    this[this.tablePlayerHistory.DC_GKColumn] = value;
                 }
             }
             
@@ -2971,98 +2958,98 @@ namespace Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsMarNull() {
-                return this.IsNull(this.tablePlayerHistory.MarColumn);
+            public bool IsMar_PreNull() {
+                return this.IsNull(this.tablePlayerHistory.Mar_PreColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetMarNull() {
-                this[this.tablePlayerHistory.MarColumn] = global::System.Convert.DBNull;
+            public void SetMar_PreNull() {
+                this[this.tablePlayerHistory.Mar_PreColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsConNull() {
-                return this.IsNull(this.tablePlayerHistory.ConColumn);
+            public bool IsCon_UnoNull() {
+                return this.IsNull(this.tablePlayerHistory.Con_UnoColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetConNull() {
-                this[this.tablePlayerHistory.ConColumn] = global::System.Convert.DBNull;
+            public void SetCon_UnoNull() {
+                this[this.tablePlayerHistory.Con_UnoColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsWorNull() {
-                return this.IsNull(this.tablePlayerHistory.WorColumn);
+            public bool IsWor_RifNull() {
+                return this.IsNull(this.tablePlayerHistory.Wor_RifColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetWorNull() {
-                this[this.tablePlayerHistory.WorColumn] = global::System.Convert.DBNull;
+            public void SetWor_RifNull() {
+                this[this.tablePlayerHistory.Wor_RifColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsPosNull() {
-                return this.IsNull(this.tablePlayerHistory.PosColumn);
+            public bool IsPos_AerNull() {
+                return this.IsNull(this.tablePlayerHistory.Pos_AerColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetPosNull() {
-                this[this.tablePlayerHistory.PosColumn] = global::System.Convert.DBNull;
+            public void SetPos_AerNull() {
+                this[this.tablePlayerHistory.Pos_AerColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsPasNull() {
-                return this.IsNull(this.tablePlayerHistory.PasColumn);
+            public bool IsPas_EleNull() {
+                return this.IsNull(this.tablePlayerHistory.Pas_EleColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetPasNull() {
-                this[this.tablePlayerHistory.PasColumn] = global::System.Convert.DBNull;
+            public void SetPas_EleNull() {
+                this[this.tablePlayerHistory.Pas_EleColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCroNull() {
-                return this.IsNull(this.tablePlayerHistory.CroColumn);
+            public bool IsCro_ComNull() {
+                return this.IsNull(this.tablePlayerHistory.Cro_ComColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCroNull() {
-                this[this.tablePlayerHistory.CroColumn] = global::System.Convert.DBNull;
+            public void SetCro_ComNull() {
+                this[this.tablePlayerHistory.Cro_ComColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsTecNull() {
-                return this.IsNull(this.tablePlayerHistory.TecColumn);
+            public bool IsTec_TirNull() {
+                return this.IsNull(this.tablePlayerHistory.Tec_TirColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetTecNull() {
-                this[this.tablePlayerHistory.TecColumn] = global::System.Convert.DBNull;
+            public void SetTec_TirNull() {
+                this[this.tablePlayerHistory.Tec_TirColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsTesNull() {
-                return this.IsNull(this.tablePlayerHistory.TesColumn);
+            public bool IsTes_LanNull() {
+                return this.IsNull(this.tablePlayerHistory.Tes_LanColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetTesNull() {
-                this[this.tablePlayerHistory.TesColumn] = global::System.Convert.DBNull;
+            public void SetTes_LanNull() {
+                this[this.tablePlayerHistory.Tes_LanColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3079,26 +3066,26 @@ namespace Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsTirNull() {
-                return this.IsNull(this.tablePlayerHistory.TirColumn);
+            public bool IsLonNull() {
+                return this.IsNull(this.tablePlayerHistory.LonColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetTirNull() {
-                this[this.tablePlayerHistory.TirColumn] = global::System.Convert.DBNull;
+            public void SetLonNull() {
+                this[this.tablePlayerHistory.LonColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCalNull() {
-                return this.IsNull(this.tablePlayerHistory.CalColumn);
+            public bool IsSetNull() {
+                return this.IsNull(this.tablePlayerHistory.SetColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCalNull() {
-                this[this.tablePlayerHistory.CalColumn] = global::System.Convert.DBNull;
+            public void SetSetNull() {
+                this[this.tablePlayerHistory.SetColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3115,14 +3102,14 @@ namespace Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsDCNull() {
-                return this.IsNull(this.tablePlayerHistory.DCColumn);
+            public bool IsDC_GKNull() {
+                return this.IsNull(this.tablePlayerHistory.DC_GKColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetDCNull() {
-                this[this.tablePlayerHistory.DCColumn] = global::System.Convert.DBNull;
+            public void SetDC_GKNull() {
+                this[this.tablePlayerHistory.DC_GKColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3542,14 +3529,14 @@ namespace Common {
             public decimal Mar_Pre {
                 get {
                     try {
-                        return ((decimal)(this[this.tableGiocatoriNSkill.MarColumn]));
+                        return ((decimal)(this[this.tableGiocatoriNSkill.Mar_PreColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'Mar_Pre\' in table \'GiocatoriNSkill\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableGiocatoriNSkill.MarColumn] = value;
+                    this[this.tableGiocatoriNSkill.Mar_PreColumn] = value;
                 }
             }
             
@@ -3558,14 +3545,14 @@ namespace Common {
             public decimal Con_Uno {
                 get {
                     try {
-                        return ((decimal)(this[this.tableGiocatoriNSkill.ConColumn]));
+                        return ((decimal)(this[this.tableGiocatoriNSkill.Con_UnoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'Con_Uno\' in table \'GiocatoriNSkill\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableGiocatoriNSkill.ConColumn] = value;
+                    this[this.tableGiocatoriNSkill.Con_UnoColumn] = value;
                 }
             }
             
@@ -3574,14 +3561,14 @@ namespace Common {
             public decimal Wor_Rif {
                 get {
                     try {
-                        return ((decimal)(this[this.tableGiocatoriNSkill.WorColumn]));
+                        return ((decimal)(this[this.tableGiocatoriNSkill.Wor_RifColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'Wor_Rif\' in table \'GiocatoriNSkill\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableGiocatoriNSkill.WorColumn] = value;
+                    this[this.tableGiocatoriNSkill.Wor_RifColumn] = value;
                 }
             }
             
@@ -3590,14 +3577,14 @@ namespace Common {
             public decimal Pos_Aer {
                 get {
                     try {
-                        return ((decimal)(this[this.tableGiocatoriNSkill.PosColumn]));
+                        return ((decimal)(this[this.tableGiocatoriNSkill.Pos_AerColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'Pos_Aer\' in table \'GiocatoriNSkill\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableGiocatoriNSkill.PosColumn] = value;
+                    this[this.tableGiocatoriNSkill.Pos_AerColumn] = value;
                 }
             }
             
@@ -3606,14 +3593,14 @@ namespace Common {
             public decimal Pas_Ele {
                 get {
                     try {
-                        return ((decimal)(this[this.tableGiocatoriNSkill.PasColumn]));
+                        return ((decimal)(this[this.tableGiocatoriNSkill.Pas_EleColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'Pas_Ele\' in table \'GiocatoriNSkill\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableGiocatoriNSkill.PasColumn] = value;
+                    this[this.tableGiocatoriNSkill.Pas_EleColumn] = value;
                 }
             }
             
@@ -3622,14 +3609,14 @@ namespace Common {
             public decimal Cro_Com {
                 get {
                     try {
-                        return ((decimal)(this[this.tableGiocatoriNSkill.CroColumn]));
+                        return ((decimal)(this[this.tableGiocatoriNSkill.Cro_ComColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'Cro_Com\' in table \'GiocatoriNSkill\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableGiocatoriNSkill.CroColumn] = value;
+                    this[this.tableGiocatoriNSkill.Cro_ComColumn] = value;
                 }
             }
             
@@ -3638,14 +3625,14 @@ namespace Common {
             public decimal Tec_Tir {
                 get {
                     try {
-                        return ((decimal)(this[this.tableGiocatoriNSkill.TecColumn]));
+                        return ((decimal)(this[this.tableGiocatoriNSkill.Tec_TirColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'Tec_Tir\' in table \'GiocatoriNSkill\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableGiocatoriNSkill.TecColumn] = value;
+                    this[this.tableGiocatoriNSkill.Tec_TirColumn] = value;
                 }
             }
             
@@ -3654,14 +3641,14 @@ namespace Common {
             public decimal Tes_Lan {
                 get {
                     try {
-                        return ((decimal)(this[this.tableGiocatoriNSkill.TesColumn]));
+                        return ((decimal)(this[this.tableGiocatoriNSkill.Tes_LanColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'Tes_Lan\' in table \'GiocatoriNSkill\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableGiocatoriNSkill.TesColumn] = value;
+                    this[this.tableGiocatoriNSkill.Tes_LanColumn] = value;
                 }
             }
             
@@ -3686,14 +3673,14 @@ namespace Common {
             public decimal Lon {
                 get {
                     try {
-                        return ((decimal)(this[this.tableGiocatoriNSkill.TirColumn]));
+                        return ((decimal)(this[this.tableGiocatoriNSkill.LonColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'Lon\' in table \'GiocatoriNSkill\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableGiocatoriNSkill.TirColumn] = value;
+                    this[this.tableGiocatoriNSkill.LonColumn] = value;
                 }
             }
             
@@ -3702,14 +3689,14 @@ namespace Common {
             public decimal Set {
                 get {
                     try {
-                        return ((decimal)(this[this.tableGiocatoriNSkill.CalColumn]));
+                        return ((decimal)(this[this.tableGiocatoriNSkill.SetColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'Set\' in table \'GiocatoriNSkill\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableGiocatoriNSkill.CalColumn] = value;
+                    this[this.tableGiocatoriNSkill.SetColumn] = value;
                 }
             }
             
@@ -3734,14 +3721,14 @@ namespace Common {
             public float DC_GK {
                 get {
                     try {
-                        return ((float)(this[this.tableGiocatoriNSkill.DCColumn]));
+                        return ((float)(this[this.tableGiocatoriNSkill.DC_GKColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'DC_GK\' in table \'GiocatoriNSkill\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableGiocatoriNSkill.DCColumn] = value;
+                    this[this.tableGiocatoriNSkill.DC_GKColumn] = value;
                 }
             }
             
@@ -4243,98 +4230,98 @@ namespace Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsMarNull() {
-                return this.IsNull(this.tableGiocatoriNSkill.MarColumn);
+            public bool IsMar_PreNull() {
+                return this.IsNull(this.tableGiocatoriNSkill.Mar_PreColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetMarNull() {
-                this[this.tableGiocatoriNSkill.MarColumn] = global::System.Convert.DBNull;
+            public void SetMar_PreNull() {
+                this[this.tableGiocatoriNSkill.Mar_PreColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsConNull() {
-                return this.IsNull(this.tableGiocatoriNSkill.ConColumn);
+            public bool IsCon_UnoNull() {
+                return this.IsNull(this.tableGiocatoriNSkill.Con_UnoColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetConNull() {
-                this[this.tableGiocatoriNSkill.ConColumn] = global::System.Convert.DBNull;
+            public void SetCon_UnoNull() {
+                this[this.tableGiocatoriNSkill.Con_UnoColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsWorNull() {
-                return this.IsNull(this.tableGiocatoriNSkill.WorColumn);
+            public bool IsWor_RifNull() {
+                return this.IsNull(this.tableGiocatoriNSkill.Wor_RifColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetWorNull() {
-                this[this.tableGiocatoriNSkill.WorColumn] = global::System.Convert.DBNull;
+            public void SetWor_RifNull() {
+                this[this.tableGiocatoriNSkill.Wor_RifColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsPosNull() {
-                return this.IsNull(this.tableGiocatoriNSkill.PosColumn);
+            public bool IsPos_AerNull() {
+                return this.IsNull(this.tableGiocatoriNSkill.Pos_AerColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetPosNull() {
-                this[this.tableGiocatoriNSkill.PosColumn] = global::System.Convert.DBNull;
+            public void SetPos_AerNull() {
+                this[this.tableGiocatoriNSkill.Pos_AerColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsPasNull() {
-                return this.IsNull(this.tableGiocatoriNSkill.PasColumn);
+            public bool IsPas_EleNull() {
+                return this.IsNull(this.tableGiocatoriNSkill.Pas_EleColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetPasNull() {
-                this[this.tableGiocatoriNSkill.PasColumn] = global::System.Convert.DBNull;
+            public void SetPas_EleNull() {
+                this[this.tableGiocatoriNSkill.Pas_EleColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCroNull() {
-                return this.IsNull(this.tableGiocatoriNSkill.CroColumn);
+            public bool IsCro_ComNull() {
+                return this.IsNull(this.tableGiocatoriNSkill.Cro_ComColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCroNull() {
-                this[this.tableGiocatoriNSkill.CroColumn] = global::System.Convert.DBNull;
+            public void SetCro_ComNull() {
+                this[this.tableGiocatoriNSkill.Cro_ComColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsTecNull() {
-                return this.IsNull(this.tableGiocatoriNSkill.TecColumn);
+            public bool IsTec_TirNull() {
+                return this.IsNull(this.tableGiocatoriNSkill.Tec_TirColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetTecNull() {
-                this[this.tableGiocatoriNSkill.TecColumn] = global::System.Convert.DBNull;
+            public void SetTec_TirNull() {
+                this[this.tableGiocatoriNSkill.Tec_TirColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsTesNull() {
-                return this.IsNull(this.tableGiocatoriNSkill.TesColumn);
+            public bool IsTes_LanNull() {
+                return this.IsNull(this.tableGiocatoriNSkill.Tes_LanColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetTesNull() {
-                this[this.tableGiocatoriNSkill.TesColumn] = global::System.Convert.DBNull;
+            public void SetTes_LanNull() {
+                this[this.tableGiocatoriNSkill.Tes_LanColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4351,26 +4338,26 @@ namespace Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsTirNull() {
-                return this.IsNull(this.tableGiocatoriNSkill.TirColumn);
+            public bool IsLonNull() {
+                return this.IsNull(this.tableGiocatoriNSkill.LonColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetTirNull() {
-                this[this.tableGiocatoriNSkill.TirColumn] = global::System.Convert.DBNull;
+            public void SetLonNull() {
+                this[this.tableGiocatoriNSkill.LonColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCalNull() {
-                return this.IsNull(this.tableGiocatoriNSkill.CalColumn);
+            public bool IsSetNull() {
+                return this.IsNull(this.tableGiocatoriNSkill.SetColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCalNull() {
-                this[this.tableGiocatoriNSkill.CalColumn] = global::System.Convert.DBNull;
+            public void SetSetNull() {
+                this[this.tableGiocatoriNSkill.SetColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4387,14 +4374,14 @@ namespace Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsDCNull() {
-                return this.IsNull(this.tableGiocatoriNSkill.DCColumn);
+            public bool IsDC_GKNull() {
+                return this.IsNull(this.tableGiocatoriNSkill.DC_GKColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetDCNull() {
-                this[this.tableGiocatoriNSkill.DCColumn] = global::System.Convert.DBNull;
+            public void SetDC_GKNull() {
+                this[this.tableGiocatoriNSkill.DC_GKColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

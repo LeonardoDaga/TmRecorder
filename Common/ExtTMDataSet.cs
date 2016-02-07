@@ -366,7 +366,7 @@ namespace Common
                     }
 
                     edsRow.Nome += "|" + tdsRow.Infortunato.ToString() + "|" + tdsRow.Squalificato.ToString()
-                        + "|" + isReserves.ToString();
+                        + "|" + isReserves.ToString() + "|" + tdsRow.Retire.ToString();
 
                     edsRow.Età = tdsRow.Età;
 
@@ -520,7 +520,7 @@ namespace Common
                     }
 
                     edsRow.Nome += "|" + tdsRow.Infortunato.ToString() + "|" + tdsRow.Squalificato.ToString()
-                        + "|" + isReserves.ToString();
+                        + "|" + isReserves.ToString() + "|" + tdsRow.Retire.ToString();
 
                     edsRow.Età = tdsRow.Età;
 
@@ -743,6 +743,11 @@ namespace Common
                     edsRow.FPn = Tm_Utility.FPToNumber(tdsRow.FP);
 
                     // edsRow.Ada = tdsRow.Ada;
+                    if (!tdsRow.IsAdaNull())
+                        edsRow.Ada = tdsRow.Ada;
+                    else if (!pdsRow.IsAdaNull())
+                        edsRow.Ada = pdsRow.Ada;
+
                     edsRow.ASI = tdsRow.ASI;
 
                     if (pdsRow != null)
@@ -1540,8 +1545,9 @@ namespace Common
                     edsRow.Nome = plyDB.Nome;
 
                     if (plyDB.IsisYoungTeamNull()) plyDB.isYoungTeam = 0;
+                    if (plyDB.IsisRetireNull()) plyDB.isRetire = false;
                     edsRow.Nome += "|" + tdsRow.Infortunato.ToString() + "|" + tdsRow.Squalificato.ToString()
-                                 + "|" + plyDB.isYoungTeam.ToString();
+                                 + "|" + plyDB.isYoungTeam.ToString() + "|" + (plyDB.isRetire?1:0).ToString();
 
                     edsRow.FP = plyDB.FP;
                     edsRow.FPn = Tm_Utility.FPToNumber(edsRow.FP);
@@ -1593,7 +1599,7 @@ namespace Common
                     else
                         edsRow.Rou = 0;
 
-                    edsRow.TI = plyDB.LastTI;
+                    edsRow.TI = plyDB.TI(tds.Date);
 
                     int wDiff = TmWeek.GetTmAbsWk(DateTime.Now) - TmWeek.GetTmAbsWk(this.Date);
                     if (!plyDB.IswBornNull())
@@ -1658,8 +1664,9 @@ namespace Common
                     edsRow.Nome = plyDB.Nome;
 
                     if (plyDB.IsisYoungTeamNull()) plyDB.isYoungTeam = 0;
+                    if (plyDB.IsisRetireNull()) plyDB.isRetire = false;
                     edsRow.Nome += "|" + tdsRow.Infortunato.ToString() + "|" + tdsRow.Squalificato.ToString()
-                        + "|" + plyDB.isYoungTeam.ToString();
+                                 + "|" + plyDB.isYoungTeam.ToString() + "|" + (plyDB.isRetire ? 1 : 0).ToString();
 
                     if (plyDB.IsWageNull())
                         plyDB.Wage = 0;

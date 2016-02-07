@@ -1279,6 +1279,112 @@ namespace NTR_Db
             FillWithWeeks(thisWeek, prevWeek);
         }
 
+        public PlayerData(ExtTMDataSet.GiocatoriNSkillRow thisWeek, ExtTMDataSet[] lastTwoWeeks, GainDS GDS)
+        {
+            Name = thisWeek.Nome;
+            Week = TmWeek.thisWeek().absweek;
+            GFun.GDS = GDS;
+
+            FPn = thisWeek.FPn;
+            wBorn = thisWeek.wBorn;
+
+            Inj = (short)thisWeek.Infortunato;
+            Ban = (short)thisWeek.Squalificato;
+            
+            Number = thisWeek.Numero;
+
+            Nationality = thisWeek.Nationality;
+
+            playerID = thisWeek.PlayerID;
+
+            ExtTMDataSet.GiocatoriNSkillRow prevWeek = null;
+            if (lastTwoWeeks[1] != null)
+                prevWeek = lastTwoWeeks[1].GiocatoriNSkill.FindByPlayerID(playerID);
+
+            Rou = thisWeek.Rou;
+            Wage = thisWeek.Wage;
+            TeamSq = thisWeek.Team;
+
+            if (prevWeek != null)
+            {
+                ASI = new intvar(thisWeek.ASI, prevWeek.ASI);
+                try
+                {
+                    if (!thisWeek.IsTINull() && !prevWeek.IsTINull())
+                        TI = new intvar((int)(thisWeek.TI), (int)(prevWeek.TI));
+                    else if (!thisWeek.IsTINull() && prevWeek.IsTINull())
+                        TI = new intvar((int)(thisWeek.TI), 0);
+                    else
+                        TI = new intvar(0, 0);
+                }
+                catch
+                {
+                    TI = new intvar(0, 0);
+                }
+                Str = new decvar(thisWeek.For, prevWeek.For, 10 * GDS.K_FPn_Max((int)eSkill.Str, FPn));
+                Pac = new decvar(thisWeek.Vel, prevWeek.Vel, 10 * GDS.K_FPn_Max((int)eSkill.Pac, FPn));
+                Sta = new decvar(thisWeek.Res, prevWeek.Res, 10 * GDS.K_FPn_Max((int)eSkill.Sta, FPn));
+
+                Mar = new decvar(thisWeek.Mar, prevWeek.Mar, 10 * GDS.K_FPn_Max((int)eSkill.Mar, FPn));
+                Tac = new decvar(thisWeek.Con, prevWeek.Con, 10 * GDS.K_FPn_Max((int)eSkill.Tac, FPn));
+                Wor = new decvar(thisWeek.Wor, prevWeek.Wor, 10 * GDS.K_FPn_Max((int)eSkill.Wor, FPn));
+                Pos = new decvar(thisWeek.Pos, prevWeek.Pos, 10 * GDS.K_FPn_Max((int)eSkill.Pos, FPn));
+                Pas = new decvar(thisWeek.Pas, prevWeek.Pas, 10 * GDS.K_FPn_Max((int)eSkill.Pas, FPn));
+                Cro = new decvar(thisWeek.Cro, prevWeek.Cro, 10 * GDS.K_FPn_Max((int)eSkill.Cro, FPn));
+                Tec = new decvar(thisWeek.Tec, prevWeek.Tec, 10 * GDS.K_FPn_Max((int)eSkill.Tec, FPn));
+                Hea = new decvar(thisWeek.Tes, prevWeek.Tes, 10 * GDS.K_FPn_Max((int)eSkill.Hea, FPn));
+                if (FPn != 0)
+                {
+                    Fin = new decvar(thisWeek.Fin, prevWeek.Fin, 10 * GDS.K_FPn_Max((int)eSkill.Fin, FPn));
+                    Lon = new decvar(thisWeek.Lon, prevWeek.Lon, 10 * GDS.K_FPn_Max((int)eSkill.Lon, FPn));
+                    Set = new decvar(thisWeek.Set, prevWeek.Set, 10 * GDS.K_FPn_Max((int)eSkill.Set, FPn));
+                }
+            }
+            else
+            {
+                ASI = new intvar(thisWeek.ASI);
+
+                if (!thisWeek.IsTINull())
+                    TI = new intvar((int)(thisWeek.TI), int.MinValue);
+                else
+                    TI = new intvar(0, 0);
+
+                Str = new decvar(thisWeek.For, decimal.MinValue, 10 * GDS.K_FPn_Max((int)eSkill.Str, FPn));
+                Pac = new decvar(thisWeek.Vel, decimal.MinValue, 10 * GDS.K_FPn_Max((int)eSkill.Pac, FPn));
+                Sta = new decvar(thisWeek.Res, decimal.MinValue, 10 * GDS.K_FPn_Max((int)eSkill.Sta, FPn));
+
+                Mar = new decvar(thisWeek.Mar, decimal.MinValue, 10 * GDS.K_FPn_Max((int)eSkill.Mar, FPn));
+                Tac = new decvar(thisWeek.Con, decimal.MinValue, 10 * GDS.K_FPn_Max((int)eSkill.Tac, FPn));
+                Wor = new decvar(thisWeek.Wor, decimal.MinValue, 10 * GDS.K_FPn_Max((int)eSkill.Wor, FPn));
+                Pos = new decvar(thisWeek.Pos, decimal.MinValue, 10 * GDS.K_FPn_Max((int)eSkill.Pos, FPn));
+                Pas = new decvar(thisWeek.Pas, decimal.MinValue, 10 * GDS.K_FPn_Max((int)eSkill.Pas, FPn));
+                Cro = new decvar(thisWeek.Cro, decimal.MinValue, 10 * GDS.K_FPn_Max((int)eSkill.Cro, FPn));
+                Tec = new decvar(thisWeek.Tec, decimal.MinValue, 10 * GDS.K_FPn_Max((int)eSkill.Tec, FPn));
+                Hea = new decvar(thisWeek.Tes, decimal.MinValue, 10 * GDS.K_FPn_Max((int)eSkill.Hea, FPn));
+                if (FPn != 0)
+                {
+                    Fin = new decvar(thisWeek.Fin, decimal.MinValue, 10 * GDS.K_FPn_Max((int)eSkill.Fin, FPn));
+                    Lon = new decvar(thisWeek.Lon, decimal.MinValue, 10 * GDS.K_FPn_Max((int)eSkill.Lon, FPn));
+                    Set = new decvar(thisWeek.Set, decimal.MinValue, 10 * GDS.K_FPn_Max((int)eSkill.Set, FPn));
+                }
+            }
+
+            decimal kRou = (decimal)GDS.funRou.Value((float)Rou);
+
+            if (FPn != 0)
+                CStr = (decimal)MaxAttsToStar(MaxAtts() / 5M / kRou * ((SkillSum.actual + SSD) / SkillSum.actual));
+            else
+                CStr = (decimal)MaxAttsToStar(GK / 5M / kRou * ((SkillSum.actual + SSD) / SkillSum.actual));
+
+            if ((FPn != 0) || (!thisWeek.IsAdaNull()))
+                Ada = thisWeek.Ada;
+
+            Rec = thisWeek.Rec;
+            OSi = GFun.GetOSi(thisWeek.Atts, thisWeek.Skills);
+
+            if (!thisWeek.IsHidSkNull()) this.HidSk = thisWeek.HidSk;
+        }
+
         public void FillWithWeeks(NTR_SquadDb.HistDataRow thisWeek, NTR_SquadDb.HistDataRow prevWeek)
         { 
             Name = thisWeek.PlayerRow.Name;
@@ -1566,6 +1672,7 @@ namespace NTR_Db
             set { _bidValue = value; }
         }
         public object _bidEnd = null;
+
         public object BidEnd
         {
             get
@@ -1587,6 +1694,9 @@ namespace NTR_Db
         public string Speciality { get; private set; }
         public object Potential { get; private set; }
         public bool HiddenRevealed { get; private set; }
+        public string HidSk { get; private set; }
+        public string TeamSq { get; private set; }
+        public decimal OSi { get; private set; }
 
         private void ParseBloomValues()
         {

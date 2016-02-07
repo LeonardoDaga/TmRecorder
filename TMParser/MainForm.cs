@@ -1036,6 +1036,7 @@ namespace TMRecorder
             dgPlayers.AddColumn("Rec", "Rec", 30, AG_Style.Numeric | AG_Style.RightJustified);
             dgvc = (TMR_NumDecColumn)dgPlayers.AddColumn("TI", "TI", 32, AG_Style.NumDec);
             dgvc.CellColorStyles = CellColorStyleList.DefaultGainColorStyle();
+            dgPlayers.AddColumn("Ada", "Ada", 30, AG_Style.Numeric | AG_Style.RightJustified);
 
             DataGridViewCellStyle dgvcsPosCells = new DataGridViewCellStyle();
             dgvcsPosCells.Format = "N1";
@@ -1325,54 +1326,6 @@ namespace TMRecorder
 
         }
 
-
-        private void dataGridPortieri_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex < 0) return;
-
-            int ID = (int)dataGridPortieri[0, e.RowIndex].Value;
-
-            PlayerForm pf = new PlayerForm(History.actualDts.GiocatoriNSkill, History, ID, AllSeasons);
-
-            pf.ShowDialog();
-
-            if (pf.isDirty) isDirty = true;
-
-            History.UpdateDirtyPlayers();
-
-            // Update display of dirty players (function to be separated)
-            foreach (ExtraDS.GiocatoriRow grow in History.PlayersDS.Giocatori)
-            {
-                if (!grow.isDirty) continue;
-
-                ExtraDS.GiocatoriRow egrow = extraDS.FindByPlayerID(grow.PlayerID);
-                egrow.Routine = grow.Routine;
-
-                egrow.ScoutVoto = grow.ScoutVoto;
-                egrow.ScoutName = grow.ScoutName;
-                egrow.ScoutGiudizio = grow.ScoutGiudizio;
-                egrow.ScoutDate = grow.ScoutDate;
-                egrow.Nome = grow.Nome;
-                egrow.MediaVoto = grow.MediaVoto;
-                egrow.wBorn = grow.wBorn;
-                egrow.Note = grow.Note;
-
-                egrow.wBloomStart = grow.wBloomStart;
-                egrow.ExplosionTI = grow.ExplosionTI;
-                egrow.AfterBloomTI = grow.AfterBloomTI;
-                egrow.BeforeExplTI = grow.BeforeExplTI;
-                egrow.Asi25 = grow.Asi25;
-                egrow.Asi30 = grow.Asi30;
-
-                if (!grow.IsProfessionalismNull()) egrow.Professionalism = grow.Professionalism;
-                if (!grow.IsAggressivityNull()) egrow.Aggressivity = grow.Aggressivity;
-                if (!grow.IsLeadershipNull()) egrow.Leadership = grow.Leadership;
-                if (!grow.IsSpecialityNull()) egrow.Speciality = grow.Speciality;
-
-                grow.isDirty = false;
-            }
-        }
-
         private void toolStripDropDownButton2_Click(object sender, EventArgs e)
         {
 
@@ -1455,6 +1408,8 @@ namespace TMRecorder
             }
 
             OpenPlayerInfoDialog(PlayerID);
+
+            LoadTeamOnGrids(DateTime.Now);
         }
 
         // Item selected with double click
@@ -1649,7 +1604,6 @@ namespace TMRecorder
         void LoadTeamOnGrids(DateTime dateFrom)
         {
             var last2Weeks = History.Last2Weeks(dateFrom);
-
 
             if (last2Weeks[0] == null)
             {

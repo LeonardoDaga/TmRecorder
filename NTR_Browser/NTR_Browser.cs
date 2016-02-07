@@ -578,8 +578,8 @@ namespace NTR_WebBrowser
                         }
                         else
                         {
-                            string message = string.Format("Cannot translate Scout reports: check if your language is properly configured in the options. Filename used: {0}",
-                                SelectedReportParser.UsedFilename);
+                            string message = string.Format("Cannot translate Scout reports: check if your language is properly configured in the options. Language used: {0}",
+                                SelectedReportParser.ConfiguredLanguage);
                             MessageBox.Show(message);
                             return "";
                         }

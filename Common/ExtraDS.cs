@@ -1982,7 +1982,16 @@ namespace Common
 
         public static void ParsePlayerPage_NTR(string page, ref GiocatoriRow gRow)
         {
+            if (page == "")
+                return;
+
             Dictionary<string, string> dictValues = HTML_Parser.CreateDictionary(page, ';');
+
+            if (dictValues.Count == 0)
+                return;
+
+            if (!dictValues.ContainsKey("PlayerName"))
+                return;
 
             gRow.Nome = dictValues["PlayerName"];
             gRow.FP = dictValues["PlayerFp"].ToUpper();

@@ -12,7 +12,16 @@ namespace Common
 
         public void FillScoutsInfo(string content)
         {
+            if (content == "")
+                return;
+
             Dictionary<string, string> dictValues = HTML_Parser.CreateDictionary(content, ';');
+
+            if (dictValues.Count == 0)
+                return;
+
+            if (!dictValues.ContainsKey("ScoutInfo"))
+                return;
 
             string scoutsInfo = dictValues["ScoutInfo"].Replace(":", "=");
 

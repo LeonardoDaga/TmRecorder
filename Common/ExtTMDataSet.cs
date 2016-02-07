@@ -745,6 +745,8 @@ namespace Common
                     // edsRow.Ada = tdsRow.Ada;
                     if (!tdsRow.IsAdaNull())
                         edsRow.Ada = tdsRow.Ada;
+                    else if (pdsRow == null)
+                        edsRow.Ada = 0;
                     else if (!pdsRow.IsAdaNull())
                         edsRow.Ada = pdsRow.Ada;
 

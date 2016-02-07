@@ -852,6 +852,9 @@ namespace NTR_Db
 
                 seasonsDB.Team.Clear();
                 seasonsDB.Team.ReadXml(fi.FullName);
+                seasonsDB.Match.Clear();
+                seasonsDB.TeamData.Clear();
+                seasonsDB.PlayerPerf.Clear();
 
                 sf.UpdateStatusMessage(46, string.Format("Loading Match Data..."));
                 fi = new FileInfo(Path.Combine(dirPath, "Match.5.xml"));

@@ -11,6 +11,7 @@ namespace Common
     {
         public Dictionary<string, Dictionary<int, string>> Dict = new Dictionary<string, Dictionary<int, string>>();
         public string UsedFilename;
+        string Language;
 
         public enum Keys
         {
@@ -19,6 +20,25 @@ namespace Common
             Speciality = 3,
             Potential = 4,
             Age = 5,
+        }
+
+        public string ConfiguredLanguage
+        {
+            get
+            {
+                switch(Language)
+                {
+                    case "EN": return "English";
+                    case "BR": return "Brazilian";
+                    case "ES": return "Espanol";
+                    case "FR": return "French";
+                    case "GR": return "Greek";
+                    case "IT": return "Italiano";
+                    case "PL": return "Polska";
+                    case "RO": return "Romanian";
+                    default: return Language;
+                }
+            }
         }
 
         public ReportParser(string filename)
@@ -31,6 +51,8 @@ namespace Common
             }
 
             UsedFilename = fi.Name;
+
+            Language = UsedFilename.Split('.')[1];
 
             StreamReader sr = new StreamReader(fi.FullName);
             string text = sr.ReadToEnd();

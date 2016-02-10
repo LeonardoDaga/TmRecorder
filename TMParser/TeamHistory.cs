@@ -1605,6 +1605,10 @@ namespace TMRecorder
         internal int LoadTIfromTrainingNew_NewTM(DateTime dt, string squad)
         {
             int count = 0;
+
+            if (squad.Contains("failed importing training"))
+                return -1;
+
             try
             {
                 string[] strs = squad.Split('\n');

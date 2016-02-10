@@ -3039,6 +3039,7 @@ namespace TMRecorder
                 if (!quiet) UpdateLackData();
                 isDirty = true;
                 AllSeasons.IsDirty = true;
+                LoadTeamOnGrids(DateTime.Now);
                 return;
             }
 
@@ -3056,6 +3057,7 @@ namespace TMRecorder
 
                 AllSeasons.IsDirty = true;
                 isDirty = true;
+                LoadTeamOnGrids(DateTime.Now);
                 return;
             }
 
@@ -3146,6 +3148,7 @@ namespace TMRecorder
             if (navigationAddress == TM_Pages.Training)
             {
                 int count = History.LoadTIfromTrainingNew_NewTM(dt, page);
+                if (count < 0) return;
                 isDirty = true;
                 MessageBox.Show("Training imported: " + count.ToString() + " players imported");
             }

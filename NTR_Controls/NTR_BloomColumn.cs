@@ -6,20 +6,22 @@ using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
 using Common;
-using NTR_Db;
+using System.Data;
 
 namespace NTR_Controls
 {
-    public partial class NTR_FormatStringColumn : DataGridViewColumn
+    public partial class NTR_BloomColumn : DataGridViewColumn
     {
-        public NTR_FormatStringColumn()
-            : base(new NTR_FormatStringColumnCell())
+        public int minColumnSize = 0;
+
+        public NTR_BloomColumn()
+            : base(new NTR_BloomCell())
         {
             InitializeComponent();
         }
 
-        public NTR_FormatStringColumn(IContainer container)
-            : base(new NTR_FormatStringColumnCell())
+        public NTR_BloomColumn(IContainer container)
+            : base(new NTR_BloomCell())
         {
             container.Add(this);
 
@@ -35,23 +37,31 @@ namespace NTR_Controls
             set
             {
                 if (value != null &&
-                    !value.GetType().IsAssignableFrom(typeof(NTR_FormatStringColumnCell)))
+                    !value.GetType().IsAssignableFrom(typeof(NTR_BloomCell)))
                 {
-                    throw new InvalidCastException("Must be a NTR_FormatStringColumnCell");
+                    throw new InvalidCastException("Must be a NTR_BloomCell");
                 }
                 base.CellTemplate = value;
             }
         }
+
+        public override int GetPreferredWidth(DataGridViewAutoSizeColumnMode autoSizeColumnMode, bool fixedHeight)
+        {
+            int width = base.GetPreferredWidth(autoSizeColumnMode, fixedHeight);
+            if (width > minColumnSize)
+                return width;
+            else
+                return minColumnSize;
+        }
     }
 
-    #region NTR_FormatStringColumnCell
+    #region NTR_BloomCell
 
-    public class NTR_FormatStringColumnCell : DataGridViewTextBoxCell
+    public class NTR_BloomCell : DataGridViewTextBoxCell
     {
-        public NTR_FormatStringColumnCell()
+        public NTR_BloomCell()
             : base()
         {
-            this.ToolTipText = "";
         }
 
         public override void InitializeEditingControl(int rowIndex, object
@@ -61,9 +71,10 @@ namespace NTR_Controls
             base.InitializeEditingControl(rowIndex, initialFormattedValue,
                 dataGridViewCellStyle);
 
-            NTR_FormatStringColumnControl ctl =
-                DataGridView.EditingControl as NTR_FormatStringColumnControl;
+            NTR_BloomEditControl ctl =
+                DataGridView.EditingControl as NTR_BloomEditControl;
 
+            if (this.RowIndex == -1) return;
             if (this.Value != System.DBNull.Value)
             {
                 ctl.Text = System.Convert.ToString(this.Value);
@@ -74,16 +85,6 @@ namespace NTR_Controls
         public override object Clone()
         {
             return base.Clone();
-        }
-
-        protected override void OnMouseEnter(int rowIndex)
-        {
-            if (this.RowIndex != -1)
-            {
-                FormattedString fstring = (FormattedString)this.Value;
-                this.ToolTipText = fstring.ToolTip;
-            }
-            base.OnMouseEnter(rowIndex);
         }
 
         protected override void Paint(System.Drawing.Graphics graphics,
@@ -100,57 +101,91 @@ namespace NTR_Controls
         {
             try
             {
+                StringFormat sf = new StringFormat();
+                sf.Alignment = StringAlignment.Center;
+                sf.LineAlignment = StringAlignment.Center;
+
                 Brush fbr = null, bbr = null;
-                Pen gbr = null;
+                Pen gbr = new Pen(this.DataGridView.GridColor);
 
                 DataGridViewElementStates isSelected = cellState & DataGridViewElementStates.Selected;
 
-                FormattedString fstring = (FormattedString)value;
-
                 if (isSelected == DataGridViewElementStates.Selected)
                 {
-                    Color highlight = fstring.fontColor;
-                    highlight = Color.FromArgb(highlight.R * 9 / 10, highlight.G * 9 / 10, highlight.B * 9 / 10);
-                    fbr = new SolidBrush(highlight);
-                    highlight = fstring.backColor;
-                    highlight = Color.FromArgb(highlight.R * 9 / 10, highlight.G * 9 / 10, highlight.B * 9 / 10);
-                    bbr = new SolidBrush(highlight);
+                    fbr = new SolidBrush(cellStyle.SelectionForeColor);
+                    bbr = new SolidBrush(cellStyle.SelectionBackColor);
                 }
                 else
                 {
-                    fbr = new SolidBrush(fstring.fontColor);
-                    bbr = new SolidBrush(fstring.backColor);
+                    fbr = new SolidBrush(cellStyle.ForeColor);
+                    bbr = new SolidBrush(cellStyle.BackColor);
                 }
+
+                //if (OwningColumn.Name == "BloomingPhase")
+                //{
+                    gbr = new Pen(this.DataGridView.GridColor);
+
+                    Rectangle cellRect = cellBounds;
+                    cellRect.Offset(-1, -1);
+
+                    SizeF szf = graphics.MeasureString(formattedValue.ToString(), cellStyle.Font);
+
+                    graphics.FillRectangle(bbr, cellRect);
+                    graphics.DrawRectangle(gbr, cellRect);
+
+                    szf = new SizeF(cellStyle.Font.SizeInPoints * 2f, cellStyle.Font.SizeInPoints * 1.5f);
+                    Point pt = new Point((int)(cellRect.Width - szf.Width) / 2, (int)(cellRect.Height - szf.Height) / 2);
+                    pt.X += cellRect.Left;
+                    pt.Y += cellRect.Top;
+                    Rectangle rect = new Rectangle(pt, szf.ToSize());
+
+                    Brush cbr = null;
+                    Brush hbr = null;
+
+                    if (formattedValue.ToString() == "E")
+                    {
+                        cbr = new SolidBrush(Color.Gray);
+                        hbr = new SolidBrush(Color.White);
+                        this.ToolTipText = "Bloomed";
+                    }
+                    else if (formattedValue.ToString() == "U")
+                    {
+                        cbr = new SolidBrush(Color.Lime);
+                        hbr = new SolidBrush(Color.Black);
+                        this.ToolTipText = "Not Bloomed";
+                    }
+                    else if (formattedValue.ToString() == "-")
+                    {
+                        cbr = new SolidBrush(Color.White);
+                        hbr = new SolidBrush(Color.DarkGray);
+                        this.ToolTipText = "Bloom not determined";
+                    }
+                    else
+                    {
+                        cbr = new SolidBrush(Color.Yellow);
+                        hbr = new SolidBrush(Color.DarkRed);
+                        this.ToolTipText = "Season " + formattedValue.ToString() + " of blooming";
+                    }
+
+                    graphics.FillRectangle(cbr, rect);
+                    graphics.DrawRectangle(gbr, rect);
+                    graphics.DrawString(formattedValue.ToString(), cellStyle.Font, hbr, rect, sf);
+                //}
+                //else
+                //{
+                //    base.Paint(graphics,
+                //               clipBounds,
+                //               cellBounds,
+                //               rowIndex,
+                //               cellState,
+                //               formattedValue,
+                //               formattedValue.ToString(),
+                //               errorText,
+                //               cellStyle,
+                //               advancedBorderStyle,
+                //               paintParts);
+                //}
                 
-                gbr = new Pen(this.DataGridView.GridColor);
-                Rectangle cellRect = cellBounds;
-                cellRect.Offset(-1, -1);
-                graphics.FillRectangle(bbr, cellRect);
-                graphics.DrawRectangle(gbr, cellRect);
-
-                string str = value.ToString();
-
-                StringFormat sf = new StringFormat();
-                if (this.OwningColumn.DefaultCellStyle.Alignment == DataGridViewContentAlignment.MiddleLeft)
-                    sf.Alignment = StringAlignment.Near;
-                else if (this.OwningColumn.DefaultCellStyle.Alignment == DataGridViewContentAlignment.MiddleRight)
-                    sf.Alignment = StringAlignment.Far;
-                else
-                    sf.Alignment = StringAlignment.Center;
-                sf.LineAlignment = StringAlignment.Center;
-
-                SizeF szf = new SizeF(0, 0);
-
-                FontStyle fs = FontStyle.Regular;
-
-                if (fstring.isBold)
-                    fs = FontStyle.Bold;
-
-                Font font = new Font(cellStyle.Font, fs);
-
-                graphics.DrawString(str, font, fbr, cellRect, sf);
-                szf = graphics.MeasureString(str, font);
-
                 fbr.Dispose();
                 bbr.Dispose();
                 gbr.Dispose();
@@ -164,8 +199,8 @@ namespace NTR_Controls
         {
             get
             {
-                // Return the type of the editing contol that TMR_ReportCell uses.
-                return typeof(NTR_FormatStringColumnControl);
+                // Return the type of the editing contol that NTR_BloomCell uses.
+                return typeof(NTR_BloomEditControl);
             }
         }
 
@@ -173,7 +208,7 @@ namespace NTR_Controls
         {
             get
             {
-                // Return the type of the value that TMR_ReportCell contains.
+                // Return the type of the value that NTR_BloomCell contains.
                 return typeof(int);
             }
         }
@@ -193,32 +228,47 @@ namespace NTR_Controls
                                             TypeConverter formattedValueTypeConverter, 
                                             DataGridViewDataErrorContexts context)
         {
-            DataGridViewCellStyle cs = new DataGridViewCellStyle(cellStyle);
+            if (value == null) return "-";
+            if (value == System.DBNull.Value) return "-";
 
-            if (value == null)
-                return "";
+            NTR_Db.PlayerData pd = (NTR_Db.PlayerData)(this.DataGridView.Rows[rowIndex].DataBoundItem);
 
-            FormattedString fstring = (FormattedString)value;
-            FontStyle fs = FontStyle.Regular;
+            int wBorn = (int)pd.wBorn;
+            int wNow = TmWeek.GetTmAbsWk(DateTime.Now);
 
-            if (fstring.isBold)
-                fs = FontStyle.Bold;
+            int wBloomStart = (int)value;
 
-            Font font = new Font(cellStyle.Font, fs);
+            int YearsFromBloom;
+            if (wNow > wBloomStart)
+                YearsFromBloom = (wNow - wBloomStart) / 12;
+            else
+                YearsFromBloom = (wNow - wBloomStart) / 12 - 1;
 
-            cs.Font = font;
-
-            return base.GetFormattedValue(value, rowIndex, ref cellStyle, valueTypeConverter, formattedValueTypeConverter, context);
+            if (YearsFromBloom >= 3)
+            {
+                return "E";
+            }
+            else if (YearsFromBloom < 0) 
+            {
+                return "U";
+            }
+            else
+            {
+                if (YearsFromBloom == 0)
+                    return (YearsFromBloom+1).ToString();
+                else
+                    return (YearsFromBloom + 1).ToString();
+            }
         }
     }
 
-    class NTR_FormatStringColumnControl : TextBox, IDataGridViewEditingControl
+    class NTR_BloomEditControl : TextBox, IDataGridViewEditingControl
     {
         DataGridView dataGridView;
         private bool valueChanged = false;
         int rowIndex;
 
-        public NTR_FormatStringColumnControl()
+        public NTR_BloomEditControl()
         {
         }
 

@@ -895,6 +895,20 @@ namespace NTR_Db
             Invalidate();
         }
 
+        public List<NTR_SquadDb.PlayerPerfRow> GetThisTeamPlayerPerfListInActualSeason()
+        {
+            TmSeason tmSeason = new TmSeason(TmWeek.thisSeason().Season);
+            DateTime dtStart = tmSeason.Start;
+            DateTime dtEnd = tmSeason.End;
+
+            var playerPerf = (from c in seasonsDB.PlayerPerf
+                              where (c.PlayerRow.TeamRow.Owner) && (c.MatchRow.Date > dtStart)
+                              && (c.MatchRow.Date < dtEnd)
+                              select c).OrderBy(p => p.MatchRow.Date).ToList();
+
+            return playerPerf;
+        }
+
         public List<NTR_SquadDb.PlayerPerfRow> GetPlayerPerfList(int actualPlayerID, int season)
         {
             DateTime dtStart, dtEnd;

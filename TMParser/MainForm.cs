@@ -20,7 +20,6 @@ namespace TMRecorder
     public partial class MainForm : Form
     {
         bool isDirty = false;
-        string lastPropertySort = "";
 
         TeamHistory History = null;
         ReportAnalysis reportAnalysis = new ReportAnalysis();
@@ -33,7 +32,6 @@ namespace TMRecorder
         ExtraDS.GiocatoriRow editingPlayerRow = null;
         int[] dP;
         SplashForm sf = null;
-        string doctext = "";
         MatchAnalysis matchAnalysisDB = new MatchAnalysis();
         bool thisIsExtraTeam = false;
         public Seasons AllSeasons = new Seasons();
@@ -236,6 +234,7 @@ namespace TMRecorder
                 FormatPlayersGrid(dataGridGiocatori);
                 FormatPlayersGrid(dataGridGiocatoriB);
                 FormatPlayersGridGK();
+                FormatPlayersInfo();
 
                 if (!LoadData())
                 {
@@ -616,9 +615,6 @@ namespace TMRecorder
             {
                 db_TrophyDataSet.ReadXml(openFileDialog.FileName);
             }
-
-            //dataGridGiocatori.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            //dataGridPortieri.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
 
         private void CollectInitialInformation()
@@ -708,18 +704,6 @@ namespace TMRecorder
             of.UsedLanguage = Program.Setts.Language;
             of.ShowMatchOptions = Program.Setts.TeamMatchesShowMatches;
             of.MatchAnalysisFile = Program.Setts.MatchAnalysisFile;
-
-            dP[1]++;
-            dP[2] = 0;
-            of.dbTrainers.Trainers.Clear();
-            foreach (TrainersSkills.TrainersRow sr in dbTrainers.Trainers)
-            {
-                dP[2]++;
-                TrainersSkills.TrainersRow isr = of.dbTrainers.Trainers.NewTrainersRow();
-                isr.ItemArray = sr.ItemArray;
-                of.dbTrainers.Trainers.AddTrainersRow(isr);
-            }
-            of.dbTrainers.isDirty = false;
 
             dP[1]++;
             dP[2] = 0;
@@ -843,26 +827,15 @@ namespace TMRecorder
                 }
 
                 dP[2]++;
-                if (Program.Setts.ActionAnalysisFile != of.ActionAnalysisFile)
-                {
-                    Program.Setts.ActionAnalysisFile = of.ActionAnalysisFile;
-                    actionAnalysis.ReadXml(Path.Combine(Program.Setts.DefaultDirectory, Program.Setts.ActionAnalysisFile));
-                }
-
-                dP[2]++;
                 try
                 {
                     if (History.PlayersDS != null) History.PlayersDS.Scouts.Clear();
-                    extraDS.Scouts.Clear();
                     foreach (ExtraDS.ScoutsRow sr in of.extraDS.Scouts)
                     {
                         if (History.PlayersDS == null) History.PlayersDS = new ExtraDS();
                         ExtraDS.ScoutsRow isr = History.PlayersDS.Scouts.NewScoutsRow();
                         isr.ItemArray = sr.ItemArray;
                         History.PlayersDS.Scouts.AddScoutsRow(isr);
-                        ExtraDS.ScoutsRow nisr = extraDS.Scouts.NewScoutsRow();
-                        nisr.ItemArray = sr.ItemArray;
-                        extraDS.Scouts.AddScoutsRow(nisr);
                     }
                 }
                 catch (Exception)
@@ -968,14 +941,6 @@ namespace TMRecorder
             if (History.PlayersDS == null) return res;
 
             History.FillTeamStats(ref teamStats);
-
-            extraDS.Scouts.Clear();
-            foreach (ExtraDS.ScoutsRow isr in History.PlayersDS.Scouts)
-            {
-                ExtraDS.ScoutsRow nisr = extraDS.Scouts.NewScoutsRow();
-                nisr.ItemArray = isr.ItemArray;
-                extraDS.Scouts.AddScoutsRow(nisr);
-            }
 
             History.ComputeStats();
 
@@ -1105,6 +1070,52 @@ namespace TMRecorder
             dgvc.CellColorStyles = CellColorStyleList.DefaultSOiColorStyle();
         }
 
+        private void FormatPlayersInfo()
+        {
+            dataGridPlayersInfo.AutoGenerateColumns = false;
+
+            dataGridPlayersInfo.Columns.Clear();
+            DataGridViewColumn numCol = dataGridPlayersInfo.AddColumn("N", "Number", 20, AG_Style.Numeric | AG_Style.Frozen | AG_Style.N0);
+            dataGridPlayersInfo.AddColumn("FP", "FPn", 42, AG_Style.FavPosition | AG_Style.Frozen);
+            dataGridPlayersInfo.AddColumn("Name", "NameEx", 60, AG_Style.NameInj | AG_Style.Frozen | AG_Style.ResizeAllCells);
+            dataGridPlayersInfo.AddColumn("Age", "wBorn", 32, AG_Style.Age | AG_Style.Frozen);
+            dataGridPlayersInfo.AddColumn("Nat", "Nationality", 28, AG_Style.Nationality | AG_Style.Frozen);
+            TMR_NumDecColumn dgvc = (TMR_NumDecColumn)dataGridPlayersInfo.AddColumn("ASI", "ASI", 49, AG_Style.NumDec | AG_Style.Frozen);
+            dgvc.CellColorStyles = CellColorStyleList.DefaultGainColorStyle();
+            dgvc.DefaultCellStyle.BackColor = Color.LemonChiffon;
+
+            dataGridPlayersInfo.AddColumn("Rou", "Rou", 30, AG_Style.Numeric | AG_Style.RightJustified);
+
+            dataGridPlayersInfo.AddColumn("Wage", "Wage", 50, AG_Style.Numeric | AG_Style.RightJustified);
+
+            dataGridPlayersInfo.AddColumn("Bph", "wBloomStart", 28, AG_Style.Blooming | AG_Style.RightJustified);
+            DataGridViewTextBoxColumn dgvTxt = (DataGridViewTextBoxColumn)dataGridPlayersInfo.AddColumn("Asi25", "Asi25", 40, AG_Style.Numeric | AG_Style.RightJustified);
+            dgvTxt.DefaultCellStyle.NullValue = "-";
+            dgvTxt = (DataGridViewTextBoxColumn)dataGridPlayersInfo.AddColumn("Asi30", "Asi30", 40, AG_Style.Numeric | AG_Style.RightJustified);
+            dgvTxt.DefaultCellStyle.NullValue = "-";
+
+            dataGridPlayersInfo.AddColumn("AvRat", "AvRat", 39, AG_Style.FormatString | AG_Style.N2 | AG_Style.RightJustified);
+            numCol = dataGridPlayersInfo.AddColumn("AvTI", "AvTI", 35, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N2);
+            numCol.DefaultCellStyle.BackColor = Color.FromArgb(214, 235, 214);
+
+            numCol = dataGridPlayersInfo.AddColumn("Pot", "Potential", 30, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N1);
+            numCol.DefaultCellStyle.BackColor = Color.LightBlue;
+            numCol = dataGridPlayersInfo.AddColumn("Votes", "Votes", 45, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.ResizeAllCells);
+            numCol.DefaultCellStyle.BackColor = Color.LightBlue;
+
+            numCol = dataGridPlayersInfo.AddColumn("Ada", "Ada", 35, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N1);
+            numCol.DefaultCellStyle.BackColor = Color.NavajoWhite;
+            numCol = dataGridPlayersInfo.AddColumn("Inj", "InjPron", 30, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N1);
+            numCol.DefaultCellStyle.BackColor = Color.Gainsboro;
+            numCol = dataGridPlayersInfo.AddColumn("Pro", "Professionalism", 30, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N1);
+            numCol.DefaultCellStyle.BackColor = Color.Gainsboro;
+            numCol = dataGridPlayersInfo.AddColumn("Lea", "Leadership", 30, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N1);
+            numCol.DefaultCellStyle.BackColor = Color.Gainsboro;
+            numCol = dataGridPlayersInfo.AddColumn("Agg", "Aggressivity", 30, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N1);
+            numCol.DefaultCellStyle.BackColor = Color.Gainsboro;
+            dataGridPlayersInfo.AddColumn("Notes", "Notes", 30, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.Fill);
+        }
+
         private void SaveHistory()
         {
             History.Save(Program.Setts.DefaultDirectory);
@@ -1147,154 +1158,6 @@ namespace TMRecorder
             dataGridGiocatoriB.SetWhen(dt);
             dataGridPortieri.SetWhen(dt);
             dataGridPlayersInfo.SetWhen(dt);
-
-            History.FillActualPlayersList(extraDS, dt);
-        }
-
-        private static void SelectStyleColor(float f, DataGridViewCellStyle Style)
-        {
-            Style.SelectionForeColor = Style.ForeColor = Common.Utility.GradeColor(f);
-        }
-
-        float[] ComputeGains(string fp)
-        {
-            string FP = TM_Compatible.ConvertNewFP(fp);
-
-            string[] spec = new string[] { "DC", "DR", "DL", "DMC", "DMR",
-                    "DML", "MC", "MR", "ML", "OMC", "OMR", "OML", "FC" };
-
-            string[] FPs = FP.Split('/');
-
-            float[] gains = new float[14];
-
-            if (FPs.Length == 1)
-            {
-                int n;
-                for (n = 0; n < 13; n++)
-                    if (FP == spec[n]) break;
-
-                // Evidenzia solo le colonne degli skills
-                for (int j = 0; j < 14; j++)
-                {
-                    DataGridViewCellStyle Style = new DataGridViewCellStyle();
-
-                    gains[j] = History.GD.K_FP(j, n);
-                }
-            }
-            else
-            {
-                int n1, n2;
-                for (n1 = 0; n1 < 13; n1++)
-                    if (FPs[0] == spec[n1]) break;
-                for (n2 = 0; n2 < 13; n2++)
-                    if (FPs[1] == spec[n2]) break;
-                string FP1 = FPs[0];
-                string FP2 = FPs[1];
-
-                // Evidenzia solo le colonne degli skills
-                for (int j = 0; j < 14; j++)
-                {
-                    DataGridViewCellStyle Style = new DataGridViewCellStyle();
-
-                    gains[j] = Math.Max(History.GD.K_FP(j, n1), History.GD.K_FP(j, n2));
-                }
-            }
-
-            return gains;
-        }
-
-        private SkillVariation CalcForDifference()
-        {
-            SkillVariation sv = new SkillVariation();
-            sv += CalcForDifferenceGiocatori(dataGridGiocatori);
-            sv += CalcForDifferenceGiocatori(dataGridGiocatoriB);
-            sv += CalcForDifferencePortieri();
-            return sv;
-        }
-
-        private SkillVariation CalcForDifferenceGiocatori(DataGridView dgv)
-        {
-            SkillVariation sv = new SkillVariation();
-
-            if (toolDataList.SelectedItem == null) return sv;
-
-            DateTime dt = DateTime.Parse((string)toolDataList.SelectedItem);
-
-            if (History.Count < 2) return sv;
-
-            for (int i = 0; i < dgv.Rows.Count; i++)
-            {
-                int ID = 0;
-
-                try
-                {
-                    ID = (int)dgv[0, i].Value;
-                }
-                catch (System.Reflection.TargetInvocationException)
-                {
-                    continue;
-                }
-
-                ExtTMDataSet.PlayerHistoryDataTable table = History.GetPlayerHistory(ID);
-
-                // Find the index corresponding to datetime
-                int ix = 0;
-                for (; ix < table.Rows.Count; ix++)
-                {
-                    ExtTMDataSet.PlayerHistoryRow pl = (ExtTMDataSet.PlayerHistoryRow)table.Rows[ix];
-                    if (pl.Date == dt) break;
-                }
-
-                if (ix == table.Rows.Count) continue;
-                if (ix == 0) continue;
-
-                ExtTMDataSet.PlayerHistoryRow actual = (ExtTMDataSet.PlayerHistoryRow)table.Rows[ix];
-                ExtTMDataSet.PlayerHistoryRow last = (ExtTMDataSet.PlayerHistoryRow)table.Rows[ix - 1];
-
-                sv += SkillVariation.Calc(actual, last);
-
-                sv.totCount++;
-            }
-
-            return sv;
-        }
-
-        private SkillVariation CalcForDifferencePortieri()
-        {
-            SkillVariation sv = new SkillVariation();
-
-            if (toolDataList.SelectedItem == null) return sv;
-
-            DateTime dt = DateTime.Parse((string)toolDataList.SelectedItem);
-
-            if (History.Count < 2) return sv;
-
-            for (int i = 0; i < dataGridPortieri.Rows.Count; i++)
-            {
-                int ID = (int)dataGridPortieri[0, i].Value;
-
-                ExtTMDataSet.PlayerHistoryDataTable table = History.GetPlayerHistory(ID);
-
-                // Find the index corresponding to datetime
-                int ix = 0;
-                for (; ix < table.Rows.Count; ix++)
-                {
-                    ExtTMDataSet.PlayerHistoryRow gk = (ExtTMDataSet.PlayerHistoryRow)table.Rows[ix];
-                    if (gk.Date == dt) break;
-                }
-
-                if (ix == table.Rows.Count) continue;
-                if (ix == 0) continue;
-
-                ExtTMDataSet.PlayerHistoryRow actual = (ExtTMDataSet.PlayerHistoryRow)table.Rows[ix];
-                ExtTMDataSet.PlayerHistoryRow last = (ExtTMDataSet.PlayerHistoryRow)table.Rows[ix - 1];
-
-                sv += SkillVariation.Calc(actual, last);
-
-                sv.totCount++;
-            }
-
-            return sv;
         }
 
         private void deleteDataSetToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1312,11 +1175,6 @@ namespace TMRecorder
         }
 
         private void dataGridGiocatori_Sorted(object sender, EventArgs e)
-        {
-            InvalidateGrids(sender);
-        }
-
-        private void dataGridPortieri_Sorted(object sender, EventArgs e)
         {
             InvalidateGrids(sender);
         }
@@ -1437,50 +1295,6 @@ namespace TMRecorder
             }
 
             History.UpdateDirtyPlayers();
-
-            // Update display of dirty players (function to be separated)
-            foreach (ExtraDS.GiocatoriRow grow in History.PlayersDS.Giocatori)
-            {
-                if (!grow.isDirty) continue;
-
-                ExtraDS.GiocatoriRow egrow = extraDS.FindByPlayerID(grow.PlayerID);
-
-                if (egrow == null)
-                {
-                    egrow = extraDS.Giocatori.NewGiocatoriRow();
-                    egrow.ItemArray = grow.ItemArray;
-                    extraDS.Giocatori.AddGiocatoriRow(egrow);
-                }
-
-                egrow.Routine = grow.Routine;
-                egrow.ScoutVoto = grow.ScoutVoto;
-                egrow.ScoutName = grow.ScoutName;
-                egrow.ScoutGiudizio = grow.ScoutGiudizio;
-                egrow.ScoutDate = grow.ScoutDate;
-                egrow.Nome = grow.Nome;
-                egrow.MediaVoto = grow.MediaVoto;
-                egrow.wBorn = grow.wBorn;
-                egrow.Note = grow.Note;
-
-                egrow.wBloomStart = grow.wBloomStart;
-                egrow.ExplosionTI = grow.ExplosionTI;
-                egrow.AfterBloomTI = grow.AfterBloomTI;
-                egrow.BeforeExplTI = grow.BeforeExplTI;
-                egrow.Asi25 = grow.Asi25;
-                egrow.Asi30 = grow.Asi30;
-
-                if (!grow.IsProfessionalismNull()) egrow.Professionalism = grow.Professionalism;
-                if (!grow.IsAggressivityNull()) egrow.Aggressivity = grow.Aggressivity;
-                if (!grow.IsLeadershipNull()) egrow.Leadership = grow.Leadership;
-                if (!grow.IsSpecialityNull()) egrow.Speciality = grow.Speciality;
-                if (!grow.IsHiddenRevealedNull()) egrow.HiddenRevealed = grow.HiddenRevealed;
-                if (!grow.IsRecNull()) egrow.Rec = grow.Rec;
-                if (!grow.IsInjPronNull()) egrow.InjPron = grow.InjPron;
-                if (!grow.IsAdaNull()) egrow.Ada = grow.Ada;
-                if (!grow.IsPotentialNull()) egrow.Potential = grow.Potential;
-
-                grow.isDirty = false;
-            }
 
             if (dataGridPlayersInfo.RowCount == 0)
                 return;
@@ -1610,12 +1424,18 @@ namespace TMRecorder
                 dataGridGiocatori.DataCollection = null;
                 dataGridGiocatoriB.DataCollection = null;
                 dataGridPortieri.DataCollection = null;
-                dataGridPlayersInfo.DataSource = null;
+                dataGridPlayersInfo.DataCollection = null;
                 return;
             }
 
+            var playersPerf = AllSeasons.GetThisTeamPlayerPerfListInActualSeason();
+
             var players = (from c in last2Weeks[0].GiocatoriNSkill
-                           select new NTR_Db.PlayerData(c, last2Weeks, History.GD));
+                           select new NTR_Db.PlayerData(c, 
+                                                        last2Weeks, 
+                                                        History.GD, 
+                                                        History.PlayersDS.FindByPlayerID(c.PlayerID),
+                                                        playersPerf));
 
             var teamAPlayers = (from c in players
                                 where c.TeamSq == "A" && c.FPn > 0
@@ -1624,20 +1444,20 @@ namespace TMRecorder
                                 where c.TeamSq == "B" && c.FPn > 0
                                 select c).ToList();
             var gkPlayers = (from c in players where c.FPn == 0 select c).ToList();
+            var allPlayers = players.ToList();
 
             dataGridGiocatori.DataCollection = teamAPlayers;
             dataGridGiocatoriB.DataCollection = teamBPlayers;
             dataGridPortieri.DataCollection = gkPlayers;
+            dataGridPlayersInfo.DataCollection = allPlayers;
 
             ShowActualPlayers(dateFrom);
-            dataGridPlayersInfo.DataSource = extraDS.Giocatori;
         }
 
         private void recalculatePlayersScoutVoteMeanToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (History.PlayersDS == null) return;
             History.PlayersDS.RecomputePlayersMeanVote();
-            extraDS.RecomputePlayersMeanVote();
             isDirty = true;
         }
 
@@ -1662,7 +1482,6 @@ namespace TMRecorder
                 NTR_Db.PlayerData player = (NTR_Db.PlayerData)dgvr.Cells[0].OwningRow.DataBoundItem;
 
                 History.actualDts.MovePlayerToOtherTeam(player.playerID, "A");
-                extraDS.SetSquad(player.playerID, "A");
                 History.PlayersDS.SetSquad(player.playerID, "A");
             }
 
@@ -1676,7 +1495,6 @@ namespace TMRecorder
                 NTR_Db.PlayerData player = (NTR_Db.PlayerData)dgvr.Cells[0].OwningRow.DataBoundItem;
 
                 History.actualDts.MovePlayerToOtherTeam(player.playerID, "B");
-                extraDS.SetSquad(player.playerID, "B");
                 History.PlayersDS.SetSquad(player.playerID, "B");
             }
 
@@ -1798,13 +1616,12 @@ namespace TMRecorder
         {
             if (History.PlayersDS == null) return;
             History.PlayersDS.ParseScoutReviewForHiddenData(reportAnalysis, -1);
-            extraDS.ParseScoutReviewForHiddenData(reportAnalysis, -1);
             isDirty = true;
         }
 
         private void reapplyTrainingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            History.ReapplyTrainings(extraDS);
+            History.ReapplyTrainings();
             SetLastTeam();
         }
 
@@ -1832,12 +1649,7 @@ namespace TMRecorder
             }
 
             History.ImportThisWeekTrainingInExcelFormat(dt);
-            History.ReapplyTrainings(extraDS);
-        }
-
-        private void displayStatisticsForThisWeekToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            History.DisplayTrainingStatsForThisWeek(History.actualDts.Date, CalcForDifference(), teamStats);
+            History.ReapplyTrainings();
         }
 
         private void clearDecimalsToolStripMenuItem_Click_1(object sender, EventArgs e)
@@ -1850,7 +1662,7 @@ namespace TMRecorder
         {
             TeamStatsForm tsf = new TeamStatsForm();
 
-            tsf.FillSquadGraphs(extraDS);
+            tsf.FillSquadGraphs(History.PlayersDS);
 
             tsf.FillSquadStatsGraphs(teamStats);
 
@@ -1874,248 +1686,11 @@ namespace TMRecorder
             webBrowser.Goto(matchAddr);
         }
 
-        public void LoadKampFromHTMLcode_NewTM(string page)
-        {
-            //    ChampDS.MatchRow matchRow = null;
-
-            //    try
-            //    {
-            //        if (page.Contains("http://trophymanager.com/matches/"))
-            //        {
-            //            string kampid = HTML_Parser.GetNumberAfter(page, "http://trophymanager.com/matches/");
-            //            matchRow = champDS.Match.FindByMatchID(int.Parse(kampid));
-
-            //            if (matchRow == null)
-            //            {
-            //                MessageBox.Show("The match has not been found in your list of matches, so you cannot download it\n" +
-            //                    "Please update the matches list",
-            //                    "Loading match");
-            //                return;
-            //            }
-            //        }
-            //        else
-            //        {
-            //            if (dgMatches.SelectedRows.Count == 0) return;
-
-            //            System.Data.DataRowView selMatch = (System.Data.DataRowView)dgMatches.SelectedRows[0].DataBoundItem;
-            //            matchRow = (ChampDS.MatchRow)selMatch.Row;
-            //        }
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        string swRelease = "Sw Release:" + Application.ProductName + "("
-            //            + Application.ProductVersion + ")";
-            //        SendFileTo.ErrorReport.Send(ex, page, Environment.StackTrace, swRelease);
-            //        MessageBox.Show(Current.Language.SorryTheImportingProcessHasFailedIfYouClickedOkTheInfoOfTheErrorHave +
-            //            Current.Language.BeenSentToLedLennonThatWillRemoveThisBugAsSoonAsPossible);
-
-            //        return;
-            //    }
-
-            //    try
-            //    {
-            //        if ((!matchRow.IsOppsClubIDNull()) && (page.Contains(matchRow.OppsClubID.ToString())))
-            //        {
-            //            if (matchDS.Analyze_NewTM(page, ref matchRow))
-            //            {
-            //                Program.Setts.ClubNickname = matchDS.clubNick;
-            //                Program.Setts.Save();
-
-            //                // Read always the action analysis file
-            //                actionAnalysis.Clear();
-
-            //                FileInfo fi = new FileInfo(Program.Setts.ActionAnalysisFile);
-
-            //                matchRow.Report = true;
-
-            //                if (fi.Exists)
-            //                {
-            //                    actionAnalysis.ReadXml(fi.FullName);
-
-            //                    ActionList al = actionAnalysis.Analyze(matchDS,
-            //                                            ref matchRow);
-
-            //                    foreach (ActionItem ai in al)
-            //                    {
-            //                        ChampDS.PlyStatsRow psr = champDS.PlyStats.FindByPlayerIDSeasonIDTypeStats(ai.playerID,
-            //                            TmWeek.GetSeason(matchRow.Date),
-            //                            matchRow.MatchType);
-
-            //                        MatchDS.YourTeamPerfRow ytpr = matchDS.YourTeamPerf.FindByPlayerID(ai.playerID);
-            //                        if (ytpr != null)
-            //                        {
-            //                            ytpr.Analysis = ai.actions;
-            //                        }
-
-            //                        MatchDS.OppsTeamPerfRow otpr = matchDS.OppsTeamPerf.FindByPlayerID(ai.playerID);
-            //                        if (otpr != null)
-            //                        {
-            //                            otpr.Analysis = ai.actions;
-            //                        }
-
-            //                        if (psr == null) continue;
-
-            //                        if (ai.actions != "")
-            //                            psr.SetAnalysis(matchRow.Date, ai.actions);
-
-            //                        psr.SetVote(matchRow.Date, ytpr.Vote, ytpr.Position, matchDS.MeanVote);
-
-            //                        if (ytpr != null)
-            //                        {
-            //                            champDS.PlyStats.RefreshPlayerStats(
-            //                                ai.playerID,
-            //                                matchRow.MatchType,
-            //                                TmWeek.GetSeason(matchRow.Date));
-            //                        }
-            //                    }
-            //                }
-            //                else
-            //                {
-            //                    foreach (MatchDS.YourTeamPerfRow ypr in matchDS.YourTeamPerf)
-            //                    {
-            //                        ChampDS.PlyStatsRow psr = champDS.PlyStats.FindByPlayerIDSeasonIDTypeStats(ypr.PlayerID,
-            //                            TmWeek.GetSeason(matchRow.Date),
-            //                            matchRow.MatchType);
-
-            //                        if (ypr.IsNumberNull())
-            //                            continue;
-
-            //                        if (psr == null)
-            //                        {
-            //                            psr = champDS.PlyStats.NewPlyStatsRow();
-            //                            psr.SeasonID = TmWeek.GetSeason(matchRow.Date);
-            //                            psr.TypeStats = matchRow.MatchType;
-            //                            psr.PlayerID = ypr.PlayerID;
-
-            //                            champDS.PlyStats.AddPlyStatsRow(psr);
-            //                        }
-
-            //                        if ((ypr.Scored > 0) || (ypr.Assist > 0))
-            //                        {
-            //                            string plActions = "";
-            //                            if (ypr.Scored > 0)
-            //                                plActions += ypr.Scored.ToString() + "gg,";
-            //                            if (ypr.Assist > 0)
-            //                                plActions += ypr.Assist.ToString() + "aa,";
-            //                            plActions = plActions.Trim(',');
-
-            //                            psr.SetAnalysis(matchRow.Date, plActions);
-            //                        }
-
-            //                        if (ypr.IsVoteNull())
-            //                            continue;
-
-            //                        psr.SetVote(matchRow.Date, ypr.Vote, ypr.Position, matchDS.MeanVote);
-
-            //                        champDS.PlyStats.RefreshPlayerStats(
-            //                            ypr.PlayerID,
-            //                            matchRow.MatchType,
-            //                            TmWeek.GetSeason(matchRow.Date));
-            //                    }
-            //                }
-            //            }
-
-            //            matchDS.WriteXml(Path.Combine(Program.Setts.DefaultDirectory, "Match_" + matchRow.MatchID + ".xml"));
-
-            //            dgMatches_SelectionChanged(null, EventArgs.Empty);
-
-            //            AllSeasons.IsDirty = true;
-            //        }
-            //        else
-            //        {
-            //            dgMatches.ClearSelection();
-
-            //            MessageBox.Show(Current.Language.PleaseSelectInTheTableTheMatchRowYouArePasting);
-            //        }
-            //    }
-            //    catch (Exception e)
-            //    {
-            //        string swRelease = "Sw Release:" + Application.ProductName + "("
-            //            + Application.ProductVersion + ")";
-            //        SendFileTo.ErrorReport.Send(e, page, Environment.StackTrace, swRelease);
-            //        MessageBox.Show(Current.Language.SorryTheImportingProcessHasFailedIfYouClickedOkTheInfoOfTheErrorHave +
-            //            Current.Language.BeenSentToLedLennonThatWillRemoveThisBugAsSoonAsPossible);
-            //    }
-        }
-
-        private void reloadPlayersMatchStatsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //    MatchDS mds = null;
-            //    bool catched = false;
-
-            //    DirectoryInfo di = new DirectoryInfo(Program.Setts.DefaultDirectory);
-            //    if (!di.Exists) return;
-
-            //    champDS.PlyStats.Clear();
-
-            //    foreach (FileInfo fi in di.GetFiles("Match_*.xml"))
-            //    {
-            //        try
-            //        {
-            //            mds = new MatchDS();
-
-            //            mds.ReadXml(fi.FullName);
-
-            //            ChampDS.MatchRow mr = champDS.Match.FindByMatchID(mds.MatchData[0].MatchID);
-
-            //            champDS.PlyStats.AddPlayerStats(mr, mds, Program.Setts.ClubNickname);
-
-            //        }
-            //        catch (Exception ex)
-            //        {
-            //            if (catched) continue;
-            //            catched = true;
-
-            //            if (MessageBox.Show("Cannot import this page here. Here you can import only player profiles.\n" +
-            //                "Pressing OK, you send a report to Atletico Granata that will try to detect the reason of the error.",
-            //                "Import error", MessageBoxButtons.OKCancel) == DialogResult.OK)
-            //            {
-            //                string swRelease = "Sw Release:" + Application.ProductName + "("
-            //                   + Application.ProductVersion + ")";
-            //                string info = "";
-
-            //                string tempFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-            //                tempFolder = Path.Combine(tempFolder, "TmRecorder");
-
-            //                string pathfilename = Path.Combine(tempFolder, "tempFile.txt");
-            //                FileInfo fin = new FileInfo(pathfilename);
-
-            //                champDS.WriteXml(fin.FullName);
-            //                StreamReader file = new StreamReader(fi.FullName);
-            //                info += "ChampDS:\r\n" + file.ReadToEnd();
-            //                file.Close();
-
-            //                mds.WriteXml(fin.FullName);
-            //                file = new StreamReader(fin.FullName);
-            //                info += "MatchDS:\r\n" + file.ReadToEnd();
-            //                file.Close();
-
-            //                SendFileTo.ErrorReport.Send(ex, info, Environment.StackTrace, swRelease);
-            //            }
-            //        }
-            //    }
-
-            //    UpdateLackData();
-
-            //    AllSeasons.IsDirty = true;
-        }
-
         private void UpdateLackData()
         {
             FillCmbMatchesSeasons();
 
             MatchListUpdateSeason();
-
-            //foreach (ChampDS.PlyStatsRow psr in champDS.PlyStats)
-            //{
-            //    if (psr.IsNomeNull())
-            //    {
-            //        ExtraDS.GiocatoriRow gr = extraDS.FindByPlayerID(psr.PlayerID);
-
-            //        if (gr != null)
-            //            psr.Nome = extraDS.FindByPlayerID(psr.PlayerID).Nome;
-            //    }
-            //}
         }
 
         private void chkUpdateMatchList(object sender, EventArgs e)
@@ -2130,7 +1705,7 @@ namespace TMRecorder
 
         private void playersStatisticsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            PlayersStats psf = new PlayersStats(AllSeasons, this.extraDS);
+            PlayersStats psf = new PlayersStats(AllSeasons, History.PlayersDS);
 
             psf.ShowDialog();
         }
@@ -2187,7 +1762,7 @@ namespace TMRecorder
 
         private void showMatchesPerformarcesOnTheFieldToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MatchOnField mof = new MatchOnField(AllSeasons, this.extraDS, this.History);
+            MatchOnField mof = new MatchOnField(AllSeasons, History.PlayersDS, this.History);
             mof.Show();
         }
 
@@ -2590,7 +2165,7 @@ namespace TMRecorder
 
         private void lineupToolToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LineUp lineup = new LineUp(AllSeasons, extraDS, History);
+            LineUp lineup = new LineUp(AllSeasons, History.PlayersDS, History);
             lineup.ShowDialog();
         }
 
@@ -2604,24 +2179,24 @@ namespace TMRecorder
         {
             if (dataGridPlayersInfo.SelectedRows.Count == 0) return;
 
-            System.Data.DataRowView selPlayer = (System.Data.DataRowView)dataGridPlayersInfo.SelectedRows[0].DataBoundItem;
-            ExtraDS.GiocatoriRow plRow = (ExtraDS.GiocatoriRow)selPlayer.Row;
+            NTR_Db.PlayerData selPlayer = (NTR_Db.PlayerData)dataGridPlayersInfo.SelectedRows[0].DataBoundItem;
 
             ToolStripDropDownItem ddi = (ToolStripDropDownItem)sender;
 
             int bloomingAge = int.Parse(ddi.Text);
 
-            plRow.wBloomStart = plRow.wBorn + bloomingAge * 12;
+            selPlayer.wBloomStart = selPlayer.wBorn + bloomingAge * 12;
+
+            LoadTeamOnGrids(DateTime.Now);
         }
 
         private void toolStripMenu_SetBloomingPhase_Click(object sender, EventArgs e)
         {
             if (dataGridPlayersInfo.SelectedRows.Count == 0) return;
 
-            System.Data.DataRowView selPlayer = (System.Data.DataRowView)dataGridPlayersInfo.SelectedRows[0].DataBoundItem;
-            ExtraDS.GiocatoriRow plRow = (ExtraDS.GiocatoriRow)selPlayer.Row;
+            NTR_Db.PlayerData selPlayer = (NTR_Db.PlayerData)dataGridPlayersInfo.SelectedRows[0].DataBoundItem;
 
-            int playerAge = (TmWeek.thisWeek().absweek - plRow.wBorn) / 12;
+            int playerAge = (TmWeek.thisWeek().absweek - selPlayer.wBorn) / 12;
             int bloomingAge = 0;
 
             if (sender == miNotBloomedUToolStripMenuItem)
@@ -2635,17 +2210,18 @@ namespace TMRecorder
             else
                 bloomingAge = playerAge - 3;
 
-            plRow.wBloomStart = plRow.wBorn + bloomingAge * 12;
+            selPlayer.wBloomStart = selPlayer.wBorn + bloomingAge * 12;
+
+            LoadTeamOnGrids(DateTime.Now);
         }
 
         private void contextMenuPlInfo_Opening(object sender, CancelEventArgs e)
         {
             if (dataGridPlayersInfo.SelectedRows.Count == 0) return;
 
-            System.Data.DataRowView selPlayer = (System.Data.DataRowView)dataGridPlayersInfo.SelectedRows[0].DataBoundItem;
-            ExtraDS.GiocatoriRow plRow = (ExtraDS.GiocatoriRow)selPlayer.Row;
+            NTR_Db.PlayerData selPlayer = (NTR_Db.PlayerData)dataGridPlayersInfo.SelectedRows[0].DataBoundItem;
 
-            int AgeStartOfBloom = (plRow.wBloomStart - plRow.wBorn) / 12;
+            int AgeStartOfBloom = (selPlayer.wBloomStart - selPlayer.wBorn) / 12;
 
             string ageOfBloom = AgeStartOfBloom.ToString();
 
@@ -2655,7 +2231,7 @@ namespace TMRecorder
                 else tsi.Checked = false;
             }
 
-            int playerAge = (TmWeek.thisWeek().absweek - plRow.wBorn) / 12;
+            int playerAge = (TmWeek.thisWeek().absweek - selPlayer.wBorn) / 12;
 
             foreach (ToolStripMenuItem tsi in setPhaseToolStripMenuItem.DropDownItems)
             {
@@ -3006,7 +2582,7 @@ namespace TMRecorder
 
             UpdateTeamDateList();
 
-            History.ReapplyTrainings(extraDS);
+            History.ReapplyTrainings();
 
             SetLastTeam();
         }
@@ -3575,13 +3151,6 @@ namespace TMRecorder
             }
 
             History.actualDts = History.LastTeam();
-
-            if (History.actualDts != null)
-            {
-                dataGridGiocatori.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'A' AND FPn > 0");
-                dataGridGiocatoriB.DataSource = History.actualDts.GiocatoriNSkill.Select("Team = 'B' AND FPn > 0");
-                dataGridPortieri.DataSource = History.actualDts.GiocatoriNSkill.Select("FPn = 0");
-            }
 
             isDirty = true;
 

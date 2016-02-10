@@ -170,6 +170,10 @@ namespace NTR_Controls
             {
                 dgv = new NTR_HiddenSkillColumn();
             }
+            else if ((int)(styles & AG_Style.Blooming) > 0)
+            {
+                dgv = new NTR_BloomColumn();
+            }
             else if ((int)(styles & AG_Style.Stars) > 0)
             {
                 dgv = new NTR_ImgColumn(imgContainer.GetImageList(ImgContainer.ImgListType.StarsLine));
@@ -196,6 +200,11 @@ namespace NTR_Controls
                 dgv.AutoSizeMode = DataGridViewAutoSizeColumnMode.NotSet;
                 dgv.Width = width;
                 dgv.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            }
+
+            if ((int)(styles & AG_Style.Fill) > 0)
+            {
+                dgv.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
 
             if ((int)(styles & AG_Style.RightJustified) > 0)
@@ -254,5 +263,7 @@ namespace NTR_Controls
         Checkbox = 0x10000,
         Time_ddmm_hhmm = 0x20000,
         HiddenSkill = 0x40000,
+        Blooming = 0x80000,
+        Fill = 0x100000,
     }
 }

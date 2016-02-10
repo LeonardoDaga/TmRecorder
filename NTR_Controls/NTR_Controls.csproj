@@ -100,6 +100,10 @@
     <Compile Include="NTR_TxtAndImgColumn.Designer.cs">
       <DependentUpon>NTR_TxtAndImgColumn.cs</DependentUpon>
     </Compile>
+    <Compile Include="NTR_BloomColumn.cs" />
+    <Compile Include="NTR_BloomColumn.Designer.cs">
+      <DependentUpon>NTR_BloomColumn.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
@@ -154,6 +158,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NTR_TxtAndImgColumn.resx">
       <DependentUpon>NTR_TxtAndImgColumn.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NTR_BloomColumn.resx">
+      <DependentUpon>NTR_BloomColumn.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

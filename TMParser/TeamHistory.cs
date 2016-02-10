@@ -2133,13 +2133,6 @@ namespace TMRecorder
             MessageBox.Show("The method or operation is still not implemented.");
         }
 
-        internal void FillActualPlayersList(ExtraDS eds, DateTime dt)
-        {
-            eds.Giocatori.Clear();
-
-            PlayersDS.FillWithActualPlayers(eds, dt);
-        }
-
         internal void LoadSquadFileFromExcelForm(DateTime dt)
         {
             int NotFoundPlayers = 0;
@@ -2424,7 +2417,7 @@ namespace TMRecorder
         }
 
 
-        internal void ReapplyTrainings(ExtraDS extraDS)
+        internal void ReapplyTrainings()
         {
             SplashForm sf = new SplashForm("TM - Team Recorder",
                                             "Release " + Application.ProductVersion,
@@ -2439,7 +2432,6 @@ namespace TMRecorder
                 sf.UpdateStatusMessage(0, string.Format("Reapplying all trainings {0}/{1}...", cnt, cntTot));
 
                 ApplyTI_TrainingDataSet(PlayersDS, tds);
-                ApplyTI_TrainingDataSet(extraDS, tds);
 
                 int ix = 0;
                 for (ix = 0; ix < this.Count; ix++)

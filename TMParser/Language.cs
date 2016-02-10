@@ -56,14 +56,12 @@ namespace TMRecorder
             this.reapplyTrainingsToolStripMenuItem.Text = Current.Language.ReapplyTrainings;
             this.exportTrainingWeekInTheClipboardInExcelFormatToolStripMenuItem.Text = Current.Language.ExportTrainingWeekToClipboardInExcelFormat;
             this.importTrainingWeekFromClipboardInExcelFormatToolStripMenuItem.Text = Current.Language.ImportTrainingWeekFromClipboardInExcelFormat;
-            this.displayStatisticsForThisWeekToolStripMenuItem.Text = Current.Language.DisplayStatisticsForTheTrainingOfThisWeek;
             this.toolStripDropDownButton8.Text = "Stats";
             this.toolStripMenuItem12.Text = Current.Language.TeamGraphicalStatistics;
             this.playersStatisticsToolStripMenuItem.Text = Current.Language.PlayersStatistics;
             this.tradToolStripMenuItem.Text = Current.Language.TradingInfo;
             this.toolStripDropDownButton7.Text = Current.Language.Help;
             this.gotoCalendarToolStripMenuItem.Text = Current.Language.OpenTeamCalendarPage;
-            this.reloadPlayersMatchStatsToolStripMenuItem.Text = Current.Language.ReloadPlayersMatchStats;
             this.showMatchesPerformarcesOnTheFieldToolStripMenuItem.Text = Current.Language.ShowMatchesPerformarcesOnTheField;
             this.toolStripLabel1.Text = Current.Language.WeeksData;
             this.toolStripDropDownButton3.Text = Current.Language.DataEdit;
@@ -72,24 +70,6 @@ namespace TMRecorder
             this.toolStripButton2.Text = Current.Language.TransferManager;
             this.toolStripButton3.Text = Current.Language.TradingForm;
             this.Text = "Trophy Manager - Team Recorder X.X.X";
-            this.playerIDDataGridViewTextBoxColumn.HeaderText = "PlayerID";
-            this.dataGridViewTextBoxColumn2.HeaderText = "No.";
-            this.nomeDataGridViewTextBoxColumn2.HeaderText = Current.Language.Name;
-            this.nationalityDataGridViewTextBoxColumn.HeaderText = Current.Language.Nat;
-            this.Età.HeaderText = Current.Language.Age;
-            this.Wage.HeaderText = Current.Language.Wage;
-            this.ASI.HeaderText = "ASI";
-            this.AvRating.HeaderText = "Av.Rat.";
-            this.AvTI.HeaderText = "Av.TI";
-            this.MediaVoto.HeaderText = "Av.Vote";
-            this.fPDataGridViewTextBoxColumn.HeaderText = "FP";
-            this.adaDataGridViewTextBoxColumn1.HeaderText = Current.Language.Ada;
-            this.scoutVotoDataGridViewTextBoxColumn.HeaderText = Current.Language.Votes;
-            this.Routine.HeaderText = Current.Language.Rou;
-            this.Professionalism.HeaderText = Current.Language.Pro;
-            this.Leadership.HeaderText = Current.Language.Lea;
-            this.Aggressivity.HeaderText = Current.Language.Agg;
-            this.noteDataGridViewTextBoxColumn.HeaderText = Current.Language.Notes;
             this.PlayerID.HeaderText = "ID";
             this.Num.HeaderText = "N";
             this.FP.HeaderText = "FP";
@@ -121,18 +101,6 @@ namespace TMRecorder
             this.marDataGridViewTextBoxColumn.HeaderText = Current.Language.Mar;
             this.Age.HeaderText = Current.Language.Age;
             this.dataGridViewTextBoxColumn6.HeaderText = "ASI";
-            this.nationalityDataGridViewTextBoxColumn.ToolTipText = Current.Language.Nationality;
-            this.AvRating.ToolTipText = Current.Language.AverageRatingInThisSeason;
-            this.AvTI.ToolTipText = Current.Language.AverageValueOfTIInTheLastWeeks;
-            this.MediaVoto.ToolTipText = Current.Language.TheWeightedVoteOfTheScoutsAndYouthDevelopmentBasedOnTheAbilityOfSc;
-            this.fPDataGridViewTextBoxColumn.ToolTipText = Current.Language.PreferredPosition;
-            this.adaDataGridViewTextBoxColumn1.ToolTipText = Current.Language.AdaptabilityOfThePlayer;
-            this.scoutVotoDataGridViewTextBoxColumn.ToolTipText = Current.Language.AllVotesFromScouts;
-            this.Routine.ToolTipText = Current.Language.Routine;
-            this.Professionalism.ToolTipText = Current.Language.Professionalism;
-            this.Leadership.ToolTipText = Current.Language.Leadership;
-            this.Aggressivity.ToolTipText = Current.Language.Aggressivity;
-            this.noteDataGridViewTextBoxColumn.ToolTipText = Current.Language.NotesFromThePlayerSPage;
         }
     }
 

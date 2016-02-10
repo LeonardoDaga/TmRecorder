@@ -135,6 +135,9 @@ namespace DataGridViewCustomColumns
 
                 TMR_NumDecColumn dgc = (TMR_NumDecColumn)(this.OwningColumn);
                 
+                if ((this.OwningColumn.DataPropertyName == "ASI") || (this.OwningColumn.DataPropertyName == "TI"))
+                    filterASIvalue = true;
+
                 if (value.GetType() == typeof(int))
                 {
                     dec = Convert.ToDecimal(value);
@@ -157,6 +160,8 @@ namespace DataGridViewCustomColumns
                     dec = Convert.ToDecimal(intval.actual);
                     quality = -1;
                     cellStyle = dgc.CellColorStyles.GetColorStyle(-1);
+                    if (filterASIvalue)
+                        cellStyle.BackColor = this.DataGridView.DefaultCellStyle.BackColor;
                 }
                 else if (value.GetType() == typeof(decvar))
                 {
@@ -218,9 +223,6 @@ namespace DataGridViewCustomColumns
                     str = ((int)dec).ToString();
 
                 SizeF szf = new SizeF(0, 0);
-
-                if ((this.OwningColumn.DataPropertyName == "ASI") || (this.OwningColumn.DataPropertyName == "TI"))
-                    filterASIvalue = true;
 
                 if ((dgc.CellColorStyles != null) && (dgc.CellColorStyles.Type == CellColorStyleList.ListType.DefaultFp))
                 {

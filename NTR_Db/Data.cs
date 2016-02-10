@@ -12,6 +12,7 @@ using NTR_Common;
 using System.IO.Compression;
 using System.Drawing;
 using System.Linq;
+using System.Collections;
 
 namespace NTR_Db
 {
@@ -1279,7 +1280,11 @@ namespace NTR_Db
             FillWithWeeks(thisWeek, prevWeek);
         }
 
-        public PlayerData(ExtTMDataSet.GiocatoriNSkillRow thisWeek, ExtTMDataSet[] lastTwoWeeks, GainDS GDS)
+        public PlayerData(ExtTMDataSet.GiocatoriNSkillRow thisWeek, 
+                          ExtTMDataSet[] lastTwoWeeks, 
+                          GainDS GDS, 
+                          ExtraDS.GiocatoriRow gr,
+                          List<NTR_SquadDb.PlayerPerfRow> pprList)
         {
             Name = thisWeek.Nome;
             Week = TmWeek.thisWeek().absweek;
@@ -1296,6 +1301,57 @@ namespace NTR_Db
             Nationality = thisWeek.Nationality;
 
             playerID = thisWeek.PlayerID;
+
+            #region Rating management
+            var ratings = (from c in pprList
+                           where c.PlayerID == playerID && !c.IsVoteNull()
+                           select c).ToArray();
+            Color deadGreen = Color.FromArgb(214, 235, 214);
+            if (ratings.Length > 0)
+            {
+                int count = ratings.Count();
+                float sum = 0;
+                float sum2 = 0;
+
+                if (count > 1)
+                {
+                    for (int i = 0; i < count; i++)
+                    {
+                        float vote = ratings[i].Vote;
+                        sum += vote;
+                        sum2 += vote * vote;
+                    }
+
+                    float average = sum / count;
+                    float std = (sum2 - sum * sum / count) / count;
+                    AvRat = new FormattedString(string.Format("{0:0.00}", average));
+                    AvRat.ToolTip = string.Format("{0} matches, Std = {1}", count, std);
+                    AvRat.backColor = deadGreen;
+                    if (count < 3)
+                        AvRat.fontColor = Color.DarkCyan;
+                    else if (count < 10)
+                        AvRat.fontColor = Color.DarkGreen;
+                    else if (count < 20)
+                        AvRat.fontColor = Color.Navy;
+                    else
+                        AvRat.fontColor = Color.DarkViolet;
+                }
+                else
+                {
+                    float average = ratings[0].Vote;
+                    AvRat = new FormattedString(string.Format("{0:0.00}", average));
+                    AvRat.ToolTip = "Just 1 match";
+                    AvRat.fontColor = Color.DarkCyan;
+                    AvRat.backColor = deadGreen;
+                }
+            }
+            else
+            {
+                AvRat = new FormattedString("-");
+                AvRat.ToolTip = "No matches played";
+                AvRat.backColor = deadGreen;
+            }
+            #endregion
 
             ExtTMDataSet.GiocatoriNSkillRow prevWeek = null;
             if (lastTwoWeeks[1] != null)
@@ -1382,7 +1438,21 @@ namespace NTR_Db
             Rec = thisWeek.Rec;
             OSi = GFun.GetOSi(thisWeek.Atts, thisWeek.Skills);
 
+            if (!gr.IswBloomDataNull())
+            {
+                wBloomData = gr.wBloomData;
+            }
+
+            this.AvTI = gr.AvTI();
+            this.Votes = gr.ScoutVoto;
+
             if (!thisWeek.IsHidSkNull()) this.HidSk = thisWeek.HidSk;
+
+            if (!gr.IsProfessionalismNull()) this.Professionalism = gr.Professionalism;
+            if (!gr.IsAggressivityNull()) this.Aggressivity = gr.Aggressivity;
+            if (!gr.IsInjPronNull()) this.InjPron = gr.InjPron;
+            if (!gr.IsLeadershipNull()) this.Leadership = gr.Leadership;
+            if (!gr.IsPotentialNull()) this.Potential = gr.Potential;
         }
 
         public void FillWithWeeks(NTR_SquadDb.HistDataRow thisWeek, NTR_SquadDb.HistDataRow prevWeek)
@@ -1625,39 +1695,41 @@ namespace NTR_Db
         }
 
         decimal _asi30 = -100M;
-        public decimal Asi30
+        public object Asi30
         {
             get
             {
                 if (_asi30 == -100M)
                 {
                     ParseBloomValues();
-                    if (_asi30 == -100M) return 0M;
+                    if (_asi30 == -100M) return null;
                 }
                 return _asi30;
             }
             set
             {
-                _asi30 = value;
+                if (value == null) return;
+                _asi30 = (decimal)value;
                 SetBloomValues();
             }
         }
 
         decimal _asi25 = -100M;
-        public decimal Asi25
+        public object Asi25
         {
             get
             {
                 if (_asi25 == -100M)
                 {
                     ParseBloomValues();
-                    if (_asi25 == -100M) return 0M;
+                    if (_asi25 == -100M) return null;
                 }
                 return _asi25;
             }
             set
             {
-                _asi25 = value;
+                if (value == null) return;
+                _asi25 = (decimal)value;
                 SetBloomValues();
             }
         }
@@ -1685,6 +1757,7 @@ namespace NTR_Db
             }
         }
 
+        public FormattedString AvRat { get; set; }
         public object Aggressivity { get; set; }
         public object Professionalism { get; set; }
         public object Leadership { get; set; }
@@ -1697,6 +1770,18 @@ namespace NTR_Db
         public string HidSk { get; private set; }
         public string TeamSq { get; private set; }
         public decimal OSi { get; private set; }
+
+        public int Blooming
+        {
+            get
+            {
+                return 0;
+            }
+        }
+
+        public decimal InjPron { get; private set; }
+        public float AvTI { get; private set; }
+        public string Votes { get; private set; }
 
         private void ParseBloomValues()
         {
@@ -2377,13 +2462,15 @@ namespace NTR_Db
         public int LastMin { get; private set; }
     }
 
-    public class FormattedString
+    public class FormattedString : IComparable<FormattedString>
     {
         public bool isBold;
         public string value;
         public Color backColor = Color.White;
         public Color fontColor = Color.Black;
         public Color tagColor = Color.Black;
+
+        public string ToolTip { get; set; }
 
         public FormattedString(string s)
         {
@@ -2398,6 +2485,11 @@ namespace NTR_Db
         public override string ToString()
         {
             return value;
+        }
+
+        public int CompareTo(FormattedString other)
+        {
+            return this.ToString().CompareTo(other.ToString());
         }
     }
 

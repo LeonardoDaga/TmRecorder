@@ -1195,6 +1195,11 @@ namespace Common
                     ";Inj=" + injury +
                     ";Agg=" + aggressivity;
             }
+
+            public float AvTI()
+            {
+                return Common.Utility.WeightedMean(TSI);
+            }
         }
 
         public void FillWithActualPlayers(ExtraDS eds, DateTime dt)

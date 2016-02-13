@@ -1086,6 +1086,24 @@ namespace NTR_Db
         public decimal OML { get { return Atts[(int)eAttitude.OML]; } }
         public decimal FC { get { return Atts[(int)eAttitude.FC]; } }
 
+        public decimal _tacBal = -1;
+        public decimal TacBal
+        {
+            get
+            {
+                if (_tacBal == -1)
+                {
+                    _tacBal = 0;
+                    if (FPn != 0) for (int i = 0; i < 13; i++)
+                            _tacBal += Skills[i].actual;
+                    else for (int i = 0; i < 10; i++)
+                            _tacBal += Skills[i].actual;
+                }
+                return _tacBal;
+            }
+        }
+
+
         public PlayerData(NTR_SquadDb.ShortlistRow sr)
         {
             playerID = sr.PlayerID;

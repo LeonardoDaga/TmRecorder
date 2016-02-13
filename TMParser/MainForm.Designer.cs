@@ -39,9 +39,6 @@ namespace TMRecorder
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -73,6 +70,12 @@ namespace TMRecorder
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle41 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle42 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle43 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle44 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle45 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -287,6 +290,8 @@ namespace TMRecorder
             this.marDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Age = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabTactics = new System.Windows.Forms.TabPage();
+            this.dgTactics = new NTR_Controls.AeroDataGrid();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStripGK.SuspendLayout();
             this.contextMenuPlInfo.SuspendLayout();
@@ -326,6 +331,8 @@ namespace TMRecorder
             this.tsBrowserImport.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.db_TrophyDataSet)).BeginInit();
+            this.tabTactics.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgTactics)).BeginInit();
             this.SuspendLayout();
             // 
             // openFileDialog
@@ -912,6 +919,7 @@ namespace TMRecorder
             this.tabControl1.Controls.Add(this.tabBTeamPage);
             this.tabControl1.Controls.Add(this.tabGK);
             this.tabControl1.Controls.Add(this.tabInfo);
+            this.tabControl1.Controls.Add(this.tabTactics);
             this.tabControl1.Controls.Add(this.tabInfoMain);
             this.tabControl1.Controls.Add(this.tabBrowser);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1179,38 +1187,38 @@ namespace TMRecorder
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgMatches.AutoGenerateColumns = false;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgMatches.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgMatches.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.dgMatches.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgMatches.ContextMenuStrip = this.matchesMenuStrip;
             this.dgMatches.DataCollection = null;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgMatches.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgMatches.DefaultCellStyle = dataGridViewCellStyle13;
             this.dgMatches.Location = new System.Drawing.Point(2, 77);
             this.dgMatches.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgMatches.MultiSelect = false;
             this.dgMatches.Name = "dgMatches";
             this.dgMatches.ReadOnly = true;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgMatches.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgMatches.RowHeadersDefaultCellStyle = dataGridViewCellStyle14;
             this.dgMatches.RowHeadersWidth = 20;
             this.dgMatches.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgMatches.Size = new System.Drawing.Size(527, 421);
@@ -1550,39 +1558,39 @@ namespace TMRecorder
             this.dgYourTeamPerf.AllowUserToDeleteRows = false;
             this.dgYourTeamPerf.AllowUserToResizeRows = false;
             this.dgYourTeamPerf.AutoGenerateColumns = false;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgYourTeamPerf.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgYourTeamPerf.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
             this.dgYourTeamPerf.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgYourTeamPerf.ContextMenuStrip = this.playersPerfMenuStrip;
             this.dgYourTeamPerf.DataCollection = null;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgYourTeamPerf.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgYourTeamPerf.DefaultCellStyle = dataGridViewCellStyle16;
             this.dgYourTeamPerf.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgYourTeamPerf.Location = new System.Drawing.Point(0, 0);
             this.dgYourTeamPerf.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgYourTeamPerf.MultiSelect = false;
             this.dgYourTeamPerf.Name = "dgYourTeamPerf";
             this.dgYourTeamPerf.ReadOnly = true;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgYourTeamPerf.RowHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgYourTeamPerf.RowHeadersDefaultCellStyle = dataGridViewCellStyle17;
             this.dgYourTeamPerf.RowHeadersWidth = 20;
             this.dgYourTeamPerf.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgYourTeamPerf.Size = new System.Drawing.Size(320, 380);
@@ -1606,39 +1614,39 @@ namespace TMRecorder
             this.dgOppsTeamPerf.AllowUserToDeleteRows = false;
             this.dgOppsTeamPerf.AllowUserToResizeRows = false;
             this.dgOppsTeamPerf.AutoGenerateColumns = false;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgOppsTeamPerf.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgOppsTeamPerf.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle18;
             this.dgOppsTeamPerf.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgOppsTeamPerf.ContextMenuStrip = this.playersPerfMenuStrip;
             this.dgOppsTeamPerf.DataCollection = null;
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgOppsTeamPerf.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgOppsTeamPerf.DefaultCellStyle = dataGridViewCellStyle19;
             this.dgOppsTeamPerf.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgOppsTeamPerf.Location = new System.Drawing.Point(0, 0);
             this.dgOppsTeamPerf.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgOppsTeamPerf.MultiSelect = false;
             this.dgOppsTeamPerf.Name = "dgOppsTeamPerf";
             this.dgOppsTeamPerf.ReadOnly = true;
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgOppsTeamPerf.RowHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgOppsTeamPerf.RowHeadersDefaultCellStyle = dataGridViewCellStyle20;
             this.dgOppsTeamPerf.RowHeadersWidth = 20;
             this.dgOppsTeamPerf.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgOppsTeamPerf.Size = new System.Drawing.Size(320, 380);
@@ -2492,8 +2500,8 @@ namespace TMRecorder
             // PlayerID
             // 
             this.PlayerID.DataPropertyName = "PlayerID";
-            dataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.PlayerID.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.PlayerID.DefaultCellStyle = dataGridViewCellStyle21;
             this.PlayerID.FillWeight = 30F;
             this.PlayerID.Frozen = true;
             this.PlayerID.HeaderText = "ID";
@@ -2520,10 +2528,10 @@ namespace TMRecorder
             // DC
             // 
             this.DC.DataPropertyName = "DC";
-            dataGridViewCellStyle19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle19.Format = "N1";
-            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.DC.DefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle22.Format = "N1";
+            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.DC.DefaultCellStyle = dataGridViewCellStyle22;
             this.DC.HeaderText = "DC";
             this.DC.Name = "DC";
             this.DC.Width = 30;
@@ -2531,10 +2539,10 @@ namespace TMRecorder
             // DR
             // 
             this.DR.DataPropertyName = "DR";
-            dataGridViewCellStyle20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle20.Format = "N1";
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.DR.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle23.Format = "N1";
+            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.DR.DefaultCellStyle = dataGridViewCellStyle23;
             this.DR.HeaderText = "DR";
             this.DR.Name = "DR";
             this.DR.Width = 30;
@@ -2542,11 +2550,11 @@ namespace TMRecorder
             // DL
             // 
             this.DL.DataPropertyName = "DL";
-            dataGridViewCellStyle21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle21.Format = "N1";
-            dataGridViewCellStyle21.NullValue = null;
-            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.DL.DefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle24.Format = "N1";
+            dataGridViewCellStyle24.NullValue = null;
+            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.DL.DefaultCellStyle = dataGridViewCellStyle24;
             this.DL.HeaderText = "DL";
             this.DL.Name = "DL";
             this.DL.Width = 30;
@@ -2554,10 +2562,10 @@ namespace TMRecorder
             // DMC
             // 
             this.DMC.DataPropertyName = "DMC";
-            dataGridViewCellStyle22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle22.Format = "N1";
-            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.DMC.DefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle25.Format = "N1";
+            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.DMC.DefaultCellStyle = dataGridViewCellStyle25;
             this.DMC.HeaderText = "DMC";
             this.DMC.Name = "DMC";
             this.DMC.Width = 30;
@@ -2565,10 +2573,10 @@ namespace TMRecorder
             // DMR
             // 
             this.DMR.DataPropertyName = "DMR";
-            dataGridViewCellStyle23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle23.Format = "N1";
-            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.DMR.DefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle26.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle26.Format = "N1";
+            dataGridViewCellStyle26.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.DMR.DefaultCellStyle = dataGridViewCellStyle26;
             this.DMR.HeaderText = "DMR";
             this.DMR.Name = "DMR";
             this.DMR.Width = 30;
@@ -2576,10 +2584,10 @@ namespace TMRecorder
             // DML
             // 
             this.DML.DataPropertyName = "DML";
-            dataGridViewCellStyle24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle24.Format = "N1";
-            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.DML.DefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle27.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle27.Format = "N1";
+            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.DML.DefaultCellStyle = dataGridViewCellStyle27;
             this.DML.HeaderText = "DML";
             this.DML.Name = "DML";
             this.DML.Width = 30;
@@ -2587,10 +2595,10 @@ namespace TMRecorder
             // MC
             // 
             this.MC.DataPropertyName = "MC";
-            dataGridViewCellStyle25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle25.Format = "N1";
-            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.MC.DefaultCellStyle = dataGridViewCellStyle25;
+            dataGridViewCellStyle28.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle28.Format = "N1";
+            dataGridViewCellStyle28.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.MC.DefaultCellStyle = dataGridViewCellStyle28;
             this.MC.HeaderText = "MC";
             this.MC.Name = "MC";
             this.MC.Width = 30;
@@ -2598,10 +2606,10 @@ namespace TMRecorder
             // MR
             // 
             this.MR.DataPropertyName = "MR";
-            dataGridViewCellStyle26.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle26.Format = "N1";
-            dataGridViewCellStyle26.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.MR.DefaultCellStyle = dataGridViewCellStyle26;
+            dataGridViewCellStyle29.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle29.Format = "N1";
+            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.MR.DefaultCellStyle = dataGridViewCellStyle29;
             this.MR.HeaderText = "MR";
             this.MR.Name = "MR";
             this.MR.Width = 30;
@@ -2609,10 +2617,10 @@ namespace TMRecorder
             // ML
             // 
             this.ML.DataPropertyName = "ML";
-            dataGridViewCellStyle27.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle27.Format = "N1";
-            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.ML.DefaultCellStyle = dataGridViewCellStyle27;
+            dataGridViewCellStyle30.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle30.Format = "N1";
+            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.ML.DefaultCellStyle = dataGridViewCellStyle30;
             this.ML.HeaderText = "ML";
             this.ML.Name = "ML";
             this.ML.Width = 30;
@@ -2620,10 +2628,10 @@ namespace TMRecorder
             // OMC
             // 
             this.OMC.DataPropertyName = "OMC";
-            dataGridViewCellStyle28.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle28.Format = "N1";
-            dataGridViewCellStyle28.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.OMC.DefaultCellStyle = dataGridViewCellStyle28;
+            dataGridViewCellStyle31.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle31.Format = "N1";
+            dataGridViewCellStyle31.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.OMC.DefaultCellStyle = dataGridViewCellStyle31;
             this.OMC.HeaderText = "OMC";
             this.OMC.Name = "OMC";
             this.OMC.Width = 30;
@@ -2631,10 +2639,10 @@ namespace TMRecorder
             // OMR
             // 
             this.OMR.DataPropertyName = "OMR";
-            dataGridViewCellStyle29.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle29.Format = "N1";
-            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.OMR.DefaultCellStyle = dataGridViewCellStyle29;
+            dataGridViewCellStyle32.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle32.Format = "N1";
+            dataGridViewCellStyle32.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.OMR.DefaultCellStyle = dataGridViewCellStyle32;
             this.OMR.HeaderText = "OMR";
             this.OMR.Name = "OMR";
             this.OMR.Width = 30;
@@ -2642,10 +2650,10 @@ namespace TMRecorder
             // OML
             // 
             this.OML.DataPropertyName = "OML";
-            dataGridViewCellStyle30.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle30.Format = "N1";
-            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.OML.DefaultCellStyle = dataGridViewCellStyle30;
+            dataGridViewCellStyle33.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle33.Format = "N1";
+            dataGridViewCellStyle33.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.OML.DefaultCellStyle = dataGridViewCellStyle33;
             this.OML.HeaderText = "OML";
             this.OML.Name = "OML";
             this.OML.Width = 30;
@@ -2653,10 +2661,10 @@ namespace TMRecorder
             // FC
             // 
             this.FC.DataPropertyName = "FC";
-            dataGridViewCellStyle31.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle31.Format = "N1";
-            dataGridViewCellStyle31.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.FC.DefaultCellStyle = dataGridViewCellStyle31;
+            dataGridViewCellStyle34.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle34.Format = "N1";
+            dataGridViewCellStyle34.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.FC.DefaultCellStyle = dataGridViewCellStyle34;
             this.FC.HeaderText = "FC";
             this.FC.Name = "FC";
             this.FC.Width = 30;
@@ -2664,11 +2672,11 @@ namespace TMRecorder
             // OSi
             // 
             this.OSi.DataPropertyName = "OSi";
-            dataGridViewCellStyle32.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle32.Format = "N2";
-            dataGridViewCellStyle32.NullValue = null;
-            dataGridViewCellStyle32.SelectionBackColor = System.Drawing.Color.Teal;
-            this.OSi.DefaultCellStyle = dataGridViewCellStyle32;
+            dataGridViewCellStyle35.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle35.Format = "N2";
+            dataGridViewCellStyle35.NullValue = null;
+            dataGridViewCellStyle35.SelectionBackColor = System.Drawing.Color.Teal;
+            this.OSi.DefaultCellStyle = dataGridViewCellStyle35;
             this.OSi.HeaderText = "SOi";
             this.OSi.Name = "OSi";
             this.OSi.Width = 35;
@@ -2676,8 +2684,8 @@ namespace TMRecorder
             // calDataGridViewTextBoxColumn
             // 
             this.calDataGridViewTextBoxColumn.DataPropertyName = "Cal";
-            dataGridViewCellStyle33.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
-            this.calDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle33;
+            dataGridViewCellStyle36.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
+            this.calDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle36;
             this.calDataGridViewTextBoxColumn.HeaderText = "Set";
             this.calDataGridViewTextBoxColumn.Name = "calDataGridViewTextBoxColumn";
             this.calDataGridViewTextBoxColumn.Width = 23;
@@ -2685,8 +2693,8 @@ namespace TMRecorder
             // tirDataGridViewTextBoxColumn
             // 
             this.tirDataGridViewTextBoxColumn.DataPropertyName = "Tir";
-            dataGridViewCellStyle34.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
-            this.tirDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle34;
+            dataGridViewCellStyle37.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
+            this.tirDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle37;
             this.tirDataGridViewTextBoxColumn.HeaderText = "Lon";
             this.tirDataGridViewTextBoxColumn.Name = "tirDataGridViewTextBoxColumn";
             this.tirDataGridViewTextBoxColumn.Width = 23;
@@ -2694,9 +2702,9 @@ namespace TMRecorder
             // tesDataGridViewTextBoxColumn
             // 
             this.tesDataGridViewTextBoxColumn.DataPropertyName = "Tes";
-            dataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle35.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
-            this.tesDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle35;
+            dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle38.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(240)))), ((int)(((byte)(230)))));
+            this.tesDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle38;
             this.tesDataGridViewTextBoxColumn.HeaderText = "Hea";
             this.tesDataGridViewTextBoxColumn.Name = "tesDataGridViewTextBoxColumn";
             this.tesDataGridViewTextBoxColumn.Width = 23;
@@ -2704,8 +2712,8 @@ namespace TMRecorder
             // tecDataGridViewTextBoxColumn
             // 
             this.tecDataGridViewTextBoxColumn.DataPropertyName = "Tec";
-            dataGridViewCellStyle36.BackColor = System.Drawing.Color.LightCyan;
-            this.tecDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle36;
+            dataGridViewCellStyle39.BackColor = System.Drawing.Color.LightCyan;
+            this.tecDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle39;
             this.tecDataGridViewTextBoxColumn.HeaderText = "Tec";
             this.tecDataGridViewTextBoxColumn.Name = "tecDataGridViewTextBoxColumn";
             this.tecDataGridViewTextBoxColumn.Width = 23;
@@ -2713,8 +2721,8 @@ namespace TMRecorder
             // croDataGridViewTextBoxColumn
             // 
             this.croDataGridViewTextBoxColumn.DataPropertyName = "Cro";
-            dataGridViewCellStyle37.BackColor = System.Drawing.Color.LightCyan;
-            this.croDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle37;
+            dataGridViewCellStyle40.BackColor = System.Drawing.Color.LightCyan;
+            this.croDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle40;
             this.croDataGridViewTextBoxColumn.HeaderText = "Cro";
             this.croDataGridViewTextBoxColumn.Name = "croDataGridViewTextBoxColumn";
             this.croDataGridViewTextBoxColumn.Width = 23;
@@ -2722,8 +2730,8 @@ namespace TMRecorder
             // pasDataGridViewTextBoxColumn
             // 
             this.pasDataGridViewTextBoxColumn.DataPropertyName = "Pas";
-            dataGridViewCellStyle38.BackColor = System.Drawing.Color.LightCyan;
-            this.pasDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle38;
+            dataGridViewCellStyle41.BackColor = System.Drawing.Color.LightCyan;
+            this.pasDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle41;
             this.pasDataGridViewTextBoxColumn.HeaderText = "Pas";
             this.pasDataGridViewTextBoxColumn.Name = "pasDataGridViewTextBoxColumn";
             this.pasDataGridViewTextBoxColumn.Width = 23;
@@ -2731,8 +2739,8 @@ namespace TMRecorder
             // posDataGridViewTextBoxColumn
             // 
             this.posDataGridViewTextBoxColumn.DataPropertyName = "Pos";
-            dataGridViewCellStyle39.BackColor = System.Drawing.Color.LightCyan;
-            this.posDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle39;
+            dataGridViewCellStyle42.BackColor = System.Drawing.Color.LightCyan;
+            this.posDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle42;
             this.posDataGridViewTextBoxColumn.HeaderText = "Pos";
             this.posDataGridViewTextBoxColumn.Name = "posDataGridViewTextBoxColumn";
             this.posDataGridViewTextBoxColumn.Width = 23;
@@ -2740,8 +2748,8 @@ namespace TMRecorder
             // worDataGridViewTextBoxColumn
             // 
             this.worDataGridViewTextBoxColumn.DataPropertyName = "Wor";
-            dataGridViewCellStyle40.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(255)))), ((int)(((byte)(224)))));
-            this.worDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle40;
+            dataGridViewCellStyle43.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(255)))), ((int)(((byte)(224)))));
+            this.worDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle43;
             this.worDataGridViewTextBoxColumn.HeaderText = "Wor";
             this.worDataGridViewTextBoxColumn.Name = "worDataGridViewTextBoxColumn";
             this.worDataGridViewTextBoxColumn.Width = 23;
@@ -2749,8 +2757,8 @@ namespace TMRecorder
             // conDataGridViewTextBoxColumn
             // 
             this.conDataGridViewTextBoxColumn.DataPropertyName = "Con";
-            dataGridViewCellStyle41.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(255)))), ((int)(((byte)(224)))));
-            this.conDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle41;
+            dataGridViewCellStyle44.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(255)))), ((int)(((byte)(224)))));
+            this.conDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle44;
             this.conDataGridViewTextBoxColumn.HeaderText = "Tac";
             this.conDataGridViewTextBoxColumn.Name = "conDataGridViewTextBoxColumn";
             this.conDataGridViewTextBoxColumn.Width = 23;
@@ -2758,8 +2766,8 @@ namespace TMRecorder
             // marDataGridViewTextBoxColumn
             // 
             this.marDataGridViewTextBoxColumn.DataPropertyName = "Mar";
-            dataGridViewCellStyle42.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(255)))), ((int)(((byte)(224)))));
-            this.marDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle42;
+            dataGridViewCellStyle45.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(255)))), ((int)(((byte)(224)))));
+            this.marDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle45;
             this.marDataGridViewTextBoxColumn.HeaderText = "Mar";
             this.marDataGridViewTextBoxColumn.Name = "marDataGridViewTextBoxColumn";
             this.marDataGridViewTextBoxColumn.Width = 23;
@@ -2777,6 +2785,59 @@ namespace TMRecorder
             this.dataGridViewTextBoxColumn6.DataPropertyName = "ASI";
             this.dataGridViewTextBoxColumn6.HeaderText = "ASI";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            // 
+            // tabTactics
+            // 
+            this.tabTactics.Controls.Add(this.dgTactics);
+            this.tabTactics.Location = new System.Drawing.Point(4, 22);
+            this.tabTactics.Name = "tabTactics";
+            this.tabTactics.Padding = new System.Windows.Forms.Padding(3);
+            this.tabTactics.Size = new System.Drawing.Size(1126, 515);
+            this.tabTactics.TabIndex = 9;
+            this.tabTactics.Text = "Tactics";
+            this.tabTactics.UseVisualStyleBackColor = true;
+            // 
+            // dgTactics
+            // 
+            this.dgTactics.AllowUserToAddRows = false;
+            this.dgTactics.AllowUserToDeleteRows = false;
+            this.dgTactics.AllowUserToOrderColumns = true;
+            this.dgTactics.AutoGenerateColumns = false;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgTactics.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            this.dgTactics.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgTactics.ContextMenuStrip = this.contextMenuPlInfo;
+            this.dgTactics.DataCollection = null;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.LightGoldenrodYellow;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgTactics.DefaultCellStyle = dataGridViewCellStyle10;
+            this.dgTactics.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgTactics.Location = new System.Drawing.Point(3, 3);
+            this.dgTactics.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dgTactics.Name = "dgTactics";
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgTactics.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            this.dgTactics.RowHeadersWidth = 25;
+            this.dgTactics.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgTactics.Size = new System.Drawing.Size(1120, 509);
+            this.dgTactics.TabIndex = 1;
             // 
             // MainForm
             // 
@@ -2839,6 +2900,8 @@ namespace TMRecorder
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.db_TrophyDataSet)).EndInit();
+            this.tabTactics.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgTactics)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -3089,5 +3152,7 @@ namespace TMRecorder
         private System.Windows.Forms.ToolStripMenuItem tsbChangeToConfiguredExtraTeam;
         private System.Windows.Forms.ToolStripMenuItem addExtraTeamToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator14;
+        private System.Windows.Forms.TabPage tabTactics;
+        private NTR_Controls.AeroDataGrid dgTactics;
     }
 }

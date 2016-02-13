@@ -1605,7 +1605,9 @@ namespace Common
 
                     int wDiff = TmWeek.GetTmAbsWk(DateTime.Now) - TmWeek.GetTmAbsWk(this.Date);
                     if (!plyDB.IswBornNull())
-                        edsRow.wBorn = plyDB.wBorn + wDiff;
+                    {
+                        edsRow.wBorn = plyDB.wBorn;
+                    }
                     else
                     {
                         edsRow.wBorn = TmWeek.GetBornWeekFromAge(this.Date, 0, edsRow.Età);

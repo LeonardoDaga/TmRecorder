@@ -235,6 +235,7 @@ namespace TMRecorder
                 FormatPlayersGrid(dataGridGiocatoriB);
                 FormatPlayersGridGK();
                 FormatPlayersInfo();
+                FormatTactics();
 
                 if (!LoadData())
                 {
@@ -1113,7 +1114,38 @@ namespace TMRecorder
             numCol.DefaultCellStyle.BackColor = Color.Gainsboro;
             numCol = dataGridPlayersInfo.AddColumn("Agg", "Aggressivity", 30, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N1);
             numCol.DefaultCellStyle.BackColor = Color.Gainsboro;
+
             dataGridPlayersInfo.AddColumn("Notes", "Notes", 30, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.Fill);
+        }
+
+        private void FormatTactics()
+        {
+            dgTactics.AutoGenerateColumns = false;
+
+            dgTactics.Columns.Clear();
+            DataGridViewColumn numCol = dgTactics.AddColumn("N", "Number", 20, AG_Style.Numeric | AG_Style.Frozen | AG_Style.N0);
+            dgTactics.AddColumn("FP", "FPn", 42, AG_Style.FavPosition | AG_Style.Frozen);
+            dgTactics.AddColumn("Name", "NameEx", 60, AG_Style.NameInj | AG_Style.Frozen | AG_Style.ResizeAllCells);
+            dgTactics.AddColumn("Age", "wBorn", 32, AG_Style.Age | AG_Style.Frozen);
+            dgTactics.AddColumn("Nat", "Nationality", 28, AG_Style.Nationality | AG_Style.Frozen);
+            TMR_NumDecColumn dgvc = (TMR_NumDecColumn)dgTactics.AddColumn("ASI", "ASI", 49, AG_Style.NumDec | AG_Style.Frozen);
+            dgvc.CellColorStyles = CellColorStyleList.DefaultGainColorStyle();
+            dgvc.DefaultCellStyle.BackColor = Color.LemonChiffon;
+
+            dgTactics.AddColumn("Rou", "Rou", 30, AG_Style.Numeric | AG_Style.RightJustified);
+
+            numCol = dgTactics.AddColumn("Bal", "TacBal", 30, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N1);
+            numCol.DefaultCellStyle.BackColor = Color.Gainsboro;
+            numCol = dgTactics.AddColumn("Dir", "TacDir", 30, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N1);
+            numCol.DefaultCellStyle.BackColor = Color.Gainsboro;
+            numCol = dgTactics.AddColumn("Win", "TacWin", 30, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N1);
+            numCol.DefaultCellStyle.BackColor = Color.Gainsboro;
+            numCol = dgTactics.AddColumn("Shp", "TacShp", 30, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N1);
+            numCol.DefaultCellStyle.BackColor = Color.Gainsboro;
+            numCol = dgTactics.AddColumn("Lon", "TacLon", 30, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N1);
+            numCol.DefaultCellStyle.BackColor = Color.Gainsboro;
+            numCol = dgTactics.AddColumn("Thr", "TacThr", 30, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N1);
+            numCol.DefaultCellStyle.BackColor = Color.Gainsboro;
         }
 
         private void SaveHistory()
@@ -1158,6 +1190,7 @@ namespace TMRecorder
             dataGridGiocatoriB.SetWhen(dt);
             dataGridPortieri.SetWhen(dt);
             dataGridPlayersInfo.SetWhen(dt);
+            dgTactics.SetWhen(dt);
         }
 
         private void deleteDataSetToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1425,6 +1458,7 @@ namespace TMRecorder
                 dataGridGiocatoriB.DataCollection = null;
                 dataGridPortieri.DataCollection = null;
                 dataGridPlayersInfo.DataCollection = null;
+                dgTactics.DataCollection = null;
                 return;
             }
 
@@ -1450,6 +1484,7 @@ namespace TMRecorder
             dataGridGiocatoriB.DataCollection = teamBPlayers;
             dataGridPortieri.DataCollection = gkPlayers;
             dataGridPlayersInfo.DataCollection = allPlayers;
+            dgTactics.DataCollection = allPlayers;
 
             ShowActualPlayers(dateFrom);
         }
@@ -1527,43 +1562,6 @@ namespace TMRecorder
 
             History.PlayersDS.GetDataFromPrivatePages(folderBrowserDialog.SelectedPath);
             SetLastTeam();
-        }
-
-        private void openPlayersWebPagesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            DataGridView dgv = null;
-            if (tabControl1.SelectedTab == tabATeamPage)
-                dgv = dataGridGiocatori;
-            else if (tabControl1.SelectedTab == tabBTeamPage)
-                dgv = dataGridGiocatoriB;
-            else if (tabControl1.SelectedTab == tabGK)
-                dgv = dataGridPortieri;
-            else
-                dgv = dataGridPlayersInfo;
-
-            foreach (DataGridViewRow row in dgv.SelectedRows)
-            {
-                int PlayerID = (int)row.Cells[0].Value;
-
-                string arg = "http://trophymanager.com/showprofile.php?playerid=" + PlayerID.ToString();
-
-                if (Program.Setts.UseTMRBrowser)
-                {
-                    string processName = Application.StartupPath + "/TMRBrowser.exe";
-                    FileInfo fi = new FileInfo(processName);
-
-                    if (!fi.Exists)
-                        MessageBox.Show(Current.Language.TheTMRBrowserTMRBrowserExeDoesnTExistAtTheGivenPath +
-                            Application.StartupPath + ")", "TM Recorder", MessageBoxButtons.OK);
-                    else
-                        Process.Start(processName, arg);
-                }
-                else
-                {
-                    ProcessStartInfo startInfo = new ProcessStartInfo(arg);
-                    Process.Start(startInfo);
-                }
-            }
         }
 
         private void openPlayersToolStripMenuItem_Click(object sender, EventArgs e)

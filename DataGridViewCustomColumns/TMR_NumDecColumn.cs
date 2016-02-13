@@ -218,7 +218,7 @@ namespace DataGridViewCustomColumns
                 string str;
 
                 if ((dgc.CellColorStyles != null) && (dgc.CellColorStyles.Type == CellColorStyleList.ListType.DefaultFp))
-                    str = dec.ToString("N1");
+                    str = (dec < 100)?dec.ToString("N1"): dec.ToString("N0");
                 else
                     str = ((int)dec).ToString();
 

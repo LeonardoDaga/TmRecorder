@@ -1432,8 +1432,8 @@ namespace NTR_Db
             else
                 CStr = (decimal)MaxAttsToStar(GK / 5M / kRou * ((SkillSum.actual + SSD) / SkillSum.actual));
 
-            if ((FPn != 0) || (!thisWeek.IsAdaNull()))
-                Ada = thisWeek.Ada;
+            if ((FPn != 0) || (!gr.IsAdaNull()))
+                Ada = gr.Ada;
 
             Rec = thisWeek.Rec;
             OSi = GFun.GetOSi(thisWeek.Atts, thisWeek.Skills);

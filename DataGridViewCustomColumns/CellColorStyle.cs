@@ -140,7 +140,7 @@ namespace DataGridViewCustomColumns
                 Color.Green, Color.Salmon));
             newList.Add(new CellColorStyle(70, 85, Color.DarkGreen, Color.Red,
                 Color.Green, Color.Red));
-            newList.Add(new CellColorStyle(85, 100, Color.DarkGreen, Color.Violet,
+            newList.Add(new CellColorStyle(85, 200, Color.DarkGreen, Color.Violet,
                 Color.Green, Color.Violet));
             return newList;
 

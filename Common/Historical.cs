@@ -141,8 +141,15 @@ namespace Common
 
         public float GetWeekVal(int week)
         {
-            if (week < lastWeek.absweek)
-                return float.NaN;
+            if (this.Count == 0)
+                return 0f;
+            else if (week < lastWeek.absweek)
+            {
+                if (this.Count > 0)
+                    return this[0];
+                else
+                    return float.NaN;
+            }
             else if (week > startWeek.absweek)
                 return float.NaN;
             else

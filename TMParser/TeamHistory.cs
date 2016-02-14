@@ -2066,6 +2066,7 @@ namespace TMRecorder
                 try
                 {
                     GD.ReadXml(gainSetName);
+                    GD.CheckTacticsFilling();
                 }
                 catch (Exception)
                 {

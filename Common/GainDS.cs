@@ -1,6 +1,7 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 
-namespace Common 
+namespace Common
 {
     partial class GainDS
     {
@@ -9,8 +10,8 @@ namespace Common
         string[] spec = new string[] { "DC", "DR", "DL", "DMC", "DMR", "DML", "MC", "MR", "ML", "OMC", "OMR", "OML", "FC" };
         string[] fpSkill = new string[] { "Str", "Sta", "Pac", "Mar", "Tak", "Wor", "Pos", "Pas", "Cro", "Tec", "Hea", "Fin", "Lon", "Set" };
         string[] gkSkill = new string[] { "Str", "Sta", "Pac", "Han", "One", "Ref", "Ari", "Jum", "Com", "Kic", "Thr" };
-        string[] tactSkill = new string[] { "DirD", "DirA", "WinD", "WinA", "ShPD", "ShPA", "LonD", "LonA", "ThrD", "ThrA"};
-        
+        string[] tactSkill = new string[] { "DirD", "DirA", "WinD", "WinA", "ShPD", "ShPA", "LonD", "LonA", "ThrD", "ThrA" };
+
         float _Amax = 0.0f;
         public Function funRou = new Function();
 
@@ -19,6 +20,8 @@ namespace Common
         }
 
         private bool _normalizeGains;
+        private static readonly int NumTactics = 6;
+
         public bool NormalizeGains
         {
             get { return _normalizeGains; }
@@ -221,6 +224,68 @@ namespace Common
             Set_KSum_Gain();
         }
 
+        public void SetTacticsGainDefaultValues()
+        {
+            // Speciality FP amplification
+            float[,] T = new float[,]{  {1.666f,1.331f,1.331f,1.496f,1.166f,1.166f,1.336f,1.000f,1.000f,1.167f,1.000f,1.000f,1.000f},
+                                        {1.331f,1.666f,1.500f,1.164f,1.500f,1.331f,1.166f,1.337f,1.167f,1.000f,1.333f,1.167f,1.000f},
+                                        {1.331f,1.500f,1.666f,1.164f,1.331f,1.500f,1.166f,1.167f,1.337f,1.000f,1.167f,1.333f,1.000f},
+                                        {1.498f,1.166f,1.166f,1.664f,1.331f,1.331f,1.502f,1.167f,1.167f,1.335f,1.000f,1.000f,1.000f},
+                                        {1.000f,1.000f,1.166f,1.000f,1.166f,1.331f,1.166f,1.337f,1.504f,1.335f,1.500f,1.667f,1.166f},
+                                        {1.000f,1.000f,1.000f,1.164f,1.000f,1.000f,1.336f,1.000f,1.000f,1.498f,1.167f,1.167f,1.668f}};
+
+            float[] gkK = new float[] { 6.3636f, 0f, 6.3636f, 11.8181f, 6.3636f, 10.9090f, 6.3636f, 6.3636f, 0f, 0f, 0f };
+
+            this.SkillFPGain.Clear();
+            this.SpecFPAmpl.Clear();
+            this.SkillGKGain.Clear();
+
+            for (int sk = 0; sk < fpSkill.Length; sk++)
+            {
+                SkillFPGainRow row = this.SkillFPGain.NewSkillFPGainRow();
+
+                row[0] = fpSkill[sk];
+                for (int sp = 0; sp < spec.Length; sp++)
+                {
+                    row[1 + sp] = K[sk, sp];
+                }
+
+                this.SkillFPGain.AddSkillFPGainRow(row);
+            }
+
+            for (int spa = 0; spa < spec.Length; spa++)
+            {
+                SpecFPAmplRow row = this.SpecFPAmpl.NewSpecFPAmplRow();
+
+                row[0] = spec[spa];
+                for (int sp = 0; sp < spec.Length; sp++)
+                {
+                    row[1 + sp] = A[spa, sp];
+                }
+
+                this.SpecFPAmpl.AddSpecFPAmplRow(row);
+            }
+
+            for (int sk = 0; sk < gkSkill.Length; sk++)
+            {
+                SkillGKGainRow row = this.SkillGKGain.NewSkillGKGainRow();
+
+                row[0] = gkSkill[sk];
+                row[1] = gkK[sk];
+
+                this.SkillGKGain.AddSkillGKGainRow(row);
+            }
+
+            {
+                SetNameRow row = this.SetName.NewSetNameRow();
+                row[0] = "RUS Cheratte DataSet";
+                this.SetName.AddSetNameRow(row);
+                GainDSfilename = "RUSCheratte.xml";
+            }
+
+            Set_KSum_Gain();
+        }
+
         public float A_Ada(int row, int col, float ada)
         {
             float k = A_FP(row, col);
@@ -231,6 +296,18 @@ namespace Common
         {
             float k = A_FP(row, col);
             return (decimal)(k + (float)(ada / 20.0M) * (A_max - k));
+        }
+
+        public void CheckTacticsFilling()
+        {
+            if (TacticsGain.Count == NumTactics) return;
+
+            TacticsGain.Clear();
+
+            for(int i = 0; i < NumTactics; i++)
+            {
+
+            }
         }
     }
 }

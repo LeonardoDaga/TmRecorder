@@ -10,7 +10,7 @@
     <Shape ID="DesignTable:SpecFPAmpl" ZOrder="4" X="215" Y="12" Height="266" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="262" />
     <Shape ID="DesignTable:SkillGKGain" ZOrder="3" X="390" Y="13" Height="61" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="57" />
     <Shape ID="DesignTable:SetName" ZOrder="2" X="568" Y="13" Height="44" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="40" />
-    <Shape ID="DesignTable:TacticsGain" ZOrder="1" X="404" Y="121" Height="315" Width="158" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="311" />
+    <Shape ID="DesignTable:TacticsGain" ZOrder="1" X="387" Y="93" Height="353" Width="158" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="349" />
   </Shapes>
   <Connectors />
 </DiagramLayout>

@@ -32,7 +32,6 @@ namespace Common
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -40,11 +39,34 @@ namespace Common
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GainSetEditor));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPlayerSkillGain = new System.Windows.Forms.TabPage();
             this.dgFPGain = new System.Windows.Forms.DataGridView();
+            this.tabPlayerSpecGain = new System.Windows.Forms.TabPage();
+            this.dgFPAmpl = new System.Windows.Forms.DataGridView();
+            this.Spec = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabGKSkillGain = new System.Windows.Forms.TabPage();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.GK = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabOptions = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtGainSetName = new System.Windows.Forms.TextBox();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.tbOpenFile = new System.Windows.Forms.ToolStripButton();
+            this.tbSaveFile = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.tbCopy = new System.Windows.Forms.ToolStripButton();
+            this.tbPaste = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tbExit = new System.Windows.Forms.ToolStripButton();
+            this.tabTactics = new System.Windows.Forms.TabPage();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.skillDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dCDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dRDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,10 +82,7 @@ namespace Common
             this.oMLDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fCDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.skillFPGainBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.gainDS = new GainDS();
-            this.tabPlayerSpecGain = new System.Windows.Forms.TabPage();
-            this.dgFPAmpl = new System.Windows.Forms.DataGridView();
-            this.Spec = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gainDS = new Common.GainDS();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -78,50 +97,56 @@ namespace Common
             this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.specFPAmplBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tabGKSkillGain = new System.Windows.Forms.TabPage();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GK = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.skillGKGainBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tabOptions = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtGainSetName = new System.Windows.Forms.TextBox();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.tbOpenFile = new System.Windows.Forms.ToolStripButton();
-            this.tbSaveFile = new System.Windows.Forms.ToolStripButton();
-            this.tbExit = new System.Windows.Forms.ToolStripButton();
-            this.tbCopy = new System.Windows.Forms.ToolStripButton();
-            this.tbPaste = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.tacticsGainBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tacticsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.strDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.staDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pacDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.marDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tacDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.worDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.posDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pasDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.croDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tecDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.heaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.finDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lonDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.setDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPlayerSkillGain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgFPGain)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.skillFPGainBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gainDS)).BeginInit();
             this.tabPlayerSpecGain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgFPAmpl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.specFPAmplBindingSource)).BeginInit();
             this.tabGKSkillGain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.skillGKGainBindingSource)).BeginInit();
             this.tabOptions.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            this.tabTactics.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.skillFPGainBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gainDS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.specFPAmplBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.skillGKGainBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tacticsGainBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPlayerSkillGain);
             this.tabControl1.Controls.Add(this.tabPlayerSpecGain);
             this.tabControl1.Controls.Add(this.tabGKSkillGain);
+            this.tabControl1.Controls.Add(this.tabTactics);
             this.tabControl1.Controls.Add(this.tabOptions);
             this.tabControl1.Location = new System.Drawing.Point(-1, 24);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(785, 292);
+            this.tabControl1.Size = new System.Drawing.Size(804, 306);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPlayerSkillGain
@@ -190,6 +215,320 @@ namespace Common
             this.dgFPGain.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dgFPGain.Size = new System.Drawing.Size(771, 260);
             this.dgFPGain.TabIndex = 0;
+            // 
+            // tabPlayerSpecGain
+            // 
+            this.tabPlayerSpecGain.Controls.Add(this.dgFPAmpl);
+            this.tabPlayerSpecGain.Location = new System.Drawing.Point(4, 22);
+            this.tabPlayerSpecGain.Name = "tabPlayerSpecGain";
+            this.tabPlayerSpecGain.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPlayerSpecGain.Size = new System.Drawing.Size(777, 266);
+            this.tabPlayerSpecGain.TabIndex = 1;
+            this.tabPlayerSpecGain.Text = "Player Spec Gain";
+            this.tabPlayerSpecGain.UseVisualStyleBackColor = true;
+            // 
+            // dgFPAmpl
+            // 
+            this.dgFPAmpl.AllowUserToAddRows = false;
+            this.dgFPAmpl.AllowUserToDeleteRows = false;
+            this.dgFPAmpl.AutoGenerateColumns = false;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgFPAmpl.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.dgFPAmpl.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgFPAmpl.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Spec,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5,
+            this.dataGridViewTextBoxColumn6,
+            this.dataGridViewTextBoxColumn7,
+            this.dataGridViewTextBoxColumn8,
+            this.dataGridViewTextBoxColumn9,
+            this.dataGridViewTextBoxColumn10,
+            this.dataGridViewTextBoxColumn11,
+            this.dataGridViewTextBoxColumn12,
+            this.dataGridViewTextBoxColumn13,
+            this.dataGridViewTextBoxColumn14});
+            this.dgFPAmpl.DataSource = this.specFPAmplBindingSource;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgFPAmpl.DefaultCellStyle = dataGridViewCellStyle7;
+            this.dgFPAmpl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgFPAmpl.GridColor = System.Drawing.Color.Blue;
+            this.dgFPAmpl.Location = new System.Drawing.Point(3, 3);
+            this.dgFPAmpl.MultiSelect = false;
+            this.dgFPAmpl.Name = "dgFPAmpl";
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgFPAmpl.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            this.dgFPAmpl.RowHeadersVisible = false;
+            this.dgFPAmpl.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dgFPAmpl.Size = new System.Drawing.Size(771, 260);
+            this.dgFPAmpl.TabIndex = 1;
+            // 
+            // Spec
+            // 
+            this.Spec.DataPropertyName = "Spec";
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.Spec.DefaultCellStyle = dataGridViewCellStyle6;
+            this.Spec.HeaderText = "Spec";
+            this.Spec.Name = "Spec";
+            this.Spec.ReadOnly = true;
+            this.Spec.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Spec.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Spec.Width = 40;
+            // 
+            // tabGKSkillGain
+            // 
+            this.tabGKSkillGain.Controls.Add(this.dataGridView1);
+            this.tabGKSkillGain.Location = new System.Drawing.Point(4, 22);
+            this.tabGKSkillGain.Name = "tabGKSkillGain";
+            this.tabGKSkillGain.Padding = new System.Windows.Forms.Padding(3);
+            this.tabGKSkillGain.Size = new System.Drawing.Size(777, 266);
+            this.tabGKSkillGain.TabIndex = 2;
+            this.tabGKSkillGain.Text = "GK Skill Gain";
+            this.tabGKSkillGain.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AutoGenerateColumns = false;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.GK});
+            this.dataGridView1.DataSource = this.skillGKGainBindingSource;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle11;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.GridColor = System.Drawing.Color.Maroon;
+            this.dataGridView1.Location = new System.Drawing.Point(3, 3);
+            this.dataGridView1.MultiSelect = false;
+            this.dataGridView1.Name = "dataGridView1";
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(771, 260);
+            this.dataGridView1.TabIndex = 1;
+            // 
+            // GK
+            // 
+            this.GK.DataPropertyName = "GK";
+            this.GK.HeaderText = "GK";
+            this.GK.Name = "GK";
+            this.GK.Width = 50;
+            // 
+            // tabOptions
+            // 
+            this.tabOptions.Controls.Add(this.label1);
+            this.tabOptions.Controls.Add(this.txtGainSetName);
+            this.tabOptions.Location = new System.Drawing.Point(4, 22);
+            this.tabOptions.Name = "tabOptions";
+            this.tabOptions.Padding = new System.Windows.Forms.Padding(3);
+            this.tabOptions.Size = new System.Drawing.Size(777, 266);
+            this.tabOptions.TabIndex = 3;
+            this.tabOptions.Text = "Options";
+            this.tabOptions.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(9, 23);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(79, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Gain Set Name";
+            // 
+            // txtGainSetName
+            // 
+            this.txtGainSetName.Location = new System.Drawing.Point(94, 20);
+            this.txtGainSetName.Name = "txtGainSetName";
+            this.txtGainSetName.Size = new System.Drawing.Size(264, 20);
+            this.txtGainSetName.TabIndex = 0;
+            this.txtGainSetName.TextChanged += new System.EventHandler(this.txtGainSetName_TextChanged);
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tbOpenFile,
+            this.tbSaveFile,
+            this.toolStripSeparator2,
+            this.tbCopy,
+            this.tbPaste,
+            this.toolStripSeparator1,
+            this.tbExit});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(803, 25);
+            this.toolStrip1.TabIndex = 1;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // tbOpenFile
+            // 
+            this.tbOpenFile.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tbOpenFile.Image = ((System.Drawing.Image)(resources.GetObject("tbOpenFile.Image")));
+            this.tbOpenFile.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tbOpenFile.Name = "tbOpenFile";
+            this.tbOpenFile.Size = new System.Drawing.Size(23, 22);
+            this.tbOpenFile.Text = "Open Gain Set";
+            this.tbOpenFile.Click += new System.EventHandler(this.tbOpenFile_Click);
+            // 
+            // tbSaveFile
+            // 
+            this.tbSaveFile.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tbSaveFile.Image = ((System.Drawing.Image)(resources.GetObject("tbSaveFile.Image")));
+            this.tbSaveFile.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tbSaveFile.Name = "tbSaveFile";
+            this.tbSaveFile.Size = new System.Drawing.Size(23, 22);
+            this.tbSaveFile.Text = "Save Gain Set";
+            this.tbSaveFile.Click += new System.EventHandler(this.tbSaveFile_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // tbCopy
+            // 
+            this.tbCopy.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tbCopy.Image = ((System.Drawing.Image)(resources.GetObject("tbCopy.Image")));
+            this.tbCopy.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tbCopy.Name = "tbCopy";
+            this.tbCopy.Size = new System.Drawing.Size(23, 22);
+            this.tbCopy.Text = "Copy";
+            this.tbCopy.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
+            // tbPaste
+            // 
+            this.tbPaste.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tbPaste.Image = ((System.Drawing.Image)(resources.GetObject("tbPaste.Image")));
+            this.tbPaste.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tbPaste.Name = "tbPaste";
+            this.tbPaste.Size = new System.Drawing.Size(23, 22);
+            this.tbPaste.Text = "Paste";
+            this.tbPaste.Click += new System.EventHandler(this.tbPaste_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // tbExit
+            // 
+            this.tbExit.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tbExit.Image = ((System.Drawing.Image)(resources.GetObject("tbExit.Image")));
+            this.tbExit.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tbExit.Name = "tbExit";
+            this.tbExit.Size = new System.Drawing.Size(23, 22);
+            this.tbExit.Text = "Exit Editor";
+            this.tbExit.Click += new System.EventHandler(this.tbExit_Click);
+            // 
+            // tabTactics
+            // 
+            this.tabTactics.Controls.Add(this.dataGridView2);
+            this.tabTactics.Location = new System.Drawing.Point(4, 22);
+            this.tabTactics.Name = "tabTactics";
+            this.tabTactics.Padding = new System.Windows.Forms.Padding(3);
+            this.tabTactics.Size = new System.Drawing.Size(796, 280);
+            this.tabTactics.TabIndex = 4;
+            this.tabTactics.Text = "Tactics";
+            this.tabTactics.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.AllowUserToDeleteRows = false;
+            this.dataGridView2.AutoGenerateColumns = false;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.tacticsDataGridViewTextBoxColumn,
+            this.strDataGridViewTextBoxColumn,
+            this.staDataGridViewTextBoxColumn,
+            this.pacDataGridViewTextBoxColumn,
+            this.marDataGridViewTextBoxColumn,
+            this.tacDataGridViewTextBoxColumn,
+            this.worDataGridViewTextBoxColumn,
+            this.posDataGridViewTextBoxColumn,
+            this.pasDataGridViewTextBoxColumn,
+            this.croDataGridViewTextBoxColumn,
+            this.tecDataGridViewTextBoxColumn,
+            this.heaDataGridViewTextBoxColumn,
+            this.finDataGridViewTextBoxColumn,
+            this.lonDataGridViewTextBoxColumn,
+            this.setDataGridViewTextBoxColumn});
+            this.dataGridView2.DataSource = this.tacticsGainBindingSource;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle14;
+            this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView2.GridColor = System.Drawing.Color.Blue;
+            this.dataGridView2.Location = new System.Drawing.Point(3, 3);
+            this.dataGridView2.MultiSelect = false;
+            this.dataGridView2.Name = "dataGridView2";
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView2.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            this.dataGridView2.RowHeadersVisible = false;
+            this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dataGridView2.Size = new System.Drawing.Size(790, 274);
+            this.dataGridView2.TabIndex = 2;
             // 
             // skillDataGridViewTextBoxColumn
             // 
@@ -304,85 +643,6 @@ namespace Common
             this.gainDS.DataSetName = "GainDS";
             this.gainDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // tabPlayerSpecGain
-            // 
-            this.tabPlayerSpecGain.Controls.Add(this.dgFPAmpl);
-            this.tabPlayerSpecGain.Location = new System.Drawing.Point(4, 22);
-            this.tabPlayerSpecGain.Name = "tabPlayerSpecGain";
-            this.tabPlayerSpecGain.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPlayerSpecGain.Size = new System.Drawing.Size(777, 266);
-            this.tabPlayerSpecGain.TabIndex = 1;
-            this.tabPlayerSpecGain.Text = "Player Spec Gain";
-            this.tabPlayerSpecGain.UseVisualStyleBackColor = true;
-            // 
-            // dgFPAmpl
-            // 
-            this.dgFPAmpl.AllowUserToAddRows = false;
-            this.dgFPAmpl.AllowUserToDeleteRows = false;
-            this.dgFPAmpl.AutoGenerateColumns = false;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgFPAmpl.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.dgFPAmpl.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgFPAmpl.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Spec,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn6,
-            this.dataGridViewTextBoxColumn7,
-            this.dataGridViewTextBoxColumn8,
-            this.dataGridViewTextBoxColumn9,
-            this.dataGridViewTextBoxColumn10,
-            this.dataGridViewTextBoxColumn11,
-            this.dataGridViewTextBoxColumn12,
-            this.dataGridViewTextBoxColumn13,
-            this.dataGridViewTextBoxColumn14});
-            this.dgFPAmpl.DataSource = this.specFPAmplBindingSource;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgFPAmpl.DefaultCellStyle = dataGridViewCellStyle7;
-            this.dgFPAmpl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgFPAmpl.GridColor = System.Drawing.Color.Blue;
-            this.dgFPAmpl.Location = new System.Drawing.Point(3, 3);
-            this.dgFPAmpl.MultiSelect = false;
-            this.dgFPAmpl.Name = "dgFPAmpl";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgFPAmpl.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
-            this.dgFPAmpl.RowHeadersVisible = false;
-            this.dgFPAmpl.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgFPAmpl.Size = new System.Drawing.Size(771, 260);
-            this.dgFPAmpl.TabIndex = 1;
-            // 
-            // Spec
-            // 
-            this.Spec.DataPropertyName = "Spec";
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.Spec.DefaultCellStyle = dataGridViewCellStyle6;
-            this.Spec.HeaderText = "Spec";
-            this.Spec.Name = "Spec";
-            this.Spec.ReadOnly = true;
-            this.Spec.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Spec.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Spec.Width = 40;
-            // 
             // dataGridViewTextBoxColumn2
             // 
             this.dataGridViewTextBoxColumn2.DataPropertyName = "DC";
@@ -479,61 +739,6 @@ namespace Common
             this.specFPAmplBindingSource.DataMember = "SpecFPAmpl";
             this.specFPAmplBindingSource.DataSource = this.gainDS;
             // 
-            // tabGKSkillGain
-            // 
-            this.tabGKSkillGain.Controls.Add(this.dataGridView1);
-            this.tabGKSkillGain.Location = new System.Drawing.Point(4, 22);
-            this.tabGKSkillGain.Name = "tabGKSkillGain";
-            this.tabGKSkillGain.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGKSkillGain.Size = new System.Drawing.Size(777, 266);
-            this.tabGKSkillGain.TabIndex = 2;
-            this.tabGKSkillGain.Text = "GK Skill Gain";
-            this.tabGKSkillGain.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AutoGenerateColumns = false;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.GK});
-            this.dataGridView1.DataSource = this.skillGKGainBindingSource;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle11;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.GridColor = System.Drawing.Color.Maroon;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView1.MultiSelect = false;
-            this.dataGridView1.Name = "dataGridView1";
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(771, 260);
-            this.dataGridView1.TabIndex = 1;
-            // 
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.DataPropertyName = "Skill";
@@ -546,128 +751,127 @@ namespace Common
             this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.dataGridViewTextBoxColumn1.Width = 40;
             // 
-            // GK
-            // 
-            this.GK.DataPropertyName = "GK";
-            this.GK.HeaderText = "GK";
-            this.GK.Name = "GK";
-            this.GK.Width = 50;
-            // 
             // skillGKGainBindingSource
             // 
             this.skillGKGainBindingSource.DataMember = "SkillGKGain";
             this.skillGKGainBindingSource.DataSource = this.gainDS;
             // 
-            // tabOptions
+            // tacticsGainBindingSource
             // 
-            this.tabOptions.Controls.Add(this.label1);
-            this.tabOptions.Controls.Add(this.txtGainSetName);
-            this.tabOptions.Location = new System.Drawing.Point(4, 22);
-            this.tabOptions.Name = "tabOptions";
-            this.tabOptions.Padding = new System.Windows.Forms.Padding(3);
-            this.tabOptions.Size = new System.Drawing.Size(777, 266);
-            this.tabOptions.TabIndex = 3;
-            this.tabOptions.Text = "Options";
-            this.tabOptions.UseVisualStyleBackColor = true;
+            this.tacticsGainBindingSource.DataMember = "TacticsGain";
+            this.tacticsGainBindingSource.DataSource = this.gainDS;
             // 
-            // label1
+            // tacticsDataGridViewTextBoxColumn
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 23);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(79, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Gain Set Name";
+            this.tacticsDataGridViewTextBoxColumn.DataPropertyName = "Tactics";
+            this.tacticsDataGridViewTextBoxColumn.HeaderText = "Tactics";
+            this.tacticsDataGridViewTextBoxColumn.Name = "tacticsDataGridViewTextBoxColumn";
+            this.tacticsDataGridViewTextBoxColumn.ReadOnly = true;
+            this.tacticsDataGridViewTextBoxColumn.Width = 80;
             // 
-            // txtGainSetName
+            // strDataGridViewTextBoxColumn
             // 
-            this.txtGainSetName.Location = new System.Drawing.Point(94, 20);
-            this.txtGainSetName.Name = "txtGainSetName";
-            this.txtGainSetName.Size = new System.Drawing.Size(264, 20);
-            this.txtGainSetName.TabIndex = 0;
-            this.txtGainSetName.TextChanged += new System.EventHandler(this.txtGainSetName_TextChanged);
+            this.strDataGridViewTextBoxColumn.DataPropertyName = "Str";
+            this.strDataGridViewTextBoxColumn.HeaderText = "Str";
+            this.strDataGridViewTextBoxColumn.Name = "strDataGridViewTextBoxColumn";
+            this.strDataGridViewTextBoxColumn.Width = 45;
             // 
-            // toolStrip1
+            // staDataGridViewTextBoxColumn
             // 
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tbOpenFile,
-            this.tbSaveFile,
-            this.toolStripSeparator2,
-            this.tbCopy,
-            this.tbPaste,
-            this.toolStripSeparator1,
-            this.tbExit});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(784, 25);
-            this.toolStrip1.TabIndex = 1;
-            this.toolStrip1.Text = "toolStrip1";
+            this.staDataGridViewTextBoxColumn.DataPropertyName = "Sta";
+            this.staDataGridViewTextBoxColumn.HeaderText = "Sta";
+            this.staDataGridViewTextBoxColumn.Name = "staDataGridViewTextBoxColumn";
+            this.staDataGridViewTextBoxColumn.Width = 45;
             // 
-            // tbOpenFile
+            // pacDataGridViewTextBoxColumn
             // 
-            this.tbOpenFile.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tbOpenFile.Image = ((System.Drawing.Image)(resources.GetObject("tbOpenFile.Image")));
-            this.tbOpenFile.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tbOpenFile.Name = "tbOpenFile";
-            this.tbOpenFile.Size = new System.Drawing.Size(23, 22);
-            this.tbOpenFile.Text = "Open Gain Set";
-            this.tbOpenFile.Click += new System.EventHandler(this.tbOpenFile_Click);
+            this.pacDataGridViewTextBoxColumn.DataPropertyName = "Pac";
+            this.pacDataGridViewTextBoxColumn.HeaderText = "Pac";
+            this.pacDataGridViewTextBoxColumn.Name = "pacDataGridViewTextBoxColumn";
+            this.pacDataGridViewTextBoxColumn.Width = 45;
             // 
-            // tbSaveFile
+            // marDataGridViewTextBoxColumn
             // 
-            this.tbSaveFile.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tbSaveFile.Image = ((System.Drawing.Image)(resources.GetObject("tbSaveFile.Image")));
-            this.tbSaveFile.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tbSaveFile.Name = "tbSaveFile";
-            this.tbSaveFile.Size = new System.Drawing.Size(23, 22);
-            this.tbSaveFile.Text = "Save Gain Set";
-            this.tbSaveFile.Click += new System.EventHandler(this.tbSaveFile_Click);
+            this.marDataGridViewTextBoxColumn.DataPropertyName = "Mar";
+            this.marDataGridViewTextBoxColumn.HeaderText = "Mar";
+            this.marDataGridViewTextBoxColumn.Name = "marDataGridViewTextBoxColumn";
+            this.marDataGridViewTextBoxColumn.Width = 45;
             // 
-            // tbExit
+            // tacDataGridViewTextBoxColumn
             // 
-            this.tbExit.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tbExit.Image = ((System.Drawing.Image)(resources.GetObject("tbExit.Image")));
-            this.tbExit.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tbExit.Name = "tbExit";
-            this.tbExit.Size = new System.Drawing.Size(23, 22);
-            this.tbExit.Text = "Exit Editor";
-            this.tbExit.Click += new System.EventHandler(this.tbExit_Click);
+            this.tacDataGridViewTextBoxColumn.DataPropertyName = "Tac";
+            this.tacDataGridViewTextBoxColumn.HeaderText = "Tac";
+            this.tacDataGridViewTextBoxColumn.Name = "tacDataGridViewTextBoxColumn";
+            this.tacDataGridViewTextBoxColumn.Width = 45;
             // 
-            // tbCopy
+            // worDataGridViewTextBoxColumn
             // 
-            this.tbCopy.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tbCopy.Image = ((System.Drawing.Image)(resources.GetObject("tbCopy.Image")));
-            this.tbCopy.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tbCopy.Name = "tbCopy";
-            this.tbCopy.Size = new System.Drawing.Size(23, 22);
-            this.tbCopy.Text = "Copy";
-            this.tbCopy.Click += new System.EventHandler(this.toolStripButton1_Click);
+            this.worDataGridViewTextBoxColumn.DataPropertyName = "Wor";
+            this.worDataGridViewTextBoxColumn.HeaderText = "Wor";
+            this.worDataGridViewTextBoxColumn.Name = "worDataGridViewTextBoxColumn";
+            this.worDataGridViewTextBoxColumn.Width = 45;
             // 
-            // tbPaste
+            // posDataGridViewTextBoxColumn
             // 
-            this.tbPaste.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tbPaste.Image = ((System.Drawing.Image)(resources.GetObject("tbPaste.Image")));
-            this.tbPaste.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tbPaste.Name = "tbPaste";
-            this.tbPaste.Size = new System.Drawing.Size(23, 22);
-            this.tbPaste.Text = "Paste";
-            this.tbPaste.Click += new System.EventHandler(this.tbPaste_Click);
+            this.posDataGridViewTextBoxColumn.DataPropertyName = "Pos";
+            this.posDataGridViewTextBoxColumn.HeaderText = "Pos";
+            this.posDataGridViewTextBoxColumn.Name = "posDataGridViewTextBoxColumn";
+            this.posDataGridViewTextBoxColumn.Width = 45;
             // 
-            // toolStripSeparator1
+            // pasDataGridViewTextBoxColumn
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            this.pasDataGridViewTextBoxColumn.DataPropertyName = "Pas";
+            this.pasDataGridViewTextBoxColumn.HeaderText = "Pas";
+            this.pasDataGridViewTextBoxColumn.Name = "pasDataGridViewTextBoxColumn";
+            this.pasDataGridViewTextBoxColumn.Width = 45;
             // 
-            // toolStripSeparator2
+            // croDataGridViewTextBoxColumn
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            this.croDataGridViewTextBoxColumn.DataPropertyName = "Cro";
+            this.croDataGridViewTextBoxColumn.HeaderText = "Cro";
+            this.croDataGridViewTextBoxColumn.Name = "croDataGridViewTextBoxColumn";
+            this.croDataGridViewTextBoxColumn.Width = 45;
+            // 
+            // tecDataGridViewTextBoxColumn
+            // 
+            this.tecDataGridViewTextBoxColumn.DataPropertyName = "Tec";
+            this.tecDataGridViewTextBoxColumn.HeaderText = "Tec";
+            this.tecDataGridViewTextBoxColumn.Name = "tecDataGridViewTextBoxColumn";
+            this.tecDataGridViewTextBoxColumn.Width = 45;
+            // 
+            // heaDataGridViewTextBoxColumn
+            // 
+            this.heaDataGridViewTextBoxColumn.DataPropertyName = "Hea";
+            this.heaDataGridViewTextBoxColumn.HeaderText = "Hea";
+            this.heaDataGridViewTextBoxColumn.Name = "heaDataGridViewTextBoxColumn";
+            this.heaDataGridViewTextBoxColumn.Width = 45;
+            // 
+            // finDataGridViewTextBoxColumn
+            // 
+            this.finDataGridViewTextBoxColumn.DataPropertyName = "Fin";
+            this.finDataGridViewTextBoxColumn.HeaderText = "Fin";
+            this.finDataGridViewTextBoxColumn.Name = "finDataGridViewTextBoxColumn";
+            this.finDataGridViewTextBoxColumn.Width = 45;
+            // 
+            // lonDataGridViewTextBoxColumn
+            // 
+            this.lonDataGridViewTextBoxColumn.DataPropertyName = "Lon";
+            this.lonDataGridViewTextBoxColumn.HeaderText = "Lon";
+            this.lonDataGridViewTextBoxColumn.Name = "lonDataGridViewTextBoxColumn";
+            this.lonDataGridViewTextBoxColumn.Width = 45;
+            // 
+            // setDataGridViewTextBoxColumn
+            // 
+            this.setDataGridViewTextBoxColumn.DataPropertyName = "Set";
+            this.setDataGridViewTextBoxColumn.HeaderText = "Set";
+            this.setDataGridViewTextBoxColumn.Name = "setDataGridViewTextBoxColumn";
+            this.setDataGridViewTextBoxColumn.Width = 45;
             // 
             // GainSetEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 314);
+            this.ClientSize = new System.Drawing.Size(803, 328);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.tabControl1);
             this.Name = "GainSetEditor";
@@ -675,18 +879,21 @@ namespace Common
             this.tabControl1.ResumeLayout(false);
             this.tabPlayerSkillGain.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgFPGain)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.skillFPGainBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gainDS)).EndInit();
             this.tabPlayerSpecGain.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgFPAmpl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.specFPAmplBindingSource)).EndInit();
             this.tabGKSkillGain.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.skillGKGainBindingSource)).EndInit();
             this.tabOptions.ResumeLayout(false);
             this.tabOptions.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.tabTactics.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.skillFPGainBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gainDS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.specFPAmplBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.skillGKGainBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tacticsGainBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -746,5 +953,23 @@ namespace Common
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton tbPaste;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.TabPage tabTactics;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.BindingSource tacticsGainBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tacticsDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn strDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn staDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pacDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn marDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tacDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn worDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn posDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pasDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn croDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tecDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn heaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn finDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn lonDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn setDataGridViewTextBoxColumn;
     }
 }

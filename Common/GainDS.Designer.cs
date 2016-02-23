@@ -1876,6 +1876,8 @@ namespace Common {
             
             private global::System.Data.DataColumn columnTactics;
             
+            private global::System.Data.DataColumn columnDorA;
+            
             private global::System.Data.DataColumn columnStr;
             
             private global::System.Data.DataColumn columnSta;
@@ -1904,7 +1906,7 @@ namespace Common {
             
             private global::System.Data.DataColumn columnSet;
             
-            private global::System.Data.DataColumn columnAllowedPos;
+            private global::System.Data.DataColumn columnFPos;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -1944,6 +1946,14 @@ namespace Common {
             public global::System.Data.DataColumn TacticsColumn {
                 get {
                     return this.columnTactics;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DorAColumn {
+                get {
+                    return this.columnDorA;
                 }
             }
             
@@ -2061,9 +2071,9 @@ namespace Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn AllowedPosColumn {
+            public global::System.Data.DataColumn FPosColumn {
                 get {
-                    return this.columnAllowedPos;
+                    return this.columnFPos;
                 }
             }
             
@@ -2106,6 +2116,7 @@ namespace Common {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public TacticsGainRow AddTacticsGainRow(
                         string Tactics, 
+                        int DorA, 
                         float Str, 
                         float Sta, 
                         float Pac, 
@@ -2120,10 +2131,11 @@ namespace Common {
                         float Fin, 
                         float Lon, 
                         float Set, 
-                        string AllowedPos) {
+                        string FPos) {
                 TacticsGainRow rowTacticsGainRow = ((TacticsGainRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Tactics,
+                        DorA,
                         Str,
                         Sta,
                         Pac,
@@ -2138,17 +2150,10 @@ namespace Common {
                         Fin,
                         Lon,
                         Set,
-                        AllowedPos};
+                        FPos};
                 rowTacticsGainRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTacticsGainRow);
                 return rowTacticsGainRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TacticsGainRow FindByTactics(string Tactics) {
-                return ((TacticsGainRow)(this.Rows.Find(new object[] {
-                            Tactics})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2169,6 +2174,7 @@ namespace Common {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
                 this.columnTactics = base.Columns["Tactics"];
+                this.columnDorA = base.Columns["DorA"];
                 this.columnStr = base.Columns["Str"];
                 this.columnSta = base.Columns["Sta"];
                 this.columnPac = base.Columns["Pac"];
@@ -2183,7 +2189,7 @@ namespace Common {
                 this.columnFin = base.Columns["Fin"];
                 this.columnLon = base.Columns["Lon"];
                 this.columnSet = base.Columns["Set"];
-                this.columnAllowedPos = base.Columns["AllowedPos"];
+                this.columnFPos = base.Columns["FPos"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2191,6 +2197,8 @@ namespace Common {
             private void InitClass() {
                 this.columnTactics = new global::System.Data.DataColumn("Tactics", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTactics);
+                this.columnDorA = new global::System.Data.DataColumn("DorA", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDorA);
                 this.columnStr = new global::System.Data.DataColumn("Str", typeof(float), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnStr);
                 this.columnSta = new global::System.Data.DataColumn("Sta", typeof(float), null, global::System.Data.MappingType.Element);
@@ -2219,13 +2227,10 @@ namespace Common {
                 base.Columns.Add(this.columnLon);
                 this.columnSet = new global::System.Data.DataColumn("Set", typeof(float), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSet);
-                this.columnAllowedPos = new global::System.Data.DataColumn("AllowedPos", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnAllowedPos);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnTactics}, true));
+                this.columnFPos = new global::System.Data.DataColumn("FPos", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFPos);
                 this.columnTactics.AllowDBNull = false;
                 this.columnTactics.ReadOnly = true;
-                this.columnTactics.Unique = true;
                 this.columnTactics.Caption = "Date";
                 this.columnStr.DefaultValue = ((float)(0F));
                 this.columnSta.DefaultValue = ((float)(0F));
@@ -3263,6 +3268,22 @@ namespace Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int DorA {
+                get {
+                    try {
+                        return ((int)(this[this.tableTacticsGain.DorAColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DorA\' in table \'TacticsGain\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTacticsGain.DorAColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public float Str {
                 get {
                     try {
@@ -3487,18 +3508,30 @@ namespace Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string AllowedPos {
+            public string FPos {
                 get {
                     try {
-                        return ((string)(this[this.tableTacticsGain.AllowedPosColumn]));
+                        return ((string)(this[this.tableTacticsGain.FPosColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'AllowedPos\' in table \'TacticsGain\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'FPos\' in table \'TacticsGain\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableTacticsGain.AllowedPosColumn] = value;
+                    this[this.tableTacticsGain.FPosColumn] = value;
                 }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDorANull() {
+                return this.IsNull(this.tableTacticsGain.DorAColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDorANull() {
+                this[this.tableTacticsGain.DorAColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3671,14 +3704,14 @@ namespace Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsAllowedPosNull() {
-                return this.IsNull(this.tableTacticsGain.AllowedPosColumn);
+            public bool IsFPosNull() {
+                return this.IsNull(this.tableTacticsGain.FPosColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetAllowedPosNull() {
-                this[this.tableTacticsGain.AllowedPosColumn] = global::System.Convert.DBNull;
+            public void SetFPosNull() {
+                this[this.tableTacticsGain.FPosColumn] = global::System.Convert.DBNull;
             }
         }
         

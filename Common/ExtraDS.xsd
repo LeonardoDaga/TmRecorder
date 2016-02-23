@@ -67,6 +67,7 @@
               <xs:element name="Potential" msprop:Generator_ColumnVarNameInTable="columnPotential" msprop:Generator_ColumnPropNameInRow="Potential" msprop:Generator_ColumnPropNameInTable="PotentialColumn" msprop:Generator_UserColumnName="Potential" type="xs:float" minOccurs="0" />
               <xs:element name="HiddenRevealed" msprop:Generator_ColumnVarNameInTable="columnHiddenRevealed" msprop:Generator_ColumnPropNameInRow="HiddenRevealed" msprop:Generator_ColumnPropNameInTable="HiddenRevealedColumn" msprop:Generator_UserColumnName="HiddenRevealed" type="xs:boolean" minOccurs="0" />
               <xs:element name="Rec" msprop:Generator_ColumnVarNameInTable="columnRec" msprop:Generator_ColumnPropNameInRow="Rec" msprop:Generator_ColumnPropNameInTable="RecColumn" msprop:Generator_UserColumnName="Rec" type="xs:decimal" minOccurs="0" />
+              <xs:element name="SPn" msprop:Generator_ColumnVarNameInTable="columnSPn" msprop:Generator_ColumnPropNameInRow="SPn" msprop:Generator_ColumnPropNameInTable="SPnColumn" msprop:Generator_UserColumnName="SPn" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

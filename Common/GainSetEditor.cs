@@ -22,7 +22,8 @@ namespace Common
             InitializeComponent();
             this.dgFPGain.DataSource = DS.SkillFPGain;
             this.dgFPAmpl.DataSource = DS.SpecFPAmpl;
-            this.dataGridView1.DataSource = DS.SkillGKGain;
+            this.dgGkSkillGain.DataSource = DS.SkillGKGain;
+            this.dgTactics.DataSource = DS.TacticsGain;
             refGainDS = DS;
             txtGainSetName.Text = (string)DS.SetName[0][0];
             this.Text = "Gain Set Editor - " + txtGainSetName.Text;

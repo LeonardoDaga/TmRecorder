@@ -390,7 +390,7 @@ namespace TMRecorder
                         int wDiff = TmWeek.GetTmAbsWk(DateTime.Now) - TmWeek.GetTmAbsWk(tds.Date);
 
                         if (!grow.IswBornNull())
-                            row.wBorn = grow.wBorn + wDiff;
+                            row.wBorn = grow.wBorn;
                         else
                         {
                             row.wBorn = TmWeek.GetBornWeekFromAge(tds.Date, 0, grow.Età);
@@ -460,7 +460,7 @@ namespace TMRecorder
                         int wDiff = TmWeek.GetTmAbsWk(DateTime.Now) - TmWeek.GetTmAbsWk(tds.Date);
 
                         if (!grow.IswBornNull())
-                            row.wBorn = grow.wBorn + wDiff;
+                            row.wBorn = grow.wBorn;
                         else
                         {
                             row.wBorn = TmWeek.GetBornWeekFromAge(tds.Date, 0, grow.Età);
@@ -798,6 +798,11 @@ namespace TMRecorder
                     {
                         gr.FPn = Tm_Utility.FPToNumber(gr.FP);
                     }
+                    if (gr.IsSPnNull())
+                    {
+                        gr.SPn = Tm_Utility.FPnToSPn(gr.FPn);
+
+                    }
                 }
             }
             catch (Exception ex)
@@ -839,7 +844,11 @@ namespace TMRecorder
                          where c.Date <= beforeDate.AddDays(1)
                          select c).OrderByDescending(p => p.Date).ToList();
 
+            if (weeks.Count <= 0)
+                return lastDS;
+
             lastDS[0] = weeks[0];
+
             int absweek = TmWeek.GetTmAbsWk(weeks[0].Date);
             DateTime lastWeek = TmWeek.TmWeekToDate(absweek-1);
 
@@ -847,7 +856,8 @@ namespace TMRecorder
                          where c.Date <= lastWeek.AddDays(7)
                          select c).OrderByDescending(p => p.Date).ToList();
 
-            lastDS[1] = weekBefore[0];
+            if (weekBefore.Count > 0)
+                lastDS[1] = weekBefore[0];
 
             return lastDS;
         }
@@ -2066,7 +2076,8 @@ namespace TMRecorder
                 try
                 {
                     GD.ReadXml(gainSetName);
-                    GD.CheckTacticsFilling();
+                    if (GD.CheckTacticsFilling())
+                        GD.WriteXml(gainSetName);
                 }
                 catch (Exception)
                 {

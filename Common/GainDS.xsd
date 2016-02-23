@@ -71,6 +71,7 @@
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Tactics" msdata:ReadOnly="true" msdata:Caption="Date" msprop:Generator_ColumnVarNameInTable="columnTactics" msprop:Generator_ColumnPropNameInRow="Tactics" msprop:Generator_ColumnPropNameInTable="TacticsColumn" msprop:Generator_UserColumnName="Tactics" type="xs:string" />
+              <xs:element name="DorA" msprop:Generator_ColumnVarNameInTable="columnDorA" msprop:Generator_ColumnPropNameInRow="DorA" msprop:Generator_ColumnPropNameInTable="DorAColumn" msprop:Generator_UserColumnName="DorA" type="xs:int" minOccurs="0" />
               <xs:element name="Str" msprop:Generator_ColumnVarNameInTable="columnStr" msprop:Generator_ColumnPropNameInRow="Str" msprop:Generator_ColumnPropNameInTable="StrColumn" msprop:Generator_UserColumnName="Str" type="xs:float" default="0" minOccurs="0" />
               <xs:element name="Sta" msprop:Generator_ColumnVarNameInTable="columnSta" msprop:Generator_ColumnPropNameInRow="Sta" msprop:Generator_ColumnPropNameInTable="StaColumn" msprop:Generator_UserColumnName="Sta" type="xs:float" default="0" minOccurs="0" />
               <xs:element name="Pac" msprop:Generator_ColumnVarNameInTable="columnPac" msprop:Generator_ColumnPropNameInRow="Pac" msprop:Generator_ColumnPropNameInTable="PacColumn" msprop:Generator_UserColumnName="Pac" type="xs:float" default="0" minOccurs="0" />
@@ -85,7 +86,7 @@
               <xs:element name="Fin" msdata:Caption="DL" msprop:Generator_ColumnVarNameInTable="columnFin" msprop:Generator_ColumnPropNameInRow="Fin" msprop:Generator_ColumnPropNameInTable="FinColumn" msprop:Generator_UserColumnName="Fin" type="xs:float" default="0" minOccurs="0" />
               <xs:element name="Lon" msdata:Caption="DL" msprop:Generator_ColumnVarNameInTable="columnLon" msprop:Generator_ColumnPropNameInRow="Lon" msprop:Generator_ColumnPropNameInTable="LonColumn" msprop:Generator_UserColumnName="Lon" type="xs:float" default="0" minOccurs="0" />
               <xs:element name="Set" msprop:Generator_ColumnVarNameInTable="columnSet" msprop:Generator_ColumnPropNameInRow="Set" msprop:Generator_ColumnPropNameInTable="SetColumn" msprop:Generator_UserColumnName="Set" type="xs:float" minOccurs="0" />
-              <xs:element name="AllowedPos" msprop:Generator_ColumnVarNameInTable="columnAllowedPos" msprop:Generator_ColumnPropNameInRow="AllowedPos" msprop:Generator_ColumnPropNameInTable="AllowedPosColumn" msprop:Generator_UserColumnName="AllowedPos" type="xs:string" minOccurs="0" />
+              <xs:element name="FPos" msprop:Generator_ColumnVarNameInTable="columnFPos" msprop:Generator_ColumnPropNameInRow="FPos" msprop:Generator_ColumnPropNameInTable="FPosColumn" msprop:Generator_UserColumnName="FPos" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -102,10 +103,6 @@
     <xs:unique name="SkillGKGain_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:SkillGKGain" />
       <xs:field xpath="mstns:Skill" />
-    </xs:unique>
-    <xs:unique name="TacticsGain_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
-      <xs:selector xpath=".//mstns:TacticsGain" />
-      <xs:field xpath="mstns:Tactics" />
     </xs:unique>
   </xs:element>
 </xs:schema>

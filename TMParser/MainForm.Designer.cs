@@ -39,6 +39,9 @@ namespace TMRecorder
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -73,9 +76,6 @@ namespace TMRecorder
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle43 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle44 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle45 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -147,6 +147,28 @@ namespace TMRecorder
             this.dataGridPortieri = new NTR_Controls.AeroDataGrid();
             this.tabInfo = new System.Windows.Forms.TabPage();
             this.dataGridPlayersInfo = new NTR_Controls.AeroDataGrid();
+            this.tabTactics = new System.Windows.Forms.TabPage();
+            this.dgTactics = new NTR_Controls.AeroDataGrid();
+            this.contextMenuTactics = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem31 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem32 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem33 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator16 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem34 = new System.Windows.Forms.ToolStripMenuItem();
+            this.dCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dMCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dMRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.oMCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.oMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.oMRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabInfoMain = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -290,8 +312,6 @@ namespace TMRecorder
             this.marDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Age = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tabTactics = new System.Windows.Forms.TabPage();
-            this.dgTactics = new NTR_Controls.AeroDataGrid();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStripGK.SuspendLayout();
             this.contextMenuPlInfo.SuspendLayout();
@@ -311,6 +331,9 @@ namespace TMRecorder
             ((System.ComponentModel.ISupportInitialize)(this.dataGridPortieri)).BeginInit();
             this.tabInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridPlayersInfo)).BeginInit();
+            this.tabTactics.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgTactics)).BeginInit();
+            this.contextMenuTactics.SuspendLayout();
             this.tabInfoMain.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -331,8 +354,6 @@ namespace TMRecorder
             this.tsBrowserImport.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.db_TrophyDataSet)).BeginInit();
-            this.tabTactics.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgTactics)).BeginInit();
             this.SuspendLayout();
             // 
             // openFileDialog
@@ -1135,6 +1156,214 @@ namespace TMRecorder
             this.dataGridPlayersInfo.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridPlayersInfo_CellDoubleClick);
             this.dataGridPlayersInfo.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridPlayersInfo_CellEndEdit);
             this.dataGridPlayersInfo.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridGiocatori_ColumnHeaderMouseClick);
+            // 
+            // tabTactics
+            // 
+            this.tabTactics.Controls.Add(this.dgTactics);
+            this.tabTactics.Location = new System.Drawing.Point(4, 22);
+            this.tabTactics.Name = "tabTactics";
+            this.tabTactics.Padding = new System.Windows.Forms.Padding(3);
+            this.tabTactics.Size = new System.Drawing.Size(1126, 515);
+            this.tabTactics.TabIndex = 9;
+            this.tabTactics.Text = "Tactics";
+            this.tabTactics.UseVisualStyleBackColor = true;
+            // 
+            // dgTactics
+            // 
+            this.dgTactics.AllowUserToAddRows = false;
+            this.dgTactics.AllowUserToDeleteRows = false;
+            this.dgTactics.AllowUserToOrderColumns = true;
+            this.dgTactics.AutoGenerateColumns = false;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgTactics.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            this.dgTactics.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgTactics.ContextMenuStrip = this.contextMenuTactics;
+            this.dgTactics.DataCollection = null;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.LightGoldenrodYellow;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgTactics.DefaultCellStyle = dataGridViewCellStyle10;
+            this.dgTactics.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgTactics.Location = new System.Drawing.Point(3, 3);
+            this.dgTactics.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dgTactics.Name = "dgTactics";
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgTactics.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            this.dgTactics.RowHeadersWidth = 25;
+            this.dgTactics.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgTactics.Size = new System.Drawing.Size(1120, 509);
+            this.dgTactics.TabIndex = 1;
+            this.dgTactics.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridGiocatori_ColumnHeaderMouseClick);
+            // 
+            // contextMenuTactics
+            // 
+            this.contextMenuTactics.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuTactics.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem31,
+            this.toolStripSeparator15,
+            this.toolStripMenuItem32,
+            this.toolStripMenuItem33,
+            this.toolStripSeparator16,
+            this.toolStripMenuItem34});
+            this.contextMenuTactics.Name = "contextMenuPlInfo";
+            this.contextMenuTactics.Size = new System.Drawing.Size(366, 104);
+            this.contextMenuTactics.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip2_Opening);
+            // 
+            // toolStripMenuItem31
+            // 
+            this.toolStripMenuItem31.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripMenuItem31.Name = "toolStripMenuItem31";
+            this.toolStripMenuItem31.Size = new System.Drawing.Size(365, 22);
+            this.toolStripMenuItem31.Text = "Open Player Info page (Dbl-Click)";
+            // 
+            // toolStripSeparator15
+            // 
+            this.toolStripSeparator15.Name = "toolStripSeparator15";
+            this.toolStripSeparator15.Size = new System.Drawing.Size(362, 6);
+            // 
+            // toolStripMenuItem32
+            // 
+            this.toolStripMenuItem32.Name = "toolStripMenuItem32";
+            this.toolStripMenuItem32.Size = new System.Drawing.Size(365, 22);
+            this.toolStripMenuItem32.Text = "Open Player Page in the internal browser";
+            // 
+            // toolStripMenuItem33
+            // 
+            this.toolStripMenuItem33.Name = "toolStripMenuItem33";
+            this.toolStripMenuItem33.Size = new System.Drawing.Size(365, 22);
+            this.toolStripMenuItem33.Text = "Open Player Page in an external browser";
+            // 
+            // toolStripSeparator16
+            // 
+            this.toolStripSeparator16.Name = "toolStripSeparator16";
+            this.toolStripSeparator16.Size = new System.Drawing.Size(362, 6);
+            // 
+            // toolStripMenuItem34
+            // 
+            this.toolStripMenuItem34.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dCToolStripMenuItem,
+            this.dLToolStripMenuItem,
+            this.dRToolStripMenuItem,
+            this.dMCToolStripMenuItem,
+            this.dMLToolStripMenuItem,
+            this.dMRToolStripMenuItem,
+            this.mCToolStripMenuItem,
+            this.mLToolStripMenuItem,
+            this.mRToolStripMenuItem,
+            this.oMCToolStripMenuItem,
+            this.oMLToolStripMenuItem,
+            this.oMRToolStripMenuItem,
+            this.fCToolStripMenuItem});
+            this.toolStripMenuItem34.Name = "toolStripMenuItem34";
+            this.toolStripMenuItem34.Size = new System.Drawing.Size(365, 22);
+            this.toolStripMenuItem34.Text = "Set Player\'s Selected Position (SP) for Tactics Evaluation";
+            // 
+            // dCToolStripMenuItem
+            // 
+            this.dCToolStripMenuItem.Name = "dCToolStripMenuItem";
+            this.dCToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
+            this.dCToolStripMenuItem.Text = "DC";
+            this.dCToolStripMenuItem.Click += new System.EventHandler(this.selectSpMenuItemClick);
+            // 
+            // dLToolStripMenuItem
+            // 
+            this.dLToolStripMenuItem.Name = "dLToolStripMenuItem";
+            this.dLToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
+            this.dLToolStripMenuItem.Text = "DL";
+            this.dLToolStripMenuItem.Click += new System.EventHandler(this.selectSpMenuItemClick);
+            // 
+            // dRToolStripMenuItem
+            // 
+            this.dRToolStripMenuItem.Name = "dRToolStripMenuItem";
+            this.dRToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
+            this.dRToolStripMenuItem.Text = "DR";
+            this.dRToolStripMenuItem.Click += new System.EventHandler(this.selectSpMenuItemClick);
+            // 
+            // dMCToolStripMenuItem
+            // 
+            this.dMCToolStripMenuItem.Name = "dMCToolStripMenuItem";
+            this.dMCToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
+            this.dMCToolStripMenuItem.Text = "DMC";
+            this.dMCToolStripMenuItem.Click += new System.EventHandler(this.selectSpMenuItemClick);
+            // 
+            // dMLToolStripMenuItem
+            // 
+            this.dMLToolStripMenuItem.Name = "dMLToolStripMenuItem";
+            this.dMLToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
+            this.dMLToolStripMenuItem.Text = "DML";
+            this.dMLToolStripMenuItem.Click += new System.EventHandler(this.selectSpMenuItemClick);
+            // 
+            // dMRToolStripMenuItem
+            // 
+            this.dMRToolStripMenuItem.Name = "dMRToolStripMenuItem";
+            this.dMRToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
+            this.dMRToolStripMenuItem.Text = "DMR";
+            this.dMRToolStripMenuItem.Click += new System.EventHandler(this.selectSpMenuItemClick);
+            // 
+            // mCToolStripMenuItem
+            // 
+            this.mCToolStripMenuItem.Name = "mCToolStripMenuItem";
+            this.mCToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
+            this.mCToolStripMenuItem.Text = "MC";
+            this.mCToolStripMenuItem.Click += new System.EventHandler(this.selectSpMenuItemClick);
+            // 
+            // mLToolStripMenuItem
+            // 
+            this.mLToolStripMenuItem.Name = "mLToolStripMenuItem";
+            this.mLToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
+            this.mLToolStripMenuItem.Text = "ML";
+            this.mLToolStripMenuItem.Click += new System.EventHandler(this.selectSpMenuItemClick);
+            // 
+            // mRToolStripMenuItem
+            // 
+            this.mRToolStripMenuItem.Name = "mRToolStripMenuItem";
+            this.mRToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
+            this.mRToolStripMenuItem.Text = "MR";
+            this.mRToolStripMenuItem.Click += new System.EventHandler(this.selectSpMenuItemClick);
+            // 
+            // oMCToolStripMenuItem
+            // 
+            this.oMCToolStripMenuItem.Name = "oMCToolStripMenuItem";
+            this.oMCToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
+            this.oMCToolStripMenuItem.Text = "OMC";
+            this.oMCToolStripMenuItem.Click += new System.EventHandler(this.selectSpMenuItemClick);
+            // 
+            // oMLToolStripMenuItem
+            // 
+            this.oMLToolStripMenuItem.Name = "oMLToolStripMenuItem";
+            this.oMLToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
+            this.oMLToolStripMenuItem.Text = "OML";
+            this.oMLToolStripMenuItem.Click += new System.EventHandler(this.selectSpMenuItemClick);
+            // 
+            // oMRToolStripMenuItem
+            // 
+            this.oMRToolStripMenuItem.Name = "oMRToolStripMenuItem";
+            this.oMRToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
+            this.oMRToolStripMenuItem.Text = "OMR";
+            this.oMRToolStripMenuItem.Click += new System.EventHandler(this.selectSpMenuItemClick);
+            // 
+            // fCToolStripMenuItem
+            // 
+            this.fCToolStripMenuItem.Name = "fCToolStripMenuItem";
+            this.fCToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
+            this.fCToolStripMenuItem.Text = "FC";
+            this.fCToolStripMenuItem.Click += new System.EventHandler(this.selectSpMenuItemClick);
             // 
             // tabInfoMain
             // 
@@ -2786,59 +3015,6 @@ namespace TMRecorder
             this.dataGridViewTextBoxColumn6.HeaderText = "ASI";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             // 
-            // tabTactics
-            // 
-            this.tabTactics.Controls.Add(this.dgTactics);
-            this.tabTactics.Location = new System.Drawing.Point(4, 22);
-            this.tabTactics.Name = "tabTactics";
-            this.tabTactics.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTactics.Size = new System.Drawing.Size(1126, 515);
-            this.tabTactics.TabIndex = 9;
-            this.tabTactics.Text = "Tactics";
-            this.tabTactics.UseVisualStyleBackColor = true;
-            // 
-            // dgTactics
-            // 
-            this.dgTactics.AllowUserToAddRows = false;
-            this.dgTactics.AllowUserToDeleteRows = false;
-            this.dgTactics.AllowUserToOrderColumns = true;
-            this.dgTactics.AutoGenerateColumns = false;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgTactics.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
-            this.dgTactics.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgTactics.ContextMenuStrip = this.contextMenuPlInfo;
-            this.dgTactics.DataCollection = null;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.LightGoldenrodYellow;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgTactics.DefaultCellStyle = dataGridViewCellStyle10;
-            this.dgTactics.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgTactics.Location = new System.Drawing.Point(3, 3);
-            this.dgTactics.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.dgTactics.Name = "dgTactics";
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgTactics.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
-            this.dgTactics.RowHeadersWidth = 25;
-            this.dgTactics.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgTactics.Size = new System.Drawing.Size(1120, 509);
-            this.dgTactics.TabIndex = 1;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -2878,6 +3054,9 @@ namespace TMRecorder
             ((System.ComponentModel.ISupportInitialize)(this.dataGridPortieri)).EndInit();
             this.tabInfo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridPlayersInfo)).EndInit();
+            this.tabTactics.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgTactics)).EndInit();
+            this.contextMenuTactics.ResumeLayout(false);
             this.tabInfoMain.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -2900,8 +3079,6 @@ namespace TMRecorder
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.db_TrophyDataSet)).EndInit();
-            this.tabTactics.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgTactics)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -3154,5 +3331,25 @@ namespace TMRecorder
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator14;
         private System.Windows.Forms.TabPage tabTactics;
         private NTR_Controls.AeroDataGrid dgTactics;
+        private System.Windows.Forms.ContextMenuStrip contextMenuTactics;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem31;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator15;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem32;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem33;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator16;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem34;
+        private System.Windows.Forms.ToolStripMenuItem dCToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dLToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dRToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dMCToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dMLToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dMRToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mCToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mLToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mRToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem oMCToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem oMLToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem oMRToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fCToolStripMenuItem;
     }
 }

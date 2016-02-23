@@ -742,6 +742,11 @@ namespace Common
                     edsRow.FP = tdsRow.FP;
                     edsRow.FPn = Tm_Utility.FPToNumber(tdsRow.FP);
 
+                    if ((plyDB != null) && (plyDB.IsSPnNull()))
+                        edsRow.SPn = plyDB.SPn;
+                    else
+                        edsRow.SPn = Tm_Utility.FPnToSPn(edsRow.FPn);
+
                     // edsRow.Ada = tdsRow.Ada;
                     if (!tdsRow.IsAdaNull())
                         edsRow.Ada = tdsRow.Ada;
@@ -1549,11 +1554,12 @@ namespace Common
                     if (plyDB.IsisYoungTeamNull()) plyDB.isYoungTeam = 0;
                     if (plyDB.IsisRetireNull()) plyDB.isRetire = false;
                     edsRow.Nome += "|" + tdsRow.Infortunato.ToString() + "|" + tdsRow.Squalificato.ToString()
-                                 + "|" + plyDB.isYoungTeam.ToString() + "|" + (plyDB.isRetire?1:0).ToString();
+                                 + "|" + plyDB.isYoungTeam.ToString() + "|" + (plyDB.isRetire ? 1 : 0).ToString();
 
                     edsRow.FP = plyDB.FP;
                     edsRow.FPn = Tm_Utility.FPToNumber(edsRow.FP);
                     if (edsRow.FPn == -1) continue;
+                    edsRow.SPn = plyDB.SPn;
 
                     edsRow.Ada = plyDB.Ada;
 
@@ -1776,6 +1782,13 @@ namespace Common
         public void AddEndBidAlarm(DataGridViewRow row)
         {
             throw new NotImplementedException();
+        }
+
+        public void SetSPn(int playerID, int sPn)
+        {
+            var player = this.GiocatoriNSkill.FindByPlayerID(playerID);
+            if (player != null)
+                player.SPn = sPn;
         }
     }
 

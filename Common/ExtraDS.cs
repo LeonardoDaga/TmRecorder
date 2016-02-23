@@ -2343,5 +2343,12 @@ namespace Common
                 gRow.HiddenRevealed = true;
             }
         }
+
+        public void SetSPn(int playerID, int sPn)
+        {
+            var player = this.Giocatori.FindByPlayerID(playerID);
+            if (player != null)
+                player.SPn = sPn;
+        }
     }
 }

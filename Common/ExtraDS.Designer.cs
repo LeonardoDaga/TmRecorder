@@ -429,6 +429,8 @@ namespace Common {
             
             private global::System.Data.DataColumn columnRec;
             
+            private global::System.Data.DataColumn columnSPn;
+            
             private static System.DateTime columnFirstData_defaultValue = global::System.DateTime.Parse("2070-01-01T00:00:00");
             
             private static System.DateTime columnLastData_defaultValue = global::System.DateTime.Parse("1970-01-01T00:00:00");
@@ -788,6 +790,14 @@ namespace Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SPnColumn {
+                get {
+                    return this.columnSPn;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -863,7 +873,8 @@ namespace Common {
                         string GameTable, 
                         float Potential, 
                         bool HiddenRevealed, 
-                        decimal Rec) {
+                        decimal Rec, 
+                        int SPn) {
                 GiocatoriRow rowGiocatoriRow = ((GiocatoriRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         PlayerID,
@@ -905,7 +916,8 @@ namespace Common {
                         GameTable,
                         Potential,
                         HiddenRevealed,
-                        Rec};
+                        Rec,
+                        SPn};
                 rowGiocatoriRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowGiocatoriRow);
                 return rowGiocatoriRow;
@@ -975,6 +987,7 @@ namespace Common {
                 this.columnPotential = base.Columns["Potential"];
                 this.columnHiddenRevealed = base.Columns["HiddenRevealed"];
                 this.columnRec = base.Columns["Rec"];
+                this.columnSPn = base.Columns["SPn"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1060,6 +1073,8 @@ namespace Common {
                 base.Columns.Add(this.columnHiddenRevealed);
                 this.columnRec = new global::System.Data.DataColumn("Rec", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRec);
+                this.columnSPn = new global::System.Data.DataColumn("SPn", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSPn);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint2", new global::System.Data.DataColumn[] {
                                 this.columnPlayerID}, true));
                 this.columnPlayerID.AllowDBNull = false;
@@ -2531,6 +2546,22 @@ namespace Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int SPn {
+                get {
+                    try {
+                        return ((int)(this[this.tableGiocatori.SPnColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SPn\' in table \'Giocatori\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGiocatori.SPnColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsNationalityNull() {
                 return this.IsNull(this.tableGiocatori.NationalityColumn);
             }
@@ -2983,6 +3014,18 @@ namespace Common {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetRecNull() {
                 this[this.tableGiocatori.RecColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsSPnNull() {
+                return this.IsNull(this.tableGiocatori.SPnColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetSPnNull() {
+                this[this.tableGiocatori.SPnColumn] = global::System.Convert.DBNull;
             }
         }
         

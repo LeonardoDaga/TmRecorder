@@ -1086,23 +1086,202 @@ namespace NTR_Db
         public decimal OML { get { return Atts[(int)eAttitude.OML]; } }
         public decimal FC { get { return Atts[(int)eAttitude.FC]; } }
 
-        public decimal _tacBal = -1;
-        public decimal TacBal
+        #region Tactics
+        public decimal _tacABal = -1;
+        public decimal TacABal
         {
             get
             {
-                if (_tacBal == -1)
+                if (_tacABal == -1)
                 {
-                    _tacBal = 0;
+                    _tacABal = 0;
                     if (FPn != 0) for (int i = 0; i < 13; i++)
-                            _tacBal += Skills[i].actual;
+                            _tacABal += Skills[i].actual * 5M / 14M;
                     else for (int i = 0; i < 10; i++)
-                            _tacBal += Skills[i].actual;
+                            _tacABal += Skills[i].actual * 5M / 14M;
                 }
-                return _tacBal;
+                return _tacABal;
             }
         }
 
+        public decimal _tacDBal = -1;
+        public decimal TacDBal
+        {
+            get
+            {
+                if (_tacDBal == -1)
+                {
+                    _tacDBal = 0;
+                    if (FPn != 0) for (int i = 0; i < 13; i++)
+                            _tacDBal += Skills[i].actual * 5M / 14M;
+                    else for (int i = 0; i < 10; i++)
+                            _tacDBal += Skills[i].actual * 5M / 14M;
+                }
+                return _tacDBal;
+            }
+        }
+
+        public decimal _tacADir = -1;
+        public decimal TacADir
+        {
+            get
+            {
+                if (_tacADir == -1)
+                {
+                    _tacADir = ComputeTactics("Dir", 1);
+                }
+                return _tacADir;
+            }
+        }
+
+        public decimal _tacAWin = -1;
+        public decimal TacAWin
+        {
+            get
+            {
+                if (_tacAWin == -1)
+                {
+                    _tacAWin = ComputeTactics("Win", 1);
+                }
+                return _tacAWin;
+            }
+        }
+
+        public decimal _tacAShp = -1;
+        public decimal TacAShp
+        {
+            get
+            {
+                if (_tacAShp == -1)
+                {
+                    _tacAShp = ComputeTactics("Shp", 1);
+                }
+                return _tacAShp;
+            }
+        }
+
+        public decimal _tacALon = -1;
+        public decimal TacALon
+        {
+            get
+            {
+                if (_tacALon == -1)
+                {
+                    _tacALon = ComputeTactics("Lon", 1);
+                }
+                return _tacALon;
+            }
+        }
+
+        public decimal _tacAThr = -1;
+        public decimal TacAThr
+        {
+            get
+            {
+                if (_tacAThr == -1)
+                {
+                    _tacAThr = ComputeTactics("Thr", 1);
+                }
+                return _tacAThr;
+            }
+        }
+
+        public decimal _tacDDir = -1;
+        public decimal TacDDir
+        {
+            get
+            {
+                if (_tacDDir == -1)
+                {
+                    _tacDDir = ComputeTactics("Dir", 0);
+                }
+                return _tacDDir;
+            }
+        }
+
+        public decimal _tacDWin = -1;
+        public decimal TacDWin
+        {
+            get
+            {
+                if (_tacDWin == -1)
+                {
+                    _tacDWin = ComputeTactics("Win", 0);
+                }
+                return _tacDWin;
+            }
+        }
+
+        public decimal _tacDShp = -1;
+        public decimal TacDShp
+        {
+            get
+            {
+                if (_tacDShp == -1)
+                {
+                    _tacDShp = ComputeTactics("Shp", 0);
+                }
+                return _tacDShp;
+            }
+        }
+
+        public decimal _tacDLon = -1;
+        public decimal TacDLon
+        {
+            get
+            {
+                if (_tacDLon == -1)
+                {
+                    _tacDLon = ComputeTactics("Lon", 0);
+                }
+                return _tacDLon;
+            }
+        }
+
+        public decimal _tacDThr = -1;
+        public decimal TacDThr
+        {
+            get
+            {
+                if (_tacDThr == -1)
+                {
+                    _tacDThr = ComputeTactics("Thr", 0);
+                }
+                return _tacDThr;
+            }
+        }
+
+        private decimal ComputeTactics(string type, int attacking)
+        {
+            decimal tactics = 0;
+            if (FPn == 0)
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    tactics += Skills[i].actual * 5M / 14M;
+                }
+                return tactics;
+            }
+
+            string SP = Tm_Utility.FPnToFP(SPn);
+
+            var tacticGainRows = GFun.GDS.TacticsGain.Where(p => (p.Tactics == type) && (p.DorA == attacking) && (p.FPos.Contains(SP)));
+
+            if (tacticGainRows.Count() == 0)
+            {
+                for (int i = 0; i < 14; i++)
+                    tactics += Skills[i].actual * 5M / 14M;
+            }
+            else
+            {
+                GainDS.TacticsGainRow gr = (GainDS.TacticsGainRow)tacticGainRows.First();
+                for (int i = 0; i < 14; i++)
+                    tactics += Skills[i].actual * (decimal)(float)gr[2 + i];
+            }
+
+            return tactics;
+        }
+        #endregion
 
         public PlayerData(NTR_SquadDb.ShortlistRow sr)
         {
@@ -1309,6 +1488,12 @@ namespace NTR_Db
             GFun.GDS = GDS;
 
             FPn = thisWeek.FPn;
+
+            if (thisWeek.IsSPnNull())
+                thisWeek.SPn = Tm_Utility.FPnToSPn(FPn);
+
+            SPn = thisWeek.SPn;
+
             wBorn = thisWeek.wBorn;
 
             Inj = (short)thisWeek.Infortunato;
@@ -1800,6 +1985,7 @@ namespace NTR_Db
         public decimal InjPron { get; private set; }
         public float AvTI { get; private set; }
         public string Votes { get; private set; }
+        public int SPn { get; set; }
 
         private void ParseBloomValues()
         {

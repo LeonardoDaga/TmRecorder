@@ -587,6 +587,58 @@ namespace Common
         {
             return ASItoSkSum((float)ASI, isGK);
         }
+
+        public static int FPnToSPn(int fPn)
+        {
+            switch(fPn)
+            { 
+                case 0: return 0;
+                case 10: return 10;
+                case 11: return 10;
+                case 12: return 10;
+                case 13: return 13;
+                case 14: return 13;
+                case 15: return 15;
+                case 20: return 10;
+                case 21: return 13;
+                case 22: return 15;
+                case 25: return 10;
+                case 26: return 13;
+                case 27: return 15;
+                case 30: return 30;
+                case 31: return 30;
+                case 32: return 30;
+                case 33: return 33;
+                case 34: return 33;
+                case 35: return 35;
+                case 40: return 30;
+                case 41: return 33;
+                case 42: return 35;
+                case 50: return 50;
+                case 51: return 50;
+                case 52: return 50;
+                case 53: return 53;
+                case 54: return 53;
+                case 55: return 55;
+                case 60: return 50;
+                case 61: return 53;
+                case 62: return 53;
+                case 65: return 50;
+                case 66: return 53;
+                case 67: return 55;
+                case 70: return 70;
+                case 71: return 70;
+                case 72: return 70;
+                case 73: return 73;
+                case 74: return 73;
+                case 75: return 75;
+                case 80: return 70;
+                case 81: return 90;
+                case 82: return 90;
+                case 90: return 90;
+                default: return 10;
+            }
+        }
     }
 
     public class CommGlobal

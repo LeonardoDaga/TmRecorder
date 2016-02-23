@@ -121,6 +121,7 @@
               <xs:element name="TI" msprop:Generator_ColumnVarNameInTable="columnTI" msprop:Generator_ColumnPropNameInRow="TI" msprop:Generator_ColumnPropNameInTable="TIColumn" msprop:Generator_UserColumnName="TI" type="xs:decimal" default="0" minOccurs="0" />
               <xs:element name="Rec" msprop:Generator_ColumnVarNameInTable="columnRec" msprop:Generator_ColumnPropNameInRow="Rec" msprop:Generator_ColumnPropNameInTable="RecColumn" msprop:Generator_UserColumnName="Rec" type="xs:decimal" minOccurs="0" />
               <xs:element name="CStr" msprop:Generator_ColumnVarNameInTable="columnCStr" msprop:Generator_ColumnPropNameInRow="CStr" msprop:Generator_ColumnPropNameInTable="CStrColumn" msprop:Generator_UserColumnName="CStr" type="xs:decimal" minOccurs="0" />
+              <xs:element name="SPn" msprop:Generator_ColumnVarNameInTable="columnSPn" msprop:Generator_ColumnPropNameInRow="SPn" msprop:Generator_ColumnPropNameInTable="SPnColumn" msprop:Generator_UserColumnName="SPn" type="xs:int" minOccurs="0" />
               <xs:element name="HidSk" msprop:Generator_ColumnVarNameInTable="columnHidSk" msprop:Generator_ColumnPropNameInRow="HidSk" msprop:Generator_ColumnPropNameInTable="HidSkColumn" msprop:Generator_UserColumnName="HidSk" type="xs:string" default="" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>

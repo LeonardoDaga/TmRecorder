@@ -1132,20 +1132,54 @@ namespace TMRecorder
             dgvc.CellColorStyles = CellColorStyleList.DefaultGainColorStyle();
             dgvc.DefaultCellStyle.BackColor = Color.LemonChiffon;
 
-            dgTactics.AddColumn("Rou", "Rou", 30, AG_Style.Numeric | AG_Style.RightJustified);
+            bool evidenceGain = Program.Setts.EvidenceGain;
 
-            numCol = dgTactics.AddColumn("Bal", "TacBal", 30, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N1);
-            numCol.DefaultCellStyle.BackColor = Color.Gainsboro;
-            numCol = dgTactics.AddColumn("Dir", "TacDir", 30, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N1);
-            numCol.DefaultCellStyle.BackColor = Color.Gainsboro;
-            numCol = dgTactics.AddColumn("Win", "TacWin", 30, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N1);
-            numCol.DefaultCellStyle.BackColor = Color.Gainsboro;
-            numCol = dgTactics.AddColumn("Shp", "TacShp", 30, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N1);
-            numCol.DefaultCellStyle.BackColor = Color.Gainsboro;
-            numCol = dgTactics.AddColumn("Lon", "TacLon", 30, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N1);
-            numCol.DefaultCellStyle.BackColor = Color.Gainsboro;
-            numCol = dgTactics.AddColumn("Thr", "TacThr", 30, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N1);
-            numCol.DefaultCellStyle.BackColor = Color.Gainsboro;
+            dgTactics.AddSkColumn("Str", evidenceGain);
+            dgTactics.AddSkColumn("Pac", evidenceGain);
+            dgTactics.AddSkColumn("Sta", evidenceGain);
+
+            dgTactics.AddSkColumn("Mar", evidenceGain);
+            dgTactics.AddSkColumn("Tac", evidenceGain);
+            dgTactics.AddSkColumn("Wor", evidenceGain);
+            dgTactics.AddSkColumn("Pos", evidenceGain);
+            dgTactics.AddSkColumn("Pas", evidenceGain);
+            dgTactics.AddSkColumn("Cro", evidenceGain);
+            dgTactics.AddSkColumn("Tec", evidenceGain);
+            dgTactics.AddSkColumn("Hea", evidenceGain);
+            dgTactics.AddSkColumn("Fin", evidenceGain);
+            dgTactics.AddSkColumn("Lon", evidenceGain);
+            dgTactics.AddSkColumn("Set", evidenceGain);
+
+            dgTactics.AddColumn("Rou", "Rou", 30, AG_Style.Numeric | AG_Style.RightJustified);
+            dgTactics.AddColumn("CRec", "CStr", 38, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N2);
+
+            dgTactics.AddColumn("SP", "SPn", 42, AG_Style.FavPosition | AG_Style.Frozen);
+
+            numCol = dgTactics.AddColumn("Bal", "TacDBal", 38, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N1);
+            numCol.DefaultCellStyle.BackColor = Color.FromArgb(214, 235, 214);;
+            numCol = dgTactics.AddColumn("Dir", "TacDDir", 38, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N1);
+            numCol.DefaultCellStyle.BackColor = Color.FromArgb(214, 235, 214);;
+            numCol = dgTactics.AddColumn("Win", "TacDWin", 38, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N1);
+            numCol.DefaultCellStyle.BackColor = Color.FromArgb(214, 235, 214);;
+            numCol = dgTactics.AddColumn("Shp", "TacDShp", 38, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N1);
+            numCol.DefaultCellStyle.BackColor = Color.FromArgb(214, 235, 214);;
+            numCol = dgTactics.AddColumn("Lon", "TacDLon", 38, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N1);
+            numCol.DefaultCellStyle.BackColor = Color.FromArgb(214, 235, 214);;
+            numCol = dgTactics.AddColumn("Thr", "TacDThr", 38, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N1 );
+            numCol.DefaultCellStyle.BackColor = Color.FromArgb(214, 235, 214);;
+
+            numCol = dgTactics.AddColumn("Bal", "TacABal", 38, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N1);
+            numCol.DefaultCellStyle.BackColor = Color.NavajoWhite;
+            numCol = dgTactics.AddColumn("Dir", "TacADir", 38, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N1);
+            numCol.DefaultCellStyle.BackColor = Color.NavajoWhite;
+            numCol = dgTactics.AddColumn("Win", "TacAWin", 38, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N1);
+            numCol.DefaultCellStyle.BackColor = Color.NavajoWhite;
+            numCol = dgTactics.AddColumn("Shp", "TacAShp", 38, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N1);
+            numCol.DefaultCellStyle.BackColor = Color.NavajoWhite;
+            numCol = dgTactics.AddColumn("Lon", "TacALon", 38, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N1);
+            numCol.DefaultCellStyle.BackColor = Color.NavajoWhite;
+            numCol = dgTactics.AddColumn("Thr", "TacAThr", 38, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N1);
+            numCol.DefaultCellStyle.BackColor = Color.NavajoWhite;
         }
 
         private void SaveHistory()
@@ -3173,5 +3207,49 @@ namespace TMRecorder
             dgOppsTeamPerf.AeroDataGrid_ColumnHeaderMouseClick<NTR_Db.PlayerPerfData>(sender, e);
         }
 
+        private void dataGridPlayersInfo_CellDoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void contextMenuStrip2_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void selectSpMenuItemClick(object sender, EventArgs e)
+        {
+            int FPn = Tm_Utility.FPToNumber(sender.ToString());
+            int SPn = Tm_Utility.FPnToSPn(FPn);
+
+            if (dgTactics.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("You must select a player");
+                return;
+            }
+
+            if (dgTactics.SelectedRows.Count > 1)
+            {
+                MessageBox.Show("You must select just one player if you want to change its Selected Position (SP)");
+                return;
+            }
+
+            var selectedRow = dgTactics.SelectedRows[0];
+            NTR_Db.PlayerData player = (NTR_Db.PlayerData)selectedRow.DataBoundItem;
+
+            if (player.SPn != SPn)
+            {
+                string strQuestion = string.Format("Change SP of {0} from {1} to {2}. Confirm?", 
+                    player.Name.Split('|')[0],
+                    Tm_Utility.FPnToFP(player.SPn), 
+                    Tm_Utility.FPnToFP(SPn));
+                if (MessageBox.Show(strQuestion, "SP Change", MessageBoxButtons.OKCancel) == DialogResult.Cancel)
+                    return;
+
+                History.actualDts.SetSPn(player.playerID, SPn);
+                History.PlayersDS.SetSPn(player.playerID, SPn);
+                LoadTeamOnGrids(DateTime.Now);
+            }
+        }
     }
 }

@@ -46,7 +46,7 @@ namespace Common
         partial class WeekNoDataDataTable
         {
         }
-    
+
         partial class GiocatoriDataTable
         {
         }
@@ -64,7 +64,7 @@ namespace Common
                 for (int i = 0; i < this.ItemArray.Length; i++)
                 {
                     if (i == 12)
-                        row += "-\t-\t-\t" + this[i].ToString()+ "\t";
+                        row += "-\t-\t-\t" + this[i].ToString() + "\t";
                     else if (i == 0)
                         row += this[i].ToString() + "\t";
                     else if (i == 13)
@@ -118,6 +118,40 @@ namespace Common
 
                 return true;
             }
+
+            public float DeltaSkillPos()
+            {
+                float res = 0;
+
+                for (int ix = 1; ix < 12; ix++)
+                {
+                    int val = (int)((decimal)this[ix]);
+
+                    if (val == 1)
+                        res += 0.1f;
+                    else if (val == 2)
+                        res += 1.0f;
+                }
+
+                return res;
+            }
+
+            public float DeltaSkillNeg()
+            {
+                float res = 0;
+
+                for (int ix = 1; ix < 12; ix++)
+                {
+                    int val = (int)((decimal)this[ix]);
+
+                    if (val == -1)
+                        res -= 0.1f;
+                    else if (val == -2)
+                        res -= 1.0f;
+                }
+
+                return res;
+            }
         }
 
         public partial class GiocatoriRow
@@ -150,7 +184,7 @@ namespace Common
                         catch
                         {
                             continue;
-                        }                    
+                        }
                     }
                 }
 
@@ -183,6 +217,40 @@ namespace Common
                 }
 
                 return true;
+            }
+
+            public float DeltaSkillPos()
+            {
+                float res = 0;
+
+                for (int ix = 1; ix < 15; ix++)
+                {
+                    int val = (int)((decimal)this[ix]);
+
+                    if (val == 1)
+                        res += 0.1f;
+                    else if (val == 2)
+                        res += 1.0f;
+                }
+
+                return res;
+            }
+
+            public float DeltaSkillNeg()
+            {
+                float res = 0;
+
+                for (int ix = 1; ix < 15; ix++)
+                {
+                    int val = (int)((decimal)this[ix]);
+
+                    if (val == -1)
+                        res -= 0.1f;
+                    else if (val == -2)
+                        res -= 1.0f;
+                }
+
+                return res;
             }
         }
 

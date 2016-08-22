@@ -1,6 +1,8 @@
-﻿namespace TMRecorder {
-    
-    
-    public partial class TeamStats {
+﻿namespace TMRecorder
+{
+
+
+    public partial class TeamStats
+    {
     }
 }

@@ -144,7 +144,13 @@ namespace TMRecorder
 
         public int ReserveSquadID
         {
-            get { return int.Parse(txtReserveSquadID.Text); }
+            get
+            {
+                int squadId = -1;
+                int.TryParse(txtReserveSquadID.Text, out squadId);
+
+                return squadId;
+            }
             set { txtReserveSquadID.Text = value.ToString(); }
         }
 

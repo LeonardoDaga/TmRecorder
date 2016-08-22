@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -36,11 +37,22 @@ namespace TMRecorder
 
         private void AddExtraTeam_FormClosing(object sender, FormClosingEventArgs e)
         {
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
             if (!int.TryParse(txtID.Text, out _TeamID))
             {
                 MessageBox.Show("The ID number is not valid");
-                e.Cancel = true;
+                return;
             }
+
+            this.Close();
         }
     }
 }

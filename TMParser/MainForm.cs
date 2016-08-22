@@ -97,6 +97,8 @@ namespace TMRecorder
 
         private void InitializeBrowser()
         {
+            webBrowser.MainTeamId = Program.Setts.MainSquadID;
+
             if (!webBrowser.CheckXulInitialization())
                 Close();
         }
@@ -859,6 +861,9 @@ namespace TMRecorder
 
                 dP[2]++;
                 isDirty = true;
+
+                UpdateBrowserImportPanel();
+
                 Program.Setts.Save();
             }
         }
@@ -1695,8 +1700,8 @@ namespace TMRecorder
             TeamStatsForm tsf = new TeamStatsForm();
 
             tsf.FillSquadGraphs(History.PlayersDS);
-
             tsf.FillSquadStatsGraphs(teamStats);
+            tsf.FillTrainingHistory(History.TrainingHist);
 
             tsf.ShowDialog();
         }
@@ -2381,7 +2386,12 @@ namespace TMRecorder
                 tsbMatchListA.UnderColor = Color.DarkGreen;
             }
 
-            if (!AllSeasons.IsUpdatedCalendar(Program.Setts.ReserveSquadID))
+            if (Program.Setts.ReserveSquadID <= 0)
+            {
+                tsbMatchSquadB.Visible = false;
+                tsbMatchListB.Visible = false;
+            }
+            else if (!AllSeasons.IsUpdatedCalendar(Program.Setts.ReserveSquadID))
             {
                 tsbMatchListB.ForeColor = Color.DarkRed;
                 tsbMatchSquadB.Enabled = false;
@@ -2552,7 +2562,7 @@ namespace TMRecorder
                 return;
             }
 
-            webBrowser.ChangeTeam_Adv(Program.Setts.MainSquadID.ToString());
+            webBrowser.SwitchToMainTeam();
         }
 
         private void tsbFacebook_Click(object sender, EventArgs e)
@@ -3052,6 +3062,8 @@ namespace TMRecorder
                 page = "SourceURL:<NewTM - Matches>\n" + page;
             else if (address.Contains("/matches/"))
                 page = "SourceURL:<NewTM - Kamp>\n" + page;
+            else if (address.Contains("/club/"))
+                page = "SourceURL:<Club>\n" + page;
             else
                 return;
 
@@ -3127,6 +3139,13 @@ namespace TMRecorder
                     isDirty = true;
 
                 MessageBox.Show("Scouts imported: " + count.ToString() + " scout imported");
+            }
+
+
+            if (navigationAddress == TM_Pages.Club)
+            {
+                AllSeasons.LoadClubData(page);
+                AllSeasons.IsDirty = true;
             }
 
             if (navigationAddress == TM_Pages.Players)

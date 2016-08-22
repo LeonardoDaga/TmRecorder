@@ -1139,6 +1139,9 @@ namespace NTR_Db
 
             Dictionary<string, string> match_info = HTML_Parser.CreateDictionary(match_info_str.Trim(';'), ';');
 
+            if (match_info["kickoff"] == "false")
+                return false;
+
             int homeTeamId = int.Parse(match_info["home_id"]);
             int awayTeamId = int.Parse(match_info["away_id"]);
 
@@ -1831,7 +1834,7 @@ namespace NTR_Db
                     matchRow.TeamRowByTeam_OTeam.Name = match_info["home_name"];
 
                 string oppsColor = matchRow.isHome ? match_info["away_color"] : match_info["home_color"];
-                if ((oppsColor == "undefined") || (oppsColor == "")) oppsColor = "0000FF";
+                if ((oppsColor == "undefined") || (oppsColor == "") || (oppsColor == "ffNaNN")) oppsColor = "0000FF";
 
                 if (matchRow.isHome)
                     matchRow.TeamRowByTeam_OTeam.Color = int.Parse(oppsColor, System.Globalization.NumberStyles.HexNumber);
@@ -1937,6 +1940,28 @@ namespace NTR_Db
         {
             public int minute;
             public int player;
+        }
+
+        public void LoadClubData(string page)
+        {
+            var TeamData = this.seasonsDB.TeamData;
+
+            Dictionary<string, string> club_info = HTML_Parser.CreateDictionary(page, ';');
+
+            int teamID = int.Parse(club_info["ClubId"]);
+            DateTime dtToday = DateTime.Today;
+
+            var teamDataRow = TeamData.FindByTeamIDDate(teamID, dtToday);
+            if (teamDataRow == null)
+            {
+                teamDataRow = TeamData.NewTeamDataRow();
+                teamDataRow.Date = dtToday;
+                teamDataRow.TeamID = teamID;
+                TeamData.AddTeamDataRow(teamDataRow);
+            }
+
+            teamDataRow.NumSupporters = int.Parse(club_info["Fans"]);
+            teamDataRow.Cash = int.Parse(club_info["Cash"]);
         }
 
         /*

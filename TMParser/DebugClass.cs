@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Text;
 using Common;
 using System.IO;
+using System.Linq;
 
 namespace TMRecorder
 {
-    class DebugClass
+    public class DebugClass
     {
-
         public static void TestLoadClearPlayerData()
         {
             List<Dictionary<string, string>> listPlayers = new List<Dictionary<string, string>>();

@@ -2175,12 +2175,16 @@ namespace NTR_Db
             hr.Cro = decimal.Parse(dictValues["Cro"]);
             hr.Vel = decimal.Parse(dictValues["Vel"]);
             hr.Tec = decimal.Parse(dictValues["Tec"]);
-            hr.Mar = decimal.Parse(dictValues["Mar"]);
             hr.Tes = decimal.Parse(dictValues["Hea"]);
-            hr.Wor = decimal.Parse(dictValues["Wor"]);
             hr.Dis = decimal.Parse(dictValues["Lon"]);
-            hr.Pos = decimal.Parse(dictValues["Pos"]);
             hr.Cal = decimal.Parse(dictValues["Set"]);
+            if (pr.FPn != 0)
+            {
+                hr.Pos = decimal.Parse(dictValues["Pos"]);
+                hr.Mar = decimal.Parse(dictValues["Mar"]);
+                hr.Wor = decimal.Parse(dictValues["Wor"]);
+                hr.Con = decimal.Parse(dictValues["Tak"]);
+            }
 
             var phr = DB.HistData.FindByPlayerIDWeek(playerID, TmWeek.thisWeek().absweek - 1);
             if (phr != null)

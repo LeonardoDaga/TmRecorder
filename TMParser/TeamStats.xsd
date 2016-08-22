@@ -3,38 +3,53 @@
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
-        <Connections>
-        </Connections>
-        <Tables>
-        </Tables>
-        <Sources>
-        </Sources>
+        <Connections />
+        <Tables />
+        <Sources />
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="TeamStats" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="TeamStats" msprop:Generator_DataSetName="TeamStats">
+  <xs:element name="TeamStats" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="TeamStats" msprop:Generator_UserDSName="TeamStats">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="AgeHistory" msprop:Generator_UserTableName="AgeHistory" msprop:Generator_RowDeletedName="AgeHistoryRowDeleted" msprop:Generator_RowChangedName="AgeHistoryRowChanged" msprop:Generator_RowClassName="AgeHistoryRow" msprop:Generator_RowChangingName="AgeHistoryRowChanging" msprop:Generator_RowEvArgName="AgeHistoryRowChangeEvent" msprop:Generator_RowEvHandlerName="AgeHistoryRowChangeEventHandler" msprop:Generator_TableClassName="AgeHistoryDataTable" msprop:Generator_TableVarName="tableAgeHistory" msprop:Generator_RowDeletingName="AgeHistoryRowDeleting" msprop:Generator_TablePropName="AgeHistory">
+        <xs:element name="AgeHistory" msprop:Generator_UserTableName="AgeHistory" msprop:Generator_RowEvArgName="AgeHistoryRowChangeEvent" msprop:Generator_TableVarName="tableAgeHistory" msprop:Generator_TablePropName="AgeHistory" msprop:Generator_RowDeletingName="AgeHistoryRowDeleting" msprop:Generator_RowChangingName="AgeHistoryRowChanging" msprop:Generator_RowDeletedName="AgeHistoryRowDeleted" msprop:Generator_RowEvHandlerName="AgeHistoryRowChangeEventHandler" msprop:Generator_TableClassName="AgeHistoryDataTable" msprop:Generator_RowChangedName="AgeHistoryRowChanged" msprop:Generator_RowClassName="AgeHistoryRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="Date" msprop:Generator_UserColumnName="Date" msprop:Generator_ColumnVarNameInTable="columnDate" msprop:Generator_ColumnPropNameInRow="Date" msprop:Generator_ColumnPropNameInTable="DateColumn" type="xs:dateTime" />
-              <xs:element name="U18" msprop:Generator_UserColumnName="U18" msprop:Generator_ColumnVarNameInTable="columnU18" msprop:Generator_ColumnPropNameInRow="U18" msprop:Generator_ColumnPropNameInTable="U18Column" type="xs:int" default="0" />
-              <xs:element name="U21" msprop:Generator_UserColumnName="U21" msprop:Generator_ColumnVarNameInTable="columnU21" msprop:Generator_ColumnPropNameInRow="U21" msprop:Generator_ColumnPropNameInTable="U21Column" type="xs:int" default="0" />
-              <xs:element name="U24" msprop:Generator_UserColumnName="U24" msprop:Generator_ColumnVarNameInTable="columnU24" msprop:Generator_ColumnPropNameInRow="U24" msprop:Generator_ColumnPropNameInTable="U24Column" type="xs:int" default="0" />
-              <xs:element name="U30" msprop:Generator_UserColumnName="U30" msprop:Generator_ColumnVarNameInTable="columnU30" msprop:Generator_ColumnPropNameInRow="U30" msprop:Generator_ColumnPropNameInTable="U30Column" type="xs:int" default="0" />
-              <xs:element name="O30" msprop:Generator_UserColumnName="O30" msprop:Generator_ColumnVarNameInTable="columnO30" msprop:Generator_ColumnPropNameInRow="O30" msprop:Generator_ColumnPropNameInTable="O30Column" type="xs:int" default="0" />
+              <xs:element name="Date" msprop:Generator_ColumnVarNameInTable="columnDate" msprop:Generator_ColumnPropNameInRow="Date" msprop:Generator_ColumnPropNameInTable="DateColumn" msprop:Generator_UserColumnName="Date" type="xs:dateTime" />
+              <xs:element name="U18" msprop:Generator_ColumnVarNameInTable="columnU18" msprop:Generator_ColumnPropNameInRow="U18" msprop:Generator_ColumnPropNameInTable="U18Column" msprop:Generator_UserColumnName="U18" type="xs:int" default="0" />
+              <xs:element name="U21" msprop:Generator_ColumnVarNameInTable="columnU21" msprop:Generator_ColumnPropNameInRow="U21" msprop:Generator_ColumnPropNameInTable="U21Column" msprop:Generator_UserColumnName="U21" type="xs:int" default="0" />
+              <xs:element name="U24" msprop:Generator_ColumnVarNameInTable="columnU24" msprop:Generator_ColumnPropNameInRow="U24" msprop:Generator_ColumnPropNameInTable="U24Column" msprop:Generator_UserColumnName="U24" type="xs:int" default="0" />
+              <xs:element name="U30" msprop:Generator_ColumnVarNameInTable="columnU30" msprop:Generator_ColumnPropNameInRow="U30" msprop:Generator_ColumnPropNameInTable="U30Column" msprop:Generator_UserColumnName="U30" type="xs:int" default="0" />
+              <xs:element name="O30" msprop:Generator_ColumnVarNameInTable="columnO30" msprop:Generator_ColumnPropNameInRow="O30" msprop:Generator_ColumnPropNameInTable="O30Column" msprop:Generator_UserColumnName="O30" type="xs:int" default="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="GrowthHistory" msprop:Generator_UserTableName="GrowthHistory" msprop:Generator_RowDeletedName="GrowthHistoryRowDeleted" msprop:Generator_RowChangedName="GrowthHistoryRowChanged" msprop:Generator_RowClassName="GrowthHistoryRow" msprop:Generator_RowChangingName="GrowthHistoryRowChanging" msprop:Generator_RowEvArgName="GrowthHistoryRowChangeEvent" msprop:Generator_RowEvHandlerName="GrowthHistoryRowChangeEventHandler" msprop:Generator_TableClassName="GrowthHistoryDataTable" msprop:Generator_TableVarName="tableGrowthHistory" msprop:Generator_RowDeletingName="GrowthHistoryRowDeleting" msprop:Generator_TablePropName="GrowthHistory">
+        <xs:element name="GrowthHistory" msprop:Generator_UserTableName="GrowthHistory" msprop:Generator_RowEvArgName="GrowthHistoryRowChangeEvent" msprop:Generator_TableVarName="tableGrowthHistory" msprop:Generator_TablePropName="GrowthHistory" msprop:Generator_RowDeletingName="GrowthHistoryRowDeleting" msprop:Generator_RowChangingName="GrowthHistoryRowChanging" msprop:Generator_RowDeletedName="GrowthHistoryRowDeleted" msprop:Generator_RowEvHandlerName="GrowthHistoryRowChangeEventHandler" msprop:Generator_TableClassName="GrowthHistoryDataTable" msprop:Generator_RowChangedName="GrowthHistoryRowChanged" msprop:Generator_RowClassName="GrowthHistoryRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="Date" msprop:Generator_UserColumnName="Date" msprop:Generator_ColumnVarNameInTable="columnDate" msprop:Generator_ColumnPropNameInRow="Date" msprop:Generator_ColumnPropNameInTable="DateColumn" type="xs:dateTime" />
-              <xs:element name="SkillCount" msprop:Generator_UserColumnName="SkillCount" msprop:Generator_ColumnPropNameInRow="SkillCount" msprop:Generator_ColumnVarNameInTable="columnSkillCount" msprop:Generator_ColumnPropNameInTable="SkillCountColumn" type="xs:decimal" minOccurs="0" />
-              <xs:element name="TotASI" msprop:Generator_UserColumnName="TotASI" msprop:Generator_ColumnVarNameInTable="columnTotASI" msprop:Generator_ColumnPropNameInRow="TotASI" msprop:Generator_ColumnPropNameInTable="TotASIColumn" type="xs:int" default="0" />
-              <xs:element name="DeltaSkillPos" msprop:Generator_UserColumnName="DeltaSkillPos" msprop:Generator_ColumnPropNameInRow="DeltaSkillPos" msprop:Generator_ColumnVarNameInTable="columnDeltaSkillPos" msprop:Generator_ColumnPropNameInTable="DeltaSkillPosColumn" type="xs:decimal" minOccurs="0" />
-              <xs:element name="DeltaSkillNeg" msdata:Caption="DeltaSkill" msprop:Generator_UserColumnName="DeltaSkillNeg" msprop:Generator_ColumnPropNameInRow="DeltaSkillNeg" msprop:Generator_ColumnVarNameInTable="columnDeltaSkillNeg" msprop:Generator_ColumnPropNameInTable="DeltaSkillNegColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Date" msprop:Generator_ColumnVarNameInTable="columnDate" msprop:Generator_ColumnPropNameInRow="Date" msprop:Generator_ColumnPropNameInTable="DateColumn" msprop:Generator_UserColumnName="Date" type="xs:dateTime" />
+              <xs:element name="SkillCount" msprop:Generator_ColumnVarNameInTable="columnSkillCount" msprop:Generator_ColumnPropNameInRow="SkillCount" msprop:Generator_ColumnPropNameInTable="SkillCountColumn" msprop:Generator_UserColumnName="SkillCount" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TotASI" msprop:Generator_ColumnVarNameInTable="columnTotASI" msprop:Generator_ColumnPropNameInRow="TotASI" msprop:Generator_ColumnPropNameInTable="TotASIColumn" msprop:Generator_UserColumnName="TotASI" type="xs:int" default="0" />
+              <xs:element name="DeltaSkillPos" msprop:Generator_ColumnVarNameInTable="columnDeltaSkillPos" msprop:Generator_ColumnPropNameInRow="DeltaSkillPos" msprop:Generator_ColumnPropNameInTable="DeltaSkillPosColumn" msprop:Generator_UserColumnName="DeltaSkillPos" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DeltaSkillNeg" msdata:Caption="DeltaSkill" msprop:Generator_ColumnVarNameInTable="columnDeltaSkillNeg" msprop:Generator_ColumnPropNameInRow="DeltaSkillNeg" msprop:Generator_ColumnPropNameInTable="DeltaSkillNegColumn" msprop:Generator_UserColumnName="DeltaSkillNeg" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Team" msprop:Generator_TableClassName="TeamDataTable" msprop:Generator_TableVarName="tableTeam" msprop:Generator_TablePropName="Team" msprop:Generator_RowDeletingName="TeamRowDeleting" msprop:Generator_RowChangingName="TeamRowChanging" msprop:Generator_RowEvHandlerName="TeamRowChangeEventHandler" msprop:Generator_RowDeletedName="TeamRowDeleted" msprop:Generator_UserTableName="Team" msprop:Generator_RowChangedName="TeamRowChanged" msprop:Generator_RowEvArgName="TeamRowChangeEvent" msprop:Generator_RowClassName="TeamRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PlayerID" msprop:Generator_ColumnVarNameInTable="columnPlayerID" msprop:Generator_ColumnPropNameInRow="PlayerID" msprop:Generator_ColumnPropNameInTable="PlayerIDColumn" msprop:Generator_UserColumnName="PlayerID" type="xs:int" />
+              <xs:element name="Age" msprop:Generator_ColumnVarNameInTable="columnAge" msprop:Generator_ColumnPropNameInRow="Age" msprop:Generator_ColumnPropNameInTable="AgeColumn" msprop:Generator_UserColumnName="Age" type="xs:int" minOccurs="0" />
+              <xs:element name="Rec" msprop:Generator_ColumnVarNameInTable="columnRec" msprop:Generator_ColumnPropNameInRow="Rec" msprop:Generator_ColumnPropNameInTable="RecColumn" msprop:Generator_UserColumnName="Rec" type="xs:int" minOccurs="0" />
+              <xs:element name="SI" msprop:Generator_ColumnVarNameInTable="columnSI" msprop:Generator_ColumnPropNameInRow="SI" msprop:Generator_ColumnPropNameInTable="SIColumn" msprop:Generator_UserColumnName="SI" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TeamHistory" msprop:Generator_TableClassName="TeamHistoryDataTable" msprop:Generator_TableVarName="tableTeamHistory" msprop:Generator_TablePropName="TeamHistory" msprop:Generator_RowDeletingName="TeamHistoryRowDeleting" msprop:Generator_RowChangingName="TeamHistoryRowChanging" msprop:Generator_RowEvHandlerName="TeamHistoryRowChangeEventHandler" msprop:Generator_RowDeletedName="TeamHistoryRowDeleted" msprop:Generator_UserTableName="TeamHistory" msprop:Generator_RowChangedName="TeamHistoryRowChanged" msprop:Generator_RowEvArgName="TeamHistoryRowChangeEvent" msprop:Generator_RowClassName="TeamHistoryRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Date" msprop:Generator_ColumnVarNameInTable="columnDate" msprop:Generator_ColumnPropNameInRow="Date" msprop:Generator_ColumnPropNameInTable="DateColumn" msprop:Generator_UserColumnName="Date" type="xs:dateTime" />
+              <xs:element name="Fans" msprop:Generator_ColumnVarNameInTable="columnFans" msprop:Generator_ColumnPropNameInRow="Fans" msprop:Generator_ColumnPropNameInTable="FansColumn" msprop:Generator_UserColumnName="Fans" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -46,6 +61,14 @@
     </xs:unique>
     <xs:unique name="GrowthHistory_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:GrowthHistory" />
+      <xs:field xpath="mstns:Date" />
+    </xs:unique>
+    <xs:unique name="Team_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Team" />
+      <xs:field xpath="mstns:PlayerID" />
+    </xs:unique>
+    <xs:unique name="TeamHistory_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:TeamHistory" />
       <xs:field xpath="mstns:Date" />
     </xs:unique>
   </xs:element>

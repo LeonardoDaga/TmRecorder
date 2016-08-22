@@ -72,7 +72,7 @@
     <PublisherName>INSYDE</PublisherName>
     <DisallowUrlActivation>true</DisallowUrlActivation>
     <ApplicationRevision>1</ApplicationRevision>
-    <ApplicationVersion>2.10.2.1</ApplicationVersion>
+    <ApplicationVersion>2.14.0.1</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -190,11 +190,10 @@
     <Compile Include="AddExtraTeam.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddExtraTeam.Designer.cs" />
-    <Compile Include="AddExtraTeam1.Designer.cs">
+    <Compile Include="AddExtraTeam.Designer.cs">
+      <DependentUpon>AddExtraTeam.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AddExtraTeam.resx</DependentUpon>
     </Compile>
     <Compile Include="BestPlayersDS.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -232,20 +231,17 @@
       <DependentUpon>Languages.resx</DependentUpon>
     </Compile>
     <Compile Include="MySettings.cs" />
-    <Compile Include="NTR_PlayerData.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="NTR_PlayerData.Designer.cs">
-      <DependentUpon>NTR_PlayerData.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PlayerForm2.cs">
+    <Compile Include="PlayerFormSL.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PlayerForm2.Designer.cs" />
-    <Compile Include="PlayerTraining.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PlayerTraining.xsd</DependentUpon>
+    <Compile Include="PlayerFormSL.Designer.cs">
+      <DependentUpon>PlayerFormSL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PlayerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PlayerForm.Designer.cs">
+      <DependentUpon>PlayerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AsyncProgressForm.cs">
       <SubType>Form</SubType>
@@ -265,24 +261,12 @@
     <Compile Include="StartInfoBox.Designer.cs">
       <DependentUpon>StartInfoBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="TeamHistory2.cs" />
+    <Compile Include="TeamHistory.cs" />
     <Compile Include="TraderEditInfo.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="TraderEditInfo.Designer.cs">
       <DependentUpon>TraderEditInfo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GKData.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="GKData.Designer.cs">
-      <DependentUpon>GKData.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GKForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GKForm.Designer.cs">
-      <DependentUpon>GKForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ISO8601Date.cs" />
     <Compile Include="MainForm.cs">
@@ -327,12 +311,6 @@
     <Compile Include="PlayerData.Designer.cs">
       <DependentUpon>PlayerData.cs</DependentUpon>
     </Compile>
-    <Compile Include="PlayerForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PlayerForm.Designer.cs">
-      <DependentUpon>PlayerForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="PlayerReview.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -363,7 +341,6 @@
     <Compile Include="StatisticsBox.Designer.cs">
       <DependentUpon>StatisticsBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="TeamHistory.cs" />
     <Compile Include="TeamStats.cs">
       <DependentUpon>TeamStats.xsd</DependentUpon>
     </Compile>
@@ -411,7 +388,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddExtraTeam.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>AddExtraTeam1.Designer.cs</LastGenOutput>
+      <LastGenOutput>AddExtraTeam.Designer.cs</LastGenOutput>
+      <DependentUpon>AddExtraTeam.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ComputeBloom.resx">
       <SubType>Designer</SubType>
@@ -423,14 +401,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LineUp.resx">
       <DependentUpon>LineUp.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GKData.resx">
-      <DependentUpon>GKData.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GKForm.resx">
-      <DependentUpon>GKForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Languages.resx">
@@ -458,10 +428,6 @@
       <SubType>Designer</SubType>
       <DependentUpon>MatchStats.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NTR_PlayerData.resx">
-      <DependentUpon>NTR_PlayerData.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="OptionsForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>OptionsForm.cs</DependentUpon>
@@ -470,11 +436,14 @@
       <SubType>Designer</SubType>
       <DependentUpon>PlayerData.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PlayerFormSL.resx">
+      <DependentUpon>PlayerFormSL.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="PlayerForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>PlayerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PlayerForm2.resx" />
     <EmbeddedResource Include="PlayerReview.resx">
       <SubType>Designer</SubType>
       <DependentUpon>PlayerReview.cs</DependentUpon>
@@ -657,17 +626,6 @@
     <Content Include="Datafiles\LedNygaardDataSet.tmgain.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="PlayerTraining.xsc">
-      <DependentUpon>PlayerTraining.xsd</DependentUpon>
-    </None>
-    <None Include="PlayerTraining.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>PlayerTraining.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="PlayerTraining.xss">
-      <DependentUpon>PlayerTraining.xsd</DependentUpon>
-    </None>
     <None Include="Resources\TMRBrowser.ico" />
     <Content Include="Datafiles\RUSCheratte.tmgain.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

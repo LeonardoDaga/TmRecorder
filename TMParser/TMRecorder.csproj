@@ -71,8 +71,8 @@
     <ProductName>TM Recorder</ProductName>
     <PublisherName>INSYDE</PublisherName>
     <DisallowUrlActivation>true</DisallowUrlActivation>
-    <ApplicationRevision>1</ApplicationRevision>
-    <ApplicationVersion>2.14.0.1</ApplicationVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>2.14.1.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -190,11 +190,8 @@
     <Compile Include="AddExtraTeam.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddExtraTeam.Designer.cs" />
-    <Compile Include="AddExtraTeam1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AddExtraTeam.resx</DependentUpon>
+    <Compile Include="AddExtraTeam.Designer.cs">
+      <DependentUpon>AddExtraTeam.cs</DependentUpon>
     </Compile>
     <Compile Include="BestPlayersDS.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -388,8 +385,7 @@
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddExtraTeam.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>AddExtraTeam1.Designer.cs</LastGenOutput>
+      <DependentUpon>AddExtraTeam.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ComputeBloom.resx">
       <SubType>Designer</SubType>

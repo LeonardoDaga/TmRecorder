@@ -68,8 +68,6 @@ namespace Common {
         
         private global::System.Data.DataRelation relationTeam_Actions;
         
-        private global::System.Data.DataRelation relationTeam_TeamData;
-        
         private global::System.Data.DataRelation relationTeam_YTeam;
         
         private global::System.Data.DataRelation relationTeam_OTeam;
@@ -77,6 +75,8 @@ namespace Common {
         private global::System.Data.DataRelation relationTeam_ReserveOf;
         
         private global::System.Data.DataRelation relationPlayer_Shortlist;
+        
+        private global::System.Data.DataRelation relationTeam_TeamData;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -525,11 +525,11 @@ namespace Common {
             this.relationMatch_YourTeamPerf = this.Relations["Match_YourTeamPerf"];
             this.relationMatch_Actions = this.Relations["Match_Actions"];
             this.relationTeam_Actions = this.Relations["Team_Actions"];
-            this.relationTeam_TeamData = this.Relations["Team_TeamData"];
             this.relationTeam_YTeam = this.Relations["Team_YTeam"];
             this.relationTeam_OTeam = this.Relations["Team_OTeam"];
             this.relationTeam_ReserveOf = this.Relations["Team_ReserveOf"];
             this.relationPlayer_Shortlist = this.Relations["Player_Shortlist"];
+            this.relationTeam_TeamData = this.Relations["Team_TeamData"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -602,10 +602,6 @@ namespace Common {
                         this.tableTeam.TeamIDColumn}, new global::System.Data.DataColumn[] {
                         this.tableActions.TeamIDColumn}, false);
             this.Relations.Add(this.relationTeam_Actions);
-            this.relationTeam_TeamData = new global::System.Data.DataRelation("Team_TeamData", new global::System.Data.DataColumn[] {
-                        this.tableTeam.TeamIDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableTeamData.TeamIDColumn}, false);
-            this.Relations.Add(this.relationTeam_TeamData);
             this.relationTeam_YTeam = new global::System.Data.DataRelation("Team_YTeam", new global::System.Data.DataColumn[] {
                         this.tableTeam.TeamIDColumn}, new global::System.Data.DataColumn[] {
                         this.tableMatch.YTeamIDColumn}, false);
@@ -622,6 +618,10 @@ namespace Common {
                         this.tablePlayer.PlayerIDColumn}, new global::System.Data.DataColumn[] {
                         this.tableShortlist.PlayerIDColumn}, false);
             this.Relations.Add(this.relationPlayer_Shortlist);
+            this.relationTeam_TeamData = new global::System.Data.DataRelation("Team_TeamData", new global::System.Data.DataColumn[] {
+                        this.tableTeam.TeamIDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableTeamData.TeamIDColumn}, false);
+            this.Relations.Add(this.relationTeam_TeamData);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4890,11 +4890,13 @@ namespace Common {
             
             private global::System.Data.DataColumn columnTeamID;
             
-            private global::System.Data.DataColumn columnWeek;
+            private global::System.Data.DataColumn columnDate;
             
             private global::System.Data.DataColumn columnNumSupporters;
             
             private global::System.Data.DataColumn columnStadiumSize;
+            
+            private global::System.Data.DataColumn columnCash;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -4939,9 +4941,9 @@ namespace Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn WeekColumn {
+            public global::System.Data.DataColumn DateColumn {
                 get {
-                    return this.columnWeek;
+                    return this.columnDate;
                 }
             }
             
@@ -4958,6 +4960,14 @@ namespace Common {
             public global::System.Data.DataColumn StadiumSizeColumn {
                 get {
                     return this.columnStadiumSize;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CashColumn {
+                get {
+                    return this.columnCash;
                 }
             }
             
@@ -4998,13 +5008,14 @@ namespace Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TeamDataRow AddTeamDataRow(TeamRow parentTeamRowByTeam_TeamData, int Week, int NumSupporters, int StadiumSize) {
+            public TeamDataRow AddTeamDataRow(TeamRow parentTeamRowByTeam_TeamData, System.DateTime Date, int NumSupporters, int StadiumSize, int Cash) {
                 TeamDataRow rowTeamDataRow = ((TeamDataRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
-                        Week,
+                        Date,
                         NumSupporters,
-                        StadiumSize};
+                        StadiumSize,
+                        Cash};
                 if ((parentTeamRowByTeam_TeamData != null)) {
                     columnValuesArray[0] = parentTeamRowByTeam_TeamData[0];
                 }
@@ -5015,10 +5026,10 @@ namespace Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TeamDataRow FindByTeamIDWeek(int TeamID, int Week) {
+            public TeamDataRow FindByTeamIDDate(int TeamID, System.DateTime Date) {
                 return ((TeamDataRow)(this.Rows.Find(new object[] {
                             TeamID,
-                            Week})));
+                            Date})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5039,9 +5050,10 @@ namespace Common {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
                 this.columnTeamID = base.Columns["TeamID"];
-                this.columnWeek = base.Columns["Week"];
+                this.columnDate = base.Columns["Date"];
                 this.columnNumSupporters = base.Columns["NumSupporters"];
                 this.columnStadiumSize = base.Columns["StadiumSize"];
+                this.columnCash = base.Columns["Cash"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5049,17 +5061,19 @@ namespace Common {
             private void InitClass() {
                 this.columnTeamID = new global::System.Data.DataColumn("TeamID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTeamID);
-                this.columnWeek = new global::System.Data.DataColumn("Week", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnWeek);
+                this.columnDate = new global::System.Data.DataColumn("Date", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDate);
                 this.columnNumSupporters = new global::System.Data.DataColumn("NumSupporters", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNumSupporters);
                 this.columnStadiumSize = new global::System.Data.DataColumn("StadiumSize", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnStadiumSize);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                this.columnCash = new global::System.Data.DataColumn("Cash", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCash);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("TeamDataKey1", new global::System.Data.DataColumn[] {
                                 this.columnTeamID,
-                                this.columnWeek}, true));
+                                this.columnDate}, true));
                 this.columnTeamID.AllowDBNull = false;
-                this.columnWeek.AllowDBNull = false;
+                this.columnDate.AllowDBNull = false;
                 this.columnNumSupporters.Caption = "StadiumSize";
             }
             
@@ -8189,17 +8203,6 @@ namespace Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TeamDataRow[] GetTeamDataRows() {
-                if ((this.Table.ChildRelations["Team_TeamData"] == null)) {
-                    return new TeamDataRow[0];
-                }
-                else {
-                    return ((TeamDataRow[])(base.GetChildRows(this.Table.ChildRelations["Team_TeamData"])));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public MatchRow[] GetMatchRowsByTeam_YTeam() {
                 if ((this.Table.ChildRelations["Team_YTeam"] == null)) {
                     return new MatchRow[0];
@@ -8228,6 +8231,17 @@ namespace Common {
                 }
                 else {
                     return ((TeamRow[])(base.GetChildRows(this.Table.ChildRelations["Team_ReserveOf"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public TeamDataRow[] GetTeamDataRows() {
+                if ((this.Table.ChildRelations["Team_TeamData"] == null)) {
+                    return new TeamDataRow[0];
+                }
+                else {
+                    return ((TeamDataRow[])(base.GetChildRows(this.Table.ChildRelations["Team_TeamData"])));
                 }
             }
         }
@@ -9561,12 +9575,12 @@ namespace Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int Week {
+            public System.DateTime Date {
                 get {
-                    return ((int)(this[this.tableTeamData.WeekColumn]));
+                    return ((global::System.DateTime)(this[this.tableTeamData.DateColumn]));
                 }
                 set {
-                    this[this.tableTeamData.WeekColumn] = value;
+                    this[this.tableTeamData.DateColumn] = value;
                 }
             }
             
@@ -9604,6 +9618,22 @@ namespace Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int Cash {
+                get {
+                    try {
+                        return ((int)(this[this.tableTeamData.CashColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Cash\' in table \'TeamData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTeamData.CashColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public TeamRow TeamRow {
                 get {
                     return ((TeamRow)(this.GetParentRow(this.Table.ParentRelations["Team_TeamData"])));
@@ -9635,6 +9665,18 @@ namespace Common {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetStadiumSizeNull() {
                 this[this.tableTeamData.StadiumSizeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCashNull() {
+                return this.IsNull(this.tableTeamData.CashColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCashNull() {
+                this[this.tableTeamData.CashColumn] = global::System.Convert.DBNull;
             }
         }
         

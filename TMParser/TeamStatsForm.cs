@@ -320,7 +320,6 @@ namespace TMRecorder
             FillAgeStatsGraph(teamStats);
             FillTotASIGraph(teamStats);
             FillSkillCountGraph(teamStats);
-            FillSkillGrowth(teamStats);
         }
 
         private void FillTotASIGraph(TeamStats teamStats)
@@ -365,7 +364,7 @@ namespace TMRecorder
             // Generate a red curve with legend
             LineItem myCurve = pane.AddCurve("Total ASI", xdate, totASI, Color.Blue);
             // Make the symbols opaque by filling them with white
-            myCurve.Symbol.IsVisible = false;
+            myCurve.Symbol.IsVisible = true;
 
             // Manually set the x axis range
             pane.YAxis.Scale.Min = dMin - 5;
@@ -419,8 +418,7 @@ namespace TMRecorder
             // Generate a red curve with legend
             LineItem myCurve = pane.AddCurve("Total Skill", xdate, val, Color.Blue);
             // Make the symbols opaque by filling them with white
-            myCurve.Symbol.IsVisible = false;
-
+            myCurve.Symbol.IsVisible = true;
             // Manually set the x axis range
             pane.YAxis.Scale.Min = dMin - 5;
             pane.YAxis.Scale.Max = dMax + 5;
@@ -482,21 +480,22 @@ namespace TMRecorder
                 xdate[i] = new XDate(row.Date);
                 ddate[i] = (double)xdate[i];
 
-                if (i != 0)
-                {
-                    double nDays = ddate[i] - ddate[i - 1];
+                //if (i != 0)
+                //{
+                //    double nDays = ddate[i] - ddate[i - 1];
 
-                    if (nDays > 7.0)
-                    {
-                        int daysToTuesdayP = xdate[i - 1].DateTime.DayOfWeek - DayOfWeek.Tuesday;
-                        int daysToTuesdayN = xdate[i].DateTime.DayOfWeek - DayOfWeek.Tuesday;
-                        if (daysToTuesdayP < 0) daysToTuesdayP = 7 + daysToTuesdayP;
-                        if (daysToTuesdayN < 0) daysToTuesdayN = 7 + daysToTuesdayN;
-                        int nWeek = ((int)nDays - daysToTuesdayN + daysToTuesdayP) / 7;
-                        valP[i] = valP[i] / nWeek;
-                        valN[i] = valN[i] / nWeek;
-                    }
-                }
+                //    if (nDays > 7.0)
+                //    {
+                //        int daysToTuesdayP = xdate[i - 1].DateTime.DayOfWeek - DayOfWeek.Tuesday;
+                //        int daysToTuesdayN = xdate[i].DateTime.DayOfWeek - DayOfWeek.Tuesday;
+                //        if (daysToTuesdayP < 0) daysToTuesdayP = 7 + daysToTuesdayP;
+                //        if (daysToTuesdayN < 0) daysToTuesdayN = 7 + daysToTuesdayN;
+                //        int nWeek = ((int)nDays - daysToTuesdayN + daysToTuesdayP) / 7;
+                //        if (nWeek == 0) nWeek = 1;
+                //        valP[i] = valP[i] / nWeek;
+                //        valN[i] = valN[i] / nWeek;
+                //    }
+                //}
 
                 dMax = Math.Max(dMax, valP[i]);
                 dMin = Math.Min(dMin, valN[i]);
@@ -510,12 +509,12 @@ namespace TMRecorder
             // Generate a red curve with legend
             LineItem myCurve = pane.AddCurve("Delta Skill (pos)", ddate, valP, Color.Blue);
             // Make the symbols opaque by filling them with white
-            myCurve.Symbol.IsVisible = false;
+            myCurve.Symbol.IsVisible = true;
 
             // Generate a red curve with legend
             myCurve = pane.AddCurve("Delta Skill (neg)", ddate, valN, Color.Red);
             // Make the symbols opaque by filling them with white
-            myCurve.Symbol.IsVisible = false;
+            myCurve.Symbol.IsVisible = true;
 
             // Manually set the x axis range
             pane.YAxis.Scale.Min = dMin - 5;
@@ -577,27 +576,27 @@ namespace TMRecorder
             LineItem myCurve = pane.AddCurve("Under 18", xdate, u18, Color.Green);
             // Make the symbols opaque by filling them with white
             // myCurve.Line.Fill = new Fill(Color.Green);
-            myCurve.Symbol.IsVisible = false;
+            myCurve.Symbol.IsVisible = true;
 
             // Generate a red curve with legend
             myCurve = pane.AddCurve("Under 21", xdate, u21, Color.Yellow);
             // myCurve.Line.Fill = new Fill(Color.Yellow);
-            myCurve.Symbol.IsVisible = false;
+            myCurve.Symbol.IsVisible = true;
 
             // Generate a red curve with legend
             myCurve = pane.AddCurve("Under 24", xdate, u24, Color.Orange);
             // myCurve.Line.Fill = new Fill(Color.Orange);
-            myCurve.Symbol.IsVisible = false;
+            myCurve.Symbol.IsVisible = true;
 
             // Generate a red curve with legend
             myCurve = pane.AddCurve("Under 30", xdate, u30, Color.Red);
             // myCurve.Line.Fill = new Fill(Color.Red);
-            myCurve.Symbol.IsVisible = false;
+            myCurve.Symbol.IsVisible = true;
 
             // Generate a red curve with legend
             myCurve = pane.AddCurve("Over 30", xdate, o30, Color.Violet);
             // myCurve.Line.Fill = new Fill(Color.Violet);
-            myCurve.Symbol.IsVisible = false;
+            myCurve.Symbol.IsVisible = true;
 
             // Manually set the x axis range
             pane.YAxis.Scale.Min = dMin;
@@ -607,6 +606,37 @@ namespace TMRecorder
 
             pane.YAxis.Scale.MinorStep = 1;
             pane.YAxis.Scale.MajorStep = 5;
+        }
+
+        internal void FillTrainingHistory(ListTrainingDataSet2 trainingHist)
+        {
+            TeamStats teamStats = new TeamStats();
+
+            foreach(var training in trainingHist)
+            {
+                float deltaSkillPos = 0;
+                float deltaSkillNeg = 0;
+
+                foreach (var player in training.Giocatori)
+                {
+                    deltaSkillPos += player.DeltaSkillPos();
+                    deltaSkillNeg += player.DeltaSkillNeg();
+                }
+
+                foreach (var player in training.Portieri)
+                {
+                    deltaSkillPos += player.DeltaSkillPos();
+                    deltaSkillNeg += player.DeltaSkillNeg();
+                }
+
+                var growthRow = teamStats.GrowthHistory.NewGrowthHistoryRow();
+                growthRow.Date = training.Date;
+                growthRow.DeltaSkillPos = (decimal)deltaSkillPos;
+                growthRow.DeltaSkillNeg = (decimal)deltaSkillNeg;
+                teamStats.GrowthHistory.AddGrowthHistoryRow(growthRow);
+            }
+
+            FillSkillGrowth(teamStats);
         }
     }
 }

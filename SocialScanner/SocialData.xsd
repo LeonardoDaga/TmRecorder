@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="SocialData" targetNamespace="http://tempuri.org/SocialData.xsd" xmlns:mstns="http://tempuri.org/SocialData.xsd" xmlns="http://tempuri.org/SocialData.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="SocialData" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="SocialData" msprop:Generator_UserDSName="SocialData">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Facebook" msprop:Generator_TableClassName="FacebookDataTable" msprop:Generator_TableVarName="tableFacebook" msprop:Generator_TablePropName="Facebook" msprop:Generator_RowDeletingName="FacebookRowDeleting" msprop:Generator_RowChangingName="FacebookRowChanging" msprop:Generator_RowEvHandlerName="FacebookRowChangeEventHandler" msprop:Generator_RowDeletedName="FacebookRowDeleted" msprop:Generator_UserTableName="Facebook" msprop:Generator_RowChangedName="FacebookRowChanged" msprop:Generator_RowEvArgName="FacebookRowChangeEvent" msprop:Generator_RowClassName="FacebookRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Week" msprop:Generator_ColumnVarNameInTable="columnWeek" msprop:Generator_ColumnPropNameInRow="Week" msprop:Generator_ColumnPropNameInTable="WeekColumn" msprop:Generator_UserColumnName="Week" type="xs:int" />
+              <xs:element name="CorporateID" msprop:Generator_ColumnVarNameInTable="columnCorporateID" msprop:Generator_ColumnPropNameInRow="CorporateID" msprop:Generator_ColumnPropNameInTable="CorporateIDColumn" msprop:Generator_UserColumnName="CorporateID" type="xs:int" />
+              <xs:element name="Likes" msprop:Generator_ColumnVarNameInTable="columnLikes" msprop:Generator_ColumnPropNameInRow="Likes" msprop:Generator_ColumnPropNameInTable="LikesColumn" msprop:Generator_UserColumnName="Likes" type="xs:int" minOccurs="0" />
+              <xs:element name="Talking" msprop:Generator_ColumnVarNameInTable="columnTalking" msprop:Generator_ColumnPropNameInRow="Talking" msprop:Generator_ColumnPropNameInTable="TalkingColumn" msprop:Generator_UserColumnName="Talking" type="xs:int" minOccurs="0" />
+              <xs:element name="Last14DaysLikes" msprop:Generator_ColumnVarNameInTable="columnLast14DaysLikes" msprop:Generator_ColumnPropNameInRow="Last14DaysLikes" msprop:Generator_ColumnPropNameInTable="Last14DaysLikesColumn" msprop:Generator_UserColumnName="Last14DaysLikes" type="xs:string" minOccurs="0" />
+              <xs:element name="BeenHere" msprop:Generator_ColumnVarNameInTable="columnBeenHere" msprop:Generator_ColumnPropNameInRow="BeenHere" msprop:Generator_ColumnPropNameInTable="BeenHereColumn" msprop:Generator_UserColumnName="BeenHere" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Corporate" msprop:Generator_TableClassName="CorporateDataTable" msprop:Generator_TableVarName="tableCorporate" msprop:Generator_TablePropName="Corporate" msprop:Generator_RowDeletingName="CorporateRowDeleting" msprop:Generator_RowChangingName="CorporateRowChanging" msprop:Generator_RowEvHandlerName="CorporateRowChangeEventHandler" msprop:Generator_RowDeletedName="CorporateRowDeleted" msprop:Generator_UserTableName="Corporate" msprop:Generator_RowChangedName="CorporateRowChanged" msprop:Generator_RowEvArgName="CorporateRowChangeEvent" msprop:Generator_RowClassName="CorporateRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CorporateID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnCorporateID" msprop:Generator_ColumnPropNameInRow="CorporateID" msprop:Generator_ColumnPropNameInTable="CorporateIDColumn" msprop:Generator_UserColumnName="CorporateID" type="xs:int" />
+              <xs:element name="FbOfficialWebSite" msprop:Generator_ColumnVarNameInTable="columnFbOfficialWebSite" msprop:Generator_ColumnPropNameInRow="FbOfficialWebSite" msprop:Generator_ColumnPropNameInTable="FbOfficialWebSiteColumn" msprop:Generator_UserColumnName="FbOfficialWebSite" type="xs:string" minOccurs="0" />
+              <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" type="xs:string" minOccurs="0" />
+              <xs:element name="TwOfficialWebSite" msprop:Generator_ColumnVarNameInTable="columnTwOfficialWebSite" msprop:Generator_ColumnPropNameInRow="TwOfficialWebSite" msprop:Generator_ColumnPropNameInTable="TwOfficialWebSiteColumn" msprop:Generator_UserColumnName="TwOfficialWebSite" type="xs:string" minOccurs="0" />
+              <xs:element name="IgOfficialWebSite" msprop:Generator_ColumnVarNameInTable="columnIgOfficialWebSite" msprop:Generator_ColumnPropNameInRow="IgOfficialWebSite" msprop:Generator_ColumnPropNameInTable="IgOfficialWebSiteColumn" msprop:Generator_UserColumnName="IgOfficialWebSite" type="xs:string" minOccurs="0" />
+              <xs:element name="Nation" msprop:Generator_ColumnVarNameInTable="columnNation" msprop:Generator_ColumnPropNameInRow="Nation" msprop:Generator_ColumnPropNameInTable="NationColumn" msprop:Generator_UserColumnName="Nation" type="xs:string" minOccurs="0" />
+              <xs:element name="GgOfficialWebSite" msprop:Generator_ColumnVarNameInTable="columnGgOfficialWebSite" msprop:Generator_ColumnPropNameInRow="GgOfficialWebSite" msprop:Generator_ColumnPropNameInTable="GgOfficialWebSiteColumn" msprop:Generator_UserColumnName="GgOfficialWebSite" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Twitter" msprop:Generator_TableClassName="TwitterDataTable" msprop:Generator_TableVarName="tableTwitter" msprop:Generator_TablePropName="Twitter" msprop:Generator_RowDeletingName="TwitterRowDeleting" msprop:Generator_RowChangingName="TwitterRowChanging" msprop:Generator_RowEvHandlerName="TwitterRowChangeEventHandler" msprop:Generator_RowDeletedName="TwitterRowDeleted" msprop:Generator_UserTableName="Twitter" msprop:Generator_RowChangedName="TwitterRowChanged" msprop:Generator_RowEvArgName="TwitterRowChangeEvent" msprop:Generator_RowClassName="TwitterRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Week" msprop:Generator_ColumnVarNameInTable="columnWeek" msprop:Generator_ColumnPropNameInRow="Week" msprop:Generator_ColumnPropNameInTable="WeekColumn" msprop:Generator_UserColumnName="Week" type="xs:int" />
+              <xs:element name="CorporateID" msprop:Generator_ColumnVarNameInTable="columnCorporateID" msprop:Generator_ColumnPropNameInRow="CorporateID" msprop:Generator_ColumnPropNameInTable="CorporateIDColumn" msprop:Generator_UserColumnName="CorporateID" type="xs:int" />
+              <xs:element name="Tweets" msdata:Caption="FbLikes" msprop:Generator_ColumnVarNameInTable="columnTweets" msprop:Generator_ColumnPropNameInRow="Tweets" msprop:Generator_ColumnPropNameInTable="TweetsColumn" msprop:Generator_UserColumnName="Tweets" type="xs:int" minOccurs="0" />
+              <xs:element name="Followers" msprop:Generator_ColumnVarNameInTable="columnFollowers" msprop:Generator_ColumnPropNameInRow="Followers" msprop:Generator_ColumnPropNameInTable="FollowersColumn" msprop:Generator_UserColumnName="Followers" type="xs:int" minOccurs="0" />
+              <xs:element name="Following" msdata:Caption="FbTalikng" msprop:Generator_ColumnVarNameInTable="columnFollowing" msprop:Generator_ColumnPropNameInRow="Following" msprop:Generator_ColumnPropNameInTable="FollowingColumn" msprop:Generator_UserColumnName="Following" type="xs:int" minOccurs="0" />
+              <xs:element name="Likes" msprop:Generator_ColumnVarNameInTable="columnLikes" msprop:Generator_ColumnPropNameInRow="Likes" msprop:Generator_ColumnPropNameInTable="LikesColumn" msprop:Generator_UserColumnName="Likes" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Instagram" msprop:Generator_TableClassName="InstagramDataTable" msprop:Generator_TableVarName="tableInstagram" msprop:Generator_TablePropName="Instagram" msprop:Generator_RowDeletingName="InstagramRowDeleting" msprop:Generator_RowChangingName="InstagramRowChanging" msprop:Generator_RowEvHandlerName="InstagramRowChangeEventHandler" msprop:Generator_RowDeletedName="InstagramRowDeleted" msprop:Generator_UserTableName="Instagram" msprop:Generator_RowChangedName="InstagramRowChanged" msprop:Generator_RowEvArgName="InstagramRowChangeEvent" msprop:Generator_RowClassName="InstagramRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Week" msprop:Generator_ColumnVarNameInTable="columnWeek" msprop:Generator_ColumnPropNameInRow="Week" msprop:Generator_ColumnPropNameInTable="WeekColumn" msprop:Generator_UserColumnName="Week" type="xs:int" />
+              <xs:element name="CorporateID" msprop:Generator_ColumnVarNameInTable="columnCorporateID" msprop:Generator_ColumnPropNameInRow="CorporateID" msprop:Generator_ColumnPropNameInTable="CorporateIDColumn" msprop:Generator_UserColumnName="CorporateID" type="xs:int" />
+              <xs:element name="Post" msdata:Caption="FbLikes" msprop:Generator_ColumnVarNameInTable="columnPost" msprop:Generator_ColumnPropNameInRow="Post" msprop:Generator_ColumnPropNameInTable="PostColumn" msprop:Generator_UserColumnName="Post" type="xs:int" minOccurs="0" />
+              <xs:element name="Followers" msprop:Generator_ColumnVarNameInTable="columnFollowers" msprop:Generator_ColumnPropNameInRow="Followers" msprop:Generator_ColumnPropNameInTable="FollowersColumn" msprop:Generator_UserColumnName="Followers" type="xs:int" minOccurs="0" />
+              <xs:element name="Following" msdata:Caption="FbTalikng" msprop:Generator_ColumnVarNameInTable="columnFollowing" msprop:Generator_ColumnPropNameInRow="Following" msprop:Generator_ColumnPropNameInTable="FollowingColumn" msprop:Generator_UserColumnName="Following" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="GooglePlus" msprop:Generator_TableClassName="GooglePlusDataTable" msprop:Generator_TableVarName="tableGooglePlus" msprop:Generator_TablePropName="GooglePlus" msprop:Generator_RowDeletingName="GooglePlusRowDeleting" msprop:Generator_RowChangingName="GooglePlusRowChanging" msprop:Generator_RowEvHandlerName="GooglePlusRowChangeEventHandler" msprop:Generator_RowDeletedName="GooglePlusRowDeleted" msprop:Generator_UserTableName="GooglePlus" msprop:Generator_RowChangedName="GooglePlusRowChanged" msprop:Generator_RowEvArgName="GooglePlusRowChangeEvent" msprop:Generator_RowClassName="GooglePlusRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Week" msprop:Generator_ColumnVarNameInTable="columnWeek" msprop:Generator_ColumnPropNameInRow="Week" msprop:Generator_ColumnPropNameInTable="WeekColumn" msprop:Generator_UserColumnName="Week" type="xs:int" />
+              <xs:element name="CorporateID" msprop:Generator_ColumnVarNameInTable="columnCorporateID" msprop:Generator_ColumnPropNameInRow="CorporateID" msprop:Generator_ColumnPropNameInTable="CorporateIDColumn" msprop:Generator_UserColumnName="CorporateID" type="xs:int" />
+              <xs:element name="Followers" msprop:Generator_ColumnVarNameInTable="columnFollowers" msprop:Generator_ColumnPropNameInRow="Followers" msprop:Generator_ColumnPropNameInTable="FollowersColumn" msprop:Generator_UserColumnName="Followers" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Facebook" />
+      <xs:field xpath="mstns:Week" />
+      <xs:field xpath="mstns:CorporateID" />
+    </xs:unique>
+    <xs:unique name="Corporate_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Corporate" />
+      <xs:field xpath="mstns:CorporateID" />
+    </xs:unique>
+    <xs:unique name="Twitter_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Twitter" />
+      <xs:field xpath="mstns:Week" />
+      <xs:field xpath="mstns:CorporateID" />
+    </xs:unique>
+    <xs:unique name="Instagram_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Instagram" />
+      <xs:field xpath="mstns:Week" />
+      <xs:field xpath="mstns:CorporateID" />
+    </xs:unique>
+    <xs:unique name="GooglePlus_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:GooglePlus" />
+      <xs:field xpath="mstns:Week" />
+      <xs:field xpath="mstns:CorporateID" />
+    </xs:unique>
+  </xs:element>
+  <xs:annotation>
+    <xs:appinfo>
+      <msdata:Relationship name="Corporate_Facebook" msdata:parent="Corporate" msdata:child="Facebook" msdata:parentkey="CorporateID" msdata:childkey="CorporateID" msprop:Generator_UserChildTable="Facebook" msprop:Generator_ChildPropName="GetFacebookRows" msprop:Generator_UserRelationName="Corporate_Facebook" msprop:Generator_ParentPropName="CorporateRow" msprop:Generator_RelationVarName="relationCorporate_Facebook" msprop:Generator_UserParentTable="Corporate" />
+      <msdata:Relationship name="Corporate_Twitter" msdata:parent="Corporate" msdata:child="Twitter" msdata:parentkey="CorporateID" msdata:childkey="CorporateID" msprop:Generator_UserChildTable="Twitter" msprop:Generator_ChildPropName="GetTwitterRows" msprop:Generator_UserRelationName="Corporate_Twitter" msprop:Generator_RelationVarName="relationCorporate_Twitter" msprop:Generator_UserParentTable="Corporate" msprop:Generator_ParentPropName="CorporateRow" />
+      <msdata:Relationship name="Corporate_Instagram" msdata:parent="Corporate" msdata:child="Instagram" msdata:parentkey="CorporateID" msdata:childkey="CorporateID" msprop:Generator_UserChildTable="Instagram" msprop:Generator_ChildPropName="GetInstagramRows" msprop:Generator_UserRelationName="Corporate_Instagram" msprop:Generator_RelationVarName="relationCorporate_Instagram" msprop:Generator_UserParentTable="Corporate" msprop:Generator_ParentPropName="CorporateRow" />
+      <msdata:Relationship name="Corporate_GooglePlus" msdata:parent="Corporate" msdata:child="GooglePlus" msdata:parentkey="CorporateID" msdata:childkey="CorporateID" msprop:Generator_UserChildTable="GooglePlus" msprop:Generator_ChildPropName="GetGooglePlusRows" msprop:Generator_UserRelationName="Corporate_GooglePlus" msprop:Generator_ParentPropName="CorporateRow" msprop:Generator_RelationVarName="relationCorporate_GooglePlus" msprop:Generator_UserParentTable="Corporate" />
+    </xs:appinfo>
+  </xs:annotation>
+</xs:schema>

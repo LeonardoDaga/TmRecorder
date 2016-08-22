@@ -6,13 +6,22 @@ using Common;
 using System.IO;
 using System.Collections.Generic;
 using mshtml;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 namespace NTR_WebBrowser
 {
     public delegate void ImportedContentHandler(string content, string address);
+    public delegate void NavigationCompleteHandler();
 
     public partial class NTR_Browser : UserControl
     {
+        [DllImport("KERNEL32.DLL", EntryPoint = "SetProcessWorkingSetSize", SetLastError = true, CallingConvention = CallingConvention.StdCall)]
+        internal static extern bool SetProcessWorkingSetSize(IntPtr pProcess, int dwMinimumWorkingSetSize, int dwMaximumWorkingSetSize);
+
+        [DllImport("KERNEL32.DLL", EntryPoint = "GetCurrentProcess", SetLastError = true, CallingConvention = CallingConvention.StdCall)]
+        internal static extern IntPtr GetCurrentProcess();
+
         public enum eNavigationMode
         {
             Main,
@@ -118,33 +127,49 @@ namespace NTR_WebBrowser
 
         public int ActualPlayerID { get; private set; }
         public ReportParser SelectedReportParser { get; set; }
+        public int MainTeamId { get; set; }
 
         private WebBrowser webBrowser;
 
         public event ImportedContentHandler ImportedContent;
+        public event NavigationCompleteHandler NavigationComplete;
 
         public NTR_Browser()
         {
             InitializeComponent();
 
             if (!IsInDesignMode())
-            {
-                webBrowser = new WebBrowser();
-                webBrowser.Location = new System.Drawing.Point(3, 54);
-                webBrowser.Width = this.Width - 6;
-                webBrowser.Height = this.Height - 44;
-                webBrowser.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                    | System.Windows.Forms.AnchorStyles.Left)
-                    | System.Windows.Forms.AnchorStyles.Right)));
-                this.webBrowser.Name = "webBrowser";
-                this.webBrowser.DocumentCompleted += webBrowser_DocumentCompleted;
-                this.webBrowser.ProgressChanged += webBrowser_ProgressChanged;
-                this.webBrowser.Navigating += WebBrowser_Navigating;
-                this.webBrowser.Visible = true;
-                this.webBrowser.ScriptErrorsSuppressed = true;
-                this.Controls.Add(webBrowser);
-            }
+                CreateAndAttachBrowser();
         }
+
+        private void CreateAndAttachBrowser()
+        {
+            if (webBrowser != null)
+            {
+                GC.Collect();
+
+                webBrowser.Dispose();
+
+                webBrowser = null;
+            }
+
+            webBrowser = new WebBrowser();
+            webBrowser.Location = new System.Drawing.Point(3, 54);
+            webBrowser.Width = this.Width - 6;
+            webBrowser.Height = this.Height - 44;
+            webBrowser.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
+                | System.Windows.Forms.AnchorStyles.Right)));
+            this.webBrowser.Name = "webBrowser";
+            this.webBrowser.DocumentCompleted += webBrowser_DocumentCompleted;
+            this.webBrowser.ProgressChanged += webBrowser_ProgressChanged;
+            this.webBrowser.Navigating += WebBrowser_Navigating;
+            //this.webBrowser.Lo += WebBrowser_Navigating;
+            this.webBrowser.Visible = true;
+            this.webBrowser.ScriptErrorsSuppressed = true;
+            this.Controls.Add(webBrowser);
+        }
+
 
         public static bool IsInDesignMode()
         {
@@ -161,11 +186,28 @@ namespace NTR_WebBrowser
         }
 
         #region Navigation
-        public void Goto(string address)
+        public bool Goto(string address)
         {
+            if (webBrowser.IsBusy)
+            {
+                webBrowser.Stop();
+                return false;
+            }
+
             NavigationAddress = address;
-            webBrowser.Navigate(NavigationAddress);
-            StartnavigationAddress = NavigationAddress;
+            Debug.WriteLine(string.Format("Navigating to :{0}", NavigationAddress));
+            try
+            {
+                webBrowser.Navigate(NavigationAddress);
+                StartnavigationAddress = NavigationAddress;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                webBrowser.Stop();
+                Debug.WriteLine(string.Format("Navigation failed with exception {0}", ex.Message));
+                return false;
+            }
         }
 
         public bool CheckXulInitialization()
@@ -234,15 +276,19 @@ namespace NTR_WebBrowser
 
         private void gotoAdobeFlashplayerPageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Goto(TM_Pages.AdobeFlashplayer);
+            Goto("http://www.instagram.com");
         }
 
         private void tsbImport_Click(object sender, EventArgs e)
         {
+            Import();
+        }
+
+        private void Import()
+        {
             string importedPage = GetHiddenBrowserContent();
 
-            if (ImportedContent != null)
-                ImportedContent(importedPage, NavigationAddress);
+            ImportedContent?.Invoke(importedPage, NavigationAddress);
         }
 
         private void tsbUpdate_Click(object sender, EventArgs e)
@@ -251,7 +297,7 @@ namespace NTR_WebBrowser
         }
 
         #region Getting Browser Content functions
-        private string GetHiddenBrowserContent()
+        public string GetHiddenBrowserContent()
         {
             string doctext;
 
@@ -266,6 +312,10 @@ namespace NTR_WebBrowser
 
                     doctext += "\n";
                 }
+            }
+            else if (StartnavigationAddress.Contains("/club/"))
+            {
+                doctext = ImportClubDocumentContent();
             }
             else if ((StartnavigationAddress.Contains(TM_Pages.Players)) && (ActualPlayerID > 0))
             {
@@ -364,6 +414,38 @@ namespace NTR_WebBrowser
             }
 
             return doctext;
+        }
+
+        private string ImportClubDocumentContent()
+        {
+            return ParseClubPage(webBrowser.Document);
+        }
+
+        private string ParseClubPage(HtmlDocument htmlDocument)
+        {
+            HtmlElement hidden = htmlDocument.GetElementById("club_info");
+            if (hidden == null) return "";
+            var textItems = hidden.OuterText.Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+
+            string result = "";
+
+            // Getting clubId
+            result += ";ClubId=" + HTML_Parser.GetFirstNumberInString(textItems[1]);
+            result += ";Fans=" + HTML_Parser.GetFirstNumberInString(textItems[9].Replace(",", "").Replace(".", ""));
+            if (textItems.Length >= 12)
+                result += ";BTeamClubId=" + HTML_Parser.GetFirstNumberInString(textItems[12]);
+
+            result += ";Cash=" + HTML_Parser.GetNumberAfter(webBrowser.DocumentText, "SESSION[\"cash\"] = ");
+
+            return result;
+        }
+
+        public void ReleaseResources()
+        {
+            IntPtr pHandle = GetCurrentProcess();
+            SetProcessWorkingSetSize(pHandle, -1, -1);
+
+            CreateAndAttachBrowser();
         }
 
         private string Import_Player_Document_Content()
@@ -475,23 +557,32 @@ namespace NTR_WebBrowser
                     }
                     else if (htmlElement.InnerHtml.Contains("skill_table") && (htmlElement.TagName == "DIV"))
                     {
-                        string text = htmlElement.InnerText.Replace("\r\n", ",").Trim(',');
-                        text = text.Replace(",,", ",");
-                        string[] strArray = text.Split(',');
-                        result += ";Str=" + strArray[1];
-                        result += ";Pas=" + strArray[3];
-                        result += ";Sta=" + strArray[5];
-                        result += ";Cro=" + strArray[7];
-                        result += ";Vel=" + strArray[9];
-                        result += ";Tec=" + strArray[11];
-                        result += ";Mar=" + strArray[13];
-                        result += ";Hea=" + strArray[15];
-                        result += ";Tak=" + strArray[17];
-                        result += ";Fin=" + strArray[19];
-                        result += ";Wor=" + strArray[21];
-                        result += ";Lon=" + strArray[23];
-                        result += ";Pos=" + strArray[25];
-                        result += ";Set=" + strArray[27];
+                        List<string> tdTags = HTML_Parser.GetTags(htmlElement.InnerHtml, "td");
+                        for (int ix=0; ix<tdTags.Count; ix++)
+                        {
+                            if (tdTags[ix].Contains("star_silver"))
+                                tdTags[ix] = "19";
+                            else if (tdTags[ix].Contains("star.png"))
+                                tdTags[ix] = "20";
+                            else if (tdTags[ix].Contains("span"))
+                                tdTags[ix] = HTML_Parser.CleanTags(tdTags[ix]);
+                        }
+
+                        string[] strArray = tdTags.ToArray();
+                        result += ";Str=" + strArray[0];
+                        result += ";Pas=" + strArray[1];
+                        result += ";Sta=" + strArray[2];
+                        result += ";Cro=" + strArray[3];
+                        result += ";Vel=" + strArray[4];
+                        result += ";Tec=" + strArray[5];
+                        result += ";Mar=" + strArray[6];
+                        result += ";Hea=" + strArray[7];
+                        result += ";Tak=" + strArray[8];
+                        result += ";Fin=" + strArray[9];
+                        result += ";Wor=" + strArray[10];
+                        result += ";Lon=" + strArray[11];
+                        result += ";Pos=" + strArray[12];
+                        result += ";Set=" + strArray[13];
                     }
                 }
             }
@@ -1068,6 +1159,19 @@ namespace NTR_WebBrowser
             {
                 tsbPlayersNavigationType.Visible = false;
             }
+
+            CheckMainId(webBrowser.DocumentText);
+        }
+
+        private void CheckMainId(string documentText)
+        {
+            if (!StartnavigationAddress.Contains(TM_Pages.Home))
+                return;
+
+            string main_id = HTML_Parser.GetNumberAfter(documentText, "SESSION[\"id\"] = ");
+
+            if (main_id != MainTeamId.ToString())
+                SwitchToMainTeam();
         }
 
         private void WebBrowser_Navigating(object sender, WebBrowserNavigatingEventArgs e)
@@ -1147,6 +1251,26 @@ namespace NTR_WebBrowser
 
         public void ChangeTeam_Adv(string id)
         {
+            try
+            {
+                string function =
+                    "function club_int_change(){$.post(\"/ajax/club_change.ajax.php\", {\"change\": " +
+                    "\"club\",\"club_id\": " + id + "}, function(data) { if (data != null) { if (data[\"success\"])" +
+                    " page_refresh(); } }, \"json\");}";
+
+                AppendScriptAndExecute(function,
+                                       "club_int_change");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void SwitchToMainTeam()
+        {
+            string id = MainTeamId.ToString();
+
             try
             {
                 string function =

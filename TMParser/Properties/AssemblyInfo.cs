@@ -11,7 +11,7 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("INSYDE")]
 [assembly: AssemblyProduct("TM Recorder")]
-[assembly: AssemblyCopyright("Led Lennon Copyright ©  2007-2015")]
+[assembly: AssemblyCopyright("Led Lennon Copyright ©  2007-2016")]
 [assembly: AssemblyTrademark("Leonardo Daga")]
 [assembly: AssemblyCulture("")]
 
@@ -30,7 +30,7 @@ using System.Runtime.CompilerServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("2.14.1.0")]
-[assembly: AssemblyFileVersion("2.14.1.0")]
+[assembly: AssemblyVersion("2.14.2.6")]
+[assembly: AssemblyFileVersion("2.14.2.6")]
 [assembly: NeutralResourcesLanguage("en")]
 

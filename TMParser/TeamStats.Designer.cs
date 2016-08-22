@@ -1343,6 +1343,8 @@ namespace TMRecorder {
             
             private global::System.Data.DataColumn columnFans;
             
+            private global::System.Data.DataColumn columnCash;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public TeamHistoryDataTable() {
@@ -1394,6 +1396,14 @@ namespace TMRecorder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CashColumn {
+                get {
+                    return this.columnCash;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1429,11 +1439,12 @@ namespace TMRecorder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TeamHistoryRow AddTeamHistoryRow(System.DateTime Date, string Fans) {
+            public TeamHistoryRow AddTeamHistoryRow(System.DateTime Date, int Fans, int Cash) {
                 TeamHistoryRow rowTeamHistoryRow = ((TeamHistoryRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Date,
-                        Fans};
+                        Fans,
+                        Cash};
                 rowTeamHistoryRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTeamHistoryRow);
                 return rowTeamHistoryRow;
@@ -1465,6 +1476,7 @@ namespace TMRecorder {
             internal void InitVars() {
                 this.columnDate = base.Columns["Date"];
                 this.columnFans = base.Columns["Fans"];
+                this.columnCash = base.Columns["Cash"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1472,8 +1484,10 @@ namespace TMRecorder {
             private void InitClass() {
                 this.columnDate = new global::System.Data.DataColumn("Date", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDate);
-                this.columnFans = new global::System.Data.DataColumn("Fans", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnFans = new global::System.Data.DataColumn("Fans", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFans);
+                this.columnCash = new global::System.Data.DataColumn("Cash", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCash);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnDate}, true));
                 this.columnDate.AllowDBNull = false;
@@ -1943,10 +1957,10 @@ namespace TMRecorder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Fans {
+            public int Fans {
                 get {
                     try {
-                        return ((string)(this[this.tableTeamHistory.FansColumn]));
+                        return ((int)(this[this.tableTeamHistory.FansColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'Fans\' in table \'TeamHistory\' is DBNull.", e);
@@ -1954,6 +1968,22 @@ namespace TMRecorder {
                 }
                 set {
                     this[this.tableTeamHistory.FansColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int Cash {
+                get {
+                    try {
+                        return ((int)(this[this.tableTeamHistory.CashColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Cash\' in table \'TeamHistory\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTeamHistory.CashColumn] = value;
                 }
             }
             
@@ -1967,6 +1997,18 @@ namespace TMRecorder {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetFansNull() {
                 this[this.tableTeamHistory.FansColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCashNull() {
+                return this.IsNull(this.tableTeamHistory.CashColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCashNull() {
+                this[this.tableTeamHistory.CashColumn] = global::System.Convert.DBNull;
             }
         }
         

@@ -1702,6 +1702,7 @@ namespace TMRecorder
             tsf.FillSquadGraphs(History.PlayersDS);
             tsf.FillSquadStatsGraphs(teamStats);
             tsf.FillTrainingHistory(History.TrainingHist);
+            tsf.FillFansHistory(AllSeasons, Program.Setts.MainSquadID);
 
             tsf.ShowDialog();
         }
@@ -2366,7 +2367,7 @@ namespace TMRecorder
                 tsbTrainingTraining.ForeColor = Color.DarkGreen;
                 tsbTrainingTraining.ToolTipText = "Training Updated";
                 tsbTrainingTraining.UnderColor = Color.DarkGreen;
-                tsbTrainingTraining.UnderText = "Import Ok";
+                tsbTrainingTraining.UnderText = "Import ok";
             }
 
             if (!AllSeasons.IsUpdatedCalendar(Program.Setts.MainSquadID))
@@ -2420,8 +2421,17 @@ namespace TMRecorder
             {
                 tsbMatchSquadA.ForeColor = Color.DarkGreen;
                 tsbMatchSquadA.ToolTipText = "All the matches before today have been loaded";
-                tsbMatchSquadA.UnderText = "Import ok";
-                tsbMatchSquadA.UnderColor = Color.DarkGreen;
+
+                if (tsbMatchSquadA.Enabled)
+                {
+                    tsbMatchSquadA.UnderText = "Import ok";
+                    tsbMatchSquadA.UnderColor = Color.DarkGreen;
+                }
+                else
+                {
+                    tsbMatchSquadA.UnderText = "ML to import";
+                    tsbMatchSquadA.UnderColor = Color.DarkGreen;
+                }
             }
 
             matchToUpdate = AllSeasons.NumberOfMatchesToUpdate(Program.Setts.ReserveSquadID);
@@ -2438,6 +2448,43 @@ namespace TMRecorder
                 tsbMatchSquadB.ToolTipText = "All the matches before today have been loaded";
                 tsbMatchSquadB.UnderText = "Import ok";
                 tsbMatchSquadB.UnderColor = Color.DarkGreen;
+            }
+
+            var lastClubData = AllSeasons.GetLastClubData(Program.Setts.MainSquadID);
+
+            if (lastClubData == null)
+            {
+                tsbImportClub.ForeColor = Color.DarkRed;
+                tsbImportClub.ToolTipText = "You need to import club fans for the first time";
+                tsbImportClub.UnderText = "To import";
+                tsbImportClub.UnderColor = Color.DarkRed;
+            }
+            else
+            {
+                DateTime lastUpdateDate = lastClubData.Date;
+                DateTime lastMatchDate = AllSeasons.GetLastMatch(Program.Setts.MainSquadID);
+                if ((lastUpdateDate < lastMatchDate.AddDays(1)) && (lastMatchDate != DateTime.Today))
+                {
+                    tsbImportClub.ForeColor = Color.DarkRed;
+                    tsbImportClub.ToolTipText = "You need to import club fans after last match";
+                    tsbImportClub.UnderText = "To import";
+                    tsbImportClub.UnderColor = Color.DarkRed;
+                }
+                else if (lastUpdateDate < DateTime.Today.AddDays(-2))
+                {
+                    int days = (int)((lastUpdateDate - DateTime.Today).TotalDays);
+                    tsbImportClub.ForeColor = Color.YellowGreen;
+                    tsbImportClub.ToolTipText = string.Format("Last import of club fans was {0} days ago", days);
+                    tsbImportClub.UnderText = "To refresh";
+                    tsbImportClub.UnderColor = Color.YellowGreen;
+                }
+                else
+                {
+                    tsbImportClub.ForeColor = Color.DarkGreen;
+                    tsbImportClub.ToolTipText = "Import club fans after last match";
+                    tsbImportClub.UnderText = "Import ok";
+                    tsbImportClub.UnderColor = Color.DarkGreen;
+                }
             }
         }
 
@@ -3269,6 +3316,11 @@ namespace TMRecorder
                 History.PlayersDS.SetSPn(player.playerID, SPn);
                 LoadTeamOnGrids(DateTime.Now);
             }
+        }
+
+        private void tsbImportClub_Click(object sender, EventArgs e)
+        {
+            webBrowser.Goto(TM_Pages.Club);
         }
     }
 }

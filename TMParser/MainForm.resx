@@ -335,6 +335,18 @@
   <metadata name="tsBrowserImport.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>262, 36</value>
   </metadata>
+  <data name="tsbImportClub.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFzSURBVDhPjZItkIMwEIUrK09iK0+ejI1EIrHIypNYZCQS
+        i0RW1kZGRmIjI5F7+zYJ/ZnrXXdmh0Dyvt195FBi1V/k9EkyhkDLNJJtlCTW+djroKYmQKbjYRdv3hI5
+        +x7EflW0VEfqGADB6hyNxtA4DrLGt8s8vYbM507ax8HoWcxCe72Q45x4Hbz/uxMAdjFXhjisnlYIeQ0g
+        9n6FlJnvK4d1pRBSygjXJUOeOnkQl8osihAXCIs8zASEz5ROxJNH8ZLF4QbIY3g+I5BL6qR4cljm9AGV
+        EWf2oq1r0kqJGJBWf9JZV9Qpvif2ukOglTFmzMZVEWbo2XVDjdZSGZC+1WRaRVPNf8mmUfBnRIwogG2L
+        DBioa5sMcAIAEGJTV9KpewbgBTPHGGnjxBNAzIwuhnmmUX9wHgWAEVA0y1MHybBiWjIMifdv9gBio/iW
+        ZsDeQdOf6L/sVSVi6YDF93vvAWAiz188uN97C4ALgwtX8rZ3oh/Z/U/x+VswLgAAAABJRU5ErkJggg==
+</value>
+  </data>
   <data name="tsbImportSquad.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAARCAYAAADUryzEAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8

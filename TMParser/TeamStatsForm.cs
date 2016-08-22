@@ -1,4 +1,4 @@
-using System; 
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,6 +7,8 @@ using System.Text;
 using System.Windows.Forms;
 using ZedGraph;
 using Common;
+using NTR_Db;
+using System.Linq;
 
 namespace TMRecorder
 {
@@ -25,6 +27,9 @@ namespace TMRecorder
 
         private void FillSquadPlayersASIxPosition(ExtraDS extraDS)
         {
+            if (extraDS == null)
+                return;
+
             int[] StatsPlyASILT300 = extraDS.GetStatsPlyASIxRule(0, 300);
             int[] StatsPlyASILT1000 = extraDS.GetStatsPlyASIxRule(301, 1000);
             int[] StatsPlyASIGT1000 = extraDS.GetStatsPlyASIxRule(1001, 10000);
@@ -153,6 +158,9 @@ namespace TMRecorder
 
         private void FillSquadAgeGraph(ExtraDS extraDS)
         {
+            if (extraDS == null)
+                return;
+
             int[] StatsAgeASILT300 = extraDS.GetStatsAge(0, 300);
             int[] StatsAgeASILT1000 = extraDS.GetStatsAge(301, 1000);
             int[] StatsAgeASIGT1000 = extraDS.GetStatsAge(1001, 10000);
@@ -429,6 +437,92 @@ namespace TMRecorder
             pane.YAxis.Scale.MajorStep = 200;
         }
 
+        internal void FillFansHistory(Seasons allSeasons, int clubID)
+        {
+            TeamStats teamStats = new TMRecorder.TeamStats();
+
+            List<NTR_SquadDb.TeamDataRow> clubData = allSeasons.GetClubData(clubID);
+
+            foreach (var row in clubData)
+            {
+                TeamStats.TeamHistoryRow teamHistoryRow = teamStats.TeamHistory.FindByDate(row.Date);
+                if (teamHistoryRow == null)
+                {
+                    teamHistoryRow = teamStats.TeamHistory.NewTeamHistoryRow();
+                    teamHistoryRow.Date = row.Date;
+                    teamHistoryRow.Cash = row.Cash;
+                    teamHistoryRow.Fans = row.NumSupporters;
+                    teamStats.TeamHistory.AddTeamHistoryRow(teamHistoryRow);
+                }
+            }
+
+            FillTeamFansHistory(teamStats);
+        }
+
+        private void FillTeamFansHistory(TeamStats teamStats)
+        {
+            GraphPane pane = graphTeamFans.GraphPane;
+
+            pane.CurveList.Clear();
+
+            // Set the title and axis labels
+            pane.Title.Text = "Team Fans Growth";
+            pane.YAxis.Title.Text = "Supporters number";
+            pane.XAxis.Title.Text = "Weeks";
+            pane.XAxis.Type = AxisType.Date;
+            pane.XAxis.Scale.MajorStep = 7;
+            pane.XAxis.Scale.MinorStep = 7;
+            pane.XAxis.Scale.MajorUnit = DateUnit.Day;
+            pane.XAxis.Scale.Format = "TW";
+
+            TeamStats.TeamHistoryDataTable table = teamStats.TeamHistory;
+            int count = table.Count + 1;
+
+            double[] valFans = new double[count];
+            double[] ddate = new double[count];
+            XDate[] xdate = new XDate[count];
+            double dMin = 10000000.0;
+            double dMax = -1.0;
+
+            var row = (from r in table select r).FirstOrDefault();
+
+            if (row == null) return;
+
+            xdate[0] = new XDate(row.Date);
+            ddate[0] = (double)xdate[0];
+            valFans[0] = (double)(row.Fans);
+
+            int i = 1;
+            foreach(var histRow in table)
+            {
+                valFans[i] = (double)(histRow.Fans);
+
+                xdate[i] = new XDate(histRow.Date);
+                ddate[i] = (double)xdate[i];
+
+                dMax = Math.Max(dMax, valFans[i]);
+                dMin = Math.Min(dMin, valFans[i]);
+
+                i++;
+            }
+
+            // Fill the axis background with a color gradient
+            pane.Chart.Fill = new Fill(Color.FromArgb(255, 255, 245), Color.FromArgb(255, 255, 190), 90F);
+
+            // Generate a red curve with legend
+            LineItem myCurve = pane.AddCurve("Fans", ddate, valFans, Color.Blue);
+            // Make the symbols opaque by filling them with white
+            myCurve.Symbol.IsVisible = true;
+
+            // Manually set the x axis range
+            pane.YAxis.Scale.Min = dMin - 100;
+            pane.YAxis.Scale.Max = dMax + 100;
+            pane.XAxis.Scale.Min = ddate[0] - 1;
+            pane.XAxis.Scale.Max = ddate[ddate.Length - 1] + 1;
+
+            pane.YAxis.Scale.MinorStep = 2;
+            pane.YAxis.Scale.MajorStep = 10;
+        }
 
 
         private void FillSkillGrowth(TeamStats teamStats)
@@ -466,6 +560,8 @@ namespace TMRecorder
             XDate[] xdate = new XDate[nonZeroCount];
             double dMin = 10000000.0;
             double dMax = -1.0;
+            double ddateMin = double.MaxValue;
+            double ddateMax = double.MinValue;
 
             int i = 0;
             for (int j = 0; (j < count) && (i < nonZeroCount); j++)
@@ -479,6 +575,9 @@ namespace TMRecorder
 
                 xdate[i] = new XDate(row.Date);
                 ddate[i] = (double)xdate[i];
+
+                ddateMin = Math.Min(ddateMin, ddate[i]);
+                ddateMax = Math.Max(ddateMax, ddate[i]);
 
                 //if (i != 0)
                 //{
@@ -519,8 +618,8 @@ namespace TMRecorder
             // Manually set the x axis range
             pane.YAxis.Scale.Min = dMin - 5;
             pane.YAxis.Scale.Max = dMax + 5;
-            pane.XAxis.Scale.Min = ddate[0];
-            pane.XAxis.Scale.Max = ddate[ddate.Length - 1];
+            pane.XAxis.Scale.Min = ddateMin;
+            pane.XAxis.Scale.Max = ddateMax;
 
             pane.YAxis.Scale.MinorStep = 2;
             pane.YAxis.Scale.MajorStep = 10;

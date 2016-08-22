@@ -55,20 +55,37 @@ namespace FieldFormationControl
 
         public void SetPlayers(ExtraDS.GiocatoriRow[] gr, ExtTMDataSet extTMDataSet)
         {
-            listplayers = new ListPlayer[gr.Length];
+            int playersCount = 0;
 
             for (int i = 0; i < gr.Length; i++)
             {
-                listplayers[i] = new ListPlayer();
+                var gnsRow = extTMDataSet.GiocatoriNSkill.FindByPlayerID(gr[i].PlayerID);
+                if (gnsRow != null)
+                    playersCount++;
+            }
+
+            listplayers = new ListPlayer[playersCount];
+
+            int ix = 0;
+            for (int i = 0; i < gr.Length; i++)
+            {
+                var gnsRow = extTMDataSet.GiocatoriNSkill.FindByPlayerID(gr[i].PlayerID);
+
+                if (gnsRow == null)
+                    continue;
+
+                listplayers[ix] = new ListPlayer();
 
                 if (gr[i].FPn == 0)
-                    listplayers[i].SetDataGk(gr[i], extTMDataSet.GiocatoriNSkill.FindByPlayerID(gr[i].PlayerID));
+                    listplayers[ix].SetDataGk(gr[i], gnsRow);
                 else
-                    listplayers[i].SetData(gr[i], extTMDataSet.GiocatoriNSkill.FindByPlayerID(gr[i].PlayerID));
+                    listplayers[ix].SetData(gr[i], gnsRow);
 
-                listplayers[i].MouseDown += PlayersList_MouseDown;
-                listplayers[i].MouseUp += PlayersList_MouseUp;
-                listplayers[i].MouseMove += PlayersList_MouseMove;
+                listplayers[ix].MouseDown += PlayersList_MouseDown;
+                listplayers[ix].MouseUp += PlayersList_MouseUp;
+                listplayers[ix].MouseMove += PlayersList_MouseMove;
+
+                ix++;
             }
 
             UpdatePlayersList();

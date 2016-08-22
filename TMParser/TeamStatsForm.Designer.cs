@@ -31,17 +31,19 @@ namespace TMRecorder
             this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.graphSquadAge = new ZedGraph.ZedGraphControl();
-            this.graphSquadASI = new ZedGraph.ZedGraphControl();
-            this.graphTotASIHistory = new ZedGraph.ZedGraphControl();
             this.graphAgeHistory = new ZedGraph.ZedGraphControl();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.graphTotASIHistory = new ZedGraph.ZedGraphControl();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.graphSkillGrowth = new ZedGraph.ZedGraphControl();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.graphSkillCount = new ZedGraph.ZedGraphControl();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.graphSquadAge = new ZedGraph.ZedGraphControl();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.graphSquadASI = new ZedGraph.ZedGraphControl();
+            this.tabFansPage = new System.Windows.Forms.TabPage();
+            this.graphTeamFans = new ZedGraph.ZedGraphControl();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -49,6 +51,7 @@ namespace TMRecorder
             this.tabPage4.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.tabPage6.SuspendLayout();
+            this.tabFansPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -59,6 +62,7 @@ namespace TMRecorder
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage6);
+            this.tabControl1.Controls.Add(this.tabFansPage);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -76,207 +80,6 @@ namespace TMRecorder
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Age History";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.graphTotASIHistory);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(760, 412);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Total ASI History";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.graphSkillGrowth);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(760, 412);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Skill Growth Graph";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.graphSkillCount);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(760, 412);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Skill Count";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // tabPage5
-            // 
-            this.tabPage5.Controls.Add(this.graphSquadAge);
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(760, 412);
-            this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "Squad Age";
-            this.tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // tabPage6
-            // 
-            this.tabPage6.Controls.Add(this.graphSquadASI);
-            this.tabPage6.Location = new System.Drawing.Point(4, 22);
-            this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(760, 412);
-            this.tabPage6.TabIndex = 5;
-            this.tabPage6.Text = "Squad ASI";
-            this.tabPage6.UseVisualStyleBackColor = true;
-            // 
-            // graphSquadAge
-            // 
-            this.graphSquadAge.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.graphSquadAge.EditButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphSquadAge.EditModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.None)));
-            this.graphSquadAge.ForeColor = System.Drawing.Color.White;
-            this.graphSquadAge.IsAutoScrollRange = false;
-            this.graphSquadAge.IsEnableHEdit = false;
-            this.graphSquadAge.IsEnableHPan = true;
-            this.graphSquadAge.IsEnableHZoom = true;
-            this.graphSquadAge.IsEnableVEdit = false;
-            this.graphSquadAge.IsEnableVPan = true;
-            this.graphSquadAge.IsEnableVZoom = true;
-            this.graphSquadAge.IsPrintFillPage = true;
-            this.graphSquadAge.IsPrintKeepAspectRatio = true;
-            this.graphSquadAge.IsScrollY2 = false;
-            this.graphSquadAge.IsShowContextMenu = true;
-            this.graphSquadAge.IsShowCopyMessage = true;
-            this.graphSquadAge.IsShowCursorValues = false;
-            this.graphSquadAge.IsShowHScrollBar = false;
-            this.graphSquadAge.IsShowPointValues = false;
-            this.graphSquadAge.IsShowVScrollBar = false;
-            this.graphSquadAge.IsSynchronizeXAxes = false;
-            this.graphSquadAge.IsSynchronizeYAxes = false;
-            this.graphSquadAge.IsZoomOnMouseCenter = false;
-            this.graphSquadAge.LinkButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphSquadAge.LinkModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.None)));
-            this.graphSquadAge.Location = new System.Drawing.Point(3, 3);
-            this.graphSquadAge.Name = "graphSquadAge";
-            this.graphSquadAge.PanButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphSquadAge.PanButtons2 = System.Windows.Forms.MouseButtons.Middle;
-            this.graphSquadAge.PanModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.None)));
-            this.graphSquadAge.PanModifierKeys2 = System.Windows.Forms.Keys.None;
-            this.graphSquadAge.PointDateFormat = "g";
-            this.graphSquadAge.PointValueFormat = "G";
-            this.graphSquadAge.ScrollMaxX = 0;
-            this.graphSquadAge.ScrollMaxY = 0;
-            this.graphSquadAge.ScrollMaxY2 = 0;
-            this.graphSquadAge.ScrollMinX = 0;
-            this.graphSquadAge.ScrollMinY = 0;
-            this.graphSquadAge.ScrollMinY2 = 0;
-            this.graphSquadAge.Size = new System.Drawing.Size(754, 406);
-            this.graphSquadAge.TabIndex = 1;
-            this.graphSquadAge.ZoomButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphSquadAge.ZoomButtons2 = System.Windows.Forms.MouseButtons.None;
-            this.graphSquadAge.ZoomModifierKeys = System.Windows.Forms.Keys.None;
-            this.graphSquadAge.ZoomModifierKeys2 = System.Windows.Forms.Keys.None;
-            this.graphSquadAge.ZoomStepFraction = 0.1;
-            // 
-            // graphSquadASI
-            // 
-            this.graphSquadASI.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.graphSquadASI.EditButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphSquadASI.EditModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.None)));
-            this.graphSquadASI.IsAutoScrollRange = false;
-            this.graphSquadASI.IsEnableHEdit = false;
-            this.graphSquadASI.IsEnableHPan = true;
-            this.graphSquadASI.IsEnableHZoom = true;
-            this.graphSquadASI.IsEnableVEdit = false;
-            this.graphSquadASI.IsEnableVPan = true;
-            this.graphSquadASI.IsEnableVZoom = true;
-            this.graphSquadASI.IsPrintFillPage = true;
-            this.graphSquadASI.IsPrintKeepAspectRatio = true;
-            this.graphSquadASI.IsScrollY2 = false;
-            this.graphSquadASI.IsShowContextMenu = true;
-            this.graphSquadASI.IsShowCopyMessage = true;
-            this.graphSquadASI.IsShowCursorValues = false;
-            this.graphSquadASI.IsShowHScrollBar = false;
-            this.graphSquadASI.IsShowPointValues = false;
-            this.graphSquadASI.IsShowVScrollBar = false;
-            this.graphSquadASI.IsSynchronizeXAxes = false;
-            this.graphSquadASI.IsSynchronizeYAxes = false;
-            this.graphSquadASI.IsZoomOnMouseCenter = false;
-            this.graphSquadASI.LinkButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphSquadASI.LinkModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.None)));
-            this.graphSquadASI.Location = new System.Drawing.Point(3, 3);
-            this.graphSquadASI.Name = "graphSquadASI";
-            this.graphSquadASI.PanButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphSquadASI.PanButtons2 = System.Windows.Forms.MouseButtons.Middle;
-            this.graphSquadASI.PanModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.None)));
-            this.graphSquadASI.PanModifierKeys2 = System.Windows.Forms.Keys.None;
-            this.graphSquadASI.PointDateFormat = "g";
-            this.graphSquadASI.PointValueFormat = "G";
-            this.graphSquadASI.ScrollMaxX = 0;
-            this.graphSquadASI.ScrollMaxY = 0;
-            this.graphSquadASI.ScrollMaxY2 = 0;
-            this.graphSquadASI.ScrollMinX = 0;
-            this.graphSquadASI.ScrollMinY = 0;
-            this.graphSquadASI.ScrollMinY2 = 0;
-            this.graphSquadASI.Size = new System.Drawing.Size(754, 406);
-            this.graphSquadASI.TabIndex = 2;
-            this.graphSquadASI.ZoomButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphSquadASI.ZoomButtons2 = System.Windows.Forms.MouseButtons.None;
-            this.graphSquadASI.ZoomModifierKeys = System.Windows.Forms.Keys.None;
-            this.graphSquadASI.ZoomModifierKeys2 = System.Windows.Forms.Keys.None;
-            this.graphSquadASI.ZoomStepFraction = 0.1;
-            // 
-            // graphTotASIHistory
-            // 
-            this.graphTotASIHistory.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.graphTotASIHistory.EditButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphTotASIHistory.EditModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.None)));
-            this.graphTotASIHistory.ForeColor = System.Drawing.Color.White;
-            this.graphTotASIHistory.IsAutoScrollRange = false;
-            this.graphTotASIHistory.IsEnableHEdit = false;
-            this.graphTotASIHistory.IsEnableHPan = true;
-            this.graphTotASIHistory.IsEnableHZoom = true;
-            this.graphTotASIHistory.IsEnableVEdit = false;
-            this.graphTotASIHistory.IsEnableVPan = true;
-            this.graphTotASIHistory.IsEnableVZoom = true;
-            this.graphTotASIHistory.IsPrintFillPage = true;
-            this.graphTotASIHistory.IsPrintKeepAspectRatio = true;
-            this.graphTotASIHistory.IsScrollY2 = false;
-            this.graphTotASIHistory.IsShowContextMenu = true;
-            this.graphTotASIHistory.IsShowCopyMessage = true;
-            this.graphTotASIHistory.IsShowCursorValues = false;
-            this.graphTotASIHistory.IsShowHScrollBar = false;
-            this.graphTotASIHistory.IsShowPointValues = false;
-            this.graphTotASIHistory.IsShowVScrollBar = false;
-            this.graphTotASIHistory.IsSynchronizeXAxes = false;
-            this.graphTotASIHistory.IsSynchronizeYAxes = false;
-            this.graphTotASIHistory.IsZoomOnMouseCenter = false;
-            this.graphTotASIHistory.LinkButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphTotASIHistory.LinkModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.None)));
-            this.graphTotASIHistory.Location = new System.Drawing.Point(3, 3);
-            this.graphTotASIHistory.Name = "graphTotASIHistory";
-            this.graphTotASIHistory.PanButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphTotASIHistory.PanButtons2 = System.Windows.Forms.MouseButtons.Middle;
-            this.graphTotASIHistory.PanModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.None)));
-            this.graphTotASIHistory.PanModifierKeys2 = System.Windows.Forms.Keys.None;
-            this.graphTotASIHistory.PointDateFormat = "g";
-            this.graphTotASIHistory.PointValueFormat = "G";
-            this.graphTotASIHistory.ScrollMaxX = 0;
-            this.graphTotASIHistory.ScrollMaxY = 0;
-            this.graphTotASIHistory.ScrollMaxY2 = 0;
-            this.graphTotASIHistory.ScrollMinX = 0;
-            this.graphTotASIHistory.ScrollMinY = 0;
-            this.graphTotASIHistory.ScrollMinY2 = 0;
-            this.graphTotASIHistory.Size = new System.Drawing.Size(754, 406);
-            this.graphTotASIHistory.TabIndex = 1;
-            this.graphTotASIHistory.ZoomButtons = System.Windows.Forms.MouseButtons.Left;
-            this.graphTotASIHistory.ZoomButtons2 = System.Windows.Forms.MouseButtons.None;
-            this.graphTotASIHistory.ZoomModifierKeys = System.Windows.Forms.Keys.None;
-            this.graphTotASIHistory.ZoomModifierKeys2 = System.Windows.Forms.Keys.None;
-            this.graphTotASIHistory.ZoomStepFraction = 0.1;
             // 
             // graphAgeHistory
             // 
@@ -313,19 +116,90 @@ namespace TMRecorder
             this.graphAgeHistory.PanModifierKeys2 = System.Windows.Forms.Keys.None;
             this.graphAgeHistory.PointDateFormat = "g";
             this.graphAgeHistory.PointValueFormat = "G";
-            this.graphAgeHistory.ScrollMaxX = 0;
-            this.graphAgeHistory.ScrollMaxY = 0;
-            this.graphAgeHistory.ScrollMaxY2 = 0;
-            this.graphAgeHistory.ScrollMinX = 0;
-            this.graphAgeHistory.ScrollMinY = 0;
-            this.graphAgeHistory.ScrollMinY2 = 0;
+            this.graphAgeHistory.ScrollMaxX = 0D;
+            this.graphAgeHistory.ScrollMaxY = 0D;
+            this.graphAgeHistory.ScrollMaxY2 = 0D;
+            this.graphAgeHistory.ScrollMinX = 0D;
+            this.graphAgeHistory.ScrollMinY = 0D;
+            this.graphAgeHistory.ScrollMinY2 = 0D;
             this.graphAgeHistory.Size = new System.Drawing.Size(754, 406);
             this.graphAgeHistory.TabIndex = 1;
             this.graphAgeHistory.ZoomButtons = System.Windows.Forms.MouseButtons.Left;
             this.graphAgeHistory.ZoomButtons2 = System.Windows.Forms.MouseButtons.None;
             this.graphAgeHistory.ZoomModifierKeys = System.Windows.Forms.Keys.None;
             this.graphAgeHistory.ZoomModifierKeys2 = System.Windows.Forms.Keys.None;
-            this.graphAgeHistory.ZoomStepFraction = 0.1;
+            this.graphAgeHistory.ZoomStepFraction = 0.1D;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.graphTotASIHistory);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(760, 412);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Total ASI History";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // graphTotASIHistory
+            // 
+            this.graphTotASIHistory.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.graphTotASIHistory.EditButtons = System.Windows.Forms.MouseButtons.Left;
+            this.graphTotASIHistory.EditModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.None)));
+            this.graphTotASIHistory.ForeColor = System.Drawing.Color.White;
+            this.graphTotASIHistory.IsAutoScrollRange = false;
+            this.graphTotASIHistory.IsEnableHEdit = false;
+            this.graphTotASIHistory.IsEnableHPan = true;
+            this.graphTotASIHistory.IsEnableHZoom = true;
+            this.graphTotASIHistory.IsEnableVEdit = false;
+            this.graphTotASIHistory.IsEnableVPan = true;
+            this.graphTotASIHistory.IsEnableVZoom = true;
+            this.graphTotASIHistory.IsPrintFillPage = true;
+            this.graphTotASIHistory.IsPrintKeepAspectRatio = true;
+            this.graphTotASIHistory.IsScrollY2 = false;
+            this.graphTotASIHistory.IsShowContextMenu = true;
+            this.graphTotASIHistory.IsShowCopyMessage = true;
+            this.graphTotASIHistory.IsShowCursorValues = false;
+            this.graphTotASIHistory.IsShowHScrollBar = false;
+            this.graphTotASIHistory.IsShowPointValues = false;
+            this.graphTotASIHistory.IsShowVScrollBar = false;
+            this.graphTotASIHistory.IsSynchronizeXAxes = false;
+            this.graphTotASIHistory.IsSynchronizeYAxes = false;
+            this.graphTotASIHistory.IsZoomOnMouseCenter = false;
+            this.graphTotASIHistory.LinkButtons = System.Windows.Forms.MouseButtons.Left;
+            this.graphTotASIHistory.LinkModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.None)));
+            this.graphTotASIHistory.Location = new System.Drawing.Point(3, 3);
+            this.graphTotASIHistory.Name = "graphTotASIHistory";
+            this.graphTotASIHistory.PanButtons = System.Windows.Forms.MouseButtons.Left;
+            this.graphTotASIHistory.PanButtons2 = System.Windows.Forms.MouseButtons.Middle;
+            this.graphTotASIHistory.PanModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.None)));
+            this.graphTotASIHistory.PanModifierKeys2 = System.Windows.Forms.Keys.None;
+            this.graphTotASIHistory.PointDateFormat = "g";
+            this.graphTotASIHistory.PointValueFormat = "G";
+            this.graphTotASIHistory.ScrollMaxX = 0D;
+            this.graphTotASIHistory.ScrollMaxY = 0D;
+            this.graphTotASIHistory.ScrollMaxY2 = 0D;
+            this.graphTotASIHistory.ScrollMinX = 0D;
+            this.graphTotASIHistory.ScrollMinY = 0D;
+            this.graphTotASIHistory.ScrollMinY2 = 0D;
+            this.graphTotASIHistory.Size = new System.Drawing.Size(754, 406);
+            this.graphTotASIHistory.TabIndex = 1;
+            this.graphTotASIHistory.ZoomButtons = System.Windows.Forms.MouseButtons.Left;
+            this.graphTotASIHistory.ZoomButtons2 = System.Windows.Forms.MouseButtons.None;
+            this.graphTotASIHistory.ZoomModifierKeys = System.Windows.Forms.Keys.None;
+            this.graphTotASIHistory.ZoomModifierKeys2 = System.Windows.Forms.Keys.None;
+            this.graphTotASIHistory.ZoomStepFraction = 0.1D;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.graphSkillGrowth);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(760, 412);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Skill Growth Graph";
+            this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // graphSkillGrowth
             // 
@@ -362,19 +236,30 @@ namespace TMRecorder
             this.graphSkillGrowth.PanModifierKeys2 = System.Windows.Forms.Keys.None;
             this.graphSkillGrowth.PointDateFormat = "g";
             this.graphSkillGrowth.PointValueFormat = "G";
-            this.graphSkillGrowth.ScrollMaxX = 0;
-            this.graphSkillGrowth.ScrollMaxY = 0;
-            this.graphSkillGrowth.ScrollMaxY2 = 0;
-            this.graphSkillGrowth.ScrollMinX = 0;
-            this.graphSkillGrowth.ScrollMinY = 0;
-            this.graphSkillGrowth.ScrollMinY2 = 0;
+            this.graphSkillGrowth.ScrollMaxX = 0D;
+            this.graphSkillGrowth.ScrollMaxY = 0D;
+            this.graphSkillGrowth.ScrollMaxY2 = 0D;
+            this.graphSkillGrowth.ScrollMinX = 0D;
+            this.graphSkillGrowth.ScrollMinY = 0D;
+            this.graphSkillGrowth.ScrollMinY2 = 0D;
             this.graphSkillGrowth.Size = new System.Drawing.Size(754, 406);
             this.graphSkillGrowth.TabIndex = 2;
             this.graphSkillGrowth.ZoomButtons = System.Windows.Forms.MouseButtons.Left;
             this.graphSkillGrowth.ZoomButtons2 = System.Windows.Forms.MouseButtons.None;
             this.graphSkillGrowth.ZoomModifierKeys = System.Windows.Forms.Keys.None;
             this.graphSkillGrowth.ZoomModifierKeys2 = System.Windows.Forms.Keys.None;
-            this.graphSkillGrowth.ZoomStepFraction = 0.1;
+            this.graphSkillGrowth.ZoomStepFraction = 0.1D;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.graphSkillCount);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(760, 412);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Skill Count";
+            this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // graphSkillCount
             // 
@@ -411,19 +296,197 @@ namespace TMRecorder
             this.graphSkillCount.PanModifierKeys2 = System.Windows.Forms.Keys.None;
             this.graphSkillCount.PointDateFormat = "g";
             this.graphSkillCount.PointValueFormat = "G";
-            this.graphSkillCount.ScrollMaxX = 0;
-            this.graphSkillCount.ScrollMaxY = 0;
-            this.graphSkillCount.ScrollMaxY2 = 0;
-            this.graphSkillCount.ScrollMinX = 0;
-            this.graphSkillCount.ScrollMinY = 0;
-            this.graphSkillCount.ScrollMinY2 = 0;
+            this.graphSkillCount.ScrollMaxX = 0D;
+            this.graphSkillCount.ScrollMaxY = 0D;
+            this.graphSkillCount.ScrollMaxY2 = 0D;
+            this.graphSkillCount.ScrollMinX = 0D;
+            this.graphSkillCount.ScrollMinY = 0D;
+            this.graphSkillCount.ScrollMinY2 = 0D;
             this.graphSkillCount.Size = new System.Drawing.Size(754, 406);
             this.graphSkillCount.TabIndex = 2;
             this.graphSkillCount.ZoomButtons = System.Windows.Forms.MouseButtons.Left;
             this.graphSkillCount.ZoomButtons2 = System.Windows.Forms.MouseButtons.None;
             this.graphSkillCount.ZoomModifierKeys = System.Windows.Forms.Keys.None;
             this.graphSkillCount.ZoomModifierKeys2 = System.Windows.Forms.Keys.None;
-            this.graphSkillCount.ZoomStepFraction = 0.1;
+            this.graphSkillCount.ZoomStepFraction = 0.1D;
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.graphSquadAge);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(760, 412);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "Squad Age";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // graphSquadAge
+            // 
+            this.graphSquadAge.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.graphSquadAge.EditButtons = System.Windows.Forms.MouseButtons.Left;
+            this.graphSquadAge.EditModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.None)));
+            this.graphSquadAge.ForeColor = System.Drawing.Color.White;
+            this.graphSquadAge.IsAutoScrollRange = false;
+            this.graphSquadAge.IsEnableHEdit = false;
+            this.graphSquadAge.IsEnableHPan = true;
+            this.graphSquadAge.IsEnableHZoom = true;
+            this.graphSquadAge.IsEnableVEdit = false;
+            this.graphSquadAge.IsEnableVPan = true;
+            this.graphSquadAge.IsEnableVZoom = true;
+            this.graphSquadAge.IsPrintFillPage = true;
+            this.graphSquadAge.IsPrintKeepAspectRatio = true;
+            this.graphSquadAge.IsScrollY2 = false;
+            this.graphSquadAge.IsShowContextMenu = true;
+            this.graphSquadAge.IsShowCopyMessage = true;
+            this.graphSquadAge.IsShowCursorValues = false;
+            this.graphSquadAge.IsShowHScrollBar = false;
+            this.graphSquadAge.IsShowPointValues = false;
+            this.graphSquadAge.IsShowVScrollBar = false;
+            this.graphSquadAge.IsSynchronizeXAxes = false;
+            this.graphSquadAge.IsSynchronizeYAxes = false;
+            this.graphSquadAge.IsZoomOnMouseCenter = false;
+            this.graphSquadAge.LinkButtons = System.Windows.Forms.MouseButtons.Left;
+            this.graphSquadAge.LinkModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.None)));
+            this.graphSquadAge.Location = new System.Drawing.Point(3, 3);
+            this.graphSquadAge.Name = "graphSquadAge";
+            this.graphSquadAge.PanButtons = System.Windows.Forms.MouseButtons.Left;
+            this.graphSquadAge.PanButtons2 = System.Windows.Forms.MouseButtons.Middle;
+            this.graphSquadAge.PanModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.None)));
+            this.graphSquadAge.PanModifierKeys2 = System.Windows.Forms.Keys.None;
+            this.graphSquadAge.PointDateFormat = "g";
+            this.graphSquadAge.PointValueFormat = "G";
+            this.graphSquadAge.ScrollMaxX = 0D;
+            this.graphSquadAge.ScrollMaxY = 0D;
+            this.graphSquadAge.ScrollMaxY2 = 0D;
+            this.graphSquadAge.ScrollMinX = 0D;
+            this.graphSquadAge.ScrollMinY = 0D;
+            this.graphSquadAge.ScrollMinY2 = 0D;
+            this.graphSquadAge.Size = new System.Drawing.Size(754, 406);
+            this.graphSquadAge.TabIndex = 1;
+            this.graphSquadAge.ZoomButtons = System.Windows.Forms.MouseButtons.Left;
+            this.graphSquadAge.ZoomButtons2 = System.Windows.Forms.MouseButtons.None;
+            this.graphSquadAge.ZoomModifierKeys = System.Windows.Forms.Keys.None;
+            this.graphSquadAge.ZoomModifierKeys2 = System.Windows.Forms.Keys.None;
+            this.graphSquadAge.ZoomStepFraction = 0.1D;
+            // 
+            // tabPage6
+            // 
+            this.tabPage6.Controls.Add(this.graphSquadASI);
+            this.tabPage6.Location = new System.Drawing.Point(4, 22);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage6.Size = new System.Drawing.Size(760, 412);
+            this.tabPage6.TabIndex = 5;
+            this.tabPage6.Text = "Squad ASI";
+            this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // graphSquadASI
+            // 
+            this.graphSquadASI.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.graphSquadASI.EditButtons = System.Windows.Forms.MouseButtons.Left;
+            this.graphSquadASI.EditModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.None)));
+            this.graphSquadASI.IsAutoScrollRange = false;
+            this.graphSquadASI.IsEnableHEdit = false;
+            this.graphSquadASI.IsEnableHPan = true;
+            this.graphSquadASI.IsEnableHZoom = true;
+            this.graphSquadASI.IsEnableVEdit = false;
+            this.graphSquadASI.IsEnableVPan = true;
+            this.graphSquadASI.IsEnableVZoom = true;
+            this.graphSquadASI.IsPrintFillPage = true;
+            this.graphSquadASI.IsPrintKeepAspectRatio = true;
+            this.graphSquadASI.IsScrollY2 = false;
+            this.graphSquadASI.IsShowContextMenu = true;
+            this.graphSquadASI.IsShowCopyMessage = true;
+            this.graphSquadASI.IsShowCursorValues = false;
+            this.graphSquadASI.IsShowHScrollBar = false;
+            this.graphSquadASI.IsShowPointValues = false;
+            this.graphSquadASI.IsShowVScrollBar = false;
+            this.graphSquadASI.IsSynchronizeXAxes = false;
+            this.graphSquadASI.IsSynchronizeYAxes = false;
+            this.graphSquadASI.IsZoomOnMouseCenter = false;
+            this.graphSquadASI.LinkButtons = System.Windows.Forms.MouseButtons.Left;
+            this.graphSquadASI.LinkModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.None)));
+            this.graphSquadASI.Location = new System.Drawing.Point(3, 3);
+            this.graphSquadASI.Name = "graphSquadASI";
+            this.graphSquadASI.PanButtons = System.Windows.Forms.MouseButtons.Left;
+            this.graphSquadASI.PanButtons2 = System.Windows.Forms.MouseButtons.Middle;
+            this.graphSquadASI.PanModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.None)));
+            this.graphSquadASI.PanModifierKeys2 = System.Windows.Forms.Keys.None;
+            this.graphSquadASI.PointDateFormat = "g";
+            this.graphSquadASI.PointValueFormat = "G";
+            this.graphSquadASI.ScrollMaxX = 0D;
+            this.graphSquadASI.ScrollMaxY = 0D;
+            this.graphSquadASI.ScrollMaxY2 = 0D;
+            this.graphSquadASI.ScrollMinX = 0D;
+            this.graphSquadASI.ScrollMinY = 0D;
+            this.graphSquadASI.ScrollMinY2 = 0D;
+            this.graphSquadASI.Size = new System.Drawing.Size(754, 406);
+            this.graphSquadASI.TabIndex = 2;
+            this.graphSquadASI.ZoomButtons = System.Windows.Forms.MouseButtons.Left;
+            this.graphSquadASI.ZoomButtons2 = System.Windows.Forms.MouseButtons.None;
+            this.graphSquadASI.ZoomModifierKeys = System.Windows.Forms.Keys.None;
+            this.graphSquadASI.ZoomModifierKeys2 = System.Windows.Forms.Keys.None;
+            this.graphSquadASI.ZoomStepFraction = 0.1D;
+            // 
+            // tabFansPage
+            // 
+            this.tabFansPage.Controls.Add(this.graphTeamFans);
+            this.tabFansPage.Location = new System.Drawing.Point(4, 22);
+            this.tabFansPage.Name = "tabFansPage";
+            this.tabFansPage.Padding = new System.Windows.Forms.Padding(3);
+            this.tabFansPage.Size = new System.Drawing.Size(760, 412);
+            this.tabFansPage.TabIndex = 6;
+            this.tabFansPage.Text = "Fans History";
+            this.tabFansPage.UseVisualStyleBackColor = true;
+            // 
+            // graphTeamFans
+            // 
+            this.graphTeamFans.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.graphTeamFans.EditButtons = System.Windows.Forms.MouseButtons.Left;
+            this.graphTeamFans.EditModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.None)));
+            this.graphTeamFans.IsAutoScrollRange = false;
+            this.graphTeamFans.IsEnableHEdit = false;
+            this.graphTeamFans.IsEnableHPan = true;
+            this.graphTeamFans.IsEnableHZoom = true;
+            this.graphTeamFans.IsEnableVEdit = false;
+            this.graphTeamFans.IsEnableVPan = true;
+            this.graphTeamFans.IsEnableVZoom = true;
+            this.graphTeamFans.IsPrintFillPage = true;
+            this.graphTeamFans.IsPrintKeepAspectRatio = true;
+            this.graphTeamFans.IsScrollY2 = false;
+            this.graphTeamFans.IsShowContextMenu = true;
+            this.graphTeamFans.IsShowCopyMessage = true;
+            this.graphTeamFans.IsShowCursorValues = false;
+            this.graphTeamFans.IsShowHScrollBar = false;
+            this.graphTeamFans.IsShowPointValues = false;
+            this.graphTeamFans.IsShowVScrollBar = false;
+            this.graphTeamFans.IsSynchronizeXAxes = false;
+            this.graphTeamFans.IsSynchronizeYAxes = false;
+            this.graphTeamFans.IsZoomOnMouseCenter = false;
+            this.graphTeamFans.LinkButtons = System.Windows.Forms.MouseButtons.Left;
+            this.graphTeamFans.LinkModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.None)));
+            this.graphTeamFans.Location = new System.Drawing.Point(3, 3);
+            this.graphTeamFans.Name = "graphTeamFans";
+            this.graphTeamFans.PanButtons = System.Windows.Forms.MouseButtons.Left;
+            this.graphTeamFans.PanButtons2 = System.Windows.Forms.MouseButtons.Middle;
+            this.graphTeamFans.PanModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.None)));
+            this.graphTeamFans.PanModifierKeys2 = System.Windows.Forms.Keys.None;
+            this.graphTeamFans.PointDateFormat = "g";
+            this.graphTeamFans.PointValueFormat = "G";
+            this.graphTeamFans.ScrollMaxX = 0D;
+            this.graphTeamFans.ScrollMaxY = 0D;
+            this.graphTeamFans.ScrollMaxY2 = 0D;
+            this.graphTeamFans.ScrollMinX = 0D;
+            this.graphTeamFans.ScrollMinY = 0D;
+            this.graphTeamFans.ScrollMinY2 = 0D;
+            this.graphTeamFans.Size = new System.Drawing.Size(754, 406);
+            this.graphTeamFans.TabIndex = 3;
+            this.graphTeamFans.ZoomButtons = System.Windows.Forms.MouseButtons.Left;
+            this.graphTeamFans.ZoomButtons2 = System.Windows.Forms.MouseButtons.None;
+            this.graphTeamFans.ZoomModifierKeys = System.Windows.Forms.Keys.None;
+            this.graphTeamFans.ZoomModifierKeys2 = System.Windows.Forms.Keys.None;
+            this.graphTeamFans.ZoomStepFraction = 0.1D;
             // 
             // TeamStatsForm
             // 
@@ -440,6 +503,7 @@ namespace TMRecorder
             this.tabPage4.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
             this.tabPage6.ResumeLayout(false);
+            this.tabFansPage.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -459,5 +523,7 @@ namespace TMRecorder
         private ZedGraph.ZedGraphControl graphAgeHistory;
         private ZedGraph.ZedGraphControl graphSkillGrowth;
         private ZedGraph.ZedGraphControl graphSkillCount;
+        private System.Windows.Forms.TabPage tabFansPage;
+        private ZedGraph.ZedGraphControl graphTeamFans;
     }
 }

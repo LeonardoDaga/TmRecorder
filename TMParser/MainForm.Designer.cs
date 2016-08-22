@@ -203,6 +203,7 @@ namespace TMRecorder
             this.toolStripLabel13 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel5 = new System.Windows.Forms.ToolStripLabel();
+            this.tsbImportClub = new TMR_CostumControls.TMR_ToolStripButton();
             this.tsbImportSquad = new TMR_CostumControls.TMR_ToolStripButton();
             this.toolStripLabel14 = new System.Windows.Forms.ToolStripLabel();
             this.tsbScouts = new TMR_CostumControls.TMR_ToolStripButton();
@@ -1917,6 +1918,7 @@ namespace TMRecorder
             this.toolStripLabel13,
             this.toolStripSeparator8,
             this.toolStripLabel5,
+            this.tsbImportClub,
             this.tsbImportSquad,
             this.toolStripLabel14,
             this.tsbScouts,
@@ -1957,6 +1959,23 @@ namespace TMRecorder
             this.toolStripLabel5.Name = "toolStripLabel5";
             this.toolStripLabel5.Size = new System.Drawing.Size(94, 13);
             this.toolStripLabel5.Text = "Team Info";
+            // 
+            // tsbImportClub
+            // 
+            this.tsbImportClub.AutoSize = false;
+            this.tsbImportClub.BackColor = System.Drawing.SystemColors.Control;
+            this.tsbImportClub.Image = ((System.Drawing.Image)(resources.GetObject("tsbImportClub.Image")));
+            this.tsbImportClub.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.tsbImportClub.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbImportClub.Name = "tsbImportClub";
+            this.tsbImportClub.Size = new System.Drawing.Size(92, 25);
+            this.tsbImportClub.Text = "Club";
+            this.tsbImportClub.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.tsbImportClub.UnderAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.tsbImportClub.UnderColor = System.Drawing.Color.CadetBlue;
+            this.tsbImportClub.UnderFont = new System.Drawing.Font("Arial", 7.25F);
+            this.tsbImportClub.UnderText = "";
+            this.tsbImportClub.Click += new System.EventHandler(this.tsbImportClub_Click);
             // 
             // tsbImportSquad
             // 
@@ -2158,6 +2177,7 @@ namespace TMRecorder
             | System.Windows.Forms.AnchorStyles.Right)));
             this.webBrowser.DefaultDirectory = "";
             this.webBrowser.Location = new System.Drawing.Point(97, 3);
+            this.webBrowser.MainTeamId = 0;
             this.webBrowser.Name = "webBrowser";
             this.webBrowser.NavigationAddress = "";
             this.webBrowser.NavigationMode = NTR_WebBrowser.NTR_Browser.eNavigationMode.Main;
@@ -3351,5 +3371,6 @@ namespace TMRecorder
         private System.Windows.Forms.ToolStripMenuItem oMLToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem oMRToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fCToolStripMenuItem;
+        private TMR_CostumControls.TMR_ToolStripButton tsbImportClub;
     }
 }

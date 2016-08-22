@@ -493,6 +493,20 @@ namespace NTR_Db
             Invalidate();
         }
 
+        public List<NTR_SquadDb.TeamDataRow> GetClubData(int clubID)
+        {
+            return (from data in seasonsDB.TeamData
+                    where data.TeamID == clubID
+                    select data).ToList();
+        }
+
+        public NTR_SquadDb.TeamDataRow GetLastClubData(int clubID)
+        {
+            return (from data in seasonsDB.TeamData
+                    where data.TeamID == clubID
+                    select data).OrderBy(d => d.Date).LastOrDefault();
+        }
+
         private void Invalidate()
         {
             //_ownedSquadsList = null;
@@ -902,7 +916,7 @@ namespace NTR_Db
             DateTime dtEnd = tmSeason.End;
 
             var playerPerf = (from c in seasonsDB.PlayerPerf
-                              where (c.PlayerRow.TeamRow.Owner) && (c.MatchRow.Date > dtStart)
+                              where (!c.PlayerRow.TeamRow.IsOwnerNull()) && (c.PlayerRow.TeamRow.Owner) && (c.MatchRow.Date > dtStart)
                               && (c.MatchRow.Date < dtEnd)
                               select c).OrderBy(p => p.MatchRow.Date).ToList();
 
@@ -1962,6 +1976,21 @@ namespace NTR_Db
 
             teamDataRow.NumSupporters = int.Parse(club_info["Fans"]);
             teamDataRow.Cash = int.Parse(club_info["Cash"]);
+        }
+
+        public DateTime GetLastMatch(int teamID)
+        {
+            TmSeason actualSeason = TmWeek.thisSeason();
+
+            var lastMatch = (from c in seasonsDB.Match
+                                      where (!c.IsDateNull()) && (c.Date > actualSeason.Start) && (c.Date <= DateTime.Today)
+                                              && ((c.OTeamID == teamID) || (c.YTeamID == teamID))
+                                      select c).OrderBy(c => c.Date).LastOrDefault();
+
+            if (lastMatch == null)
+                return DateTime.MinValue;
+            
+            return lastMatch.Date;
         }
 
         /*

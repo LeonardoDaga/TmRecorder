@@ -218,11 +218,11 @@ namespace TMRecorder
         private void FillTagsBars(NTR_Db.PlayerData selectedPlayerData)
         {
             if (selectedPlayerData.Aggressivity != null)
-                tagsBarAgg.Value = (decimal)selectedPlayerData.Aggressivity / 5M + 1;
+                tagsBarAgg.Value = (decimal)(float)(selectedPlayerData.Aggressivity) / 5M + 1;
             if (selectedPlayerData.Professionalism != null)
-                tagsBarPro.Value = (decimal)selectedPlayerData.Professionalism / 5M + 1;
+                tagsBarPro.Value = (decimal)(float)(selectedPlayerData.Professionalism) / 5M + 1;
             if (selectedPlayerData.Leadership != null)
-                tagsBarLea.Value = (decimal)selectedPlayerData.Leadership / 5M + 1;
+                tagsBarLea.Value = (decimal)(float)(selectedPlayerData.Leadership) / 5M + 1;
             if (selectedPlayerData.Physics != null)
                 tagsBarPhy.Value = (decimal)selectedPlayerData.Physics;
             if (selectedPlayerData.Tactics != null)

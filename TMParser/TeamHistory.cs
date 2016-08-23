@@ -59,13 +59,7 @@ namespace TMRecorder
 
         internal TrainingDataSet LastTraining()
         {
-            if (!sorted)
-            {
-                this.Sort(CompareTrainingByDate);
-                sorted = true;
-            }
-
-            return this[0];
+            return (from training in this select training).OrderBy(t => t.Date).LastOrDefault();
         }
 
         public new void Add(TrainingDataSet tds)
@@ -1622,6 +1616,14 @@ namespace TMRecorder
             try
             {
                 string[] strs = squad.Split('\n');
+
+                TrainingDataSet tds = TrainingHist.LastTraining();
+                if ((tds == null)||((tds.Date - DateTime.Today).TotalDays > 7))
+                {
+                    MessageBox.Show("You must import a more recent team page before the training page");
+                    return -1;
+                }
+
                 foreach (string str in strs)
                 {
                     if (!str.Contains("id=")) continue;
@@ -1630,8 +1632,6 @@ namespace TMRecorder
 
                     int id = int.Parse(dict["id"]);
                     int training = int.Parse(dict["training"]);
-
-                    TrainingDataSet tds = TrainingHist.LastTraining();
 
                     if ((tds.Date - DateTime.Now) < new TimeSpan(7, 0, 0))
                     {

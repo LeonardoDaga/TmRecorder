@@ -2152,9 +2152,9 @@ namespace NTR_Db
                 Ada = int.Parse(dictValues["Ada"]);
 
                 // Filling the DB
-                pr.Agg = (float)Aggressivity;
+                pr.Agg = (float)(int)Aggressivity;
                 pr.Inj = Inj;
-                pr.Pro = (float)Professionalism;
+                pr.Pro = (float)(int)Professionalism;
                 pr.Ada = Ada;
             }
 

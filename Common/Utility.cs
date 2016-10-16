@@ -728,6 +728,12 @@ namespace Common
         {
             return string.Format("S{0}-W{1}-D{2}", Season.ToString("00"), Week.ToString("00"), Day);
         }
+
+        public string ToShortString()
+        {
+            return string.Format("W{0}-D{1}", Week.ToString("00"), Day);
+            // return ((Week - 1) * 3 + Day / 2 - 1).ToString();
+        }
     }
 
     public class TmSeason

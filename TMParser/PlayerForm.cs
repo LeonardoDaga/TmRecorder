@@ -15,6 +15,8 @@ using SendFileTo;
 using NTR_Common;
 using mshtml;
 using NTR_WebBrowser;
+using NTR_Db;
+using NTR_Controls;
 
 namespace TMRecorder
 {
@@ -108,6 +110,8 @@ namespace TMRecorder
 
         public void Initialize()
         {
+            FormatPerfList();
+
             chkShowTGI.Checked = Program.Setts.ShowTGI;
 
             ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
@@ -144,11 +148,13 @@ namespace TMRecorder
 
             FillPlayerInfo(true);
 
-            FillSeasonCombo();
+            FillSeasonCombos();
             chkShowPosition.Checked = Program.Setts.ShowPosition;
             chkNormalized.Checked = Program.Setts.ShowStatsNormalized;
 
             FillMatchStatsGraph();
+
+            FillPerfList(playerDatarow);
 
             playerInfoChanged = false;
 
@@ -162,6 +168,152 @@ namespace TMRecorder
             }
 
             this.Refresh();
+        }
+
+        private void FormatPerfList()
+        {
+            dgMatchPerfList.AutoGenerateColumns = false;
+
+            dgMatchPerfList.Columns.Clear();
+            dgMatchPerfList.AddColumn("Day", "MatchDate", 50, AG_Style.Numeric | AG_Style.Frozen);
+            dgMatchPerfList.AddColumn("Match", "Match", 60, AG_Style.String | AG_Style.Frozen | AG_Style.ResizeAllCells);
+            dgMatchPerfList.AddColumn("Score", "ScoreString", 40, AG_Style.FormatString | AG_Style.Frozen);
+            dgMatchPerfList.AddColumn("Pos", "Position", 30, AG_Style.FavPosition);
+            dgMatchPerfList.AddColumn("AtkStyle", "AttackStyle", 50, AG_Style.String | AG_Style.Frozen);
+            dgMatchPerfList.AddColumn("Vote", "Vote", 40, AG_Style.FormatString | AG_Style.N1);
+            dgMatchPerfList.AddColumn("Sho", "Sho", 40, AG_Style.MatchResults | AG_Style.ResizeAllCells);
+            dgMatchPerfList.AddColumn("Thr", "Thr", 40, AG_Style.MatchResults | AG_Style.ResizeAllCells);
+            dgMatchPerfList.AddColumn("Win", "Win", 40, AG_Style.MatchResults | AG_Style.ResizeAllCells);
+            dgMatchPerfList.AddColumn("Lon", "Lon", 40, AG_Style.MatchResults | AG_Style.ResizeAllCells);
+            dgMatchPerfList.AddColumn("Cou", "Cou", 40, AG_Style.MatchResults | AG_Style.ResizeAllCells);
+            dgMatchPerfList.AddColumn("Cor", "Cor", 40, AG_Style.MatchResults | AG_Style.ResizeAllCells);
+            dgMatchPerfList.AddColumn("Fre", "Fre", 40, AG_Style.MatchResults | AG_Style.ResizeAllCells);
+            dgMatchPerfList.AddColumn("GkL", "GkL", 40, AG_Style.MatchResults | AG_Style.ResizeAllCells);
+            dgMatchPerfList.AddColumn("GkC", "GkC", 40, AG_Style.MatchResults | AG_Style.ResizeAllCells);
+            dgMatchPerfList.AddColumn("Pen", "Pen", 40, AG_Style.MatchResults | AG_Style.ResizeAllCells);
+        }
+
+
+        private void FillPerfList(ExtTMDataSet.GiocatoriNSkillRow playerDatarow)
+        {
+            int season = -1;
+            season = (int)(cmbPerfDetailsSeason.SelectedItem);
+
+            var playerPerfList = allSeasons.GetPlayerPerfList(playerDatarow.PlayerID, season);
+
+            List<PlayerMatchPerfData> matchPerfDataList = new List<PlayerMatchPerfData>();
+
+            foreach (Common.NTR_SquadDb.PlayerPerfRow ppr in playerPerfList)
+            {
+                var matchRow = ppr.MatchRow;
+
+                // Remove cases in which the owner team is indicated as opposite team
+                matchRow.CleanAmbiguities();
+
+                if (ppr.IsActionsNull()) continue;
+
+                matchPerfDataList.Add(new PlayerMatchPerfData(matchRow, ppr));
+            }
+
+            dgMatchPerfList.DataCollection = matchPerfDataList;
+
+            //FillAttackAndDefenseTable(matchPerfDataList);
+        }
+
+        private class AttackDefenseTable
+        {
+            public Dictionary<string, int[]> dataDefense = new Dictionary<string, int[]>();
+            public Dictionary<string, int[]> dataAttack = new Dictionary<string, int[]>();
+
+            internal void InsertActionInArray(List<PlayerMatchPerfData> matchPerfDataList)
+            {
+                foreach (PlayerMatchPerfData pmp in matchPerfDataList)
+                {
+                    AddValues(pmp.Sho, "Sho");
+                    AddValues(pmp.Thr, "Thr");
+                    AddValues(pmp.Win, "Win");
+                    AddValues(pmp.Lon, "Lon");
+                    AddValues(pmp.Cou, "Cou");
+                    AddValues(pmp.Cor, "Cor");
+                    AddValues(pmp.Fre, "Fre");
+                    AddValues(pmp.GkL, "GkL");
+                    AddValues(pmp.GkC, "GkC");
+                    AddValues(pmp.Pen, "Pen");
+                }
+            }
+
+            private void AddValues(string sho, string v)
+            {
+                var values = HTML_Parser.String2Dictionary(sho, ':');
+
+                foreach (var value in values)
+                {
+                    if (value.Key.StartsWith("D"))
+                    {
+                        if (!dataDefense.ContainsKey(value.Key))
+                            dataDefense.Add(value.Key, new int[4]);
+
+                        dataDefense[value.Key][int.Parse(value.Value)]++;
+                    }
+                    else if (value.Key.StartsWith("A"))
+                    {
+                        if (!dataAttack.ContainsKey(value.Key))
+                            dataAttack.Add(value.Key, new int[5]);
+
+                        dataAttack[value.Key][int.Parse(value.Value)]++;
+                    }
+                }
+            }
+
+            internal string[] AttackToStringArray(string attackType)
+            {
+                string[] attackStringArray = new string[6];
+
+                attackStringArray[1] = dataAttack[attackType][0].ToString();
+                attackStringArray[2] = dataAttack[attackType][1].ToString();
+                attackStringArray[3] = dataAttack[attackType][2].ToString();
+                attackStringArray[4] = dataAttack[attackType][3].ToString();
+                attackStringArray[5] = dataAttack[attackType][4].ToString();
+
+                return attackStringArray;
+            }
+
+            internal string[] DefenseToStringArray(string attackType)
+            {
+                string[] defenseStringArray = new string[6];
+
+                defenseStringArray[1] = dataAttack[attackType][0].ToString();
+                defenseStringArray[2] = dataAttack[attackType][1].ToString();
+                defenseStringArray[3] = dataAttack[attackType][2].ToString();
+                defenseStringArray[4] = dataAttack[attackType][3].ToString();
+                defenseStringArray[5] = dataAttack[attackType][4].ToString();
+
+                return defenseStringArray;
+            }
+        }
+
+        private void FillAttackAndDefenseTable(List<PlayerMatchPerfData> matchPerfDataList)
+        {
+            ActionsStats.Row[] rows = new ActionsStats.Row[10];
+
+            AttackDefenseTable adTable = new AttackDefenseTable();
+
+            adTable.InsertActionInArray(matchPerfDataList);
+
+            //Tot = Sho + Thr + Win + Lon + Cou + Cor + Fre + GkL + GkC + Pen;
+
+            rows[0].Title = "Sho";
+            rows[1].Title = "Thr";
+            rows[2].Title = "Win";
+            rows[3].Title = "Lon";
+            rows[4].Title = "Cou";
+            rows[5].Title = "Cor";
+            rows[6].Title = "Fre";
+            rows[7].Title = "GkL";
+            rows[8].Title = "GkC";
+            rows[9].Title = "Pen";
+
+            attackSummary.ActionRows[0].values = adTable.AttackToStringArray("Sho");
         }
 
         private void FillTagsBars(ExtraDS.GiocatoriRow gRow)
@@ -518,21 +670,26 @@ namespace TMRecorder
             graphTrainingPsychology.Refresh();
         }
 
-        private void FillSeasonCombo()
+        private void FillSeasonCombos()
         {
             cmbSeason.Items.Clear();
+            cmbPerfDetailsSeason.Items.Clear();
 
             cmbSeason.Items.Add("All seasons");
 
             foreach (int season in allSeasons.GetSeasonsVector())
             {
                 cmbSeason.Items.Add(season);
+                cmbPerfDetailsSeason.Items.Add(season);
             }
 
             if (cmbSeason.Items.Count == 0)
                 return;
-
             cmbSeason.SelectedItem = TmWeek.thisSeason().Season;
+
+            if (cmbPerfDetailsSeason.Items.Count == 0)
+                return;
+            cmbPerfDetailsSeason.SelectedItem = TmWeek.thisSeason().Season;
         }
 
         public void FillMatchStatsGraph()
@@ -2038,7 +2195,8 @@ namespace TMRecorder
 
             Initialize();
 
-            webBrowser.GotoPlayer(actPlayerID, NTR_Browser.PlayerNavigationType.NavigateReports);
+            if (tabControlPlayerHistory.SelectedTab == tabPlayerBrowser)
+                webBrowser.GotoPlayer(actPlayerID, NTR_Browser.PlayerNavigationType.NavigateReports);
         }
 
         private void btnPrev_Click(object sender, EventArgs e)
@@ -2052,7 +2210,8 @@ namespace TMRecorder
 
             Initialize();
 
-            webBrowser.GotoPlayer(actPlayerID, NTR_Browser.PlayerNavigationType.NavigateReports);
+            if (tabControlPlayerHistory.SelectedTab == tabPlayerBrowser)
+                webBrowser.GotoPlayer(actPlayerID, NTR_Browser.PlayerNavigationType.NavigateReports);
         }
 
         private void txtNotes_TextChanged(object sender, EventArgs e)
@@ -2155,6 +2314,12 @@ namespace TMRecorder
         private void cmbSeason_SelectedIndexChanged(object sender, EventArgs e)
         {
             chkNormalized_CheckedChanged(null, EventArgs.Empty);
+        }
+
+        private void cmbPerfDetailsSeason_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
+            FillPerfList(playerDatarow);
         }
 
         private void tsbComputeGrowth_Click(object sender, EventArgs e)
@@ -2481,6 +2646,21 @@ namespace TMRecorder
         {
             ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
             ExtraDS.GiocatoriRow gRow = History.PlayersDS.Giocatori.FindByPlayerID(playerDatarow.PlayerID);
+            if (gRow == null)
+                return;
+
+            if (content.StartsWith("GameTable"))
+            {
+                gameTableDS.LoadSeasonsStrings(content);
+
+                gRow.isDirty = true;
+
+                gRow.GameTable = gameTableDS.ToString();
+
+                isDirty = true;
+                return;
+            }
+
 
             scoutsNReviews.FillScoutsInfo(content);
 

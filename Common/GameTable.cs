@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 namespace Common 
 {
     public partial class GameTable 
@@ -12,7 +13,7 @@ namespace Common
                 if (!pr.IsGPNull()) season += ";GP=" + pr.GP.ToString();
                 if (!pr.IsGNull()) season += ";G=" + pr.G.ToString();
                 if (!pr.IsANull()) season += ";A=" + pr.A.ToString();
-                if (!pr.IsRatNull()) season += ";Rat=" + pr.Rat.ToString(CommGlobal.ciUs);
+                if (!pr.IsRatNull()) season += ";Rat=" + string.Format(CommGlobal.ciUs, "{0:N3}", pr.Rat);
                 if (!pr.IsCardsNull()) season += ";Cards=" + pr.Cards.ToString();
                 if (!pr.IsMoMNull()) season += ";MoM=" + pr.MoM.ToString();
                 if (!pr.IsRatDevNull()) season += ";RatDev=" + pr.RatDev.ToString(CommGlobal.ciUs);
@@ -33,6 +34,9 @@ namespace Common
             foreach (string season in seasons)
             {
                 Dictionary<string,string> dict = HTML_Parser.String2Dictionary(season);
+
+                if (dict.Count == 0)
+                    continue;
 
                 PerformancesRow pr = Performances.NewPerformancesRow();
 
@@ -163,6 +167,11 @@ namespace Common
 
 
             return outStr;
+        }
+
+        public void Import(string content)
+        {
+            throw new NotImplementedException();
         }
     }
 }

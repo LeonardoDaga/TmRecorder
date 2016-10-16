@@ -892,6 +892,14 @@ namespace NTR_Db
 
             return new KeyValuePair<int, string>(-1, "");
         }
+
+        public void SetOwned(int squadID, string squadName)
+        {
+            if (!this.ContainsKey(squadID))
+            {
+                this.Add(squadID, squadName);
+            }
+        }
     }
 
     public class PlayerData 
@@ -2375,6 +2383,195 @@ namespace NTR_Db
 
     }
 
+    public class PlayerMatchPerfData
+    {
+        public string MatchDate { get; set; }
+        public string Match { get; set; }
+        public FormattedString ScoreString { get; set; }
+        public string AttackStyle { get; set; }
+        public string Position { get; set; }
+        public FormattedString Vote { get; set; }
+        public string Sho { get; set; }
+        public string Thr { get; set; }
+        public string Win { get; set; }
+        public string Lon { get; set; }
+        public string Cou { get; set; }
+        public string Cor { get; set; }
+        public string Fre { get; set; }
+        public string GkL { get; set; }
+        public string GkC { get; set; }
+        public string Pen { get; set; }
+
+        public enum ActionType
+        {
+            Short = 0,      //[0]	"Short Pass"	object {string}
+            Thorugh = 1,    //[1]	"Through Ball"	object {string}
+            Wing = 2,       //[2]	"Wing"	object {string}
+            Long = 3,       //[3]	"Long Ball"	object {string}
+            Counter = 4,    //[4]	"Counter Attack"	object {string}
+            Corner = 5,     //[5]	"Corner"	object {string}
+            Freekick = 6,   //[6]	"Freekick"	object {string}
+            Gklong = 7,     //[7]	"GK long ball attack"	object {string}
+            GkCounter = 8,  //[8]	"GK long ball attack"	object {string}
+            Penalty = 9,     //[9]	"GK long ball attack"	object {string}
+            Card = 10,       //[10]	"card"	object {string}
+            Injuries = 11,   //[11]	"Injuries"	object {string}
+            Substitution = 12,//[12]	"Substitution"	object {string}
+            NotId = 13,      //[13]	"Not identified"	object {string}
+            Tot = 14
+        }
+
+        public enum ActionOutcome
+        {
+            None = -1,
+            AttFailed = 0, //[0]	
+            AttOff = 1,    //[1]	
+            AttIn = 2,     //[2]	
+            AttAssist = 3, //[3]	
+            AttGoal = 4,   //[4]	
+            DefFailed = 5, //[5]	
+            DefOff = 6,    //[6]	
+            DefIn = 7,     //[7]	
+            DefAssist = 8, //[8]	
+            DefGoal = 9,   //[9]	
+            Tot = 10,
+        }
+
+        public class ActionsGrid
+        {
+            int[,] grid = new int[(int)ActionType.Tot, (int)ActionOutcome.Tot];
+
+            internal static ActionsGrid Parse(string actions)
+            {
+                ActionsGrid ag = new ActionsGrid();
+
+                ActionsList actionsList = ActionsList.Parse(actions);
+
+                foreach (var action in actionsList)
+                {
+                    foreach (var outcome in action.Value)
+                    {
+                        if (outcome.Key < (int)ActionOutcome.Tot)
+                            ag.grid[action.Key, outcome.Key] += outcome.Value;
+                    }
+                }
+
+                return ag;
+            }
+
+            internal void Add(ActionsGrid gridToAdd)
+            {
+                for(int actionType=0; actionType< (int)ActionType.Tot; actionType++)
+                {
+                    for (int outcome = 0; outcome < (int)ActionOutcome.Tot; outcome++)
+                    {
+                        grid[actionType, outcome] += gridToAdd.grid[actionType, outcome];
+                    }
+                }
+            }
+
+            internal string GetString(ActionType actionType)
+            {
+                int type = (int)actionType;
+
+                string output = "";
+
+                for (int outcome = 0; outcome < (int)ActionOutcome.Tot; outcome++)
+                {
+                    output += ValueToString(outcome, grid[type, outcome]);
+                }
+
+                return output;
+            }
+
+            private string ValueToString(int outcome, int count)
+            {
+                string res = "";
+
+                if (count == 0) return res;
+
+                switch(OutcomeToActionOutcome(outcome))
+                {
+                    case ActionOutcome.AttFailed: res += "AF"; break;
+                    case ActionOutcome.AttOff: res += "AO"; break;
+                    case ActionOutcome.AttIn: res += "AI"; break;
+                    case ActionOutcome.AttAssist: res += "AA"; break;
+                    case ActionOutcome.AttGoal: res += "AG"; break;
+                    case ActionOutcome.DefFailed: res += "DF"; break;
+                    case ActionOutcome.DefOff: res += "DO"; break;
+                    case ActionOutcome.DefIn: res += "DI"; break;
+                    case ActionOutcome.DefAssist: res += "DA"; break;
+                    case ActionOutcome.DefGoal: res += "DG"; break;
+                }
+
+                res += ":" + count.ToString() + ";";
+                return res;
+            }
+
+            private ActionOutcome OutcomeToActionOutcome(int outcome)
+            {
+                switch (outcome)
+                {
+                    case 0: return ActionOutcome.AttFailed;
+                    case 1: return ActionOutcome.AttOff;
+                    case 2: return ActionOutcome.AttIn;
+                    case 10: return ActionOutcome.AttFailed;
+                    case 11: return ActionOutcome.AttOff;
+                    case 12: return ActionOutcome.AttIn;
+                    case 13: return ActionOutcome.AttAssist;
+                    case 3: return ActionOutcome.AttGoal;
+                    case 6: return ActionOutcome.DefFailed;
+                    case 7: return ActionOutcome.DefOff;
+                    case 8: return ActionOutcome.DefIn;
+                    case 9: return ActionOutcome.DefGoal;
+                }
+
+                return ActionOutcome.None;
+            }
+        }
+
+        ActionsGrid actionGrid = new ActionsGrid();
+
+        public PlayerMatchPerfData(NTR_SquadDb.MatchRow mr, NTR_SquadDb.PlayerPerfRow ppr)
+        {
+            actionGrid.Add(ActionsGrid.Parse(ppr.Actions));
+
+            MatchScore ms = new NTR_Db.MatchScore(mr.Score, mr.isHome);
+
+            ScoreString = new NTR_Db.FormattedString(mr.Score);
+            ScoreString.backColor = ms.ScoreColor;
+
+            TmSWD twd = (TmSWD)TmWeek.DateTimeToSWD(mr.Date);
+            MatchDate = twd.ToShortString();
+
+            Vote = ppr.Vote.ToString();
+            Vote.fontColor = FormattedString.VoteColor(ppr.Vote);
+            Vote.isBold = (ppr.Vote >= 9) || (ppr.Vote < 4);
+
+            Position = ppr.Position;
+
+            if (!mr.IsAttackStylesNull())
+            {
+                string[] splitAttack = mr.AttackStyles.Split(';');
+                // AttackStyle = mr.isHome ? splitAttack[0] : splitAttack[1];
+                AttackStyle = splitAttack[0];
+            }
+
+            Match = (mr.isHome?"(H) ":"(A) ") + mr.TeamRowByTeam_OTeam.Name;
+
+            Sho = actionGrid.GetString(ActionType.Short);
+            Thr = actionGrid.GetString(ActionType.Thorugh);
+            Win = actionGrid.GetString(ActionType.Wing);
+            Lon = actionGrid.GetString(ActionType.Long);
+            Cou = actionGrid.GetString(ActionType.Counter);
+            Cor = actionGrid.GetString(ActionType.Corner);
+            Fre = actionGrid.GetString(ActionType.Freekick);
+            GkL = actionGrid.GetString(ActionType.Gklong);
+            GkC = actionGrid.GetString(ActionType.GkCounter);
+            Pen = actionGrid.GetString(ActionType.Penalty);
+        }
+    }
+
     public class PlayerPerfData
     {
         public PlayerPerfData(NTR_SquadDb.PlayerPerfRow c)
@@ -2496,7 +2693,7 @@ namespace NTR_Db
 
             if (!HomeRow.IsOwnerNull() && (HomeRow.Owner))
                 IsHome = true;
-            else if (!HomeRow.IsOwnerNull() && (AwayRow.Owner))
+            else if (!AwayRow.IsOwnerNull() && (AwayRow.Owner))
                 IsHome = false;
             else if (!HomeRow.IsImportedNull() && (HomeRow.Imported))
                 IsHome = true;
@@ -2698,6 +2895,16 @@ namespace NTR_Db
         public int CompareTo(FormattedString other)
         {
             return this.ToString().CompareTo(other.ToString());
+        }
+
+        internal static Color VoteColor(float vote)
+        {
+            if (vote < 4)
+                return Color.Goldenrod;
+            else if (vote < 7)
+                return Color.Green;
+            else 
+                return Color.DarkViolet;
         }
     }
 

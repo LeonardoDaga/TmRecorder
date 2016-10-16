@@ -281,12 +281,24 @@ namespace NTR_WebBrowser
 
         private void tsbImport_Click(object sender, EventArgs e)
         {
-            Import();
+            bool showImportedText = false;
+            if ((Control.ModifierKeys & Keys.Control) != 0)
+                showImportedText = true;
+            Import(showImportedText);
         }
 
-        private void Import()
+        private void Import(bool showImportedText)
         {
             string importedPage = GetHiddenBrowserContent();
+
+            if (showImportedText)
+            {
+                FillInfoMessageBox fimb = new FillInfoMessageBox();
+                fimb.Comments = importedPage;
+                fimb.Text = "Copy of the imported string";
+                fimb.Message = "Copy the comment and paste it in an email to tmrecorder@gmail.com if something goes wrong";
+                fimb.ShowDialog();
+            }
 
             ImportedContent?.Invoke(importedPage, NavigationAddress);
         }
@@ -309,6 +321,21 @@ namespace NTR_WebBrowser
                     doctext = doctext == null ? "GBC error: failed importing players  (text is null)" : "GBC error: failed importing players  (text is empty)";
 
                     doctext += "\nJs content (in " + Resources.match_loader;
+
+                    doctext += "\n";
+                }
+            }
+            else if (StartnavigationAddress.Contains("/fixtures/club/"))
+            {
+                doctext = Import_Fixtures_Adv();
+                if (string.IsNullOrEmpty(doctext))
+                {
+                    doctext = doctext == null ?
+                        "GBC error: failed importing players  (text is null)" :
+                        "GBC error: failed importing players  (text is empty)";
+
+
+                    doctext += "\nJs content (in " + Resources.fixture_loader;
 
                     doctext += "\n";
                 }
@@ -344,21 +371,6 @@ namespace NTR_WebBrowser
                 }
 
                 doctext += "\n\r\n" + trainingDoctext;
-            }
-            else if (StartnavigationAddress.Contains("/fixtures/club/"))
-            {
-                doctext = Import_Fixtures_Adv();
-                if (string.IsNullOrEmpty(doctext))
-                {
-                    doctext = doctext == null ? 
-                        "GBC error: failed importing players  (text is null)" : 
-                        "GBC error: failed importing players  (text is empty)";
-
-
-                    doctext += "\nJs content (in " + Resources.fixture_loader;
-
-                    doctext += "\n";
-                }
             }
             else if (StartnavigationAddress.Contains("/training/"))
             {
@@ -489,6 +501,11 @@ namespace NTR_WebBrowser
 
         public string ParsePlayerPage(HtmlDocument htmlDocument)
         {
+            if (this.TopLevelControl.Name == "MainForm")
+            {
+                MessageBox.Show("Sorry but this is not the place where you can import the player page. You must open the Player History page (double click on the player row in the Team Players Tabs of this app) and import the player page from there");
+                return "";
+            }
 
             string result = "";
             string page = webBrowser.DocumentText;
@@ -760,91 +777,72 @@ namespace NTR_WebBrowser
                 result += ";ScoutInfo=" + ScoutInfo;
                 result += ";FPn=" + FPn;
             }
-            else if (page.Contains("active_tab\" id=\"tabplayer_history_new"))
+
+            var divHistory = htmlDocument.GetElementById("tabplayer_history_new");
+            if (divHistory.OuterHtml.Contains("class=\"active_tab"))
             {
-                string[] divs = report.Split('\n');
-
-                List<string> bodies = HTML_Parser.GetTags(page, "tbody");
-
-                int ix = 0;
-                for (; ix < bodies.Count; ix++)
-                {
-                    if (bodies[ix].Contains("text_fade_overlay")) break;
-                }
-
-                string body = bodies[ix];
-
-                List<string> trs = HTML_Parser.GetTags(body, "tr");
+                string history = Import_Player_History();
 
                 GameTable gameTable = new GameTable();
 
-                int lastSeason = 0;
+                string[] seasons = history.Split('\n');
 
-                foreach (string tr in trs)
+                foreach (var season in seasons)
                 {
-                    List<string> tds = HTML_Parser.GetTags(tr, "td");
+                    var seasonDict = HTML_Parser.String2Dictionary(season);
 
-                    try
-                    {
-                        if (tds.Count < 8) continue;
+                    if (seasonDict.Count == 0) continue;
 
-                        int season = int.Parse(tds[0]);
+                    GameTable.PerformancesRow pr = null;
 
-                        GameTable.PerformancesRow pr = null;
-                        bool added = false;
-
-                        for (int ip = 0; ip < gameTable.Performances.Count; ip++)
-                        {
-                            if (gameTable.Performances[ip].Season == season)
-                            {
-                                pr = gameTable.Performances[ip];
-                                break;
-                            }
-                        }
-
-                        if (pr == null)
-                        {
-                            pr = gameTable.Performances.NewPerformancesRow();
-                            added = true;
-                        }
-
-                        if (lastSeason != season)
-                        {
-                            pr.Season = season;
-                            pr.GP = int.Parse(tds[3]);
-                            pr.G = int.Parse(tds[4]);
-                            pr.A = int.Parse(tds[5]);
-                            pr.Cards = int.Parse(tds[6]);
-                            pr.Rat = decimal.Parse(tds[7], Common.CommGlobal.ciUs);
-                        }
-                        else
-                        {
-                            decimal rat1 = decimal.Parse(tds[7], Common.CommGlobal.ciUs);
-                            decimal rat2 = pr.Rat;
-                            decimal gp1 = (decimal)(int.Parse(tds[3]));
-                            decimal gp2 = (decimal)(pr.GP);
-
-                            decimal rat = (rat1 * gp1 + rat2 * gp2) / (gp1 + gp2);
-
-                            pr.Rat = rat;
-                            pr.GP += int.Parse(tds[3]);
-                            pr.G += int.Parse(tds[4]);
-                            pr.A += int.Parse(tds[5]);
-                            pr.Cards += int.Parse(tds[6]);
-                        }
-
-                        lastSeason = season;
-
-                        if (added)
-                            gameTable.Performances.AddPerformancesRow(pr);
-                    }
-                    catch
-                    {
+                    if (seasonDict["season"] == "transfer")
                         continue;
+
+                    bool added = false;
+                    int seasonNum = 0;
+                    int lastSeason = 0;
+
+                    if (!int.TryParse(seasonDict["season"], out seasonNum))
+                        continue;
+
+                    for (int ip = 0; ip < gameTable.Performances.Count; ip++)
+                    {
+                        if (gameTable.Performances[ip].Season == seasonNum)
+                        {
+                            pr = gameTable.Performances[ip];
+                            break;
+                        }
                     }
+
+                    if (pr == null)
+                    {
+                        pr = gameTable.Performances.NewPerformancesRow();
+                        added = true;
+                    }
+
+                    if (lastSeason != seasonNum)
+                    {
+                        pr.Season = seasonNum;
+                        pr.GP = int.Parse(seasonDict["games"]);
+                        pr.G = int.Parse(seasonDict["goals"]);
+                        pr.A = int.Parse(seasonDict["assists"]);
+                        pr.Cards = int.Parse(seasonDict["cards"]);
+                        if (seasonDict.ContainsKey("mom"))
+                            pr.MoM = int.Parse(seasonDict["mom"]);
+
+                        if (pr.GP > 0)
+                            pr.Rat = decimal.Parse(seasonDict["rating"], CommGlobal.ciUs) / pr.GP;
+                        else
+                            pr.Rat = decimal.Parse(seasonDict["rating_avg"], CommGlobal.ciUs);
+                    }
+
+                    lastSeason = seasonNum;
+
+                    if (added)
+                        gameTable.Performances.AddPerformancesRow(pr);
                 }
 
-                result += ";GameTable=" + gameTable.ToString();
+                result = "GameTable|" + gameTable.ToString();
             }
 
             return result;
@@ -966,6 +964,31 @@ namespace NTR_WebBrowser
             }
 
             return pl_data;
+        }
+
+        private string Import_Player_History()
+        {
+            string history_data = "";
+
+            try
+            {
+                AppendScript(Resources.get_player_history);
+
+                string history = ExecuteScript("get_history");
+
+                history_data = history;
+
+                if (history_data.Contains("Javascript error"))
+                {
+                    //MessageBox.Show("Error executing java scripts");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return history_data;
         }
 
         private string Import_Matches_Adv()

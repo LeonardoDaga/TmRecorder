@@ -10,6 +10,8 @@
 
 #pragma warning disable 1591
 
+using System;
+
 namespace Common {
     
     
@@ -5008,7 +5010,7 @@ namespace Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TeamDataRow AddTeamDataRow(TeamRow parentTeamRowByTeam_TeamData, System.DateTime Date, int NumSupporters, int StadiumSize, int Cash) {
+            public TeamDataRow AddTeamDataRow(TeamRow parentTeamRowByTeam_TeamData, System.DateTime Date, int NumSupporters, int StadiumSize, long Cash) {
                 TeamDataRow rowTeamDataRow = ((TeamDataRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -5067,7 +5069,7 @@ namespace Common {
                 base.Columns.Add(this.columnNumSupporters);
                 this.columnStadiumSize = new global::System.Data.DataColumn("StadiumSize", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnStadiumSize);
-                this.columnCash = new global::System.Data.DataColumn("Cash", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnCash = new global::System.Data.DataColumn("Cash", typeof(long), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCash);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("TeamDataKey1", new global::System.Data.DataColumn[] {
                                 this.columnTeamID,
@@ -8868,6 +8870,17 @@ namespace Common {
                     return ((ActionsRow[])(base.GetChildRows(this.Table.ChildRelations["Match_Actions"])));
                 }
             }
+
+            public void CleanAmbiguities()
+            {
+                if (this.TeamRowByTeam_YTeam.Owner == false)
+                {
+                    var myTeam = OTeamID;
+                    OTeamID = YTeamID;
+                    YTeamID = myTeam;
+                    isHome = !isHome;
+                }
+            }
         }
         
         /// <summary>
@@ -9618,10 +9631,10 @@ namespace Common {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int Cash {
+            public long Cash {
                 get {
                     try {
-                        return ((int)(this[this.tableTeamData.CashColumn]));
+                        return ((long)(this[this.tableTeamData.CashColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'Cash\' in table \'TeamData\' is DBNull.", e);

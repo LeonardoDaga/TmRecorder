@@ -122,6 +122,22 @@ namespace NTR_WebBrowser.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to function get_history() {
+        ///    strout = &quot;no data&quot;;
+        ///
+        ///    if (data == null) return &quot;Javascript error: data doesn&apos;t exists&quot;;
+        ///    var history_data = data;
+        ///
+        ///    return history_data.current_season;
+        ///}.
+        /// </summary>
+        public static string get_player_history {
+            get {
+                return ResourceManager.GetString("get_player_history", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to function get_players_training()
         ///{
         ///	strout = &quot;no data&quot;;
@@ -242,8 +258,8 @@ namespace NTR_WebBrowser.Properties {
         ///{
         ///	strout = &quot;no data&quot;;
         ///
-        ///	ths = [&quot;id&quot;, &quot;no&quot;, &quot;name&quot;, &quot;age&quot;, &quot;fp&quot;, &quot;str&quot;, &quot;sta&quot;, &quot;pac&quot;, &quot;mar&quot;, &quot;tac&quot;, &quot;wor&quot;, &quot;pos&quot;, &quot;pas&quot;, &quot;cro&quot;, &quot;tec&quot;, &quot;hea&quot;, &quot;fin&quot;, &quot;lon&quot;, &quot;set&quot;, &quot;rec&quot;, &quot;rat&quot;, &quot;routine&quot;, &quot;wage&quot;, &quot;asi&quot;, &quot;inj&quot;, &quot;ban_points&quot;, &quot;retire&quot;, &quot;country&quot;, &quot;goals&quot;, &quot;assists&quot;, &quot;gp&quot;, &quot;cards&quot;, &quot;mom&quot;, &quot;club&quot;, &quot;txt&quot;];
-        ///	gk_ths = [&quot;id&quot;, &quot;no&quot;, &quot;name&quot;, &quot;age&quot;, &quot;fp&quot;, &quot;str&quot;, &quot;sta&quot;, &quot;pac&quot;, &quot;han&quot;, &quot;one&quot;, &quot;ref&quot;, &quot;ari&quot;, &quot;jum&quot;, &quot;com&quot;, &quot;kic&quot;, &quot;thr&quot;, &quot;rec&quot;, &quot;rat&quot;, &quot;routine&q....
+        ///	ths = [&quot;id&quot;, &quot;no&quot;, &quot;name&quot;, &quot;age&quot;, &quot;fp&quot;, &quot;str&quot;, &quot;sta&quot;, &quot;pac&quot;, &quot;mar&quot;, &quot;tac&quot;, &quot;wor&quot;, &quot;pos&quot;, &quot;pas&quot;, &quot;cro&quot;, &quot;tec&quot;, &quot;hea&quot;, &quot;fin&quot;, &quot;lon&quot;, &quot;set&quot;, &quot;rec&quot;, &quot;rat&quot;, &quot;routine&quot;, &quot;wage&quot;, &quot;asi&quot;, &quot;inj&quot;, &quot;ban_points&quot;, &quot;retire&quot;, &quot;country&quot;, &quot;goals&quot;, &quot;assists&quot;, &quot;gp&quot;, &quot;cards&quot;, &quot;mom&quot;, &quot;club&quot;, &quot;txt&quot;, &quot;ban&quot;];
+        ///	gk_ths = [&quot;id&quot;, &quot;no&quot;, &quot;name&quot;, &quot;age&quot;, &quot;fp&quot;, &quot;str&quot;, &quot;sta&quot;, &quot;pac&quot;, &quot;han&quot;, &quot;one&quot;, &quot;ref&quot;, &quot;ari&quot;, &quot;jum&quot;, &quot;com&quot;, &quot;kic&quot;, &quot;thr&quot;, &quot;rec&quot;, &quot;rat&quot;....
         /// </summary>
         public static string players_loader {
             get {

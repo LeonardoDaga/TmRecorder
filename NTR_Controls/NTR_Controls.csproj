@@ -66,6 +66,10 @@
     <Compile Include="ActionStats.Designer.cs">
       <DependentUpon>ActionStats.cs</DependentUpon>
     </Compile>
+    <Compile Include="NTR_MatchPerfColumn.cs" />
+    <Compile Include="NTR_MatchPerfColumn.Designer.cs">
+      <DependentUpon>NTR_MatchPerfColumn.cs</DependentUpon>
+    </Compile>
     <Compile Include="OldMatchStats.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -133,6 +137,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ActionStats.resx">
       <DependentUpon>ActionStats.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NTR_MatchPerfColumn.resx">
+      <DependentUpon>NTR_MatchPerfColumn.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="OldMatchStats.resx">
       <DependentUpon>OldMatchStats.cs</DependentUpon>

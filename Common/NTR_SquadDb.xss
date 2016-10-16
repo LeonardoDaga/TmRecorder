@@ -153,18 +153,6 @@
         </Point>
       </RoutePoints>
     </Connector>
-    <Connector ID="DesignRelation:Team_TeamData" ZOrder="17" LineWidth="11">
-      <RoutePoints>
-        <Point>
-          <X>120</X>
-          <Y>197</Y>
-        </Point>
-        <Point>
-          <X>120</X>
-          <Y>238</Y>
-        </Point>
-      </RoutePoints>
-    </Connector>
     <Connector ID="DesignRelation:Team_YTeam" ZOrder="16" LineWidth="11">
       <RoutePoints>
         <Point>
@@ -246,6 +234,18 @@
         <Point>
           <X>40</X>
           <Y>428</Y>
+        </Point>
+      </RoutePoints>
+    </Connector>
+    <Connector ID="DesignRelation:Team_TeamData" ZOrder="17" LineWidth="11">
+      <RoutePoints>
+        <Point>
+          <X>120</X>
+          <Y>197</Y>
+        </Point>
+        <Point>
+          <X>120</X>
+          <Y>238</Y>
         </Point>
       </RoutePoints>
     </Connector>

@@ -1439,7 +1439,7 @@ namespace TMRecorder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TeamHistoryRow AddTeamHistoryRow(System.DateTime Date, int Fans, int Cash) {
+            public TeamHistoryRow AddTeamHistoryRow(System.DateTime Date, int Fans, long Cash) {
                 TeamHistoryRow rowTeamHistoryRow = ((TeamHistoryRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Date,
@@ -1486,7 +1486,7 @@ namespace TMRecorder {
                 base.Columns.Add(this.columnDate);
                 this.columnFans = new global::System.Data.DataColumn("Fans", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFans);
-                this.columnCash = new global::System.Data.DataColumn("Cash", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnCash = new global::System.Data.DataColumn("Cash", typeof(long), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCash);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnDate}, true));
@@ -1973,10 +1973,10 @@ namespace TMRecorder {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int Cash {
+            public long Cash {
                 get {
                     try {
-                        return ((int)(this[this.tableTeamHistory.CashColumn]));
+                        return ((long)(this[this.tableTeamHistory.CashColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'Cash\' in table \'TeamHistory\' is DBNull.", e);

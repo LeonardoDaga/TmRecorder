@@ -93,11 +93,13 @@ namespace TMRecorder
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle60 = new System.Windows.Forms.DataGridViewCellStyle();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabMain = new System.Windows.Forms.TabControl();
             this.tabGenerali = new System.Windows.Forms.TabPage();
+            this.btnResetWindows = new System.Windows.Forms.Button();
             this.cmbIEVersions = new System.Windows.Forms.ComboBox();
             this.btnActionAnalysisFile = new System.Windows.Forms.Button();
             this.txtActionsAnalysisFile = new System.Windows.Forms.TextBox();
+            this.label27 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.chkUseTMBrowser = new System.Windows.Forms.CheckBox();
@@ -112,7 +114,7 @@ namespace TMRecorder
             this.label6 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.tabPage13 = new System.Windows.Forms.TabPage();
+            this.tabPageYourTeamData = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.rbPro = new System.Windows.Forms.RadioButton();
             this.rbNonPro = new System.Windows.Forms.RadioButton();
@@ -302,12 +304,10 @@ namespace TMRecorder
             this.dataGridViewTextBoxColumn62 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn63 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.btnResetWindows = new System.Windows.Forms.Button();
-            this.label27 = new System.Windows.Forms.Label();
-            this.tabControl1.SuspendLayout();
+            this.tabMain.SuspendLayout();
             this.tabGenerali.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nationNamesBindingSource)).BeginInit();
-            this.tabPage13.SuspendLayout();
+            this.tabPageYourTeamData.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -398,24 +398,25 @@ namespace TMRecorder
             this.button2.TabIndex = 0;
             this.button2.Text = "OK";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // tabControl1
+            // tabMain
             // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.tabMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl1.Controls.Add(this.tabGenerali);
-            this.tabControl1.Controls.Add(this.tabPage13);
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabScout);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPage31);
-            this.tabControl1.Location = new System.Drawing.Point(1, 1);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(639, 371);
-            this.tabControl1.TabIndex = 1;
-            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
+            this.tabMain.Controls.Add(this.tabGenerali);
+            this.tabMain.Controls.Add(this.tabPageYourTeamData);
+            this.tabMain.Controls.Add(this.tabPage1);
+            this.tabMain.Controls.Add(this.tabScout);
+            this.tabMain.Controls.Add(this.tabPage3);
+            this.tabMain.Controls.Add(this.tabPage31);
+            this.tabMain.Location = new System.Drawing.Point(1, 1);
+            this.tabMain.Name = "tabMain";
+            this.tabMain.SelectedIndex = 0;
+            this.tabMain.Size = new System.Drawing.Size(639, 371);
+            this.tabMain.TabIndex = 1;
+            this.tabMain.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabGenerali
             // 
@@ -444,6 +445,16 @@ namespace TMRecorder
             this.tabGenerali.TabIndex = 0;
             this.tabGenerali.Text = "Generics";
             this.tabGenerali.UseVisualStyleBackColor = true;
+            // 
+            // btnResetWindows
+            // 
+            this.btnResetWindows.Location = new System.Drawing.Point(233, 191);
+            this.btnResetWindows.Name = "btnResetWindows";
+            this.btnResetWindows.Size = new System.Drawing.Size(97, 23);
+            this.btnResetWindows.TabIndex = 21;
+            this.btnResetWindows.Text = "Reset";
+            this.btnResetWindows.UseVisualStyleBackColor = true;
+            this.btnResetWindows.Click += new System.EventHandler(this.btnResetWindows_Click);
             // 
             // cmbIEVersions
             // 
@@ -474,6 +485,15 @@ namespace TMRecorder
             this.txtActionsAnalysisFile.Name = "txtActionsAnalysisFile";
             this.txtActionsAnalysisFile.Size = new System.Drawing.Size(462, 20);
             this.txtActionsAnalysisFile.TabIndex = 18;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(9, 196);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(218, 13);
+            this.label27.TabIndex = 17;
+            this.label27.Text = "Reset TmRecorder windows (dialog) Position";
             // 
             // label26
             // 
@@ -614,24 +634,24 @@ namespace TMRecorder
             this.label1.TabIndex = 0;
             this.label1.Text = "Squad Data Directory";
             // 
-            // tabPage13
+            // tabPageYourTeamData
             // 
-            this.tabPage13.Controls.Add(this.groupBox3);
-            this.tabPage13.Controls.Add(this.txtReserveSquadID);
-            this.tabPage13.Controls.Add(this.txtMainSquadID);
-            this.tabPage13.Controls.Add(this.label11);
-            this.tabPage13.Controls.Add(this.txtReserveSquadName);
-            this.tabPage13.Controls.Add(this.txtMainSquadName);
-            this.tabPage13.Controls.Add(this.label10);
-            this.tabPage13.Controls.Add(this.label12);
-            this.tabPage13.Controls.Add(this.label9);
-            this.tabPage13.Location = new System.Drawing.Point(4, 22);
-            this.tabPage13.Name = "tabPage13";
-            this.tabPage13.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage13.Size = new System.Drawing.Size(631, 345);
-            this.tabPage13.TabIndex = 4;
-            this.tabPage13.Text = "Your Teams Data";
-            this.tabPage13.UseVisualStyleBackColor = true;
+            this.tabPageYourTeamData.Controls.Add(this.groupBox3);
+            this.tabPageYourTeamData.Controls.Add(this.txtReserveSquadID);
+            this.tabPageYourTeamData.Controls.Add(this.txtMainSquadID);
+            this.tabPageYourTeamData.Controls.Add(this.label11);
+            this.tabPageYourTeamData.Controls.Add(this.txtReserveSquadName);
+            this.tabPageYourTeamData.Controls.Add(this.txtMainSquadName);
+            this.tabPageYourTeamData.Controls.Add(this.label10);
+            this.tabPageYourTeamData.Controls.Add(this.label12);
+            this.tabPageYourTeamData.Controls.Add(this.label9);
+            this.tabPageYourTeamData.Location = new System.Drawing.Point(4, 22);
+            this.tabPageYourTeamData.Name = "tabPageYourTeamData";
+            this.tabPageYourTeamData.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageYourTeamData.Size = new System.Drawing.Size(631, 345);
+            this.tabPageYourTeamData.TabIndex = 4;
+            this.tabPageYourTeamData.Text = "Your Teams Data";
+            this.tabPageYourTeamData.UseVisualStyleBackColor = true;
             // 
             // groupBox3
             // 
@@ -2909,32 +2929,13 @@ namespace TMRecorder
             this.dataGridViewTextBoxColumn63.HeaderText = "Review";
             this.dataGridViewTextBoxColumn63.Name = "dataGridViewTextBoxColumn63";
             // 
-            // btnResetWindows
-            // 
-            this.btnResetWindows.Location = new System.Drawing.Point(233, 191);
-            this.btnResetWindows.Name = "btnResetWindows";
-            this.btnResetWindows.Size = new System.Drawing.Size(97, 23);
-            this.btnResetWindows.TabIndex = 21;
-            this.btnResetWindows.Text = "Reset";
-            this.btnResetWindows.UseVisualStyleBackColor = true;
-            this.btnResetWindows.Click += new System.EventHandler(this.btnResetWindows_Click);
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(9, 196);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(218, 13);
-            this.label27.TabIndex = 17;
-            this.label27.Text = "Reset TmRecorder windows (dialog) Position";
-            // 
             // OptionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(638, 413);
             this.ContextMenuStrip = this.optionFormMenuStrip;
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.tabMain);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -2943,12 +2944,12 @@ namespace TMRecorder
             this.Text = "Options";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OptionsForm_FormClosing);
             this.Load += new System.EventHandler(this.OptionsForm_Load);
-            this.tabControl1.ResumeLayout(false);
+            this.tabMain.ResumeLayout(false);
             this.tabGenerali.ResumeLayout(false);
             this.tabGenerali.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nationNamesBindingSource)).EndInit();
-            this.tabPage13.ResumeLayout(false);
-            this.tabPage13.PerformLayout();
+            this.tabPageYourTeamData.ResumeLayout(false);
+            this.tabPageYourTeamData.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.tabPage1.ResumeLayout(false);
@@ -3033,7 +3034,7 @@ namespace TMRecorder
 
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl tabMain;
         private System.Windows.Forms.TabPage tabGenerali;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnSelectDataDirectory;
@@ -3083,7 +3084,7 @@ namespace TMRecorder
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.BindingSource abilityBindingSource;
         private System.Windows.Forms.CheckBox chkUseTMBrowser;
-        private System.Windows.Forms.TabPage tabPage13;
+        private System.Windows.Forms.TabPage tabPageYourTeamData;
         private System.Windows.Forms.TextBox txtReserveSquadID;
         private System.Windows.Forms.TextBox txtMainSquadID;
         private System.Windows.Forms.Label label11;

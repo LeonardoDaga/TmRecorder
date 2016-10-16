@@ -787,6 +787,9 @@ namespace TMRecorder
                 evidenceSkillsForGainsToolStripMenuItem.Checked = Program.Setts.EvidenceGain;
                 evidenceSkillsForGainsMenuItem2.Checked = Program.Setts.EvidenceGain;
 
+                AllSeasons.OwnedSquadsList.SetOwned(of.MainSquadID, of.MainSquadName);
+                AllSeasons.OwnedSquadsList.SetOwned(of.ReserveSquadID, of.ReserveSquadName);
+
                 Program.Setts.UsingStartingPathDisk = of.UseStartupDisk;
                 Program.Setts.UseOldHTMLImportStyle = of.UseOldHTMLImportStyle;
                 Program.Setts.MatchAnalysisFile = of.MatchAnalysisFile;
@@ -2712,7 +2715,12 @@ namespace TMRecorder
             LoadSavedPlayerPages(di.FullName);
 
             foreach (DirectoryInfo directory in di.GetDirectories())
+            {
+                // Exclude Extra team folders
+                if (Utility.IsNumeric(directory.Name))
+                    continue;
                 LoadSavedPlayerPagesRecursively(directory, ref sf);
+            }
         }
 
         private void LoadSavedFixturesAndMatchesPagesRecursively(DirectoryInfo di, ref SplashForm sf, bool trace)
@@ -2720,7 +2728,13 @@ namespace TMRecorder
             LoadSavedFixturesAndMatchesPages(di.FullName, ref sf, trace);
 
             foreach (DirectoryInfo directory in di.GetDirectories())
+            {
+                // Exclude Extra team folders
+                if (Utility.IsNumeric(directory.Name))
+                    continue;
+
                 LoadSavedFixturesAndMatchesPagesRecursively(directory, ref sf, trace);
+            }
         }
 
         private void LoadSavedPlayerPages(string folder)
@@ -3321,6 +3335,22 @@ namespace TMRecorder
         private void tsbImportClub_Click(object sender, EventArgs e)
         {
             webBrowser.Goto(TM_Pages.Club);
+        }
+
+        private void rescanMatchesForPlayersActionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SplashForm sf = new SplashForm("TM - Team Recorder",
+                    "Release " + Application.ProductVersion,
+                    "Re-Computing Players Perfs from stored matches");
+
+            sf.Show();
+
+            AllSeasons.RescanMatchesForPlayersActions(ref sf);
+            isDirty = true;
+
+            sf.Close();
+            sf.Dispose();
+            sf = null;
         }
     }
 }

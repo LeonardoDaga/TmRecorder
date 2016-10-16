@@ -8,6 +8,7 @@ using System.Diagnostics;
 using TMRecorder.Properties;
 using Common;
 using Languages;
+using System.Text.RegularExpressions;
 
 namespace TMRecorder
 {
@@ -155,6 +156,11 @@ namespace TMRecorder
                     MessageBox.Show("Error starting a web application for the web page: " + arg);
                 }
             }
+        }
+
+        internal static bool IsNumeric(string name)
+        {
+            return Regex.IsMatch(name, @"^\d+$");
         }
     }
 }

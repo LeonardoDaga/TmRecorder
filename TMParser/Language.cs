@@ -135,7 +135,7 @@ namespace TMRecorder
             this.chkShowTGI.Text = "Show TGI";
             this.tabPage2.Text = Current.Language.Injuries;
             this.tabPage3.Text = "Specs";
-            this.tabPage4.Text = Current.Language.Performances;
+            this.tabPagePerfGraph.Text = Current.Language.Performances;
             this.lblSeason.Text = Current.Language.Season;
             this.chkNormalized.Text = Current.Language.Normalized;
             this.chkShowPosition.Text = Current.Language.ShowPosition;
@@ -195,7 +195,7 @@ namespace TMRecorder
             this.label6.Text = Current.Language.InstallationDirectory;
             this.label2.Text = Current.Language.DefaultPlayerNation;
             this.label1.Text = Current.Language.SquadDataDirectory;
-            this.tabPage13.Text = Current.Language.YourTeamsData;
+            this.tabPageYourTeamData.Text = Current.Language.YourTeamsData;
             this.groupBox3.Text = Current.Language.UserType;
             this.rbPro.Text = "PRO";
             this.rbNonPro.Text = "Non PRO";

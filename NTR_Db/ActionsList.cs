@@ -284,13 +284,13 @@ namespace NTR_Db
             return outputAnalysis;
         }
 
-        public void AddNewAttackAction(NTR_SquadDb.ActionsDecoderRow actionDecRow)
+        public void AddNewAttackAction(NTR_SquadDb.ActionsDecoderRow actionDecRow, bool isAssist = false)
         {
             if (!this.ContainsKey(actionDecRow.Type))
                 this.Add(actionDecRow.Type, new ActionsItem());
 
             ActionsItem action = this[actionDecRow.Type];
-            action.AddAttack(actionDecRow.Outcome);
+            action.AddAttack((byte)(actionDecRow.Outcome + (isAssist? 10 : 0)));
         }
 
         public void AddNewDefendAction(NTR_SquadDb.ActionsDecoderRow actionDecRow)

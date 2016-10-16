@@ -17,20 +17,27 @@ namespace TMRecorder
         static readonly float[] merchandisingRevPerFan = new float[] { 0, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200 };
         static readonly float[] merchandisingWeekCost = new float[] { 0, 50000, 150000, 250000, 350000, 450000, 550000, 650000, 750000, 850000, 950000 };
         static readonly float[] merchandisingBuildCost = new float[] {80000, 160000, 300000, 600000, 1000000, 1400000, 1800000, 2500000, 3250000, 6500000 };
+
         static readonly float[] merchandStandRevPerSpectator = new float[] { 0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 };
         static readonly float[] merchandStandWeekCost = new float[] { 0, 112500, 225000, 337500, 450000, 562500, 675000, 787500, 900000, 1012500, 1125000 };
         static readonly float[] merchandStandBuildCost = new float[] {500000, 1000000, 2000000, 4000000, 8000000, 12000000, 16000000, 20000000, 30000000, 40000000 };
+
         static readonly float[] restaurantRevPerSpectator = new float[] { 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50 };
         static readonly float[] restaurantWeekCost = new float[] { 0, 56250, 112500, 168750, 225000, 281250, 337500, 393750, 450000, 506250, 562500 };
         static readonly float[] restaurantBuildCost = new float[] { 250000, 500000, 1000000, 2000000, 4000000, 6000000, 8000000, 10000000, 15000000, 20000000 };
+
         static readonly float[] sausageRevPerSpectator = new float[] { 0f, 2.5f, 5.0f, 7.5f, 10.0f, 12.5f, 15.0f, 17.5f, 20.0f, 22.5f, 25.0f };
         static readonly float[] sausageWeekCost = new float[] { 0, 28125, 56250, 84375, 112500, 140625, 168750, 196875, 225000, 253125, 281250 };
         static readonly float[] sausageBuildCost = new float[] { 125000, 250000, 500000, 1000000, 2000000, 3000000, 4000000, 5000000, 7500000, 10000000 };
+
         static readonly float[] fastfoodRevPerSpectator = new float[] { 0, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40 };
         static readonly float[] fastfoodWeekCost = new float[] { 0, 45000, 90000, 135000, 180000, 225000, 270000, 315000, 360000, 405000, 450000 };
         static readonly float[] fastfoodBuildCost = new float[] { 187000, 375000, 750000, 1500000, 3000000, 4500000, 6000000, 7500000, 11250000, 15000000 };
+
         static readonly float[] parkingAttendanceIncrement = new float[] { 0f, 0.01f, 0.02f, 0.03f, 0.04f, 0.05f, 0.06f, 0.07f, 0.08f, 0.09f, 0.10f };
-        static readonly float[] parkingBuildCost = new float[] { 125000, 250000, 500000, 1000000, 2000000, 3000000, 4000000, 5000000, 7500000, 10000000 };
+        static readonly float[] parkingBuildCost = new float[] { 125000, 750000, 2250000, 5000000, 9000000, 15000000, 22500000, 30000000, 40000000, 50000000 };
+        static readonly float[] parkingWeekCost = new float[] { 10000, 50000, 100000, 150000, 250000, 375000, 500000, 625000, 800000, 1000000 };
+
         static readonly float stadiumRevPerSpectator = 200;
         static readonly float stadiumCostPerSeat = 35;
 
@@ -216,7 +223,8 @@ namespace TMRecorder
             int levelMerchandisingStand,
             int levelSausageStands,
             int levelRestaurants,
-            int levelFastFood)
+            int levelFastFood,
+            int levelParking)
         {
             float ratioMatchWeek = 17f/12f;
             float val = (stadiumRevPerSpectator * averageAttendance) * ratioMatchWeek - stadiumCostPerSeat * stadiumSize +
@@ -224,7 +232,8 @@ namespace TMRecorder
                 (merchandStandRevPerSpectator[levelMerchandisingStand] * averageAttendance) * ratioMatchWeek - merchandStandWeekCost[levelMerchandisingStand] +
                 (sausageRevPerSpectator[levelSausageStands] * averageAttendance) * ratioMatchWeek - sausageWeekCost[levelSausageStands] +
                 (restaurantRevPerSpectator[levelRestaurants] * averageAttendance) * ratioMatchWeek - restaurantWeekCost[levelRestaurants] +
-                (fastfoodRevPerSpectator[levelFastFood] * averageAttendance) * ratioMatchWeek - fastfoodWeekCost[levelFastFood];
+                (fastfoodRevPerSpectator[levelFastFood] * averageAttendance) * ratioMatchWeek - fastfoodWeekCost[levelFastFood]
+                - parkingWeekCost[levelParking];
             return val;
         }
 
@@ -236,35 +245,35 @@ namespace TMRecorder
             int seatsIncrement = StadiumSizeIncrement;
 
             float baseValue = Incomes(AverageAttendance, NumOfSupporters, StadiumSize, LevelMerchandisingStore,
-                LevelMerchandisingStand, LevelSausageStands, LevelRestaurants, LevelFastFood);
+                LevelMerchandisingStand, LevelSausageStands, LevelRestaurants, LevelFastFood, LevelParking);
 
             differentialIncomes[(int)Structures.Stadium] = 
                 (Incomes(AverageAttendance + seatsIncrement, NumOfSupporters, StadiumSize + seatsIncrement, LevelMerchandisingStore,
-                LevelMerchandisingStand, LevelSausageStands, LevelRestaurants, LevelFastFood) - baseValue) / 1000;
+                LevelMerchandisingStand, LevelSausageStands, LevelRestaurants, LevelFastFood, LevelParking) - baseValue) / 1000;
 
             differentialIncomes[(int)Structures.MerchandiseStore] =
                 (Incomes(AverageAttendance, NumOfSupporters, StadiumSize, LevelMerchandisingStore + 1,
-                LevelMerchandisingStand, LevelSausageStands, LevelRestaurants, LevelFastFood) - baseValue) / 1000;
+                LevelMerchandisingStand, LevelSausageStands, LevelRestaurants, LevelFastFood, LevelParking) - baseValue) / 1000;
 
             differentialIncomes[(int)Structures.MerchandisingStands] =
                 (Incomes(AverageAttendance, NumOfSupporters, StadiumSize, LevelMerchandisingStore,
-                LevelMerchandisingStand + 1, LevelSausageStands, LevelRestaurants, LevelFastFood) - baseValue) / 1000;
+                LevelMerchandisingStand + 1, LevelSausageStands, LevelRestaurants, LevelFastFood, LevelParking) - baseValue) / 1000;
 
             differentialIncomes[(int)Structures.SausageStands] =
                 (Incomes(AverageAttendance, NumOfSupporters, StadiumSize, LevelMerchandisingStore,
-                LevelMerchandisingStand, LevelSausageStands + 1, LevelRestaurants, LevelFastFood) - baseValue) / 1000;
+                LevelMerchandisingStand, LevelSausageStands + 1, LevelRestaurants, LevelFastFood, LevelParking) - baseValue) / 1000;
 
             differentialIncomes[(int)Structures.Restaurants] =
                 (Incomes(AverageAttendance, NumOfSupporters, StadiumSize, LevelMerchandisingStore,
-                LevelMerchandisingStand, LevelSausageStands, LevelRestaurants + 1, LevelFastFood) - baseValue) / 1000;
+                LevelMerchandisingStand, LevelSausageStands, LevelRestaurants + 1, LevelFastFood, LevelParking) - baseValue) / 1000;
 
             differentialIncomes[(int)Structures.FastFood] =
                 (Incomes(AverageAttendance, NumOfSupporters, StadiumSize, LevelMerchandisingStore,
-                LevelMerchandisingStand, LevelSausageStands, LevelRestaurants, LevelFastFood + 1) - baseValue) / 1000;
+                LevelMerchandisingStand, LevelSausageStands, LevelRestaurants, LevelFastFood + 1, LevelParking) - baseValue) / 1000;
 
             differentialIncomes[(int)Structures.Parking] =
                 (Incomes(Math.Min(AverageAttendance * (1 + parkingAttendanceIncrement[LevelParking+1]) / (1 + parkingAttendanceIncrement[LevelParking]), StadiumSize - 25), NumOfSupporters, StadiumSize, LevelMerchandisingStore,
-                LevelMerchandisingStand, LevelSausageStands, LevelRestaurants, LevelFastFood) - baseValue) / 1000;
+                LevelMerchandisingStand, LevelSausageStands, LevelRestaurants, LevelFastFood, LevelParking) - baseValue) / 1000;
 
             //differentialIncomes[(int)Structures.Stadium] = ((stadiumRevPerSpectator * (AverageAttendance + seatsIncrement)) * 17 / 12 - stadiumCostPerSeat * (StadiumSize + seatsIncrement)) / 1000 -
             //    ((stadiumRevPerSpectator * AverageAttendance) * 17 / 12 - stadiumCostPerSeat * StadiumSize) / 1000;

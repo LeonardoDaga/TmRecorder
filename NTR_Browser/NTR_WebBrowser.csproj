@@ -175,6 +175,7 @@
     <None Include="Resources\TwoArrows.png" />
     <None Include="Resources\Lens.png" />
     <None Include="Resources\Lens2.png" />
+    <Content Include="Resources\get_player_history.js" />
     <Content Include="Resources\RatingR2.user.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

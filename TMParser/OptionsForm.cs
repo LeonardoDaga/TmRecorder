@@ -413,7 +413,7 @@ namespace TMRecorder
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (tabControl1.SelectedTab == tabScout)
+            if (tabMain.SelectedTab == tabScout)
             {
                 dataGridView1.Select();
             }
@@ -426,7 +426,7 @@ namespace TMRecorder
 
         private void pasteOptionFormToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (tabControl1.SelectedTab == tabScout)
+            if (tabMain.SelectedTab == tabScout)
                 pasteScoutListToolStripMenuItem_Click(sender, e);
             else
                 pasteTrainersListToolStripMenuItem_Click(sender, e);
@@ -531,7 +531,13 @@ namespace TMRecorder
 
         private void OptionsForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-
+            int mainSquadIdTest = 0;
+            if (!int.TryParse(txtMainSquadID.Text, out mainSquadIdTest) || (mainSquadIdTest <= 0))
+            {
+                tabMain.SelectedTab = tabPageYourTeamData;
+                MessageBox.Show("You must provide a valid number for your main team ID");
+                e.Cancel = true;
+            }
         }
 
         private void cmbIEVersions_SelectedIndexChanged(object sender, EventArgs e)
@@ -557,6 +563,11 @@ namespace TMRecorder
         private void btnResetWindows_Click(object sender, EventArgs e)
         {
             Program.Setts.ResetPositions();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

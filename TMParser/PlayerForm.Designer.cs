@@ -33,10 +33,16 @@ namespace TMRecorder
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PlayerForm));
+            NTR_Controls.ActionsStats.Row row1 = new NTR_Controls.ActionsStats.Row();
+            NTR_Controls.ActionsStats.Row row2 = new NTR_Controls.ActionsStats.Row();
+            NTR_Controls.ActionsStats.Row row3 = new NTR_Controls.ActionsStats.Row();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            NTR_Controls.ActionsStats.Row row4 = new NTR_Controls.ActionsStats.Row();
+            NTR_Controls.ActionsStats.Row row5 = new NTR_Controls.ActionsStats.Row();
+            NTR_Controls.ActionsStats.Row row6 = new NTR_Controls.ActionsStats.Row();
             this.tabControlPlayerHistory = new System.Windows.Forms.TabControl();
             this.tabSkills = new System.Windows.Forms.TabPage();
             this.graphSkills = new ZedGraph.ZedGraphControl();
@@ -50,13 +56,22 @@ namespace TMRecorder
             this.graphInjuries = new ZedGraph.ZedGraphControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.graphSpecs = new ZedGraph.ZedGraphControl();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.tabPagePerfGraph = new System.Windows.Forms.TabPage();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.lblSeason = new System.Windows.Forms.ToolStripLabel();
             this.cmbSeason = new System.Windows.Forms.ToolStripComboBox();
             this.chkNormalized = new System.Windows.Forms.ToolStripButton();
             this.chkShowPosition = new System.Windows.Forms.ToolStripButton();
             this.graphPerf = new ZedGraph.ZedGraphControl();
+            this.tabPerfDetails = new System.Windows.Forms.TabPage();
+            this.attackSummary = new NTR_Controls.ActionsStats();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dgMatchPerfList = new NTR_Controls.AeroDataGrid();
+            this.toolStrip4 = new System.Windows.Forms.ToolStrip();
+            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
+            this.cmbPerfDetailsSeason = new System.Windows.Forms.ToolStripComboBox();
             this.tabPageTrainingAndPotential = new System.Windows.Forms.TabPage();
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
             this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
@@ -247,6 +262,8 @@ namespace TMRecorder
             this.dataGridViewTextBoxColumn20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.playerData = new NTR_Db.NTR_PlayerData();
             this.teamDS = new NTR_Common.TeamDS();
+            this.defenseSummary = new NTR_Controls.ActionsStats();
+            this.splitContainer6 = new System.Windows.Forms.SplitContainer();
             this.tabControlPlayerHistory.SuspendLayout();
             this.tabSkills.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -256,8 +273,11 @@ namespace TMRecorder
             this.splitContainer2.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
-            this.tabPage4.SuspendLayout();
+            this.tabPagePerfGraph.SuspendLayout();
             this.toolStrip2.SuspendLayout();
+            this.tabPerfDetails.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgMatchPerfList)).BeginInit();
+            this.toolStrip4.SuspendLayout();
             this.tabPageTrainingAndPotential.SuspendLayout();
             this.toolStrip3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
@@ -299,6 +319,10 @@ namespace TMRecorder
             ((System.ComponentModel.ISupportInitialize)(this.extraDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ReportAnalysis)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teamDS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer6)).BeginInit();
+            this.splitContainer6.Panel1.SuspendLayout();
+            this.splitContainer6.Panel2.SuspendLayout();
+            this.splitContainer6.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControlPlayerHistory
@@ -310,7 +334,8 @@ namespace TMRecorder
             this.tabControlPlayerHistory.Controls.Add(this.tabPage1);
             this.tabControlPlayerHistory.Controls.Add(this.tabPage2);
             this.tabControlPlayerHistory.Controls.Add(this.tabPage3);
-            this.tabControlPlayerHistory.Controls.Add(this.tabPage4);
+            this.tabControlPlayerHistory.Controls.Add(this.tabPagePerfGraph);
+            this.tabControlPlayerHistory.Controls.Add(this.tabPerfDetails);
             this.tabControlPlayerHistory.Controls.Add(this.tabPageTrainingAndPotential);
             this.tabControlPlayerHistory.Controls.Add(this.tabPlayerScouting);
             this.tabControlPlayerHistory.Controls.Add(this.tabPage6);
@@ -318,7 +343,7 @@ namespace TMRecorder
             this.tabControlPlayerHistory.Location = new System.Drawing.Point(257, 28);
             this.tabControlPlayerHistory.Name = "tabControlPlayerHistory";
             this.tabControlPlayerHistory.SelectedIndex = 0;
-            this.tabControlPlayerHistory.Size = new System.Drawing.Size(711, 548);
+            this.tabControlPlayerHistory.Size = new System.Drawing.Size(706, 548);
             this.tabControlPlayerHistory.TabIndex = 3;
             this.tabControlPlayerHistory.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
@@ -328,7 +353,7 @@ namespace TMRecorder
             this.tabSkills.Location = new System.Drawing.Point(4, 22);
             this.tabSkills.Name = "tabSkills";
             this.tabSkills.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSkills.Size = new System.Drawing.Size(703, 522);
+            this.tabSkills.Size = new System.Drawing.Size(698, 522);
             this.tabSkills.TabIndex = 0;
             this.tabSkills.Text = "Skills";
             this.tabSkills.UseVisualStyleBackColor = true;
@@ -373,7 +398,7 @@ namespace TMRecorder
             this.graphSkills.ScrollMinX = 0D;
             this.graphSkills.ScrollMinY = 0D;
             this.graphSkills.ScrollMinY2 = 0D;
-            this.graphSkills.Size = new System.Drawing.Size(697, 516);
+            this.graphSkills.Size = new System.Drawing.Size(692, 516);
             this.graphSkills.TabIndex = 0;
             this.graphSkills.ZoomButtons = System.Windows.Forms.MouseButtons.Left;
             this.graphSkills.ZoomButtons2 = System.Windows.Forms.MouseButtons.None;
@@ -387,7 +412,7 @@ namespace TMRecorder
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(703, 522);
+            this.tabPage1.Size = new System.Drawing.Size(698, 522);
             this.tabPage1.TabIndex = 1;
             this.tabPage1.Text = "ASI";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -408,7 +433,7 @@ namespace TMRecorder
             // 
             this.splitContainer2.Panel2.Controls.Add(this.chkShowTGI);
             this.splitContainer2.Panel2.Controls.Add(this.graphTI);
-            this.splitContainer2.Size = new System.Drawing.Size(697, 516);
+            this.splitContainer2.Size = new System.Drawing.Size(692, 516);
             this.splitContainer2.SplitterDistance = 246;
             this.splitContainer2.TabIndex = 2;
             // 
@@ -417,7 +442,7 @@ namespace TMRecorder
             this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel1.Location = new System.Drawing.Point(588, 1);
+            this.linkLabel1.Location = new System.Drawing.Point(583, 1);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(108, 12);
             this.linkLabel1.TabIndex = 2;
@@ -465,7 +490,7 @@ namespace TMRecorder
             this.graphASI.ScrollMinX = 0D;
             this.graphASI.ScrollMinY = 0D;
             this.graphASI.ScrollMinY2 = 0D;
-            this.graphASI.Size = new System.Drawing.Size(697, 246);
+            this.graphASI.Size = new System.Drawing.Size(692, 246);
             this.graphASI.TabIndex = 1;
             this.graphASI.ZoomButtons = System.Windows.Forms.MouseButtons.Left;
             this.graphASI.ZoomButtons2 = System.Windows.Forms.MouseButtons.None;
@@ -478,7 +503,7 @@ namespace TMRecorder
             this.chkShowTGI.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chkShowTGI.AutoSize = true;
             this.chkShowTGI.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkShowTGI.Location = new System.Drawing.Point(625, 6);
+            this.chkShowTGI.Location = new System.Drawing.Point(620, 6);
             this.chkShowTGI.Name = "chkShowTGI";
             this.chkShowTGI.Size = new System.Drawing.Size(65, 16);
             this.chkShowTGI.TabIndex = 3;
@@ -526,7 +551,7 @@ namespace TMRecorder
             this.graphTI.ScrollMinX = 0D;
             this.graphTI.ScrollMinY = 0D;
             this.graphTI.ScrollMinY2 = 0D;
-            this.graphTI.Size = new System.Drawing.Size(697, 266);
+            this.graphTI.Size = new System.Drawing.Size(692, 266);
             this.graphTI.TabIndex = 2;
             this.graphTI.ZoomButtons = System.Windows.Forms.MouseButtons.Left;
             this.graphTI.ZoomButtons2 = System.Windows.Forms.MouseButtons.None;
@@ -540,7 +565,7 @@ namespace TMRecorder
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(703, 522);
+            this.tabPage2.Size = new System.Drawing.Size(698, 522);
             this.tabPage2.TabIndex = 2;
             this.tabPage2.Text = "Injuries";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -585,7 +610,7 @@ namespace TMRecorder
             this.graphInjuries.ScrollMinX = 0D;
             this.graphInjuries.ScrollMinY = 0D;
             this.graphInjuries.ScrollMinY2 = 0D;
-            this.graphInjuries.Size = new System.Drawing.Size(697, 516);
+            this.graphInjuries.Size = new System.Drawing.Size(692, 516);
             this.graphInjuries.TabIndex = 2;
             this.graphInjuries.ZoomButtons = System.Windows.Forms.MouseButtons.Left;
             this.graphInjuries.ZoomButtons2 = System.Windows.Forms.MouseButtons.None;
@@ -599,7 +624,7 @@ namespace TMRecorder
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(703, 522);
+            this.tabPage3.Size = new System.Drawing.Size(698, 522);
             this.tabPage3.TabIndex = 3;
             this.tabPage3.Text = "Specs";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -644,7 +669,7 @@ namespace TMRecorder
             this.graphSpecs.ScrollMinX = 0D;
             this.graphSpecs.ScrollMinY = 0D;
             this.graphSpecs.ScrollMinY2 = 0D;
-            this.graphSpecs.Size = new System.Drawing.Size(697, 516);
+            this.graphSpecs.Size = new System.Drawing.Size(692, 516);
             this.graphSpecs.TabIndex = 1;
             this.graphSpecs.ZoomButtons = System.Windows.Forms.MouseButtons.Left;
             this.graphSpecs.ZoomButtons2 = System.Windows.Forms.MouseButtons.None;
@@ -652,17 +677,17 @@ namespace TMRecorder
             this.graphSpecs.ZoomModifierKeys2 = System.Windows.Forms.Keys.None;
             this.graphSpecs.ZoomStepFraction = 0.1D;
             // 
-            // tabPage4
+            // tabPagePerfGraph
             // 
-            this.tabPage4.Controls.Add(this.toolStrip2);
-            this.tabPage4.Controls.Add(this.graphPerf);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(703, 522);
-            this.tabPage4.TabIndex = 4;
-            this.tabPage4.Text = "Performances";
-            this.tabPage4.UseVisualStyleBackColor = true;
+            this.tabPagePerfGraph.Controls.Add(this.toolStrip2);
+            this.tabPagePerfGraph.Controls.Add(this.graphPerf);
+            this.tabPagePerfGraph.Location = new System.Drawing.Point(4, 22);
+            this.tabPagePerfGraph.Name = "tabPagePerfGraph";
+            this.tabPagePerfGraph.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPagePerfGraph.Size = new System.Drawing.Size(698, 522);
+            this.tabPagePerfGraph.TabIndex = 4;
+            this.tabPagePerfGraph.Text = "Perf. Graph";
+            this.tabPagePerfGraph.UseVisualStyleBackColor = true;
             // 
             // toolStrip2
             // 
@@ -673,7 +698,7 @@ namespace TMRecorder
             this.chkShowPosition});
             this.toolStrip2.Location = new System.Drawing.Point(3, 3);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(697, 25);
+            this.toolStrip2.Size = new System.Drawing.Size(692, 25);
             this.toolStrip2.TabIndex = 7;
             this.toolStrip2.Text = "toolStrip2";
             // 
@@ -764,6 +789,166 @@ namespace TMRecorder
             this.graphPerf.ZoomModifierKeys2 = System.Windows.Forms.Keys.None;
             this.graphPerf.ZoomStepFraction = 0.1D;
             // 
+            // tabPerfDetails
+            // 
+            this.tabPerfDetails.Controls.Add(this.splitContainer6);
+            this.tabPerfDetails.Controls.Add(this.label6);
+            this.tabPerfDetails.Controls.Add(this.label2);
+            this.tabPerfDetails.Controls.Add(this.label1);
+            this.tabPerfDetails.Controls.Add(this.dgMatchPerfList);
+            this.tabPerfDetails.Controls.Add(this.toolStrip4);
+            this.tabPerfDetails.Location = new System.Drawing.Point(4, 22);
+            this.tabPerfDetails.Name = "tabPerfDetails";
+            this.tabPerfDetails.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPerfDetails.Size = new System.Drawing.Size(698, 522);
+            this.tabPerfDetails.TabIndex = 9;
+            this.tabPerfDetails.Text = "Perf. Details";
+            this.tabPerfDetails.UseVisualStyleBackColor = true;
+            // 
+            // attackSummary
+            // 
+            row1.Title = "Thr";
+            row1.values = new string[] {
+        " ",
+        "2",
+        "3",
+        "4",
+        "5",
+        "1",
+        "",
+        "",
+        ""};
+            row2.Title = "Sho";
+            row2.values = new string[] {
+        "",
+        "4",
+        "5",
+        "6",
+        "8",
+        "11",
+        "",
+        "",
+        ""};
+            row3.Title = "Win";
+            row3.values = new string[] {
+        "",
+        "3",
+        "2",
+        "4",
+        "8",
+        "6",
+        "",
+        "",
+        ""};
+            this.attackSummary.ActionRows = new NTR_Controls.ActionsStats.Row[] {
+        row1,
+        row2,
+        row3};
+            this.attackSummary.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.attackSummary.ColumnsAlignment = System.Drawing.StringAlignment.Center;
+            this.attackSummary.ColumnsHeaders = new string[] {
+        "",
+        "Tot",
+        "Out",
+        "In",
+        "Ass",
+        "Goa"};
+            this.attackSummary.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.attackSummary.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.attackSummary.HeaderColor = System.Drawing.Color.Maroon;
+            this.attackSummary.HeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.attackSummary.Location = new System.Drawing.Point(0, 0);
+            this.attackSummary.Name = "attackSummary";
+            this.attackSummary.RowsTitleColor = System.Drawing.Color.Black;
+            this.attackSummary.RowsTitleFont = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Bold);
+            this.attackSummary.RowsTitlePosition = 0;
+            this.attackSummary.RowsTitleWidth = 24F;
+            this.attackSummary.Size = new System.Drawing.Size(137, 244);
+            this.attackSummary.TabIndex = 11;
+            this.attackSummary.Title = "Attack Summary";
+            this.attackSummary.TitleAlignment = System.Drawing.StringAlignment.Center;
+            this.attackSummary.TitleColor = System.Drawing.Color.Firebrick;
+            this.attackSummary.TitleFont = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Tahoma", 7F);
+            this.label6.ForeColor = System.Drawing.Color.Black;
+            this.label6.Location = new System.Drawing.Point(350, 9);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(244, 12);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "Action result: F:Failed, O:Out, I:In, A: Assist, G:Goal";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Tahoma", 7F);
+            this.label2.ForeColor = System.Drawing.Color.Blue;
+            this.label2.Location = new System.Drawing.Point(232, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(66, 12);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Blue: Defense";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 7F);
+            this.label1.ForeColor = System.Drawing.Color.Red;
+            this.label1.Location = new System.Drawing.Point(165, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(55, 12);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Red:Attack";
+            // 
+            // dgMatchPerfList
+            // 
+            this.dgMatchPerfList.AllowUserToAddRows = false;
+            this.dgMatchPerfList.AllowUserToDeleteRows = false;
+            this.dgMatchPerfList.AllowUserToResizeRows = false;
+            this.dgMatchPerfList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgMatchPerfList.AutoGenerateColumns = false;
+            this.dgMatchPerfList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgMatchPerfList.DataCollection = null;
+            this.dgMatchPerfList.Location = new System.Drawing.Point(143, 30);
+            this.dgMatchPerfList.MultiSelect = false;
+            this.dgMatchPerfList.Name = "dgMatchPerfList";
+            this.dgMatchPerfList.ReadOnly = true;
+            this.dgMatchPerfList.RowHeadersWidth = 20;
+            this.dgMatchPerfList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgMatchPerfList.Size = new System.Drawing.Size(553, 492);
+            this.dgMatchPerfList.TabIndex = 9;
+            // 
+            // toolStrip4
+            // 
+            this.toolStrip4.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel3,
+            this.cmbPerfDetailsSeason});
+            this.toolStrip4.Location = new System.Drawing.Point(3, 3);
+            this.toolStrip4.Name = "toolStrip4";
+            this.toolStrip4.Size = new System.Drawing.Size(692, 25);
+            this.toolStrip4.TabIndex = 8;
+            this.toolStrip4.Text = "toolStrip4";
+            // 
+            // toolStripLabel3
+            // 
+            this.toolStripLabel3.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripLabel3.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.toolStripLabel3.Name = "toolStripLabel3";
+            this.toolStripLabel3.Size = new System.Drawing.Size(48, 22);
+            this.toolStripLabel3.Text = "Season";
+            // 
+            // cmbPerfDetailsSeason
+            // 
+            this.cmbPerfDetailsSeason.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPerfDetailsSeason.Name = "cmbPerfDetailsSeason";
+            this.cmbPerfDetailsSeason.Size = new System.Drawing.Size(95, 25);
+            this.cmbPerfDetailsSeason.SelectedIndexChanged += new System.EventHandler(this.cmbPerfDetailsSeason_SelectedIndexChanged);
+            // 
             // tabPageTrainingAndPotential
             // 
             this.tabPageTrainingAndPotential.Controls.Add(this.toolStrip3);
@@ -772,7 +957,7 @@ namespace TMRecorder
             this.tabPageTrainingAndPotential.Location = new System.Drawing.Point(4, 22);
             this.tabPageTrainingAndPotential.Name = "tabPageTrainingAndPotential";
             this.tabPageTrainingAndPotential.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageTrainingAndPotential.Size = new System.Drawing.Size(703, 522);
+            this.tabPageTrainingAndPotential.Size = new System.Drawing.Size(698, 522);
             this.tabPageTrainingAndPotential.TabIndex = 5;
             this.tabPageTrainingAndPotential.Text = "Training & Potential";
             this.tabPageTrainingAndPotential.UseVisualStyleBackColor = true;
@@ -784,7 +969,7 @@ namespace TMRecorder
             this.toolStripDropDownButton3});
             this.toolStrip3.Location = new System.Drawing.Point(3, 3);
             this.toolStrip3.Name = "toolStrip3";
-            this.toolStrip3.Size = new System.Drawing.Size(697, 25);
+            this.toolStrip3.Size = new System.Drawing.Size(692, 25);
             this.toolStrip3.TabIndex = 8;
             this.toolStrip3.Text = "toolStrip3";
             // 
@@ -1102,7 +1287,7 @@ namespace TMRecorder
             this.tabPlayerScouting.Location = new System.Drawing.Point(4, 22);
             this.tabPlayerScouting.Name = "tabPlayerScouting";
             this.tabPlayerScouting.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPlayerScouting.Size = new System.Drawing.Size(703, 522);
+            this.tabPlayerScouting.Size = new System.Drawing.Size(698, 522);
             this.tabPlayerScouting.TabIndex = 8;
             this.tabPlayerScouting.Text = "Scouts Report";
             this.tabPlayerScouting.UseVisualStyleBackColor = true;
@@ -1609,7 +1794,7 @@ namespace TMRecorder
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(703, 522);
+            this.tabPage6.Size = new System.Drawing.Size(698, 522);
             this.tabPage6.TabIndex = 6;
             this.tabPage6.Text = "Player Training";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -1651,7 +1836,7 @@ namespace TMRecorder
             this.dgTraining.ReadOnly = true;
             this.dgTraining.RowHeadersWidth = 20;
             this.dgTraining.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgTraining.Size = new System.Drawing.Size(697, 516);
+            this.dgTraining.Size = new System.Drawing.Size(692, 516);
             this.dgTraining.TabIndex = 0;
             // 
             // PlayerAge
@@ -1864,7 +2049,7 @@ namespace TMRecorder
             this.tabPlayerBrowser.Location = new System.Drawing.Point(4, 22);
             this.tabPlayerBrowser.Name = "tabPlayerBrowser";
             this.tabPlayerBrowser.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPlayerBrowser.Size = new System.Drawing.Size(703, 522);
+            this.tabPlayerBrowser.Size = new System.Drawing.Size(698, 522);
             this.tabPlayerBrowser.TabIndex = 7;
             this.tabPlayerBrowser.Text = "Trophy Browser - Player";
             this.tabPlayerBrowser.UseVisualStyleBackColor = true;
@@ -1874,13 +2059,14 @@ namespace TMRecorder
             this.webBrowser.DefaultDirectory = "";
             this.webBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
             this.webBrowser.Location = new System.Drawing.Point(3, 3);
+            this.webBrowser.MainTeamId = 0;
             this.webBrowser.Name = "webBrowser";
             this.webBrowser.NavigationAddress = "";
             this.webBrowser.NavigationMode = NTR_WebBrowser.NTR_Browser.eNavigationMode.Main;
             this.webBrowser.SelectedReportParser = null;
             this.webBrowser.ShowShortlist = false;
             this.webBrowser.ShowTransfer = false;
-            this.webBrowser.Size = new System.Drawing.Size(697, 516);
+            this.webBrowser.Size = new System.Drawing.Size(692, 516);
             this.webBrowser.StartnavigationAddress = "";
             this.webBrowser.TabIndex = 1;
             this.webBrowser.ImportedContent += new NTR_WebBrowser.ImportedContentHandler(this.webBrowser_ImportedContent);
@@ -2072,7 +2258,7 @@ namespace TMRecorder
             this.tsbComputeGrowth});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(968, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(963, 25);
             this.toolStrip1.TabIndex = 10;
             this.toolStrip1.Text = "toolStripMenu";
             // 
@@ -2940,12 +3126,95 @@ namespace TMRecorder
             this.teamDS.last_week_loaded = -1;
             this.teamDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
+            // defenseSummary
+            // 
+            row4.Title = "Thr";
+            row4.values = new string[] {
+        " ",
+        "2",
+        "3",
+        "4",
+        "5",
+        "1",
+        "",
+        "",
+        ""};
+            row5.Title = "Sho";
+            row5.values = new string[] {
+        "",
+        "4",
+        "5",
+        "6",
+        "8",
+        "11",
+        "",
+        "",
+        ""};
+            row6.Title = "Win";
+            row6.values = new string[] {
+        "",
+        "3",
+        "2",
+        "4",
+        "8",
+        "6",
+        "",
+        "",
+        ""};
+            this.defenseSummary.ActionRows = new NTR_Controls.ActionsStats.Row[] {
+        row4,
+        row5,
+        row6};
+            this.defenseSummary.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.defenseSummary.ColumnsAlignment = System.Drawing.StringAlignment.Center;
+            this.defenseSummary.ColumnsHeaders = new string[] {
+        "",
+        "Tot",
+        "Out",
+        "In",
+        "Goal"};
+            this.defenseSummary.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.defenseSummary.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.defenseSummary.HeaderColor = System.Drawing.Color.DarkBlue;
+            this.defenseSummary.HeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.defenseSummary.Location = new System.Drawing.Point(0, 0);
+            this.defenseSummary.Name = "defenseSummary";
+            this.defenseSummary.RowsTitleColor = System.Drawing.Color.Black;
+            this.defenseSummary.RowsTitleFont = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Bold);
+            this.defenseSummary.RowsTitlePosition = 0;
+            this.defenseSummary.RowsTitleWidth = 24F;
+            this.defenseSummary.Size = new System.Drawing.Size(137, 240);
+            this.defenseSummary.TabIndex = 11;
+            this.defenseSummary.Title = "Defense Summary";
+            this.defenseSummary.TitleAlignment = System.Drawing.StringAlignment.Center;
+            this.defenseSummary.TitleColor = System.Drawing.Color.RoyalBlue;
+            this.defenseSummary.TitleFont = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            // 
+            // splitContainer6
+            // 
+            this.splitContainer6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.splitContainer6.Location = new System.Drawing.Point(3, 31);
+            this.splitContainer6.Name = "splitContainer6";
+            this.splitContainer6.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer6.Panel1
+            // 
+            this.splitContainer6.Panel1.Controls.Add(this.attackSummary);
+            // 
+            // splitContainer6.Panel2
+            // 
+            this.splitContainer6.Panel2.Controls.Add(this.defenseSummary);
+            this.splitContainer6.Size = new System.Drawing.Size(137, 488);
+            this.splitContainer6.SplitterDistance = 244;
+            this.splitContainer6.TabIndex = 12;
+            // 
             // PlayerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(968, 577);
+            this.ClientSize = new System.Drawing.Size(963, 577);
             this.Controls.Add(this.playerData);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.tabControlPlayerHistory);
@@ -2967,10 +3236,15 @@ namespace TMRecorder
             this.splitContainer2.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
-            this.tabPage4.ResumeLayout(false);
-            this.tabPage4.PerformLayout();
+            this.tabPagePerfGraph.ResumeLayout(false);
+            this.tabPagePerfGraph.PerformLayout();
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
+            this.tabPerfDetails.ResumeLayout(false);
+            this.tabPerfDetails.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgMatchPerfList)).EndInit();
+            this.toolStrip4.ResumeLayout(false);
+            this.toolStrip4.PerformLayout();
             this.tabPageTrainingAndPotential.ResumeLayout(false);
             this.tabPageTrainingAndPotential.PerformLayout();
             this.toolStrip3.ResumeLayout(false);
@@ -3017,6 +3291,10 @@ namespace TMRecorder
             ((System.ComponentModel.ISupportInitialize)(this.extraDS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ReportAnalysis)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.teamDS)).EndInit();
+            this.splitContainer6.Panel1.ResumeLayout(false);
+            this.splitContainer6.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer6)).EndInit();
+            this.splitContainer6.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3049,7 +3327,7 @@ namespace TMRecorder
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.CheckBox chkShowTGI;
         private System.Windows.Forms.ToolStripButton toolStripButton3;
-        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.TabPage tabPagePerfGraph;
         private ZedGraph.ZedGraphControl graphPerf;
         private System.Windows.Forms.ToolStripButton tsbComputeGrowth;
         private System.Windows.Forms.TabPage tabPageTrainingAndPotential;
@@ -3242,5 +3520,16 @@ namespace TMRecorder
         private System.Windows.Forms.DataGridViewTextBoxColumn tIDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn trainingTypesColumn;
         private DataGridViewCustomColumns.TMR_TrainSkillColumn programDataGridViewTextBoxColumn;
+        private System.Windows.Forms.TabPage tabPerfDetails;
+        private System.Windows.Forms.ToolStrip toolStrip4;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel3;
+        private System.Windows.Forms.ToolStripComboBox cmbPerfDetailsSeason;
+        private AeroDataGrid dgMatchPerfList;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private ActionsStats attackSummary;
+        private ActionsStats defenseSummary;
+        private System.Windows.Forms.SplitContainer splitContainer6;
     }
 }

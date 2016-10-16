@@ -536,10 +536,8 @@ namespace TMRecorder
             {
                 foreach (ExtTMDataSet.GiocatoriNSkillRow edsRow in eds.GiocatoriNSkill)
                 {
-                    edsRow.Set = (int)(edsRow.Set);
                     edsRow.Con_Uno = (int)(edsRow.Con_Uno);
                     edsRow.Cro_Com = (int)(edsRow.Cro_Com);
-                    edsRow.Fin = (int)(edsRow.Fin);
                     edsRow.For = (int)(edsRow.For);
                     edsRow.Mar_Pre = (int)(edsRow.Mar_Pre);
                     edsRow.Pas_Ele = (int)(edsRow.Pas_Ele);
@@ -547,9 +545,15 @@ namespace TMRecorder
                     edsRow.Res = (int)(edsRow.Res);
                     edsRow.Tec_Tir = (int)(edsRow.Tec_Tir);
                     edsRow.Tes_Lan = (int)(edsRow.Tes_Lan);
-                    edsRow.Lon = (int)(edsRow.Lon);
                     edsRow.Vel = (int)(edsRow.Vel);
                     edsRow.Wor_Rif = (int)(edsRow.Wor_Rif);
+
+                    if (edsRow.FPn != 0)
+                    {
+                        edsRow.Set = (int)(edsRow.Set);
+                        edsRow.Fin = (int)(edsRow.Fin);
+                        edsRow.Lon = (int)(edsRow.Lon);
+                    }
                 }
             }
         }

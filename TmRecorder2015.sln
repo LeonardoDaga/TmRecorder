@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransferManager3", "TransferManager2\TransferManager3.csproj", "{AAC4A7FF-52D3-4459-A8E9-35423C49D16A}"
 EndProject
@@ -79,8 +79,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NTR_WebBrowser", "NTR_Browser\NTR_WebBrowser.csproj", "{483D9C7D-108E-4AEC-9DA2-20E57ABE217F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMRecorder", "TMParser\TMRecorder.csproj", "{5388053E-2E8F-4201-A96C-77861EC058C1}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialScanner", "SocialScanner\SocialScanner.csproj", "{6C574092-46A8-40A1-9982-EC5F71683B91}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1186,38 +1184,6 @@ Global
 		{5388053E-2E8F-4201-A96C-77861EC058C1}.ReleaseX64|x64.Build.0 = ReleaseX64|x64
 		{5388053E-2E8F-4201-A96C-77861EC058C1}.ReleaseX64|x86.ActiveCfg = ReleaseX64|x86
 		{5388053E-2E8F-4201-A96C-77861EC058C1}.ReleaseX64|x86.Build.0 = ReleaseX64|x86
-		{6C574092-46A8-40A1-9982-EC5F71683B91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6C574092-46A8-40A1-9982-EC5F71683B91}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6C574092-46A8-40A1-9982-EC5F71683B91}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{6C574092-46A8-40A1-9982-EC5F71683B91}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{6C574092-46A8-40A1-9982-EC5F71683B91}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{6C574092-46A8-40A1-9982-EC5F71683B91}.Debug|x64.Build.0 = Debug|Any CPU
-		{6C574092-46A8-40A1-9982-EC5F71683B91}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{6C574092-46A8-40A1-9982-EC5F71683B91}.Debug|x86.Build.0 = Debug|Any CPU
-		{6C574092-46A8-40A1-9982-EC5F71683B91}.Debug32|Any CPU.ActiveCfg = Debug|Any CPU
-		{6C574092-46A8-40A1-9982-EC5F71683B91}.Debug32|Any CPU.Build.0 = Debug|Any CPU
-		{6C574092-46A8-40A1-9982-EC5F71683B91}.Debug32|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{6C574092-46A8-40A1-9982-EC5F71683B91}.Debug32|Mixed Platforms.Build.0 = Debug|Any CPU
-		{6C574092-46A8-40A1-9982-EC5F71683B91}.Debug32|x64.ActiveCfg = Debug|Any CPU
-		{6C574092-46A8-40A1-9982-EC5F71683B91}.Debug32|x64.Build.0 = Debug|Any CPU
-		{6C574092-46A8-40A1-9982-EC5F71683B91}.Debug32|x86.ActiveCfg = Debug|Any CPU
-		{6C574092-46A8-40A1-9982-EC5F71683B91}.Debug32|x86.Build.0 = Debug|Any CPU
-		{6C574092-46A8-40A1-9982-EC5F71683B91}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6C574092-46A8-40A1-9982-EC5F71683B91}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6C574092-46A8-40A1-9982-EC5F71683B91}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{6C574092-46A8-40A1-9982-EC5F71683B91}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{6C574092-46A8-40A1-9982-EC5F71683B91}.Release|x64.ActiveCfg = Release|Any CPU
-		{6C574092-46A8-40A1-9982-EC5F71683B91}.Release|x64.Build.0 = Release|Any CPU
-		{6C574092-46A8-40A1-9982-EC5F71683B91}.Release|x86.ActiveCfg = Release|Any CPU
-		{6C574092-46A8-40A1-9982-EC5F71683B91}.Release|x86.Build.0 = Release|Any CPU
-		{6C574092-46A8-40A1-9982-EC5F71683B91}.ReleaseX64|Any CPU.ActiveCfg = Release|Any CPU
-		{6C574092-46A8-40A1-9982-EC5F71683B91}.ReleaseX64|Any CPU.Build.0 = Release|Any CPU
-		{6C574092-46A8-40A1-9982-EC5F71683B91}.ReleaseX64|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{6C574092-46A8-40A1-9982-EC5F71683B91}.ReleaseX64|Mixed Platforms.Build.0 = Release|Any CPU
-		{6C574092-46A8-40A1-9982-EC5F71683B91}.ReleaseX64|x64.ActiveCfg = Release|Any CPU
-		{6C574092-46A8-40A1-9982-EC5F71683B91}.ReleaseX64|x64.Build.0 = Release|Any CPU
-		{6C574092-46A8-40A1-9982-EC5F71683B91}.ReleaseX64|x86.ActiveCfg = Release|Any CPU
-		{6C574092-46A8-40A1-9982-EC5F71683B91}.ReleaseX64|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

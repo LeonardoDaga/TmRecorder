@@ -28,8 +28,8 @@ namespace NTR_Controls
             set
             {
                 _dataCollection = value;
-                this.DataSource = dataBindingSource;
                 dataBindingSource.DataSource = _dataCollection;
+                this.DataSource = dataBindingSource;
             }
         }
 
@@ -170,6 +170,10 @@ namespace NTR_Controls
             {
                 dgv = new NTR_HiddenSkillColumn();
             }
+            else if ((int)(styles & AG_Style.MatchResults) > 0)
+            {
+                dgv = new NTR_MatchPerfColumn();
+            }
             else if ((int)(styles & AG_Style.Blooming) > 0)
             {
                 dgv = new NTR_BloomColumn();
@@ -265,5 +269,6 @@ namespace NTR_Controls
         HiddenSkill = 0x40000,
         Blooming = 0x80000,
         Fill = 0x100000,
+        MatchResults = 0x200000,
     }
 }

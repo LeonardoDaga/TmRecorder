@@ -249,6 +249,7 @@ namespace TMRecorder
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.recalculatePlayersStatisticsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rescanMatchesForPlayersActionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripDropDownButton5 = new System.Windows.Forms.ToolStripDropDownButton();
             this.clearDecimalsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reapplyTrainingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -2427,7 +2428,8 @@ namespace TMRecorder
             this.toolStripDropDownButton6.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem3,
             this.toolStripMenuItem5,
-            this.recalculatePlayersStatisticsToolStripMenuItem});
+            this.recalculatePlayersStatisticsToolStripMenuItem,
+            this.rescanMatchesForPlayersActionsToolStripMenuItem});
             this.toolStripDropDownButton6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton6.Image")));
             this.toolStripDropDownButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton6.Name = "toolStripDropDownButton6";
@@ -2454,6 +2456,13 @@ namespace TMRecorder
             this.recalculatePlayersStatisticsToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
             this.recalculatePlayersStatisticsToolStripMenuItem.Text = "Recalculate Players\' Statistics";
             this.recalculatePlayersStatisticsToolStripMenuItem.Click += new System.EventHandler(this.recalculatePlayersStatisticsToolStripMenuItem_Click);
+            // 
+            // rescanMatchesForPlayersActionsToolStripMenuItem
+            // 
+            this.rescanMatchesForPlayersActionsToolStripMenuItem.Name = "rescanMatchesForPlayersActionsToolStripMenuItem";
+            this.rescanMatchesForPlayersActionsToolStripMenuItem.Size = new System.Drawing.Size(274, 22);
+            this.rescanMatchesForPlayersActionsToolStripMenuItem.Text = "Rescan Matches for Players Actions";
+            this.rescanMatchesForPlayersActionsToolStripMenuItem.Click += new System.EventHandler(this.rescanMatchesForPlayersActionsToolStripMenuItem_Click);
             // 
             // toolStripDropDownButton5
             // 
@@ -3372,5 +3381,6 @@ namespace TMRecorder
         private System.Windows.Forms.ToolStripMenuItem oMRToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fCToolStripMenuItem;
         private TMR_CostumControls.TMR_ToolStripButton tsbImportClub;
+        private System.Windows.Forms.ToolStripMenuItem rescanMatchesForPlayersActionsToolStripMenuItem;
     }
 }

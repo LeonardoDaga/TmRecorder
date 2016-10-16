@@ -217,30 +217,13 @@ namespace TMRecorder
 
             dgMatchPerfList.DataCollection = matchPerfDataList;
 
-            //FillAttackAndDefenseTable(matchPerfDataList);
+            FillAttackAndDefenseTable(matchPerfDataList);
         }
 
         private class AttackDefenseTable
         {
             public Dictionary<string, int[]> dataDefense = new Dictionary<string, int[]>();
             public Dictionary<string, int[]> dataAttack = new Dictionary<string, int[]>();
-
-            internal void InsertActionInArray(List<PlayerMatchPerfData> matchPerfDataList)
-            {
-                foreach (PlayerMatchPerfData pmp in matchPerfDataList)
-                {
-                    AddValues(pmp.Sho, "Sho");
-                    AddValues(pmp.Thr, "Thr");
-                    AddValues(pmp.Win, "Win");
-                    AddValues(pmp.Lon, "Lon");
-                    AddValues(pmp.Cou, "Cou");
-                    AddValues(pmp.Cor, "Cor");
-                    AddValues(pmp.Fre, "Fre");
-                    AddValues(pmp.GkL, "GkL");
-                    AddValues(pmp.GkC, "GkC");
-                    AddValues(pmp.Pen, "Pen");
-                }
-            }
 
             private void AddValues(string sho, string v)
             {
@@ -294,26 +277,43 @@ namespace TMRecorder
 
         private void FillAttackAndDefenseTable(List<PlayerMatchPerfData> matchPerfDataList)
         {
-            ActionsStats.Row[] rows = new ActionsStats.Row[10];
+            ActionsStats.Row[] attackRows = new ActionsStats.Row[10];
+            ActionsStats.Row[] defenseRows = new ActionsStats.Row[10];
 
             AttackDefenseTable adTable = new AttackDefenseTable();
 
-            adTable.InsertActionInArray(matchPerfDataList);
+            PlayerMatchPerfData.ActionsGrid agSum = new PlayerMatchPerfData.ActionsGrid();
 
-            //Tot = Sho + Thr + Win + Lon + Cou + Cor + Fre + GkL + GkC + Pen;
+            foreach (PlayerMatchPerfData pmp in matchPerfDataList)
+            {
+                agSum.Add(pmp.actionsGrid);
+            }
 
-            rows[0].Title = "Sho";
-            rows[1].Title = "Thr";
-            rows[2].Title = "Win";
-            rows[3].Title = "Lon";
-            rows[4].Title = "Cou";
-            rows[5].Title = "Cor";
-            rows[6].Title = "Fre";
-            rows[7].Title = "GkL";
-            rows[8].Title = "GkC";
-            rows[9].Title = "Pen";
+            for (int i = 0; i < attackRows.Length; i++)
+            {
+                attackRows[i] = new ActionsStats.Row();
+                defenseRows[i] = new ActionsStats.Row();
+            }
 
-            attackSummary.ActionRows[0].values = adTable.AttackToStringArray("Sho");
+            attackRows[0].Title = defenseRows[0].Title = "Sho";
+            attackRows[1].Title = defenseRows[1].Title = "Thr";
+            attackRows[2].Title = defenseRows[2].Title = "Win";
+            attackRows[3].Title = defenseRows[3].Title = "Lon";
+            attackRows[4].Title = defenseRows[4].Title = "Cou";
+            attackRows[5].Title = defenseRows[5].Title = "Cor";
+            attackRows[6].Title = defenseRows[6].Title = "Fre";
+            attackRows[7].Title = defenseRows[7].Title = "GkL";
+            attackRows[8].Title = defenseRows[8].Title = "GkC";
+            attackRows[9].Title = defenseRows[9].Title = "Pen";
+
+            for (int actionType = (int)PlayerMatchPerfData.ActionType.Short; actionType <= (int)PlayerMatchPerfData.ActionType.Penalty; actionType++)
+            {
+                attackRows[actionType].values = agSum.AttackToStringArray((PlayerMatchPerfData.ActionType)actionType);
+                defenseRows[actionType].values = agSum.DefenseToStringArray((PlayerMatchPerfData.ActionType)actionType);
+            }
+
+            attackSummary.ActionRows = attackRows;
+            defenseSummary.ActionRows = defenseRows;
         }
 
         private void FillTagsBars(ExtraDS.GiocatoriRow gRow)

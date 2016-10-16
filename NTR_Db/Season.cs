@@ -1503,6 +1503,10 @@ namespace NTR_Db
                     atr.ActionCode = items["type"];
                     atr.ActionType = atr.ActionCode;
                     atr.FullDesc = min;
+                    atr.Time = int.Parse(items["min"]);
+                    atr.TeamID = int.Parse(items["club"]);
+                    atr.MatchID = matchId;
+                    seasonsDB.Actions.AddActionsRow(atr);
 
                     // Parsing the shirt color
                     string strColor = isHome ? match_info["home_color"] : match_info["away_color"];
@@ -1517,10 +1521,6 @@ namespace NTR_Db
                     {
                         continue;
                     }
-
-                    atr.Time = int.Parse(items["min"]);
-                    atr.TeamID = int.Parse(items["club"]);
-                    atr.MatchID = matchId;
 
                     string description = items["text"];
                     string attPlayers = "";
@@ -1560,11 +1560,6 @@ namespace NTR_Db
                     if (description == "")
                         continue;
 
-                    atr.Attackers = attPlayers;
-                    atr.Defenders = defPlayers;
-
-                    atr.Description = description;
-
                     NTR_SquadDb.ActionsDecoderRow actionDecRow = seasonsDB.ActionsDecoder.FindByActionCode(atr.ActionCode);
                     if (actionDecRow == null)
                     {
@@ -1591,8 +1586,6 @@ namespace NTR_Db
                         }
                     }
 
-                    seasonsDB.Actions.AddActionsRow(atr);
-
                     if (atr.TeamID == yourTeamId)
                         yourActionsList.AddNewAttackAction(actionDecRow);
                     else
@@ -1613,10 +1606,12 @@ namespace NTR_Db
                             pIdAttCount++;
                     }
 
-                    int pId = 0;
+                    int assistmanId = -1;
+                    if (items.Keys.Contains("assist") && items["assist"] != "none")
+                        assistmanId = int.Parse(items["assist"]);
+
                     foreach (int playerId in playerIds)
                     {
-                        pId++;
                         if (!playerActionListDict.ContainsKey(playerId))
                             playerActionListDict.Add(playerId, new ActionsList());
 
@@ -1630,7 +1625,7 @@ namespace NTR_Db
 
                         if (atr.TeamID == playerTeamId)
                         {
-                            if (pId == 1 && pIdAttCount == 2)
+                            if (playerId == assistmanId)
                                 playerActionList.AddNewAttackAction(actionDecRow, true);
                             else
                                 playerActionList.AddNewAttackAction(actionDecRow);
@@ -1665,8 +1660,8 @@ namespace NTR_Db
                         if (isHome) homeGoal++; else awayGoal++;
                         if (isHome) homeTiriIn++; else awayTiriIn++;
                         if (isHome) homeTiriTot++; else awayTiriTot++;
-                        if ((items["assist"] != "none"))
-                            asstPlayers.Add(int.Parse(items["assist"]));
+                        if (assistmanId != -1)
+                            asstPlayers.Add(assistmanId);
                     }
                     else if (items.ContainsKey("target"))
                     {
@@ -1738,6 +1733,17 @@ namespace NTR_Db
                     {
                         if (isHome) awayDef++; else homeDef++;
                     }
+
+                    atr.Attackers = attPlayers;
+                    atr.Defenders = defPlayers;
+                    atr.Description = description;
+                }
+
+                foreach (KeyValuePair<int, ActionsList> actionList in playerActionListDict)
+                {
+                    NTR_SquadDb.PlayerPerfRow ppr = seasonsDB.PlayerPerf.FindByMatchIDPlayerID(matchId, actionList.Key);
+                    if (ppr != null)
+                        ppr.Actions = actionList.Value.ToString();
                 }
 
                 if (match_info.ContainsKey("last_min"))
@@ -1791,13 +1797,6 @@ namespace NTR_Db
 
                 DateTime dt = new DateTime(1970, 1, 1, 1, 0, 0);
                 matchRow.Date = dt.AddSeconds((double)iKickOff);
-
-                foreach (KeyValuePair<int, ActionsList> actionList in playerActionListDict)
-                {
-                    NTR_SquadDb.PlayerPerfRow ppr = seasonsDB.PlayerPerf.FindByMatchIDPlayerID(matchId, actionList.Key);
-                    if (ppr != null)
-                        ppr.Actions = actionList.Value.ToString();
-                }
 
                 ActionsList tempActionsList = ActionsList.Parse(matchRow.OActions);
 
@@ -2051,6 +2050,29 @@ namespace NTR_Db
 
         private void AnalyzeAction(NTR_SquadDb.MatchRow mr, int teamID, List<NTR_SquadDb.ActionsRow> actions)
         {
+            int homeGoal = 0;
+            int awayGoal = 0;
+            int homeTiriIn = 0;
+            int awayTiriIn = 0;
+            int homeTiriTot = 0;
+            int awayTiriTot = 0;
+            int homeYellow = 0;
+            int awayYellow = 0;
+            int homeRed = 0;
+            int awayRed = 0;
+            int homeSetPc = 0;
+            int awaySetPc = 0;
+            int homeDef = 0;
+            int awayDef = 0;
+
+            List<int> goalPlayers = new List<int>();
+            List<int> asstPlayers = new List<int>();
+            List<int> stpcPlayers = new List<int>();
+            List<int> yelcPlayers = new List<int>();
+            List<PlayerOut> redcPlayers = new List<PlayerOut>();
+            List<PlayerOut> injrPlayers = new List<PlayerOut>();
+            List<Substitution> subsPlayers = new List<Substitution>();
+
             Dictionary<int, ActionsList> playerActionListDict = new Dictionary<int, ActionsList>();
 
             foreach (var atr in actions)
@@ -2157,29 +2179,6 @@ namespace NTR_Db
                     if (atr.TeamID == playerTeamId)
                         pIdAttCount++;
                 }
-
-                int homeGoal = 0;
-                int awayGoal = 0;
-                int homeTiriIn = 0;
-                int awayTiriIn = 0;
-                int homeTiriTot = 0;
-                int awayTiriTot = 0;
-                int homeYellow = 0;
-                int awayYellow = 0;
-                int homeRed = 0;
-                int awayRed = 0;
-                int homeSetPc = 0;
-                int awaySetPc = 0;
-                int homeDef = 0;
-                int awayDef = 0;
-
-                List<int> goalPlayers = new List<int>();
-                List<int> asstPlayers = new List<int>();
-                List<int> stpcPlayers = new List<int>();
-                List<int> yelcPlayers = new List<int>();
-                List<PlayerOut> redcPlayers = new List<PlayerOut>();
-                List<PlayerOut> injrPlayers = new List<PlayerOut>();
-                List<Substitution> subsPlayers = new List<Substitution>();
 
                 int assistmanId = -1;
                 if (items.Keys.Contains("assist") && items["assist"] != "none")

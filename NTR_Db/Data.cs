@@ -2451,15 +2451,16 @@ namespace NTR_Db
                 {
                     foreach (var outcome in action.Value)
                     {
-                        if (outcome.Key < (int)ActionOutcome.Tot)
-                            ag.grid[action.Key, outcome.Key] += outcome.Value;
+                        ActionOutcome ao = OutcomeToActionOutcome(outcome.Key);
+                        if (ao != ActionOutcome.None)
+                            ag.grid[action.Key, (int)ao] += outcome.Value;
                     }
                 }
 
                 return ag;
             }
 
-            internal void Add(ActionsGrid gridToAdd)
+            public void Add(ActionsGrid gridToAdd)
             {
                 for(int actionType=0; actionType< (int)ActionType.Tot; actionType++)
                 {
@@ -2478,19 +2479,19 @@ namespace NTR_Db
 
                 for (int outcome = 0; outcome < (int)ActionOutcome.Tot; outcome++)
                 {
-                    output += ValueToString(outcome, grid[type, outcome]);
+                    output += ValueToString((ActionOutcome)outcome, grid[type, outcome]);
                 }
 
                 return output;
             }
 
-            private string ValueToString(int outcome, int count)
+            private string ValueToString(ActionOutcome outcome, int count)
             {
                 string res = "";
 
                 if (count == 0) return res;
 
-                switch(OutcomeToActionOutcome(outcome))
+                switch(outcome)
                 {
                     case ActionOutcome.AttFailed: res += "AF"; break;
                     case ActionOutcome.AttOff: res += "AO"; break;
@@ -2508,7 +2509,7 @@ namespace NTR_Db
                 return res;
             }
 
-            private ActionOutcome OutcomeToActionOutcome(int outcome)
+            private static ActionOutcome OutcomeToActionOutcome(int outcome)
             {
                 switch (outcome)
                 {
@@ -2528,13 +2529,49 @@ namespace NTR_Db
 
                 return ActionOutcome.None;
             }
+
+            public string[] AttackToStringArray(ActionType actionType)
+            {
+                string[] output = new string[6];
+
+                int Failed = grid[(int)actionType, (int)ActionOutcome.AttFailed];
+                int Off = grid[(int)actionType, (int)ActionOutcome.AttOff];
+                int In = grid[(int)actionType, (int)ActionOutcome.AttIn];
+                int Assist = grid[(int)actionType, (int)ActionOutcome.AttAssist];
+                int Goal = grid[(int)actionType, (int)ActionOutcome.AttGoal];
+
+                output[1] = (Failed + Off + In + Assist + Goal).ToString();
+                output[2] = Off.ToString();
+                output[3] = In.ToString();
+                output[4] = Assist.ToString();
+                output[5] = Goal.ToString();
+
+                return output;
+            }
+
+            public string[] DefenseToStringArray(ActionType actionType)
+            {
+                string[] output = new string[5];
+
+                int Failed = grid[(int)actionType, (int)ActionOutcome.DefFailed];
+                int Off = grid[(int)actionType, (int)ActionOutcome.DefOff];
+                int In = grid[(int)actionType, (int)ActionOutcome.DefIn];
+                int Goal = grid[(int)actionType, (int)ActionOutcome.DefGoal];
+
+                output[1] = (Failed + Off + In + Goal).ToString();
+                output[2] = Off.ToString();
+                output[3] = In.ToString();
+                output[4] = Goal.ToString();
+
+                return output;
+            }
         }
 
-        ActionsGrid actionGrid = new ActionsGrid();
+        public ActionsGrid actionsGrid = new ActionsGrid();
 
         public PlayerMatchPerfData(NTR_SquadDb.MatchRow mr, NTR_SquadDb.PlayerPerfRow ppr)
         {
-            actionGrid.Add(ActionsGrid.Parse(ppr.Actions));
+            actionsGrid.Add(ActionsGrid.Parse(ppr.Actions));
 
             MatchScore ms = new NTR_Db.MatchScore(mr.Score, mr.isHome);
 
@@ -2559,16 +2596,16 @@ namespace NTR_Db
 
             Match = (mr.isHome?"(H) ":"(A) ") + mr.TeamRowByTeam_OTeam.Name;
 
-            Sho = actionGrid.GetString(ActionType.Short);
-            Thr = actionGrid.GetString(ActionType.Thorugh);
-            Win = actionGrid.GetString(ActionType.Wing);
-            Lon = actionGrid.GetString(ActionType.Long);
-            Cou = actionGrid.GetString(ActionType.Counter);
-            Cor = actionGrid.GetString(ActionType.Corner);
-            Fre = actionGrid.GetString(ActionType.Freekick);
-            GkL = actionGrid.GetString(ActionType.Gklong);
-            GkC = actionGrid.GetString(ActionType.GkCounter);
-            Pen = actionGrid.GetString(ActionType.Penalty);
+            Sho = actionsGrid.GetString(ActionType.Short);
+            Thr = actionsGrid.GetString(ActionType.Thorugh);
+            Win = actionsGrid.GetString(ActionType.Wing);
+            Lon = actionsGrid.GetString(ActionType.Long);
+            Cou = actionsGrid.GetString(ActionType.Counter);
+            Cor = actionsGrid.GetString(ActionType.Corner);
+            Fre = actionsGrid.GetString(ActionType.Freekick);
+            GkL = actionsGrid.GetString(ActionType.Gklong);
+            GkC = actionsGrid.GetString(ActionType.GkCounter);
+            Pen = actionsGrid.GetString(ActionType.Penalty);
         }
     }
 

@@ -71,8 +71,8 @@
     <ProductName>TM Recorder</ProductName>
     <PublisherName>INSYDE</PublisherName>
     <DisallowUrlActivation>true</DisallowUrlActivation>
-    <ApplicationRevision>13</ApplicationRevision>
-    <ApplicationVersion>2.14.2.13</ApplicationVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>2.15.0.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -642,6 +642,9 @@
     <None Include="Resources\Waste.png" />
     <None Include="Resources\WasteDisabled.png" />
     <Content Include="Shortlist.ico" />
+    <Content Include="splash-banners\Cruyff.sps.jpg" />
+    <Content Include="splash-banners\Maradona.sps.jpg" />
+    <Content Include="splash-banners\Zico.sps.jpg" />
     <Content Include="TeamRecorder.ico" />
     <Content Include="ZedGraph.dll" />
   </ItemGroup>
@@ -960,6 +963,7 @@
       <Name>TMR_CustomControls</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -78,6 +78,7 @@ namespace Common
             this.imageList.Images.SetKeyName(23, "Rapid Dragasani.10.png");
             this.imageList.Images.SetKeyName(24, "Sansonese Calcio.8.png");
             this.imageList.Images.SetKeyName(25, "Sottomarina.10.png");
+            this.imageList.Images.SetKeyName(26, "Circo ~ III ~ Ratti.200.png");
             // 
             // pictureBox2
             // 
@@ -86,6 +87,7 @@ namespace Common
             this.pictureBox2.Location = new System.Drawing.Point(338, 122);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(100, 100);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 1;
             this.pictureBox2.TabStop = false;
             // 

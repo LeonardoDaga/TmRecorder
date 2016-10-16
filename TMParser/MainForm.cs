@@ -202,7 +202,7 @@ namespace TMRecorder
 
                 dP[0] = 4;
 
-                string imagePath = Path.Combine(Program.Setts.InstallationDirectory, "splash-banners");
+                string imagePath = Path.Combine(Application.StartupPath, "splash-banners");
                 DirectoryInfo di = new DirectoryInfo(imagePath);
                 if (di.Exists)
                 {
@@ -2698,7 +2698,29 @@ namespace TMRecorder
                     "Release " + Application.ProductVersion,
                     "Loading Players From the saved pages...");
 
-            DirectoryInfo di = new DirectoryInfo(folderBrowserDialog.SelectedPath);
+            string imagePath = Path.Combine(Application.StartupPath, "splash-banners");
+            DirectoryInfo di = new DirectoryInfo(imagePath);
+            if (di.Exists)
+            {
+                dP[1] = 1;
+
+                int iCnt = 0;
+
+                if ((iCnt = di.GetFiles("*.sps.jpg").Length) != 0)
+                {
+                    dP[1] = 2;
+
+                    Random rnd = new Random();
+                    int i = rnd.Next(iCnt + 1);
+                    if (i == iCnt) i = iCnt - 1;
+
+                    FileInfo[] fi = di.GetFiles("*.sps.jpg");
+
+                    sf.SetActualBackImage(fi[i]);
+                }
+            }
+
+            di = new DirectoryInfo(folderBrowserDialog.SelectedPath);
             LoadSavedFixturesAndMatchesPagesRecursively(di, ref sf, (Program.Setts.Trace > 0));
 
             sf.Close();
@@ -2794,6 +2816,28 @@ namespace TMRecorder
             DirectoryInfo di = new DirectoryInfo(dirPath);
 
             sf.UpdateStatusMessage(0, string.Format("Scanning folder {0} for Fixtures files", di.Name));
+
+            string imagePath = Path.Combine(Application.StartupPath, "splash-banners");
+            DirectoryInfo dii = new DirectoryInfo(imagePath);
+            if (dii.Exists)
+            {
+                dP[1] = 1;
+
+                int iCnt = 0;
+
+                if ((iCnt = dii.GetFiles("*.sps.jpg").Length) != 0)
+                {
+                    dP[1] = 2;
+
+                    Random rnd = new Random();
+                    int i = rnd.Next(iCnt + 1);
+                    if (i == iCnt) i = iCnt - 1;
+
+                    FileInfo[] fi = dii.GetFiles("*.sps.jpg");
+
+                    sf.SetActualBackImage(fi[i]);
+                }
+            }
 
             sf.Show();
 
@@ -3342,6 +3386,28 @@ namespace TMRecorder
             SplashForm sf = new SplashForm("TM - Team Recorder",
                     "Release " + Application.ProductVersion,
                     "Re-Computing Players Perfs from stored matches");
+
+            string imagePath = Path.Combine(Application.StartupPath, "splash-banners");
+            DirectoryInfo dii = new DirectoryInfo(imagePath);
+            if (dii.Exists)
+            {
+                dP[1] = 1;
+
+                int iCnt = 0;
+
+                if ((iCnt = dii.GetFiles("*.sps.jpg").Length) != 0)
+                {
+                    dP[1] = 2;
+
+                    Random rnd = new Random();
+                    int i = rnd.Next(iCnt + 1);
+                    if (i == iCnt) i = iCnt - 1;
+
+                    FileInfo[] fi = dii.GetFiles("*.sps.jpg");
+
+                    sf.SetActualBackImage(fi[i]);
+                }
+            }
 
             sf.Show();
 

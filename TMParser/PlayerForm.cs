@@ -196,6 +196,9 @@ namespace TMRecorder
 
         private void FillPerfList(ExtTMDataSet.GiocatoriNSkillRow playerDatarow)
         {
+            if (cmbPerfDetailsSeason.Items.Count == 0)
+                return;
+
             int season = -1;
             season = (int)(cmbPerfDetailsSeason.SelectedItem);
 

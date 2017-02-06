@@ -1370,7 +1370,10 @@ namespace NTR_Db
                     ppr.Rec = decimal.Parse(team["rec"], CommGlobal.ciUs);
                     if (team["mom"] == "1")
                         matchRow.BestPlayer = ppr.PlayerID;
-                    ppr.Rou = decimal.Parse(team["routine"], CommGlobal.ciUs);
+                    if (team["routine"] != "null")
+                        ppr.Rou = decimal.Parse(team["routine"], CommGlobal.ciUs);
+                    else
+                        ppr.Rou = 0;
 
                     homePlayers.Add(playerID);
                 }
@@ -1437,7 +1440,10 @@ namespace NTR_Db
                     ppr.Rec = decimal.Parse(team["rec"], CommGlobal.ciUs);
                     if (team["mom"] == "1")
                         matchRow.BestPlayer = ppr.PlayerID;
-                    ppr.Rou = decimal.Parse(team["routine"], CommGlobal.ciUs);
+                    if (team["routine"] != "null")
+                        ppr.Rou = decimal.Parse(team["routine"], CommGlobal.ciUs);
+                    else
+                        ppr.Rou = 0;
 
                     awayPlayers.Add(playerID);
                 }
@@ -1987,6 +1993,12 @@ namespace NTR_Db
             int teamID = int.Parse(club_info["ClubId"]);
             DateTime dtToday = DateTime.Today;
 
+            if (club_info["Fans"] == "")
+            {
+                MessageBox.Show("You can't read supporters number now. Try later");
+                return;
+            }
+
             var teamDataRow = TeamData.FindByTeamIDDate(teamID, dtToday);
             if (teamDataRow == null)
             {
@@ -1997,6 +2009,7 @@ namespace NTR_Db
             }
 
             teamDataRow.NumSupporters = int.Parse(club_info["Fans"]);
+
             teamDataRow.Cash = Int64.Parse(club_info["Cash"]);
         }
 

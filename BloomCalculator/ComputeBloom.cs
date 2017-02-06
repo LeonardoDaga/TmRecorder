@@ -123,7 +123,13 @@ namespace BloomCalculator
 
         public decimal TopASI
         {
-            get { return decimal.Parse(txtTopASI.Text, nfi); }
+            get
+            {
+                decimal val = 0M;
+                decimal.TryParse(txtTopASI.Text, System.Globalization.NumberStyles.Float,
+                    nfi, out val);
+                return val;
+            }
             set
             {
                 nfi.NumberDecimalDigits = 0;
@@ -149,7 +155,11 @@ namespace BloomCalculator
             get
             {
                 nfi.NumberDecimalDigits = 1;
-                return decimal.Parse(txtBeforeExplTI.Text, nfi);
+
+                decimal val = 0M;
+                decimal.TryParse(txtBeforeExplTI.Text, System.Globalization.NumberStyles.Float,
+                    nfi, out val);
+                return val;
             }
             set
             {

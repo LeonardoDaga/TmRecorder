@@ -1,4 +1,5 @@
-﻿namespace TMRecorder {
+﻿namespace TMRecorder
+{
 
 
     partial class Trading

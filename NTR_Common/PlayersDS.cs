@@ -50,8 +50,8 @@ namespace NTR_Common
         {
             public decimal For
             {
-                get {return _For;}
-                set  {_For = value;}
+                get { return _For; }
+                set { _For = value; }
             }
             public decimal Res
             {
@@ -431,7 +431,7 @@ namespace NTR_Common
                     return _fullTIHistory;
 
                 TmWeek tmw = new TmWeek(VarData[0].Week);
-                _fullTIHistory =  TmWeek.ToSWDString(tmw.ToDate()) + ";";
+                _fullTIHistory = TmWeek.ToSWDString(tmw.ToDate()) + ";";
                 TmWeek now = TmWeek.thisWeek();
 
                 for (int week = tmw.absweek; week <= now.absweek; week++)
@@ -463,11 +463,11 @@ namespace NTR_Common
             DateTime pageDate = DateTime.Now;
 
             List<string> tables = HTML_Parser.GetFullTags(page, "table");
-            if (tables.Count == 0) 
+            if (tables.Count == 0)
                 return false;
 
             int dayOfTheWeek = TmWeek.GetTmAbsDay(DateTime.Now) % 7;
-            VarDataRow vdr; 
+            VarDataRow vdr;
             if (dayOfTheWeek < 5)
             {
                 vdr = this.VarData.FindByWeek(TmWeek.thisWeek().absweek - 1);

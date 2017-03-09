@@ -1,8 +1,9 @@
 ﻿using System.Windows.Forms;
-namespace Common {
-    
-    
-    public partial class NationsDS 
+namespace Common
+{
+
+
+    public partial class NationsDS
     {
         public void SetDefaultValues()
         {

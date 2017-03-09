@@ -575,6 +575,20 @@ namespace Common
         {
         }
 
+        public partial class MatchRow : global::System.Data.DataRow
+        {
+            public void CleanAmbiguities()
+            {
+                if (this.TeamRowByTeam_YTeam.Owner == false)
+                {
+                    var myTeam = OTeamID;
+                    OTeamID = YTeamID;
+                    YTeamID = myTeam;
+                    isHome = !isHome;
+                }
+            }
+        }
+
         public partial class PlayerRow : global::System.Data.DataRow
         {
             //[global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

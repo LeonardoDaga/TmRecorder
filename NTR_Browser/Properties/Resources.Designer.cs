@@ -125,11 +125,21 @@ namespace NTR_WebBrowser.Properties {
         ///   Looks up a localized string similar to function get_history() {
         ///    strout = &quot;no data&quot;;
         ///
-        ///    if (data == null) return &quot;Javascript error: data doesn&apos;t exists&quot;;
-        ///    var history_data = data;
+        ///    if (player_history_data == null) return &quot;Javascript error: data doesn&apos;t exists&quot;;
         ///
-        ///    return history_data.current_season;
-        ///}.
+        ///    total_history = player_history_data.table.total;
+        ///
+        ///    strout = &quot;&quot;;
+        ///
+        ///    for (var j in total_history) {
+        ///        var seas_history = total_history[j];
+        ///
+        ///        if (seas_history.season == &quot;transfer&quot;)
+        ///        {
+        ///            strout += &quot;season=transfer&quot; + seas_history.season;
+        ///            strout += &quot;;transferamount=&quot; + seas_history.transferamount;
+        ///        }
+        ///     [rest of string was truncated]&quot;;.
         /// </summary>
         public static string get_player_history {
             get {
@@ -284,6 +294,27 @@ namespace NTR_WebBrowser.Properties {
         public static string RatingR2_user {
             get {
                 return ResourceManager.GetString("RatingR2_user", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to function ApplyRatingR3() {
+        ///
+        ///    var version = &quot;or&quot;;	// original version or english version
+        ///    ///////////////////// Original = or
+        ///    //////////////////// English = en
+        ///    ////////////////////////////////////////////////////////////////////////////////////////////////////////
+        ///
+        ///    var r3max = 25;			// RatingR3 MAX = 100 + r3max
+        ///    var rou_factor = 0.006153231 * r3max;
+        ///    var wage_rate = 19.76
+        ///
+        ///    // Array to setup the weights of particular skills for each player&apos;s actual ability
+        ///    // This is the dire [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string RatingR3_user {
+            get {
+                return ResourceManager.GetString("RatingR3_user", resourceCulture);
             }
         }
         

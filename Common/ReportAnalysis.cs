@@ -1,4 +1,4 @@
-﻿namespace Common 
+﻿namespace Common
 {
     public class HiddenData
     {
@@ -165,7 +165,7 @@
                     break;
                 }
             }
-                // first, get the review with vote 0, if any
+            // first, get the review with vote 0, if any
             string tech0 = "";
             foreach (ReportAnalysis.TechnicsRow row in this.Technics)
             {

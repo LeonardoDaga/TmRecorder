@@ -53,6 +53,8 @@ namespace TMRecorder
 
             LoadShortlist();
 
+            LoadSearchMenuItems();
+
             FormatPlayersGridPl();
             FormatPlayersGridGK();
 
@@ -301,40 +303,52 @@ namespace TMRecorder
 
         private void cutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //DataGridView dgv = null;
+            RemoveSelectedPlayersFromDb(false);
+        }
 
-            //if (tabControl.SelectedTab == tabPlayers) dgv = dgPlayers;
-            //if (tabControl.SelectedTab == tabGK) dgv = dgPlayersGK;
+        private void RemoveSelectedPlayersFromDb(bool evenFromMainDb)
+        {
+            DataGridView dgv = null;
 
-            //if (dgv.SelectedRows.Count > 0)
-            //{
-            //    string names = ""; 
+            if (tabControl.SelectedTab == tabPlayers) dgv = dgPlayers;
+            if (tabControl.SelectedTab == tabGK) dgv = dgPlayersGK;
 
-            //    int[] plToRemove = new int[dgv.SelectedRows.Count];
-            //    for (int i = 0; i < dgv.SelectedRows.Count; i++)
-            //    {
-            //        DataRowView drv = (DataRowView)dgv.SelectedRows[i].DataBoundItem;
-            //        TeamDS.GiocatoriNSkillRow gnsr = (TeamDS.GiocatoriNSkillRow)drv.Row;
-            //        names += gnsr.Nome + ",";
-            //        plToRemove[i] = gnsr.PlayerID;
-            //    }
+            if (dgv.SelectedRows.Count > 0)
+            {
+                string names = "";
 
-            //    names = names.TrimEnd(',');
+                int[] plToRemove = new int[dgv.SelectedRows.Count];
+                for (int i = 0; i < dgv.SelectedRows.Count; i++)
+                {
+                    NTR_Db.PlayerData drv = (NTR_Db.PlayerData)dgv.SelectedRows[i].DataBoundItem;
+                    names += drv.Name + ",";
+                    plToRemove[i] = drv.playerID;
+                }
 
-            //    DialogResult dr = MessageBox.Show("Delete the selected players (" + names + ")?", "Remove players", 
-            //        MessageBoxButtons.YesNo);
-            //    if (dr == DialogResult.No) return;
+                names = names.TrimEnd(',');
 
-            //    foreach (int id in plToRemove)
-            //    {
-            //        TeamDS.GiocatoriNSkillRow gnsr = teamDS.GiocatoriNSkill.FindByPlayerID(id);
-            //        teamDS.GiocatoriNSkill.RemoveGiocatoriNSkillRow(gnsr);
+                DialogResult dr = MessageBox.Show("Delete the selected players (" + names + ")?", "Remove players",
+                    MessageBoxButtons.YesNo);
+                if (dr == DialogResult.No) return;
 
+                foreach (int id in plToRemove)
+                {
+                    var playerToRemoveRow = DB.Shortlist.FindByPlayerID(id);
+                    if (playerToRemoveRow != null)
+                    DB.Shortlist.RemoveShortlistRow(playerToRemoveRow);
 
-            //    }
+                    if (evenFromMainDb)
+                    {
+                        var playerRow = DB.Player.FindByPlayerID(id);
+                        if (playerRow != null)
+                            DB.Player.RemovePlayerRow(playerRow);
+                    }
+                }
 
-            //    isDirty = true;
-            //}
+                isDirty = true;
+            }
+
+            UpdateShortlist();
         }
 
         private void dgPortieri_Sorted(object sender, EventArgs e)
@@ -417,7 +431,7 @@ namespace TMRecorder
 
             dgPlayers.AddColumn("Rou", "Rou", 30, AG_Style.Numeric | AG_Style.RightJustified);
             dgPlayers.AddColumn("SSD", "SSD", 30, AG_Style.Numeric | AG_Style.RightJustified);
-            dgPlayers.AddColumn("CRec", "CStr", 30, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N2);
+            dgPlayers.AddColumn("R2", "R2Rat", 30, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N2);
             dgPlayers.AddColumn("Rec", "Rec", 30, AG_Style.Numeric | AG_Style.RightJustified);
             dgvc = (TMR_NumDecColumn)dgPlayers.AddColumn("TI", "TI", 32, AG_Style.NumDec | AG_Style.Frozen);
             dgvc.CellColorStyles = CellColorStyleList.DefaultGainColorStyle();
@@ -472,7 +486,7 @@ namespace TMRecorder
 
             dgPlayersGK.AddColumn("Rou", "Rou", 30, AG_Style.Numeric | AG_Style.RightJustified);
             dgPlayersGK.AddColumn("SSD", "SSD", 30, AG_Style.Numeric | AG_Style.RightJustified);
-            dgPlayersGK.AddColumn("CRec", "CStr", 30, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N2);
+            dgPlayersGK.AddColumn("R2", "R2Rat", 30, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N2);
             dgPlayersGK.AddColumn("Rec", "Rec", 30, AG_Style.Numeric | AG_Style.RightJustified);
             dgvc = (TMR_NumDecColumn)dgPlayersGK.AddColumn("TI", "TI", 32, AG_Style.NumDec | AG_Style.Frozen);
             dgvc.CellColorStyles = CellColorStyleList.DefaultGainColorStyle();
@@ -537,6 +551,92 @@ namespace TMRecorder
 
             DB.Clear();
             UpdateShortlist();
+        }
+
+        private void deleteSelectedPlayersFromVisualizationAndDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RemoveSelectedPlayersFromDb(true);
+        }
+
+        private void saveSearchToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AskForString afs = new AskForString();
+            afs.Message = "Insert a short string representing the search";
+            afs.EntryText = "ex.: 3.5* FC International";
+            afs.Text = "Add a menu search item";
+            while (true)
+            {
+                if (afs.ShowDialog() != DialogResult.OK)
+                    return;
+                if (afs.Text.Contains("=") || afs.Text.Contains(";"))
+                {
+                    MessageBox.Show("Entered text cannot contains \"=\" or \";\" ");
+                    continue;
+                }
+                break;
+            }
+
+            var miNewSearch = new ToolStripMenuItem(afs.EntryText);
+            miNewSearch.Tag = webBrowser.NavigationAddress;
+            miNewSearch.Click += searchMenuItem_Click;
+            tsSearches.DropDownItems.Add(miNewSearch);
+
+            var deleteItem = new ToolStripMenuItem();
+            deleteItem.Text = "Remove Search";
+            deleteItem.Tag = miNewSearch;
+            deleteItem.Click += DeleteItem_Click;
+            miNewSearch.DropDownItems.Add(deleteItem);
+
+            SaveSearchMenuItems();
+        }
+
+        private void SaveSearchMenuItems()
+        {
+            string txtItemsString = "";
+
+            foreach (ToolStripMenuItem item in tsSearches.DropDownItems)
+            {
+                txtItemsString += item.Text + "=" + (string)item.Tag + ";";
+            }
+
+            Program.Setts.ShortlistSearches = txtItemsString;
+            Program.Setts.Save();
+        }
+
+        private void LoadSearchMenuItems()
+        {
+            string[] menuItemsStrings = Program.Setts.ShortlistSearches.Split(';');
+
+            foreach (string item in menuItemsStrings)
+            {
+                if (item == "") continue;
+
+                string[] itemSplit = item.Split('=');
+
+                var miNewSearch = new ToolStripMenuItem(itemSplit[0]);
+                miNewSearch.Tag = itemSplit[1];
+                miNewSearch.Click += searchMenuItem_Click;
+                tsSearches.DropDownItems.Add(miNewSearch);
+
+                var deleteItem = new ToolStripMenuItem();
+                deleteItem.Text = "Remove Search";
+                deleteItem.Tag = miNewSearch;
+                deleteItem.Click += DeleteItem_Click;
+                miNewSearch.DropDownItems.Add(deleteItem);
+            }
+        }
+
+        private void DeleteItem_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem ti = (ToolStripMenuItem)sender;
+            tsSearches.DropDownItems.Remove((ToolStripMenuItem)ti.Tag);
+        }
+
+        private void searchMenuItem_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem ti = (ToolStripMenuItem)sender;
+
+            webBrowser.Goto((string)ti.Tag);
         }
     }
 }

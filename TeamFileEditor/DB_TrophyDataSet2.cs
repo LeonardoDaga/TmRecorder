@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
-namespace TeamFileEditor {
+namespace TeamFileEditor
+{
 
 
     partial class DB_TrophyDataSet2

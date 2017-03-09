@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-namespace Common 
-{    
-    public partial class ScoutsNReviews 
+namespace Common
+{
+    public partial class ScoutsNReviews
     {
         public bool isDirty { get; set; }
 
@@ -93,7 +93,7 @@ namespace Common
                 }
 
                 rrow.Vote = gRow.ScoutVotes[i];
-            }            
+            }
         }
     }
 }

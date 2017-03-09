@@ -1,12 +1,12 @@
 ﻿using System;
-namespace Common 
+namespace Common
 {
     partial class Db_TrophyDataSet
     {
         partial class GiocatoriDataTable
         {
         }
-    
+
         public DateTime Date
         {
             set
@@ -43,7 +43,7 @@ namespace Common
         partial class WeekNoDataDataTable
         {
         }
-    
+
         partial class PortieriDataTable
         {
         }

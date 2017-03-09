@@ -908,6 +908,8 @@ namespace NTR_Db
         private NTR_SquadDb.HistDataRow prevWeek;
         public NTR_SquadDb DB { get; }
 
+        RatingFunction RF = new RatingR3();
+
         private bool isAttsComputed = false;
         private bool isSumComputed = false;
         private bool isDirty = false;
@@ -1441,6 +1443,9 @@ namespace NTR_Db
             if (!tdr.IsRecNull())
                 Rec = tdr.Rec / 2.0M;
 
+            Rating Rating = RF.ComputeRating(this);
+            Rat = (decimal)Rating.GetRec(FPn);
+
             NTR_SquadDb.ShortlistRow shr = DB.Shortlist.FindByPlayerID(playerID);
             AlarmSet = false;
             if (!shr.IsAlarmTimeNull())
@@ -1648,6 +1653,9 @@ namespace NTR_Db
 
             Rec = thisWeek.Rec;
             OSi = GFun.GetOSi(thisWeek.Atts, thisWeek.Skills);
+
+            Rating Rating = RF.ComputeRating(this);
+            Rat = (decimal)Rating.GetRec(FPn);
 
             if (!gr.IswBloomDataNull())
             {
@@ -1994,6 +2002,7 @@ namespace NTR_Db
         public float AvTI { get; private set; }
         public string Votes { get; private set; }
         public int SPn { get; set; }
+        public decimal Rat { get; private set; }
 
         private void ParseBloomValues()
         {
@@ -2290,93 +2299,6 @@ namespace NTR_Db
                 sr.Tec = short.Parse(scoutInfo["Tec"]);
                 sr.Yth = short.Parse(scoutInfo["Yth"]);
             }
-        }
-
-        /// <summary>
-        /// This function returns REREC values (3 values, rec, ratingR2 and ratingR2 modified by
-        /// the routine
-        /// </summary>
-        /// <param name="gnsRow"></param>
-        /// <returns></returns>
-        public RatingR2 CalculateREREC()
-        {
-            decimal skillWeightSum, weight;
-            decimal SI = ASI.actual;
-            decimal rou = Rou;
-
-            RatingR2 R2 = new RatingR2();
-
-            if (FPn == 0) // The player is a GK
-            {
-                skillWeightSum = (decimal)(Math.Pow((double)SI, 0.143) / 0.02979);
-                weight = 48717927500;
-            }
-            else
-            {
-                skillWeightSum = (decimal)(Math.Pow((double)SI, 1 / 6.99194) / 0.02336483);
-                weight = 263533760000;
-            }
-
-            decimal skillSum = SkillSum.actual;
-
-            // REREC remainder
-            skillWeightSum -= skillSum;
-
-            // RatingR2 remainder
-            var remainder = Math.Round((Math.Pow(2.0, Math.Log((double)(weight * SI)) / Math.Log(Math.Pow(2, 7))) - (double)skillSum) * 10.0) / 10.0;
-
-            int[] positionIndex = RatingR2.GetPositionIndex(FPn);
-
-            for (int n = 0; n < 2; n++)
-            {
-                for (int i = 0; i <= positionIndex[n] - 2; i += 2)
-                {		// TrExMaとRECのweight表のずれ修正
-                    positionIndex[n]--;
-                }
-
-                for (int i = 0; i < 10; i++)
-                {
-                    R2.rec[i] = 0;
-                    R2.ratingR[i] = 0;
-                }
-
-                for (var j = 0; j < 9; j++) // All position
-                {
-                    var remainderWeight = 0.0;		// REREC remainder weight sum
-                    var remainderWeight2 = 0.0;		// RatingR2 remainder weight sum
-                    var not20 = 0;					// 20以外のスキル数
-                    if (positionIndex[n] == 9) j = 9;	// GK
-
-                    for (var i = 0; i < 14; i++)
-                    {
-                        R2.rec[j] += Skills[i].actual * (decimal)RatingR2.weightR[j, i];
-                        R2.ratingR[j] += Skills[i].actual * (decimal)RatingR2.weightR2[j, i];
-
-                        if (Skills[i].actual != 20M)
-                        {
-                            remainderWeight += RatingR2.weightR[j, i];
-                            remainderWeight2 += RatingR2.weightR2[j, i];
-                            not20 += 1;
-                        }
-                    }
-
-                    R2.rec[j] += (decimal)(skillWeightSum * (decimal)remainderWeight / (decimal)not20);		//REREC Score
-
-                    if (positionIndex[n] == 9)
-                        R2.rec[j] *= 1.27M;					//GK
-
-                    R2.rec[j] = RatingR2.funFix((decimal)(((double)R2.rec[j] - RatingR2.recLast[0, j]) / RatingR2.recLast[1, j]));
-                    R2.ratingR[j] += (decimal)(remainder * remainderWeight2 / not20);
-                    R2.ratingR2[j] = RatingR2.funFix(R2.ratingR[j] * (1M + rou * RatingR2.rou_factor));
-                    R2.ratingR[j] = RatingR2.funFix(R2.ratingR[j]);
-
-                    if (positionIndex[n] == 9)
-                        j = 9;		// Loop end
-                }
-            }
-
-            R2.TransformToTMR();
-            return R2;
         }
 
         #endregion

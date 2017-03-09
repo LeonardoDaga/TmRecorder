@@ -1,5 +1,6 @@
 ﻿using System.Windows.Forms;
-namespace NationListEditor {
+namespace NationListEditor
+{
 
 
     partial class DataSet1
@@ -34,7 +35,7 @@ namespace NationListEditor {
                 NationNamesRow nnr = this.NationNames.NewNationNamesRow();
 
                 nnr.Name = line.Split('\t')[0];
-                
+
                 string abbr = line.Split('\t')[1];
                 abbr = abbr.TrimEnd('\r');
 

@@ -1,6 +1,7 @@
 ﻿using TM_Scanner;
 using System.Collections.Generic;
-namespace TM_Player_Scanner {
+namespace TM_Player_Scanner
+{
 
 
     partial class PlayerScanInfo

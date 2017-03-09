@@ -10,8 +10,6 @@
 
 #pragma warning disable 1591
 
-using System;
-
 namespace Common {
     
     
@@ -8868,17 +8866,6 @@ namespace Common {
                 }
                 else {
                     return ((ActionsRow[])(base.GetChildRows(this.Table.ChildRelations["Match_Actions"])));
-                }
-            }
-
-            public void CleanAmbiguities()
-            {
-                if (this.TeamRowByTeam_YTeam.Owner == false)
-                {
-                    var myTeam = OTeamID;
-                    OTeamID = YTeamID;
-                    YTeamID = myTeam;
-                    isHome = !isHome;
                 }
             }
         }

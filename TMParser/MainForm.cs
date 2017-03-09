@@ -1006,7 +1006,7 @@ namespace TMRecorder
 
             dgPlayers.AddColumn("Rou", "Rou", 30, AG_Style.Numeric | AG_Style.RightJustified);
             dgPlayers.AddColumn("SSD", "SSD", 30, AG_Style.Numeric | AG_Style.RightJustified);
-            dgPlayers.AddColumn("CRec", "CStr", 30, AG_Style.Numeric | AG_Style.RightJustified);
+            dgPlayers.AddColumn("R2", "Rat", 30, AG_Style.Numeric | AG_Style.N2 | AG_Style.RightJustified);
             dgPlayers.AddColumn("Rec", "Rec", 30, AG_Style.Numeric | AG_Style.RightJustified);
             dgvc = (TMR_NumDecColumn)dgPlayers.AddColumn("TI", "TI", 32, AG_Style.NumDec);
             dgvc.CellColorStyles = CellColorStyleList.DefaultGainColorStyle();
@@ -1065,7 +1065,7 @@ namespace TMRecorder
 
             dataGridPortieri.AddColumn("Rou", "Rou", 30, AG_Style.Numeric | AG_Style.RightJustified);
             dataGridPortieri.AddColumn("SSD", "SSD", 30, AG_Style.Numeric | AG_Style.RightJustified);
-            dataGridPortieri.AddColumn("CRec", "CStr", 30, AG_Style.Numeric | AG_Style.RightJustified);
+            dataGridPortieri.AddColumn("R2", "Rat", 30, AG_Style.Numeric | AG_Style.N2 | AG_Style.RightJustified);
             dataGridPortieri.AddColumn("Rec", "Rec", 30, AG_Style.Numeric | AG_Style.RightJustified);
             dgvc = (TMR_NumDecColumn)dataGridPortieri.AddColumn("TI", "TI", 32, AG_Style.NumDec | AG_Style.Frozen);
             dgvc.CellColorStyles = CellColorStyleList.DefaultGainColorStyle();
@@ -1159,7 +1159,7 @@ namespace TMRecorder
             dgTactics.AddSkColumn("Set", evidenceGain);
 
             dgTactics.AddColumn("Rou", "Rou", 30, AG_Style.Numeric | AG_Style.RightJustified);
-            dgTactics.AddColumn("CRec", "CStr", 38, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N2);
+            dgTactics.AddColumn("R2", "Rat", 38, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N2);
 
             dgTactics.AddColumn("SP", "SPn", 42, AG_Style.FavPosition | AG_Style.Frozen);
 

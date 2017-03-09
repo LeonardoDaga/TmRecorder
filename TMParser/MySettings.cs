@@ -228,6 +228,7 @@ namespace TMRecorder
 
             sb.Def("ReportParsingFile", Path.Combine(_datafilePath, @"ReportParsingFile.EN.txt"));
             sb.Def("AutoconvertActions", true);
+            sb.Def("ShortlistSearches", "");
 
             // Always the last settings
             sb.Def("SettsRelease", 1);
@@ -235,6 +236,11 @@ namespace TMRecorder
             sb.Def("LicenseCode", (UInt64)0);
         }
 
+        public string ShortlistSearches
+        {
+            get { return (string)sb["ShortlistSearches"]; }
+            set { sb["ShortlistSearches"] = value; }
+        }
         public bool AutoconvertActions
         {
             get { return (bool)sb["AutoconvertActions"]; }

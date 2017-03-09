@@ -4,7 +4,7 @@ using System.Drawing;
 using System;
 using System.IO;
 
-namespace Common 
+namespace Common
 {
     partial class MatchDS
     {
@@ -77,7 +77,7 @@ namespace Common
             //     17: Very hard goal save (GK)
             //     18: Easy goal save (GK)
         }
-    
+
         partial class OppsTeamPerfDataTable
         {
             internal void SortByPosition()
@@ -116,7 +116,7 @@ namespace Common
                 }
             }
         }
-    
+
         partial class YourTeamPerfDataTable
         {
             internal void SortByPosition()
@@ -155,7 +155,7 @@ namespace Common
                 }
             }
         }
-    
+
         public string clubNick = "";
         public string[] clubNicks = new string[2];
 
@@ -207,7 +207,7 @@ namespace Common
                 this.MatchData.AddMatchDataRow(matchRow.MatchID, 0, 0, 0, 0);
                 if (tables.Count == 0)
                     return true;
-                    
+
                 //--------------------------------------------------------------
                 // Ricerca dei campi nella tabella 0
                 //--------------------------------------------------------------
@@ -303,7 +303,7 @@ namespace Common
                             if (tds[1].Contains("star.gif"))
                                 this.MatchData[0].BestPlayer = ppr.PlayerID;
 
-                            int number; 
+                            int number;
                             if (int.TryParse(tds[0].Trim('.'), out number))
                                 ppr.Number = number;
 
@@ -505,7 +505,7 @@ namespace Common
                             // verifica che non ci siano duplicati nella lista degli id
                             for (int k = 0; k < ids.Count; k++)
                             {
-                                for (int j=k+1; j < ids.Count; j++)
+                                for (int j = k + 1; j < ids.Count; j++)
                                 {
                                     if (ids[k] == ids[j])
                                     {

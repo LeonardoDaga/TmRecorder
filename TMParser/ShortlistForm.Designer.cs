@@ -61,6 +61,8 @@ namespace TMRecorder
             this.updateOnlyListedPlayersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearShortlistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearShortlistDBforgetAllPastImportedDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveSearchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsSearches = new System.Windows.Forms.ToolStripDropDownButton();
             this.contextMenuStrip.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
@@ -267,6 +269,7 @@ namespace TMRecorder
             this.webBrowser.DefaultDirectory = "";
             this.webBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
             this.webBrowser.Location = new System.Drawing.Point(3, 3);
+            this.webBrowser.MainTeamId = 0;
             this.webBrowser.Name = "webBrowser";
             this.webBrowser.NavigationAddress = "";
             this.webBrowser.NavigationMode = NTR_WebBrowser.NTR_Browser.eNavigationMode.Main;
@@ -283,16 +286,18 @@ namespace TMRecorder
             this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbFile,
-            this.toolStripDropDownButton1});
+            this.toolStripDropDownButton1,
+            this.tsSearches});
             this.toolStrip1.Location = new System.Drawing.Point(3, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(153, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(204, 25);
             this.toolStrip1.TabIndex = 0;
             // 
             // tsbFile
             // 
             this.tsbFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.saveToolStripMenuItem});
+            this.saveToolStripMenuItem,
+            this.saveSearchToolStripMenuItem});
             this.tsbFile.Image = ((System.Drawing.Image)(resources.GetObject("tsbFile.Image")));
             this.tsbFile.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbFile.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -305,7 +310,7 @@ namespace TMRecorder
             this.saveToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripMenuItem.Image")));
             this.saveToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(98, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
@@ -339,6 +344,7 @@ namespace TMRecorder
             this.deleteSelectedPlayersFromVisualizationAndDatabaseToolStripMenuItem.Name = "deleteSelectedPlayersFromVisualizationAndDatabaseToolStripMenuItem";
             this.deleteSelectedPlayersFromVisualizationAndDatabaseToolStripMenuItem.Size = new System.Drawing.Size(358, 22);
             this.deleteSelectedPlayersFromVisualizationAndDatabaseToolStripMenuItem.Text = "Remove Selected Players from list and DB";
+            this.deleteSelectedPlayersFromVisualizationAndDatabaseToolStripMenuItem.Click += new System.EventHandler(this.deleteSelectedPlayersFromVisualizationAndDatabaseToolStripMenuItem_Click);
             // 
             // updateOnlyListedPlayersToolStripMenuItem
             // 
@@ -361,6 +367,21 @@ namespace TMRecorder
             this.clearShortlistDBforgetAllPastImportedDataToolStripMenuItem.Size = new System.Drawing.Size(358, 22);
             this.clearShortlistDBforgetAllPastImportedDataToolStripMenuItem.Text = "Clear Shortlist DB (forget all previously imported data)";
             this.clearShortlistDBforgetAllPastImportedDataToolStripMenuItem.Click += new System.EventHandler(this.clearShortlistDBforgetAllPastImportedDataToolStripMenuItem_Click);
+            // 
+            // saveSearchToolStripMenuItem
+            // 
+            this.saveSearchToolStripMenuItem.Name = "saveSearchToolStripMenuItem";
+            this.saveSearchToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveSearchToolStripMenuItem.Text = "Save Search";
+            this.saveSearchToolStripMenuItem.Click += new System.EventHandler(this.saveSearchToolStripMenuItem_Click);
+            // 
+            // tsSearches
+            // 
+            this.tsSearches.Image = ((System.Drawing.Image)(resources.GetObject("tsSearches.Image")));
+            this.tsSearches.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsSearches.Name = "tsSearches";
+            this.tsSearches.Size = new System.Drawing.Size(82, 22);
+            this.tsSearches.Text = "Searches";
             // 
             // ShortlistForm
             // 
@@ -420,5 +441,7 @@ namespace TMRecorder
         private System.Windows.Forms.ToolStripMenuItem updateOnlyListedPlayersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clearShortlistToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clearShortlistDBforgetAllPastImportedDataToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveSearchToolStripMenuItem;
+        private System.Windows.Forms.ToolStripDropDownButton tsSearches;
     }
 }

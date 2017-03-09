@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -21,7 +21,8 @@
     </UpgradeBackupLocation>
     <SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile>DataGridViewCustomColumns_TmRecorder.pfx</AssemblyOriginatorKeyFile>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,6 +33,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -40,6 +42,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'ReleaseX64|AnyCPU' ">
     <OutputPath>bin\ReleaseX64\</OutputPath>
@@ -48,6 +51,7 @@
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
     <DebugSymbols>true</DebugSymbols>
@@ -56,6 +60,7 @@
     <DebugType>full</DebugType>
     <PlatformTarget>x64</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
     <OutputPath>bin\x64\Release\</OutputPath>
@@ -64,6 +69,7 @@
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>x64</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'ReleaseX64|x64' ">
     <OutputPath>bin\x64\ReleaseX64\</OutputPath>
@@ -72,6 +78,7 @@
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>x64</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug32|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
@@ -81,6 +88,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug32|x64'">
     <DebugSymbols>true</DebugSymbols>
@@ -90,6 +98,7 @@
     <PlatformTarget>x64</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -99,6 +108,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
@@ -108,6 +118,7 @@
     <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseX64|x86'">
     <OutputPath>bin\x86\ReleaseX64\</OutputPath>
@@ -117,6 +128,7 @@
     <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug32|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -126,6 +138,7 @@
     <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -136,100 +149,68 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CellColorStyle.cs" />
-    <Compile Include="TMR_NumericStyledColumn.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="TMR_NumericStyledColumn.cs" />
     <Compile Include="TMR_NumericStyledColumn.Designer.cs">
       <DependentUpon>TMR_NumericStyledColumn.cs</DependentUpon>
     </Compile>
-    <Compile Include="TMR_ReportColumn.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="TMR_ReportColumn.cs" />
     <Compile Include="TMR_ReportColumn.Designer.cs">
       <DependentUpon>TMR_ReportColumn.cs</DependentUpon>
     </Compile>
-    <Compile Include="TMR_VariableDRColumn.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="TMR_VariableDRColumn.cs" />
     <Compile Include="TMR_VariableDRColumn.Designer.cs">
       <DependentUpon>TMR_VariableDRColumn.cs</DependentUpon>
     </Compile>
-    <Compile Include="TMR_PlayerDSColumn.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="TMR_PlayerDSColumn.cs" />
     <Compile Include="TMR_PlayerDSColumn.Designer.cs">
       <DependentUpon>TMR_PlayerDSColumn.cs</DependentUpon>
     </Compile>
-    <Compile Include="TMR_BloomColumn.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="TMR_BloomColumn.cs" />
     <Compile Include="TMR_BloomColumn.Designer.cs">
       <DependentUpon>TMR_BloomColumn.cs</DependentUpon>
     </Compile>
-    <Compile Include="TMR_TrainSkillColumn.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="TMR_TrainSkillColumn.cs" />
     <Compile Include="TMR_TrainSkillColumn.Designer.cs">
       <DependentUpon>TMR_TrainSkillColumn.cs</DependentUpon>
     </Compile>
-    <Compile Include="TMR_ArrowColumn.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="TMR_ArrowColumn.cs" />
     <Compile Include="TMR_ArrowColumn.Designer.cs">
       <DependentUpon>TMR_ArrowColumn.cs</DependentUpon>
     </Compile>
-    <Compile Include="TMR_DateColumn.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="TMR_DateColumn.cs" />
     <Compile Include="TMR_DateColumn.Designer.cs">
       <DependentUpon>TMR_DateColumn.cs</DependentUpon>
     </Compile>
-    <Compile Include="TMR_FpColumn.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="TMR_FpColumn.cs" />
     <Compile Include="TMR_FpColumn.Designer.cs">
       <DependentUpon>TMR_FpColumn.cs</DependentUpon>
     </Compile>
-    <Compile Include="TMR_NoTagColumn.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="TMR_NoTagColumn.cs" />
     <Compile Include="TMR_NoTagColumn.Designer.cs">
       <DependentUpon>TMR_NoTagColumn.cs</DependentUpon>
     </Compile>
-    <Compile Include="TMR_ActionsColumn.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="TMR_ActionsColumn.cs" />
     <Compile Include="TMR_ActionsColumn.Designer.cs">
       <DependentUpon>TMR_ActionsColumn.cs</DependentUpon>
     </Compile>
-    <Compile Include="TMR_MatchTypeColumn.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="TMR_MatchTypeColumn.cs" />
     <Compile Include="TMR_MatchTypeColumn.Designer.cs">
       <DependentUpon>TMR_MatchTypeColumn.cs</DependentUpon>
     </Compile>
-    <Compile Include="TMR_AgeColumn.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="TMR_AgeColumn.cs" />
     <Compile Include="TMR_AgeColumn.Designer.cs">
       <DependentUpon>TMR_AgeColumn.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TMR_NumDecColumn.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="TMR_NumDecColumn.cs" />
     <Compile Include="TMR_NumDecColumn.Designer.cs">
       <DependentUpon>TMR_NumDecColumn.cs</DependentUpon>
     </Compile>
-    <Compile Include="TMR_NameInjurySqColumn.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="TMR_NameInjurySqColumn.cs" />
     <Compile Include="TMR_NameInjurySqColumn.Designer.cs">
       <DependentUpon>TMR_NameInjurySqColumn.cs</DependentUpon>
     </Compile>
-    <Compile Include="TMR_NationColumn.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="TMR_NationColumn.cs" />
     <Compile Include="TMR_NationColumn.Designer.cs">
       <DependentUpon>TMR_NationColumn.cs</DependentUpon>
     </Compile>

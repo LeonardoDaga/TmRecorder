@@ -363,6 +363,8 @@ namespace FieldFormationControl
 
             _skills = 0;
 
+            if (gnsr == null) return;
+
             _skills += SkillCheck(gnsr.For, 12, 15, (int)(eSkills.Strong));
             _skills += SkillCheck(gnsr.Vel, 12, 15, (int)(eSkills.Fast));
             _skills += SkillCheck(gnsr.Mar + gnsr.Con, 24, 30, (int)(eSkills.Defender));
@@ -508,6 +510,8 @@ namespace FieldFormationControl
             this.ExtraDsRow = gr;
 
             _skills = 0;
+
+            if (gnsr == null) return;
 
             _skills += SkillCheck((decimal)gnsr.PO, 50, 75, (int)(eSkills.GK));
             _skills += SkillCheck(gnsr.For, 12, 15, (int)(eSkills.Strong));

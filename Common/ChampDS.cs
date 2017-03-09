@@ -3,7 +3,7 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 using System.IO;
 
-namespace Common 
+namespace Common
 {
     public enum eMatchType
     {
@@ -111,7 +111,7 @@ namespace Common
                     mr.isReserves = 1;
                     mr.OppsClubID = home;
                     mr.OppsClubName = mr.Home;
-                } 
+                }
 
                 {
                     MatchRow mrold = null;
@@ -170,7 +170,7 @@ namespace Common
             }
         }
 
-        public int LoadSeasonFileFlash(string seasonfile, ref string matchTypes, 
+        public int LoadSeasonFileFlash(string seasonfile, ref string matchTypes,
             int debugFunction, string ApplicationFolder)
         {
             isDirty = true;
@@ -208,7 +208,7 @@ namespace Common
 
                 if (debugFunction == 101)
                 {
-                    DialogResult res = MessageBox.Show("Send a report about this function?", 
+                    DialogResult res = MessageBox.Show("Send a report about this function?",
                         "Debug function", MessageBoxButtons.YesNo);
                     if (res == DialogResult.No) return cnt;
 
@@ -266,12 +266,12 @@ namespace Common
                 }
                 else if (clubs.Count == 2)
                 {
-                    if ((clubs[0] == "")&&(clubs[1] == "")) continue;
+                    if ((clubs[0] == "") && (clubs[1] == "")) continue;
 
                     if (ReservesID == 0)
                     {
                         MessageBox.Show("You must first set the reserves club ID in the 'Your Teams Data' page of the\n" +
-                            "Options form, that can be open using the Tools->Options menu\n"+
+                            "Options form, that can be open using the Tools->Options menu\n" +
                             "The club ID could be found in the clubhouse page of the main squad and reserves squad menu");
                         break;
                     }
@@ -303,7 +303,7 @@ namespace Common
 
             if (debugFunction == 101)
             {
-                DialogResult res = MessageBox.Show("Send a report about this function?", 
+                DialogResult res = MessageBox.Show("Send a report about this function?",
                     "Debug Function", MessageBoxButtons.YesNo);
                 if (res == DialogResult.No) return cnt;
 
@@ -324,7 +324,7 @@ namespace Common
                 StreamReader file = new StreamReader(fi.FullName);
                 page += "Match:\r\n" + file.ReadToEnd();
                 file.Close();
-                
+
                 SendFileTo.ErrorReport.Send(ex, page, Environment.StackTrace, swRelease);
             }
 
@@ -351,7 +351,7 @@ namespace Common
 
                 if ((clubs[0] == "-") || (clubs[1] == "-"))
                     return false;
-                    
+
                 int club1 = int.Parse(clubs[0]);
                 int club2 = int.Parse(clubs[1]);
 
@@ -436,7 +436,7 @@ namespace Common
                 int oppClubID;
 
                 List<string> clubs = HTML_Parser.GetFieldsCut(tablerow, "showclub=", ">");
-                
+
                 if (!int.TryParse(HTML_Parser.GetField(tablerow, "showclub=", ">"), out oppClubID))
                     return false;
 
@@ -587,7 +587,7 @@ namespace Common
 
                     this.Score = HTML_Parser.CleanTags(plCells[3]);
 
-                    if ((clubID1 == ((ChampDS)this.Table.DataSet).ReservesID)||
+                    if ((clubID1 == ((ChampDS)this.Table.DataSet).ReservesID) ||
                         (clubID2 == ((ChampDS)this.Table.DataSet).ReservesID))
                     {
                         int resClubID = ((ChampDS)this.Table.DataSet).ReservesID;
@@ -671,7 +671,7 @@ namespace Common
                     }
                     if (i == mDefs.Length)
                     {
-                        MessageBox.Show("The match types are not recognized. Change the settings in the options dialog"+
+                        MessageBox.Show("The match types are not recognized. Change the settings in the options dialog" +
                             "Goto to the menu item Tools->Options, General, Match Types", "Wrong Match Type");
                         matchTypes = "";
                         return false;
@@ -804,11 +804,11 @@ namespace Common
                 psr.DefActs = Action.Count(analysis, difesa);
 
                 // of=Palla Filtrante, op=passaggio, ol=Pass.Lungo, oc=Contropiede, ow=Ali, ok=Calcio di Punizione, or:Cross, od=Dribbling, ov=Velocità, ot=Tecnica, oy=Fermato con ammonizione, on=corner, os=pass.corti, og=rigore procurato
-                string[] offacts = { "of", "op", "ol", "oc", "ow", "ok", "or", "od", "ov", "ot", "oy", "on", "os", "og"};
+                string[] offacts = { "of", "op", "ol", "oc", "ow", "ok", "or", "od", "ov", "ot", "oy", "on", "os", "og" };
                 psr.OffActs = Action.Count(analysis, offacts);
 
                 // ed=Difensivo, ea=Attacco, ep=Passaggio, el=Lancio lungo, ew=Fascia, ec=Corner, ef:Pass.Filtrante, er:Riflessi Portiere, ek:Punizione sbagliata, eg:Errore Portiere, em=Marcatura, eh=Errore di testa, ev=Velocità, et=takle, eo=Posizione
-                string[] errors = { "ed", "ea", "ep", "el", "ew", "ec", "ef", "er", "ek", "eg", "em", "eh", "ev", "et", "eo"};
+                string[] errors = { "ed", "ea", "ep", "el", "ew", "ec", "ef", "er", "ek", "eg", "em", "eh", "ev", "et", "eo" };
                 psr.Errors = Action.Count(analysis, errors);
 
                 // pp=Parata, pb=Bloccata, pd=deviata, pr=riflessi, po=Uno vs Uno, pj=Tuffo, pa=aerial
@@ -988,9 +988,9 @@ namespace Common
                                             psr.YellowCards++;
                                     else
                                         if (psr.IsRedCardsNull())
-                                            psr.RedCards = 1;
-                                        else
-                                            psr.RedCards++;
+                                        psr.RedCards = 1;
+                                    else
+                                        psr.RedCards++;
                                 }
                             }
                         }
@@ -1120,7 +1120,7 @@ namespace Common
 
                     int ixi = oldActions.LastIndexOf(',', ix);
 
-                    string q = oldActions.Substring(ixi + 1, ix - ixi-1);
+                    string q = oldActions.Substring(ixi + 1, ix - ixi - 1);
 
                     int quantity = int.Parse(q);
 
@@ -1138,7 +1138,7 @@ namespace Common
                                                         oldActions.Substring(ix + 2);
                         }
                     }
-                    else 
+                    else
                     {
                         if (ixi == -1)
                         {
@@ -1256,7 +1256,7 @@ namespace Common
 
         partial class MatchDataTable
         {
-           public bool UpdatedCalendarReserves()
+            public bool UpdatedCalendarReserves()
             {
                 DateTime dtYesterday = DateTime.Now.AddDays(-1);
                 DateTime dtSeasonStart = TmWeek.GetDateTimeOfSeasonStart(TmWeek.GetSeason(DateTime.Now));

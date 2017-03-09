@@ -49,6 +49,7 @@
             this.txtString.Name = "txtString";
             this.txtString.Size = new System.Drawing.Size(501, 20);
             this.txtString.TabIndex = 1;
+            this.txtString.Text = "EntryText";
             // 
             // btnCancel
             // 
@@ -84,7 +85,7 @@
             this.Controls.Add(this.txtString);
             this.Controls.Add(this.lblMessage);
             this.Name = "AskForString";
-            this.Text = "AskForString";
+            this.Text = "Text";
             this.ResumeLayout(false);
             this.PerformLayout();
 

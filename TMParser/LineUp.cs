@@ -160,13 +160,17 @@ namespace TMRecorder
                 {
                     ExtTMDataSet.GiocatoriNSkillRow gnsr = History.actualDts.GiocatoriNSkill.FindByPlayerID(pl.playerID);
 
-                    vSquad += gnsr.PO;
+                    if(gnsr != null)
+                        vSquad += gnsr.PO;
                 }
                 else
                 {
                     ExtTMDataSet.GiocatoriNSkillRow gnsr = History.actualDts.GiocatoriNSkill.FindByPlayerID(pl.playerID);
 
                     string pos = formation.GetPlayerPosition(pl);
+
+                    if (gnsr == null) continue;
+
                     vSquad += gnsr.GetSkVal(pos);
 
                     float[] fKB = tacticsDS.BallKeepingAndGaining(gnsr);
@@ -235,12 +239,14 @@ namespace TMRecorder
                     if (gr.FPn != 0)
                     {
                         ExtTMDataSet.GiocatoriNSkillRow gnsr = History.actualDts.GiocatoriNSkill.FindByPlayerID(row.PlayerID);
-                        pl.value = gnsr.GetSkVal(f.GetPlayerPosition(pl));
+                        if(gnsr != null)
+                            pl.value = gnsr.GetSkVal(f.GetPlayerPosition(pl));
                     }
                     else
                     {
                         ExtTMDataSet.GiocatoriNSkillRow gnsr = History.actualDts.GiocatoriNSkill.FindByPlayerID(row.PlayerID);
-                        pl.value = gnsr.PO;
+                        if (gnsr != null)
+                            pl.value = gnsr.PO;
                     }
                 }
 

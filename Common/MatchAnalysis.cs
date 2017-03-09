@@ -1,6 +1,6 @@
-﻿namespace Common 
-{    
-    public partial class MatchAnalysis 
+﻿namespace Common
+{
+    public partial class MatchAnalysis
     {
         public void ParseDescription(ChampDS.MatchRow matchRow)
         {
@@ -18,7 +18,7 @@
                 n = n + 1;
                 if (n == 2) break;
 
-                if ((i[n] = descr.IndexOf(mar.IdentificationString, i[n-1]+1)) == -1)
+                if ((i[n] = descr.IndexOf(mar.IdentificationString, i[n - 1] + 1)) == -1)
                     continue;
                 str[n] = mar.Brief;
                 n = n + 1;

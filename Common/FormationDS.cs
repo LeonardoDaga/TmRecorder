@@ -1,5 +1,6 @@
 ﻿using System.Data;
-namespace Common {
+namespace Common
+{
 
 
     partial class FormationDS

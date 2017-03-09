@@ -36,7 +36,14 @@ namespace Common
         public decimal Value
         {
             get { return _value; }
-            set { _value = value; this.Invalidate(); }
+            set
+            {
+                if (_value > 20)
+                    _value = 20;
+                else
+                    _value = value;
+                this.Invalidate();
+            }
         }
 
         private Color _titleColor = Color.DarkMagenta;

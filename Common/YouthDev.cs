@@ -12,7 +12,7 @@ namespace Common
             public decimal GetEstimASI()
             {
                 if (FP == "GK")
-                    return (decimal)Math.Pow(10.0, (double)6.7284 * Math.Log10((double)(GetSkillSum()*14M/11M)) - 10.769);
+                    return (decimal)Math.Pow(10.0, (double)6.7284 * Math.Log10((double)(GetSkillSum() * 14M / 11M)) - 10.769);
                 else
                     return (decimal)Math.Pow(10.0, (double)6.7284 * Math.Log10((double)(GetSkillSum())) - 10.769);
             }
@@ -65,7 +65,7 @@ namespace Common
                 {
                     srr.FP = "FC";
                 }
-                else 
+                else
                 {
                     // Horizontal position:
                     FP = vpos.ToUpper();
@@ -233,7 +233,7 @@ namespace Common
 
             int nPlayers = rows.Count - 3;
 
-            foreach(string row in rows)
+            foreach (string row in rows)
             {
                 ScoutReportRow srr = this.ScoutReport.NewScoutReportRow();
 
@@ -245,7 +245,7 @@ namespace Common
                 srr.FP = TM_Compatible.ConvertNewFP(srr.FP);
                 srr.FPn = Tm_Utility.FPToNumber(srr.FP);
 
-                srr.Name = HTML_Parser.GetField("|"+tds[0].Replace("Â ", ""), "|", " (");
+                srr.Name = HTML_Parser.GetField("|" + tds[0].Replace("Â ", ""), "|", " (");
                 srr.For = int.Parse(tds[2]);
                 srr.Res = int.Parse(tds[3]);
                 srr.Vel = int.Parse(tds[4]);

@@ -1,6 +1,8 @@
-﻿namespace Common {
-    
-    
-    public partial class Userdata {
+﻿namespace Common
+{
+
+
+    public partial class Userdata
+    {
     }
 }

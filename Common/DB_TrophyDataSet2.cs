@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
-namespace Common {
+namespace Common
+{
 
 
     partial class DB_TrophyDataSet2

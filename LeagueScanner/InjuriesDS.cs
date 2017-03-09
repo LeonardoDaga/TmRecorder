@@ -1,7 +1,9 @@
-﻿namespace LeagueScanner {
-    
-    
-    public partial class InjuriesDS {
+﻿namespace LeagueScanner
+{
+
+
+    public partial class InjuriesDS
+    {
         partial class SquadDataTable
         {
         }

@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
 using System;
-namespace Common {
-    
-    
-    public partial class MatchList 
+namespace Common
+{
+
+
+    public partial class MatchList
     {
         public class TeamData
         {
@@ -633,7 +634,7 @@ namespace Common {
                     int lower = Status % 10000;
                     int upper = Status / 1000000;
 
-                    Status = 10000*value + lower + upper;
+                    Status = 10000 * value + lower + upper;
                 }
                 get
                 {
@@ -706,7 +707,7 @@ namespace Common {
                 plr.For = plr.Vel = plr.Res = plr.Mar = plr.Con = plr.Wor = plr.Pos =
                     plr.Pas = plr.Cro = plr.Tec = plr.Fin = plr.Tes = plr.Tir = 0;
 
-                if (fields[3].Contains("gif")) 
+                if (fields[3].Contains("gif"))
                 {
                     plr.For = 15;
                 }

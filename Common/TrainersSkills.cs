@@ -1,7 +1,8 @@
 ﻿using System.Windows.Forms;
 using Common;
 using System.Collections.Generic;
-namespace Common {
+namespace Common
+{
 
 
     partial class TrainersSkills
@@ -154,7 +155,7 @@ namespace Common {
 
         public void ComputeBestCombination()
         {
-            
+
         }
 
         public class TRow
@@ -235,7 +236,7 @@ namespace Common {
             {
                 int iMax, iMin;
 
-                for (int i = 0; i < this.Count-1; i++)
+                for (int i = 0; i < this.Count - 1; i++)
                 {
                     // if (i > this.Count - i) break;
                     FindFirst(i, this.Count, out iMax, out iMin);
@@ -258,7 +259,7 @@ namespace Common {
                 decimal min = this[stt].res;
                 decimal max = min;
 
-                for (int i = stt+1; i < end; i++)
+                for (int i = stt + 1; i < end; i++)
                 {
                     decimal val = this[i].res;
 
@@ -324,7 +325,7 @@ namespace Common {
                     SkillsRow sr = sdt.NewSkillsRow();
                     sr.Result = resList[i].res * 100;
 
-                    int n=0;
+                    int n = 0;
                     sr.BestSkills = "";
                     while (resList[i].ix[n] != -1)
                     {
@@ -398,23 +399,28 @@ namespace Common {
                     ssk += this.Fis;
                     nsk++;
                 }
-                if ((program & 2) > 0) {
+                if ((program & 2) > 0)
+                {
                     ssk += this.Dif;
                     nsk++;
                 }
-                if ((program & 4) > 0) {
+                if ((program & 4) > 0)
+                {
                     ssk += this.Tec;
                     nsk++;
                 }
-                if ((program & 8) > 0) {
+                if ((program & 8) > 0)
+                {
                     ssk += this.Win;
                     nsk++;
                 }
-                if ((program & 16) > 0) {
+                if ((program & 16) > 0)
+                {
                     ssk += this.Hea;
                     nsk++;
                 }
-                if ((program & 32) > 0) {
+                if ((program & 32) > 0)
+                {
                     ssk += this.Att;
                     nsk++;
                 }

@@ -1,6 +1,6 @@
-﻿namespace Common 
-{    
-    public partial class TacticsDS 
+﻿namespace Common
+{
+    public partial class TacticsDS
     {
         public enum PossMode : int
         {

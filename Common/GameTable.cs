@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-namespace Common 
+namespace Common
 {
-    public partial class GameTable 
+    public partial class GameTable
     {
         public override string ToString()
         {
@@ -33,7 +33,7 @@ namespace Common
 
             foreach (string season in seasons)
             {
-                Dictionary<string,string> dict = HTML_Parser.String2Dictionary(season);
+                Dictionary<string, string> dict = HTML_Parser.String2Dictionary(season);
 
                 if (dict.Count == 0)
                     continue;
@@ -47,7 +47,7 @@ namespace Common
                 if (dict.ContainsKey("GP")) pr.GP = int.Parse(dict["GP"]);
                 if (dict.ContainsKey("G")) pr.G = int.Parse(dict["G"]);
                 if (dict.ContainsKey("A")) pr.A = int.Parse(dict["A"]);
-                if (dict.ContainsKey("Cards")) pr.Cards = int.Parse(dict["Cards"]);                
+                if (dict.ContainsKey("Cards")) pr.Cards = int.Parse(dict["Cards"]);
                 if (dict.ContainsKey("MoM")) pr.MoM = int.Parse(dict["MoM"]);
                 if (dict.ContainsKey("Rat")) pr.Rat = decimal.Parse(dict["Rat"], CommGlobal.ciUs);
                 if (dict.ContainsKey("RatDev")) pr.RatDev = decimal.Parse(dict["RatDev"], CommGlobal.ciUs);

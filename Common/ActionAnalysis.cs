@@ -3,27 +3,28 @@ using System;
 using System.Windows.Forms;
 using System.IO;
 using System.Drawing;
-namespace Common {
+namespace Common
+{
 
     partial class ActionAnalysis
     {
         partial class TranslatedActionsDataTable
         {
         }
-    
+
         partial class ActionsDataTable
         {
         }
-    
+
         partial class LanguageActionsDataTable
         {
         }
-    
+
         partial class ActionParsingDataTable
         {
         }
 
-        public ActionList Analyze(MatchDS matchDS, 
+        public ActionList Analyze(MatchDS matchDS,
                             ref ChampDS.MatchRow matchRow)
         {
             ActionList al = new ActionList();
@@ -115,7 +116,7 @@ namespace Common {
                     P.Add(newref);
                     string id = HTML_Parser.GetField(newref, "playerid=", ">");
                     if (id != "")
-                    PlIDs.Add(int.Parse(id));
+                        PlIDs.Add(int.Parse(id));
                 }
             }
 

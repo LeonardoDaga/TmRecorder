@@ -16,6 +16,7 @@ namespace NTR_Db
         List<Label> phyLabels = new List<Label>();
         List<Label> tacLabels = new List<Label>();
         List<Label> tecLabels = new List<Label>();
+        RatingFunction RF = new RatingR3();
 
         public NTR_PlayerData()
         {
@@ -276,13 +277,14 @@ namespace NTR_Db
                         lblFP2.Visible = true;
                     }
 
-                    RatingR2 R2 = RatingR2.CalculateREREC(pr);
+                    Rating Rating = RF.ComputeRating(pr);
+                    Rat = (decimal)Rating.GetRecB(pr.FPn);
 
                     int[] FPv = Tm_Utility.FPnToFPvector(pr.FPn);
 
-                    lblR2Rat1.Text = R2.ratingR2[FPv[0]].ToString("N1");
-                    lblReRec1.Text = R2.rec[FPv[0]].ToString("N2");
-                    lblRouEff1.Text = (R2.ratingR2[FPv[0]] - R2.ratingR[FPv[0]]).ToString("N1");
+                    lblR2Rat1.Text = Rating.ratingR[FPv[0]].ToString("N1");
+                    lblReRec1.Text = Rating.rec[FPv[0]].ToString("N2");
+                    lblRouEff1.Text = (Rating.ratingR[FPv[0]] - Rating.rating[FPv[0]]).ToString("N1");
                     lblRsSk1.Text = FPs[0];
                     SetLabelBack(lblRsSk1, FPs[0]);
 
@@ -293,9 +295,9 @@ namespace NTR_Db
 
                     if (FPv[1] != -1)
                     {
-                        lblR2Rat2.Text = R2.ratingR2[FPv[1]].ToString("N1");
-                        lblReRec2.Text = R2.rec[FPv[1]].ToString("N2");
-                        lblRouEff2.Text = (R2.ratingR2[FPv[1]] - R2.ratingR[FPv[1]]).ToString("N1");
+                        lblR2Rat2.Text = Rating.ratingR[FPv[1]].ToString("N1");
+                        lblReRec2.Text = Rating.rec[FPv[1]].ToString("N2");
+                        lblRouEff2.Text = (Rating.ratingR[FPv[1]] - Rating.rating[FPv[1]]).ToString("N1");
                         lblRsSk2.Text = FPs[1];
                         SetLabelBack(lblRsSk2, FPs[1]);
                     }
@@ -365,6 +367,8 @@ namespace NTR_Db
                 { }
             }
         }
+
+        public decimal Rat { get; private set; }
 
         public void SetPlayerData(PlayerData plData)
         {
@@ -540,13 +544,14 @@ namespace NTR_Db
                     lblFP2.Visible = true;
                 }
 
-                RatingR2 R2 = plData.CalculateREREC();
+                Rating Rating = RF.ComputeRating(plData);
+                Rat = (decimal)Rating.GetRecB(plData.FPn);
 
                 int[] FPv = Tm_Utility.FPnToFPvector(plData.FPn);
 
-                lblR2Rat1.Text = R2.ratingR2[FPv[0]].ToString("N1");
-                lblReRec1.Text = R2.rec[FPv[0]].ToString("N2");
-                lblRouEff1.Text = (R2.ratingR2[FPv[0]] - R2.ratingR[FPv[0]]).ToString("N1");
+                lblR2Rat1.Text = Rating.ratingR[FPv[0]].ToString("N1");
+                lblReRec1.Text = Rating.rec[FPv[0]].ToString("N2");
+                lblRouEff1.Text = (Rating.ratingR[FPv[0]] - Rating.rating[FPv[0]]).ToString("N1");
                 lblRsSk1.Text = FPs[0];
                 SetLabelBack(lblRsSk1, FPs[0]);
 
@@ -557,9 +562,9 @@ namespace NTR_Db
 
                 if (FPv[1] != -1)
                 {
-                    lblR2Rat2.Text = R2.ratingR2[FPv[1]].ToString("N1");
-                    lblReRec2.Text = R2.rec[FPv[1]].ToString("N2");
-                    lblRouEff2.Text = (R2.ratingR2[FPv[1]] - R2.ratingR[FPv[1]]).ToString("N1");
+                    lblR2Rat2.Text = Rating.ratingR[FPv[1]].ToString("N1");
+                    lblReRec2.Text = Rating.rec[FPv[1]].ToString("N2");
+                    lblRouEff2.Text = (Rating.ratingR[FPv[1]] - Rating.rating[FPv[1]]).ToString("N1");
                     lblRsSk2.Text = FPs[1];
                     SetLabelBack(lblRsSk2, FPs[1]);
                 }

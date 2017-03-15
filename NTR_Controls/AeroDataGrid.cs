@@ -214,11 +214,17 @@ namespace NTR_Controls
             if ((int)(styles & AG_Style.RightJustified) > 0)
                 dgvCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
-            if ((int)(styles & AG_Style.N2) == (int)AG_Style.N2)
+            var NumStyle = (int)(styles & AG_Style.NF);
+
+            if (NumStyle == (int)AG_Style.N4)
+                dgvCellStyle.Format = "N4";
+            else if (NumStyle == (int)AG_Style.N3)
+                dgvCellStyle.Format = "N3";
+            else if (NumStyle == (int)AG_Style.N2)
                 dgvCellStyle.Format = "N2";
-            else if ((int)(styles & AG_Style.N1) > 0)
+            else if (NumStyle == (int)AG_Style.N1)
                 dgvCellStyle.Format = "N1";
-            else if ((int)(styles & AG_Style.N0) > 0)
+            else if (NumStyle == (int)AG_Style.N0)
                 dgvCellStyle.Format = "N0";
 
             dgv.DefaultCellStyle = dgvCellStyle.Clone();
@@ -257,10 +263,12 @@ namespace NTR_Controls
         Nationality = 0x80,
         NumDec = 0x100,
         RightJustified = 0x200,
-        N1 = 0x400,
-        N0 = 0x800,
-        N2 = 0xC00,
-        FormatString = 0x1000,
+        N1 = 0x0400,
+        N0 = 0x0800,
+        N2 = 0x0C00,
+        N3 = 0x1000,
+        N4 = 0x1400,
+        NF = 0x1f00,
         MatchType = 0x2000,
         Stars = 0x4000,
         TextAndImage = 0x8000,
@@ -270,5 +278,6 @@ namespace NTR_Controls
         Blooming = 0x80000,
         Fill = 0x100000,
         MatchResults = 0x200000,
+        FormatString = 0x400000,
     }
 }

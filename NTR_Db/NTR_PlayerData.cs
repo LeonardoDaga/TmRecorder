@@ -277,8 +277,8 @@ namespace NTR_Db
                         lblFP2.Visible = true;
                     }
 
-                    Rating Rating = RF.ComputeRating(pr);
-                    Rat = (decimal)Rating.GetRecB(pr.FPn);
+                    Rating Rating = RF.ComputeRating(PlayerDataSkills.From(pr));
+                    Rat = (decimal)Rating.GetRec(pr.FPn);
 
                     int[] FPv = Tm_Utility.FPnToFPvector(pr.FPn);
 
@@ -544,8 +544,8 @@ namespace NTR_Db
                     lblFP2.Visible = true;
                 }
 
-                Rating Rating = RF.ComputeRating(plData);
-                Rat = (decimal)Rating.GetRecB(plData.FPn);
+                Rating Rating = RF.ComputeRating(PlayerDataSkills.From(plData));
+                Rat = (decimal)Rating.GetRec(plData.FPn);
 
                 int[] FPv = Tm_Utility.FPnToFPvector(plData.FPn);
 

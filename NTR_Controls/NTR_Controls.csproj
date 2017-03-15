@@ -61,26 +61,42 @@
     <Compile Include="ImgContainer.Designer.cs">
       <DependentUpon>ImgContainer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Linq.cs" />
     <Compile Include="ActionStats.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ActionStats.Designer.cs">
       <DependentUpon>ActionStats.cs</DependentUpon>
     </Compile>
+    <Compile Include="Linq.cs" />
+    <Compile Include="NTR_BloomColumn.cs" />
+    <Compile Include="NTR_BloomColumn.Designer.cs">
+      <DependentUpon>NTR_BloomColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NTR_FormatStringColumn.cs" />
+    <Compile Include="NTR_FormatStringColumn.Designer.cs">
+      <DependentUpon>NTR_FormatStringColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NTR_HiddenSkillsColumn.cs" />
+    <Compile Include="NTR_HiddenSkillsColumn.Designer.cs">
+      <DependentUpon>NTR_HiddenSkillsColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NTR_ImgColumn.cs" />
+    <Compile Include="NTR_ImgColumn.Designer.cs">
+      <DependentUpon>NTR_ImgColumn.cs</DependentUpon>
+    </Compile>
     <Compile Include="NTR_MatchPerfColumn.cs" />
     <Compile Include="NTR_MatchPerfColumn.Designer.cs">
       <DependentUpon>NTR_MatchPerfColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NTR_TxtAndImgColumn.cs" />
+    <Compile Include="NTR_TxtAndImgColumn.Designer.cs">
+      <DependentUpon>NTR_TxtAndImgColumn.cs</DependentUpon>
     </Compile>
     <Compile Include="OldMatchStats.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="OldMatchStats.Designer.cs">
       <DependentUpon>OldMatchStats.cs</DependentUpon>
-    </Compile>
-    <Compile Include="NTR_HiddenSkillsColumn.cs" />
-    <Compile Include="NTR_HiddenSkillsColumn.Designer.cs">
-      <DependentUpon>NTR_HiddenSkillsColumn.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources1.Designer.cs">
@@ -94,21 +110,11 @@
     <Compile Include="QuantitySelector.Designer.cs">
       <DependentUpon>QuantitySelector.cs</DependentUpon>
     </Compile>
-    <Compile Include="NTR_FormatStringColumn.cs" />
-    <Compile Include="NTR_FormatStringColumn.Designer.cs">
-      <DependentUpon>NTR_FormatStringColumn.cs</DependentUpon>
+    <Compile Include="RatingEditor.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="NTR_ImgColumn.cs" />
-    <Compile Include="NTR_ImgColumn.Designer.cs">
-      <DependentUpon>NTR_ImgColumn.cs</DependentUpon>
-    </Compile>
-    <Compile Include="NTR_TxtAndImgColumn.cs" />
-    <Compile Include="NTR_TxtAndImgColumn.Designer.cs">
-      <DependentUpon>NTR_TxtAndImgColumn.cs</DependentUpon>
-    </Compile>
-    <Compile Include="NTR_BloomColumn.cs" />
-    <Compile Include="NTR_BloomColumn.Designer.cs">
-      <DependentUpon>NTR_BloomColumn.cs</DependentUpon>
+    <Compile Include="RatingEditor.Designer.cs">
+      <DependentUpon>RatingEditor.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -140,38 +146,42 @@
     <EmbeddedResource Include="ActionStats.resx">
       <DependentUpon>ActionStats.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NTR_MatchPerfColumn.resx">
-      <DependentUpon>NTR_MatchPerfColumn.cs</DependentUpon>
+    <EmbeddedResource Include="NTR_BloomColumn.resx">
+      <DependentUpon>NTR_BloomColumn.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="OldMatchStats.resx">
-      <DependentUpon>OldMatchStats.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="NTR_HiddenSkillsColumn.resx">
-      <DependentUpon>NTR_HiddenSkillsColumn.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="QuantitySelector.resx">
-      <DependentUpon>QuantitySelector.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NTR_FormatStringColumn.resx">
       <DependentUpon>NTR_FormatStringColumn.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
+    <EmbeddedResource Include="NTR_HiddenSkillsColumn.resx">
+      <DependentUpon>NTR_HiddenSkillsColumn.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="NTR_ImgColumn.resx">
       <DependentUpon>NTR_ImgColumn.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NTR_MatchPerfColumn.resx">
+      <DependentUpon>NTR_MatchPerfColumn.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="NTR_TxtAndImgColumn.resx">
       <DependentUpon>NTR_TxtAndImgColumn.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="NTR_BloomColumn.resx">
-      <DependentUpon>NTR_BloomColumn.cs</DependentUpon>
+    <EmbeddedResource Include="OldMatchStats.resx">
+      <DependentUpon>OldMatchStats.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QuantitySelector.resx">
+      <DependentUpon>QuantitySelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RatingEditor.resx">
+      <DependentUpon>RatingEditor.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

@@ -918,9 +918,12 @@ namespace NTR_Db
             var playerPerf = (from c in seasonsDB.PlayerPerf
                               where (!c.PlayerRow.TeamRow.IsOwnerNull()) && (c.PlayerRow.TeamRow.Owner) && (c.MatchRow.Date > dtStart)
                               && (c.MatchRow.Date < dtEnd)
-                              select c).OrderBy(p => p.MatchRow.Date).ToList();
+                              select c).OrderBy(p => p.MatchRow.Date);
 
-            return playerPerf;
+            List<NTR_SquadDb.PlayerPerfRow> playerPerfList = null;
+            if (playerPerf != null)
+                playerPerfList = playerPerf.ToList();
+            return playerPerfList;
         }
 
         public List<NTR_SquadDb.PlayerPerfRow> GetPlayerPerfList(int actualPlayerID, int season)

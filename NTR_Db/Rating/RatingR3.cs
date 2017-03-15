@@ -11,8 +11,9 @@ namespace NTR_Db
         public static double rou_factor = 0.006153231 * 25;
 
         // Weights need to total 100
-        public static double[,] weightR3 = new double[,] {
-            // Str		   Sta			Pac			 Mar		  Tac		   Wor		    Pos			 Pas          Cro		   Tec			Hea			 Fin		  Lon		   Set
+        private double[,] weightRat = new double[,] {
+            // Rating weights 
+            // Str		 Sta		 Pac		 Mar		 Tac		 Wor		 Pos		 Pas         Cro		 Tec		 Hea		 Fin		 Lon		 Set
             {0.51872935, 0.29081119, 0.57222393, 0.89735816, 0.84487852, 0.50887940, 0.50887940, 0.13637928, 0.05248024, 0.09388931, 0.57549122, 0.00000000, 0.00000000, 0.0},	// DC
             {0.45240063, 0.31762087, 0.68150374, 0.77724031, 0.74690951, 0.50072196, 0.45947168, 0.17663123, 0.23886264, 0.18410349, 0.46453393, 0.00000000, 0.00000000, 0.0},	// DL/R
             {0.45240063, 0.31762087, 0.68150374, 0.77724031, 0.74690951, 0.50072196, 0.45947168, 0.17663123, 0.23886264, 0.18410349, 0.46453393, 0.00000000, 0.00000000, 0.0},	// DL/R
@@ -26,9 +27,12 @@ namespace NTR_Db
             {0.36311066, 0.33106245, 0.61831416, 0.19830147, 0.17415753, 0.50049575, 0.47737842, 0.28937553, 0.34729042, 0.52834210, 0.39939218, 0.55684664, 0.21593269, 0.0},	// OML/R
             {0.36311066, 0.33106245, 0.61831416, 0.19830147, 0.17415753, 0.50049575, 0.47737842, 0.28937553, 0.34729042, 0.52834210, 0.39939218, 0.55684664, 0.21593269, 0.0},	// OML/R
             {0.40622753, 0.29744114, 0.39446722, 0.09952139, 0.07503885, 0.50402399, 0.58505850, 0.36932466, 0.05210389, 0.53677990, 0.51998862, 0.83588627, 0.32413803, 0.0},	// F
-            {0.37313433, 0.37313433, 0.37313433, 0.74626866, 0.52238806, 0.74626866, 0.52238806, 0.52238806, 0.37313433, 0.22388060, 0.22388060, 0.0, 0.0, 0.0}};	// GK
+            {0.37313433, 0.37313433, 0.37313433, 0.74626866, 0.52238806, 0.74626866, 0.52238806, 0.52238806, 0.37313433, 0.22388060, 0.22388060, 0.0, 0.0, 0.0}};   // GK
 
-        public static double[,] weightRb = new double[,] {
+        public override double[,] GetWeightRat() { return weightRat; }
+
+        public static double[,] weightREC = new double[,] {
+            // REC weights 
             // Str		 Sta		 Pac		 Mar		 Tac		 Wor		 Pos		 Pas         Cro		 Tec		 Hea		 Fin		 Lon		 Set
             {0.10476131, 0.05214691, 0.07928798, 0.14443775, 0.13140328, 0.06543399, 0.07762453, 0.06649973, 0.05174317, 0.02761713, 0.12122597, 0.01365182, 0.02547069, 0.03869574},	// DC
             {0.07660230, 0.05043295, 0.11528887, 0.11701021, 0.12737497, 0.07681385, 0.06343039, 0.03777422, 0.10320519, 0.06396543, 0.09155298, 0.01367035, 0.02554511, 0.03733318},	// DL/R
@@ -45,70 +49,36 @@ namespace NTR_Db
             {0.07739710, 0.05095200, 0.07641981, 0.01310784, 0.01149133, 0.06383764, 0.07762980, 0.07632566, 0.02708970, 0.07771063, 0.12775187, 0.15339719, 0.12843583, 0.03845360},	// F
             {0.07466384, 0.07466384, 0.07466384, 0.14932769, 0.10452938, 0.14932769, 0.10452938, 0.10344411, 0.07512610, 0.04492581, 0.04479831, 0.0, 0.0, 0.0}};	// GK
 
-        public static double[,] weightR = new double[,] {
-            // REC weights 
-            // Str				 Sta				Pac				    Mar				   Tac				   Wor				Pos				   Pas				  Cro				 Tec				Hea				   Fin				  Lon				 Set
-            {0.653962303361921,  0.330014238020285, 0.562994547223387, 0.891800163983125,  0.871069095865164,  0.454514672470839, 0.555697278549252, 0.42777598627972,  0.338218821750765, 0.134348455965202, 0.796916786677566, 0.048831870932616, 0.116363443378865, 0.282347752982916},	//DC
-			{0.565605120229193,  0.430973382039533, 0.917125432457378, 0.815702528287723,  0.99022325015212,   0.547995876625372, 0.522203232914265, 0.309928898819518, 0.837365352274204, 0.483822472259513, 0.656901420858592, 0.137582588344562, 0.163658117596413, 0.303915447383549},	//DL/R
-			{0.565605120229193,  0.430973382039533, 0.917125432457378, 0.815702528287723,  0.99022325015212,   0.547995876625372, 0.522203232914265, 0.309928898819518, 0.837365352274204, 0.483822472259513, 0.656901420858592, 0.137582588344562, 0.163658117596413, 0.303915447383549},	//DL/R
-			{0.55838825558912,   0.603683502357502, 0.563792314670998, 0.770425088563048,  0.641965853834719,  0.675495235675077, 0.683863478201805, 0.757342915150728, 0.473070797767482, 0.494107823556837, 0.397547163237438, 0.429660916538242, 0.56364174077388,  0.224791093448809},	//DMC
-			{0.582074038075056,  0.420032202680124, 0.7887541874616,   0.726221389774063,  0.722972329840151,  0.737617252827595, 0.62234458453736,  0.466946909655194, 0.814382915598981, 0.561877829393632, 0.367446981999576, 0.360623408340649, 0.390057769678583, 0.249517737311268},	//DML/R
-			{0.582074038075056,  0.420032202680124, 0.7887541874616,   0.726221389774063,  0.722972329840151,  0.737617252827595, 0.62234458453736,  0.466946909655194, 0.814382915598981, 0.561877829393632, 0.367446981999576, 0.360623408340649, 0.390057769678583, 0.249517737311268},	//DML/R
-			{0.578431939417021,  0.778134685048085, 0.574726322388294, 0.71400292078636,   0.635403391007978,  0.822308254446722, 0.877857040588335, 0.864265671245476, 0.433450219618618, 0.697164252367046, 0.412568516841575, 0.586627586272733, 0.617905053049757, 0.308426814834866},	//MC
-			{0.497429376361348,  0.545347364699553, 0.788280917110089, 0.578724574327427,  0.663235306043286,  0.772537143243647, 0.638706135095199, 0.538453108494387, 0.887935381275257, 0.572515970409641, 0.290549550901104, 0.476180499897665, 0.526149424898544, 0.287001645266184},	//ML/R
-			{0.497429376361348,  0.545347364699553, 0.788280917110089, 0.578724574327427,  0.663235306043286,  0.772537143243647, 0.638706135095199, 0.538453108494387, 0.887935381275257, 0.572515970409641, 0.290549550901104, 0.476180499897665, 0.526149424898544, 0.287001645266184},	//ML/R
-			{0.656437768926678,  0.617260722143117, 0.656569986958435, 0.63741054520629,   0.55148452726771,   0.922379789905246, 0.790553566121791, 0.999688557334153, 0.426203575603164, 0.778770912265944, 0.652374065121788, 0.662264393455567, 0.73120100926333,  0.274563618133769},	//OMC
-			{0.483341947292063,  0.494773052635464, 0.799434804259974, 0.628789194186491,  0.633847969631333,  0.681354437033551, 0.671233869875345, 0.536121458625519, 0.849389745477645, 0.684067723274814, 0.389732973354501, 0.499972692291964, 0.577231818355874, 0.272773352088982},	//OML/R
-			{0.483341947292063,  0.494773052635464, 0.799434804259974, 0.628789194186491,  0.633847969631333,  0.681354437033551, 0.671233869875345, 0.536121458625519, 0.849389745477645, 0.684067723274814, 0.389732973354501, 0.499972692291964, 0.577231818355874, 0.272773352088982},	//OML/R
-			{0.493917051093473,  0.370423904816088, 0.532148929996192, 0.0629206658586336, 0.0904950078155216, 0.415494774080483, 0.54106107545574,  0.468181146095801, 0.158106484131194, 0.461125738338018, 0.83399612271067,  0.999828328674183, 0.827171977606305, 0.253225855459207},	//F
-            // For  Rez    Vit  Ind  One  Ref Aer  Sar  Com    Deg    Aru
-			{0.5, 0.333, 0.5, 1,   0.5, 1,  0.5, 0.5, 0.333, 0.333, 0.333, 0.0, 0.0, 0.0}}; //GK
-
         public static double[,] recLast = new double[,] { 
             //	DC	    DL/R	   DL/R	      DMC		  DML/R	      DML/R	      MC		  ML/R		  ML/R		  OMC		  OML/R	      OML/R	      F		      GK
             {14.866375, 15.980742, 15.980742, 15.8932675, 15.5835325, 15.5835325, 17.6955092, 16.6189141, 16.6189141, 18.1255351, 15.6304867, 15.6304867, 13.2762119, 15},
             {18.95664,  22.895539, 22.895539, 23.1801296, 23.2813871, 23.2813871, 26.8420884, 23.9940623, 23.9940623, 27.8974544, 24.54323,   24.54323,   19.5088591, 22.3}};
 
-        public static double[,] adaFact = new double[,] {
-            {1f,0.8f,0.8f,0.9f,0.7f,0.7f,0.8f,0.6f,0.6f,0.7f,0.6f,0.6f,0.6f},
-            {0.8f,1f,0.9f,0.7f,0.9f,0.8f,0.7f,0.8f,0.7f,0.6f,0.8f,0.7f,0.6f},
-            {0.8f,0.9f,1f,0.7f,0.8f,0.9f,0.7f,0.7f,0.8f,0.6f,0.7f,0.8f,0.6f},
-            {0.9f,0.7f,0.7f,1f,0.8f,0.8f,0.9f,0.7f,0.7f,0.8f,0.6f,0.6f,0.6f},
-            {0.7f,0.9f,0.8f,0.8f,1f,0.9f,0.6f,0.9f,0.8f,0.6f,0.8f,0.7f,0.6f},
-            {0.7f,0.8f,0.9f,0.8f,0.9f,1f,0.6f,0.8f,0.9f,0.6f,0.7f,0.8f,0.6f},
-            {0.8f,0.6f,0.6f,0.9f,0.7f,0.7f,1f,0.8f,0.8f,0.9f,0.7f,0.7f,0.8f},
-            {0.6f,0.8f,0.7f,0.7f,0.9f,0.8f,0.8f,1f,0.9f,0.7f,0.9f,0.8f,0.6f},
-            {0.6f,0.7f,0.8f,0.7f,0.8f,0.9f,0.8f,0.9f,1f,0.7f,0.8f,0.9f,0.6f},
-            {0.7f,0.6f,0.6f,0.8f,0.6f,0.6f,0.9f,0.7f,0.7f,1f,0.8f,0.8f,0.9f},
-            {0.6f,0.7f,0.6f,0.6f,0.8f,0.7f,0.7f,0.9f,0.8f,0.8f,1f,0.9f,0.7f},
-            {0.6f,0.6f,0.7f,0.6f,0.7f,0.8f,0.7f,0.8f,0.9f,0.8f,0.9f,1f,0.7f},
-            {0.6f,0.6f,0.6f,0.7f,0.6f,0.6f,0.8f,0.6f,0.6f,0.9f,0.7f,0.7f,1f}};
-
-        public override Rating ComputeRating(PlayerData playerData)
+        public override Rating ComputeRating(PlayerDataSkills playerData)
         {
             double skillWeightSum, weight;
-            double SI = playerData.ASI.actual;
-            double rou = (double)playerData.Rou;
-            double ada = (playerData.Ada == 0) ? 10 : (double)playerData.Ada;
+            double SI = playerData.ASI;
+            double rou = playerData.Rou;
+            double ada = (playerData.Ada == 0) ? 10 : playerData.Ada;
 
             if (playerData.FPn == 0) // The player is a GK
             {
-                skillWeightSum = (double)(Math.Pow((double)SI, 0.143) / 0.02979);
+                skillWeightSum = (Math.Pow(SI, 0.143) / 0.02979);
                 weight = 48717927500;
             }
             else
             {
-                skillWeightSum = (double)(Math.Pow(SI, 1 / 6.99194) / 0.02336483);
+                skillWeightSum = (Math.Pow(SI, 1 / 6.99194) / 0.02336483);
                 weight = 263533760000;
             }
 
-            double skillSum = (double)playerData.SkillSum.actual;
+            double skillSum = playerData.SkillSum;
 
             // REREC remainder
             skillWeightSum -= skillSum;
 
             // RatingR2 remainder
-            var remainder = Math.Round((Math.Pow(2.0, Math.Log(weight * SI) / Math.Log(Math.Pow(2, 7))) - (double)skillSum) * 10.0) / 10.0;
+            var remainder = Math.Round((Math.Pow(2.0, Math.Log(weight * SI) / Math.Log(Math.Pow(2, 7))) - skillSum) * 10.0) / 10.0;
 
             int[] positionIndex = Rating.GetPositionIndex(playerData.FPn);
 
@@ -122,59 +92,51 @@ namespace NTR_Db
 
                 for (var j = 0; j < 13; j++) // All position
                 {
-                    double weightSumb = 0;
-                    var remainderWeight = 0.0;		// REREC remainder weight sum
-                    var remainderWeight2 = 0.0;		// RatingR2 remainder weight sum
+                    double remWeightREC = 0;
+                    var remWeightRat = 0.0;		// RatingR2 remainder weight sum
                     var not20 = 0;					// 20以外のスキル数
                     if (playerData.FPn == 0) j = 13;	// GK
 
                     int weightLength = (playerData.FPn == 0) ? 11 : 14;
                     for (var i = 0; i < weightLength; i++)
                     {
-                        R.rec[j] += (double)playerData.Skills[i].actual * weightR[j, i];
-                        R.rating[j] += (double)playerData.Skills[i].actual * weightR3[j, i];
-                        R.recb[j] += (double)playerData.Skills[i].actual * weightRb[j, i];
+                        R.rating[j] += playerData.Skills[i] * weightRat[j, i];
+                        R.rec[j] += playerData.Skills[i] * weightREC[j, i];
 
-                        if (playerData.Skills[i].actual != 20M)
+                        if (playerData.Skills[i] != 20)
                         {
-                            remainderWeight += weightR[j, i];
-                            remainderWeight2 += weightR3[j, i];
-                            weightSumb += weightRb[j, i];
+                            remWeightRat += weightRat[j, i];
+                            remWeightREC += weightREC[j, i];
                             not20++;
                         }
                     }
 
-                    R.rec[j] += skillWeightSum * remainderWeight / not20;		//REREC Score
-
-                    if (positionIndex[n] == 13)
-                        R.rec[j] *= 1.27;					//GK
-
                     if (not20 == 0)
-                        R.recb[j] = 6;       // All MAX
+                        R.rec[j] = 6;       // All MAX
                     else
-                        R.recb[j] = (R.recb[j] + remainder * weightSumb / not20 - 2) / 3;
+                        R.rec[j] = (R.rec[j] + remainder * remWeightREC / not20 - 2) / 3;
 
-                    R.rec[j] = funFix((R.rec[j] - recLast[0, j]) / recLast[1, j]);
-                    R.rating[j] += remainder * remainderWeight2 / not20;
-                    R.ratingR[j] = funFix(R.rating[j] * (1 + rou * rou_factor));
-                    R.rating[j] = funFix(R.rating[j]);
+                    R.rec[j] = (R.rec[j] - recLast[0, j]) / recLast[1, j];
+                    R.rating[j] += remainder * remWeightRat / not20;
+                    R.ratingR[j] = R.rating[j] * (1 + rou * rou_factor);
+                    R.rating[j] = R.rating[j];
 
                     if (playerData.FPn == 0)
                         j = 13;		// Loop end
                     else
                     {
-                        double adaFactor = 1 - (1 - adaFact[j, positionIndex[n]]) * (20 - (double)ada)/20;
+                        double adaFactor = 1 - (1 - adaFact[j, positionIndex[n]]) * (20 - ada)/20;
                         R.rec[j] *= adaFactor;
                         R.rating[j] *= adaFactor;
                         R.ratingR[j] *= adaFactor;
                     }
                 }
 
-                if (playerData.FPn != 0) // The player is a GK
+                if (playerData.FPn != 0) // The player is not a GK
                 {
-                    R.CK = funFix((double)(playerData.Skills[8].actual + playerData.Skills[13].actual + playerData.Skills[9].actual / 2) + rou / 2);
-                    R.FK = funFix((double)(playerData.Skills[12].actual + playerData.Skills[13].actual + playerData.Skills[9].actual / 2) + rou / 2);
-                    R.PK = funFix((double)(playerData.Skills[11].actual + playerData.Skills[13].actual + playerData.Skills[9].actual / 2) + rou / 2);
+                    R.CK = (playerData.Skills[8] + playerData.Skills[13] + playerData.Skills[9] / 2) + rou / 2;
+                    R.FK = (playerData.Skills[12] + playerData.Skills[13] + playerData.Skills[9] / 2) + rou / 2;
+                    R.PK = (playerData.Skills[11] + playerData.Skills[13] + playerData.Skills[9] / 2) + rou / 2;
                 }
 
                 Rv[n] = R;
@@ -197,113 +159,6 @@ namespace NTR_Db
             {
                 return "R2";
             }
-        }
-
-        /// <summary>
-        /// This function returns REREC values (3 values, rec, ratingR2 and ratingR2 modified by
-        /// the routine
-        /// </summary>
-        /// <param name="gnsRow"></param>
-        /// <returns></returns>
-        public override Rating ComputeRating(TeamDS.GiocatoriNSkillRow gnsRow)
-        {
-            double skillWeightSum, weight;
-            double SI = gnsRow.ASI;
-            double rou = (double)gnsRow.Rou;
-            double ada = (gnsRow.Ada == 0) ? 10 : (double)gnsRow.Ada;
-
-            if (gnsRow.FPn == 0) // The player is a GK
-            {
-                skillWeightSum = (double)(Math.Pow((double)SI, 0.143) / 0.02979);
-                weight = 48717927500;
-            }
-            else
-            {
-                skillWeightSum = (double)(Math.Pow((double)SI, 1 / 6.99194) / 0.02336483);
-                weight = 263533760000;
-            }
-
-            double skillSum = (double)gnsRow.SkillSum;
-
-            // REREC remainder
-            skillWeightSum -= skillSum;
-
-            // RatingR2 remainder
-            var remainder = Math.Round((Math.Pow(2.0, Math.Log((double)(weight * SI)) / Math.Log(Math.Pow(2, 7))) - (double)skillSum) * 10.0) / 10.0;
-
-            int[] positionIndex = Rating.GetPositionIndex(gnsRow.FPn);
-
-            int numFP = (positionIndex[1] == -1) ? 1 : 2;
-
-            Rating[] Rv = new NTR_Db.Rating[numFP];
-
-            for (int n = 0; n < numFP; n++)
-            {
-                Rating R = new NTR_Db.Rating();
-
-                for (var j = 0; j < 13; j++) // All position
-                {
-                    var remainderWeight = 0.0;		// REREC remainder weight sum
-                    var remainderWeight2 = 0.0;		// RatingR2 remainder weight sum
-                    var not20 = 0;					// 20以外のスキル数
-                    if (gnsRow.FPn == 0) j = 13;	// GK
-
-                    int weightLength = (gnsRow.FPn == 0) ? 11 : 14;
-                    for (var i = 0; i < weightLength; i++)
-                    {
-                        R.rec[j] += (double)gnsRow.Skills[i] * weightR[j, i];
-                        R.rating[j] += (double)gnsRow.Skills[i] * weightR3[j, i];
-
-                        if (gnsRow.Skills[i] != 20M)
-                        {
-                            remainderWeight += weightR[j, i];
-                            remainderWeight2 += weightR3[j, i];
-                            not20 += 1;
-                        }
-                    }
-
-                    R.rec[j] += skillWeightSum * remainderWeight / not20;		//REREC Score
-
-                    if (positionIndex[n] == 13)
-                        R.rec[j] *= 1.27;					//GK
-
-                    R.rec[j] = funFix((R.rec[j] - recLast[0, j]) / recLast[1, j]);
-                    R.rating[j] += remainder * remainderWeight2 / not20;
-                    R.ratingR[j] = funFix(R.rating[j] * (1 + rou * rou_factor));
-                    R.rating[j] = funFix(R.rating[j]);
-
-                    if (gnsRow.FPn == 0)
-                        j = 13;		// Loop end
-                    else
-                    {
-                        double adaFactor = 1 - (1 - adaFact[j, positionIndex[n]]) * (20 - (double)ada) / 20;
-                        R.rec[j] *= adaFactor;
-                        R.rating[j] *= adaFactor;
-                        R.ratingR[j] *= adaFactor;
-                    }
-                }
-
-                Rv[n] = R;
-            }
-
-            return Rating.Max(Rv);
-        }
-
-        public Rating TransformToTMR(Rating R)
-        {
-            for (int i=12; i >= 0; i--)
-            {
-                int j = i / 3 * 2 + ((i % 3 > 0) ? 1 : 0);
-                R.rec[i] = R.rec[j];
-                R.ratingR[i] = R.ratingR[j];
-            }
-
-            return R;
-        }
-
-        public static double funFix(double i)
-        {
-            return (Math.Round(i * 100) / 100);
         }
     }
 }

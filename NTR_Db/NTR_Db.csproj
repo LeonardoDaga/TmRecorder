@@ -70,6 +70,7 @@
     <Compile Include="NTR_PlayerData.Designer.cs">
       <DependentUpon>NTR_PlayerData.cs</DependentUpon>
     </Compile>
+    <Compile Include="Rating\PlayerDataSkills.cs" />
     <Compile Include="Rating\RatingFunction.cs" />
     <Compile Include="Rating\RatingR3.cs" />
     <Compile Include="Rating\RatingR2.cs" />

@@ -494,7 +494,7 @@ namespace TMRecorder
 
             if (str == "") // Il programma si è accorto che le definizioni dei match types sono sbagliate
             {
-                opzioniToolStripMenuItem1_Click(null, EventArgs.Empty);
+                OpzioniToolStripMenuItem1_Click(null, EventArgs.Empty);
                 return cnt;
             }
 
@@ -523,7 +523,7 @@ namespace TMRecorder
 
             if (str == "") // Il programma si è accorto che le definizioni dei match types sono sbagliate
             {
-                opzioniToolStripMenuItem1_Click(null, EventArgs.Empty);
+                OpzioniToolStripMenuItem1_Click(null, EventArgs.Empty);
                 return cnt;
             }
 
@@ -583,7 +583,7 @@ namespace TMRecorder
             toolDataList.SelectedIndex = History.IndexOf(History.actualDts);
         }
 
-        private void salvaTeamData_Click(object sender, EventArgs e)
+        private void SalvaTeamData_Click(object sender, EventArgs e)
         {
             History.Save(Program.Setts.DefaultDirectory);
             isDirty = false;
@@ -601,7 +601,7 @@ namespace TMRecorder
             SaveTrainers();
         }
 
-        private void salvaConNomeComeXMLToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SalvaConNomeComeXMLToolStripMenuItem_Click(object sender, EventArgs e)
         {
             saveFileDialog.FileName = "TM_" + DateTime.Now.Year.ToString() +
                 DateTime.Now.DayOfYear.ToString() + ".xml";
@@ -609,7 +609,7 @@ namespace TMRecorder
                 db_TrophyDataSet.WriteXml(saveFileDialog.FileName);
         }
 
-        private void caricaFileSquadraDaXMLToolStripMenuItem_Click(object sender, EventArgs e)
+        private void CaricaFileSquadraDaXMLToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openFileDialog.FileName = "TM_*.xml";
             openFileDialog.Filter = "XML file|*.xml|All Files|*.*";
@@ -622,11 +622,12 @@ namespace TMRecorder
 
         private void CollectInitialInformation()
         {
-            StartInfoBox sib = new StartInfoBox();
-
-            sib.DataDirectory = Program.Setts.DefaultDirectory;
-            sib.DefaultNation = Program.Setts.HomeNation;
-            sib.UsedLanguage = Program.Setts.Language;
+            StartInfoBox sib = new StartInfoBox()
+            {
+                DataDirectory = Program.Setts.DefaultDirectory,
+                DefaultNation = Program.Setts.HomeNation,
+                UsedLanguage = Program.Setts.Language
+            };
 
             dP[1]++;
             dP[2] = 0;
@@ -679,17 +680,19 @@ namespace TMRecorder
             }
         }
 
-        private void opzioniToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void OpzioniToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             dP[1] = 0;
-            OptionsForm of = new OptionsForm();
+            OptionsForm of = new OptionsForm()
+            {
+                DataDirectory = Program.Setts.DefaultDirectory,
+                InstallationDirectory = Program.Setts.InstallationDirectory,
+                DefaultNation = Program.Setts.HomeNation,
+                NormalizeGains = Program.Setts.NormalizeGains,
+                GainSet = Program.Setts.GainSet,
+                ReportParsingFile = Program.Setts.ReportParsingFile
+            };
 
-            of.DataDirectory = Program.Setts.DefaultDirectory;
-            of.InstallationDirectory = Program.Setts.InstallationDirectory;
-            of.DefaultNation = Program.Setts.HomeNation;
-            of.NormalizeGains = Program.Setts.NormalizeGains;
-            of.GainSet = Program.Setts.GainSet;
-            of.ReportParsingFile = Program.Setts.ReportParsingFile;
             dP[1]++;
             of.optionsReportAnalysis.CopyReportAnalysis(this.reportAnalysis);
             of.UseTMRBrowser = Program.Setts.UseTMRBrowser;
@@ -3417,6 +3420,15 @@ namespace TMRecorder
             sf.Close();
             sf.Dispose();
             sf = null;
+        }
+
+        private void ratingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RatingFunction RF = new RatingR3();
+
+            RatingEditor reDlg = new RatingEditor(RF);
+
+            reDlg.ShowDialog();
         }
     }
 }

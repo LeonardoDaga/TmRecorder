@@ -1443,7 +1443,7 @@ namespace NTR_Db
             if (!tdr.IsRecNull())
                 Rec = tdr.Rec / 2.0M;
 
-            Rating Rating = RF.ComputeRating(this);
+            Rating Rating = RF.ComputeRating(PlayerDataSkills.From(this));
             Rat = (decimal)Rating.GetRec(FPn);
 
             NTR_SquadDb.ShortlistRow shr = DB.Shortlist.FindByPlayerID(playerID);
@@ -1519,11 +1519,14 @@ namespace NTR_Db
             playerID = thisWeek.PlayerID;
 
             #region Rating management
-            var ratings = (from c in pprList
+            NTR_SquadDb.PlayerPerfRow[] ratings = null;
+
+            if(pprList != null)
+                ratings = (from c in pprList
                            where c.PlayerID == playerID && !c.IsVoteNull()
                            select c).ToArray();
             Color deadGreen = Color.FromArgb(214, 235, 214);
-            if (ratings.Length > 0)
+            if ((ratings != null) && (ratings.Length > 0))
             {
                 int count = ratings.Count();
                 float sum = 0;
@@ -1654,7 +1657,7 @@ namespace NTR_Db
             Rec = thisWeek.Rec;
             OSi = GFun.GetOSi(thisWeek.Atts, thisWeek.Skills);
 
-            Rating Rating = RF.ComputeRating(this);
+            Rating Rating = RF.ComputeRating(PlayerDataSkills.From(this));
             Rat = (decimal)Rating.GetRec(FPn);
 
             if (!gr.IswBloomDataNull())

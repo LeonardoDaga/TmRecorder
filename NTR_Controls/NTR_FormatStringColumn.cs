@@ -81,7 +81,8 @@ namespace NTR_Controls
             if (this.RowIndex != -1)
             {
                 FormattedString fstring = (FormattedString)this.Value;
-                this.ToolTipText = fstring.ToolTip;
+                if(fstring != null)
+                    ToolTipText = fstring.ToolTip;
             }
             base.OnMouseEnter(rowIndex);
         }
@@ -195,8 +196,10 @@ namespace NTR_Controls
         {
             DataGridViewCellStyle cs = new DataGridViewCellStyle(cellStyle);
 
-            if (value == null)
+            if ((value == null) || (value == ""))
+            {
                 return "";
+            }
 
             FormattedString fstring = (FormattedString)value;
             FontStyle fs = FontStyle.Regular;

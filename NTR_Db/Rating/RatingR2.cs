@@ -11,7 +11,7 @@ namespace NTR_Db
         public static double rou_factor = 0.00405;
 
         // Weights need to total 100
-        private double[,] weightRat = new double[,] {
+        private Matrix weightRat = new double[,] {
             // Rating weights 
             // Str		   Sta			Pac			 Mar		  Tac		   Wor		    Pos			 Pas          Cro		   Tec			Hea			 Fin		  Lon		   Set
             {0.51872935  , 0.29081119 , 0.57222393 , 0.89735816 , 0.84487852 , 0.50887940 , 0.50887940 , 0.13637928 , 0.05248024 , 0.09388931 , 0.57549122 , 0.00000000 , 0.00000000 , 0.00000000  },	// DC
@@ -29,9 +29,9 @@ namespace NTR_Db
             { 0.40324698 , 0.29906901 , 0.39676419 , 0.10106757 , 0.07620466 , 0.50471883 , 0.58512049 , 0.37506253 , 0.05291339 , 0.53882195 , 0.51604535 , 0.82935839 , 0.32160667 , 0.00000000  },	// F
             { 0.45462811 , 0.30278232 , 0.45462811 , 0.90925623 , 0.45462811 , 0.90925623 , 0.45462811 , 0.45462811 , 0.30278232 , 0.15139116 , 0.15139116  , 0, 0, 0 } };  // GK
 
-        public override double[,] GetWeightRat() { return weightRat; }
+        public override Matrix GetWeightRat() { return weightRat; }
 
-        public static double[,] weightREC = new double[,] {
+        public static Matrix weightREC = new double[,] {
             // REC weights 
             // Str				 Sta				Pac				    Mar				   Tac				   Wor				Pos				   Pas				  Cro				 Tec				Hea				   Fin				  Lon				 Set
             {0.653962303361921,  0.330014238020285, 0.562994547223387, 0.891800163983125,  0.871069095865164,  0.454514672470839, 0.555697278549252, 0.42777598627972,  0.338218821750765, 0.134348455965202, 0.796916786677566, 0.048831870932616, 0.116363443378865, 0.282347752982916},	//DC
@@ -50,10 +50,26 @@ namespace NTR_Db
             // For  Rez    Vit  Ind  One  Ref Aer  Sar  Com    Deg    Aru
 			{0.5, 0.333, 0.5, 1,   0.5, 1,  0.5, 0.5, 0.333, 0.333, 0.333, 0.0, 0.0, 0.0}}; //GK
 
-        public static double[,] recLast = new double[,] { 
-            //	DC	    DL/R	   DL/R	      DMC		  DML/R	      DML/R	      MC		  ML/R		  ML/R		  OMC		  OML/R	      OML/R	      F		      GK
-            {14.866375, 15.980742, 15.980742, 15.8932675, 15.5835325, 15.5835325, 17.6955092, 16.6189141, 16.6189141, 18.1255351, 15.6304867, 15.6304867, 13.2762119, 15},
-            {18.95664,  22.895539, 22.895539, 23.1801296, 23.2813871, 23.2813871, 26.8420884, 23.9940623, 23.9940623, 27.8974544, 24.54323,   24.54323,   19.5088591, 22.3}};
+        public override Matrix GetWeightREC() { return weightREC; }
+
+        public static Matrix recLast = new double[,] {
+            {14.866375,18.95664},		// DC      
+            {15.980742,22.895539},      // DL/R    
+            {15.980742,22.895539},      // DL/R    
+            {15.8932675,23.1801296},    // DMC     
+            {15.5835325,23.2813871},    // DML/R   
+            {15.5835325,23.2813871},    // DML/R   
+            {17.6955092,26.8420884},    // MC      
+            {16.6189141,23.9940623},    // ML/R    
+            {16.6189141,23.9940623},    // ML/R    
+            {18.1255351,27.8974544},    // OMC     
+            {15.6304867,24.54323},      // OML/R   
+            {15.6304867,24.54323},      // OML/R   
+            {13.2762119,19.5088591},    // F       
+            {15,22.3},                  // GK      
+            };
+
+        public override Matrix GetWeightREClf() { return recLast; }
 
         public override Rating ComputeRating(PlayerDataSkills playerData)
         {
@@ -117,7 +133,7 @@ namespace NTR_Db
                     if (positionIndex[n] == 13)
                         R.rec[j] *= 1.27;					//GK
 
-                    R.rec[j] = (R.rec[j] - recLast[0, j]) / recLast[1, j];
+                    R.rec[j] = (R.rec[j] - recLast[j, 0]) / recLast[j, 1];
                     R.rating[j] += remainder * remWeightRat / not20;
                     R.ratingR[j] = R.rating[j] * (1 + rou * rou_factor);
                     R.rating[j] = R.rating[j];

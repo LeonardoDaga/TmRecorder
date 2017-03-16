@@ -206,6 +206,11 @@ namespace NTR_Controls
                 dgv.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             }
 
+            if ((int)(styles & AG_Style.ReadOnly) > 0)
+            {
+                dgv.ReadOnly = true;
+            }
+
             if ((int)(styles & AG_Style.Fill) > 0)
             {
                 dgv.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -279,5 +284,6 @@ namespace NTR_Controls
         Fill = 0x100000,
         MatchResults = 0x200000,
         FormatString = 0x400000,
+        ReadOnly = 0x800000,
     }
 }

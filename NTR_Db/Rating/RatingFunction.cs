@@ -1,6 +1,7 @@
 ﻿using NTR_Common;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 
@@ -81,19 +82,51 @@ namespace NTR_Db
             return max;
         }
 
-        public static List<REC_Weights> WeightsMatrixToTable(double[,] weightRat)
+        public static List<REC_Weights> WeightsMatrixToTable(Matrix weightRat)
         {
             List<REC_Weights> recWeightsList = new List<REC_Weights>();
 
-            for (int row=0; row<weightRat.GetLength(0); row++)
+            for (int col=0; col<weightRat.Cols; col++)
             {
-                REC_Weights recWeight = new REC_Weights(weightRat, row);
+                REC_Weights recWeight = new REC_Weights(weightRat, col);
                 recWeightsList.Add(recWeight);
             }
 
             return recWeightsList;
         }
-            
+
+        public static List<PROP_Weights> WeightsMatrixToPropTable(Matrix weightProp)
+        {
+            List<PROP_Weights> propWeightsList = new List<PROP_Weights>();
+
+            for (int col = 0; col < weightProp.Cols; col++)
+            {
+                PROP_Weights propWeight = new PROP_Weights(weightProp, col);
+                propWeightsList.Add(propWeight);
+            }
+
+            return propWeightsList;
+        }
+
+        public static List<ADA_Weights> WeightsMatrixToAdaTable(Matrix weightAda)
+        {
+            List<ADA_Weights> adaWeightsList = new List<ADA_Weights>();
+
+            for (int col = 0; col < weightAda.Cols; col++)
+            {
+                ADA_Weights adaWeight = new ADA_Weights(weightAda, col);
+                adaWeightsList.Add(adaWeight);
+            }
+
+            return adaWeightsList;
+        }
+
+    }
+
+    public enum eCoefficient
+    {
+        K0,
+        K1,
     }
 
     public enum eSkill
@@ -130,16 +163,12 @@ namespace NTR_Db
         Max
     }
 
-    public class REC_Weights
+    public class PROP_Weights
     {
-        public REC_Weights(double[,] weightRat, int col)
+        public PROP_Weights(Matrix weightRat, int col)
         {
-            Skill = ((eSkill)col).ToString();
-
-            if (col < (int)eSkillGK.Max)
-                SkillGk = ((eSkillGK)col).ToString();
-            else
-                SkillGk = "-";
+            Coefficent = ((eCoefficient)col).ToString();
+            Coefficent.backColor = Color.LightGray;
 
             DC = weightRat[0, col];
             DL = weightRat[1, col];
@@ -157,27 +186,112 @@ namespace NTR_Db
             GK = weightRat[13, col];
         }
 
-        string Skill { get; }
-        double DC { get; set; }
-        double DL { get; set; }
-        double DR { get; set; }
-        double DMC { get; set; }
-        double DML { get; set; }
-        double DMR { get; set; }
-        double MC { get; set; }
-        double ML { get; set; }
-        double MR { get; set; }
-        double OMC { get; set; }
-        double OML { get; set; }
-        double OMR { get; set; }
-        double FC { get; set; }
-        string SkillGk { get; }
-        double GK { get; set; }
+        public FormattedString Coefficent { get; set; }
+        public double DC { get; set; }
+        public double DL { get; set; }
+        public double DR { get; set; }
+        public double DMC { get; set; }
+        public double DML { get; set; }
+        public double DMR { get; set; }
+        public double MC { get; set; }
+        public double ML { get; set; }
+        public double MR { get; set; }
+        public double OMC { get; set; }
+        public double OML { get; set; }
+        public double OMR { get; set; }
+        public double FC { get; set; }
+        public double GK { get; set; }
+    }
+
+    public class REC_Weights
+    {
+        public REC_Weights(Matrix weightRat, int col)
+        {
+            Skill = ((eSkill)col).ToString();
+            Skill.backColor = Color.LightGray;
+
+            if (col < (int)eSkillGK.Max)
+                SkillGk = ((eSkillGK)col).ToString();
+            else
+                SkillGk = "-";
+
+            SkillGk.backColor = Color.LightGray;
+
+            DC = weightRat[0, col];
+            DL = weightRat[1, col];
+            DR = weightRat[2, col];
+            DMC = weightRat[3, col];
+            DML = weightRat[4, col];
+            DMR = weightRat[5, col];
+            MC = weightRat[6, col];
+            ML = weightRat[7, col];
+            MR = weightRat[8, col];
+            OMC = weightRat[9, col];
+            OML = weightRat[10, col];
+            OMR = weightRat[11, col];
+            FC = weightRat[12, col];
+            GK = weightRat[13, col];
+        }
+
+        public FormattedString Skill { get; set; }
+        public double DC { get; set; }
+        public double DL { get; set; }
+        public double DR { get; set; }
+        public double DMC { get; set; }
+        public double DML { get; set; }
+        public double DMR { get; set; }
+        public double MC { get; set; }
+        public double ML { get; set; }
+        public double MR { get; set; }
+        public double OMC { get; set; }
+        public double OML { get; set; }
+        public double OMR { get; set; }
+        public double FC { get; set; }
+        public FormattedString SkillGk { get; set; }
+        public double GK { get; set; }
+    }
+
+    public class ADA_Weights
+    {
+        public ADA_Weights(Matrix weightAda, int col)
+        {
+            Position = ((eSkill)col).ToString();
+            Position.backColor = Color.LightGray;
+
+            DC = weightAda[0, col];
+            DL = weightAda[1, col];
+            DR = weightAda[2, col];
+            DMC = weightAda[3, col];
+            DML = weightAda[4, col];
+            DMR = weightAda[5, col];
+            MC = weightAda[6, col];
+            ML = weightAda[7, col];
+            MR = weightAda[8, col];
+            OMC = weightAda[9, col];
+            OML = weightAda[10, col];
+            OMR = weightAda[11, col];
+            FC = weightAda[12, col];
+        }
+
+        public FormattedString Position { get; set; }
+        public double DC { get; set; }
+        public double DL { get; set; }
+        public double DR { get; set; }
+        public double DMC { get; set; }
+        public double DML { get; set; }
+        public double DMR { get; set; }
+        public double MC { get; set; }
+        public double ML { get; set; }
+        public double MR { get; set; }
+        public double OMC { get; set; }
+        public double OML { get; set; }
+        public double OMR { get; set; }
+        public double FC { get; set; }
     }
 
     public abstract class RatingFunction
     {
-        public static double[,] adaFact = new double[,] {
+        public static Matrix adaFact = new double[,] {
             {1f,0.8f,0.8f,0.9f,0.7f,0.7f,0.8f,0.6f,0.6f,0.7f,0.6f,0.6f,0.6f},
             {0.8f,1f,0.9f,0.7f,0.9f,0.8f,0.7f,0.8f,0.7f,0.6f,0.8f,0.7f,0.6f},
             {0.8f,0.9f,1f,0.7f,0.8f,0.9f,0.7f,0.7f,0.8f,0.6f,0.7f,0.8f,0.6f},
@@ -195,7 +309,14 @@ namespace NTR_Db
         public abstract string Name { get; }
         public abstract string ShortName { get; }
 
-        public abstract double[,] GetWeightRat();
+        public abstract Matrix GetWeightREC();
+        public abstract Matrix GetWeightRat();
+        public abstract Matrix GetWeightREClf();
+        public Matrix GetAdaptability()
+        {
+            return adaFact;
+        }
+
         public abstract Rating ComputeRating(PlayerDataSkills playerData);
     }
 }

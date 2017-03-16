@@ -645,6 +645,7 @@ namespace Common
     {
         public static System.Globalization.CultureInfo ciUs = new System.Globalization.CultureInfo("en-US");
         public static System.Globalization.CultureInfo ciIt = new System.Globalization.CultureInfo("it-IT");
+        public static System.Globalization.CultureInfo ciInv = System.Globalization.CultureInfo.InvariantCulture;
     }
 
     public class TM_Compatible

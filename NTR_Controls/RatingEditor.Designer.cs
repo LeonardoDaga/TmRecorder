@@ -52,6 +52,8 @@ namespace NTR_Controls
             this.tabAda = new System.Windows.Forms.TabPage();
             this.dgAda = new NTR_Controls.AeroDataGrid();
             this.tabOptions = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtRoutineFactor = new System.Windows.Forms.TextBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tbOpenFile = new System.Windows.Forms.ToolStripButton();
             this.tbSaveFile = new System.Windows.Forms.ToolStripButton();
@@ -93,6 +95,8 @@ namespace NTR_Controls
             this.dataGridViewTextBoxColumn45 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn46 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn47 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmbFunctionType = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabRec.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgREC)).BeginInit();
@@ -102,6 +106,7 @@ namespace NTR_Controls
             ((System.ComponentModel.ISupportInitialize)(this.dgRat)).BeginInit();
             this.tabAda.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgAda)).BeginInit();
+            this.tabOptions.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -263,6 +268,7 @@ namespace NTR_Controls
             // 
             this.dgAda.AllowUserToAddRows = false;
             this.dgAda.AllowUserToDeleteRows = false;
+            this.dgAda.AutoGenerateColumns = false;
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -301,6 +307,10 @@ namespace NTR_Controls
             // 
             // tabOptions
             // 
+            this.tabOptions.Controls.Add(this.label2);
+            this.tabOptions.Controls.Add(this.cmbFunctionType);
+            this.tabOptions.Controls.Add(this.label1);
+            this.tabOptions.Controls.Add(this.txtRoutineFactor);
             this.tabOptions.Location = new System.Drawing.Point(4, 22);
             this.tabOptions.Name = "tabOptions";
             this.tabOptions.Padding = new System.Windows.Forms.Padding(3);
@@ -308,6 +318,22 @@ namespace NTR_Controls
             this.tabOptions.TabIndex = 3;
             this.tabOptions.Text = "Options";
             this.tabOptions.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(9, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(77, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Routine Factor";
+            // 
+            // txtRoutineFactor
+            // 
+            this.txtRoutineFactor.Location = new System.Drawing.Point(92, 17);
+            this.txtRoutineFactor.Name = "txtRoutineFactor";
+            this.txtRoutineFactor.Size = new System.Drawing.Size(121, 20);
+            this.txtRoutineFactor.TabIndex = 0;
             // 
             // toolStrip1
             // 
@@ -632,6 +658,23 @@ namespace NTR_Controls
             this.dataGridViewTextBoxColumn47.HeaderText = "FPos";
             this.dataGridViewTextBoxColumn47.Name = "dataGridViewTextBoxColumn47";
             // 
+            // cmbFunctionType
+            // 
+            this.cmbFunctionType.FormattingEnabled = true;
+            this.cmbFunctionType.Location = new System.Drawing.Point(92, 43);
+            this.cmbFunctionType.Name = "cmbFunctionType";
+            this.cmbFunctionType.Size = new System.Drawing.Size(121, 21);
+            this.cmbFunctionType.TabIndex = 2;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(9, 46);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(75, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Function Type";
+            // 
             // RatingEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -651,6 +694,8 @@ namespace NTR_Controls
             ((System.ComponentModel.ISupportInitialize)(this.dgRat)).EndInit();
             this.tabAda.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgAda)).EndInit();
+            this.tabOptions.ResumeLayout(false);
+            this.tabOptions.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -711,5 +756,9 @@ namespace NTR_Controls
         private System.Windows.Forms.TabPage tabRecLinFun;
         private AeroDataGrid dgRecLf;
         private AeroDataGrid dgREC;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtRoutineFactor;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cmbFunctionType;
     }
 }

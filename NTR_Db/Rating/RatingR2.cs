@@ -8,10 +8,12 @@ namespace NTR_Db
 {
     public class RatingR2: RatingFunction
     {
-        public static double rou_factor = 0.00405;
+        private double _routineFactor = 0.00405;
+
+        public new eRatingFunctionType RatingFunctionType => eRatingFunctionType.RatingR2;
 
         // Weights need to total 100
-        private Matrix weightRat = new double[,] {
+        private Matrix _weightRat = new double[,] {
             // Rating weights 
             // Str		   Sta			Pac			 Mar		  Tac		   Wor		    Pos			 Pas          Cro		   Tec			Hea			 Fin		  Lon		   Set
             {0.51872935  , 0.29081119 , 0.57222393 , 0.89735816 , 0.84487852 , 0.50887940 , 0.50887940 , 0.13637928 , 0.05248024 , 0.09388931 , 0.57549122 , 0.00000000 , 0.00000000 , 0.00000000  },	// DC
@@ -29,9 +31,7 @@ namespace NTR_Db
             { 0.40324698 , 0.29906901 , 0.39676419 , 0.10106757 , 0.07620466 , 0.50471883 , 0.58512049 , 0.37506253 , 0.05291339 , 0.53882195 , 0.51604535 , 0.82935839 , 0.32160667 , 0.00000000  },	// F
             { 0.45462811 , 0.30278232 , 0.45462811 , 0.90925623 , 0.45462811 , 0.90925623 , 0.45462811 , 0.45462811 , 0.30278232 , 0.15139116 , 0.15139116  , 0, 0, 0 } };  // GK
 
-        public override Matrix GetWeightRat() { return weightRat; }
-
-        public static Matrix weightREC = new double[,] {
+        private Matrix _weightREC = new double[,] {
             // REC weights 
             // Str				 Sta				Pac				    Mar				   Tac				   Wor				Pos				   Pas				  Cro				 Tec				Hea				   Fin				  Lon				 Set
             {0.653962303361921,  0.330014238020285, 0.562994547223387, 0.891800163983125,  0.871069095865164,  0.454514672470839, 0.555697278549252, 0.42777598627972,  0.338218821750765, 0.134348455965202, 0.796916786677566, 0.048831870932616, 0.116363443378865, 0.282347752982916},	//DC
@@ -50,9 +50,7 @@ namespace NTR_Db
             // For  Rez    Vit  Ind  One  Ref Aer  Sar  Com    Deg    Aru
 			{0.5, 0.333, 0.5, 1,   0.5, 1,  0.5, 0.5, 0.333, 0.333, 0.333, 0.0, 0.0, 0.0}}; //GK
 
-        public override Matrix GetWeightREC() { return weightREC; }
-
-        public static Matrix recLast = new double[,] {
+        private Matrix _WeightREClf = new double[,] {
             {14.866375,18.95664},		// DC      
             {15.980742,22.895539},      // DL/R    
             {15.980742,22.895539},      // DL/R    
@@ -68,8 +66,6 @@ namespace NTR_Db
             {13.2762119,19.5088591},    // F       
             {15,22.3},                  // GK      
             };
-
-        public override Matrix GetWeightREClf() { return recLast; }
 
         public override Rating ComputeRating(PlayerDataSkills playerData)
         {
@@ -117,13 +113,13 @@ namespace NTR_Db
                     int weightLength = (playerData.FPn == 0) ? 11 : 14;
                     for (var i = 0; i < weightLength; i++)
                     {
-                        R.rec[j] += playerData.Skills[i] * weightREC[j, i];
-                        R.rating[j] += playerData.Skills[i] * weightRat[j, i];
+                        R.rec[j] += playerData.Skills[i] * _weightREC[j, i];
+                        R.rating[j] += playerData.Skills[i] * _weightRat[j, i];
 
                         if (playerData.Skills[i] != 20)
                         {
-                            remWeightREC += weightREC[j, i];
-                            remWeightRat += weightRat[j, i];
+                            remWeightREC += _weightREC[j, i];
+                            remWeightRat += _weightRat[j, i];
                             not20 += 1;
                         }
                     }
@@ -133,16 +129,16 @@ namespace NTR_Db
                     if (positionIndex[n] == 13)
                         R.rec[j] *= 1.27;					//GK
 
-                    R.rec[j] = (R.rec[j] - recLast[j, 0]) / recLast[j, 1];
+                    R.rec[j] = (R.rec[j] - _WeightREClf[j, 0]) / _WeightREClf[j, 1];
                     R.rating[j] += remainder * remWeightRat / not20;
-                    R.ratingR[j] = R.rating[j] * (1 + rou * rou_factor);
+                    R.ratingR[j] = R.rating[j] * (1 + rou * RoutineFactor);
                     R.rating[j] = R.rating[j];
 
                     if (playerData.FPn == 0)
                         j = 13;		// Loop end
                     else
                     {
-                        double adaFactor = 1 - (1 - adaFact[j, positionIndex[n]]) * (20 - ada)/20;
+                        double adaFactor = 1 - (1 - _adaFact[j, positionIndex[n]]) * (20 - ada)/20;
                         R.rec[j] *= adaFactor;
                         R.rating[j] *= adaFactor;
                         R.ratingR[j] *= adaFactor;
@@ -162,21 +158,47 @@ namespace NTR_Db
             return Rating.Max(Rv);
         }
 
-        public override string Name
+        internal static RatingFunction Create(List<REC_Weights> recWeights, List<REC_Weights> ratWeights,
+            List<PROP_Weights> recLfWeights, List<ADA_Weights> adaWeights, double rouFactor, string fileName)
         {
-            get
-            {
-                return "RatingR2";
-            }
+            return new RatingR2(
+                Rating.TableToWeightsMatrix(recWeights),
+                Rating.TableToWeightsMatrix(ratWeights),
+                Rating.PropTableToWeightsMatrix(recLfWeights),
+                Rating.AdaTableToWeightsMatrix(adaWeights),
+                rouFactor, fileName);
         }
 
-        public override string ShortName
+        public RatingR2(Matrix recMatrix, Matrix ratMatrix, Matrix recLfMatrix, Matrix adaMatrix, double rouFactor, string fileName)
         {
-            get
-            {
-                return "R2";
-            }
+            this._weightREC = recMatrix;
+            this._weightRat = ratMatrix;
+            this._WeightREClf = recLfMatrix;
+            this._adaFact = adaMatrix;
+            this._routineFactor = rouFactor;
+            this.SettingsFilename = fileName;
+            SettingInitialize();
         }
 
+        public RatingR2()
+        {
+            SettingInitialize();
+        }
+
+        public new string Name => "RatingR2";
+        public new string ShortName => "R2";
+
+        /// <summary>
+        /// This function initialize settings for the object
+        /// </summary>
+        public override void SettingInitialize()
+        {
+            Def("WeightREC", _weightREC);
+            Def("WeightRat", _weightRat);
+            Def("WeightREClf", _WeightREClf);
+            Def("Adaptability", _adaFact);
+            Def("RoutineFactor", _routineFactor);
+            Def("RatingFunctionType", eRatingFunctionType.RatingR2);
+        }
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -95,6 +96,22 @@ namespace NTR_Db
             return recWeightsList;
         }
 
+        internal static Matrix TableToWeightsMatrix(List<REC_Weights> recWeights)
+        {
+            Matrix weightMx = new Matrix(recWeights[0].Column.Length, recWeights.Count);
+
+            for (int col = 0; col < weightMx.Cols; col++)
+            {
+                double[] column = recWeights[col].Column;
+                for (int row = 0; row < weightMx.Rows; row++)
+                {
+                    weightMx[row, col] = column[row];
+                }
+            }
+
+            return weightMx;
+        }
+
         public static List<PROP_Weights> WeightsMatrixToPropTable(Matrix weightProp)
         {
             List<PROP_Weights> propWeightsList = new List<PROP_Weights>();
@@ -108,6 +125,22 @@ namespace NTR_Db
             return propWeightsList;
         }
 
+        internal static Matrix PropTableToWeightsMatrix(List<PROP_Weights> propWeights)
+        {
+            Matrix weightMx = new Matrix(propWeights[0].Column.Length, propWeights.Count);
+
+            for (int col = 0; col < weightMx.Cols; col++)
+            {
+                double[] column = propWeights[col].Column;
+                for (int row = 0; row < weightMx.Rows; row++)
+                {
+                    weightMx[row, col] = column[row];
+                }
+            }
+
+            return weightMx;
+        }
+
         public static List<ADA_Weights> WeightsMatrixToAdaTable(Matrix weightAda)
         {
             List<ADA_Weights> adaWeightsList = new List<ADA_Weights>();
@@ -119,6 +152,22 @@ namespace NTR_Db
             }
 
             return adaWeightsList;
+        }
+
+        internal static Matrix AdaTableToWeightsMatrix(List<ADA_Weights> adaWeights)
+        {
+            Matrix weightMx = new Matrix(adaWeights[0].Column.Length, adaWeights.Count);
+
+            for (int col = 0; col < weightMx.Cols; col++)
+            {
+                double[] column = adaWeights[col].Column;
+                for (int row = 0; row < weightMx.Rows; row++)
+                {
+                    weightMx[row, col] = column[row];
+                }
+            }
+
+            return weightMx;
         }
 
     }
@@ -201,6 +250,13 @@ namespace NTR_Db
         public double OMR { get; set; }
         public double FC { get; set; }
         public double GK { get; set; }
+
+        public double[] Column => new double[]
+                    {DC,DL,DR,
+                    DMC,DML,DMR,
+                    MC,ML,MR,
+                    OMC,OML,OMR,
+                    FC,GK};
     }
 
     public class REC_Weights
@@ -249,6 +305,13 @@ namespace NTR_Db
         public double FC { get; set; }
         public FormattedString SkillGk { get; set; }
         public double GK { get; set; }
+
+        public double[] Column => new double[]
+                    {DC,DL,DR,
+                    DMC,DML,DMR,
+                    MC,ML,MR,
+                    OMC,OML,OMR,
+                    FC,GK};   
     }
 
     public class ADA_Weights
@@ -287,11 +350,18 @@ namespace NTR_Db
         public double OML { get; set; }
         public double OMR { get; set; }
         public double FC { get; set; }
+
+        public double[] Column => new double[]
+                    {DC,DL,DR,
+                    DMC,DML,DMR,
+                    MC,ML,MR,
+                    OMC,OML,OMR,
+                    FC};
     }
 
-    public abstract class RatingFunction
+    public class RatingFunction: StdSettings
     {
-        public static Matrix adaFact = new double[,] {
+        public Matrix _adaFact = new double[,] {
             {1f,0.8f,0.8f,0.9f,0.7f,0.7f,0.8f,0.6f,0.6f,0.7f,0.6f,0.6f,0.6f},
             {0.8f,1f,0.9f,0.7f,0.9f,0.8f,0.7f,0.8f,0.7f,0.6f,0.8f,0.7f,0.6f},
             {0.8f,0.9f,1f,0.7f,0.8f,0.9f,0.7f,0.7f,0.8f,0.6f,0.7f,0.8f,0.6f},
@@ -306,17 +376,120 @@ namespace NTR_Db
             {0.6f,0.6f,0.7f,0.6f,0.7f,0.8f,0.7f,0.8f,0.9f,0.8f,0.9f,1f,0.7f},
             {0.6f,0.6f,0.6f,0.7f,0.6f,0.6f,0.8f,0.6f,0.6f,0.9f,0.7f,0.7f,1f}};
 
-        public abstract string Name { get; }
-        public abstract string ShortName { get; }
-
-        public abstract Matrix GetWeightREC();
-        public abstract Matrix GetWeightRat();
-        public abstract Matrix GetWeightREClf();
-        public Matrix GetAdaptability()
+        public static RatingFunction Create(eRatingFunctionType funType, 
+            List<REC_Weights> recWeights, 
+            List<REC_Weights> ratWeights, 
+            List<PROP_Weights> recLfWeights, 
+            List<ADA_Weights> adaWeights, 
+            double rouFactor, string fileName)
         {
-            return adaFact;
+            switch(funType)
+            {
+                case eRatingFunctionType.RatingR2:
+                    return RatingR2.Create(recWeights, ratWeights,
+                        recLfWeights, adaWeights, 
+                        rouFactor, fileName);
+                case eRatingFunctionType.RatingR3:
+                default:
+                    return RatingR3.Create(recWeights, ratWeights,
+                        recLfWeights, adaWeights,
+                        rouFactor, fileName);
+            }
         }
 
-        public abstract Rating ComputeRating(PlayerDataSkills playerData);
+        public string Name { get; }
+        public string ShortName { get; }
+
+        public eRatingFunctionType RatingFunctionType
+        {
+            get => (eRatingFunctionType)this["RatingFunctionType"];
+            set => this["RatingFunctionType"] = value;
+        }
+        public double RoutineFactor
+        {
+            get => (double)this["RoutineFactor"];
+            set => this["RoutineFactor"] = value;
+        }
+        public Matrix WeightREC
+        {
+            get => (Matrix)this["WeightREC"];
+            set => this["WeightREC"] = value;
+        }
+        public Matrix WeightRat
+        {
+            get => (Matrix)this["WeightRat"];
+            set => this["WeightRat"] = value;
+        }
+
+        public Matrix WeightREClf
+        {
+            get => (Matrix)this["WeightREClf"];
+            set => this["WeightREClf"] = value;
+        }
+
+        public Matrix Adaptability
+        {
+            get => (Matrix)this["Adaptability"];
+            set => this["Adaptability"] = value;
+        }
+
+        /// <summary>
+        /// This function initialize settings for the object
+        /// </summary>
+        public virtual void SettingInitialize()
+        {
+        }
+
+        public virtual Rating ComputeRating(PlayerDataSkills playerData) { return null; }
+
+        public virtual void WriteOnFile(string fileName) { }
+
+        public static RatingFunction Load(string fileName)
+        {
+            RatingFunction rf = new RatingFunction();
+            rf.SettingsFilename = fileName;
+
+            if (!rf.SettingsFileExists())
+                return null;
+
+            rf.Load();
+
+            rf = CreateFunctionType(rf.RatingFunctionType);
+
+            rf.SettingsFilename = fileName;
+            rf.Load();
+
+            rf.SettingInitialize();
+
+            return rf;
+        }
+
+        static RatingFunction CreateFunctionType(eRatingFunctionType functionType)
+        {
+            switch(functionType)
+            {
+                case eRatingFunctionType.RatingR2:
+                    return new RatingR2();
+                case eRatingFunctionType.RatingR3:
+                    return new RatingR3();
+            }
+
+            return null;
+        }
+
+        public static void CreateDefaultFunctions(string ratingFunctionPath)
+        {
+            string ratingFunctionDir = Path.GetDirectoryName(ratingFunctionPath);
+
+            foreach (eRatingFunctionType functionType in Enum.GetValues(typeof(eRatingFunctionType)))
+            {
+                RatingFunction rf = CreateFunctionType(functionType);
+
+                string ratingFunctionFile = Path.Combine(ratingFunctionDir, functionType.ToString() + ".rating");
+
+                rf.SettingsFilename = ratingFunctionFile;
+                rf.Save();
+            }
+        }
     }
 }

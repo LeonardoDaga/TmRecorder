@@ -36,6 +36,7 @@ namespace TMRecorder
         bool thisIsExtraTeam = false;
         public Seasons AllSeasons = new Seasons();
         List<MatchData> SeasonMatchList = null;
+        RatingFunction RF = null;
 
         public enum e_GridTab : int
         {
@@ -171,6 +172,15 @@ namespace TMRecorder
 
                 dP[1] = 1;
                 sf.UpdateStatusMessage(2, "Loading gains...");
+
+                RF = RatingFunction.Load(Program.Setts.RatingFunctionPath);
+                if (RF == null)
+                {
+                    RatingFunction.CreateDefaultFunctions(Program.Setts.RatingFunctionPath);
+                    RF = RatingFunction.Load(Program.Setts.RatingFunctionPath);
+                }
+
+
                 LoadGains();
 
 

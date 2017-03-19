@@ -26,6 +26,8 @@ namespace TMRecorder
             set { _datafilePath = value; }
         }
 
+        string _ratingFunctionsPath = "";
+
         public void Initialize()
         {
             string[] args = new string[0];
@@ -47,9 +49,11 @@ namespace TMRecorder
                 // Do it this way to recover old written settings
                 string appDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
                 _baseDataFolderPath = Path.Combine(appDataFolder, "TmRecorder\\");
-                
+
                 _datafilePath = Path.Combine(Environment.CurrentDirectory, "Datafiles\\");
-                
+                _ratingFunctionsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+                    "TmRecorder\\RatingFunctions\\");
+
                 string settsFilename = "";
                 if ((args.Length > 0) && (args[0] == "--resetWindowsPosition"))
                 {
@@ -229,6 +233,7 @@ namespace TMRecorder
             sb.Def("ReportParsingFile", Path.Combine(_datafilePath, @"ReportParsingFile.EN.txt"));
             sb.Def("AutoconvertActions", true);
             sb.Def("ShortlistSearches", "");
+            sb.Def("RatingFunctionPath", Path.Combine(_ratingFunctionsPath, @"RatingR3.rating"));
 
             // Always the last settings
             sb.Def("SettsRelease", 1);
@@ -236,6 +241,11 @@ namespace TMRecorder
             sb.Def("LicenseCode", (UInt64)0);
         }
 
+        public string RatingFunctionPath
+        {
+            get { return (string)sb["RatingFunctionPath"]; }
+            set { sb["RatingFunctionPath"] = value; }
+        }
         public string ShortlistSearches
         {
             get { return (string)sb["ShortlistSearches"]; }

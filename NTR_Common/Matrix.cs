@@ -9,7 +9,7 @@ namespace NTR_Common
 {
     public class Matrix
     {
-        internal int Rows { get; set; }
+        public int Rows { get; set; }
         public int Cols;
         public double[] mat;
 
@@ -64,7 +64,7 @@ namespace NTR_Common
             {
                 for (int j = 0; j < Cols; j++)
                 {
-                    s += String.Format(iFP, "{0:G16}", this[i, j]);
+                    s += String.Format(iFP, "{0:G5}", this[i, j]);
                     if (j < Cols - 1)
                     {
                         s += "\t";
@@ -77,7 +77,7 @@ namespace NTR_Common
                 }
                 else
                 {
-                    s += ";\n";
+                    s += ";";
                 }
             }
             return s;

@@ -106,6 +106,7 @@
       <DependentUpon>Data.cs</DependentUpon>
     </Compile>
     <Compile Include="Matrix.cs" />
+    <Compile Include="NTR_Common.cs" />
     <Compile Include="NTR_StdSettings.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

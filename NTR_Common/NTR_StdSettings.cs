@@ -23,6 +23,14 @@ namespace NTR_Common
             fi.Delete();
         }
 
+        public bool SettingsFileExists()
+        {
+            if (fi != null)
+                return fi.Exists;
+            else
+                return false;
+        }
+
         public void Save()
         {
             if (!fi.Directory.Exists)
@@ -60,8 +68,16 @@ namespace NTR_Common
             string s = sr.ReadToEnd();
             string[] lines = s.Split('\n');
 
-            foreach (string line in lines)
+            string line = "";
+            foreach (string row in lines)
             {
+                line += row;
+                if (row.EndsWith("..."))
+                {
+                    line = line.TrimEnd(".".ToCharArray());
+                    continue;
+                }
+
                 int i0 = line.IndexOf("(");
                 int i1 = line.IndexOf(")");
                 if ((i0 == -1) || (i1 == -1)) continue;
@@ -79,8 +95,11 @@ namespace NTR_Common
                     case "System.Double": this.Set(key, double.Parse(value, CommGlobal.ciInv)); break;
                     case "System.Int64": this.Set(key, Int64.Parse(value)); break;
                     case "System.UInt64": this.Set(key, UInt64.Parse(value)); break;
-                    case "CNS.Math.Matrix": this.Set(key, Matrix.Parse(value, CommGlobal.ciInv)); break;
+                    case "NTR_Common.Matrix": this.Set(key, Matrix.Parse(value, CommGlobal.ciInv)); break;
+                    case "NTR_Common.eRatingFunctionType": this.Set(key, Enum.Parse(typeof(eRatingFunctionType), value)); break;
                 }
+
+                line = "";
             }
 
             sr.Close();

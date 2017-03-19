@@ -1,3 +1,4 @@
+using NTR_Common;
 using NTR_Db;
 using System;
 using System.Collections.Generic;
@@ -12,19 +13,65 @@ namespace NTR_Controls
         public List<ADA_Weights> adaWeights { get; private set; }
         public List<PROP_Weights> recLfWeights { get; private set; }
 
+        public double _rouFactor;
+        public double RouFactor
+        {
+            get
+            {
+                try
+                {
+                    return double.Parse(txtRoutineFactor.Text, Common.CommGlobal.ciInv);
+                }
+                catch
+                {
+                    return 0.0;
+                }
+            }
+            private set
+            {
+                txtRoutineFactor.Text = string.Format(Common.CommGlobal.ciInv, "{0}", value);
+            }
+        }
+
+        public eRatingFunctionType _funType;
+        private string _fileName;
+
+        public eRatingFunctionType FunType
+        {
+            get
+            {
+                return (eRatingFunctionType)cmbFunctionType.SelectedIndex;
+            }
+            private set
+            {
+                cmbFunctionType.SelectedIndex = (int)value;
+            }
+        }
+
         public RatingEditor()
         {
             InitializeComponent();
         }
-        
+
         public RatingEditor(RatingFunction RF)
         {
             InitializeComponent();
 
-            recWeights = Rating.WeightsMatrixToTable(RF.GetWeightREC());
-            ratWeights = Rating.WeightsMatrixToTable(RF.GetWeightRat());
-            recLfWeights = Rating.WeightsMatrixToPropTable(RF.GetWeightREClf());
-            adaWeights = Rating.WeightsMatrixToAdaTable(RF.GetAdaptability());
+            CopyRFLocally(RF);
+        }
+
+        private void CopyRFLocally(RatingFunction RF)
+        {
+            recWeights = Rating.WeightsMatrixToTable(RF.WeightREC);
+            ratWeights = Rating.WeightsMatrixToTable(RF.WeightRat);
+            recLfWeights = Rating.WeightsMatrixToPropTable(RF.WeightREClf);
+            adaWeights = Rating.WeightsMatrixToAdaTable(RF.Adaptability);
+
+            _rouFactor = RF.RoutineFactor;
+            _funType = RF.RatingFunctionType;
+            _fileName = RF.SettingsFilename;
+
+            LoadTables();
         }
 
         private void RatingEditor_Load(object sender, EventArgs e)
@@ -33,8 +80,17 @@ namespace NTR_Controls
             FormatRatGrid();
             FormatRECLfGrid();
             FormatAdaGrid();
+            FillComboFunctionType();
 
             LoadTables();
+        }
+
+        private void FillComboFunctionType()
+        {
+            foreach (eRatingFunctionType functionType in Enum.GetValues(typeof(eRatingFunctionType)))
+            {
+                cmbFunctionType.Items.Add(functionType.ToString());
+            }
         }
 
         private void LoadTables()
@@ -43,6 +99,11 @@ namespace NTR_Controls
             dgRat.DataCollection = ratWeights;
             dgRecLf.DataCollection = recLfWeights;
             dgAda.DataCollection = adaWeights;
+
+            RouFactor = _rouFactor;
+            FunType = _funType;
+
+            this.Text = "Rating Editor - " + _fileName;
         }
 
         private void FormatRECGrid()
@@ -140,37 +201,41 @@ namespace NTR_Controls
 
         private void tbOpenFile_Click(object sender, EventArgs e)
         {
-            //OpenFileDialog ofd = new OpenFileDialog();
-            //ofd.FileName = refGainDS.GainDSfilename;
-            //ofd.Filter = "TMGain Files|*.tmgain|All Files|*.*";
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.FileName = _fileName;
+            ofd.Filter = "Rating Files|*.rating|All Files|*.*";
 
-            //if (ofd.ShowDialog() == DialogResult.OK)
-            //{
-            //    refGainDS.Clear();
-            //    refGainDS.ReadXml(ofd.FileName);
-            //    refGainDS.GainDSfilename = ofd.FileName;
-            //    txtGainSetName.Text = (string)refGainDS.SetName[0][0];
-            //}
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                RatingFunction RF = RatingFunction.Load(ofd.FileName);
+                RF.SettingsFilename = ofd.FileName;
+                _fileName = ofd.FileName;
+
+                CopyRFLocally(RF);
+            }
+
         }
 
         private void tbSaveFile_Click(object sender, EventArgs e)
         {
-            //SaveFileDialog ofd = new SaveFileDialog();
-            //ofd.FileName = refGainDS.GainDSfilename;
-            //ofd.Filter = "TMGain Files|*.tmgain|All Files|*.*";
+            SaveFileDialog ofd = new SaveFileDialog();
+            ofd.FileName = _fileName;
+            ofd.Filter = "Rating Files|*.rating|All Files|*.*";
 
-            //if (ofd.ShowDialog() == DialogResult.OK)
-            //{
-            //    refGainDS.WriteXml(ofd.FileName);
-            //    refGainDS.GainDSfilename = ofd.FileName;
-            //}
-        }
+            RatingFunction RF = RatingFunction.Create(_funType, 
+                recWeights, 
+                ratWeights, 
+                recLfWeights, 
+                adaWeights,
+                _rouFactor, 
+                _fileName);
 
-        private void txtGainSetName_TextChanged(object sender, EventArgs e)
-        {
-            //this.Text = "Gain Set Editor - " + txtGainSetName.Text;
-            //refGainDS.GainDSfilename = txtGainSetName.Text;
-            //refGainDS.SetName[0][0] = txtGainSetName.Text;
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                RF.SettingsFilename = ofd.FileName;
+                _fileName = ofd.FileName;
+                RF.Save();
+            }
         }
 
         private void tbExit_Click(object sender, EventArgs e)

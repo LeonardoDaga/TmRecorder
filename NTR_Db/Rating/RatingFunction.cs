@@ -83,7 +83,7 @@ namespace NTR_Db
             return max;
         }
 
-        public static List<REC_Weights> WeightsMatrixToTable(Matrix weightRat)
+        public static List<REC_Weights> WeightsMatrixToTable(WeightMatrix weightRat)
         {
             List<REC_Weights> recWeightsList = new List<REC_Weights>();
 
@@ -96,9 +96,9 @@ namespace NTR_Db
             return recWeightsList;
         }
 
-        internal static Matrix TableToWeightsMatrix(List<REC_Weights> recWeights)
+        internal static WeightMatrix TableToWeightsMatrix(List<REC_Weights> recWeights)
         {
-            Matrix weightMx = new Matrix(recWeights[0].Column.Length, recWeights.Count);
+            WeightMatrix weightMx = new WeightMatrix(recWeights[0].Column.Length, recWeights.Count);
 
             for (int col = 0; col < weightMx.Cols; col++)
             {
@@ -112,7 +112,7 @@ namespace NTR_Db
             return weightMx;
         }
 
-        public static List<PROP_Weights> WeightsMatrixToPropTable(Matrix weightProp)
+        public static List<PROP_Weights> WeightsMatrixToPropTable(WeightMatrix weightProp)
         {
             List<PROP_Weights> propWeightsList = new List<PROP_Weights>();
 
@@ -125,9 +125,9 @@ namespace NTR_Db
             return propWeightsList;
         }
 
-        internal static Matrix PropTableToWeightsMatrix(List<PROP_Weights> propWeights)
+        internal static WeightMatrix PropTableToWeightsMatrix(List<PROP_Weights> propWeights)
         {
-            Matrix weightMx = new Matrix(propWeights[0].Column.Length, propWeights.Count);
+            WeightMatrix weightMx = new WeightMatrix(propWeights[0].Column.Length, propWeights.Count);
 
             for (int col = 0; col < weightMx.Cols; col++)
             {
@@ -141,7 +141,7 @@ namespace NTR_Db
             return weightMx;
         }
 
-        public static List<ADA_Weights> WeightsMatrixToAdaTable(Matrix weightAda)
+        public static List<ADA_Weights> WeightsMatrixToAdaTable(WeightMatrix weightAda)
         {
             List<ADA_Weights> adaWeightsList = new List<ADA_Weights>();
 
@@ -154,9 +154,9 @@ namespace NTR_Db
             return adaWeightsList;
         }
 
-        internal static Matrix AdaTableToWeightsMatrix(List<ADA_Weights> adaWeights)
+        internal static WeightMatrix AdaTableToWeightsMatrix(List<ADA_Weights> adaWeights)
         {
-            Matrix weightMx = new Matrix(adaWeights[0].Column.Length, adaWeights.Count);
+            WeightMatrix weightMx = new WeightMatrix(adaWeights[0].Column.Length, adaWeights.Count);
 
             for (int col = 0; col < weightMx.Cols; col++)
             {
@@ -196,6 +196,24 @@ namespace NTR_Db
         Set
     }
 
+    public enum ePos
+    {
+        DC,
+        DL,
+        DR,
+        DMC,
+        DML,
+        DMR,
+        MC,
+        ML,
+        MR,
+        OMC,
+        OML,
+        OMR,
+        FC,
+        GK,
+    }
+
     public enum eSkillGK
     {
         Str,
@@ -214,7 +232,7 @@ namespace NTR_Db
 
     public class PROP_Weights
     {
-        public PROP_Weights(Matrix weightRat, int col)
+        public PROP_Weights(WeightMatrix weightRat, int col)
         {
             Coefficent = ((eCoefficient)col).ToString();
             Coefficent.backColor = Color.LightGray;
@@ -261,7 +279,7 @@ namespace NTR_Db
 
     public class REC_Weights
     {
-        public REC_Weights(Matrix weightRat, int col)
+        public REC_Weights(WeightMatrix weightRat, int col)
         {
             Skill = ((eSkill)col).ToString();
             Skill.backColor = Color.LightGray;
@@ -316,9 +334,9 @@ namespace NTR_Db
 
     public class ADA_Weights
     {
-        public ADA_Weights(Matrix weightAda, int col)
+        public ADA_Weights(WeightMatrix weightAda, int col)
         {
-            Position = ((eSkill)col).ToString();
+            Position = ((ePos)col).ToString();
             Position.backColor = Color.LightGray;
 
             DC = weightAda[0, col];
@@ -361,7 +379,7 @@ namespace NTR_Db
 
     public class RatingFunction: StdSettings
     {
-        public Matrix _adaFact = new double[,] {
+        public WeightMatrix _adaFact = new double[,] {
             {1f,0.8f,0.8f,0.9f,0.7f,0.7f,0.8f,0.6f,0.6f,0.7f,0.6f,0.6f,0.6f},
             {0.8f,1f,0.9f,0.7f,0.9f,0.8f,0.7f,0.8f,0.7f,0.6f,0.8f,0.7f,0.6f},
             {0.8f,0.9f,1f,0.7f,0.8f,0.9f,0.7f,0.7f,0.8f,0.6f,0.7f,0.8f,0.6f},
@@ -410,26 +428,26 @@ namespace NTR_Db
             get => (double)this["RoutineFactor"];
             set => this["RoutineFactor"] = value;
         }
-        public Matrix WeightREC
+        public WeightMatrix WeightREC
         {
-            get => (Matrix)this["WeightREC"];
+            get => (WeightMatrix)this["WeightREC"];
             set => this["WeightREC"] = value;
         }
-        public Matrix WeightRat
+        public WeightMatrix WeightRat
         {
-            get => (Matrix)this["WeightRat"];
+            get => (WeightMatrix)this["WeightRat"];
             set => this["WeightRat"] = value;
         }
 
-        public Matrix WeightREClf
+        public WeightMatrix WeightREClf
         {
-            get => (Matrix)this["WeightREClf"];
+            get => (WeightMatrix)this["WeightREClf"];
             set => this["WeightREClf"] = value;
         }
 
-        public Matrix Adaptability
+        public WeightMatrix Adaptability
         {
-            get => (Matrix)this["Adaptability"];
+            get => (WeightMatrix)this["Adaptability"];
             set => this["Adaptability"] = value;
         }
 

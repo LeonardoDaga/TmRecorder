@@ -153,14 +153,6 @@
         JLDAe507CbhCVv86AWgOrCeA8F7hRqlfeOLNy99m+kwIFxiQFS7hseM3AAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="tbExit.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABLSURBVDhPYxg04D8ZGAVgCBAAlBkwd+5Cil2AAejrBSAA
-        qUfRQ8gAmAZsGAzgDCIBimYQIMcAFECqARiAJAOokQ6wGkAqpgZgYAAA2TQ5gR4iQOoAAAAASUVORK5C
-        YII=
-</value>
-  </data>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>66</value>
   </metadata>

@@ -13,7 +13,7 @@ namespace NTR_Controls
         public List<ADA_Weights> adaWeights { get; private set; }
         public List<PROP_Weights> recLfWeights { get; private set; }
 
-        public double _rouFactor;
+        private double _rouFactor;
         public double RouFactor
         {
             get
@@ -33,9 +33,7 @@ namespace NTR_Controls
             }
         }
 
-        public eRatingFunctionType _funType;
-        private string _fileName;
-
+        private eRatingFunctionType _funType;
         public eRatingFunctionType FunType
         {
             get
@@ -47,6 +45,8 @@ namespace NTR_Controls
                 cmbFunctionType.SelectedIndex = (int)value;
             }
         }
+
+        public string FileName { get; private set; }
 
         public RatingEditor()
         {
@@ -69,8 +69,9 @@ namespace NTR_Controls
 
             _rouFactor = RF.RoutineFactor;
             _funType = RF.RatingFunctionType;
-            _fileName = RF.SettingsFilename;
+            FileName = RF.SettingsFilename;
 
+            FillComboFunctionType();
             LoadTables();
         }
 
@@ -80,13 +81,14 @@ namespace NTR_Controls
             FormatRatGrid();
             FormatRECLfGrid();
             FormatAdaGrid();
-            FillComboFunctionType();
 
+            FillComboFunctionType();
             LoadTables();
         }
 
         private void FillComboFunctionType()
         {
+            cmbFunctionType.Items.Clear();
             foreach (eRatingFunctionType functionType in Enum.GetValues(typeof(eRatingFunctionType)))
             {
                 cmbFunctionType.Items.Add(functionType.ToString());
@@ -103,7 +105,7 @@ namespace NTR_Controls
             RouFactor = _rouFactor;
             FunType = _funType;
 
-            this.Text = "Rating Editor - " + _fileName;
+            this.Text = "Rating Editor - " + FileName;
         }
 
         private void FormatRECGrid()
@@ -202,14 +204,14 @@ namespace NTR_Controls
         private void tbOpenFile_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.FileName = _fileName;
+            ofd.FileName = FileName;
             ofd.Filter = "Rating Files|*.rating|All Files|*.*";
 
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 RatingFunction RF = RatingFunction.Load(ofd.FileName);
                 RF.SettingsFilename = ofd.FileName;
-                _fileName = ofd.FileName;
+                FileName = ofd.FileName;
 
                 CopyRFLocally(RF);
             }
@@ -219,7 +221,7 @@ namespace NTR_Controls
         private void tbSaveFile_Click(object sender, EventArgs e)
         {
             SaveFileDialog ofd = new SaveFileDialog();
-            ofd.FileName = _fileName;
+            ofd.FileName = FileName;
             ofd.Filter = "Rating Files|*.rating|All Files|*.*";
 
             RatingFunction RF = RatingFunction.Create(_funType, 
@@ -227,161 +229,99 @@ namespace NTR_Controls
                 ratWeights, 
                 recLfWeights, 
                 adaWeights,
-                _rouFactor, 
-                _fileName);
+                _rouFactor,
+                FileName);
 
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 RF.SettingsFilename = ofd.FileName;
-                _fileName = ofd.FileName;
+                FileName = ofd.FileName;
                 RF.Save();
             }
         }
 
-        private void tbExit_Click(object sender, EventArgs e)
+        private void tbCopy_Click(object sender, EventArgs e)
         {
-            //this.DialogResult = DialogResult.OK;
-        }
+            string copy = "";
 
-        private void toolStripButton1_Click(object sender, EventArgs e)
-        {
-            //string copy = "+\t";
+            RatingFunction RF = RatingFunction.Create(_funType,
+                                                    recWeights,
+                                                    ratWeights,
+                                                    recLfWeights,
+                                                    adaWeights,
+                                                    _rouFactor,
+                                                    FileName);
 
-            //string[] spec = new string[] { "DC", "DR", "DL", "DMC", "DMR", "DML", "MC", "MR", "ML", "OMC", "OMR", "OML", "FC" };
+            if (tabControl1.SelectedTab == tabRec)
+            {
+                string[] rows = { "Str", "Sta", "Pac", "Mar", "Tac", "Wor", "Pos", "Pas", "Cro", "Tec", "Hea", "Fin", "Lon", "Set" };
+                string[] cols = { "DC", "DL", "DR", "DMC", "DML", "DMR", "MC", "ML", "MR", "OMC", "OML", "OMR", "FC", "GK" };
+                copy = RF.WeightREC.ToExcelString(rows, cols);
+            }
+            else if (tabControl1.SelectedTab == tabRating)
+            {
+                string[] rows = { "Str", "Sta", "Pac", "Mar", "Tac", "Wor", "Pos", "Pas", "Cro", "Tec", "Hea", "Fin", "Lon", "Set" };
+                string[] cols = { "DC", "DL", "DR", "DMC", "DML", "DMR", "MC", "ML", "MR", "OMC", "OML", "OMR", "FC", "GK" };
+                copy = RF.WeightRat.ToExcelString(rows, cols);
+            }
+            else if (tabControl1.SelectedTab == tabRecLinFun)
+            {
+                string[] rows = { "K0", "K1" };
+                string[] cols = { "DC", "DL", "DR", "DMC", "DML", "DMR", "MC", "ML", "MR", "OMC", "OML", "OMR", "FC", "GK" };
+                copy = RF.WeightREClf.ToExcelString(rows, cols);
+            }
+            else if (tabControl1.SelectedTab == tabAda)
+            {
+                string[] rows = { "DC", "DL", "DR", "DMC", "DML", "DMR", "MC", "ML", "MR", "OMC", "OML", "OMR", "FC" };
+                string[] cols = { "DC", "DL", "DR", "DMC", "DML", "DMR", "MC", "ML", "MR", "OMC", "OML", "OMR", "FC" };
+                copy = RF.Adaptability.ToExcelString(rows, cols);
+            }
 
-            //if (tabControl1.SelectedTab == tabRec)
-            //{
-            //    for (int j = 0; j < refGainDS.SkillFPGain.Columns.Count - 1; j++)
-            //    {
-            //        copy += spec[j] + "\t";
-            //    }
-            //    copy = copy.Remove(copy.Length - 1);
-            //    copy += "\n";
-
-            //    for (int i = 0; i < refGainDS.SkillFPGain.Rows.Count; i++)
-            //    {
-            //        for (int j = 0; j < refGainDS.SkillFPGain.Columns.Count; j++)
-            //        {
-            //            copy += refGainDS.SkillFPGain[i][j] + "\t";
-            //        }
-
-            //        copy = copy.Remove(copy.Length - 1);
-            //        copy += "\n";
-            //    }
-            //}
-            //else if (tabControl1.SelectedTab == tabRating)
-            //{
-            //    for (int j = 0; j < refGainDS.SpecFPAmpl.Columns.Count - 1; j++)
-            //    {
-            //        copy += spec[j] + "\t";
-            //    }
-            //    copy = copy.Remove(copy.Length - 1);
-            //    copy += "\n";
-
-            //    for (int i = 0; i < refGainDS.SpecFPAmpl.Rows.Count; i++)
-            //    {
-            //        for (int j = 0; j < refGainDS.SpecFPAmpl.Columns.Count; j++)
-            //        {
-            //            copy += refGainDS.SpecFPAmpl[i][j] + "\t";
-            //        }
-
-            //        copy = copy.Remove(copy.Length - 1);
-            //        copy += "\n";
-            //    }
-            //}
-            //else if (tabControl1.SelectedTab == tabGKSkillGain)
-            //{
-            //    copy = "+\tGK\n";
-
-            //    for (int i = 0; i < refGainDS.SkillGKGain.Rows.Count; i++)
-            //    {
-            //        for (int j = 0; j < refGainDS.SkillGKGain.Columns.Count; j++)
-            //        {
-            //            copy += refGainDS.SkillGKGain[i][j] + "\t";
-            //        }
-
-            //        copy = copy.Remove(copy.Length - 1);
-            //        copy += "\n";
-            //    }
-            //}
-
-            //Clipboard.SetText(copy);
+            Clipboard.SetText(copy);
         }
 
         private void tbPaste_Click(object sender, EventArgs e)
         {
-            //string paste = Clipboard.GetText();
+            string paste = Clipboard.GetText();
 
-            //if (tabControl1.SelectedTab == tabRec)
-            //{
-            //    string[] lines = paste.Split("\r\n".ToCharArray());
+            paste = paste.Replace("\r\n", ";\n");
 
-            //    int i = 0;
-            //    foreach (string line in lines)
-            //    {
-            //        int j = 1;
-            //        if (line.LastIndexOfAny("0123456789".ToCharArray()) == -1) continue;
+            RatingFunction RF = new RatingFunction();
 
-            //        string[] items = line.Split('\t');
+            if (tabControl1.SelectedTab == tabRec)
+            {
+                recWeights = Rating.WeightsMatrixToTable(WeightMatrix.ParseExcel(paste).Transpose());
+            }
+            else if (tabControl1.SelectedTab == tabRating)
+            {
+                ratWeights = Rating.WeightsMatrixToTable(WeightMatrix.ParseExcel(paste).Transpose());
+            }
+            else if (tabControl1.SelectedTab == tabRecLinFun)
+            {
+                recLfWeights = Rating.WeightsMatrixToPropTable(WeightMatrix.ParseExcel(paste).Transpose());
+            }
+            else if (tabControl1.SelectedTab == tabAda)
+            {
+                adaWeights = Rating.WeightsMatrixToAdaTable(WeightMatrix.ParseExcel(paste).Transpose());
+            }
 
-            //        foreach (string item in items)
-            //        {
-            //            if (item.LastIndexOfAny("0123456789".ToCharArray()) == -1) continue;
+            LoadTables();
 
-            //            refGainDS.SkillFPGain[i][j] = float.Parse(item);
-            //            j++;
-            //        }
+        }
 
-            //        i++;
-            //    }
-            //}
-            //else if (tabControl1.SelectedTab == tabRating)
-            //{
-            //    string[] lines = paste.Split("\r\n".ToCharArray());
+        private void RatingEditor_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult result;
+            if ((result = MessageBox.Show("Accept and Close (Yes), Reject Changes and Close (NO), or Don't close (Cancel)",
+                "Rating Editor", MessageBoxButtons.YesNoCancel)) == DialogResult.Cancel)
+            {
+                return;
+            }
 
-            //    int i = 0;
-            //    foreach (string line in lines)
-            //    {
-            //        int j = 1;
-            //        if (line.LastIndexOfAny("0123456789".ToCharArray()) == -1) continue;
+            this.DialogResult = result;
 
-            //        string[] items = line.Split('\t');
-
-            //        foreach (string item in items)
-            //        {
-            //            if (item.LastIndexOfAny("0123456789".ToCharArray()) == -1) continue;
-
-            //            refGainDS.SpecFPAmpl[i][j] = float.Parse(item);
-            //            j++;
-            //        }
-
-            //        i++;
-            //    }
-            //}
-            //else if (tabControl1.SelectedTab == tabGKSkillGain)
-            //{
-            //    string[] lines = paste.Split("\r\n".ToCharArray());
-
-            //    int i = 0;
-            //    foreach (string line in lines)
-            //    {
-            //        int j = 1;
-            //        if (line.LastIndexOfAny("0123456789".ToCharArray()) == -1) continue;
-
-            //        string[] items = line.Split('\t');
-
-            //        foreach (string item in items)
-            //        {
-            //            if (item.LastIndexOfAny("0123456789".ToCharArray()) == -1) continue;
-
-            //            refGainDS.SkillGKGain[i][j] = float.Parse(item);
-            //            j++;
-            //        }
-
-            //        i++;
-            //    }
-            //}
-
+            if (this.DialogResult == DialogResult.Cancel)
+                e.Cancel = true;
         }
     }
 }

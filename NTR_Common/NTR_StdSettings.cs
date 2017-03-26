@@ -44,8 +44,14 @@ namespace NTR_Common
             {
                 string itemType = item.Value.GetType().ToString();
 
-                if (item.Value.GetType() == typeof(Matrix))
+                if (item.Value.GetType() == typeof(PlTacticsSPosDictionary))
+                    sw.WriteLine("{0}({1})={2}", item.Key, itemType, ((PlTacticsSPosDictionary)item.Value).ToString(CommGlobal.ciInv));
+                else if (item.Value.GetType() == typeof(GkTacticsSPosDictionary))
+                    sw.WriteLine("{0}({1})={2}", item.Key, itemType, ((GkTacticsSPosDictionary)item.Value).ToString(CommGlobal.ciInv));
+                else if (item.Value.GetType() == typeof(Matrix))
                     sw.WriteLine("{0}({1})={2}", item.Key, itemType, ((Matrix)item.Value).ToString(CommGlobal.ciInv));
+                else if (item.Value.GetType() == typeof(WeightMatrix))
+                    sw.WriteLine("{0}({1})={2}", item.Key, itemType, ((WeightMatrix)item.Value).ToString(CommGlobal.ciInv));
                 else if (item.Value.GetType() == typeof(double))
                     sw.WriteLine("{0}({1})={2}", item.Key, itemType, String.Format(CommGlobal.ciInv, "{0:G16}", item.Value));
                 else if (item.Value.GetType() == typeof(float))
@@ -96,7 +102,10 @@ namespace NTR_Common
                     case "System.Int64": this.Set(key, Int64.Parse(value)); break;
                     case "System.UInt64": this.Set(key, UInt64.Parse(value)); break;
                     case "NTR_Common.Matrix": this.Set(key, Matrix.Parse(value, CommGlobal.ciInv)); break;
+                    case "NTR_Common.WeightMatrix": this.Set(key, WeightMatrix.Parse(value, CommGlobal.ciInv)); break;
                     case "NTR_Common.eRatingFunctionType": this.Set(key, Enum.Parse(typeof(eRatingFunctionType), value)); break;
+                    case "NTR_Common.PlTacticsSPosDictionary": this.Set(key, PlTacticsSPosDictionary.Parse(value, CommGlobal.ciInv)); break;
+                    case "NTR_Common.GkTacticsSPosDictionary": this.Set(key, GkTacticsSPosDictionary.Parse(value, CommGlobal.ciInv)); break;
                 }
 
                 line = "";

@@ -88,6 +88,9 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.ValueTuple, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.3.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -105,7 +108,7 @@
     <Compile Include="Data.Designer.cs">
       <DependentUpon>Data.cs</DependentUpon>
     </Compile>
-    <Compile Include="Matrix.cs" />
+    <Compile Include="Matrix\Matrix.cs" />
     <Compile Include="NTR_Common.cs" />
     <Compile Include="NTR_StdSettings.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -124,6 +127,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SquadDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="TacticsDictionaries.cs" />
     <Compile Include="TeamDS.cs">
       <DependentUpon>TeamDS.xsd</DependentUpon>
     </Compile>
@@ -143,9 +147,11 @@
     <Compile Include="Squad.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TM_Parser.cs" />
+    <Compile Include="Matrix\WeightMatrix.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="NTR_Common_TmRecorder.pfx" />
+    <None Include="packages.config" />
     <None Include="SquadDS.xsc">
       <DependentUpon>SquadDS.xsd</DependentUpon>
     </None>

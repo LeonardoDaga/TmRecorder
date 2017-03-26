@@ -13,7 +13,7 @@ namespace NTR_Db
         public new eRatingFunctionType RatingFunctionType => eRatingFunctionType.RatingR2;
 
         // Weights need to total 100
-        private Matrix _weightRat = new double[,] {
+        private WeightMatrix _weightRat = new double[,] {
             // Rating weights 
             // Str		   Sta			Pac			 Mar		  Tac		   Wor		    Pos			 Pas          Cro		   Tec			Hea			 Fin		  Lon		   Set
             {0.51872935  , 0.29081119 , 0.57222393 , 0.89735816 , 0.84487852 , 0.50887940 , 0.50887940 , 0.13637928 , 0.05248024 , 0.09388931 , 0.57549122 , 0.00000000 , 0.00000000 , 0.00000000  },	// DC
@@ -31,7 +31,7 @@ namespace NTR_Db
             { 0.40324698 , 0.29906901 , 0.39676419 , 0.10106757 , 0.07620466 , 0.50471883 , 0.58512049 , 0.37506253 , 0.05291339 , 0.53882195 , 0.51604535 , 0.82935839 , 0.32160667 , 0.00000000  },	// F
             { 0.45462811 , 0.30278232 , 0.45462811 , 0.90925623 , 0.45462811 , 0.90925623 , 0.45462811 , 0.45462811 , 0.30278232 , 0.15139116 , 0.15139116  , 0, 0, 0 } };  // GK
 
-        private Matrix _weightREC = new double[,] {
+        private WeightMatrix _weightREC = new double[,] {
             // REC weights 
             // Str				 Sta				Pac				    Mar				   Tac				   Wor				Pos				   Pas				  Cro				 Tec				Hea				   Fin				  Lon				 Set
             {0.653962303361921,  0.330014238020285, 0.562994547223387, 0.891800163983125,  0.871069095865164,  0.454514672470839, 0.555697278549252, 0.42777598627972,  0.338218821750765, 0.134348455965202, 0.796916786677566, 0.048831870932616, 0.116363443378865, 0.282347752982916},	//DC
@@ -50,7 +50,7 @@ namespace NTR_Db
             // For  Rez    Vit  Ind  One  Ref Aer  Sar  Com    Deg    Aru
 			{0.5, 0.333, 0.5, 1,   0.5, 1,  0.5, 0.5, 0.333, 0.333, 0.333, 0.0, 0.0, 0.0}}; //GK
 
-        private Matrix _WeightREClf = new double[,] {
+        private WeightMatrix _WeightREClf = new double[,] {
             {14.866375,18.95664},		// DC      
             {15.980742,22.895539},      // DL/R    
             {15.980742,22.895539},      // DL/R    
@@ -169,7 +169,7 @@ namespace NTR_Db
                 rouFactor, fileName);
         }
 
-        public RatingR2(Matrix recMatrix, Matrix ratMatrix, Matrix recLfMatrix, Matrix adaMatrix, double rouFactor, string fileName)
+        public RatingR2(WeightMatrix recMatrix, WeightMatrix ratMatrix, WeightMatrix recLfMatrix, WeightMatrix adaMatrix, double rouFactor, string fileName)
         {
             this._weightREC = recMatrix;
             this._weightRat = ratMatrix;

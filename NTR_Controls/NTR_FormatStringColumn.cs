@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using Common;
 using NTR_Db;
+using NTR_Common;
 
 namespace NTR_Controls
 {

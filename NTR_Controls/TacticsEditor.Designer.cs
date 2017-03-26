@@ -43,7 +43,11 @@ namespace NTR_Controls
             this.tbCopy = new System.Windows.Forms.ToolStripButton();
             this.tbPaste = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.tbExit = new System.Windows.Forms.ToolStripButton();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPlTactics = new System.Windows.Forms.TabPage();
+            this.tabGkTactics = new System.Windows.Forms.TabPage();
+            this.dgPlTactics = new NTR_Controls.AeroDataGrid();
+            this.dgGkTactics = new NTR_Controls.AeroDataGrid();
             this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -77,16 +81,11 @@ namespace NTR_Controls
             this.dataGridViewTextBoxColumn45 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn46 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn47 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPlTactics = new System.Windows.Forms.TabPage();
-            this.dgPlTactics = new NTR_Controls.AeroDataGrid();
-            this.tabGkTactics = new System.Windows.Forms.TabPage();
-            this.dgGkTactics = new NTR_Controls.AeroDataGrid();
             this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPlTactics.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgPlTactics)).BeginInit();
             this.tabGkTactics.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgPlTactics)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgGkTactics)).BeginInit();
             this.SuspendLayout();
             // 
@@ -98,11 +97,10 @@ namespace NTR_Controls
             this.toolStripSeparator2,
             this.tbCopy,
             this.tbPaste,
-            this.toolStripSeparator1,
-            this.tbExit});
+            this.toolStripSeparator1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(891, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1019, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -139,7 +137,7 @@ namespace NTR_Controls
             this.tbCopy.Name = "tbCopy";
             this.tbCopy.Size = new System.Drawing.Size(23, 22);
             this.tbCopy.Text = "Copy";
-            this.tbCopy.Click += new System.EventHandler(this.toolStripButton1_Click);
+            this.tbCopy.Click += new System.EventHandler(this.tbCopy_Click);
             // 
             // tbPaste
             // 
@@ -156,21 +154,99 @@ namespace NTR_Controls
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
-            // tbExit
+            // tabControl1
             // 
-            this.tbExit.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tbExit.Image = ((System.Drawing.Image)(resources.GetObject("tbExit.Image")));
-            this.tbExit.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tbExit.Name = "tbExit";
-            this.tbExit.Size = new System.Drawing.Size(23, 22);
-            this.tbExit.Text = "Exit Editor";
-            this.tbExit.Click += new System.EventHandler(this.tbExit_Click);
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl1.Controls.Add(this.tabPlTactics);
+            this.tabControl1.Controls.Add(this.tabGkTactics);
+            this.tabControl1.Location = new System.Drawing.Point(0, 28);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(1020, 427);
+            this.tabControl1.TabIndex = 2;
+            // 
+            // tabPlTactics
+            // 
+            this.tabPlTactics.Controls.Add(this.dgPlTactics);
+            this.tabPlTactics.Location = new System.Drawing.Point(4, 22);
+            this.tabPlTactics.Name = "tabPlTactics";
+            this.tabPlTactics.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPlTactics.Size = new System.Drawing.Size(1012, 401);
+            this.tabPlTactics.TabIndex = 0;
+            this.tabPlTactics.Text = "Field Player Tactics";
+            this.tabPlTactics.UseVisualStyleBackColor = true;
+            // 
+            // tabGkTactics
+            // 
+            this.tabGkTactics.Controls.Add(this.dgGkTactics);
+            this.tabGkTactics.Location = new System.Drawing.Point(4, 22);
+            this.tabGkTactics.Name = "tabGkTactics";
+            this.tabGkTactics.Padding = new System.Windows.Forms.Padding(3);
+            this.tabGkTactics.Size = new System.Drawing.Size(1012, 401);
+            this.tabGkTactics.TabIndex = 5;
+            this.tabGkTactics.Text = "GK Tactics";
+            this.tabGkTactics.UseVisualStyleBackColor = true;
+            // 
+            // dgPlTactics
+            // 
+            this.dgPlTactics.AutoGenerateColumns = false;
+            this.dgPlTactics.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgPlTactics.DataCollection = null;
+            this.dgPlTactics.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgPlTactics.Location = new System.Drawing.Point(3, 3);
+            this.dgPlTactics.Name = "dgPlTactics";
+            this.dgPlTactics.RowHeadersVisible = false;
+            this.dgPlTactics.Size = new System.Drawing.Size(1006, 395);
+            this.dgPlTactics.TabIndex = 0;
+            // 
+            // dgGkTactics
+            // 
+            this.dgGkTactics.AllowUserToAddRows = false;
+            this.dgGkTactics.AllowUserToDeleteRows = false;
+            this.dgGkTactics.AutoGenerateColumns = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgGkTactics.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgGkTactics.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgGkTactics.DataCollection = null;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgGkTactics.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgGkTactics.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgGkTactics.GridColor = System.Drawing.Color.Blue;
+            this.dgGkTactics.Location = new System.Drawing.Point(3, 3);
+            this.dgGkTactics.MultiSelect = false;
+            this.dgGkTactics.Name = "dgGkTactics";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgGkTactics.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgGkTactics.RowHeadersVisible = false;
+            this.dgGkTactics.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dgGkTactics.Size = new System.Drawing.Size(1006, 395);
+            this.dgGkTactics.TabIndex = 1;
             // 
             // dataGridViewTextBoxColumn15
             // 
             this.dataGridViewTextBoxColumn15.DataPropertyName = "Spec";
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dataGridViewTextBoxColumn15.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dataGridViewTextBoxColumn15.DefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridViewTextBoxColumn15.HeaderText = "Spec";
             this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
             this.dataGridViewTextBoxColumn15.ReadOnly = true;
@@ -265,8 +341,8 @@ namespace NTR_Controls
             // dataGridViewTextBoxColumn28
             // 
             this.dataGridViewTextBoxColumn28.DataPropertyName = "FC";
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dataGridViewTextBoxColumn28.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dataGridViewTextBoxColumn28.DefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridViewTextBoxColumn28.HeaderText = "FC";
             this.dataGridViewTextBoxColumn28.Name = "dataGridViewTextBoxColumn28";
             this.dataGridViewTextBoxColumn28.ReadOnly = true;
@@ -277,8 +353,8 @@ namespace NTR_Controls
             // dataGridViewTextBoxColumn29
             // 
             this.dataGridViewTextBoxColumn29.DataPropertyName = "Skill";
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dataGridViewTextBoxColumn29.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dataGridViewTextBoxColumn29.DefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridViewTextBoxColumn29.HeaderText = "Skill";
             this.dataGridViewTextBoxColumn29.Name = "dataGridViewTextBoxColumn29";
             this.dataGridViewTextBoxColumn29.ReadOnly = true;
@@ -413,110 +489,23 @@ namespace NTR_Controls
             this.dataGridViewTextBoxColumn47.HeaderText = "FPos";
             this.dataGridViewTextBoxColumn47.Name = "dataGridViewTextBoxColumn47";
             // 
-            // tabControl1
-            // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl1.Controls.Add(this.tabPlTactics);
-            this.tabControl1.Controls.Add(this.tabGkTactics);
-            this.tabControl1.Location = new System.Drawing.Point(0, 28);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(892, 360);
-            this.tabControl1.TabIndex = 2;
-            // 
-            // tabPlTactics
-            // 
-            this.tabPlTactics.Controls.Add(this.dgPlTactics);
-            this.tabPlTactics.Location = new System.Drawing.Point(4, 22);
-            this.tabPlTactics.Name = "tabPlTactics";
-            this.tabPlTactics.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPlTactics.Size = new System.Drawing.Size(884, 334);
-            this.tabPlTactics.TabIndex = 0;
-            this.tabPlTactics.Text = "Field Player Tactics";
-            this.tabPlTactics.UseVisualStyleBackColor = true;
-            // 
-            // dgPlTactics
-            // 
-            this.dgPlTactics.AutoGenerateColumns = false;
-            this.dgPlTactics.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgPlTactics.DataCollection = null;
-            this.dgPlTactics.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgPlTactics.Location = new System.Drawing.Point(3, 3);
-            this.dgPlTactics.Name = "dgPlTactics";
-            this.dgPlTactics.RowHeadersVisible = false;
-            this.dgPlTactics.Size = new System.Drawing.Size(878, 328);
-            this.dgPlTactics.TabIndex = 0;
-            // 
-            // tabGkTactics
-            // 
-            this.tabGkTactics.Controls.Add(this.dgGkTactics);
-            this.tabGkTactics.Location = new System.Drawing.Point(4, 22);
-            this.tabGkTactics.Name = "tabGkTactics";
-            this.tabGkTactics.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGkTactics.Size = new System.Drawing.Size(884, 334);
-            this.tabGkTactics.TabIndex = 5;
-            this.tabGkTactics.Text = "GK Tactics";
-            this.tabGkTactics.UseVisualStyleBackColor = true;
-            // 
-            // dgGkTactics
-            // 
-            this.dgGkTactics.AllowUserToAddRows = false;
-            this.dgGkTactics.AllowUserToDeleteRows = false;
-            this.dgGkTactics.AutoGenerateColumns = false;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgGkTactics.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.dgGkTactics.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgGkTactics.DataCollection = null;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgGkTactics.DefaultCellStyle = dataGridViewCellStyle5;
-            this.dgGkTactics.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgGkTactics.GridColor = System.Drawing.Color.Blue;
-            this.dgGkTactics.Location = new System.Drawing.Point(3, 3);
-            this.dgGkTactics.MultiSelect = false;
-            this.dgGkTactics.Name = "dgGkTactics";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgGkTactics.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
-            this.dgGkTactics.RowHeadersVisible = false;
-            this.dgGkTactics.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgGkTactics.Size = new System.Drawing.Size(878, 328);
-            this.dgGkTactics.TabIndex = 1;
-            // 
             // TacticsEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(891, 382);
+            this.ClientSize = new System.Drawing.Size(1019, 449);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.toolStrip1);
             this.Name = "TacticsEditor";
             this.Text = "Tactics Editor -";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TacticsEditor_FormClosing);
             this.Load += new System.EventHandler(this.RatingEditor_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPlTactics.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgPlTactics)).EndInit();
             this.tabGkTactics.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgPlTactics)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgGkTactics)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -527,7 +516,6 @@ namespace NTR_Controls
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton tbSaveFile;
         private System.Windows.Forms.ToolStripButton tbOpenFile;
-        private System.Windows.Forms.ToolStripButton tbExit;
         private System.Windows.Forms.ToolStripButton tbCopy;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton tbPaste;

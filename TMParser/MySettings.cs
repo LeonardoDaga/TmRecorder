@@ -27,6 +27,7 @@ namespace TMRecorder
         }
 
         string _ratingFunctionsPath = "";
+        string _tacticsFunctionsPath = "";
 
         public void Initialize()
         {
@@ -53,6 +54,8 @@ namespace TMRecorder
                 _datafilePath = Path.Combine(Environment.CurrentDirectory, "Datafiles\\");
                 _ratingFunctionsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
                     "TmRecorder\\RatingFunctions\\");
+                _tacticsFunctionsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+                    "TmRecorder\\TacticsFunctions\\");
 
                 string settsFilename = "";
                 if ((args.Length > 0) && (args[0] == "--resetWindowsPosition"))
@@ -234,6 +237,7 @@ namespace TMRecorder
             sb.Def("AutoconvertActions", true);
             sb.Def("ShortlistSearches", "");
             sb.Def("RatingFunctionPath", Path.Combine(_ratingFunctionsPath, @"RatingR3.rating"));
+            sb.Def("TacticsFunctionPath", Path.Combine(_tacticsFunctionsPath, @"Default.tactics"));
 
             // Always the last settings
             sb.Def("SettsRelease", 1);
@@ -241,6 +245,11 @@ namespace TMRecorder
             sb.Def("LicenseCode", (UInt64)0);
         }
 
+        public string TacticsFunctionPath
+        {
+            get { return (string)sb["TacticsFunctionPath"]; }
+            set { sb["TacticsFunctionPath"] = value; }
+        }
         public string RatingFunctionPath
         {
             get { return (string)sb["RatingFunctionPath"]; }

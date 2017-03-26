@@ -130,6 +130,21 @@ namespace Common
                     copy += "\n";
                 }
             }
+            else if (tabControl1.SelectedTab == tabTactics)
+            {
+                copy = "";
+
+                for (int i = 0; i < refGainDS.TacticsGain.Rows.Count; i++)
+                {
+                    for (int j = 0; j < refGainDS.TacticsGain.Columns.Count; j++)
+                    {
+                        copy += refGainDS.TacticsGain[i][j] + "\t";
+                    }
+
+                    copy = copy.Remove(copy.Length - 1);
+                    copy += "\n";
+                }
+            }
 
             Clipboard.SetText(copy);
         }

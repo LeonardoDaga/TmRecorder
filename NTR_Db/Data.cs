@@ -2500,7 +2500,7 @@ namespace NTR_Db
 
             MatchScore ms = new NTR_Db.MatchScore(mr.Score, mr.isHome);
 
-            ScoreString = new NTR_Db.FormattedString(mr.Score);
+            ScoreString = new FormattedString(mr.Score);
             ScoreString.backColor = ms.ScoreColor;
 
             TmSWD twd = (TmSWD)TmWeek.DateTimeToSWD(mr.Date);
@@ -2827,47 +2827,6 @@ namespace NTR_Db
 
         public OrderedEnumerableRowCollection<NTR_SquadDb.ActionsRow> AllActions { get; private set; }
         public int LastMin { get; private set; }
-    }
-
-    public class FormattedString : IComparable<FormattedString>
-    {
-        public bool isBold;
-        public string value;
-        public Color backColor = Color.White;
-        public Color fontColor = Color.Black;
-        public Color tagColor = Color.Black;
-
-        public string ToolTip { get; set; }
-
-        public FormattedString(string s)
-        {
-            value = s;
-        }
-
-        public static implicit operator FormattedString(string s)
-        {
-            return new FormattedString(s);
-        }
-
-        public override string ToString()
-        {
-            return value;
-        }
-
-        public int CompareTo(FormattedString other)
-        {
-            return this.ToString().CompareTo(other.ToString());
-        }
-
-        internal static Color VoteColor(float vote)
-        {
-            if (vote < 4)
-                return Color.Goldenrod;
-            else if (vote < 7)
-                return Color.Green;
-            else 
-                return Color.DarkViolet;
-        }
     }
 
     public class MatchScore

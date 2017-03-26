@@ -11,8 +11,6 @@ using Common;
 using Languages;
 using NTR_Db;
 using NTR_Controls;
-
-using mshtml;
 using System.Linq;
 
 namespace TMRecorder
@@ -37,6 +35,7 @@ namespace TMRecorder
         public Seasons AllSeasons = new Seasons();
         List<MatchData> SeasonMatchList = null;
         RatingFunction RF = null;
+        TacticsFunction TF = null;
 
         public enum e_GridTab : int
         {
@@ -178,6 +177,13 @@ namespace TMRecorder
                 {
                     RatingFunction.CreateDefaultFunctions(Program.Setts.RatingFunctionPath);
                     RF = RatingFunction.Load(Program.Setts.RatingFunctionPath);
+                }
+
+                TF = TacticsFunction.Load(Program.Setts.TacticsFunctionPath);
+                if (TF == null)
+                {
+                    TacticsFunction.CreateDefaultFunctions(Program.Setts.TacticsFunctionPath);
+                    TF = TacticsFunction.Load(Program.Setts.TacticsFunctionPath);
                 }
 
 
@@ -3434,11 +3440,31 @@ namespace TMRecorder
 
         private void ratingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RatingFunction RF = new RatingR3();
-
             RatingEditor reDlg = new RatingEditor(RF);
 
-            reDlg.ShowDialog();
+            if (reDlg.ShowDialog() == DialogResult.Yes)
+            {
+                RF = RatingFunction.Create(reDlg.FunType,
+                    reDlg.recWeights,
+                    reDlg.ratWeights,
+                    reDlg.recLfWeights,
+                    reDlg.adaWeights,
+                    reDlg.RouFactor,
+                    reDlg.FileName);
+            }
+        }
+
+        private void tacticsEditorToolStripMenu_Click(object sender, EventArgs e)
+        {
+            TacticsEditor tfDlg = new TacticsEditor(TF);
+
+            if (tfDlg.ShowDialog() == DialogResult.Yes)
+            {
+                 TF = TacticsFunction.Create(
+                    tfDlg.tacPlWeights,
+                    tfDlg.tacGkWeights,
+                    tfDlg.fileName);
+            }
         }
     }
 }

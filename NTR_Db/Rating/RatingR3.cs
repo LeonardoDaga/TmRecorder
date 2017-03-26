@@ -13,7 +13,7 @@ namespace NTR_Db
         public new eRatingFunctionType RatingFunctionType => eRatingFunctionType.RatingR3;
 
         // Weights need to total 100
-        private Matrix _weightRat = new double[,] {
+        private WeightMatrix _weightRat = new double[,] {
             // Rating weights 
             // Str		 Sta		 Pac		 Mar		 Tac		 Wor		 Pos		 Pas         Cro		 Tec		 Hea		 Fin		 Lon		 Set
             {0.51872935, 0.29081119, 0.57222393, 0.89735816, 0.84487852, 0.50887940, 0.50887940, 0.13637928, 0.05248024, 0.09388931, 0.57549122, 0.00000000, 0.00000000, 0.0},	// DC
@@ -31,7 +31,7 @@ namespace NTR_Db
             {0.40622753, 0.29744114, 0.39446722, 0.09952139, 0.07503885, 0.50402399, 0.58505850, 0.36932466, 0.05210389, 0.53677990, 0.51998862, 0.83588627, 0.32413803, 0.0},	// F
             {0.37313433, 0.37313433, 0.37313433, 0.74626866, 0.52238806, 0.74626866, 0.52238806, 0.52238806, 0.37313433, 0.22388060, 0.22388060, 0.0, 0.0, 0.0}};   // GK
 
-        private Matrix _weightREC = new double[,] {
+        private WeightMatrix _weightREC = new double[,] {
             // REC weights 
             // Str		 Sta		 Pac		 Mar		 Tac		 Wor		 Pos		 Pas         Cro		 Tec		 Hea		 Fin		 Lon		 Set
             {0.10476131, 0.05214691, 0.07928798, 0.14443775, 0.13140328, 0.06543399, 0.07762453, 0.06649973, 0.05174317, 0.02761713, 0.12122597, 0.01365182, 0.02547069, 0.03869574},	// DC
@@ -50,7 +50,7 @@ namespace NTR_Db
             // For  Rez    Vit  Ind  One  Ref Aer  Sar  Com    Deg    Aru
             {0.07466384, 0.07466384, 0.07466384, 0.14932769, 0.10452938, 0.14932769, 0.10452938, 0.10344411, 0.07512610, 0.04492581, 0.04479831, 0.0, 0.0, 0.0}};   // GK
 
-        private Matrix _WeightREClf = new double[,] {
+        private WeightMatrix _WeightREClf = new double[,] {
             {14.866375,18.95664},		// DC      
             {15.980742,22.895539},      // DL/R    
             {15.980742,22.895539},      // DL/R    
@@ -169,7 +169,7 @@ namespace NTR_Db
                 rouFactor, fileName);
         }
 
-        public RatingR3(Matrix recMatrix, Matrix ratMatrix, Matrix recLfMatrix, Matrix adaMatrix, double rouFactor, string fileName)
+        public RatingR3(WeightMatrix recMatrix, WeightMatrix ratMatrix, WeightMatrix recLfMatrix, WeightMatrix adaMatrix, double rouFactor, string fileName)
         {
             SettingInitialize();
             this._weightREC = recMatrix;

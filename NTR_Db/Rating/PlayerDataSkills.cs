@@ -10,6 +10,7 @@ namespace NTR_Db
             PlayerDataSkills pDS = new PlayerDataSkills();
 
             pDS.FPn = playerData.FPn;
+            pDS.SPn = playerData.SPn;
 
             pDS.SkillSum = 0;
 
@@ -50,6 +51,7 @@ namespace NTR_Db
         public double Rou { get; private set; }
         public double Ada { get; private set; }
         public int FPn { get; private set; }
+        public int SPn { get; private set; }
         public double SkillSum { get; private set; }
     }
 }

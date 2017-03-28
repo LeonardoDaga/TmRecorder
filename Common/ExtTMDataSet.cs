@@ -1623,7 +1623,7 @@ namespace Common
                     edsRow.Infortunato = tdsRow.Infortunato;
                     edsRow.Squalificato = tdsRow.Squalificato;
 
-                    edsRow.SetFP(fun);
+                    //edsRow.SetFP(fun);
 
                     edsRow.HidSk = plyDB.GetHidSkString();
 

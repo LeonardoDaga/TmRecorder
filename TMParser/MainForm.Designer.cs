@@ -235,7 +235,6 @@ namespace TMRecorder
             this.evidenceSkillsForGainsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
-            this.editGainSetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ratingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.transferManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importPlayersDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -2320,7 +2319,6 @@ namespace TMRecorder
             this.toolStripDropDownButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripDropDownButton2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem6,
-            this.editGainSetToolStripMenuItem,
             this.tacticsEditorToolStripMenu,
             this.ratingToolStripMenuItem,
             this.transferManagerToolStripMenuItem,
@@ -2345,13 +2343,6 @@ namespace TMRecorder
             this.toolStripMenuItem6.Size = new System.Drawing.Size(220, 26);
             this.toolStripMenuItem6.Text = "Options";
             this.toolStripMenuItem6.Click += new System.EventHandler(this.OpzioniToolStripMenuItem1_Click);
-            // 
-            // editGainSetToolStripMenuItem
-            // 
-            this.editGainSetToolStripMenuItem.Name = "editGainSetToolStripMenuItem";
-            this.editGainSetToolStripMenuItem.Size = new System.Drawing.Size(220, 26);
-            this.editGainSetToolStripMenuItem.Text = "Edit Gain Set";
-            this.editGainSetToolStripMenuItem.Click += new System.EventHandler(this.editGainSetToolStripMenuItem_Click);
             // 
             // ratingToolStripMenuItem
             // 
@@ -3166,7 +3157,6 @@ namespace TMRecorder
         private System.Windows.Forms.DataGridViewTextBoxColumn OML;
         private System.Windows.Forms.DataGridViewTextBoxColumn FC;
         private System.Windows.Forms.DataGridViewTextBoxColumn OSi;
-        private System.Windows.Forms.ToolStripMenuItem editGainSetToolStripMenuItem;
         private System.Windows.Forms.TabPage tabInfo;
         private NTR_Controls.AeroDataGrid dataGridPlayersInfo;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton4;

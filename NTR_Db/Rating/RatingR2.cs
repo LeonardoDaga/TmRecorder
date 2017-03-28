@@ -155,7 +155,11 @@ namespace NTR_Db
                 Rv[n] = R;
             }
 
-            return Rating.Max(Rv);
+            Rating Rmax = Rating.Max(Rv);
+
+            Rmax.OSi = GetOSi(Rmax, playerData);
+
+            return Rmax;
         }
 
         internal static RatingFunction Create(List<REC_Weights> recWeights, List<REC_Weights> ratWeights,
@@ -194,7 +198,7 @@ namespace NTR_Db
         public override void SettingInitialize()
         {
             Def("WeightREC", _weightREC);
-            Def("WeightRat", _weightRat);
+            WeightRat = _weightRat;
             Def("WeightREClf", _WeightREClf);
             Def("Adaptability", _adaFact);
             Def("RoutineFactor", _routineFactor);

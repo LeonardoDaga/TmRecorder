@@ -273,7 +273,7 @@ namespace NTR_Controls
         N2 = 0x0C00,
         N3 = 0x1000,
         N4 = 0x1400,
-        NF = 0x1f00,
+        NF = 0x1c00,
         MatchType = 0x2000,
         Stars = 0x4000,
         TextAndImage = 0x8000,

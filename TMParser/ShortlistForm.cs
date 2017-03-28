@@ -23,15 +23,19 @@ namespace TMRecorder
         private NTR_SquadDb DB;
         List<NTR_Db.PlayerData> plShortlist;
         List<NTR_Db.PlayerData> gkShortlist;
+        RatingFunction RF;
 
         bool uploadOnlyListedPlayers
         {
             get { return updateOnlyListedPlayersToolStripMenuItem.Checked; }
         }
 
-        public ShortlistForm(ReportParser reportParser)
+        public ShortlistForm(ReportParser reportParser, 
+            RatingFunction rf)
         {
             InitializeComponent();
+
+            RF = rf;
 
             this.reportParser = reportParser;
 
@@ -48,8 +52,6 @@ namespace TMRecorder
         private void ShortlistForm_Load(object sender, EventArgs e)
         {
             DB = new NTR_SquadDb();
-
-            LoadGains();
 
             LoadShortlist();
 
@@ -76,7 +78,7 @@ namespace TMRecorder
         private void UpdateShortlist()
         {
             var tempshortlist = (from c in DB.Shortlist
-                                 select new NTR_Db.PlayerData(c));
+                                 select new NTR_Db.PlayerData(c, RF));
 
             plShortlist = (from c in tempshortlist
                            where c.FPn > 0
@@ -87,12 +89,6 @@ namespace TMRecorder
 
             dgPlayers.DataCollection = plShortlist;
             dgPlayersGK.DataCollection = gkShortlist;
-        }
-
-        private void LoadGains()
-        {
-            DB.LoadGains(Program.Setts.GainSet);
-            DB.GDS.NormalizeGains = Program.Setts.NormalizeGains;
         }
 
         private void openPlayersPageInTheTrophyManagerWebsiteToolStripMenuItem_Click(object sender, EventArgs e)
@@ -155,7 +151,7 @@ namespace TMRecorder
             DataGridViewRow row = dgv.SelectedRows[0];
             NTR_Db.PlayerData playerData = (NTR_Db.PlayerData)row.DataBoundItem;
 
-            PlayerFormSL pf = new PlayerFormSL(playerData, this.reportParser);
+            PlayerFormSL pf = new PlayerFormSL(playerData, this.reportParser, RF);
             pf.ShowDialog();
 
             if (pf.isDirty)

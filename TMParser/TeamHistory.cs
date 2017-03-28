@@ -11,6 +11,7 @@ using Languages;
 using System.Diagnostics;
 using NTR_Common;
 using System.Linq;
+using NTR_Db;
 
 namespace TMRecorder
 {
@@ -87,7 +88,6 @@ namespace TMRecorder
 
     public class TeamHistory : List<ExtTMDataSet>
     {
-        public Gain_Function PFun = null;
         public ExtraDS PlayersDS = null;
         public float release = 1.0f;
         public ListTrainingDataSet2 TrainingHist = new ListTrainingDataSet2();
@@ -95,24 +95,11 @@ namespace TMRecorder
         public ExtTMDataSet actualDts = null;
         public TeamDS teamDS = new TeamDS();
         public ReportParser reportParser = null;
-
-        public Common.GainDS GD
-        {
-            get { return PFun.gds; }
-        }
+        public RatingFunction RF = null;
+        public TacticsFunction TF = null;
 
         public TeamHistory()
         {
-            if (Program.Setts.GainFunction == Gain_Function.FunctionType.RusCheratte)
-                PFun = new RusCheratte_Function();
-            else if (Program.Setts.GainFunction == Gain_Function.FunctionType.AtleticoCassina)
-                PFun = new AtleticoCassina_Function();
-            else
-                PFun = new RusCheratte_Function();
-
-            PFun.gds = new Common.GainDS();
-
-            GD.funRou = new Common.Function(Program.Setts.RouFunction, Program.Setts.RouParams);
         }
 
         private void AddData(TrainingDataSet trainingDataSet)
@@ -267,6 +254,8 @@ namespace TMRecorder
 
         private void AddData(Db_TrophyDataSet db_TrophyDataSet, short isReserves)
         {
+            throw new NotImplementedException();
+
             int ix = 0;
 
             for (; ix < this.Count; ix++)
@@ -281,12 +270,12 @@ namespace TMRecorder
                 // Dataset already exist: substitute data
                 ExtTMDataSet eds = this[ix];
 
-                if (ix > 0)
-                    eds.FillWithDb_TrophyDataSet(PlayersDS, db_TrophyDataSet, PFun, this[ix - 1],
-                        isReserves, Program.Setts.TeamDataFolder);
-                else
-                    eds.FillWithDb_TrophyDataSet(PlayersDS, db_TrophyDataSet, PFun, null,
-                        isReserves, Program.Setts.TeamDataFolder);
+                //if (ix > 0)
+                //    eds.FillWithDb_TrophyDataSet(PlayersDS, db_TrophyDataSet, PFun, this[ix - 1],
+                //        isReserves, Program.Setts.TeamDataFolder);
+                //else
+                //    eds.FillWithDb_TrophyDataSet(PlayersDS, db_TrophyDataSet, PFun, null,
+                //        isReserves, Program.Setts.TeamDataFolder);
             }
             else
             {
@@ -295,12 +284,12 @@ namespace TMRecorder
                 // Fill ExtTMDataSet with Db_TrophyDataSet
                 ExtTMDataSet eds = new ExtTMDataSet();
 
-                if (ix > 0)
-                    eds.FillWithDb_TrophyDataSet(PlayersDS, db_TrophyDataSet, PFun, this[ix - 1],
-                        isReserves, Program.Setts.TeamDataFolder);
-                else
-                    eds.FillWithDb_TrophyDataSet(PlayersDS, db_TrophyDataSet, PFun, null,
-                        isReserves, Program.Setts.TeamDataFolder);
+                //if (ix > 0)
+                //    eds.FillWithDb_TrophyDataSet(PlayersDS, db_TrophyDataSet, PFun, this[ix - 1],
+                //        isReserves, Program.Setts.TeamDataFolder);
+                //else
+                //    eds.FillWithDb_TrophyDataSet(PlayersDS, db_TrophyDataSet, PFun, null,
+                //        isReserves, Program.Setts.TeamDataFolder);
 
                 this.Insert(ix, eds);
             }
@@ -317,34 +306,35 @@ namespace TMRecorder
                 break;
             }
 
-            if ((ix < this.Count) && (this[ix].Date.Date == db_TrophyDataSet.Date.Date))
-            {
-                // Dataset already exist: substitute data
-                ExtTMDataSet eds = this[ix];
+            throw new NotImplementedException();
+            //if ((ix < this.Count) && (this[ix].Date.Date == db_TrophyDataSet.Date.Date))
+            //{
+            //    // Dataset already exist: substitute data
+            //    ExtTMDataSet eds = this[ix];
 
-                if (ix > 0)
-                    eds.FillWithDb_TrophyDataSet_NewTM(PlayersDS, db_TrophyDataSet, PFun, this[ix - 1],
-                        Program.Setts.TeamDataFolder);
-                else
-                    eds.FillWithDb_TrophyDataSet_NewTM(PlayersDS, db_TrophyDataSet, PFun, null,
-                        Program.Setts.TeamDataFolder);
-            }
-            else
-            {
-                // New data set, create a new one
+            //    if (ix > 0)
+            //        eds.FillWithDb_TrophyDataSet_NewTM(PlayersDS, db_TrophyDataSet, PFun, this[ix - 1],
+            //            Program.Setts.TeamDataFolder);
+            //    else
+            //        eds.FillWithDb_TrophyDataSet_NewTM(PlayersDS, db_TrophyDataSet, PFun, null,
+            //            Program.Setts.TeamDataFolder);
+            //}
+            //else
+            //{
+            //    // New data set, create a new one
 
-                // Fill ExtTMDataSet with Db_TrophyDataSet
-                ExtTMDataSet eds = new ExtTMDataSet();
+            //    // Fill ExtTMDataSet with Db_TrophyDataSet
+            //    ExtTMDataSet eds = new ExtTMDataSet();
 
-                if (ix > 0)
-                    eds.FillWithDb_TrophyDataSet_NewTM(PlayersDS, db_TrophyDataSet, PFun, this[ix - 1],
-                        Program.Setts.TeamDataFolder);
-                else
-                    eds.FillWithDb_TrophyDataSet_NewTM(PlayersDS, db_TrophyDataSet, PFun, null,
-                        Program.Setts.TeamDataFolder);
+            //    if (ix > 0)
+            //        eds.FillWithDb_TrophyDataSet_NewTM(PlayersDS, db_TrophyDataSet, PFun, this[ix - 1],
+            //            Program.Setts.TeamDataFolder);
+            //    else
+            //        eds.FillWithDb_TrophyDataSet_NewTM(PlayersDS, db_TrophyDataSet, PFun, null,
+            //            Program.Setts.TeamDataFolder);
 
-                this.Insert(ix, eds);
-            }
+            //    this.Insert(ix, eds);
+            //}
         }
 
         public new void Add(ExtTMDataSet eds)
@@ -363,7 +353,7 @@ namespace TMRecorder
         {
             // Fill ExtTMDataSet with Db_TrophyDataSet
             ExtTMDataSet eds = new ExtTMDataSet();
-            eds.FillWithDb_TrophyDataSet2(PlayersDS, tds, PFun, Program.Setts.TeamDataFolder);
+            eds.FillWithDb_TrophyDataSet2(PlayersDS, tds, null, Program.Setts.TeamDataFolder);
             eds.fiSource = tds.fiSource;
             this.Insert(index, eds);
         }
@@ -504,29 +494,6 @@ namespace TMRecorder
                         continue;
                     }
                 }
-            }
-        }
-
-        /// <summary>
-        /// Racalculate the Spec Data for the entire history for all players
-        /// </summary>
-        public void RecalcDataFromGains()
-        {
-            foreach (ExtTMDataSet eds in this)
-            {
-                eds.RecalculateSpecData(PFun);
-            }
-        }
-
-        /// <summary>
-        /// Racalculate the Spec Data for the entire history, just for the required player
-        /// </summary>
-        /// <param name="plyID">player ID</param>
-        public void RecalcDataFromGains(int plyID)
-        {
-            foreach (ExtTMDataSet eds in this)
-            {
-                eds.RecalculateSpecData(PFun, plyID);
             }
         }
 
@@ -2069,85 +2036,6 @@ namespace TMRecorder
             }
         }
 
-        internal bool LoadGains(string gainSetName)
-        {
-            FileInfo fi = new FileInfo(gainSetName);
-
-            if (fi.Exists)
-            {
-                GD.Clear();
-
-                try
-                {
-                    GD.ReadXml(gainSetName);
-                    if (GD.CheckTacticsFilling())
-                        GD.WriteXml(gainSetName);
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("The read of the Gain set has generated an error. The default gainset has been selected.\n Please change the gain set using the Options panel");
-                    GD.SetDefaultValues();
-                    return false;
-                }
-
-                GD.GainDSfilename = gainSetName;
-                return true;
-            }
-            else
-            {
-                return false;
-
-                //if (false) // (MessageBox.Show(Current.Language.SelectAGainSetReplyYesOrUseADefaultSetReplyNo,
-                //    // Current.Language.TMRecorderLoadGainSet, MessageBoxButtons.YesNo) == DialogResult.Yes)
-                //{
-                //    OpenFileDialog ofd = new OpenFileDialog();
-                //    ofd.FileName = GD.GainDSfilename;
-                //    ofd.Filter = "TMGain File (*.tmgain;*.tmgain.xml)|*.tmgain;*.tmgain.xml|All Files|*.*";
-                //    ofd.DefaultExt = "*.tmgain*";
-
-                //    if (ofd.ShowDialog() == DialogResult.OK)
-                //    {
-                //        GD.GainDSfilename = ofd.FileName;
-                //        return LoadGains(GD.GainDSfilename);
-                //    }
-                //    else
-                //    {
-                //        GD.SetDefaultValues();
-                //        return false;
-                //    }
-                //}
-                //else
-                //{
-                //    GD.SetDefaultValues();
-
-                //    SaveFileDialog ofd = new SaveFileDialog();
-                //    ofd.FileName = "Default.tmgain";
-                //    ofd.Filter = "TMGain File (*.tmgain;*.tmgain.xml)|*.tmgain;*.tmgain.xml|All Files|*.*";
-                //    ofd.DefaultExt = "*.tmgain*"; 
-                //    ofd.Title = Current.Language.SelectTheLocationWhereToSaveTheGainFile;
-
-                //    if (ofd.ShowDialog() == DialogResult.OK)
-                //    {
-                //        GD.GainDSfilename = ofd.FileName;
-                //        GD.WriteXml(GD.GainDSfilename);
-                //        return true;
-                //    }
-
-                //    return false;
-                //}
-            }
-        }
-
-        internal bool EditGainSet()
-        {
-            GainSetEditor gse = new GainSetEditor(ref PFun.gds);
-            if (gse.ShowDialog() == DialogResult.OK)
-            {
-                return true;
-            }
-            return false;
-        }
-
         internal void DeleteOldPlayers()
         {
             MessageBox.Show("The method or operation is still not implemented.");
@@ -3323,8 +3211,6 @@ namespace TMRecorder
                 {
                     gsr.Ada = (decimal)value;
                 }
-
-                actualDts.RecalculateSpecData(PFun, ID);
             }
             else if (item == "Rou")
             {
@@ -3337,8 +3223,6 @@ namespace TMRecorder
                 {
                     gsr.Rou = (decimal)value;
                 }
-
-                actualDts.RecalculateSpecData(PFun, ID);
             }
             else if (item == "Nome")
             {

@@ -210,6 +210,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="dblvar.cs" />
     <Compile Include="ExtraDS.cs">
       <DependentUpon>ExtraDS.xsd</DependentUpon>
     </Compile>

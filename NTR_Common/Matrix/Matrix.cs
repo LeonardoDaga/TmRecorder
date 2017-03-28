@@ -12,14 +12,12 @@ namespace NTR_Common
         public int Rows { get; private set; }
         public int Cols { get; private set; }
         public double[] mat;
-        private bool isTrasposed; 
 
         public Matrix(int iRows, int iCols)         // Matrix Class constructor
         {
             Rows = iRows;
             Cols = iCols;
             mat = new double[Rows * Cols];
-            isTrasposed = false;
         }
 
         /// <summary>
@@ -48,13 +46,22 @@ namespace NTR_Common
             }
         }
 
-        public Matrix Transpose()
+        public Matrix Clone()                   // Function returns the copy of this matrix
         {
-            int temp = Rows;
-            Rows = Cols;
-            Cols = temp;
-            isTrasposed = !isTrasposed;
-            return this;
+            Matrix matrix = new Matrix(Rows, Cols);
+            for (int i = 0; i < Rows; i++)
+                for (int j = 0; j < Cols; j++)
+                    matrix[i, j] = this[i, j];
+            return matrix;
+        }
+
+        public Matrix Transpose()                   // Function returns the copy of this matrix
+        {
+            Matrix matrix = new Matrix(Cols, Rows);
+            for (int i = 0; i < Rows; i++)
+                for (int j = 0; j < Cols; j++)
+                    matrix[j, i] = this[i, j];
+            return matrix;
         }
 
         static public implicit operator Matrix(double[,] values)
@@ -66,17 +73,11 @@ namespace NTR_Common
         {
             get
             {
-                if (!isTrasposed)
-                    return mat[iRow * Cols + iCol];
-                else
-                    return mat[iCol * Rows + iRow];
+                return mat[iRow * Cols + iCol];
             }
             set
             {
-                if (!isTrasposed)
-                    mat[iRow * Cols + iCol] = value;
-                else
-                    mat[iCol * Rows + iRow] = value;
+                mat[iRow * Cols + iCol] = value;
             }
         }
 

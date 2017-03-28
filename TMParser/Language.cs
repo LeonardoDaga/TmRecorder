@@ -40,7 +40,6 @@ namespace TMRecorder
             this.evidenceSkillsForGainsToolStripMenuItem.Text = Current.Language.EvidenceSkillsForGains;
             this.toolStripDropDownButton2.Text = Current.Language.Tools;
             this.toolStripMenuItem6.Text = Current.Language.Options;
-            this.editGainSetToolStripMenuItem.Text = Current.Language.EditGainSet;
             this.transferManagerToolStripMenuItem.Text = Current.Language.TransferManager;
             this.importPlayersDataToolStripMenuItem.Text = Current.Language.ImportPrivatePlayersData;
             this.tMRBrowserToolStripMenuItem.Text = "TMR Browser";

@@ -29,21 +29,14 @@ namespace NTR_Db
         /// </summary>
         private void InitializeComponent()
         {
-            this.gainDS = new Common.GainDS();
             this.trainersSkillsDS = new Common.TrainersSkills();
             this.nationsDS = new Common.NationsDS();
             this.scoutSkillsDS = new Common.ScoutsNReviews();
             this.squadDB = new Common.NTR_SquadDb();
-            ((System.ComponentModel.ISupportInitialize)(this.gainDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trainersSkillsDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nationsDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.scoutSkillsDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.squadDB)).BeginInit();
-            // 
-            // gainDS
-            // 
-            this.gainDS.DataSetName = "GainDS";
-            this.gainDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // trainersSkillsDS
             // 
@@ -58,13 +51,13 @@ namespace NTR_Db
             // scoutSkillsDS
             // 
             this.scoutSkillsDS.DataSetName = "ScoutNReviews";
+            this.scoutSkillsDS.isDirty = false;
             this.scoutSkillsDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // squadDB
             // 
             this.squadDB.DataSetName = "NTR_SquadDb";
             this.squadDB.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            ((System.ComponentModel.ISupportInitialize)(this.gainDS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trainersSkillsDS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nationsDS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.scoutSkillsDS)).EndInit();
@@ -76,7 +69,6 @@ namespace NTR_Db
 
         public Common.TrainersSkills trainersSkillsDS;
         public Common.NationsDS nationsDS;
-        private Common.GainDS gainDS;
         private Common.ScoutsNReviews scoutSkillsDS;
         public Common.NTR_SquadDb squadDB;
 

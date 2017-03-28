@@ -150,7 +150,6 @@ namespace TMRecorder
         private void SetForced()
         {
             // Before release 1, the rouparams was wrong
-            if (SettsRelease < 1) RouParams = new float[]{1.0F,0.004F};
             if (isExtraTeam) sb.Def("MainSquadID", int.Parse(exTeamId));
 
             NationListFile = Path.Combine(_datafilePath, @"NationList.xml");
@@ -163,12 +162,6 @@ namespace TMRecorder
             if (!fi.Exists)
             {
                 ReportParsingFile = Path.Combine(_datafilePath, fi.Name);
-            }
-
-            fi = new FileInfo(GainSet);
-            if (!fi.Exists)
-            {
-                GainSet = Path.Combine(_datafilePath, fi.Name);
             }
         }
 
@@ -188,9 +181,7 @@ namespace TMRecorder
 
             sb.Def("InstallationDirectory", Application.StartupPath);
             sb.Def("HomeNation", "it");
-            sb.Def("NormalizeGains", false);
             sb.Def("PlayersPagesFolder", appDataFolder);
-            sb.Def("GainSet", Path.Combine(_datafilePath, @"RUSCheratte.tmgain.xml"));
             sb.Def("ShowTGI", false);
             sb.Def("Setting", "");
             sb.Def("UseTMRBrowser", false);
@@ -213,9 +204,6 @@ namespace TMRecorder
             sb.Def("ShowActions", 0);
             sb.Def("EvidenceGain", false);
             sb.Def("UsingStartingPathDisk", false);
-            sb.Def("RouParams", "1.0;0.004");
-            sb.Def("RouFunction", "Linear");
-            sb.Def("GainFunction", "RusCheratte");
             sb.Def("Language", "en");
             sb.Def("Trace", 0);
             sb.Def("ApplicationFolder", _baseDataFolderPath);
@@ -384,21 +372,6 @@ namespace TMRecorder
             get { return (int)sb["SettsRelease"]; }
             set { sb["SettsRelease"] = (int)value; }
         }
-        public Gain_Function.FunctionType GainFunction
-        {
-            get { return Gain_Function.FromName((string)sb["GainFunction"]); }
-            set { sb["GainFunction"] = Gain_Function.ToString(value); }
-        }
-        public Function.FunctionType RouFunction
-        {
-            get { return Function.FromName((string)sb["RouFunction"]); }
-            set { sb["RouFunction"] = Function.ToString(value); }
-        }
-        public float[] RouParams
-        {
-            get {return Common.Utility.StringToFloatArray((string)sb["RouParams"]);}
-            set {sb["RouParams"] = Common.Utility.FloatArrayToString((float[])value);}
-        }
         public bool UsingStartingPathDisk
         {
             get { return (bool)sb["UsingStartingPathDisk"]; }
@@ -499,11 +472,6 @@ namespace TMRecorder
             get { return (string)sb["PlayersPagesFolder"]; }
             set { sb["PlayersPagesFolder"] = (string)value; }
         }
-        public bool NormalizeGains
-        {
-            get { return (bool)sb["NormalizeGains"]; }
-            set { sb["NormalizeGains"] = (bool)value; }
-        }
         public string NationListFile
         {
             get { return (string)sb["NationListFile"]; }
@@ -513,11 +481,6 @@ namespace TMRecorder
         {
             get { return (string)sb["HomeNation"]; }
             set { sb["HomeNation"] = (string)value; }
-        }
-        public string GainSet
-        {
-            get { return (string)sb["GainSet"]; }
-            set { sb["GainSet"] = (string)value; }
         }
         public string InstallationDirectory
         {
@@ -552,7 +515,6 @@ namespace TMRecorder
             DefaultDirectory = SetDiskForFile(disk, DefaultDirectory);
             InstallationDirectory = SetDiskForFile(disk, InstallationDirectory);
             NationListFile = SetDiskForFile(disk, NationListFile);
-            GainSet = SetDiskForFile(disk, GainSet);
         }
 
         #region Private functions

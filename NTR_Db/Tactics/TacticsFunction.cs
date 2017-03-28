@@ -113,7 +113,7 @@ namespace NTR_Db
         };
         #endregion
 
-        private double ComputeTactics(PlayerDataSkills playerData, Tactics.Type type, int attacking)
+        public double ComputeTactics(PlayerDataSkills playerData, Tactics.Type type, int attacking)
         {
             double tactics = 0;
 
@@ -133,7 +133,7 @@ namespace NTR_Db
 
             var weights = _plTacticsSPosDict[(type, attacking)];
 
-            var weight = weights.Where(c => (c.SPs | (int)playerSP) > 0);
+            var weight = weights.Where(c => (c.SPs & (int)playerSP) > 0);
 
             if (weight.Count() > 0)
             {

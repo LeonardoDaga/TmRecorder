@@ -16,51 +16,6 @@ namespace TMRecorder
     {
         NationsDS Nations = null;
 
-        public Function.FunctionType RoutineFunction
-        {
-            get
-            {
-                switch (cmbRoutineFunction.SelectedIndex)
-                {
-                    case 0: return Function.FunctionType.Linear;
-                    case 1: return Function.FunctionType.Exponential;
-                    case 2: return Function.FunctionType.Log;
-                    case 3: return Function.FunctionType.Quadratic;
-                    default: return Function.FunctionType.None;
-                }
-            }
-            set
-            {
-                switch (value)
-                {
-                    case Function.FunctionType.Linear: cmbRoutineFunction.SelectedIndex = 0; break;
-                    case Function.FunctionType.Exponential: cmbRoutineFunction.SelectedIndex = 1; break;
-                    case Function.FunctionType.Log: cmbRoutineFunction.SelectedIndex = 2; break;
-                    case Function.FunctionType.Quadratic: cmbRoutineFunction.SelectedIndex = 3; break;
-                    case Function.FunctionType.None: cmbRoutineFunction.SelectedIndex = 4; break;
-                }
-            }
-        }
-
-        public float[] RoutineParameters
-        {
-            get
-            {
-                try
-                {
-                    return Common.Utility.StringToFloatArray(txtRoutineParameters.Text);
-                }
-                catch (Exception)
-                {
-                    return new float[] { 1.0F, 0.0F };
-                }
-            }
-            set
-            {
-                txtRoutineParameters.Text = Common.Utility.FloatArrayToString(value);
-            }
-        }
-
         public int PlayerType
         {
             get
@@ -210,31 +165,6 @@ namespace TMRecorder
             }
         }
 
-        DirectoryInfo diGains = null;
-        public string GainSet
-        {
-            get
-            {
-                FileInfo fi = new FileInfo(Path.Combine(diGains.Name, (string)lbGainSet.SelectedItem));
-                return fi.FullName;
-            }
-            set
-            {
-                FileInfo fiSelected = new FileInfo(value);
-                diGains = new DirectoryInfo(fiSelected.DirectoryName);
-
-                lbGainSet.Items.Clear();
-
-                FileInfo[] fis = diGains.GetFiles("*.tmgain*");
-                foreach (FileInfo fi in fis)
-                {
-                    lbGainSet.Items.Add(fi.Name);
-                }
-
-                lbGainSet.SelectedItem = fiSelected.Name;
-            }
-        }
-
         public string ActionAnalysisFile
         {
             get { return txtActionsAnalysisFile.Text; }
@@ -379,18 +309,6 @@ namespace TMRecorder
             if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
             {
                 InstallationDirectory = folderBrowserDialog1.SelectedPath;
-            }
-        }
-
-        private void btnSelectGainSet_Click(object sender, EventArgs e)
-        {
-            selectFileDialog.FileName = GainSet;
-            selectFileDialog.Filter = "TMGain File (*.tmgain;*.tmgain.xml)|*.tmgain;*.tmgain.xml|All Files|*.*";
-            selectFileDialog.DefaultExt = "*.tmgain*";
-            selectFileDialog.InitialDirectory = GainSet;
-            if (selectFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                GainSet = selectFileDialog.FileName;
             }
         }
 

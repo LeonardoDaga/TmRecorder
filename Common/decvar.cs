@@ -9,7 +9,7 @@ namespace Common
     {
         public decimal actual;
         public decimal prev = decimal.MinValue;
-        public decimal quality;
+        public double quality;
 
         public decvar()
         {
@@ -23,7 +23,7 @@ namespace Common
             quality = -1;
         }
 
-        public decvar(decimal actualVal, decimal prevVal, decimal qualityVal)
+        public decvar(decimal actualVal, decimal prevVal, double qualityVal)
         {
             actual = actualVal;
             prev = prevVal;

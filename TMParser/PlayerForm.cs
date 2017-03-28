@@ -28,6 +28,9 @@ namespace TMRecorder
         private bool playerInfoChanged = false;
         public bool isDirty = false;
         public NTR_Db.Seasons allSeasons = null;
+
+        RatingFunction RF;
+
         public int actPlayerID
         {
             get
@@ -66,6 +69,8 @@ namespace TMRecorder
                          NTR_Db.Seasons allseasons)
         {
             InitializeComponent();
+
+            RF = hist.RF;
 
             SetLanguage();
 
@@ -1893,23 +1898,27 @@ namespace TMRecorder
             double[] dFC = new double[table.Rows.Count];
             double[] xdate = new double[table.Rows.Count];
 
+            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
+
             for (int i = 0; i < table.Rows.Count; i++)
             {
                 ExtTMDataSet.PlayerHistoryRow pr = (ExtTMDataSet.PlayerHistoryRow)table.Rows[i];
 
-                dDC[i] = pr.DC_GK;
-                dDL[i] = pr.DL;
-                dDR[i] = pr.DR;
-                dDMC[i] = pr.DMC;
-                dDML[i] = pr.DML;
-                dDMR[i] = pr.DMR;
-                dMC[i] = pr.MC;
-                dML[i] = pr.ML;
-                dMR[i] = pr.MR;
-                dOMC[i] = pr.OMC;
-                dOML[i] = pr.OML;
-                dOMR[i] = pr.OMR;
-                dFC[i] = pr.FC;
+                Rating rat = RF.ComputeRating(PlayerDataSkills.From(pr));
+
+                dDC[i] = rat.R(ePos.DC);
+                dDL[i] = rat.R(ePos.DL);
+                dDR[i] = rat.R(ePos.DR);
+                dDMC[i] = rat.R(ePos.DMC);
+                dDML[i] = rat.R(ePos.DML);
+                dDMR[i] = rat.R(ePos.DMR);
+                dMC[i] = rat.R(ePos.MC);
+                dML[i] = rat.R(ePos.ML);
+                dMR[i] = rat.R(ePos.MR);
+                dOMC[i] = rat.R(ePos.OMC);
+                dOML[i] = rat.R(ePos.OML);
+                dOMR[i] = rat.R(ePos.OMR);
+                dFC[i] = rat.R(ePos.FC);
                 xdate[i] = (double)new XDate(pr.Date);
             }
 

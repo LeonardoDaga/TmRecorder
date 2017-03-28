@@ -35,10 +35,22 @@ namespace NTR_Common
             return matrix;
         }
 
+        public new WeightMatrix Clone()
+        {
+            WeightMatrix matrix = new WeightMatrix(Rows, Cols);
+            for (int i = 0; i < Rows; i++)
+                for (int j = 0; j < Cols; j++)
+                    matrix[i, j] = this[i, j];
+            return matrix;
+        }
+
         public new WeightMatrix Transpose()
         {
-            base.Transpose();
-            return this;
+            WeightMatrix matrix = new WeightMatrix(Cols, Rows);
+            for (int i = 0; i < Rows; i++)
+                for (int j = 0; j < Cols; j++)
+                    matrix[j, i] = this[i, j];
+            return matrix;
         }
 
         public string ToExcelString(string[] rows, 

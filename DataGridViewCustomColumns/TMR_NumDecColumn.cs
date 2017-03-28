@@ -144,6 +144,16 @@ namespace DataGridViewCustomColumns
                     quality = -1;
                     cellStyle = CellColorStyle.FromDataGridViewCellStyle(gridViewCellStyle);
                 }
+                else if (value.GetType() == typeof(double))
+                {
+                    dec = Convert.ToDecimal(value);
+                    quality = -1;
+
+                    if (dgc.CellColorStyles == null)
+                        cellStyle = CellColorStyle.FromDataGridViewCellStyle(gridViewCellStyle);
+                    else
+                        cellStyle = dgc.CellColorStyles.GetColorStyle(dec);
+                }
                 else if (value.GetType() == typeof(decimal))
                 {
                     dec = Convert.ToDecimal(value);
@@ -167,7 +177,7 @@ namespace DataGridViewCustomColumns
                 {
                     decval = (decvar)value;
                     dec = decval.actual;
-                    quality = decval.quality;
+                    quality = (decimal)decval.quality;
                     cellStyle = dgc.CellColorStyles.GetColorStyle(quality);
                 }
                 else

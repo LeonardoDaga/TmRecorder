@@ -34,8 +34,6 @@ namespace TMRecorder
         bool thisIsExtraTeam = false;
         public Seasons AllSeasons = new Seasons();
         List<MatchData> SeasonMatchList = null;
-        RatingFunction RF = null;
-        TacticsFunction TF = null;
 
         public enum e_GridTab : int
         {
@@ -170,31 +168,23 @@ namespace TMRecorder
                 History = new TeamHistory();
 
                 dP[1] = 1;
-                sf.UpdateStatusMessage(2, "Loading gains...");
+                sf.UpdateStatusMessage(2, "Loading rating functions...");
 
-                RF = RatingFunction.Load(Program.Setts.RatingFunctionPath);
-                if (RF == null)
+                History.RF = RatingFunction.Load(Program.Setts.RatingFunctionPath);
+                if (History.RF == null)
                 {
                     RatingFunction.CreateDefaultFunctions(Program.Setts.RatingFunctionPath);
-                    RF = RatingFunction.Load(Program.Setts.RatingFunctionPath);
+                    History.RF = RatingFunction.Load(Program.Setts.RatingFunctionPath);
                 }
 
-                TF = TacticsFunction.Load(Program.Setts.TacticsFunctionPath);
-                if (TF == null)
+                History.TF = TacticsFunction.Load(Program.Setts.TacticsFunctionPath);
+                if (History.TF == null)
                 {
                     TacticsFunction.CreateDefaultFunctions(Program.Setts.TacticsFunctionPath);
-                    TF = TacticsFunction.Load(Program.Setts.TacticsFunctionPath);
+                    History.TF = TacticsFunction.Load(Program.Setts.TacticsFunctionPath);
                 }
 
-
-                LoadGains();
-
-
                 dP[0] = 2;
-
-                // webBrowser.Navigate(urlAddress);
-
-                // sf.UpdateStatusMessage(1, "Getting Info from the website...");
 
                 if (Program.Setts.MainSquadName != "")
                     Text = "Trophy Manager - " + Program.Setts.MainSquadName + " - Team Recorder v." + Application.ProductVersion;
@@ -704,8 +694,6 @@ namespace TMRecorder
                 DataDirectory = Program.Setts.DefaultDirectory,
                 InstallationDirectory = Program.Setts.InstallationDirectory,
                 DefaultNation = Program.Setts.HomeNation,
-                NormalizeGains = Program.Setts.NormalizeGains,
-                GainSet = Program.Setts.GainSet,
                 ReportParsingFile = Program.Setts.ReportParsingFile
             };
 
@@ -721,8 +709,6 @@ namespace TMRecorder
             of.EvidenceGains = Program.Setts.EvidenceGain;
             of.UseStartupDisk = Program.Setts.UsingStartingPathDisk;
             of.UseOldHTMLImportStyle = Program.Setts.UseOldHTMLImportStyle;
-            of.RoutineFunction = Program.Setts.RouFunction;
-            of.RoutineParameters = Program.Setts.RouParams;
             of.UsedLanguage = Program.Setts.Language;
             of.ShowMatchOptions = Program.Setts.TeamMatchesShowMatches;
             of.MatchAnalysisFile = Program.Setts.MatchAnalysisFile;
@@ -828,22 +814,6 @@ namespace TMRecorder
                 }
 
                 dP[2]++;
-                Program.Setts.RouFunction = of.RoutineFunction;
-                Program.Setts.RouParams = of.RoutineParameters;
-                History.GD.funRou = new Common.Function(Program.Setts.RouFunction, Program.Setts.RouParams);
-
-                if (History.actualDts != null)
-                    History.actualDts.RecalculateSpecData(History.PFun);
-
-                dP[2]++;
-                if ((Program.Setts.NormalizeGains != of.NormalizeGains) ||
-                    (Program.Setts.GainSet != of.GainSet))
-                {
-                    Program.Setts.NormalizeGains = of.NormalizeGains;
-                    Program.Setts.GainSet = of.GainSet;
-                    History.Clear();
-                    LoadData();
-                }
 
                 if (Program.Setts.ReportParsingFile != of.ReportParsingFile)
                 {
@@ -940,26 +910,6 @@ namespace TMRecorder
             }
         }
 
-        private void LoadGains()
-        {
-            if (History.LoadGains(Program.Setts.GainSet))
-            {
-                Program.Setts.GainSet = History.GD.GainDSfilename;
-                Program.Setts.Save();
-            }
-            else
-            {
-                DirectoryInfo di = new DirectoryInfo(Program.Setts.DatafilePath);
-
-                FileInfo fi = new FileInfo(Path.Combine(di.FullName, "Default.tmgain.xml"));
-                if (fi.Exists)
-                {
-                    Program.Setts.GainSet = fi.FullName;
-                    Program.Setts.Save();
-                }
-            }
-        }
-
         private bool LoadHistory()
         {
             bool res = History.Load(Program.Setts.DefaultDirectory, ref sf);
@@ -973,11 +923,6 @@ namespace TMRecorder
             History.ComputeStats();
 
             return res;
-        }
-
-        private void RecalcHistory()
-        {
-            History.RecalcDataFromGains();
         }
 
         private void SetLastTeam()
@@ -1283,16 +1228,6 @@ namespace TMRecorder
 
         }
 
-        private void editGainSetToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (History.EditGainSet())
-            {
-                Program.Setts.GainSet = History.GD.GainDSfilename;
-                History.RecalcDataFromGains();
-                SetLastTeam();
-            }
-        }
-
         private void deleteOldPlayersDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show(Current.Language.PressingYESAllDataOfPlayersThatAreNoMoreInYourTeamWillBeDeleted,
@@ -1369,7 +1304,8 @@ namespace TMRecorder
         {
             if (History.actualDts.GiocatoriNSkill.FindByPlayerID(playerID) != null)
             {
-                PlayerForm pf = new PlayerForm(History.actualDts.GiocatoriNSkill, History, playerID, AllSeasons);
+                PlayerForm pf = new PlayerForm(History.actualDts.GiocatoriNSkill, 
+                    History, playerID, AllSeasons);
 
                 pf.ShowDialog();
 
@@ -1528,7 +1464,7 @@ namespace TMRecorder
             var players = (from c in last2Weeks[0].GiocatoriNSkill
                            select new NTR_Db.PlayerData(c, 
                                                         last2Weeks, 
-                                                        History.GD, 
+                                                        History.RF, History.TF, 
                                                         History.PlayersDS.FindByPlayerID(c.PlayerID),
                                                         playersPerf));
 
@@ -2231,7 +2167,7 @@ namespace TMRecorder
 
         private void shortlistToolToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ShortlistForm sf = new ShortlistForm(History.reportParser);
+            ShortlistForm sf = new ShortlistForm(History.reportParser, History.RF);
             sf.ShowDialog();
         }
 
@@ -3440,30 +3376,36 @@ namespace TMRecorder
 
         private void ratingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RatingEditor reDlg = new RatingEditor(RF);
+            RatingEditor reDlg = new RatingEditor(History.RF);
 
             if (reDlg.ShowDialog() == DialogResult.Yes)
             {
-                RF = RatingFunction.Create(reDlg.FunType,
+                History.RF = RatingFunction.Create(reDlg.FunType,
                     reDlg.recWeights,
                     reDlg.ratWeights,
                     reDlg.recLfWeights,
                     reDlg.adaWeights,
                     reDlg.RouFactor,
                     reDlg.FileName);
+
+                History.Clear();
+                LoadData();
             }
         }
 
         private void tacticsEditorToolStripMenu_Click(object sender, EventArgs e)
         {
-            TacticsEditor tfDlg = new TacticsEditor(TF);
+            TacticsEditor tfDlg = new TacticsEditor(History.TF);
 
             if (tfDlg.ShowDialog() == DialogResult.Yes)
             {
-                 TF = TacticsFunction.Create(
+                History.TF = TacticsFunction.Create(
                     tfDlg.tacPlWeights,
                     tfDlg.tacGkWeights,
                     tfDlg.fileName);
+
+                History.Clear();
+                LoadData();
             }
         }
     }

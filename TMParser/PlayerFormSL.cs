@@ -29,6 +29,7 @@ namespace TMRecorder
         public bool isDirty = false;
         NTR_SquadDb DB = null;
         ReportParser reportParser;
+        RatingFunction RF;
 
         public int selectedPlayerID
         {
@@ -49,9 +50,12 @@ namespace TMRecorder
         }
 
         public PlayerFormSL(NTR_Db.PlayerData playerData,
-                            ReportParser reportParser)
+                            ReportParser reportParser,
+                            RatingFunction rf)
         {
             InitializeComponent();
+
+            RF = rf;
 
             SetLanguage();
 
@@ -102,7 +106,7 @@ namespace TMRecorder
                 if (sr == DB.Shortlist.Rows[n])
                 {
                     selectedPlayerCnt = n;
-                    selectedPlayerData = new NTR_Db.PlayerData(sr);
+                    selectedPlayerData = new NTR_Db.PlayerData(sr, RF);
                     break;
                 }
             }
@@ -116,7 +120,7 @@ namespace TMRecorder
 
             NTR_SquadDb.ShortlistRow sr = (NTR_SquadDb.ShortlistRow)DB.Shortlist.Rows[playerCnt];
 
-            selectedPlayerData = new NTR_Db.PlayerData(sr);
+            selectedPlayerData = new NTR_Db.PlayerData(sr, RF);
 
             Initialize();
         }
@@ -152,9 +156,9 @@ namespace TMRecorder
 
             for (int i = 0; i < playerHistory.Count - 1; i++)
             {
-                trainingDataList.Add(new NTR_Db.PlayerData(playerHistory[i+1], playerHistory[i]));
+                trainingDataList.Add(new NTR_Db.PlayerData(playerHistory[i+1], playerHistory[i], RF));
             }
-            trainingDataList.Add(new NTR_Db.PlayerData(playerHistory[0], null));
+            trainingDataList.Add(new NTR_Db.PlayerData(playerHistory[0], null, RF));
 
             dgTraining.DataCollection = trainingDataList;
         }
@@ -528,7 +532,7 @@ namespace TMRecorder
             foreach(NTR_SquadDb.ShortlistRow sr in DB.Shortlist)
             {
                 ToolStripItem tsi = new ToolStripMenuItem();
-                NTR_Db.PlayerData pd = new NTR_Db.PlayerData(sr);
+                NTR_Db.PlayerData pd = new NTR_Db.PlayerData(sr, RF);
 
                 string FP = Tm_Utility.FPnToFP(pd.FPn);
                 tsi.Text = "[" + FP + "] " + pd.Name;

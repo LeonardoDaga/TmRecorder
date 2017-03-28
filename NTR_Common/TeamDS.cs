@@ -421,7 +421,7 @@ namespace NTR_Common
 
                 gr.SSD = Tm_Utility.ASItoSkSum((decimal)gnsRow.ASI, false) - gnsRow.SkillSum;
 
-                gr.CStr = gnsRow.CStr;
+                gr.CStr = 0;
 
                 gr.Nationality = gnsRow.Nationality;
 

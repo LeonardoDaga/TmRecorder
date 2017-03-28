@@ -35,7 +35,12 @@ namespace Common
         private decimal _value = 2;
         public decimal Value
         {
-            get { return _value; }
+            get
+            {
+                if (_value > 20)
+                    _value = 20;
+                return _value;
+            }
             set
             {
                 if (_value > 20)

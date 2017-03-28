@@ -1,5 +1,6 @@
 ﻿using NTR_Common;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -18,6 +19,7 @@ namespace NTR_Db
         public double CK { get; internal set; }
         public double FK { get; internal set; }
         public double PK { get; internal set; }
+        public double OSi { get; internal set; }
 
         public double GetRec(int FPn)
         {
@@ -170,6 +172,10 @@ namespace NTR_Db
             return weightMx;
         }
 
+        public double R(ePos pos)
+        {
+            return rating[(int)pos];
+        }
     }
 
     public enum eCoefficient
@@ -279,7 +285,7 @@ namespace NTR_Db
 
     public class REC_Weights
     {
-        public REC_Weights(WeightMatrix weightRat, int col)
+        public REC_Weights(WeightMatrix weightREC, int col)
         {
             Skill = ((eSkill)col).ToString();
             Skill.backColor = Color.LightGray;
@@ -291,20 +297,20 @@ namespace NTR_Db
 
             SkillGk.backColor = Color.LightGray;
 
-            DC = weightRat[0, col];
-            DL = weightRat[1, col];
-            DR = weightRat[2, col];
-            DMC = weightRat[3, col];
-            DML = weightRat[4, col];
-            DMR = weightRat[5, col];
-            MC = weightRat[6, col];
-            ML = weightRat[7, col];
-            MR = weightRat[8, col];
-            OMC = weightRat[9, col];
-            OML = weightRat[10, col];
-            OMR = weightRat[11, col];
-            FC = weightRat[12, col];
-            GK = weightRat[13, col];
+            DC = weightREC[0, col];
+            DL = weightREC[1, col];
+            DR = weightREC[2, col];
+            DMC = weightREC[3, col];
+            DML = weightREC[4, col];
+            DMR = weightREC[5, col];
+            MC = weightREC[6, col];
+            ML = weightREC[7, col];
+            MR = weightREC[8, col];
+            OMC = weightREC[9, col];
+            OML = weightREC[10, col];
+            OMR = weightREC[11, col];
+            FC = weightREC[12, col];
+            GK = weightREC[13, col];
         }
 
         public FormattedString Skill { get; set; }
@@ -417,6 +423,7 @@ namespace NTR_Db
 
         public string Name { get; }
         public string ShortName { get; }
+        WeightMatrix OrderedWeightRat;
 
         public eRatingFunctionType RatingFunctionType
         {
@@ -436,7 +443,35 @@ namespace NTR_Db
         public WeightMatrix WeightRat
         {
             get => (WeightMatrix)this["WeightRat"];
-            set => this["WeightRat"] = value;
+            set
+            {
+                this["WeightRat"] = value;
+                OrderedWeightRat = SortRowsByCols(value);
+            }
+        }
+
+        private WeightMatrix SortRowsByCols(WeightMatrix mIn)
+        {
+            double t;
+            WeightMatrix m = mIn.Clone();
+
+            for (int r=0; r< m.Rows; r++)
+            {
+                for (int c = m.Cols - 1; c > 0; c--)
+                {
+                    for (int p = 0; p < c; p++)
+                    {
+                        if (m[r, p] > m[r, p+1])
+                        {
+                            t = m[r, p];
+                            m[r, p] = m[r, p + 1];
+                            m[r, p + 1] = t;
+                        }
+                    }
+                }
+            }
+
+            return m;
         }
 
         public WeightMatrix WeightREClf
@@ -456,6 +491,81 @@ namespace NTR_Db
         /// </summary>
         public virtual void SettingInitialize()
         {
+        }
+
+
+        public double GetOSi(Rating R, PlayerDataSkills pds)
+        {
+            double rMax = R.rating[0];
+            // Find the maximum speciality result
+
+            for (int i = 1; i < R.rating.Length; i++)
+                rMax = Math.Max(rMax, R.rating[i]);
+
+            WeightMatrix ratMx = WeightRat;
+
+            double skillsSum = pds.SkillSum;
+
+            (double min, double max) = MinMaxRatingForSkillsum(pds.FPn, skillsSum);
+
+            return (rMax - min) / (max - min) * 100;
+        }
+
+        private (double min, double max) MinMaxRatingForSkillsum(int FPn,double skillsSum)
+        {
+            int[] FP = Rating.GetPositionIndex(FPn);
+
+            if (FP[1] == -1)
+            {
+                double min = 0, max = 0;
+                int i = 0;
+                double d = 0;
+
+                for (; d < skillsSum - 20; d += 20, i++)
+                    min += OrderedWeightRat[FP[0], i] * 20;
+
+                min += OrderedWeightRat[FP[0], i] * (skillsSum - d);
+
+                i = 13;
+                d = 0;
+
+                for (; d < skillsSum - 20; d += 20, i--)
+                    max += OrderedWeightRat[FP[0], i] * 20;
+
+                max += OrderedWeightRat[FP[0], i] * (skillsSum - d);
+
+                return (min, max);
+            }
+            else
+            {
+                double min1 = 0, max1 = 0, min2 = 0, max2 = 0;
+
+                int i = 0;
+                double d = 0;
+                for (; d < skillsSum - 20; d += 20, i++)
+                    min1 += OrderedWeightRat[FP[0], i] * 20;
+                min1 += OrderedWeightRat[FP[0], i] * (skillsSum - d);
+
+                i = 0;
+                d = 0;
+                for (; d < skillsSum - 20; d += 20, i++)
+                    min2 += OrderedWeightRat[FP[1], i] * 20;
+                min2 += OrderedWeightRat[FP[1], i] * (skillsSum - d);
+
+                i = 13;
+                d = 0;
+                for (; d < skillsSum - 20; d += 20, i--)
+                    max1 += OrderedWeightRat[FP[0], i] * 20;
+                max1 += OrderedWeightRat[FP[0], i] * (skillsSum - d);
+
+                i = 13;
+                d = 0;
+                for (; d < skillsSum - 20; d += 20, i--)
+                    max2 += OrderedWeightRat[FP[1], i] * 20;
+                max2 += OrderedWeightRat[FP[1], i] * (skillsSum - d);
+
+                return ((min1 < min2)?min2:min1, max1<max2?max2:max1);
+            }
         }
 
         public virtual Rating ComputeRating(PlayerDataSkills playerData) { return null; }
@@ -507,6 +617,44 @@ namespace NTR_Db
 
                 rf.SettingsFilename = ratingFunctionFile;
                 rf.Save();
+            }
+        }
+
+        internal double[] Relevances(int FPn)
+        {
+            if (FPn != 0)
+            {
+                int[] posIndex = Rating.GetPositionIndex(FPn);
+
+                double[] relevances = new double[14];
+
+                for (int i = 0; i < 14; i++)
+                {
+                    double W1 = 80*WeightRat[posIndex[0], i];
+
+                    if (posIndex[1] == -1)
+                    {
+                        relevances[i] = W1;
+                        continue;
+                    }
+
+                    double W2 = 80* WeightRat[posIndex[1], i];
+
+                    relevances[i] = (W1 > W2 ? W1 : W2);
+                }
+
+                return relevances;
+            }
+            else
+            {
+                double[] relevances = new double[11];
+
+                for (int i = 0; i < 11; i++)
+                {
+                    relevances[i] = 80 * WeightRat[13, i];
+                }
+
+                return relevances;
             }
         }
     }

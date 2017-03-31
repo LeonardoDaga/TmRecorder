@@ -1,4 +1,5 @@
-﻿using NTR_Common;
+﻿using Common;
+using NTR_Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace NTR_Db
     public class RatingR3: RatingFunction
     {
         private double _routineFactor = 0.006153231 * 25;
+        private double wage_rate = 19.76;
 
         public new eRatingFunctionType RatingFunctionType => eRatingFunctionType.RatingR3;
 
@@ -32,6 +34,26 @@ namespace NTR_Db
             {0.37313433, 0.37313433, 0.37313433, 0.74626866, 0.52238806, 0.74626866, 0.52238806, 0.52238806, 0.37313433, 0.22388060, 0.22388060, 0.0, 0.0, 0.0}};   // GK
 
         private WeightMatrix _weightREC = new double[,] {
+            // REC weights 
+            // Str		  Sta		  Pac		  Mar		   Tac		    Wor		    Pos		    Pas         Cro		    Tec		    Hea		    Fin		    Lon		    Set
+            {0.6539623,   0.3300142,  0.56299454, 0.89180016,  0.87106909,  0.45451467, 0.55569727, 0.4277759,  0.33821882, 0.13434845, 0.79691678, 0.04883187, 0.11636344, 0.28234775},	//DC
+            {0.56560512,  0.43097338, 0.91712543, 0.81570252,  0.9902232,   0.54799587, 0.52220323, 0.30992889, 0.83736535, 0.48382247, 0.65690142, 0.13758258, 0.16365811, 0.30391544},	//DL/R
+            {0.56560512,  0.43097338, 0.91712543, 0.81570252,  0.9902232,   0.54799587, 0.52220323, 0.30992889, 0.83736535, 0.48382247, 0.65690142, 0.13758258, 0.16365811, 0.30391544},	//DL/R
+            {0.5583882,   0.6036835,  0.56379231, 0.77042508,  0.64196585,  0.67549523, 0.68386347, 0.75734291, 0.47307079, 0.49410782, 0.39754716, 0.42966091, 0.5636417,  0.22479109},	//DMC
+            {0.58207403,  0.4200322,  0.788754,   0.72622138,  0.72297232,  0.73761725, 0.6223445,  0.4669469,  0.81438291, 0.56187782, 0.36744698, 0.3606234,  0.39005776, 0.24951773},	//DML/R
+            {0.58207403,  0.4200322,  0.788754,   0.72622138,  0.72297232,  0.73761725, 0.6223445,  0.4669469,  0.81438291, 0.56187782, 0.36744698, 0.3606234,  0.39005776, 0.24951773},	//DML/R
+            {0.57843193,  0.77813468, 0.57472632, 0.7140029,   0.63540339,  0.82230825, 0.87785704, 0.86426567, 0.43345021, 0.69716425, 0.41256851, 0.58662758, 0.61790505, 0.30842681},	//MC
+            {0.49742937,  0.54534736, 0.78828091, 0.57872457,  0.6632353,   0.77253714, 0.63870613, 0.5384531,  0.88793538, 0.57251597, 0.29054955, 0.47618049, 0.52614942, 0.28700164},	//ML/R
+            {0.49742937,  0.54534736, 0.78828091, 0.57872457,  0.6632353,   0.77253714, 0.63870613, 0.5384531,  0.88793538, 0.57251597, 0.29054955, 0.47618049, 0.52614942, 0.28700164},	//ML/R
+            {0.65643776,  0.61726072, 0.65656998, 0.6374105,   0.5514845,   0.92237978, 0.79055356, 0.99968855, 0.42620357, 0.77877091, 0.65237406, 0.66226439, 0.731201,   0.27456361},	//OMC
+            {0.48334194,  0.49477305, 0.7994348,  0.62878919,  0.63384796,  0.68135443, 0.67123386, 0.53612145, 0.84938974, 0.68406772, 0.38973297, 0.49997269, 0.57723181, 0.27277335},	//OML/R
+            {0.48334194,  0.49477305, 0.7994348,  0.62878919,  0.63384796,  0.68135443, 0.67123386, 0.53612145, 0.84938974, 0.68406772, 0.38973297, 0.49997269, 0.57723181, 0.27277335},	//OML/R
+            {0.49391705,  0.3704239,  0.53214892, 0.062920665, 0.090495007, 0.41549477, 0.541061,   0.46818114, 0.15810648, 0.46112573, 0.8339961,  0.99982832, 0.82717197, 0.25322585},	//F
+            //			   For  Rez    Vit  Ind  One  Ref Aer  Sar  Com    Deg    Aru
+            {0.5, 0.333, 0.5, 1.0,  0.5, 1.0,  0.5, 0.5, 0.333, 0.333, 0.333, 0.0, 0.0, 0.0}};   // GK
+
+
+        private WeightMatrix _weightRECb = new double[,] {
             // REC weights 
             // Str		 Sta		 Pac		 Mar		 Tac		 Wor		 Pos		 Pas         Cro		 Tec		 Hea		 Fin		 Lon		 Set
             {0.10476131, 0.05214691, 0.07928798, 0.14443775, 0.13140328, 0.06543399, 0.07762453, 0.06649973, 0.05174317, 0.02761713, 0.12122597, 0.01365182, 0.02547069, 0.03869574},	// DC
@@ -67,6 +89,40 @@ namespace NTR_Db
             {15,22.3},                  // GK      
             };
 
+        public static void TestRating()
+        {
+            PlayerDataSkills pds = PlayerDataSkills.From(
+                new PlayerData()
+                {
+                    Ada = 0,
+                    ASI = new Common.intvar(40682,40682),
+                    FPn = 33,
+                    Rou = 15.8M,
+                    Skills = new decvar[]
+                    {
+                        new decvar(11,11),
+                        new decvar(13,13),
+                        new decvar(14,14),
+                        new decvar(15,15),
+                        new decvar(17,17),
+                        new decvar(15,15),
+                        new decvar(14,14),
+                        new decvar(15,15),
+                        new decvar(19,19),
+                        new decvar(10,10),
+                        new decvar(9,9),
+                        new decvar(11,11),
+                        new decvar(7,7),
+                        new decvar(18,18),
+                    },
+                    SPn = 12,
+                });
+
+            RatingR3 R3 = new RatingR3();
+
+            Rating res = R3.ComputeRating(pds);
+        }
+
         public override Rating ComputeRating(PlayerDataSkills playerData)
         {
             double skillWeightSum, weight;
@@ -99,6 +155,9 @@ namespace NTR_Db
 
             Rating[] Rv = new NTR_Db.Rating[numFP];
 
+            double LOG2E = 1.4426950408889634; 
+            double rouMultiplier = Math.Pow(5.0/3.0, LOG2E * Math.Log(rou * 10)) * RoutineFactor;
+
             for (int n = 0; n < numFP; n++)
             {
                 Rating R = new NTR_Db.Rating();
@@ -124,15 +183,12 @@ namespace NTR_Db
                         }
                     }
 
-                    if (not20 == 0)
-                        R.rec[j] = 6;       // All MAX
-                    else
-                        R.rec[j] = (R.rec[j] + remainder * remWeightREC / not20 - 2) / 3;
+                    R.rec[j] += skillWeightSum * remWeightREC / not20;
+                    if (playerData.FPn == 0) R.rec[j] *= 1.27;
 
                     R.rec[j] = (R.rec[j] - _WeightREClf[j, 0]) / _WeightREClf[j, 1];
                     R.rating[j] += remainder * remWeightRat / not20;
-                    R.ratingR[j] = R.rating[j] * (1 + rou * RoutineFactor);
-                    R.rating[j] = R.rating[j];
+                    R.ratingR[j] = R.rating[j] + rouMultiplier;
 
                     if (playerData.FPn == 0)
                         j = 13;		// Loop end
@@ -147,9 +203,9 @@ namespace NTR_Db
 
                 if (playerData.FPn != 0) // The player is not a GK
                 {
-                    R.CK = (playerData.Skills[8] + playerData.Skills[13] + playerData.Skills[9] / 2) + rou / 2;
-                    R.FK = (playerData.Skills[12] + playerData.Skills[13] + playerData.Skills[9] / 2) + rou / 2;
-                    R.PK = (playerData.Skills[11] + playerData.Skills[13] + playerData.Skills[9] / 2) + rou / 2;
+                    R.CK = (playerData.Skills[8] + playerData.Skills[13] + playerData.Skills[9] / 2) + rouMultiplier / 2;
+                    R.FK = (playerData.Skills[12] + playerData.Skills[13] + playerData.Skills[9] / 2) + rouMultiplier / 2;
+                    R.PK = (playerData.Skills[11] + playerData.Skills[13] + playerData.Skills[9] / 2) + rouMultiplier / 2;
                 }
 
                 Rv[n] = R;
@@ -175,7 +231,6 @@ namespace NTR_Db
 
         public RatingR3(WeightMatrix recMatrix, WeightMatrix ratMatrix, WeightMatrix recLfMatrix, WeightMatrix adaMatrix, double rouFactor, string fileName)
         {
-            SettingInitialize();
             this._weightREC = recMatrix;
             this._weightRat = ratMatrix;
             this._WeightREClf = recLfMatrix;
@@ -190,19 +245,18 @@ namespace NTR_Db
             SettingInitialize();
         }
 
-        public new string Name => "RatingR3";
-        public new string ShortName => "R3";
-
         /// <summary>
         /// This function initialize settings for the object
         /// </summary>
         public override void SettingInitialize()
         {
-            Def("WeightREC", _weightREC);
+            Name = "RatingR3";
+            ShortName = "R3";
+            WeightREC = _weightREC;
             WeightRat = _weightRat;
-            Def("WeightREClf", _WeightREClf);
-            Def("Adaptability", _adaFact);
-            Def("RoutineFactor", _routineFactor);
+            WeightREClf = _WeightREClf;
+            Adaptability = _adaFact;
+            RoutineFactor = _routineFactor;
             Def("RatingFunctionType", eRatingFunctionType.RatingR3);
         }
     }

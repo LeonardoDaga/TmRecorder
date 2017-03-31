@@ -189,19 +189,18 @@ namespace NTR_Db
             SettingInitialize();
         }
 
-        public new string Name => "RatingR2";
-        public new string ShortName => "R2";
-
         /// <summary>
         /// This function initialize settings for the object
         /// </summary>
         public override void SettingInitialize()
         {
-            Def("WeightREC", _weightREC);
+            Name = "RatingR2";
+            ShortName = "R2";
+            WeightREC = _weightREC;
             WeightRat = _weightRat;
-            Def("WeightREClf", _WeightREClf);
-            Def("Adaptability", _adaFact);
-            Def("RoutineFactor", _routineFactor);
+            WeightREClf = _WeightREClf;
+            Adaptability = _adaFact;
+            RoutineFactor = _routineFactor;
             Def("RatingFunctionType", eRatingFunctionType.RatingR2);
         }
     }

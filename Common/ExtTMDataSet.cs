@@ -438,7 +438,7 @@ namespace Common
 
                     edsRow.HidSk = plyDB.GetHidSkString();
 
-                    edsRow.SetFP(fun);
+                    edsRow.SetFP();
 
                     if (isNew) this.GiocatoriNSkill.Rows.Add(edsRow);
                 }
@@ -584,7 +584,7 @@ namespace Common
                     {
                     }
 
-                    edsRow.SetFP(fun);
+                    edsRow.SetFP();
 
                     if (isNew) this.GiocatoriNSkill.Rows.Add(edsRow);
                 }
@@ -637,7 +637,6 @@ namespace Common
 
         public void FillWithDb_TrophyDataSet_NewTM(ExtraDS PlayersDS,
                                                 Db_TrophyDataSet tds,
-                                                Gain_Function fun,
                                                 ExtTMDataSet prevDS,
                                                 string ApplicationFolder)
         {
@@ -804,7 +803,7 @@ namespace Common
                         edsRow.HidSk = plyDB.GetHidSkString();
                     }
 
-                    edsRow.SetFP(fun);
+                    edsRow.SetFP();
                     edsRow.Rec = tdsRow.Rec;
 
 
@@ -950,7 +949,7 @@ namespace Common
                     {
                     }
 
-                    edsRow.SetFP(fun);
+                    edsRow.SetFP();
                     edsRow.Rec = tdsRow.Rec;
 
                     if (isNew) this.GiocatoriNSkill.Rows.Add(edsRow);
@@ -977,12 +976,6 @@ namespace Common
 
                 file = new StreamReader(fi.FullName);
                 info += "\r\nTDS:\r\n" + file.ReadToEnd();
-                file.Close();
-
-                fun.gds.WriteXml(fi.FullName);
-
-                file = new StreamReader(fi.FullName);
-                info += "\r\nGDS:\r\n" + file.ReadToEnd();
                 file.Close();
 
                 prevDS.WriteXml(fi.FullName);
@@ -1257,7 +1250,7 @@ namespace Common
                 return (a - 2.0f) / 3.0f;
             }
 
-            public void SetFP(Gain_Function PosF)
+            public void SetFP()
             {
                 if (!IsFPNull())
                     FPn = Tm_Utility.FPToNumber(FP);
@@ -1269,7 +1262,6 @@ namespace Common
 
                 if (FPn == 0)
                 {
-                    SetFP_Gk(PosF);
                     return;
                 }
 
@@ -1278,13 +1270,7 @@ namespace Common
                 else if (Ada > 0)
                     Ada = Ada + 0;
 
-                Atts = PosF.GetAttitude(Skills, this.FP, (float)this.Rou, (float)this.Ada);
-                OSi = PosF.GetOSi_PL(Atts, Skills);
-
-                float kRou = PosF.gds.funRou.Value((float)Rou);
-
                 decimal SSD = Tm_Utility.ASItoSkSum((decimal)this.ASI, false) - this.SkillSum;
-                CStr = (decimal)MaxAttsToStar(MaxAtts() / kRou * (float)((SkillSum + SSD) / SkillSum));
             }
 
             public void SetFP_Gk(Gain_Function PosF)
@@ -1462,21 +1448,6 @@ namespace Common
                 (p3 == "OMR") ? OMR :
                 (p3 == "OML") ? OML : 0.0f;
             }
-        }
-
-        public void RecalculateSpecData(Gain_Function fun)
-        {
-            foreach (ExtTMDataSet.GiocatoriNSkillRow gnsRow in this.GiocatoriNSkill)
-            {
-                gnsRow.SetFP(fun);
-            }
-        }
-
-        public void RecalculateSpecData(Gain_Function fun, int plyID)
-        {
-            ExtTMDataSet.GiocatoriNSkillRow gnsRow = GiocatoriNSkill.FindByPlayerID(plyID);
-            if (gnsRow != null)
-                gnsRow.SetFP(fun);
         }
 
         public DB_TrophyDataSet2 Get_TDS2()
@@ -1722,7 +1693,7 @@ namespace Common
                     edsRow.Infortunato = tdsRow.Infortunato;
                     edsRow.Squalificato = tdsRow.Squalificato;
 
-                    edsRow.SetFP(fun);
+                    edsRow.SetFP();
 
                     this.GiocatoriNSkill.Rows.Add(edsRow);
                 }

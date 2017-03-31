@@ -82,7 +82,7 @@ function ApplyRatingR3() {
                    [0.5, 0.333, 0.5, 1, 0.5, 1, 0.5, 0.5, 0.333, 0.333, 0.333]]; //GK
 
     //				DC		   DL/R		  DMC		  DML/R		  MC		  ML/R		  OMC		  OML/R		  F			  GK
-    var recLast = [[14.866375, 15.980742, 15.8932675, 15.5835325, 17.6955092, 16.6189141, 18.1255351, 15.6304867, 13.2762119, 15],
+    var WeightREClf = [[14.866375, 15.980742, 15.8932675, 15.5835325, 17.6955092, 16.6189141, 18.1255351, 15.6304867, 13.2762119, 15],
                    [18.95664, 22.895539, 23.1801296, 23.2813871, 26.8420884, 23.9940623, 27.8974544, 24.54323, 19.5088591, 22.3]];
 
     // L	DC	R	L	DMC	R	L	MC	R	L	OMC	R	F
@@ -315,7 +315,7 @@ function ApplyRatingR3() {
                     rectd.innerHTML = REREC[0][FP[0]] + "/" + REREC[0][FP[1]];
                     recbtd.innerHTML = funFix3(REREC2[0]) + "/" + funFix3(REREC2[1]);
                     rattd.innerHTML = REREC[2][FP[0]] + "/" + REREC[2][FP[1]];
-                    var ratingR3 = rattd.innerHTML;
+                    var ratingR = rattd.innerHTML;
                     var rouEffect = funFix(REREC[2][FP[0]] * 1 - REREC[1][FP[0]] * 1) + "/" + funFix(REREC[2][FP[1]] * 1 - REREC[1][FP[1]] * 1);
                     var R3Pure = REREC[1][FP[0]] + "/" + REREC[1][FP[1]];
                     var ratingR2 = funFix(REREC[1][FP[0]] * (1 + rou / rou_factor * 0.4 * 0.00405)) + "/" + funFix(REREC[1][FP[1]] * (1 + rou / rou_factor * 0.4 * 0.00405));
@@ -324,7 +324,7 @@ function ApplyRatingR3() {
                     rectd.innerHTML = REREC[0][FP[0]];
                     recbtd.innerHTML = funFix3(REREC2[0]);
                     rattd.innerHTML = REREC[2][FP[0]];
-                    var ratingR3 = rattd.innerHTML;
+                    var ratingR = rattd.innerHTML;
                     var rouEffect = funFix(REREC[2][FP[0]] * 1 - REREC[1][FP[0]] * 1);
                     var R3Pure = REREC[1][FP[0]];
                     var ratingR2 = funFix(R3Pure * (1 + rou / rou_factor * 0.4 * 0.00405));
@@ -359,11 +359,11 @@ function ApplyRatingR3() {
                     var CK = funFix(skills[8] + skills[13] + skills[9] / 2 + rou / 5 * 2.5);
                     var FK = funFix(skills[12] + skills[13] + skills[9] / 2 + rou / 5 * 2.5);
                     var PK = funFix(skills[11] + skills[13] + skills[9] / 2 + rou / 5 * 2.5);
-                    div_area.innerHTML = "<div style=\"position: absolute; z-index: 1; width: 186px; height: 279px; margin-top: 10px; background: url(http://oi63.tinypic.com/34pxvsl.jpg);  color: white;  outset; display:inline;\">&nbsp;<p style=\"text-decoration: underline;\"><b><\p><table style=\"margin-top: -1em; margin-bottom: 1em; position:relative; top:0px;left:5px\">&nbsp;<tr><td>PhySum: </td><td>" + phySum + " (" + Math.round(phySum / peak[0] * 5) + "%)</td></tr><tr><td>TacSum: </td><td>" + tacSum + " (" + Math.round(tacSum / peak[1] * 5) + "%)</td></tr><tr><td>TecSum: </td><td>" + tecSum + " (" + Math.round(tecSum / peak[2] * 5) + "%)</td></tr><tr><td>AllSum: </td><td>" + allSum + " + " + remainder + " </td></tr><tr><td>&nbsp;</td><tr><td>Corner: </td><td>" + CK + "</td></tr><tr><td>Freekick: </td><td>" + FK + "</td></tr><tr><td>Penalty: </td><td>" + PK + "</td></tr></tr><tr><td>&nbsp;</td></tr><tr><td>Rating-Pure: </td><td>" + R3Pure + "</td></tr><tr><td>RouEffect: </td><td>" + rouEffect + " </td></tr><tr><td>RatingR3: </td><td>" + ratingR3 + " </td></tr></table></b></div>";
+                    div_area.innerHTML = "<div style=\"position: absolute; z-index: 1; width: 186px; height: 279px; margin-top: 10px; background: url(http://oi63.tinypic.com/34pxvsl.jpg);  color: white;  outset; display:inline;\">&nbsp;<p style=\"text-decoration: underline;\"><b><\p><table style=\"margin-top: -1em; margin-bottom: 1em; position:relative; top:0px;left:5px\">&nbsp;<tr><td>PhySum: </td><td>" + phySum + " (" + Math.round(phySum / peak[0] * 5) + "%)</td></tr><tr><td>TacSum: </td><td>" + tacSum + " (" + Math.round(tacSum / peak[1] * 5) + "%)</td></tr><tr><td>TecSum: </td><td>" + tecSum + " (" + Math.round(tecSum / peak[2] * 5) + "%)</td></tr><tr><td>AllSum: </td><td>" + allSum + " + " + remainder + " </td></tr><tr><td>&nbsp;</td><tr><td>Corner: </td><td>" + CK + "</td></tr><tr><td>Freekick: </td><td>" + FK + "</td></tr><tr><td>Penalty: </td><td>" + PK + "</td></tr></tr><tr><td>&nbsp;</td></tr><tr><td>Rating-Pure: </td><td>" + R3Pure + "</td></tr><tr><td>RouEffect: </td><td>" + rouEffect + " </td></tr><tr><td>RatingR3: </td><td>" + ratingR + " </td></tr></table></b></div>";
                 }
                 else {
                     var peak = [4, 3, 4];
-                    div_area.innerHTML = "<div style=\"position: absolute; z-index: 1; width: 186px; height: 194px; margin-top: 20px; background: url(http://oi65.tinypic.com/33v10t1.jpg);  color: white;  outset; display:inline;\">&nbsp;<p style=\"text-decoration: underline;\"><b><\p><table style=\"margin-top: -1em; margin-bottom: 1em; position:relative; top:0px;left:5px\">&nbsp;<tr><td>PhySum: </td><td>" + phySum + " (" + Math.round(phySum / peak[0] * 5) + "%)</td></tr><tr><td>TacSum: </td><td>" + tacSum + " (" + Math.round(tacSum / peak[1] * 5) + "%)</td></tr><tr><td>TecSum: </td><td>" + tecSum + " (" + Math.round(tecSum / peak[2] * 5) + "%)</td></tr><tr><td>AllSum: </td><td>" + allSum + " + " + remainder + " </td></tr><tr><td>&nbsp;</td></tr><tr><td>Rating-Pure: </td><td>" + R3Pure + "</td></tr><tr><td>RouEffect: </td><td>" + rouEffect + " </td></tr><tr><td>RatingR3: </td><td>" + ratingR3 + " </td></tr></table></b></div>";
+                    div_area.innerHTML = "<div style=\"position: absolute; z-index: 1; width: 186px; height: 194px; margin-top: 20px; background: url(http://oi65.tinypic.com/33v10t1.jpg);  color: white;  outset; display:inline;\">&nbsp;<p style=\"text-decoration: underline;\"><b><\p><table style=\"margin-top: -1em; margin-bottom: 1em; position:relative; top:0px;left:5px\">&nbsp;<tr><td>PhySum: </td><td>" + phySum + " (" + Math.round(phySum / peak[0] * 5) + "%)</td></tr><tr><td>TacSum: </td><td>" + tacSum + " (" + Math.round(tacSum / peak[1] * 5) + "%)</td></tr><tr><td>TecSum: </td><td>" + tecSum + " (" + Math.round(tecSum / peak[2] * 5) + "%)</td></tr><tr><td>AllSum: </td><td>" + allSum + " + " + remainder + " </td></tr><tr><td>&nbsp;</td></tr><tr><td>Rating-Pure: </td><td>" + R3Pure + "</td></tr><tr><td>RouEffect: </td><td>" + rouEffect + " </td></tr><tr><td>RatingR3: </td><td>" + ratingR + " </td></tr></table></b></div>";
                 }
                 document.getElementsByClassName("box")[0].appendChild(div_area);
 
@@ -449,8 +449,8 @@ function ApplyRatingR3() {
 
             document.calculateREREC = function (positionIndex, skills, SI, rou) {
                 var rec = [];			// REREC
-                var ratingR = [];		// RatingR3
-                var ratingR3 = [];		// RatingR3 + routine
+                var rating = [];		// RatingR3
+                var ratingR = [];		// RatingR3 + routine
                 var skillSum = 0;
                 if (positionIndex == 13) {
                     var skillWeightSum = Math.pow(SI, 0.143) / 0.02979;			// GK Skillsum
@@ -470,33 +470,34 @@ function ApplyRatingR3() {
                 var remainder = Math.round((Math.pow(2, Math.log(weight * SI) / Math.log(Math.pow(2, 7))) - skillSum) * 10) / 10;		// RatingR3 remainder
                 for (var i = 0; i < 10; i++) {
                     rec[i] = 0;
-                    ratingR[i] = 0;
+                    rating[i] = 0;
                 }
                 for (var j = 0; j < 9; j++) {		// All position
-                    var remainderWeight = 0;		// REREC remainder weight sum
-                    var remainderWeight2 = 0;		// RatingR3 remainder weight sum
+                    var remWeightREC = 0;		// REREC remainder weight sum
+                    var remWeightRat = 0;		// RatingR3 remainder weight sum
                     var not20 = 0;					// 20以外のスキル数
                     if (positionIndex == 9) j = 9;	// GK
 
                     for (var i = 0; i < weightR[positionIndex].length; i++) {
                         rec[j] += skills[i] * weightR[j][i];
-                        ratingR[j] += skills[i] * weightR3[j][i];
+                        rating[j] += skills[i] * weightR3[j][i];
                         if (skills[i] != 20) {
-                            remainderWeight += weightR[j][i];
-                            remainderWeight2 += weightR3[j][i];
+                            remWeightREC += weightR[j][i];
+                            remWeightRat += weightR3[j][i];
                             not20 += 1;
                         }
                     }
-                    rec[j] += skillWeightSum * remainderWeight / not20;		// REREC Score
+                    rec[j] += skillWeightSum * remWeightREC / not20;		// REREC Score
                     if (positionIndex == 9) rec[j] *= 1.27;					// GK
-                    rec[j] = funFix((rec[j] - recLast[0][j]) / recLast[1][j]);
-                    ratingR[j] += remainder * remainderWeight2 / not20;
-                    ratingR3[j] = funFix(ratingR[j] + rou);
-                    ratingR[j] = funFix(ratingR[j]);
+
+                    rec[j] = funFix((rec[j] - WeightREClf[0][j]) / WeightREClf[1][j]);
+                    rating[j] += remainder * remWeightRat / not20;
+                    ratingR[j] = funFix(rating[j] + rou);
+                    rating[j] = funFix(rating[j]);
                     if (positionIndex == 9) j = 9;		// Loop end
                 }
 
-                var recAndRating = [rec, ratingR, ratingR3];
+                var recAndRating = [rec, rating, ratingR];
                 return recAndRating;
             };
 

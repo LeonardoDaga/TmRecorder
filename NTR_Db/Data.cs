@@ -1354,7 +1354,7 @@ namespace NTR_Db
                 Rec = tdr.Rec / 2.0M;
 
             this.Rating = RF.ComputeRating(PlayerDataSkills.From(this));
-            Rat = (decimal)Rating.GetRec(FPn);
+            RfRec = (decimal)Rating.GetRec(FPn);
 
             NTR_SquadDb.ShortlistRow shr = DB.Shortlist.FindByPlayerID(playerID);
             AlarmSet = false;
@@ -1567,7 +1567,7 @@ namespace NTR_Db
             Rec = thisWeek.Rec;
 
             this.Rating = RF.ComputeRating(PlayerDataSkills.From(this));
-            Rat = (decimal)Rating.GetRec(FPn);
+            RfRec = (decimal)Rating.GetRec(FPn);
             OSi = (decimal)Rating.OSi;
 
             if (!gr.IswBloomDataNull())
@@ -1585,6 +1585,10 @@ namespace NTR_Db
             if (!gr.IsInjPronNull()) this.InjPron = gr.InjPron;
             if (!gr.IsLeadershipNull()) this.Leadership = gr.Leadership;
             if (!gr.IsPotentialNull()) this.Potential = gr.Potential;
+        }
+
+        public PlayerData()
+        {
         }
 
         public void FillWithWeeks(NTR_SquadDb.HistDataRow thisWeek, NTR_SquadDb.HistDataRow prevWeek)
@@ -1885,7 +1889,7 @@ namespace NTR_Db
         public float AvTI { get; private set; }
         public string Votes { get; private set; }
         public int SPn { get; set; }
-        public decimal Rat { get; private set; }
+        public decimal RfRec { get; private set; }
         public Rating Rating { get; private set; }
 
         private void ParseBloomValues()

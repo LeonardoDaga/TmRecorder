@@ -831,9 +831,18 @@ namespace NTR_Db
 
                 fi = new FileInfo(Path.Combine(dirPath, "Players.5.xml"));
 
-                seasonsDB.Player.ReadSafeXml(fi.FullName);
-
                 sf.UpdateStatusMessage(30, string.Format("Loading Players DB v.5..."));
+
+                try
+                {
+                    seasonsDB.Player.Clear();
+                    seasonsDB.Player.ReadXml(fi.FullName);
+                }
+                catch
+                {
+                    seasonsDB.Player.Clear();
+                    seasonsDB.Player.ReadSafeXml(fi.FullName, sf);
+                }
 
                 FileInfo[] fis = di.GetFiles("HistData-*.5.xml");
                 int cntfis = fis.Length;

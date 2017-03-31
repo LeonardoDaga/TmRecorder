@@ -421,8 +421,6 @@ namespace NTR_Db
             }
         }
 
-        public string Name { get; }
-        public string ShortName { get; }
         WeightMatrix OrderedWeightRat;
 
         public eRatingFunctionType RatingFunctionType
@@ -439,6 +437,16 @@ namespace NTR_Db
         {
             get => (WeightMatrix)this["WeightREC"];
             set => this["WeightREC"] = value;
+        }
+        public string ShortName
+        {
+            get => (string)this["ShortName"];
+            set => this["ShortName"] = value;
+        }
+        public string Name
+        {
+            get => (string)this["Name"];
+            set => this["Name"] = value;
         }
         public WeightMatrix WeightRat
         {

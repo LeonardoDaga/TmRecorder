@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NTR_Db;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,6 +15,8 @@ namespace A_TestForm
         public TestForm()
         {
             InitializeComponent();
+
+            RatingR3.TestRating();
         }
     }
 }

@@ -245,12 +245,20 @@ namespace Common
 
         partial class PlayerDataTable
         {
-            public void ReadSafeXml(string fullName)
+            public void ReadSafeXml(string fullName, SplashForm sf)
             {
                 this.DataSet.EnforceConstraints = false;
                 ReadXml(fullName);
 
                 Dictionary<int, NTR_SquadDb.PlayerRow> listDuplicates = new Dictionary<int, NTR_SquadDb.PlayerRow>();
+
+                for (int i=0; i < this.Count; i++)
+                {
+                    if (i % 50 == 0)
+                    sf.UpdateStatusMessage(30 + (i*10)/this.Count, string.Format("Checking players DB consistency ({0}/{1})", i, this.Count));
+
+                    NTR_SquadDb.PlayerRow player = this[i];
+                }
 
                 foreach (NTR_SquadDb.PlayerRow player in this)
                 {

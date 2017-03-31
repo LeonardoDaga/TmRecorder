@@ -306,35 +306,34 @@ namespace TMRecorder
                 break;
             }
 
-            throw new NotImplementedException();
-            //if ((ix < this.Count) && (this[ix].Date.Date == db_TrophyDataSet.Date.Date))
-            //{
-            //    // Dataset already exist: substitute data
-            //    ExtTMDataSet eds = this[ix];
+            if ((ix < this.Count) && (this[ix].Date.Date == db_TrophyDataSet.Date.Date))
+            {
+                // Dataset already exist: substitute data
+                ExtTMDataSet eds = this[ix];
 
-            //    if (ix > 0)
-            //        eds.FillWithDb_TrophyDataSet_NewTM(PlayersDS, db_TrophyDataSet, PFun, this[ix - 1],
-            //            Program.Setts.TeamDataFolder);
-            //    else
-            //        eds.FillWithDb_TrophyDataSet_NewTM(PlayersDS, db_TrophyDataSet, PFun, null,
-            //            Program.Setts.TeamDataFolder);
-            //}
-            //else
-            //{
-            //    // New data set, create a new one
+                if (ix > 0)
+                    eds.FillWithDb_TrophyDataSet_NewTM(PlayersDS, db_TrophyDataSet, this[ix - 1],
+                        Program.Setts.TeamDataFolder);
+                else
+                    eds.FillWithDb_TrophyDataSet_NewTM(PlayersDS, db_TrophyDataSet, null,
+                        Program.Setts.TeamDataFolder);
+            }
+            else
+            {
+                // New data set, create a new one
 
-            //    // Fill ExtTMDataSet with Db_TrophyDataSet
-            //    ExtTMDataSet eds = new ExtTMDataSet();
+                // Fill ExtTMDataSet with Db_TrophyDataSet
+                ExtTMDataSet eds = new ExtTMDataSet();
 
-            //    if (ix > 0)
-            //        eds.FillWithDb_TrophyDataSet_NewTM(PlayersDS, db_TrophyDataSet, PFun, this[ix - 1],
-            //            Program.Setts.TeamDataFolder);
-            //    else
-            //        eds.FillWithDb_TrophyDataSet_NewTM(PlayersDS, db_TrophyDataSet, PFun, null,
-            //            Program.Setts.TeamDataFolder);
+                if (ix > 0)
+                    eds.FillWithDb_TrophyDataSet_NewTM(PlayersDS, db_TrophyDataSet, this[ix - 1],
+                        Program.Setts.TeamDataFolder);
+                else
+                    eds.FillWithDb_TrophyDataSet_NewTM(PlayersDS, db_TrophyDataSet, null,
+                        Program.Setts.TeamDataFolder);
 
-            //    this.Insert(ix, eds);
-            //}
+                this.Insert(ix, eds);
+            }
         }
 
         public new void Add(ExtTMDataSet eds)

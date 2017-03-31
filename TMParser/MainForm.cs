@@ -265,6 +265,8 @@ namespace TMRecorder
                 Program.Setts.Save();
 
                 sf.Close();
+                sf = null;
+
                 // Text = "TM Team Recorder - Release " 
 
                 evidenceSkillsForGainsToolStripMenuItem.Checked = Program.Setts.EvidenceGain;
@@ -296,6 +298,18 @@ namespace TMRecorder
 
         private bool LoadData()
         {
+            bool SplashToClose = false;
+
+            if (sf == null)
+            {
+                sf = new SplashForm("TM - Team Recorder",
+                    "Release " + Application.ProductVersion,
+                    "Wait: Changing Rating or Tactics Function...");
+                sf.Show();
+                SplashToClose = true;
+            }
+
+
             dP[1] = 3;
             sf.UpdateStatusMessage(5, "Loading History...");
             bool res = LoadHistory();
@@ -305,15 +319,19 @@ namespace TMRecorder
             LoadMatches(sf);
 
             dP[1] = 5;
+            sf.UpdateStatusMessage(91, "Setting Last team...");
             SetLastTeam();
 
             dP[1] = 6;
+            sf.UpdateStatusMessage(92, "Loading Report analysis settings...");
             LoadReportAnalysisSetts();
 
             dP[1] = 7;
+            sf.UpdateStatusMessage(93, "Updating missing data...");
             UpdateLackData();
 
             dP[1] = 8;
+            sf.UpdateStatusMessage(94, "Loading trainers...");
             LoadTrainers();
 
             dP[1] = 9;
@@ -322,7 +340,11 @@ namespace TMRecorder
 
             dP[1] = 10;
 
-            bool showCstr = true;
+            if (SplashToClose)
+            {
+                sf.Close();
+                sf = null;
+            }
 
             History.reportParser = new ReportParser(Program.Setts.ReportParsingFile);
 
@@ -970,7 +992,7 @@ namespace TMRecorder
 
             dgPlayers.AddColumn("Rou", "Rou", 30, AG_Style.Numeric | AG_Style.RightJustified);
             dgPlayers.AddColumn("SSD", "SSD", 30, AG_Style.Numeric | AG_Style.RightJustified);
-            dgPlayers.AddColumn("R2", "Rat", 30, AG_Style.Numeric | AG_Style.N2 | AG_Style.RightJustified);
+            dgPlayers.AddColumn(History.RF.ShortName, "RfRec", 30, AG_Style.Numeric | AG_Style.N2 | AG_Style.RightJustified);
             dgPlayers.AddColumn("Rec", "Rec", 30, AG_Style.Numeric | AG_Style.RightJustified);
             dgvc = (TMR_NumDecColumn)dgPlayers.AddColumn("TI", "TI", 32, AG_Style.NumDec);
             dgvc.CellColorStyles = CellColorStyleList.DefaultGainColorStyle();
@@ -1029,7 +1051,7 @@ namespace TMRecorder
 
             dataGridPortieri.AddColumn("Rou", "Rou", 30, AG_Style.Numeric | AG_Style.RightJustified);
             dataGridPortieri.AddColumn("SSD", "SSD", 30, AG_Style.Numeric | AG_Style.RightJustified);
-            dataGridPortieri.AddColumn("R2", "Rat", 30, AG_Style.Numeric | AG_Style.N2 | AG_Style.RightJustified);
+            dataGridPortieri.AddColumn(History.RF.ShortName, "RfRec", 30, AG_Style.Numeric | AG_Style.N2 | AG_Style.RightJustified);
             dataGridPortieri.AddColumn("Rec", "Rec", 30, AG_Style.Numeric | AG_Style.RightJustified);
             dgvc = (TMR_NumDecColumn)dataGridPortieri.AddColumn("TI", "TI", 32, AG_Style.NumDec | AG_Style.Frozen);
             dgvc.CellColorStyles = CellColorStyleList.DefaultGainColorStyle();
@@ -1123,7 +1145,7 @@ namespace TMRecorder
             dgTactics.AddSkColumn("Set", evidenceGain);
 
             dgTactics.AddColumn("Rou", "Rou", 30, AG_Style.Numeric | AG_Style.RightJustified);
-            dgTactics.AddColumn("R2", "Rat", 38, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N2);
+            dgTactics.AddColumn(History.RF.ShortName, "RfRec", 38, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N2);
 
             dgTactics.AddColumn("SP", "SPn", 42, AG_Style.FavPosition | AG_Style.Frozen);
 
@@ -3390,6 +3412,9 @@ namespace TMRecorder
 
                 History.Clear();
                 LoadData();
+
+                Program.Setts.RatingFunctionPath = reDlg.FileName;
+                Program.Setts.Save();
             }
         }
 
@@ -3406,6 +3431,9 @@ namespace TMRecorder
 
                 History.Clear();
                 LoadData();
+
+                Program.Setts.TacticsFunctionPath = tfDlg.fileName;
+                Program.Setts.Save();
             }
         }
     }

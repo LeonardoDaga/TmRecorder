@@ -91,9 +91,17 @@
       <Project>{483d9c7d-108e-4aec-9da2-20e57abe217f}</Project>
       <Name>NTR_WebBrowser</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NTR_Common\NTR_Common.csproj">
+      <Project>{D32F5344-D291-42FC-8B6E-4183864E2D77}</Project>
+      <Name>NTR_Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NTR_Controls\NTR_Controls.csproj">
       <Project>{A62AB280-42D0-4639-8391-4BFA73269625}</Project>
       <Name>NTR_Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NTR_Db\NTR_Db.csproj">
+      <Project>{DF7D6401-1959-405F-8F35-65FD8AD320B7}</Project>
+      <Name>NTR_Db</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -69,7 +69,7 @@ namespace DataGridViewCustomColumns
 
             if (this.Value != System.DBNull.Value)
             {
-                ctl.Value = System.Convert.ToDecimal(this.Value);
+                ctl.Value = System.Convert.ToDecimal(((decvar)this.Value).actual);
             }
 
         }
@@ -438,7 +438,10 @@ namespace DataGridViewCustomColumns
             this.ForeColor = dataGridViewCellStyle.ForeColor;
             this.BackColor = dataGridViewCellStyle.BackColor;
 
-            this.DecimalPlaces = int.Parse(dataGridViewCellStyle.Format.Trim('N'));
+            if (dataGridViewCellStyle.Format != "")
+                this.DecimalPlaces = int.Parse(dataGridViewCellStyle.Format.Trim('N'));
+            else
+                this.DecimalPlaces = 1;
         }
 
         // Implements the IDataGridViewEditingControl.EditingControlRowIndex 

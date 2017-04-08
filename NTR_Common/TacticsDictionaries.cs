@@ -106,15 +106,167 @@ namespace NTR_Common
             Kic,Thr};
     }
 
+    public class TAC_Tac2ActWeights
+    {
+        public TAC_Tac2ActWeights(double[] weights, Tactics.Type tactics)
+        {
+            Tactics = tactics.ToString();
+            Tactics.backColor = Color.LightYellow;
+
+            Sho = weights[0];
+            Cro = weights[1];
+            Lon = weights[2];
+            Dir = weights[3];
+            Fil = weights[4];
+            Fre = weights[5];
+            Cor = weights[6];
+            Pen = weights[7];
+        }
+
+        public FormattedString Tactics { get; set; }
+        public double Sho { get; set; }
+        public double Cro { get; set; }
+        public double Lon { get; set; }
+        public double Dir { get; set; }
+        public double Fil { get; set; }
+        public double Fre { get; set; }
+        public double Cor { get; set; }
+        public double Pen { get; set; }
+
+        public double[] Row => new double[]
+            {Sho,Cro,Lon,
+            Dir,Fil,Fre,
+            Cor,Pen};
+    }
+
+    public class TAC_PossessionWeights
+    {
+        public TAC_PossessionWeights(double[] weights, Tactics.Possession mode)
+        {
+            Mode = mode.ToString();
+            Mode.backColor = Color.LightGray;
+
+            Str = weights[0];
+            Sta = weights[1];
+            Pac = weights[2];
+            Mar = weights[3];
+            Tac = weights[4];
+            Wor = weights[5];
+            Pos = weights[6];
+            Pas = weights[7];
+            Cro = weights[8];
+            Tec = weights[9];
+            Hea = weights[10];
+            Fin = weights[11];
+            Lon = weights[12];
+            Set = weights[13];
+        }
+
+        public FormattedString Mode { get; set; }
+        public double Str { get; set; }
+        public double Sta { get; set; }
+        public double Pac { get; set; }
+        public double Mar { get; set; }
+        public double Tac { get; set; }
+        public double Wor { get; set; }
+        public double Pos { get; set; }
+        public double Pas { get; set; }
+        public double Cro { get; set; }
+        public double Tec { get; set; }
+        public double Hea { get; set; }
+        public double Fin { get; set; }
+        public double Lon { get; set; }
+        public double Set { get; set; }
+
+        public double[] Row => new double[]
+            {Str,Sta,Pac,
+            Mar,Tac,Wor,
+            Pos,Pas,Cro,
+            Tec,Hea,Fin,
+            Lon,Set};
+    }
+
+    public class TAC_ActionWeights
+    {
+        public TAC_ActionWeights(double[] weights, Tactics.ActionType actionType, int sps)
+        {
+            Tactics = actionType.ToString();
+            Tactics.backColor = Color.LightGray;
+
+            FPos = NTR_Common.Tactics.eSpToString(sps);
+            FPos.backColor = Color.LightYellow;
+
+            Str = weights[0];
+            Sta = weights[1];
+            Pac = weights[2];
+            Mar = weights[3];
+            Tac = weights[4];
+            Wor = weights[5];
+            Pos = weights[6];
+            Pas = weights[7];
+            Cro = weights[8];
+            Tec = weights[9];
+            Hea = weights[10];
+            Fin = weights[11];
+            Lon = weights[12];
+            Set = weights[13];
+        }
+
+        public FormattedString Tactics { get; set; }
+        public double Str { get; set; }
+        public double Sta { get; set; }
+        public double Pac { get; set; }
+        public double Mar { get; set; }
+        public double Tac { get; set; }
+        public double Wor { get; set; }
+        public double Pos { get; set; }
+        public double Pas { get; set; }
+        public double Cro { get; set; }
+        public double Tec { get; set; }
+        public double Hea { get; set; }
+        public double Fin { get; set; }
+        public double Lon { get; set; }
+        public double Set { get; set; }
+        public FormattedString FPos { get; set; }
+
+        public double[] Row => new double[]
+            {Str,Sta,Pac,
+            Mar,Tac,Wor,
+            Pos,Pas,Cro,
+            Tec,Hea,Fin,
+            Lon,Set};
+    }
+
     public class Tactics
     {
         public enum Type
         {
-            Direct,
-            Wings,
-            ShortPass,
-            LongBalls,
-            Through
+            Dir,
+            Win,
+            Sho,
+            Lon,
+            Thr,
+            Std,
+            Tot
+        }
+
+        public enum ActionType
+        {
+            Shp,
+            Win,
+            Lon,
+            Dir,
+            Thr,
+            Fre,
+            Cor,
+            Pen,
+            Tot
+        }
+
+        public enum Possession : int
+        {
+            Keeping = 0,
+            Gaining = 1
         }
 
         public enum Position : int
@@ -187,6 +339,7 @@ namespace NTR_Common
             return res;
         }
 
+        #region WeightListToDict
         public static PlTacticsSPosDictionary WeightListToDict(List<TAC_PlWeights> tacPlWeights)
         {
             PlTacticsSPosDictionary dict = new PlTacticsSPosDictionary();
@@ -243,46 +396,70 @@ namespace NTR_Common
             return dict;
         }
 
-        //public static List<TAC_PlWeights> WeightsMatrixToPlayerWeightsTable(Matrix weights, string[,] rules)
-        //{
-        //    List<TAC_PlWeights> tacWeightsList = new List<TAC_PlWeights>();
+        public static TacticsToAcionDictionary WeightListToDict(List<TAC_Tac2ActWeights> _tac2Actweights)
+        {
+            TacticsToAcionDictionary dict = new TacticsToAcionDictionary();
 
-        //    for (int row = 0; row < weights.Rows; row++)
-        //    {
-        //        TAC_PlWeights Weight = new TAC_PlWeights(weights, rules, row);
-        //        tacWeightsList.Add(Weight);
-        //    }
+            try
+            {
+                for (int i = 0; i < _tac2Actweights.Count; i++)
+                {
+                    TAC_Tac2ActWeights weights = _tac2Actweights[i];
 
-        //    return tacWeightsList;
-        //}
+                    Tactics.Type tactics = (Tactics.Type)Enum.Parse(typeof(Tactics.Type), weights.Tactics.ToString());
 
-        //internal static (Matrix weights, string[,] rules) PlayerWeightsTableToWeightsMatrix(List<TAC_PlayerWeights> tacWeightsList)
-        //{
-        //    Matrix weights = new Matrix(tacWeightsList.Count, 14);
+                    var key = tactics;
 
-        //    for (int r = 0; r < weights.Rows; r++)
-        //    {
-        //        double[] row = tacWeightsList[r].Row;
+                    dict.Add(key, weights.Row);
+                }
+            }
+            catch (FormatException) { throw new MException("Wrong input format!"); }
+            return dict;
+        }
 
-        //        for (int c = 0; c < weights.Cols; c++)
-        //        {
-        //            weights[r, c] = row[c];
-        //        }
-        //    }
+        public static PossessionDictionary WeightListToDict(List<TAC_PossessionWeights> _tac2Actweights)
+        {
+            PossessionDictionary dict = new PossessionDictionary();
 
-        //    string [,] rules = new string[tacWeightsList.Count, 3];
+            try
+            {
+                for (int i = 0; i < _tac2Actweights.Count; i++)
+                {
+                    TAC_PossessionWeights weights = _tac2Actweights[i];
 
-        //    for (int r = 0; r < weights.Rows; r++)
-        //    {
-        //        rules[r, 0] = tacWeightsList[r].Tactics.ToString();
-        //        rules[r, 1] = tacWeightsList[r].DorA.ToString();
-        //        rules[r, 2] = tacWeightsList[r].FPos.ToString();
-        //    }
+                    Tactics.Possession mode = (Tactics.Possession)Enum.Parse(typeof(Tactics.Possession), weights.Mode.ToString());
 
-        //    return (weights, rules);
-        //}
+                    var key = mode;
 
+                    dict.Add(key, weights.Row);
+                }
+            }
+            catch (FormatException) { throw new MException("Wrong input format!"); }
+            return dict;
+        }
 
+        public static ActionDictionary WeightListToDict(List<TAC_ActionWeights> _tac2Actweights)
+        {
+            ActionDictionary dict = new ActionDictionary();
+
+            try
+            {
+                for (int i = 0; i < _tac2Actweights.Count; i++)
+                {
+                    TAC_ActionWeights weights = _tac2Actweights[i];
+
+                    Tactics.ActionType tactics = (Tactics.ActionType)Enum.Parse(typeof(Tactics.ActionType), weights.Tactics.ToString());
+                    int SPs = Tactics.StringToeSp(weights.FPos.ToString());
+
+                    var key = (tactics, SPs);
+
+                    dict.Add(key, weights.Row);
+                }
+            }
+            catch (FormatException) { throw new MException("Wrong input format!"); }
+            return dict;
+        }
+        #endregion
     }
 
     public enum eSP
@@ -528,6 +705,337 @@ namespace NTR_Common
 
                 s += entry.Key.tactics.ToString() + '\t';
                 s += entry.Key.atk.ToString() + '\t';
+
+                for (int j = 0; j < Cols; j++)
+                {
+                    s += String.Format(iFP, "{0:G5}", weights[j]);
+                    if (j < Cols - 1)
+                    {
+                        s += "\t";
+                    }
+                }
+
+                s += ";...\n";
+            }
+
+            s += ";";
+
+            return s.Replace(";...\n;", ";");
+        }
+    }
+
+    public class TacticsToAcionDictionary : Dictionary<Tactics.Type, double[]>
+    {
+        public static TacticsToAcionDictionary Parse(string s, IFormatProvider iFP = null)
+        {
+            string[] rows = Regex.Split(s, ";");
+            string[] nums;
+
+            TacticsToAcionDictionary dict = new TacticsToAcionDictionary();
+
+            try
+            {
+                for (int i = 0; i < rows.Length; i++)
+                {
+                    if (rows[i] == "")
+                        continue;
+
+                    nums = rows[i].Split('\t');
+
+                    if (nums.Length < 8)
+                        continue;
+
+                    var weights = new double[8];
+
+                    Tactics.Type tactics = (Tactics.Type)Enum.Parse(typeof(Tactics.Type), nums[0]);
+
+                    int j;
+
+                    for (j = 1; j < nums.Length; j++)
+                    {
+                        if (nums[j].Length > 0)
+                        {
+                            if (iFP == null)
+                                weights[j - 1] = double.Parse(nums[j]);
+                            else
+                                weights[j - 1] = double.Parse(nums[j], iFP);
+                        }
+                    }
+
+                    var entry = weights;
+                    var key = tactics;
+
+                    dict.Add(key, entry);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error in parsing tactics");
+            }
+
+            return dict;
+        }
+
+        public string ToExcelString() // Function returns GkTacticsSPosDictionary as a string file
+        {
+            string s = "";
+
+            foreach (var entry in this)
+            {
+                double[] weights = entry.Value;
+
+                int Cols = weights.Length;
+
+                s += entry.Key.ToString() + '\t';
+
+                for (int j = 0; j < Cols; j++)
+                {
+                    s += String.Format("{0:G5}", weights[j]);
+                    if (j < Cols - 1)
+                    {
+                        s += "\t";
+                    }
+                }
+
+                s += "\r\n";
+            }
+
+            return s;
+        }
+
+        public string ToString(IFormatProvider iFP) // Function returns GkTacticsSPosDictionary as a string file
+        {
+            string s = "";
+
+            foreach (var entry in this)
+            {
+                double[] weights = entry.Value;
+
+                int Cols = weights.Length;
+
+                s += entry.Key.ToString() + '\t';
+
+                for (int j = 0; j < Cols; j++)
+                {
+                    s += String.Format(iFP, "{0:G5}", weights[j]);
+                    if (j < Cols - 1)
+                    {
+                        s += "\t";
+                    }
+                }
+
+                s += ";...\n";
+            }
+
+            s += ";";
+
+            return s.Replace(";...\n;", ";");
+        }
+    }
+
+    public class PossessionDictionary : Dictionary<Tactics.Possession, double[]>
+    {
+        public static PossessionDictionary Parse(string s, IFormatProvider iFP = null)
+        {
+            string[] rows = Regex.Split(s, ";");
+            string[] nums;
+
+            PossessionDictionary dict = new PossessionDictionary();
+
+            try
+            {
+                for (int i = 0; i < rows.Length; i++)
+                {
+                    if (rows[i] == "")
+                        continue;
+
+                    nums = rows[i].Split('\t');
+
+                    if (nums.Length < 13)
+                        continue;
+
+                    var weights = new double[14];
+
+                    Tactics.Possession possession = (Tactics.Possession)Enum.Parse(typeof(Tactics.Possession), nums[0]);
+
+                    int j;
+
+                    for (j = 1; j < nums.Length; j++)
+                    {
+                        if (nums[j].Length > 0)
+                        {
+                            if (iFP == null)
+                                weights[j - 1] = double.Parse(nums[j]);
+                            else
+                                weights[j - 1] = double.Parse(nums[j], iFP);
+                        }
+                    }
+
+                    var entry = weights;
+                    var key = possession;
+
+                    dict.Add(key, entry);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error in parsing tactics");
+            }
+
+            return dict;
+        }
+
+        public string ToExcelString() // Function returns GkTacticsSPosDictionary as a string file
+        {
+            string s = "";
+
+            foreach (var entry in this)
+            {
+                double[] weights = entry.Value;
+
+                int Cols = weights.Length;
+
+                s += entry.Key.ToString() + '\t';
+
+                for (int j = 0; j < Cols; j++)
+                {
+                    s += String.Format("{0:G5}", weights[j]);
+                    if (j < Cols - 1)
+                    {
+                        s += "\t";
+                    }
+                }
+
+                s += "\r\n";
+            }
+
+            return s;
+        }
+
+        public string ToString(IFormatProvider iFP) // Function returns GkTacticsSPosDictionary as a string file
+        {
+            string s = "";
+
+            foreach (var entry in this)
+            {
+                double[] weights = entry.Value;
+
+                int Cols = weights.Length;
+
+                s += entry.Key.ToString() + '\t';
+
+                for (int j = 0; j < Cols; j++)
+                {
+                    s += String.Format(iFP, "{0:G5}", weights[j]);
+                    if (j < Cols - 1)
+                    {
+                        s += "\t";
+                    }
+                }
+
+                s += ";...\n";
+            }
+
+            s += ";";
+
+            return s.Replace(";...\n;", ";");
+        }
+    }
+
+    public class ActionDictionary : Dictionary<(Tactics.ActionType actionType, int SPs), double[]>
+    {
+        public static ActionDictionary Parse(string s, IFormatProvider iFP = null)
+        {
+            string[] rows = Regex.Split(s, ";");
+            string[] nums;
+
+            ActionDictionary dict = new ActionDictionary();
+
+            try
+            {
+                for (int i = 0; i < rows.Length; i++)
+                {
+                    if (rows[i] == "")
+                        continue;
+
+                    nums = rows[i].Split('\t');
+
+                    if (nums.Length < 13)
+                        continue;
+
+                    var weights = new double[14];
+
+                    Tactics.ActionType actionType = (Tactics.ActionType)Enum.Parse(typeof(Tactics.ActionType), nums[0]);
+
+                    int SPs = Tactics.StringToeSp(nums[1]);
+
+                    int j;
+
+                    for (j = 2; j < nums.Length; j++)
+                    {
+                        if (nums[j].Length > 0)
+                        {
+                            if (iFP == null)
+                                weights[j - 2] = double.Parse(nums[j]);
+                            else
+                                weights[j - 2] = double.Parse(nums[j], iFP);
+                        }
+                    }
+
+                    var entry = weights;
+                    var key = (actionType, SPs);
+
+                    dict.Add(key, entry);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error in parsing tactics");
+            }
+
+            return dict;
+        }
+
+        public string ToExcelString() // Function returns GkTacticsSPosDictionary as a string file
+        {
+            string s = "";
+
+            foreach (var entry in this)
+            {
+                double[] weights = entry.Value;
+
+                int Cols = weights.Length;
+
+                s += entry.Key.actionType.ToString() + '\t';
+                s += Tactics.eSpToString(entry.Key.SPs)+ '\t';
+
+                for (int j = 0; j < Cols; j++)
+                {
+                    s += String.Format("{0:G5}", weights[j]);
+                    if (j < Cols - 1)
+                    {
+                        s += "\t";
+                    }
+                }
+
+                s += "\r\n";
+            }
+
+            return s;
+        }
+
+        public string ToString(IFormatProvider iFP) // Function returns GkTacticsSPosDictionary as a string file
+        {
+            string s = "";
+
+            foreach (var entry in this)
+            {
+                double[] weights = entry.Value;
+
+                int Cols = weights.Length;
+
+                s += entry.Key.actionType.ToString() + '\t';
+                s += Tactics.eSpToString(entry.Key.SPs) + '\t';
 
                 for (int j = 0; j < Cols; j++)
                 {

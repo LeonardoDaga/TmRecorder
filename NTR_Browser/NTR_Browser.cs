@@ -615,154 +615,158 @@ namespace NTR_WebBrowser
                 string ScoutInfo = "";
 
                 if (element != null)
-                foreach (var child in element.Children)
                 {
-                    if (((HtmlElement)child).InnerHtml.Contains("<tbody>"))
+                    foreach (var child in element.Children)
                     {
-                        var rows = ((HtmlElement)child).GetElementsByTagName("tr");
-                        foreach (var row in rows)
+                        if (((HtmlElement)child).InnerHtml == null)
+                            continue;
+                        if (((HtmlElement)child).InnerHtml.Contains("<tbody>"))
                         {
-                            var cols = ((HtmlElement)row).GetElementsByTagName("td");
-
-                            if ((cols == null) || (cols.Count < 8))
-                                continue;
-
-                            string name = ((HtmlElement)(cols[0])).InnerHtml;
-                            string sen = ((HtmlElement)(cols[1])).InnerHtml;
-                            string yth = ((HtmlElement)(cols[2])).InnerHtml;
-                            string phy = ((HtmlElement)(cols[3])).InnerHtml;
-                            string tac = ((HtmlElement)(cols[4])).InnerHtml;
-                            string tec = ((HtmlElement)(cols[5])).InnerHtml;
-                            string dev = ((HtmlElement)(cols[6])).InnerHtml;
-                            string psy = ((HtmlElement)(cols[7])).InnerHtml;
-
-                            ScoutInfo += "Name:" + name;
-                            ScoutInfo += ",Sen:" + sen;
-                            ScoutInfo += ",Yth:" + yth;
-                            ScoutInfo += ",Phy:" + phy;
-                            ScoutInfo += ",Tac:" + tac;
-                            ScoutInfo += ",Tec:" + tec;
-                            ScoutInfo += ",Dev:" + dev;
-                            ScoutInfo += ",Psy:" + psy + "|";
-                        }
-
-                        ScoutInfo = ScoutInfo.TrimEnd('|');
-                    }
-                    else if (((HtmlElement)child).InnerHtml.Contains("report_header"))
-                    {
-                        var div = ((HtmlElement)child).GetElementsByTagName("div");
-
-                        ScoutName += HTML_Parser.GetTag(((HtmlElement)(div[0])).InnerHtml, "strong") + "|";
-
-                        string date = HTML_Parser.GetTag(((HtmlElement)(div[0])).InnerHtml, "span").TrimStart('(').TrimEnd(')');
-                        DateTime dt = DateTime.Parse(date);
-                        ScoutDate += TmWeek.ToSWDString(dt) + "|";
-
-                        string age = HTML_Parser.GetFirstNumberInString(((HtmlElement)(div[2])).InnerHtml);
-
-                        string giudizio = "";
-                        giudizio += "Age:" + age + ",";
-
-                        int blooming_status = 0;
-                        int blooming = 0;
-                        int dev_status = 0;
-                        int speciality = 0;
-                        int physique = 0;
-                        int technics = 0;
-                        int tactics = 0;
-                        int professionalism = 0;
-                        int leadership = 0;
-                        int aggressivity = 0;
-                        int potential = 0;
-
-                        string field = ((HtmlElement)(div[3])).InnerHtml;
-                        if (field.Contains(this.SelectedReportParser.Dict["Keys"][(int)ReportParser.Keys.Potential]))
-                        {
-                            // It's the potential
-                            string potential_string = HTML_Parser.GetFirstNumberInString(field);
-                            giudizio += "Pot:" + potential_string + ",";
-
-                            ScoutVoto += potential_string + "|";
-                        }
-                        else
-                        {
-                            string message = string.Format("Cannot translate Scout reports: check if your language is properly configured in the options. Language used: {0}",
-                                SelectedReportParser.ConfiguredLanguage);
-                            MessageBox.Show(message);
-                            return "";
-                        }
-
-                        if (div.Count > 5)
-                        {
-                            field = ((HtmlElement)(div[4])).InnerHtml;
-                            if (field.Contains(SelectedReportParser.Dict["Keys"][(int)ReportParser.Keys.BloomStatus]))
+                            var rows = ((HtmlElement)child).GetElementsByTagName("tr");
+                            foreach (var row in rows)
                             {
-                                // It's the bloom status
-                                string[] blooms = field.Split(":-".ToCharArray());
-                                if (blooms.Length == 2)
-                                {
-                                    blooming_status = SelectedReportParser.find("Blooming_Status", blooms[1]);
-                                }
-                                else if (blooms.Length == 3)
-                                {
-                                    blooming_status = SelectedReportParser.find("Blooming_Status", blooms[1]);
-                                    blooming = SelectedReportParser.find("Blooming", blooms[2]);
-                                }
+                                var cols = ((HtmlElement)row).GetElementsByTagName("td");
+
+                                if ((cols == null) || (cols.Count < 8))
+                                    continue;
+
+                                string name = ((HtmlElement)(cols[0])).InnerHtml;
+                                string sen = ((HtmlElement)(cols[1])).InnerHtml;
+                                string yth = ((HtmlElement)(cols[2])).InnerHtml;
+                                string phy = ((HtmlElement)(cols[3])).InnerHtml;
+                                string tac = ((HtmlElement)(cols[4])).InnerHtml;
+                                string tec = ((HtmlElement)(cols[5])).InnerHtml;
+                                string dev = ((HtmlElement)(cols[6])).InnerHtml;
+                                string psy = ((HtmlElement)(cols[7])).InnerHtml;
+
+                                ScoutInfo += "Name:" + name;
+                                ScoutInfo += ",Sen:" + sen;
+                                ScoutInfo += ",Yth:" + yth;
+                                ScoutInfo += ",Phy:" + phy;
+                                ScoutInfo += ",Tac:" + tac;
+                                ScoutInfo += ",Tec:" + tec;
+                                ScoutInfo += ",Dev:" + dev;
+                                ScoutInfo += ",Psy:" + psy + "|";
                             }
 
-                            field = ((HtmlElement)(div[5])).InnerHtml;
-                            if (field.Contains(SelectedReportParser.Dict["Keys"][(int)ReportParser.Keys.DevStatus]))
-                            {
-                                // It's the DevStatus
-                                string[] devstats = field.Split(':');
-                                dev_status = SelectedReportParser.find("Development", devstats[1]);
-                            }
-
-                            field = ((HtmlElement)(div[6])).InnerHtml;
-                            if (field.Contains(SelectedReportParser.Dict["Keys"][(int)ReportParser.Keys.Speciality]))
-                            {
-                                // It's the Speciality
-                                string[] spectats = field.Split(':');
-                                if (FPn == 0) // GK
-                                {
-                                    speciality = SelectedReportParser.find("GK_Skill", spectats[1]);
-                                }
-                                else
-                                {
-                                    speciality = SelectedReportParser.find("Player_Skill", spectats[1]);
-                                }
-                            }
-
-                            field = ((HtmlElement)child).InnerHtml;
-                            try
-                            {
-                                physique = SelectedReportParser.find("Physique", field, physique);
-                                technics = SelectedReportParser.find("Technics", field, technics);
-                                tactics = SelectedReportParser.find("Tactics", field, tactics);
-                                aggressivity = SelectedReportParser.find("Aggressivity", field, aggressivity);
-                                leadership = SelectedReportParser.find("Charisma", field, leadership);
-                                professionalism = SelectedReportParser.find("Professionalism", field, professionalism);
-                            }
-                            catch(Exception)
-                            { }
-
-                            if (physique != 0) giudizio += "Phy:" + physique + ",";
-                            if (technics != 0) giudizio += "Tec:" + technics + ",";
-                            if (tactics != 0) giudizio += "Tac:" + tactics + ",";
-                            if (leadership != 0) giudizio += "Lea:" + leadership + ",";
-                            if (blooming_status != 0) giudizio += "BlS:" + blooming_status + ",";
-                            if (blooming != 0) giudizio += "Blo:" + blooming + ",";
-                            if (dev_status != 0) giudizio += "Dev:" + dev_status + ",";
-                            if (speciality != 0) giudizio += "Spe:" + speciality + ",";
-                            if (aggressivity != 0) giudizio += "Agg:" + aggressivity + ",";
-                            if (professionalism != 0) giudizio += "Pro:" + professionalism + ",";
+                            ScoutInfo = ScoutInfo.TrimEnd('|');
                         }
+                        else if (((HtmlElement)child).InnerHtml.Contains("report_header"))
+                        {
+                            var div = ((HtmlElement)child).GetElementsByTagName("div");
 
-                        if (ScoutGiudizio != "")
-                            ScoutGiudizio = ScoutGiudizio + "|" + giudizio.TrimEnd(',');
-                        else
-                            ScoutGiudizio = giudizio.TrimEnd(',');
+                            ScoutName += HTML_Parser.GetTag(((HtmlElement)(div[0])).InnerHtml, "strong") + "|";
 
+                            string date = HTML_Parser.GetTag(((HtmlElement)(div[0])).InnerHtml, "span").TrimStart('(').TrimEnd(')');
+                            DateTime dt = DateTime.Parse(date);
+                            ScoutDate += TmWeek.ToSWDString(dt) + "|";
+
+                            string age = HTML_Parser.GetFirstNumberInString(((HtmlElement)(div[2])).InnerHtml);
+
+                            string giudizio = "";
+                            giudizio += "Age:" + age + ",";
+
+                            int blooming_status = 0;
+                            int blooming = 0;
+                            int dev_status = 0;
+                            int speciality = 0;
+                            int physique = 0;
+                            int technics = 0;
+                            int tactics = 0;
+                            int professionalism = 0;
+                            int leadership = 0;
+                            int aggressivity = 0;
+                            int potential = 0;
+
+                            string field = ((HtmlElement)(div[3])).InnerHtml;
+                            if (field.Contains(this.SelectedReportParser.Dict["Keys"][(int)ReportParser.Keys.Potential]))
+                            {
+                                // It's the potential
+                                string potential_string = HTML_Parser.GetFirstNumberInString(field);
+                                giudizio += "Pot:" + potential_string + ",";
+
+                                ScoutVoto += potential_string + "|";
+                            }
+                            else
+                            {
+                                string message = string.Format("Cannot translate Scout reports: check if your language is properly configured in the options. Language used: {0}",
+                                    SelectedReportParser.ConfiguredLanguage);
+                                MessageBox.Show(message);
+                                return "";
+                            }
+
+                            if (div.Count > 5)
+                            {
+                                field = ((HtmlElement)(div[4])).InnerHtml;
+                                if (field.Contains(SelectedReportParser.Dict["Keys"][(int)ReportParser.Keys.BloomStatus]))
+                                {
+                                    // It's the bloom status
+                                    string[] blooms = field.Split(":-".ToCharArray());
+                                    if (blooms.Length == 2)
+                                    {
+                                        blooming_status = SelectedReportParser.find("Blooming_Status", blooms[1]);
+                                    }
+                                    else if (blooms.Length == 3)
+                                    {
+                                        blooming_status = SelectedReportParser.find("Blooming_Status", blooms[1]);
+                                        blooming = SelectedReportParser.find("Blooming", blooms[2]);
+                                    }
+                                }
+
+                                field = ((HtmlElement)(div[5])).InnerHtml;
+                                if (field.Contains(SelectedReportParser.Dict["Keys"][(int)ReportParser.Keys.DevStatus]))
+                                {
+                                    // It's the DevStatus
+                                    string[] devstats = field.Split(':');
+                                    dev_status = SelectedReportParser.find("Development", devstats[1]);
+                                }
+
+                                field = ((HtmlElement)(div[6])).InnerHtml;
+                                if (field.Contains(SelectedReportParser.Dict["Keys"][(int)ReportParser.Keys.Speciality]))
+                                {
+                                    // It's the Speciality
+                                    string[] spectats = field.Split(':');
+                                    if (FPn == 0) // GK
+                                    {
+                                        speciality = SelectedReportParser.find("GK_Skill", spectats[1]);
+                                    }
+                                    else
+                                    {
+                                        speciality = SelectedReportParser.find("Player_Skill", spectats[1]);
+                                    }
+                                }
+
+                                field = ((HtmlElement)child).InnerHtml;
+                                try
+                                {
+                                    physique = SelectedReportParser.find("Physique", field, physique);
+                                    technics = SelectedReportParser.find("Technics", field, technics);
+                                    tactics = SelectedReportParser.find("Tactics", field, tactics);
+                                    aggressivity = SelectedReportParser.find("Aggressivity", field, aggressivity);
+                                    leadership = SelectedReportParser.find("Charisma", field, leadership);
+                                    professionalism = SelectedReportParser.find("Professionalism", field, professionalism);
+                                }
+                                catch (Exception)
+                                { }
+
+                                if (physique != 0) giudizio += "Phy:" + physique + ",";
+                                if (technics != 0) giudizio += "Tec:" + technics + ",";
+                                if (tactics != 0) giudizio += "Tac:" + tactics + ",";
+                                if (leadership != 0) giudizio += "Lea:" + leadership + ",";
+                                if (blooming_status != 0) giudizio += "BlS:" + blooming_status + ",";
+                                if (blooming != 0) giudizio += "Blo:" + blooming + ",";
+                                if (dev_status != 0) giudizio += "Dev:" + dev_status + ",";
+                                if (speciality != 0) giudizio += "Spe:" + speciality + ",";
+                                if (aggressivity != 0) giudizio += "Agg:" + aggressivity + ",";
+                                if (professionalism != 0) giudizio += "Pro:" + professionalism + ",";
+                            }
+
+                            if (ScoutGiudizio != "")
+                                ScoutGiudizio = ScoutGiudizio + "|" + giudizio.TrimEnd(',');
+                            else
+                                ScoutGiudizio = giudizio.TrimEnd(',');
+
+                        }
                     }
                 }
 

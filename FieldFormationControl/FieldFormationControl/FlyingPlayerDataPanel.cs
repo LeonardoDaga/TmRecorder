@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using Languages;
 using Common;
+using NTR_Db;
 
 namespace FieldFormationControl
 {
@@ -40,11 +41,10 @@ namespace FieldFormationControl
                 Current.Language = new Portuguese();
         }
 
-        internal void SetData(object PlayerDataRow, object ExtraDsRow)
+        internal void SetData(object PlayerDataRow)
         {
             if (PlayerDataRow == null) return;
             ExtTMDataSet.GiocatoriNSkillRow gnsr = (ExtTMDataSet.GiocatoriNSkillRow)PlayerDataRow;
-            ExtraDS.GiocatoriRow gr = (ExtraDS.GiocatoriRow)ExtraDsRow;
 
             if (gnsr.FPn > 0)
             {
@@ -152,10 +152,117 @@ namespace FieldFormationControl
             }
         }
 
+        internal void SetData(Rating rat, PlayerDataSkills pds)
+        {
+            if (pds.FPn > 0)
+            {
+                Width = 260;
+                Height = 166;
+
+                SetLanguage(0);
+
+                lbl1.Text = pds.Str.ToString("N0");
+                lbl2.Text = pds.Sta.ToString("N0");
+                lbl3.Text = pds.Pac.ToString("N0");
+                lbl4.Text = pds.Mar.ToString("N0");
+                lbl5.Text = pds.Tac.ToString("N0");
+                lbl6.Text = pds.Wor.ToString("N0");
+                lbl7.Text = pds.Pos.ToString("N0");
+                lbl8.Text = pds.Pas.ToString("N0");
+                lbl9.Text = pds.Cro.ToString("N0");
+                lbl10.Text = pds.Tec.ToString("N0");
+                lbl11.Text = pds.Hea.ToString("N0");
+                if (pds.FPn > 0)
+                {
+                    lbl12.Text = pds.Fin.ToString("N0");
+                    lbl13.Text = pds.Lon.ToString("N0");
+                    lbl14.Text = pds.Set.ToString("N0");
+                }
+                lbl15.Text = pds.Rou.ToString("N0");
+
+                string nameNdata = pds.Name;
+                string[] toks = nameNdata.Split('|');
+                lblName.Text = toks[0];
+
+                TmWeek tmw = TmWeek.GetAge(pds.wBorn, DateTime.Now);
+                lblAge.Text = tmw.ToAge(Current.Language);
+                lblASI.Text = pds.ASI.ToString();
+                lblFP.Text = Tm_Utility.FPnToFP(pds.FPn);
+                lblFP.ForeColor = Color.Blue;
+
+                gbGK.Visible = false;
+
+                FillGrade(lblDL, rat.DL);
+                FillGrade(lblDL, rat.DL);
+                FillGrade(lblDC, rat.DC);
+                FillGrade(lblDR, rat.DR);
+
+                FillGrade(lblDML, rat.DML);
+                FillGrade(lblDMC, rat.DMC);
+                FillGrade(lblDMR, rat.DMR);
+
+                FillGrade(lblML, rat.ML);
+                FillGrade(lblMC, rat.MC);
+                FillGrade(lblMR, rat.MR);
+
+                FillGrade(lblOML, rat.OML);
+                FillGrade(lblOMC, rat.OMC);
+                FillGrade(lblOMR, rat.OMR);
+
+                FillGrade(lblFC, rat.FC);
+            }
+            else
+            {
+                Width = 169;
+                Height = 165;
+                SetLanguage(1);
+
+                lbl1.Text = pds.Str.ToString("N0");
+                lbl2.Text = pds.Sta.ToString("N0");
+                lbl3.Text = pds.Pac.ToString("N0");
+                lbl4.Text = pds.Han.ToString("N0");
+                lbl5.Text = pds.One.ToString("N0");
+                lbl6.Text = pds.Ref.ToString("N0");
+                lbl7.Text = pds.Aer.ToString("N0");
+                lbl8.Text = pds.Jum.ToString("N0");
+                lbl9.Text = pds.Com.ToString("N0");
+                lbl10.Text = pds.Kic.ToString("N0");
+                lbl11.Text = pds.Thr.ToString("N0");
+                lbl12.Text = pds.Rou.ToString("N0");
+                lbl13.Visible = false;
+                lbl14.Visible = false;
+                lbl15.Visible = false;
+
+                gbD.Visible = false;
+                gbDM.Visible = false;
+                gbM.Visible = false;
+                gbOM.Visible = false;
+                gbF.Visible = false;
+                gbGK.Visible = true;
+                gbTactics.Visible = false;
+
+                FillGrade(lblGK, rat.GK);
+
+                string nameNdata = pds.Name;
+                string[] toks = nameNdata.Split('|');
+                lblName.Text = toks[0];
+                TmWeek tmw = TmWeek.GetAge(pds.wBorn, DateTime.Now);
+                lblAge.Text = tmw.ToAge(Current.Language);
+                lblASI.Text = pds.ASI.ToString();
+                lblFP.Text = "GK";
+                lblFP.ForeColor = Color.Blue;
+            }
+        }
+
         private void FillGrade(Label lbl, float f)
         {
             lbl.Text = f.ToString("N1");
             lbl.ForeColor = Utility.GradeColor(f);
+        }
+
+        private void FillGrade(Label lbl, double f)
+        {
+            FillGrade(lbl, (float)f);
         }
     }
 }

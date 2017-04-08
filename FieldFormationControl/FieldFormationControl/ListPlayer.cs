@@ -6,6 +6,7 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 using Common;
+using NTR_Db;
 
 namespace FieldFormationControl
 {
@@ -97,19 +98,19 @@ namespace FieldFormationControl
             set { _numbercolor = value; this.Invalidate(); }
         }
 
-        private object _extradsRow = null;
-        public object ExtraDsRow
-        {
-            get { return _extradsRow; }
-            set { _extradsRow = value; }
-        }
+        //private object _extradsRow = null;
+        //public object ExtraDsRow
+        //{
+        //    get { return _extradsRow; }
+        //    set { _extradsRow = value; }
+        //}
 
-        private object _pldataRow = null;
-        public object PlayerDataRow
-        {
-            get { return _pldataRow; }
-            set { _pldataRow = value; }
-        }
+        //private object _pldataRow = null;
+        //public object PlayerDataRow
+        //{
+        //    get { return _pldataRow; }
+        //    set { _pldataRow = value; }
+        //}
 
         private int _playerID = 0;
         public int PlayerID
@@ -272,7 +273,6 @@ namespace FieldFormationControl
             set { _shirtcolor = value; this.Invalidate(); }
         }
 
-
         private int _number;
         public int Number
         {
@@ -315,6 +315,9 @@ namespace FieldFormationControl
                 return _name;
             }
         }
+
+        public Rating Rat { get; private set; }
+        public PlayerDataSkills PDS { get; private set; }
         #endregion
 
         public ListPlayer()
@@ -608,245 +611,52 @@ namespace FieldFormationControl
             pen.Dispose();
         }
 
-        internal void SetData(ExtraDS.GiocatoriRow gr, ExtTMDataSet.GiocatoriNSkillRow gnsr)
+        internal void SetData(Rating rat, PlayerDataSkills pds)
         {
-            this.PlName = gr.Nome;
-            this.Rules = gr.FP;
-            this.Number = gr.Numero;
-            this.PlayerID = gr.PlayerID;
+            this.PlName = pds.Name;
+            this.Rules = Tm_Utility.FPnToFP(pds.FPn);
+            this.Number = pds.Num;
+            this.PlayerID = pds.ID;
 
-            this.PlayerDataRow = gnsr;
-            this.ExtraDsRow = gr;
+            this.Rat = rat;
+            this.PDS = pds;
 
             _skills = 0;
 
-            _skills += SkillCheck(gnsr.For, 12, 15, (int)(eSkills.Strong));
-            _skills += SkillCheck(gnsr.Vel, 12, 15, (int)(eSkills.Fast));
-            _skills += SkillCheck(gnsr.Mar + gnsr.Con, 24, 30, (int)(eSkills.Defender));
-            _skills += SkillCheck(gnsr.Wor + gnsr.Pos, 24, 30, (int)(eSkills.Tactician));
-            _skills += SkillCheck(gnsr.Pas + gnsr.Tec, 24, 30, (int)(eSkills.Playmaker));
-            _skills += SkillCheck(gnsr.Vel + gnsr.Cro + gnsr.Tec, 36, 45, (int)(eSkills.Winger));
-            _skills += SkillCheck(gnsr.Fin + gnsr.Lon, 24, 30, (int)(eSkills.Finisher));
-            _skills += SkillCheck(gnsr.Tes, 12, 15, (int)(eSkills.Header));
-
-        //    string skString = "";
-        //    string stString = "";
-
-        //    int lowskills = _skills >> 16;
-
-        //    if ((_skills & (int)eSkills.Strong) != 0)
-        //    {
-        //        skString += "[Str]";
-        //    }
-        //    if ((_skills & (int)eSkills.Defender) != 0)
-        //    {
-        //        skString += "[Def]";
-        //    }
-        //    if ((_skills & (int)eSkills.Fast) != 0)
-        //    {
-        //        skString += "[Pac]";
-        //    }
-        //    if ((_skills & (int)eSkills.Finisher) != 0)
-        //    {
-        //        skString += "[Fin]";
-        //    }
-        //    if ((_skills & (int)eSkills.Header) != 0)
-        //    {
-        //        skString += "[Hea]";
-        //    }
-        //    if ((_skills & (int)eSkills.Playmaker) != 0)
-        //    {
-        //        skString += "[Ply]";
-        //    }
-        //    if ((_skills & (int)eSkills.Tactician) != 0)
-        //    {
-        //        skString += "[Tac]";
-        //    }
-        //    if ((_skills & (int)eSkills.Winger) != 0)
-        //    {
-        //        skString += "[Win]";
-        //    }
-        //    if ((_skills & (int)eSkills.RedCross) != 0)
-        //    {
-        //        stString += "[Inj]";
-        //    }
-        //    if ((_skills & (int)eSkills.RedCard) != 0)
-        //    {
-        //        stString += "[Ban]";
-        //    }
-
-        //    // Lower skills
-        //    if ((lowskills & (int)eSkills.Strong) != 0)
-        //    {
-        //        skString += ",Str";
-        //    }
-        //    if ((lowskills & (int)eSkills.Defender) != 0)
-        //    {
-        //        skString += ",Def";
-        //    }
-        //    if ((lowskills & (int)eSkills.Fast) != 0)
-        //    {
-        //        skString += ",Pac";
-        //    }
-        //    if ((lowskills & (int)eSkills.Finisher) != 0)
-        //    {
-        //        skString += ",Fin";
-        //    }
-        //    if ((lowskills & (int)eSkills.Header) != 0)
-        //    {
-        //        skString += ",Hea";
-        //    }
-        //    if ((lowskills & (int)eSkills.Playmaker) != 0)
-        //    {
-        //        skString += ",Ply";
-        //    }
-        //    if ((lowskills & (int)eSkills.Tactician) != 0)
-        //    {
-        //        skString += ",Tac";
-        //    }
-        //    if ((lowskills & (int)eSkills.Winger) != 0)
-        //    {
-        //        skString += ",Win";
-        //    }
-
-        //    _tip = ((skString != "") ? ("Skills = " + skString.TrimStart(',') + "\n") : "") +
-        //        ((stString != "") ? ("Status = " + stString + "\n") : "");
-
-        //    _tip += "\nASI = " + gnsr.ASI.ToString() + "\n";
-
-        //    _tip += "\nStr\tSta\tPac\tMar\tTac\tWor\tPos\n" +
-        //        gnsr.For.ToString() + "\t" +
-        //        gnsr.Res.ToString() + "\t" +
-        //        gnsr.Vel.ToString() + "\t" +
-        //        gnsr.Mar.ToString() + "\t" +
-        //        gnsr.Con.ToString() + "\t" +
-        //        gnsr.Wor.ToString() + "\t" +
-        //        gnsr.Pos.ToString() + "\t\n\n" + 
-        //        "Pas\tCro\tTec\tHea\tFin\tLon\tSet\n" + 
-        //        gnsr.Pas.ToString() + "\t" +
-        //        gnsr.Cro.ToString() + "\t" +
-        //        gnsr.Tec.ToString() + "\t" +
-        //        gnsr.Tes.ToString() + "\t" +
-        //        gnsr.Fin.ToString() + "\t" +
-        //        gnsr.Tir.ToString() + "\t" +
-        //        gnsr.Cal.ToString() + "\t";
-
-
-        //    _tip +=
-        //        "\n----------------------------------------------------------" + 
-        //        "\n[DC]\t[DL]\t[DR]\t[DMC]\t[DML]\t[DMR]\n" +
-        //        gnsr.DC.ToString("N1") + "\t" +
-        //        gnsr.DL.ToString("N1") + "\t" +
-        //        gnsr.DR.ToString("N1") + "\t" +
-        //        gnsr.DMC.ToString("N1") + "\t" +
-        //        gnsr.DML.ToString("N1") + "\t" +
-        //        gnsr.DMR.ToString("N1") + "\n" +
-        //        "\n[MC]\t[ML]\t[MR]\t[OMC]\t[OML]\t[OMR]\t[FC]\n" +
-        //        gnsr.MC.ToString("N1") + "\t" +
-        //        gnsr.ML.ToString("N1") + "\t" +
-        //        gnsr.MR.ToString("N1") + "\t" +
-        //        gnsr.OMC.ToString("N1") + "\t" +
-        //        gnsr.OML.ToString("N1") + "\t" +
-        //        gnsr.OMR.ToString("N1") + "\t" +
-        //        gnsr.FC.ToString("N1") + "\n";
-
-        //    _titletip = _name + " (" + _rule1;
-        //    if (_rule2 != "") _titletip += "/" + _rule2;
-        //    _titletip += ")";
+            _skills += SkillCheck(pds.Str, 12, 15, (int)(eSkills.Strong));
+            _skills += SkillCheck(pds.Pac, 12, 15, (int)(eSkills.Fast));
+            _skills += SkillCheck(pds.Mar + pds.Tac, 24, 30, (int)(eSkills.Defender));
+            _skills += SkillCheck(pds.Wor + pds.Pos, 24, 30, (int)(eSkills.Tactician));
+            _skills += SkillCheck(pds.Pas + pds.Tec, 24, 30, (int)(eSkills.Playmaker));
+            _skills += SkillCheck(pds.Pac + pds.Cro + pds.Tec, 36, 45, (int)(eSkills.Winger));
+            _skills += SkillCheck(pds.Fin + pds.Lon, 24, 30, (int)(eSkills.Finisher));
+            _skills += SkillCheck(pds.Hea, 12, 15, (int)(eSkills.Header));
         }
 
-        internal void SetDataGk(ExtraDS.GiocatoriRow gr, ExtTMDataSet.GiocatoriNSkillRow gnsr)
+        internal void SetDataGk(Rating rat, PlayerDataSkills pds)
         {
-            this.PlName = gr.Nome;
-            this.Rules = gr.FP;
-            this.Number = gr.Numero;
-            this.PlayerID = gr.PlayerID;
+            this.PlName = pds.Name;
+            this.Rules = Tm_Utility.FPnToFP(pds.FPn);
+            this.Number = pds.Num;
+            this.PlayerID = pds.ID;
 
-            this.PlayerDataRow = gnsr;
-            this.ExtraDsRow = gr;
+            this.Rat = rat;
+            this.PDS = pds;
 
             _skills = 0;
 
-            _skills += SkillCheck((decimal)gnsr.PO, 50, 75, (int)(eSkills.GK));
-            _skills += SkillCheck(gnsr.For, 12, 15, (int)(eSkills.Strong));
-            _skills += SkillCheck(gnsr.Vel, 12, 15, (int)(eSkills.Fast));
-
-        //    float grade = gnsr.PO;
-
-        //    this.RuleColor1 = Common.Utility.GradeColor(grade);
-
-        //    string skString = "";
-        //    string stString = "";
-
-        //    int lowskills = _skills >> 16;
-
-        //    if ((_skills & (int)eSkills.GK) != 0)
-        //    {
-        //        skString += "[GK!]";
-        //    }
-        //    if ((_skills & (int)eSkills.Strong) != 0)
-        //    {
-        //        skString += "[Str]";
-        //    }
-        //    if ((_skills & (int)eSkills.Defender) != 0)
-        //    {
-        //        skString += "[Def]";
-        //    }
-        //    if ((_skills & (int)eSkills.Fast) != 0)
-        //    {
-        //        skString += "[Pac]";
-        //    }
-        //    if ((_skills & (int)eSkills.RedCross) != 0)
-        //    {
-        //        stString += "[Inj]";
-        //    }
-        //    if ((_skills & (int)eSkills.RedCard) != 0)
-        //    {
-        //        stString += "[Ban]";
-        //    }
-        //    if ((lowskills & (int)eSkills.Strong) != 0)
-        //    {
-        //        skString += ",Str";
-        //    }
-        //    if ((lowskills & (int)eSkills.Defender) != 0)
-        //    {
-        //        skString += ",Def";
-        //    }
-        //    if ((lowskills & (int)eSkills.Fast) != 0)
-        //    {
-        //        skString += ",Pac";
-        //    }
-        //    if ((lowskills & (int)eSkills.GK) != 0)
-        //    {
-        //        skString += ",GK!";
-        //    }
-
-        //    _tip = ((skString != "") ? ("Skills = " + skString.TrimStart(',') + "\n") : "") +
-        //        ((stString != "") ? ("Status = " + stString + "\n") : "");
-
-        //    _tip += "\nASI = " + gnsr.ASI.ToString() + "\n";
-
-        //    _tip += "\nStr\tSta\tPac\tHan\tOne\tRef\n" +
-        //        gnsr.For.ToString() + "\t" +
-        //        gnsr.Res.ToString() + "\t" +
-        //        gnsr.Vel.ToString() + "\t" +
-        //        gnsr.Pre.ToString() + "\t" +
-        //        gnsr.Uno.ToString() + "\t" +
-        //        gnsr.Rif.ToString() + "\t\n\n" +
-        //        "Ari\tJum\tCom\tKic\tThr\n" +
-        //        gnsr.Aer.ToString() + "\t" +
-        //        gnsr.Ele.ToString() + "\t" +
-        //        gnsr.Com.ToString() + "\t" +
-        //        gnsr.Tir.ToString() + "\t" +
-        //        gnsr.Lan.ToString();
-
-
-        //    _tip += "\n\nGK = " + gnsr.PO.ToString("N2");
-
-        //    _titletip = _name + " (GK)";
+            _skills += SkillCheck((decimal)rat.GK, 50, 75, (int)(eSkills.GK));
+            _skills += SkillCheck(pds.Str, 12, 15, (int)(eSkills.Strong));
+            _skills += SkillCheck(pds.Pac, 12, 15, (int)(eSkills.Fast));
         }
+
 
         private int SkillCheck(decimal grade, int l1, int l2, int eskill)
+        {
+            return SkillCheck((double)grade, l1, l2, eskill);
+        }
+
+        private int SkillCheck(double grade, int l1, int l2, int eskill)
         {
             if (grade >= l2)
                 return eskill;
@@ -860,11 +670,11 @@ namespace FieldFormationControl
         {
             if (showDataPanel)
             {
-                if (PlayerDataRow == null) return;
+                if (PDS == null) return;
                 fdp = new FlyingPlayerDataPanel();
                 fdp.Left = this.Right + this.Parent.Left + this.ParentForm.Left;
                 fdp.Top = this.Bottom + this.Parent.Top + this.ParentForm.Top;
-                fdp.SetData(PlayerDataRow, ExtraDsRow);
+                fdp.SetData(Rat, PDS);
                 fdp.Show(ParentForm);
             }
         }

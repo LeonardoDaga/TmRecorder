@@ -482,7 +482,7 @@ namespace TMRecorder
 
             dgPlayersGK.AddColumn("Rou", "Rou", 30, AG_Style.Numeric | AG_Style.RightJustified);
             dgPlayersGK.AddColumn("SSD", "SSD", 30, AG_Style.Numeric | AG_Style.RightJustified);
-            dgPlayersGK.AddColumn("R2", "R2Rat", 30, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N2);
+            dgPlayers.AddColumn(RF.ShortName, "RfRec", 38, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N2);
             dgPlayersGK.AddColumn("Rec", "Rec", 30, AG_Style.Numeric | AG_Style.RightJustified);
             dgvc = (TMR_NumDecColumn)dgPlayersGK.AddColumn("TI", "TI", 32, AG_Style.NumDec | AG_Style.Frozen);
             dgvc.CellColorStyles = CellColorStyleList.DefaultGainColorStyle();

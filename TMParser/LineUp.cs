@@ -10,6 +10,7 @@ using System.IO;
 using Common;
 using FieldFormationControl;
 using NTR_Db;
+using System.Linq;
 
 namespace TMRecorder
 {
@@ -32,14 +33,20 @@ namespace TMRecorder
          * the ball one-on-one. (Stamina) is, as always, a factor.
          */
         public MatchDS matchDS = null;
-        public ExtraDS extraDS = null;
         public TeamHistory History = null;
         string isReservesFilter = "";
         string playerTypeFilter = "";
         bool browseLineup = false;
 
         private FieldPlayer[] fps = new FieldPlayer[6];
-        private Seasons allSeasons;
+        private Seasons AllSeasons;
+        private int hiFpn = 1;
+        private int loFpn = 0;
+        private int loASI = 0;
+
+        public List<PlayerDataSkills> AllPlayersInTeam { get; private set; }
+        public TacticsFunction TF { get; private set; }
+        public RatingFunction RF { get; private set; }
 
         public class MatchItem
         {
@@ -68,28 +75,63 @@ namespace TMRecorder
             }
         }
 
-        public LineUp(NTR_Db.Seasons allseasons, ExtraDS extrads, TeamHistory hist)
+        //public LineUp(NTR_Db.Seasons allseasons, ExtraDS extrads, TeamHistory hist)
+        //{
+        //    InitializeComponent();
+
+        //    allSeasons = allseasons;
+        //    History = hist;
+
+        //    FileInfo fi2 = new FileInfo(Program.Setts.TacticsDBFilename);
+        //    if (!fi2.Exists)
+        //    {
+        //        MessageBox.Show("Due to a change in the LineUp tool, you need the TacticsFile.xml file that contains " +
+        //            "some new settings needed by the tool. Goto to the http://tmrecorder.insyde.it/tmrecorder/download/usefulfiles page " +
+        //            "and download the file, then put it in the following path: " +
+        //            Program.Setts.TacticsDBFilename, "Error loading the TacticsDBFilename", MessageBoxButtons.OK);
+        //        return;
+        //    }
+
+        //    tacticsDS.ReadXml(Program.Setts.TacticsDBFilename);
+
+        //    SetMenuFilter();
+
+        //    FillComboList();
+
+        //    FileInfo fi = new FileInfo(Path.Combine(Program.Setts.TeamDataFolder, "Lineups.txt"));
+        //    if (fi.Exists)
+        //    {
+        //        lineupList.Load(fi.FullName);
+
+        //        Formation form = lineupList.GetCurrentFormation();
+        //        formationControl.ShowFormationPlayers(form);
+        //        FillTactics(form);
+        //    }
+
+        //    playerTypeFilter = "FPn=0";
+        //    playersList.SetPlayers((ExtraDS.GiocatoriRow[])extraDS.Giocatori.Select("FPn=0", "ASI DESC"),
+        //        History.actualDts);
+
+        //    formationControl.UpdateLPWithData(extraDS, History.actualDts);
+
+        //    // FillTactics(null);
+
+        //    formationControl.FormationChanged += new EventHandler(formationControl_FormationChanged);
+
+        //    lineupList.SelectedFormationChanged += new LineupList.SelectedFormationChangedHandler(lineupList_SelectedFormationChanged);
+        //}
+
+        public LineUp(Seasons allSeasons, List<PlayerDataSkills> allPlayersInTeam, 
+                        RatingFunction rf, TacticsFunction tf)
         {
             InitializeComponent();
 
-            allSeasons = allseasons;
-            extraDS = extrads;
-            History = hist;
-
-            FileInfo fi2 = new FileInfo(Program.Setts.TacticsDBFilename);
-            if (!fi2.Exists)
-            {
-                MessageBox.Show("Due to a change in the LineUp tool, you need the TacticsFile.xml file that contains " +
-                    "some new settings needed by the tool. Goto to the http://tmrecorder.insyde.it/tmrecorder/download/usefulfiles page " +
-                    "and download the file, then put it in the following path: " +
-                    Program.Setts.TacticsDBFilename, "Error loading the TacticsDBFilename", MessageBoxButtons.OK);
-                return;
-            }
-
-            tacticsDS.ReadXml(Program.Setts.TacticsDBFilename);
+            this.AllSeasons = allSeasons;
+            this.AllPlayersInTeam = allPlayersInTeam;
+            this.RF = rf;
+            this.TF = tf;
 
             SetMenuFilter();
-
             FillComboList();
 
             FileInfo fi = new FileInfo(Path.Combine(Program.Setts.TeamDataFolder, "Lineups.txt"));
@@ -103,10 +145,12 @@ namespace TMRecorder
             }
 
             playerTypeFilter = "FPn=0";
-            playersList.SetPlayers((ExtraDS.GiocatoriRow[])extraDS.Giocatori.Select("FPn=0", "ASI DESC"),
-                History.actualDts);
+            playersList.SetPlayers(RF, AllPlayersInTeam.Where(p => p.FPn == 0).OrderBy(p => p.ASI).ToList());
 
-            formationControl.UpdateLPWithData(extraDS, History.actualDts);
+            //(ExtraDS.GiocatoriRow[])extraDS.Giocatori.Select("FPn=0", "ASI DESC"),
+            //    History.actualDts);
+
+            formationControl.UpdateLPWithData(RF, AllPlayersInTeam);
 
             // FillTactics(null);
 
@@ -152,30 +196,25 @@ namespace TMRecorder
             {
                 if (pl.visible == false) continue;
 
-                ExtraDS.GiocatoriRow gr = extraDS.Giocatori.FindByPlayerID(pl.playerID);
+                PlayerDataSkills pds = AllPlayersInTeam.SingleOrDefault(p => p.ID == pl.playerID);
 
-                if (gr == null) continue;
+                if (pds == null) continue;
 
-                if (gr.FPn == 0) // This is a GK
+                Rating Rat = RF.ComputeRating(pds);
+
+                if (pds.FPn == 0) // This is a GK
                 {
-                    ExtTMDataSet.GiocatoriNSkillRow gnsr = History.actualDts.GiocatoriNSkill.FindByPlayerID(pl.playerID);
-
-                    if(gnsr != null)
-                        vSquad += gnsr.PO;
+                    vSquad += (float)Rat.GK;
                 }
                 else
                 {
-                    ExtTMDataSet.GiocatoriNSkillRow gnsr = History.actualDts.GiocatoriNSkill.FindByPlayerID(pl.playerID);
-
                     string pos = formation.GetPlayerPosition(pl);
 
-                    if (gnsr == null) continue;
+                    vSquad += Rat.GetRating(pos);
 
-                    vSquad += gnsr.GetSkVal(pos);
+                    float[] fKB = TF.BallKeepingAndGaining(Rat);
 
-                    float[] fKB = tacticsDS.BallKeepingAndGaining(gnsr);
-
-                    float[,] fTct = tacticsDS.TacticsScore(gnsr, (int)pl.bitPosition);
+                    float[,] fTct = TF.TacticsScore(Rat, (int)pl.bitPosition);
 
                     vBallKeeping += fKB[0];
                     vBallGaining += fKB[1];
@@ -227,34 +266,31 @@ namespace TMRecorder
             foreach (NTR_SquadDb.PlayerPerfRow row in mi.matchData.YourPlayerPerf)
             {
                 Player pl = f.SetPlayer(row);
-                ExtraDS.GiocatoriRow gr = extraDS.Giocatori.FindByPlayerID(row.PlayerID);
+                PlayerDataSkills pds = AllPlayersInTeam.SingleOrDefault(p => p.ID == row.PlayerID);
 
-                if (pl == null)
-                {
-                    continue;
-                }
+                if ((pds == null) || (pl == null)) continue;
 
-                if (gr != null)
+                Rating Rat = RF.ComputeRating(pds);
+
+                if (pds != null)
                 {
-                    if (gr.FPn != 0)
+                    if (pds.FPn != 0)
                     {
-                        ExtTMDataSet.GiocatoriNSkillRow gnsr = History.actualDts.GiocatoriNSkill.FindByPlayerID(row.PlayerID);
-                        if(gnsr != null)
-                            pl.value = gnsr.GetSkVal(f.GetPlayerPosition(pl));
+                        string pos = f.GetPlayerPosition(pl);
+
+                        pl.value = Rat.GetRating(pos);
                     }
                     else
                     {
-                        ExtTMDataSet.GiocatoriNSkillRow gnsr = History.actualDts.GiocatoriNSkill.FindByPlayerID(row.PlayerID);
-                        if (gnsr != null)
-                            pl.value = gnsr.PO;
+                        pl.value = (float)Rat.GK;
                     }
                 }
 
-                if (gr != null)
+                if (pds != null)
                 {
-                    pl.number = gr.Numero;
-                    pl.name = gr.Nome;
-                    pl.pf = gr.FP;
+                    pl.number = pds.Num;
+                    pl.name = pds.Name;
+                    pl.pf = Tm_Utility.FPnToFP(pds.FPn);
                 }
             }
 
@@ -310,11 +346,11 @@ namespace TMRecorder
 
             if (Program.Setts.MatchOnFieldFilter == 1)
             {
-                allMatchesData = allSeasons.GetSeasonMatchList(-1, Program.Setts.MainSquadID, -1, -1, true);
+                allMatchesData = AllSeasons.GetSeasonMatchList(-1, Program.Setts.MainSquadID, -1, -1, true);
             }
             else
             {
-                allMatchesData = allSeasons.GetSeasonMatchList(-1, Program.Setts.ReserveSquadID, -1, -1, true);
+                allMatchesData = AllSeasons.GetSeasonMatchList(-1, Program.Setts.ReserveSquadID, -1, -1, true);
             }
 
             foreach (MatchData matchData in allMatchesData)
@@ -335,7 +371,8 @@ namespace TMRecorder
         {
             tsddPlayerTypeMenu.Text = tsGoalKeepers.Text;
             tsddPlayerTypeMenu.ForeColor = tsGoalKeepers.ForeColor;
-            playerTypeFilter = "FPn=0";
+            loFpn = 0;
+            hiFpn = 1;
             UpdatePlayerList();
         }
 
@@ -343,7 +380,8 @@ namespace TMRecorder
         {
             tsddPlayerTypeMenu.Text = tsDefenders.Text;
             tsddPlayerTypeMenu.ForeColor = tsDefenders.ForeColor;
-            playerTypeFilter = "FPn>=10 AND FPn<30";
+            loFpn = 10;
+            hiFpn = 30;
             UpdatePlayerList();
         }
 
@@ -351,7 +389,8 @@ namespace TMRecorder
         {
             tsddPlayerTypeMenu.Text = tsDefMid.Text;
             tsddPlayerTypeMenu.ForeColor = tsDefMid.ForeColor;
-            playerTypeFilter = "FPn>=20 AND FPn<50";
+            loFpn = 20;
+            hiFpn = 50;
             UpdatePlayerList();
         }
 
@@ -359,7 +398,8 @@ namespace TMRecorder
         {
             tsddPlayerTypeMenu.Text = tsMidfielders.Text;
             tsddPlayerTypeMenu.ForeColor = tsMidfielders.ForeColor;
-            playerTypeFilter = "FPn>=40 AND FPn<70";
+            loFpn = 40;
+            hiFpn = 70;
             UpdatePlayerList();
         }
 
@@ -367,7 +407,8 @@ namespace TMRecorder
         {
             tsddPlayerTypeMenu.Text = tsOddMid.Text;
             tsddPlayerTypeMenu.ForeColor = tsOddMid.ForeColor;
-            playerTypeFilter = "FPn>=60 AND FPn<90";
+            loFpn = 60;
+            hiFpn = 90;
             UpdatePlayerList();
         }
 
@@ -375,7 +416,8 @@ namespace TMRecorder
         {
             tsddPlayerTypeMenu.Text = tsForwards.Text;
             tsddPlayerTypeMenu.ForeColor = tsForwards.ForeColor;
-            playerTypeFilter = "FPn>=80";
+            loFpn = 80;
+            hiFpn = 200;
             UpdatePlayerList();
         }
 
@@ -388,28 +430,43 @@ namespace TMRecorder
         private void allPlayersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             tsddPlayersSquadSelection.Text = allPlayersToolStripMenuItem.Text;
-            isReservesFilter = " AND (isYoungTeam >= 0)";
-            UpdatePlayerList();
-        }
-
-        private void mainSquadPlayersToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            tsddPlayersSquadSelection.Text = mainSquadPlayersToolStripMenuItem.Text;
-            isReservesFilter = " AND (isYoungTeam = 0)";
-            UpdatePlayerList();
-        }
-
-        private void reserveSquadPlayersToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            tsddPlayersSquadSelection.Text = reserveSquadPlayersToolStripMenuItem.Text;
-            isReservesFilter = " AND (isYoungTeam = 1)";
+            loASI = 0;
             UpdatePlayerList();
         }
 
         private void UpdatePlayerList()
         {
-            playersList.SetPlayers((ExtraDS.GiocatoriRow[])extraDS.Giocatori.Select(playerTypeFilter + isReservesFilter, "ASI DESC"),
-                History.actualDts);
+            playersList.SetPlayers(RF, 
+                AllPlayersInTeam.Where(p => (p.FPn >= loFpn) && (p.FPn < hiFpn) && (p.ASI > loASI)).
+                OrderByDescending(p => p.ASI).ToList());
+        }
+
+        private void miPlayersASIgt20000_Click(object sender, EventArgs e)
+        {
+            tsddPlayersSquadSelection.Text = miPlayersASIgt20000.Text;
+            loASI = 20000;
+            UpdatePlayerList();
+        }
+
+        private void miPlayersASIgt10000_Click(object sender, EventArgs e)
+        {
+            tsddPlayersSquadSelection.Text = miPlayersASIgt10000.Text;
+            loASI = 10000;
+            UpdatePlayerList();
+        }
+
+        private void miPlayersASIgt5000_Click(object sender, EventArgs e)
+        {
+            tsddPlayersSquadSelection.Text = miPlayersASIgt_5000.Text;
+            loASI = 5000;
+            UpdatePlayerList();
+        }
+
+        private void miPlayersASIgt1000_Click(object sender, EventArgs e)
+        {
+            tsddPlayersSquadSelection.Text = miPlayersASIgt_1000.Text;
+            loASI = 1000;
+            UpdatePlayerList();
         }
 
         private void tsbGetLineup_Click(object sender, EventArgs e)
@@ -441,9 +498,16 @@ namespace TMRecorder
 
             FillField(mi);
 
-            formationControl.UpdateLPWithData(extraDS, History.actualDts);
+            formationControl.UpdateLPWithData(RF, AllPlayersInTeam);
 
             FillTactics(formationControl.GetFormationPlayers());
+        }
+
+        private void LineUp_Load(object sender, EventArgs e)
+        {
+            SetMenuFilter();
+
+            FillComboList();
         }
     }
 }

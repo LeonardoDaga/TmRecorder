@@ -120,11 +120,6 @@
   <metadata name="nationNamesBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>264, 2</value>
   </metadata>
-  <data name="label33.Text" xml:space="preserve">
-    <value>Insert the parameters and the type of the routine function to be used in the evaluation of the players. The resulting factor will be used to multiplicate the ability of the player in a given position of the field. 
-Parameters are separated by the ";" character (ex.: 1.0;0.3, default is 1.0;0.004).
-The decimal separator is the "." character. </value>
-  </data>
   <metadata name="optionFormMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>164, 42</value>
   </metadata>

@@ -201,17 +201,17 @@ namespace NTR_Db
                     }
                 }
 
-                if (playerData.FPn != 0) // The player is not a GK
-                {
-                    R.CK = (playerData.Skills[8] + playerData.Skills[13] + playerData.Skills[9] / 2) + rouMultiplier / 2;
-                    R.FK = (playerData.Skills[12] + playerData.Skills[13] + playerData.Skills[9] / 2) + rouMultiplier / 2;
-                    R.PK = (playerData.Skills[11] + playerData.Skills[13] + playerData.Skills[9] / 2) + rouMultiplier / 2;
-                }
-
                 Rv[n] = R;
             }
 
             Rating Rmax = Rating.Max(Rv);
+
+            if (playerData.FPn != 0) // The player is not a GK
+            {
+                Rmax.CK = (playerData.Skills[8] + playerData.Skills[13] + playerData.Skills[9] / 2) + rouMultiplier / 2;
+                Rmax.FK = (playerData.Skills[12] + playerData.Skills[13] + playerData.Skills[9] / 2) + rouMultiplier / 2;
+                Rmax.PK = (playerData.Skills[11] + playerData.Skills[13] + playerData.Skills[9] / 2) + rouMultiplier / 2;
+            }
 
             Rmax.OSi = GetOSi(Rmax, playerData);
 

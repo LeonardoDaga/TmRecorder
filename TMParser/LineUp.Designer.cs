@@ -90,8 +90,10 @@ namespace TMRecorder
             this.tcmbMatchList = new System.Windows.Forms.ToolStripComboBox();
             this.tsddPlayersSquadSelection = new System.Windows.Forms.ToolStripDropDownButton();
             this.allPlayersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mainSquadPlayersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reserveSquadPlayersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.miPlayersASIgt20000 = new System.Windows.Forms.ToolStripMenuItem();
+            this.miPlayersASIgt10000 = new System.Windows.Forms.ToolStripMenuItem();
+            this.miPlayersASIgt_5000 = new System.Windows.Forms.ToolStripMenuItem();
+            this.miPlayersASIgt_1000 = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.tsbInsertLineup = new System.Windows.Forms.ToolStripButton();
@@ -745,8 +747,10 @@ namespace TMRecorder
             // 
             this.tsddPlayersSquadSelection.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.allPlayersToolStripMenuItem,
-            this.mainSquadPlayersToolStripMenuItem,
-            this.reserveSquadPlayersToolStripMenuItem});
+            this.miPlayersASIgt20000,
+            this.miPlayersASIgt10000,
+            this.miPlayersASIgt_5000,
+            this.miPlayersASIgt_1000});
             this.tsddPlayersSquadSelection.Image = ((System.Drawing.Image)(resources.GetObject("tsddPlayersSquadSelection.Image")));
             this.tsddPlayersSquadSelection.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsddPlayersSquadSelection.Name = "tsddPlayersSquadSelection";
@@ -756,23 +760,37 @@ namespace TMRecorder
             // allPlayersToolStripMenuItem
             // 
             this.allPlayersToolStripMenuItem.Name = "allPlayersToolStripMenuItem";
-            this.allPlayersToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.allPlayersToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
             this.allPlayersToolStripMenuItem.Text = "All Players";
             this.allPlayersToolStripMenuItem.Click += new System.EventHandler(this.allPlayersToolStripMenuItem_Click);
             // 
-            // mainSquadPlayersToolStripMenuItem
+            // miPlayersASIgt20000
             // 
-            this.mainSquadPlayersToolStripMenuItem.Name = "mainSquadPlayersToolStripMenuItem";
-            this.mainSquadPlayersToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.mainSquadPlayersToolStripMenuItem.Text = "Main Squad Players";
-            this.mainSquadPlayersToolStripMenuItem.Click += new System.EventHandler(this.mainSquadPlayersToolStripMenuItem_Click);
+            this.miPlayersASIgt20000.Name = "miPlayersASIgt20000";
+            this.miPlayersASIgt20000.Size = new System.Drawing.Size(201, 22);
+            this.miPlayersASIgt20000.Text = "Players with ASI > 20000";
+            this.miPlayersASIgt20000.Click += new System.EventHandler(this.miPlayersASIgt20000_Click);
             // 
-            // reserveSquadPlayersToolStripMenuItem
+            // miPlayersASIgt10000
             // 
-            this.reserveSquadPlayersToolStripMenuItem.Name = "reserveSquadPlayersToolStripMenuItem";
-            this.reserveSquadPlayersToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.reserveSquadPlayersToolStripMenuItem.Text = "Reserve Squad Players";
-            this.reserveSquadPlayersToolStripMenuItem.Click += new System.EventHandler(this.reserveSquadPlayersToolStripMenuItem_Click);
+            this.miPlayersASIgt10000.Name = "miPlayersASIgt10000";
+            this.miPlayersASIgt10000.Size = new System.Drawing.Size(201, 22);
+            this.miPlayersASIgt10000.Text = "Players with ASI > 10000";
+            this.miPlayersASIgt10000.Click += new System.EventHandler(this.miPlayersASIgt10000_Click);
+            // 
+            // miPlayersASIgt_5000
+            // 
+            this.miPlayersASIgt_5000.Name = "miPlayersASIgt_5000";
+            this.miPlayersASIgt_5000.Size = new System.Drawing.Size(201, 22);
+            this.miPlayersASIgt_5000.Text = "Players with ASI > 5000";
+            this.miPlayersASIgt_5000.Click += new System.EventHandler(this.miPlayersASIgt5000_Click);
+            // 
+            // miPlayersASIgt_1000
+            // 
+            this.miPlayersASIgt_1000.Name = "miPlayersASIgt_1000";
+            this.miPlayersASIgt_1000.Size = new System.Drawing.Size(201, 22);
+            this.miPlayersASIgt_1000.Text = "Players with ASI > 1000";
+            this.miPlayersASIgt_1000.Click += new System.EventHandler(this.miPlayersASIgt1000_Click);
             // 
             // groupBox1
             // 
@@ -884,6 +902,7 @@ namespace TMRecorder
             this.Name = "LineUp";
             this.Text = "Match Field";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LineUp_FormClosing);
+            this.Load += new System.EventHandler(this.LineUp_Load);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
@@ -918,8 +937,8 @@ namespace TMRecorder
         private FieldFormationControl.PlayersList playersList;
         private System.Windows.Forms.ToolStripDropDownButton tsddPlayersSquadSelection;
         private System.Windows.Forms.ToolStripMenuItem allPlayersToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mainSquadPlayersToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem reserveSquadPlayersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem miPlayersASIgt20000;
+        private System.Windows.Forms.ToolStripMenuItem miPlayersASIgt10000;
         private FieldFormationControl.LineupList lineupList;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ToolStrip toolStrip2;
@@ -971,5 +990,7 @@ namespace TMRecorder
         private System.Windows.Forms.ComboBox cmbFreekicks;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.ToolStripMenuItem miPlayersASIgt_5000;
+        private System.Windows.Forms.ToolStripMenuItem miPlayersASIgt_1000;
     }
 }

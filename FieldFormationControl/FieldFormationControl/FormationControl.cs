@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using Common;
 using System.IO;
 using NTR_Db;
+using System.Linq;
 
 namespace FieldFormationControl
 {
@@ -205,6 +206,7 @@ namespace FieldFormationControl
             fpDMR.Data = R;
         }
 
+
         private void ShowDefense(Player[] p)
         {
             Player L = p[Pos.DL], CL = p[Pos.DCL], C = p[Pos.DC], CR = p[Pos.DCR], R = p[Pos.DR];
@@ -216,7 +218,8 @@ namespace FieldFormationControl
             fpDR.Data = R;
         }
 
-        public void UpdateLPWithData(ExtraDS extraDS, ExtTMDataSet extTmDS)
+
+        public void UpdateLPWithData(RatingFunction RF, List<PlayerDataSkills> allPlayersInTeam)
         {
             foreach (Control cnt in this.Controls)
             {
@@ -224,20 +227,22 @@ namespace FieldFormationControl
                 {
                     LineupPlayer lp = (LineupPlayer)cnt;
 
-                    ExtraDS.GiocatoriRow gr = extraDS.Giocatori.FindByPlayerID(lp.PlayerID);
-                    if (gr == null) continue;
-                    if (gr.FPn == 0) // is a GK
+                    PlayerDataSkills pds = allPlayersInTeam.SingleOrDefault(p => p.ID == lp.PlayerID);
+
+                    if (pds == null) continue;
+
+                    Rating rat = RF.ComputeRating(pds);
+
+                    if (pds.FPn == 0) // is a GK
                     {
-                        ExtTMDataSet.GiocatoriNSkillRow gnsr = extTmDS.GiocatoriNSkill.FindByPlayerID(lp.PlayerID);
-                        lp.SetDataGk(gr, gnsr);
+                        lp.SetDataGk(rat, pds);
                     }
                     else
                     {
-                        ExtTMDataSet.GiocatoriNSkillRow gnsr = extTmDS.GiocatoriNSkill.FindByPlayerID(lp.PlayerID);
-                        lp.SetData(gr, gnsr);
+                        lp.SetData(rat, pds);
                     }
                 }
-           }
+            }
         }
 
         #region Drag And Drop Management
@@ -271,19 +276,16 @@ namespace FieldFormationControl
                     //lp.Tip = player.Tip;
                     lp.Number = player.Number;
                     lp.EvidenceColor = Color.Transparent;
-                    lp.ExtraDsRow = player.ExtraDsRow;
-                    lp.PlayerDataRow = player.PlayerDataRow;
+                    lp.Rat = player.Rat;
+                    lp.PDS = player.PDS;
 
-                    ExtraDS.GiocatoriRow gr = (ExtraDS.GiocatoriRow)lp.ExtraDsRow;
-                    if (gr.FPn == 0) // it's a gk
+                    if (lp.PDS.FPn == 0) // it's a gk
                     {
-                        ExtTMDataSet.GiocatoriNSkillRow pnsr = (ExtTMDataSet.GiocatoriNSkillRow)player.PlayerDataRow;
-                        lp.Value = pnsr.PO;
+                        lp.Value = (float)lp.Rat.GK;
                     }
                     else
                     {
-                        ExtTMDataSet.GiocatoriNSkillRow gnsr = (ExtTMDataSet.GiocatoriNSkillRow)player.PlayerDataRow;
-                        UpdateLineupPlayerWithGNSRow(lp, gnsr);
+                        UpdateLineupPlayerWithRating(lp);
                     }
 
                     // Fire the event
@@ -311,8 +313,8 @@ namespace FieldFormationControl
                     exc.Rules = lp.Rules;
                     exc.Tip = lp.Tip;
                     exc.Number = lp.Number;
-                    exc.ExtraDsRow = lp.ExtraDsRow;
-                    exc.PlayerDataRow = lp.PlayerDataRow;
+                    exc.Rat = lp.Rat;
+                    exc.PDS = lp.PDS;
                     exc.Display = lp.Display;
 
                     lp.PlName = player.PlName;
@@ -321,8 +323,8 @@ namespace FieldFormationControl
                     lp.Rules = player.Rules;
                     lp.Tip = player.Tip;
                     lp.Number = player.Number;
-                    lp.ExtraDsRow = player.ExtraDsRow;
-                    lp.PlayerDataRow = player.PlayerDataRow;
+                    lp.Rat = player.Rat;
+                    lp.PDS = player.PDS;
                     lp.Display = player.Display;
 
                     player.PlName = exc.PlName;
@@ -331,26 +333,21 @@ namespace FieldFormationControl
                     player.Rules = exc.Rules;
                     player.Tip = exc.Tip;
                     player.Number = exc.Number;
-                    player.ExtraDsRow = exc.ExtraDsRow;
-                    player.PlayerDataRow = exc.PlayerDataRow;
+                    player.Rat = exc.Rat;
+                    player.PDS = exc.PDS;
                     player.Display = exc.Display;
 
                     lp.EvidenceColor = Color.Transparent;
 
-                    if (lp.ExtraDsRow == null)
-                        return;
-                    ExtraDS.GiocatoriRow gr = (ExtraDS.GiocatoriRow)lp.ExtraDsRow;
-                    if (gr.FPn == 0) // it's a gk
+                    if (lp.PDS.FPn == 0) // it's a gk
                     {
-                        ExtTMDataSet.GiocatoriNSkillRow gnsr = (ExtTMDataSet.GiocatoriNSkillRow)lp.PlayerDataRow;
-                        lp.Value = gnsr.PO;
+                        if (lp.Rat != null) UpdateLineupPlayerWithRating(lp);
+                        lp.Value = (float)lp.Rat.GK;
                     }
                     else
                     {
-                        ExtTMDataSet.GiocatoriNSkillRow gnsr = (ExtTMDataSet.GiocatoriNSkillRow)lp.PlayerDataRow;
-                        if (gnsr != null) UpdateLineupPlayerWithGNSRow(lp, gnsr);
-                        gnsr = (ExtTMDataSet.GiocatoriNSkillRow)player.PlayerDataRow;
-                        if (gnsr != null) UpdateLineupPlayerWithGNSRow(player, gnsr);
+                        if (lp.Rat != null) UpdateLineupPlayerWithRating(lp);
+                        if (player.Rat != null) UpdateLineupPlayerWithRating(player);
                     }
 
                     // Fire the event
@@ -359,31 +356,33 @@ namespace FieldFormationControl
             }
         }
 
-        private void UpdateLineupPlayerWithGNSRow(LineupPlayer lp, ExtTMDataSet.GiocatoriNSkillRow gnsr)
+        private void UpdateLineupPlayerWithRating(LineupPlayer lp)
         {
-            if (lp == fpDC) lp.Value = gnsr.DC;
-            if (lp == fpDCR) lp.Value = gnsr.DC;
-            if (lp == fpDCL) lp.Value = gnsr.DC;
-            if (lp == fpDR) lp.Value = gnsr.DR;
-            if (lp == fpDL) lp.Value = gnsr.DL;
-            if (lp == fpDMC) lp.Value = gnsr.DMC;
-            if (lp == fpDMCR) lp.Value = gnsr.DMC;
-            if (lp == fpDMCL) lp.Value = gnsr.DMC;
-            if (lp == fpDMR) lp.Value = gnsr.DMR;
-            if (lp == fpDML) lp.Value = gnsr.DML;
-            if (lp == fpMC) lp.Value = gnsr.MC;
-            if (lp == fpMCR) lp.Value = gnsr.MC;
-            if (lp == fpMCL) lp.Value = gnsr.MC;
-            if (lp == fpMR) lp.Value = gnsr.MR;
-            if (lp == fpML) lp.Value = gnsr.ML;
-            if (lp == fpOMC) lp.Value = gnsr.OMC;
-            if (lp == fpOMCR) lp.Value = gnsr.OMC;
-            if (lp == fpOMCL) lp.Value = gnsr.OMC;
-            if (lp == fpOMR) lp.Value = gnsr.OMR;
-            if (lp == fpOML) lp.Value = gnsr.OML;
-            if (lp == fpFC) lp.Value = gnsr.FC;
-            if (lp == fpFCR) lp.Value = gnsr.FC;
-            if (lp == fpFCL) lp.Value = gnsr.FC;
+            Rating rat = lp.Rat;
+
+            if (lp == fpDC) lp.Value = (float)rat.DC;
+            if (lp == fpDCR) lp.Value = (float)rat.DC;
+            if (lp == fpDCL) lp.Value = (float)rat.DC;
+            if (lp == fpDR) lp.Value = (float)rat.DR;
+            if (lp == fpDL) lp.Value = (float)rat.DL;
+            if (lp == fpDMC) lp.Value = (float)rat.DMC;
+            if (lp == fpDMCR) lp.Value = (float)rat.DMC;
+            if (lp == fpDMCL) lp.Value = (float)rat.DMC;
+            if (lp == fpDMR) lp.Value = (float)rat.DMR;
+            if (lp == fpDML) lp.Value = (float)rat.DML;
+            if (lp == fpMC) lp.Value = (float)rat.MC;
+            if (lp == fpMCR) lp.Value = (float)rat.MC;
+            if (lp == fpMCL) lp.Value = (float)rat.MC;
+            if (lp == fpMR) lp.Value = (float)rat.MR;
+            if (lp == fpML) lp.Value = (float)rat.ML;
+            if (lp == fpOMC) lp.Value = (float)rat.OMC;
+            if (lp == fpOMCR) lp.Value = (float)rat.OMC;
+            if (lp == fpOMCL) lp.Value = (float)rat.OMC;
+            if (lp == fpOMR) lp.Value = (float)rat.OMR;
+            if (lp == fpOML) lp.Value = (float)rat.OML;
+            if (lp == fpFC) lp.Value = (float)rat.FC;
+            if (lp == fpFCR) lp.Value = (float)rat.FC;
+            if (lp == fpFCL) lp.Value = (float)rat.FC;
         }
 
         private void LineupPlayer_DragOver(object sender, DragEventArgs e)

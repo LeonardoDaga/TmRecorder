@@ -1,4 +1,5 @@
-﻿using Common;
+﻿using System;
+using Common;
 using NTR_Common;
 
 namespace NTR_Db
@@ -14,7 +15,7 @@ namespace NTR_Db
 
             pDS.SkillSum = 0;
 
-            for (int i = 0; i < ((pDS.FPn == 0)?11:14); i++)
+            for (int i = 0; i < ((pDS.FPn == 0) ? 11 : 14); i++)
             {
                 pDS.Skills[i] = (double)playerData.Skills[i].actual;
                 pDS.SkillSum += pDS.Skills[i];
@@ -46,6 +47,7 @@ namespace NTR_Db
             return pDS;
         }
 
+        public string Name { get; private set; }
         public double[] Skills = new double[14];
         public int ASI { get; private set; }
         public double Rou { get; private set; }
@@ -72,5 +74,59 @@ namespace NTR_Db
 
             return pDS;
         }
+
+        public static PlayerDataSkills From(ExtTMDataSet.GiocatoriNSkillRow gnsr)
+        {
+            PlayerDataSkills pDS = new PlayerDataSkills();
+
+            for (int i = 0; i < ((gnsr.FPn == 0) ? 11 : 14); i++)
+            {
+                pDS.Skills[i] = (double)(decimal)gnsr.ItemArray[i + 7];
+                pDS.SkillSum += pDS.Skills[i];
+            }
+
+            pDS.Rou = (double)gnsr.Rou;
+            pDS.ASI = gnsr.ASI;
+            pDS.FPn = gnsr.FPn;
+            if (!gnsr.IsAdaNull())
+                pDS.Ada = (double)gnsr.Ada;
+            pDS.SPn = Tm_Utility.FPnToSPn(gnsr.FPn);
+
+            pDS.Name = gnsr.Nome.Split('|')[0];
+            pDS.Num = gnsr.Numero;
+            pDS.ID = gnsr.PlayerID;
+            pDS.wBorn = gnsr.wBorn;
+
+            return pDS;
+        }
+
+        public double Str => Skills[0];
+        public double Sta => Skills[1];
+        public double Pac => Skills[2];
+
+        public double Mar => Skills[3];
+        public double Tac => Skills[4];
+        public double Wor => Skills[5];
+        public double Pos => Skills[6];
+        public double Pas => Skills[7];
+        public double Cro => Skills[8];
+        public double Tec => Skills[9];
+        public double Hea => Skills[10];
+        public double Fin => Skills[11];
+        public double Lon => Skills[12];
+        public double Set => Skills[13];
+
+        public double Han => Skills[3];
+        public double One => Skills[4];
+        public double Ref => Skills[5];
+        public double Aer => Skills[6];
+        public double Jum => Skills[7];
+        public double Com => Skills[8];
+        public double Kic => Skills[9];
+        public double Thr => Skills[10];
+
+        public int Num { get; private set; }
+        public int ID { get; private set; }
+        public int wBorn { get; private set; }
     }
 }

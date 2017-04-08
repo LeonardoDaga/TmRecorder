@@ -152,6 +152,10 @@ namespace TacticsEditor
                 dgControl = dgFinalization;
             else if (tabControl.SelectedTab == tabDefense)
                 dgControl = dgDefense;
+            else if (tabControl.SelectedTab == tabPage1)
+                dgControl = dataGridView1;
+            else if (tabControl.SelectedTab == tabPage2)
+                dgControl = dataGridView2;
 
             if (dgControl != null)
             {

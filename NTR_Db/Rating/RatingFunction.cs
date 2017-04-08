@@ -13,13 +13,28 @@ namespace NTR_Db
     {
         public const int numPos = 14;
         public double[] rec = new double[numPos]; // REC
-        public double[] rating = new double[numPos]; // REC
-        public double[] ratingR = new double[numPos]; // REC + routine
+        public double[] rating = new double[numPos]; // Rating
+        public double[] ratingR = new double[numPos]; // Rating + routine
 
         public double CK { get; internal set; }
         public double FK { get; internal set; }
         public double PK { get; internal set; }
         public double OSi { get; internal set; }
+
+        public double DC => rating[(int)ePos.DC];
+        public double DR => rating[(int)ePos.DR];
+        public double DL => rating[(int)ePos.DL];
+        public double DMC => rating[(int)ePos.DMC];
+        public double DMR => rating[(int)ePos.DMR];
+        public double DML => rating[(int)ePos.DML];
+        public double MC => rating[(int)ePos.MC];
+        public double MR => rating[(int)ePos.MR];
+        public double ML => rating[(int)ePos.ML];
+        public double OMC => rating[(int)ePos.OMC];
+        public double OMR => rating[(int)ePos.OMR];
+        public double OML => rating[(int)ePos.OML];
+        public double FC => rating[(int)ePos.FC];
+        public double GK => rating[(int)ePos.GK];
 
         public double GetRec(int FPn)
         {
@@ -176,6 +191,12 @@ namespace NTR_Db
         {
             return rating[(int)pos];
         }
+
+        public float GetRating(string pos)
+        {
+            ePos epos = (ePos)Enum.Parse(typeof(ePos), pos);
+            return (float)rating[(int)epos];
+        }
     }
 
     public enum eCoefficient
@@ -205,17 +226,17 @@ namespace NTR_Db
     public enum ePos
     {
         DC,
-        DL,
         DR,
+        DL,
         DMC,
-        DML,
         DMR,
+        DML,
         MC,
-        ML,
         MR,
+        ML,
         OMC,
-        OML,
         OMR,
+        OML,
         FC,
         GK,
     }
@@ -244,42 +265,42 @@ namespace NTR_Db
             Coefficent.backColor = Color.LightGray;
 
             DC = weightRat[0, col];
-            DL = weightRat[1, col];
-            DR = weightRat[2, col];
+            DR = weightRat[1, col];
+            DL = weightRat[2, col];
             DMC = weightRat[3, col];
-            DML = weightRat[4, col];
-            DMR = weightRat[5, col];
+            DMR = weightRat[4, col];
+            DML = weightRat[5, col];
             MC = weightRat[6, col];
-            ML = weightRat[7, col];
-            MR = weightRat[8, col];
+            MR = weightRat[7, col];
+            ML = weightRat[8, col];
             OMC = weightRat[9, col];
-            OML = weightRat[10, col];
-            OMR = weightRat[11, col];
+            OMR = weightRat[10, col];
+            OML = weightRat[11, col];
             FC = weightRat[12, col];
             GK = weightRat[13, col];
         }
 
         public FormattedString Coefficent { get; set; }
         public double DC { get; set; }
-        public double DL { get; set; }
         public double DR { get; set; }
+        public double DL { get; set; }
         public double DMC { get; set; }
-        public double DML { get; set; }
         public double DMR { get; set; }
+        public double DML { get; set; }
         public double MC { get; set; }
-        public double ML { get; set; }
         public double MR { get; set; }
+        public double ML { get; set; }
         public double OMC { get; set; }
-        public double OML { get; set; }
         public double OMR { get; set; }
+        public double OML { get; set; }
         public double FC { get; set; }
         public double GK { get; set; }
 
         public double[] Column => new double[]
-                    {DC,DL,DR,
-                    DMC,DML,DMR,
-                    MC,ML,MR,
-                    OMC,OML,OMR,
+                    {DC,DR,DL,
+                    DMC,DMR,DML,
+                    MC,MR,ML,
+                    OMC,OMR,OML,
                     FC,GK};
     }
 
@@ -298,43 +319,43 @@ namespace NTR_Db
             SkillGk.backColor = Color.LightGray;
 
             DC = weightREC[0, col];
-            DL = weightREC[1, col];
-            DR = weightREC[2, col];
+            DR = weightREC[1, col];
+            DL = weightREC[2, col];
             DMC = weightREC[3, col];
-            DML = weightREC[4, col];
-            DMR = weightREC[5, col];
+            DMR = weightREC[4, col];
+            DML = weightREC[5, col];
             MC = weightREC[6, col];
-            ML = weightREC[7, col];
-            MR = weightREC[8, col];
+            MR = weightREC[7, col];
+            ML = weightREC[8, col];
             OMC = weightREC[9, col];
-            OML = weightREC[10, col];
-            OMR = weightREC[11, col];
+            OMR = weightREC[10, col];
+            OML = weightREC[11, col];
             FC = weightREC[12, col];
             GK = weightREC[13, col];
         }
 
         public FormattedString Skill { get; set; }
         public double DC { get; set; }
-        public double DL { get; set; }
         public double DR { get; set; }
+        public double DL { get; set; }
         public double DMC { get; set; }
-        public double DML { get; set; }
         public double DMR { get; set; }
+        public double DML { get; set; }
         public double MC { get; set; }
-        public double ML { get; set; }
         public double MR { get; set; }
+        public double ML { get; set; }
         public double OMC { get; set; }
-        public double OML { get; set; }
         public double OMR { get; set; }
+        public double OML { get; set; }
         public double FC { get; set; }
         public FormattedString SkillGk { get; set; }
         public double GK { get; set; }
 
         public double[] Column => new double[]
-                    {DC,DL,DR,
-                    DMC,DML,DMR,
-                    MC,ML,MR,
-                    OMC,OML,OMR,
+                    {DC,DR,DL,
+                    DMC,DMR,DML,
+                    MC,MR,ML,
+                    OMC,OMR,OML,
                     FC,GK};   
     }
 
@@ -346,40 +367,40 @@ namespace NTR_Db
             Position.backColor = Color.LightGray;
 
             DC = weightAda[0, col];
-            DL = weightAda[1, col];
-            DR = weightAda[2, col];
+            DR = weightAda[1, col];
+            DL = weightAda[2, col];
             DMC = weightAda[3, col];
-            DML = weightAda[4, col];
-            DMR = weightAda[5, col];
+            DMR = weightAda[4, col];
+            DML = weightAda[5, col];
             MC = weightAda[6, col];
-            ML = weightAda[7, col];
-            MR = weightAda[8, col];
+            MR = weightAda[7, col];
+            ML = weightAda[8, col];
             OMC = weightAda[9, col];
-            OML = weightAda[10, col];
-            OMR = weightAda[11, col];
+            OMR = weightAda[10, col];
+            OML = weightAda[11, col];
             FC = weightAda[12, col];
         }
 
         public FormattedString Position { get; set; }
         public double DC { get; set; }
-        public double DL { get; set; }
         public double DR { get; set; }
+        public double DL { get; set; }
         public double DMC { get; set; }
-        public double DML { get; set; }
         public double DMR { get; set; }
+        public double DML { get; set; }
         public double MC { get; set; }
-        public double ML { get; set; }
         public double MR { get; set; }
+        public double ML { get; set; }
         public double OMC { get; set; }
-        public double OML { get; set; }
         public double OMR { get; set; }
+        public double OML { get; set; }
         public double FC { get; set; }
 
         public double[] Column => new double[]
-                    {DC,DL,DR,
-                    DMC,DML,DMR,
-                    MC,ML,MR,
-                    OMC,OML,OMR,
+                    {DC,DR,DL,
+                    DMC,DMR,DML,
+                    MC,MR,ML,
+                    OMC,OMR,OML,
                     FC};
     }
 
@@ -411,7 +432,19 @@ namespace NTR_Db
             {
                 case eRatingFunctionType.RatingR2:
                     return RatingR2.Create(recWeights, ratWeights,
-                        recLfWeights, adaWeights, 
+                        recLfWeights, adaWeights,
+                        rouFactor, fileName);
+                case eRatingFunctionType.RatingAtleticoCassina:
+                    return RatingAC.Create(recWeights, ratWeights,
+                        recLfWeights, adaWeights,
+                        rouFactor, fileName);
+                case eRatingFunctionType.RUSCheratte:
+                    return RatingRC.Create(recWeights, ratWeights,
+                        recLfWeights, adaWeights,
+                        rouFactor, fileName);
+                case eRatingFunctionType.RatingL2:
+                    return RatingL2.Create(recWeights, ratWeights,
+                        recLfWeights, adaWeights,
                         rouFactor, fileName);
                 case eRatingFunctionType.RatingR3:
                 default:
@@ -608,6 +641,12 @@ namespace NTR_Db
                     return new RatingR2();
                 case eRatingFunctionType.RatingR3:
                     return new RatingR3();
+                case eRatingFunctionType.RatingAtleticoCassina:
+                    return new RatingAC();
+                case eRatingFunctionType.RUSCheratte:
+                    return new RatingRC();
+                case eRatingFunctionType.RatingL2:
+                    return new RatingL2();
             }
 
             return null;

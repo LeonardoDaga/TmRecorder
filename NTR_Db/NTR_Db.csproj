@@ -77,8 +77,11 @@
     </Compile>
     <Compile Include="Rating\PlayerDataSkills.cs" />
     <Compile Include="Rating\RatingFunction.cs" />
+    <Compile Include="Rating\RatingAC.cs" />
     <Compile Include="Rating\RatingR3.cs" />
     <Compile Include="Rating\RatingR2.cs" />
+    <Compile Include="Rating\RatingL2.cs" />
+    <Compile Include="Rating\RatingRC.cs" />
     <Compile Include="Season.cs" />
     <Compile Include="Tactics\TacticsFunction.cs" />
   </ItemGroup>

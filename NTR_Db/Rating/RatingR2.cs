@@ -69,29 +69,29 @@ namespace NTR_Db
 
         public override Rating ComputeRating(PlayerDataSkills playerData)
         {
-            double skillWeightSum, weight;
+            double rerecRemainder, weight;
             double SI = playerData.ASI;
             double rou = playerData.Rou;
             double ada = (playerData.Ada == 0) ? 10 : playerData.Ada;
 
             if (playerData.FPn == 0) // The player is a GK
             {
-                skillWeightSum = (Math.Pow(SI, 0.143) / 0.02979);
+                rerecRemainder = (Math.Pow(SI, 0.143) / 0.02979);
                 weight = 48717927500;
             }
             else
             {
-                skillWeightSum = (Math.Pow(SI, 1 / 6.99194) / 0.02336483);
+                rerecRemainder = (Math.Pow(SI, 1 / 6.99194) / 0.02336483);
                 weight = 263533760000;
             }
 
             double skillSum = playerData.SkillSum;
 
             // REREC remainder
-            skillWeightSum -= skillSum;
+            rerecRemainder -= skillSum;
 
             // RatingR2 remainder
-            var remainder = Math.Round((Math.Pow(2.0, Math.Log(weight * SI) / Math.Log(Math.Pow(2, 7))) - skillSum) * 10.0) / 10.0;
+            var ratingRemainder = Math.Round((Math.Pow(2.0, Math.Log(weight * SI) / Math.Log(Math.Pow(2, 7))) - skillSum) * 10.0) / 10.0;
 
             int[] positionIndex = Rating.GetPositionIndex(playerData.FPn);
 
@@ -124,13 +124,13 @@ namespace NTR_Db
                         }
                     }
 
-                    R.rec[j] += skillWeightSum * remWeightREC / not20;		//REREC Score
+                    R.rec[j] += rerecRemainder * remWeightREC / not20;		//REREC Score
 
                     if (positionIndex[n] == 13)
                         R.rec[j] *= 1.27;					//GK
 
                     R.rec[j] = (R.rec[j] - _WeightREClf[j, 0]) / _WeightREClf[j, 1];
-                    R.rating[j] += remainder * remWeightRat / not20;
+                    R.rating[j] += ratingRemainder * remWeightRat / not20;
                     R.ratingR[j] = R.rating[j] * (1 + rou * RoutineFactor);
                     R.rating[j] = R.rating[j];
 
@@ -145,17 +145,19 @@ namespace NTR_Db
                     }
                 }
 
-                if (playerData.FPn != 0) // The player is not a GK
-                {
-                    R.CK = (playerData.Skills[8] + playerData.Skills[13] + playerData.Skills[9] / 2) + rou / 2;
-                    R.FK = (playerData.Skills[12] + playerData.Skills[13] + playerData.Skills[9] / 2) + rou / 2;
-                    R.PK = (playerData.Skills[11] + playerData.Skills[13] + playerData.Skills[9] / 2) + rou / 2;
-                }
-
                 Rv[n] = R;
             }
 
             Rating Rmax = Rating.Max(Rv);
+
+            double LOG2E = 1.4426950408889634;
+            double rouMultiplier = Math.Pow(5.0 / 3.0, LOG2E * Math.Log(rou * 10)) * RoutineFactor;
+            if (playerData.FPn != 0) // The player is not a GK
+            {
+                Rmax.CK = (playerData.Skills[8] + playerData.Skills[13] + playerData.Skills[9] / 2) + rouMultiplier / 2;
+                Rmax.FK = (playerData.Skills[12] + playerData.Skills[13] + playerData.Skills[9] / 2) + rouMultiplier / 2;
+                Rmax.PK = (playerData.Skills[11] + playerData.Skills[13] + playerData.Skills[9] / 2) + rouMultiplier / 2;
+            }
 
             Rmax.OSi = GetOSi(Rmax, playerData);
 

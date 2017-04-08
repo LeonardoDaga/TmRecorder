@@ -16,7 +16,7 @@ namespace NTR_Db
         List<Label> phyLabels = new List<Label>();
         List<Label> tacLabels = new List<Label>();
         List<Label> tecLabels = new List<Label>();
-        RatingFunction RF = new RatingR3();
+        public RatingFunction RF;
 
         public NTR_PlayerData()
         {
@@ -218,11 +218,6 @@ namespace NTR_Db
                     pctTeamB.Visible = (teamB != 0);
                     pctRetiring.Visible = false; // TODO!!
 
-                    if (!pr.IsCStrNull())
-                        lblCRec.Text = pr.CStr.ToString("N1") + "/5";
-                    else
-                        lblCRec.Text = "-";
-
                     if (!pr.IsRecNull())
                         lblRec.Text = pr.Rec.ToString("N1") + "/5";
                     else
@@ -282,20 +277,25 @@ namespace NTR_Db
 
                     int[] FPv = Tm_Utility.FPnToFPvector(pr.FPn);
 
-                    lblR2Rat1.Text = Rating.ratingR[FPv[0]].ToString("N1");
+                    lblRatingName.Text = RF.ShortName + " REC";
+
+                    lblR2Rat.Text = Rating.rating[FPv[0]].ToString("N1");
+                    lblR2RatR.Text = Rating.ratingR[FPv[0]].ToString("N1");
                     lblReRec1.Text = Rating.rec[FPv[0]].ToString("N2");
                     lblRouEff1.Text = (Rating.ratingR[FPv[0]] - Rating.rating[FPv[0]]).ToString("N1");
                     lblRsSk1.Text = FPs[0];
                     SetLabelBack(lblRsSk1, FPs[0]);
 
                     lblR2Rat2.Visible = (FPv[1] != -1);
+                    lblR2RatR2.Visible = (FPv[1] != -1);
                     lblReRec2.Visible = (FPv[1] != -1);
                     lblRouEff2.Visible = (FPv[1] != -1);
                     lblRsSk2.Visible = (FPv[1] != -1);
 
                     if (FPv[1] != -1)
                     {
-                        lblR2Rat2.Text = Rating.ratingR[FPv[1]].ToString("N1");
+                        lblR2Rat2.Text = Rating.rating[FPv[1]].ToString("N1");
+                        lblR2RatR2.Text = Rating.ratingR[FPv[1]].ToString("N1");
                         lblReRec2.Text = Rating.rec[FPv[1]].ToString("N2");
                         lblRouEff2.Text = (Rating.ratingR[FPv[1]] - Rating.rating[FPv[1]]).ToString("N1");
                         lblRsSk2.Text = FPs[1];
@@ -495,7 +495,6 @@ namespace NTR_Db
                 pctTeamB.Visible = (teamB != 0);
                 pctRetiring.Visible = false; // TODO!!
 
-                lblCRec.Text = plData.CStr.ToString("N1") + "/5";
                 lblRec.Text = plData.Rec.ToString("N1") + "/5";
 
                 int ix = flagImgList.Images.IndexOfKey(plData.Nationality.ToString() + ".png");
@@ -549,20 +548,25 @@ namespace NTR_Db
 
                 int[] FPv = Tm_Utility.FPnToFPvector(plData.FPn);
 
-                lblR2Rat1.Text = Rating.ratingR[FPv[0]].ToString("N1");
+                lblRatingName.Text = RF.ShortName + " REC";
+
+                lblR2Rat.Text = Rating.rating[FPv[0]].ToString("N1");
+                lblR2RatR.Text = Rating.ratingR[FPv[0]].ToString("N1");
                 lblReRec1.Text = Rating.rec[FPv[0]].ToString("N2");
                 lblRouEff1.Text = (Rating.ratingR[FPv[0]] - Rating.rating[FPv[0]]).ToString("N1");
                 lblRsSk1.Text = FPs[0];
                 SetLabelBack(lblRsSk1, FPs[0]);
 
                 lblR2Rat2.Visible = (FPv[1] != -1);
+                lblR2RatR2.Visible = (FPv[1] != -1);
                 lblReRec2.Visible = (FPv[1] != -1);
                 lblRouEff2.Visible = (FPv[1] != -1);
                 lblRsSk2.Visible = (FPv[1] != -1);
 
                 if (FPv[1] != -1)
                 {
-                    lblR2Rat2.Text = Rating.ratingR[FPv[1]].ToString("N1");
+                    lblR2Rat2.Text = Rating.rating[FPv[1]].ToString("N1");
+                    lblR2RatR2.Text = Rating.ratingR[FPv[1]].ToString("N1");
                     lblReRec2.Text = Rating.rec[FPv[1]].ToString("N2");
                     lblRouEff2.Text = (Rating.ratingR[FPv[1]] - Rating.rating[FPv[1]]).ToString("N1");
                     lblRsSk2.Text = FPs[1];
@@ -638,7 +642,7 @@ namespace NTR_Db
             switch (FPn)
             {
                 case 0:
-                    lblFP.ForeColor = Color.Blue;
+                    lblFP.ForeColor = Color.LightBlue;
                     break;
                 case 10:
                 case 13:

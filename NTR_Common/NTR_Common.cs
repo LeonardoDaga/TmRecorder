@@ -11,6 +11,9 @@ namespace NTR_Common
     {
         RatingR2,
         RatingR3,
+        RatingAtleticoCassina,
+        RUSCheratte,
+        RatingL2,
     }
 
     public class FormattedString : IComparable<FormattedString>

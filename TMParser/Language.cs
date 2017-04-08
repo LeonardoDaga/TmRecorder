@@ -203,13 +203,7 @@ namespace TMRecorder
             this.label12.Text = Current.Language.ReserveSquad;
             //this.label13.Text = resources.GetString("label13.Text");
             this.label9.Text = Current.Language.MainSquad;
-            this.tabPage1.Text = Current.Language.GainSet;
-            this.groupBox4.Text = Current.Language.Routine;
-            this.label32.Text = Current.Language.Function;
-            this.label31.Text = Current.Language.Parameters;
-            this.label3.Text = Current.Language.GainSet;
             this.chkEvidenceGains.Text = Current.Language.EvidenceGainOnThePlayersTable;
-            this.chkNormalizeGains.Text = Current.Language.NormalizeGains;
             this.pasteScoutListToolStripMenuItem.Text = Current.Language.PasteScoutList;
             this.pasteTrainersListToolStripMenuItem.Text = Current.Language.PasteTrainersList;
             this.tabScout.Text = "Scouts";

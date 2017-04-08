@@ -11,6 +11,11 @@ namespace NTR_Controls
         public string fileName { get; private set; }
         public List<TAC_PlWeights> tacPlWeights { get; private set; }
         public List<TAC_GkWeights> tacGkWeights { get; private set; }
+        public List<TAC_Tac2ActWeights> tacTac2ActWeights { get; private set; }
+        public List<TAC_PossessionWeights> tacPossessionWeights { get; private set; }
+        public List<TAC_ActionWeights> tacActionConstructionWeights { get; private set; }
+        public List<TAC_ActionWeights> tacActionFinalizationWeights { get; private set; }
+        public List<TAC_ActionWeights> tacDefenseWeights { get; private set; }
 
         public TacticsEditor()
         {
@@ -28,6 +33,11 @@ namespace NTR_Controls
         {
             tacPlWeights = TacticsFunction.PlWeightsMatrixToTable(TF._plTacticsSPosDict);
             tacGkWeights = TacticsFunction.GkWeightsMatrixToTable(TF._gkTacticsSPosDict);
+            tacTac2ActWeights = TacticsFunction.TacticsToAcionMatrixToTable(TF._tacticsToActionDict);
+            tacPossessionWeights = TacticsFunction.PossessionMatrixToTable(TF._possessionDict);
+            tacActionConstructionWeights = TacticsFunction.ActionMatrixToTable(TF._actionConstructionDict);
+            tacActionFinalizationWeights = TacticsFunction.ActionMatrixToTable(TF._actionFinalizationDict);
+            tacDefenseWeights = TacticsFunction.ActionMatrixToTable(TF._actionDefensiveDict);
 
             fileName = TF.SettingsFilename;
 
@@ -122,6 +132,11 @@ namespace NTR_Controls
             TacticsFunction TF = TacticsFunction.Create(
                 tacPlWeights,
                 tacGkWeights,
+                tacTac2ActWeights,
+                tacPossessionWeights,
+                tacActionConstructionWeights,
+                tacActionFinalizationWeights,
+                tacDefenseWeights,
                 fileName);
 
             if (ofd.ShowDialog() == DialogResult.OK)
@@ -139,15 +154,40 @@ namespace NTR_Controls
             TacticsFunction TF = TacticsFunction.Create(
                 tacPlWeights,
                 tacGkWeights,
+                tacTac2ActWeights,
+                tacPossessionWeights,
+                tacActionConstructionWeights,
+                tacActionFinalizationWeights,
+                tacDefenseWeights,
                 fileName);
 
-            if (tabControl1.SelectedTab == tabPlTactics)
+            if (tabControl.SelectedTab == tabPlTactics)
             {
                 copy = TF.PlTacticsSPosDict.ToExcelString();
             }
-            else
+            else if (tabControl.SelectedTab == tabGkTactics)
             {
                 copy = TF.GkTacticsSPosDict.ToExcelString();
+            }
+            else if (tabControl.SelectedTab == tabTacticsToAction)
+            {
+                copy = TF.TacticsToAcionDict.ToExcelString();
+            }
+            else if (tabControl.SelectedTab == tabPossession)
+            {
+                copy = TF.PossessionDict.ToExcelString();
+            }
+            else if (tabControl.SelectedTab == tabActionConstruction)
+            {
+                copy = TF.ActionConstructionDict.ToExcelString();
+            }
+            else if (tabControl.SelectedTab == tabActionFinalization)
+            {
+                copy = TF.ActionFinalizationDict.ToExcelString();
+            }
+            else // if (tabControl.SelectedTab == tabDefense)
+            {
+                copy = TF.ActionDefensiveDict.ToExcelString();
             }
 
             Clipboard.SetText(copy);
@@ -158,7 +198,7 @@ namespace NTR_Controls
             string paste = Clipboard.GetText();
             paste = paste.Replace("\r\n", ";\n");
 
-            if (tabControl1.SelectedTab == tabPlTactics)
+            if (tabControl.SelectedTab == tabPlTactics)
             {
                 PlTacticsSPosDictionary dict = PlTacticsSPosDictionary.Parse(paste);
                 tacPlWeights = TacticsFunction.PlWeightsMatrixToTable(dict);

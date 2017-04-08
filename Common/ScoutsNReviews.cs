@@ -28,9 +28,13 @@ namespace Common
             string[] scouts = scoutsInfo.Split('|');
 
             Dictionary<string, string> scoutInfo = new Dictionary<string, string>();
+
             foreach (string scout in scouts)
             {
                 scoutInfo = HTML_Parser.CreateDictionary(scout, ',');
+
+                if (!scoutInfo.ContainsKey("Name"))
+                    break;
 
                 ScoutsRow sr = Scouts.FindByName(scoutInfo["Name"]);
                 if (sr == null)

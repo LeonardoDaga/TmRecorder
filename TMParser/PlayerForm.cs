@@ -29,7 +29,16 @@ namespace TMRecorder
         public bool isDirty = false;
         public NTR_Db.Seasons allSeasons = null;
 
-        RatingFunction RF;
+        private RatingFunction _RF;
+        RatingFunction RF
+        {
+            get { return _RF; }
+            set
+            {
+                playerData.RF = value;
+                this._RF = value;
+            }
+        }
 
         public int actPlayerID
         {
@@ -48,19 +57,6 @@ namespace TMRecorder
         public decimal BloomAgeView
         {
             set {playerData.BloomAge = value; }
-        }
-
-        public PlayerForm(ExtTMDataSet.GiocatoriNSkillDataTable gdt,
-                         NTR_Db.Seasons allseason)
-        {
-            // Only for debug
-            InitializeComponent();
-
-            SetLanguage();
-
-            this.allSeasons = allseason;
-
-            GDT = gdt;
         }
 
         public PlayerForm(ExtTMDataSet.GiocatoriNSkillDataTable gdt,
@@ -2456,6 +2452,7 @@ namespace TMRecorder
 
         NavigationType navigationType = NavigationType.NavigateReports;
         int lastBarPlayer = 0;
+
         private void ChangePlayer_Click(object sender, EventArgs e)
         {
             ToolStripMenuItem tsi = (ToolStripMenuItem)sender;

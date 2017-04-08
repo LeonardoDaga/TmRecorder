@@ -121,12 +121,6 @@ namespace TMRecorder
             set { txtInstallationDirectory.Text = value; }
         }
 
-        public bool NormalizeGains
-        {
-            get { return chkNormalizeGains.Checked; }
-            set { chkNormalizeGains.Checked = value; }
-        }
-
         public bool EvidenceGains
         {
             get { return chkEvidenceGains.Checked; }

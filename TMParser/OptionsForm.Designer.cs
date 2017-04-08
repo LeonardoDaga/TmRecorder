@@ -30,7 +30,6 @@ namespace TMRecorder
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OptionsForm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -43,6 +42,7 @@ namespace TMRecorder
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OptionsForm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -126,17 +126,6 @@ namespace TMRecorder
             this.label10 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.lbGainSet = new System.Windows.Forms.ListBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.label33 = new System.Windows.Forms.Label();
-            this.label32 = new System.Windows.Forms.Label();
-            this.cmbRoutineFunction = new System.Windows.Forms.ComboBox();
-            this.label31 = new System.Windows.Forms.Label();
-            this.txtRoutineParameters = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.chkEvidenceGains = new System.Windows.Forms.CheckBox();
-            this.chkNormalizeGains = new System.Windows.Forms.CheckBox();
             this.tabScout = new System.Windows.Forms.TabPage();
             this.optionFormMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.pasteScoutListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -304,13 +293,12 @@ namespace TMRecorder
             this.dataGridViewTextBoxColumn62 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn63 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.chkEvidenceGains = new System.Windows.Forms.CheckBox();
             this.tabMain.SuspendLayout();
             this.tabGenerali.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nationNamesBindingSource)).BeginInit();
             this.tabPageYourTeamData.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.groupBox4.SuspendLayout();
             this.tabScout.SuspendLayout();
             this.optionFormMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -407,7 +395,6 @@ namespace TMRecorder
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabMain.Controls.Add(this.tabGenerali);
             this.tabMain.Controls.Add(this.tabPageYourTeamData);
-            this.tabMain.Controls.Add(this.tabPage1);
             this.tabMain.Controls.Add(this.tabScout);
             this.tabMain.Controls.Add(this.tabPage3);
             this.tabMain.Controls.Add(this.tabPage31);
@@ -420,6 +407,7 @@ namespace TMRecorder
             // 
             // tabGenerali
             // 
+            this.tabGenerali.Controls.Add(this.chkEvidenceGains);
             this.tabGenerali.Controls.Add(this.btnResetWindows);
             this.tabGenerali.Controls.Add(this.cmbIEVersions);
             this.tabGenerali.Controls.Add(this.btnActionAnalysisFile);
@@ -448,7 +436,7 @@ namespace TMRecorder
             // 
             // btnResetWindows
             // 
-            this.btnResetWindows.Location = new System.Drawing.Point(233, 191);
+            this.btnResetWindows.Location = new System.Drawing.Point(233, 199);
             this.btnResetWindows.Name = "btnResetWindows";
             this.btnResetWindows.Size = new System.Drawing.Size(97, 23);
             this.btnResetWindows.TabIndex = 21;
@@ -460,7 +448,7 @@ namespace TMRecorder
             // 
             this.cmbIEVersions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbIEVersions.FormattingEnabled = true;
-            this.cmbIEVersions.Location = new System.Drawing.Point(127, 152);
+            this.cmbIEVersions.Location = new System.Drawing.Point(127, 160);
             this.cmbIEVersions.Name = "cmbIEVersions";
             this.cmbIEVersions.Size = new System.Drawing.Size(277, 21);
             this.cmbIEVersions.TabIndex = 20;
@@ -489,7 +477,7 @@ namespace TMRecorder
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(9, 196);
+            this.label27.Location = new System.Drawing.Point(9, 204);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(218, 13);
             this.label27.TabIndex = 17;
@@ -498,7 +486,7 @@ namespace TMRecorder
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(7, 155);
+            this.label26.Location = new System.Drawing.Point(7, 163);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(114, 13);
             this.label26.TabIndex = 17;
@@ -516,7 +504,7 @@ namespace TMRecorder
             // chkUseTMBrowser
             // 
             this.chkUseTMBrowser.AutoSize = true;
-            this.chkUseTMBrowser.Location = new System.Drawing.Point(10, 119);
+            this.chkUseTMBrowser.Location = new System.Drawing.Point(10, 127);
             this.chkUseTMBrowser.Name = "chkUseTMBrowser";
             this.chkUseTMBrowser.Size = new System.Drawing.Size(255, 17);
             this.chkUseTMBrowser.TabIndex = 13;
@@ -619,7 +607,7 @@ namespace TMRecorder
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(5, 95);
+            this.label2.Location = new System.Drawing.Point(9, 95);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(107, 13);
             this.label2.TabIndex = 0;
@@ -759,133 +747,6 @@ namespace TMRecorder
             this.label9.TabIndex = 0;
             this.label9.Text = "Main Squad";
             // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.lbGainSet);
-            this.tabPage1.Controls.Add(this.groupBox4);
-            this.tabPage1.Controls.Add(this.label3);
-            this.tabPage1.Controls.Add(this.chkEvidenceGains);
-            this.tabPage1.Controls.Add(this.chkNormalizeGains);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(631, 345);
-            this.tabPage1.TabIndex = 1;
-            this.tabPage1.Text = "Gain Set";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // lbGainSet
-            // 
-            this.lbGainSet.FormattingEnabled = true;
-            this.lbGainSet.Items.AddRange(new object[] {
-            "Default",
-            "RusCheratte",
-            "Led_2"});
-            this.lbGainSet.Location = new System.Drawing.Point(61, 8);
-            this.lbGainSet.Name = "lbGainSet";
-            this.lbGainSet.Size = new System.Drawing.Size(310, 95);
-            this.lbGainSet.TabIndex = 12;
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.label33);
-            this.groupBox4.Controls.Add(this.label32);
-            this.groupBox4.Controls.Add(this.cmbRoutineFunction);
-            this.groupBox4.Controls.Add(this.label31);
-            this.groupBox4.Controls.Add(this.txtRoutineParameters);
-            this.groupBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.groupBox4.Location = new System.Drawing.Point(10, 155);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(605, 100);
-            this.groupBox4.TabIndex = 11;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Routine";
-            // 
-            // label33
-            // 
-            this.label33.BackColor = System.Drawing.SystemColors.Control;
-            this.label33.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.5F);
-            this.label33.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.label33.Location = new System.Drawing.Point(7, 41);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(592, 56);
-            this.label33.TabIndex = 11;
-            this.label33.Text = resources.GetString("label33.Text");
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.ForeColor = System.Drawing.Color.Black;
-            this.label32.Location = new System.Drawing.Point(350, 20);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(48, 13);
-            this.label32.TabIndex = 7;
-            this.label32.Text = "Function";
-            // 
-            // cmbRoutineFunction
-            // 
-            this.cmbRoutineFunction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbRoutineFunction.ForeColor = System.Drawing.Color.Black;
-            this.cmbRoutineFunction.FormattingEnabled = true;
-            this.cmbRoutineFunction.Items.AddRange(new object[] {
-            "Linear (P0 + X*P1)",
-            "Exponential (P0 + P1*exp(P2*X + P3))",
-            "Logarithm (P0 + P1*log10(P2*X + P3))",
-            "Quadratic (P0 + P1*X + P2*X^2)"});
-            this.cmbRoutineFunction.Location = new System.Drawing.Point(404, 17);
-            this.cmbRoutineFunction.Name = "cmbRoutineFunction";
-            this.cmbRoutineFunction.Size = new System.Drawing.Size(195, 21);
-            this.cmbRoutineFunction.TabIndex = 10;
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.ForeColor = System.Drawing.Color.Black;
-            this.label31.Location = new System.Drawing.Point(7, 20);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(60, 13);
-            this.label31.TabIndex = 7;
-            this.label31.Text = "Parameters";
-            // 
-            // txtRoutineParameters
-            // 
-            this.txtRoutineParameters.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtRoutineParameters.ForeColor = System.Drawing.Color.Black;
-            this.txtRoutineParameters.Location = new System.Drawing.Point(73, 17);
-            this.txtRoutineParameters.Name = "txtRoutineParameters";
-            this.txtRoutineParameters.Size = new System.Drawing.Size(179, 20);
-            this.txtRoutineParameters.TabIndex = 8;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(7, 13);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(48, 13);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Gain Set";
-            // 
-            // chkEvidenceGains
-            // 
-            this.chkEvidenceGains.AutoSize = true;
-            this.chkEvidenceGains.Location = new System.Drawing.Point(390, 35);
-            this.chkEvidenceGains.Name = "chkEvidenceGains";
-            this.chkEvidenceGains.Size = new System.Drawing.Size(191, 17);
-            this.chkEvidenceGains.TabIndex = 6;
-            this.chkEvidenceGains.Text = "Evidence Gain on the players table";
-            this.chkEvidenceGains.UseVisualStyleBackColor = true;
-            // 
-            // chkNormalizeGains
-            // 
-            this.chkNormalizeGains.AutoSize = true;
-            this.chkNormalizeGains.Location = new System.Drawing.Point(390, 12);
-            this.chkNormalizeGains.Name = "chkNormalizeGains";
-            this.chkNormalizeGains.Size = new System.Drawing.Size(102, 17);
-            this.chkNormalizeGains.TabIndex = 6;
-            this.chkNormalizeGains.Text = "Normalize Gains";
-            this.chkNormalizeGains.UseVisualStyleBackColor = true;
-            // 
             // tabScout
             // 
             this.tabScout.ContextMenuStrip = this.optionFormMenuStrip;
@@ -905,13 +766,13 @@ namespace TMRecorder
             this.pasteScoutListToolStripMenuItem,
             this.pasteTrainersListToolStripMenuItem});
             this.optionFormMenuStrip.Name = "scoutTableMenuStrip";
-            this.optionFormMenuStrip.Size = new System.Drawing.Size(209, 48);
+            this.optionFormMenuStrip.Size = new System.Drawing.Size(218, 48);
             // 
             // pasteScoutListToolStripMenuItem
             // 
             this.pasteScoutListToolStripMenuItem.Name = "pasteScoutListToolStripMenuItem";
             this.pasteScoutListToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.pasteScoutListToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.pasteScoutListToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
             this.pasteScoutListToolStripMenuItem.Text = "Paste Scout List";
             this.pasteScoutListToolStripMenuItem.Click += new System.EventHandler(this.pasteOptionFormToolStripMenuItem_Click);
             // 
@@ -919,7 +780,7 @@ namespace TMRecorder
             // 
             this.pasteTrainersListToolStripMenuItem.Name = "pasteTrainersListToolStripMenuItem";
             this.pasteTrainersListToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.pasteTrainersListToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.pasteTrainersListToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
             this.pasteTrainersListToolStripMenuItem.Text = "Paste Trainers List";
             this.pasteTrainersListToolStripMenuItem.Click += new System.EventHandler(this.pasteOptionFormToolStripMenuItem_Click);
             // 
@@ -2929,6 +2790,17 @@ namespace TMRecorder
             this.dataGridViewTextBoxColumn63.HeaderText = "Review";
             this.dataGridViewTextBoxColumn63.Name = "dataGridViewTextBoxColumn63";
             // 
+            // chkEvidenceGains
+            // 
+            this.chkEvidenceGains.AutoSize = true;
+            this.chkEvidenceGains.Location = new System.Drawing.Point(12, 250);
+            this.chkEvidenceGains.Name = "chkEvidenceGains";
+            this.chkEvidenceGains.Size = new System.Drawing.Size(168, 17);
+            this.chkEvidenceGains.TabIndex = 22;
+            this.chkEvidenceGains.Text = "Evidence rating gains on skills";
+            this.chkEvidenceGains.UseVisualStyleBackColor = true;
+            this.chkEvidenceGains.Visible = false;
+            // 
             // OptionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2952,10 +2824,6 @@ namespace TMRecorder
             this.tabPageYourTeamData.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
             this.tabScout.ResumeLayout(false);
             this.optionFormMenuStrip.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -3043,9 +2911,6 @@ namespace TMRecorder
         private System.Windows.Forms.ComboBox cbDefaultNation;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.BindingSource nationNamesBindingSource;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.CheckBox chkNormalizeGains;
         private System.Windows.Forms.OpenFileDialog selectFileDialog;
         private System.Windows.Forms.TabPage tabScout;
         private NTR_Controls.AeroDataGrid dataGridView1;
@@ -3218,16 +3083,9 @@ namespace TMRecorder
         private System.Windows.Forms.Button btnActionAnalysisFile;
         private System.Windows.Forms.TextBox txtActionsAnalysisFile;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.CheckBox chkEvidenceGains;
         private System.Windows.Forms.TabPage tabPage31;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.CheckBox chkUseStartupDisk;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.ComboBox cmbRoutineFunction;
-        private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.TextBox txtRoutineParameters;
-        private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.CheckBox chkUseOldHTMLImport;
         private System.Windows.Forms.ComboBox cmbLanguage;
@@ -3236,7 +3094,6 @@ namespace TMRecorder
         private System.Windows.Forms.CheckBox chkShowReservesMatches;
         private System.Windows.Forms.CheckBox chkShowMainMatches;
         private MatchAnalysis matchAnalysisDB;
-        private System.Windows.Forms.ListBox lbGainSet;
         private System.Windows.Forms.Button btnOpenReportFile;
         private System.Windows.Forms.ListBox lbReportFileLanguage;
         private System.Windows.Forms.Label label7;
@@ -3245,5 +3102,6 @@ namespace TMRecorder
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Button btnResetWindows;
         private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.CheckBox chkEvidenceGains;
     }
 }

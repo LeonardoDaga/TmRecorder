@@ -29,7 +29,17 @@ namespace TMRecorder
         public bool isDirty = false;
         NTR_SquadDb DB = null;
         ReportParser reportParser;
-        RatingFunction RF;
+
+        private RatingFunction _RF;
+        RatingFunction RF
+        {
+            get { return _RF; }
+            set
+            {
+                playerDataCnt.RF = value;
+                this._RF = value;
+            }
+        }
 
         public int selectedPlayerID
         {

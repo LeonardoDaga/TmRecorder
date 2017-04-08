@@ -1083,7 +1083,7 @@ namespace NTR_Db
             {
                 if (_tacADir == -1)
                 {
-                    _tacADir = (decimal)TF.ComputeTactics(PlayerDataSkills.From(this), NTR_Common.Tactics.Type.Direct, 1);
+                    _tacADir = (decimal)TF.ComputeTactics(PlayerDataSkills.From(this), NTR_Common.Tactics.Type.Dir, 1);
                 }
                 return _tacADir;
             }
@@ -1096,7 +1096,7 @@ namespace NTR_Db
             {
                 if (_tacAWin == -1)
                 {
-                    _tacAWin = (decimal)TF.ComputeTactics(PlayerDataSkills.From(this), NTR_Common.Tactics.Type.Wings, 1);
+                    _tacAWin = (decimal)TF.ComputeTactics(PlayerDataSkills.From(this), NTR_Common.Tactics.Type.Win, 1);
                 }
                 return _tacAWin;
             }
@@ -1109,7 +1109,7 @@ namespace NTR_Db
             {
                 if (_tacAShp == -1)
                 {
-                    _tacAShp = (decimal)TF.ComputeTactics(PlayerDataSkills.From(this), NTR_Common.Tactics.Type.ShortPass, 1);
+                    _tacAShp = (decimal)TF.ComputeTactics(PlayerDataSkills.From(this), NTR_Common.Tactics.Type.Sho, 1);
                 }
                 return _tacAShp;
             }
@@ -1122,7 +1122,7 @@ namespace NTR_Db
             {
                 if (_tacALon == -1)
                 {
-                    _tacALon = (decimal)TF.ComputeTactics(PlayerDataSkills.From(this), NTR_Common.Tactics.Type.LongBalls, 1);
+                    _tacALon = (decimal)TF.ComputeTactics(PlayerDataSkills.From(this), NTR_Common.Tactics.Type.Lon, 1);
                 }
                 return _tacALon;
             }
@@ -1135,7 +1135,7 @@ namespace NTR_Db
             {
                 if (_tacAThr == -1)
                 {
-                    _tacAThr = (decimal)TF.ComputeTactics(PlayerDataSkills.From(this), NTR_Common.Tactics.Type.Through, 1);
+                    _tacAThr = (decimal)TF.ComputeTactics(PlayerDataSkills.From(this), NTR_Common.Tactics.Type.Thr, 1);
                 }
                 return _tacAThr;
             }
@@ -1148,7 +1148,7 @@ namespace NTR_Db
             {
                 if (_tacDDir == -1)
                 {
-                    _tacDDir = (decimal)TF.ComputeTactics(PlayerDataSkills.From(this), NTR_Common.Tactics.Type.Direct, 0);
+                    _tacDDir = (decimal)TF.ComputeTactics(PlayerDataSkills.From(this), NTR_Common.Tactics.Type.Dir, 0);
                 }
                 return _tacDDir;
             }
@@ -1161,7 +1161,7 @@ namespace NTR_Db
             {
                 if (_tacDWin == -1)
                 {
-                    _tacDWin = (decimal)TF.ComputeTactics(PlayerDataSkills.From(this), NTR_Common.Tactics.Type.Wings, 0);
+                    _tacDWin = (decimal)TF.ComputeTactics(PlayerDataSkills.From(this), NTR_Common.Tactics.Type.Win, 0);
                 }
                 return _tacDWin;
             }
@@ -1174,7 +1174,7 @@ namespace NTR_Db
             {
                 if (_tacDShp == -1)
                 {
-                    _tacDShp = (decimal)TF.ComputeTactics(PlayerDataSkills.From(this), NTR_Common.Tactics.Type.ShortPass, 0);
+                    _tacDShp = (decimal)TF.ComputeTactics(PlayerDataSkills.From(this), NTR_Common.Tactics.Type.Sho, 0);
                 }
                 return _tacDShp;
             }
@@ -1187,7 +1187,7 @@ namespace NTR_Db
             {
                 if (_tacDLon == -1)
                 {
-                    _tacDLon = (decimal)TF.ComputeTactics(PlayerDataSkills.From(this), NTR_Common.Tactics.Type.LongBalls, 0);
+                    _tacDLon = (decimal)TF.ComputeTactics(PlayerDataSkills.From(this), NTR_Common.Tactics.Type.Lon, 0);
                 }
                 return _tacDLon;
             }
@@ -1200,7 +1200,7 @@ namespace NTR_Db
             {
                 if (_tacDThr == -1)
                 {
-                    _tacDThr = (decimal)TF.ComputeTactics(PlayerDataSkills.From(this), NTR_Common.Tactics.Type.Through, 0);
+                    _tacDThr = (decimal)TF.ComputeTactics(PlayerDataSkills.From(this), NTR_Common.Tactics.Type.Thr, 0);
                 }
                 return _tacDThr;
             }
@@ -1355,6 +1355,10 @@ namespace NTR_Db
 
             this.Rating = RF.ComputeRating(PlayerDataSkills.From(this));
             RfRec = (decimal)Rating.GetRec(FPn);
+            OSi = (decimal)Rating.OSi;
+            CK = (decimal)Rating.CK;
+            FK = (decimal)Rating.FK;
+            PK = (decimal)Rating.PK;
 
             NTR_SquadDb.ShortlistRow shr = DB.Shortlist.FindByPlayerID(playerID);
             AlarmSet = false;
@@ -1402,8 +1406,8 @@ namespace NTR_Db
             FillWithWeeks(thisWeek, prevWeek);
         }
 
-        public PlayerData(ExtTMDataSet.GiocatoriNSkillRow thisWeek, 
-                          ExtTMDataSet[] lastTwoWeeks, 
+        public PlayerData(ExtTMDataSet.GiocatoriNSkillRow thisWeek,
+                          ExtTMDataSet[] lastTwoWeeks,
                           RatingFunction rf, TacticsFunction tf,
                           ExtraDS.GiocatoriRow gr,
                           List<NTR_SquadDb.PlayerPerfRow> pprList)
@@ -1425,7 +1429,7 @@ namespace NTR_Db
 
             Inj = (short)thisWeek.Infortunato;
             Ban = (short)thisWeek.Squalificato;
-            
+
             Number = thisWeek.Numero;
 
             Nationality = thisWeek.Nationality;
@@ -1435,7 +1439,7 @@ namespace NTR_Db
             #region Rating management
             NTR_SquadDb.PlayerPerfRow[] ratings = null;
 
-            if(pprList != null)
+            if (pprList != null)
                 ratings = (from c in pprList
                            where c.PlayerID == playerID && !c.IsVoteNull()
                            select c).ToArray();
@@ -1569,6 +1573,9 @@ namespace NTR_Db
             this.Rating = RF.ComputeRating(PlayerDataSkills.From(this));
             RfRec = (decimal)Rating.GetRec(FPn);
             OSi = (decimal)Rating.OSi;
+            CK = (decimal)Rating.CK;
+            FK = (decimal)Rating.FK;
+            PK = (decimal)Rating.PK;
 
             if (!gr.IswBloomDataNull())
             {
@@ -1891,6 +1898,9 @@ namespace NTR_Db
         public int SPn { get; set; }
         public decimal RfRec { get; private set; }
         public Rating Rating { get; private set; }
+        public decimal CK { get; private set; }
+        public decimal FK { get; private set; }
+        public decimal PK { get; private set; }
 
         private void ParseBloomValues()
         {

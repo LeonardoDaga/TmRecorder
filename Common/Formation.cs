@@ -898,6 +898,7 @@ namespace Common
 
         public string GetPlayerPosition(Player player)
         {
+            if (player == null) return "";
             for (int i = 0; i < Pos.TOT; i++)
             {
                 if (players[i] == null) continue;

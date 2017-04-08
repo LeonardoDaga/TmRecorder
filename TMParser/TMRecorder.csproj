@@ -38,11 +38,12 @@
     <RootNamespace>TMRecorder</RootNamespace>
     <AssemblyName>TMRecorder</AssemblyName>
     <StartupObject>TMRecorder.Program</StartupObject>
-    <ManifestCertificateThumbprint>9CE4A5E970E1D97E48F76ECE0D084A1BB6442546</ManifestCertificateThumbprint>
-    <ManifestKeyFile>TMRecorder_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestCertificateThumbprint>4DF3AC0224C1A33E5C2BFA9BFA9BA0DFE7817BE8</ManifestCertificateThumbprint>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
     <GenerateManifests>true</GenerateManifests>
     <TargetZone>LocalIntranet</TargetZone>
-    <SignManifests>false</SignManifests>
+    <SignManifests>true</SignManifests>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <ApplicationIcon>TeamRecorder.ico</ApplicationIcon>
     <SccProjectName>SAK</SccProjectName>
@@ -75,8 +76,8 @@
     <ProductName>TM Recorder</ProductName>
     <PublisherName>INSYDE</PublisherName>
     <DisallowUrlActivation>true</DisallowUrlActivation>
-    <ApplicationRevision>3</ApplicationRevision>
-    <ApplicationVersion>2.15.0.3</ApplicationVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>2.16.2.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -318,12 +319,6 @@
     <Compile Include="OptionsForm.Designer.cs">
       <DependentUpon>OptionsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="PlayerData.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PlayerData.Designer.cs">
-      <DependentUpon>PlayerData.cs</DependentUpon>
-    </Compile>
     <Compile Include="PlayerReview.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -443,10 +438,6 @@
       <SubType>Designer</SubType>
       <DependentUpon>OptionsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PlayerData.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>PlayerData.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="PlayerFormSL.resx">
       <DependentUpon>PlayerFormSL.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -518,6 +509,7 @@
     <None Include="BestPlayersDS.xss">
       <DependentUpon>BestPlayersDS.xsd</DependentUpon>
     </None>
+    <None Include="Led.pfx" />
     <None Include="Properties\DataSources\Common.GameTable.datasource" />
     <None Include="Properties\DataSources\Common.MatchDS+ActionsDataTable.datasource" />
     <None Include="Properties\DataSources\Common.ScoutsNReviews+ReviewDataTable.datasource" />

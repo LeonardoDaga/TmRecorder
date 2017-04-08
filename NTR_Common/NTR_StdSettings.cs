@@ -48,6 +48,12 @@ namespace NTR_Common
                     sw.WriteLine("{0}({1})={2}", item.Key, itemType, ((PlTacticsSPosDictionary)item.Value).ToString(CommGlobal.ciInv));
                 else if (item.Value.GetType() == typeof(GkTacticsSPosDictionary))
                     sw.WriteLine("{0}({1})={2}", item.Key, itemType, ((GkTacticsSPosDictionary)item.Value).ToString(CommGlobal.ciInv));
+                else if (item.Value.GetType() == typeof(TacticsToAcionDictionary))
+                    sw.WriteLine("{0}({1})={2}", item.Key, itemType, ((TacticsToAcionDictionary)item.Value).ToString(CommGlobal.ciInv));
+                else if (item.Value.GetType() == typeof(PossessionDictionary))
+                    sw.WriteLine("{0}({1})={2}", item.Key, itemType, ((PossessionDictionary)item.Value).ToString(CommGlobal.ciInv));
+                else if (item.Value.GetType() == typeof(ActionDictionary))
+                    sw.WriteLine("{0}({1})={2}", item.Key, itemType, ((ActionDictionary)item.Value).ToString(CommGlobal.ciInv));
                 else if (item.Value.GetType() == typeof(Matrix))
                     sw.WriteLine("{0}({1})={2}", item.Key, itemType, ((Matrix)item.Value).ToString(CommGlobal.ciInv));
                 else if (item.Value.GetType() == typeof(WeightMatrix))
@@ -106,6 +112,9 @@ namespace NTR_Common
                     case "NTR_Common.eRatingFunctionType": this.Set(key, Enum.Parse(typeof(eRatingFunctionType), value)); break;
                     case "NTR_Common.PlTacticsSPosDictionary": this.Set(key, PlTacticsSPosDictionary.Parse(value, CommGlobal.ciInv)); break;
                     case "NTR_Common.GkTacticsSPosDictionary": this.Set(key, GkTacticsSPosDictionary.Parse(value, CommGlobal.ciInv)); break;
+                    case "NTR_Common.TacticsToAcionDictionary": this.Set(key, TacticsToAcionDictionary.Parse(value, CommGlobal.ciInv)); break;
+                    case "NTR_Common.PossessionDictionary": this.Set(key, PossessionDictionary.Parse(value, CommGlobal.ciInv)); break;
+                    case "NTR_Common.ActionDictionary": this.Set(key, ActionDictionary.Parse(value, CommGlobal.ciInv)); break;
                 }
 
                 line = "";

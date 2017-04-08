@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using Common;
 using System.IO;
+using NTR_Db;
 
 namespace FieldFormationControl
 {
@@ -53,43 +54,43 @@ namespace FieldFormationControl
 
         }
 
-        public void SetPlayers(ExtraDS.GiocatoriRow[] gr, ExtTMDataSet extTMDataSet)
-        {
-            int playersCount = 0;
+        //public void SetPlayers(ExtraDS.GiocatoriRow[] gr, ExtTMDataSet extTMDataSet)
+        //{
+        //    int playersCount = 0;
 
-            for (int i = 0; i < gr.Length; i++)
-            {
-                var gnsRow = extTMDataSet.GiocatoriNSkill.FindByPlayerID(gr[i].PlayerID);
-                if (gnsRow != null)
-                    playersCount++;
-            }
+        //    for (int i = 0; i < gr.Length; i++)
+        //    {
+        //        var gnsRow = extTMDataSet.GiocatoriNSkill.FindByPlayerID(gr[i].PlayerID);
+        //        if (gnsRow != null)
+        //            playersCount++;
+        //    }
 
-            listplayers = new ListPlayer[playersCount];
+        //    listplayers = new ListPlayer[playersCount];
 
-            int ix = 0;
-            for (int i = 0; i < gr.Length; i++)
-            {
-                var gnsRow = extTMDataSet.GiocatoriNSkill.FindByPlayerID(gr[i].PlayerID);
+        //    int ix = 0;
+        //    for (int i = 0; i < gr.Length; i++)
+        //    {
+        //        var gnsRow = extTMDataSet.GiocatoriNSkill.FindByPlayerID(gr[i].PlayerID);
 
-                if (gnsRow == null)
-                    continue;
+        //        if (gnsRow == null)
+        //            continue;
 
-                listplayers[ix] = new ListPlayer();
+        //        listplayers[ix] = new ListPlayer();
 
-                if (gr[i].FPn == 0)
-                    listplayers[ix].SetDataGk(gr[i], gnsRow);
-                else
-                    listplayers[ix].SetData(gr[i], gnsRow);
+        //        if (gr[i].FPn == 0)
+        //            listplayers[ix].SetDataGk(gr[i], gnsRow);
+        //        else
+        //            listplayers[ix].SetData(gr[i], gnsRow);
 
-                listplayers[ix].MouseDown += PlayersList_MouseDown;
-                listplayers[ix].MouseUp += PlayersList_MouseUp;
-                listplayers[ix].MouseMove += PlayersList_MouseMove;
+        //        listplayers[ix].MouseDown += PlayersList_MouseDown;
+        //        listplayers[ix].MouseUp += PlayersList_MouseUp;
+        //        listplayers[ix].MouseMove += PlayersList_MouseMove;
 
-                ix++;
-            }
+        //        ix++;
+        //    }
 
-            UpdatePlayersList();
-        }
+        //    UpdatePlayersList();
+        //}
 
         #region Drag And Drop Management
         private Rectangle dragBoxFromMouseDown;
@@ -186,6 +187,33 @@ namespace FieldFormationControl
                 }
             }
         }
+
+        public void SetPlayers(RatingFunction RF, List<PlayerDataSkills> pdsList)
+        {
+            listplayers = new ListPlayer[pdsList.Count];
+
+            int ix = 0;
+            for (int i = 0; i < pdsList.Count; i++)
+            {
+                listplayers[ix] = new ListPlayer();
+
+                Rating Rat = RF.ComputeRating(pdsList[i]);
+
+                if (pdsList[i].FPn == 0)
+                    listplayers[ix].SetDataGk(Rat, pdsList[i]);
+                else
+                    listplayers[ix].SetData(Rat, pdsList[i]);
+
+                listplayers[ix].MouseDown += PlayersList_MouseDown;
+                listplayers[ix].MouseUp += PlayersList_MouseUp;
+                listplayers[ix].MouseMove += PlayersList_MouseMove;
+
+                ix++;
+            }
+
+            UpdatePlayersList();
+        }
+
         private void PlayersList_GiveFeedback(object sender, GiveFeedbackEventArgs e)
         {
             // Use custom cursors if the check box is checked.

@@ -239,11 +239,7 @@ namespace TMRecorder
                 if (Program.Setts.InstallationDirectory == ".\\")
                     Program.Setts.InstallationDirectory = Application.StartupPath;
 
-                FormatPlayersGrid(dataGridGiocatori);
-                FormatPlayersGrid(dataGridGiocatoriB);
-                FormatPlayersGridGK();
-                FormatPlayersInfo();
-                FormatTactics();
+                FormatGrids();
 
                 if (!LoadData())
                 {
@@ -294,6 +290,15 @@ namespace TMRecorder
 
                 SendFileTo.ErrorReport.Send(ex, info, Environment.StackTrace, swRelease);
             }
+        }
+
+        private void FormatGrids()
+        {
+            FormatPlayersGrid(dataGridGiocatori);
+            FormatPlayersGrid(dataGridGiocatoriB);
+            FormatPlayersGridGK();
+            FormatPlayersInfo();
+            FormatTactics();
         }
 
         private bool LoadData()
@@ -1093,10 +1098,22 @@ namespace TMRecorder
             numCol = dataGridPlayersInfo.AddColumn("AvTI", "AvTI", 35, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N2);
             numCol.DefaultCellStyle.BackColor = Color.FromArgb(214, 235, 214);
 
+            numCol = dataGridPlayersInfo.AddColumn(History.RF.ShortName, "RfRec", 38, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N2);
+            numCol.DefaultCellStyle.BackColor = Color.LightCyan;
             numCol = dataGridPlayersInfo.AddColumn("Pot", "Potential", 30, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N1);
             numCol.DefaultCellStyle.BackColor = Color.LightBlue;
             numCol = dataGridPlayersInfo.AddColumn("Votes", "Votes", 45, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.ResizeAllCells);
             numCol.DefaultCellStyle.BackColor = Color.LightBlue;
+
+            numCol = dataGridPlayersInfo.AddColumn("CK", "CK", 32, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N1);
+            numCol.DefaultCellStyle.BackColor = Color.YellowGreen;
+            numCol.HeaderCell.ToolTipText = "Corner Kick";
+            numCol = dataGridPlayersInfo.AddColumn("FK", "FK", 32, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N1);
+            numCol.DefaultCellStyle.BackColor = Color.YellowGreen;
+            numCol.HeaderCell.ToolTipText = "Free Kick";
+            numCol = dataGridPlayersInfo.AddColumn("PK", "PK", 32, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N1);
+            numCol.DefaultCellStyle.BackColor = Color.YellowGreen;
+            numCol.HeaderCell.ToolTipText = "Penalty";
 
             numCol = dataGridPlayersInfo.AddColumn("Ada", "Ada", 35, AG_Style.Numeric | AG_Style.RightJustified | AG_Style.N1);
             numCol.DefaultCellStyle.BackColor = Color.NavajoWhite;
@@ -2183,7 +2200,12 @@ namespace TMRecorder
 
         private void lineupToolToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LineUp lineup = new LineUp(AllSeasons, History.PlayersDS, History);
+            ExtTMDataSet thisWeekTeam = History.LastTeam();
+
+            List<PlayerDataSkills> allPlayersInTeam = (from c in thisWeekTeam.GiocatoriNSkill
+                           select PlayerDataSkills.From(c)).ToList();
+
+            LineUp lineup = new LineUp(AllSeasons, allPlayersInTeam, History.RF, History.TF);
             lineup.ShowDialog();
         }
 
@@ -3415,6 +3437,8 @@ namespace TMRecorder
 
                 Program.Setts.RatingFunctionPath = reDlg.FileName;
                 Program.Setts.Save();
+
+                FormatGrids();
             }
         }
 
@@ -3427,6 +3451,11 @@ namespace TMRecorder
                 History.TF = TacticsFunction.Create(
                     tfDlg.tacPlWeights,
                     tfDlg.tacGkWeights,
+                    tfDlg.tacTac2ActWeights,
+                    tfDlg.tacPossessionWeights,
+                    tfDlg.tacActionConstructionWeights,
+                    tfDlg.tacActionFinalizationWeights,
+                    tfDlg.tacDefenseWeights,
                     tfDlg.fileName);
 
                 History.Clear();
@@ -3434,6 +3463,8 @@ namespace TMRecorder
 
                 Program.Setts.TacticsFunctionPath = tfDlg.fileName;
                 Program.Setts.Save();
+
+                FormatGrids();
             }
         }
     }

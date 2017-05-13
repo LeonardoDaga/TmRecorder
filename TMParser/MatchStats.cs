@@ -76,7 +76,10 @@ namespace TMRecorder
                 lblSprinklers.Text = (pitch[0] == "0") ? "No" : "Yes";
                 lblDraining.Text = (pitch[1] == "0") ? "No" : "Yes";
                 lblHeating.Text = (pitch[2] == "0") ? "No" : "Yes";
-                int pitchConditions = int.Parse(pitch[3]);
+
+                int pitchConditions = 0;
+                int.TryParse(pitch[3], out pitchConditions);
+
                 lblPitchCondition.Text =
                     (pitchConditions <= 70) ? string.Format("Outstanding ({0}%)", pitchConditions) :
                     (pitchConditions <= 73) ? string.Format("Superb ({0}%)", pitchConditions) :

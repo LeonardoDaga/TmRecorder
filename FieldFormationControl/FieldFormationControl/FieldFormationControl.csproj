@@ -286,6 +286,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DropShirt.cur" />
     <EmbeddedResource Include="NoDropShirt.cur" />
+    <None Include="Resources\%24this.BackgroundImage.gif" />
     <Content Include="Resources\shirt.gif" />
   </ItemGroup>
   <ItemGroup>

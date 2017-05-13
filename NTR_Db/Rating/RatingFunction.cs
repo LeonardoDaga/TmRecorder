@@ -191,6 +191,10 @@ namespace NTR_Db
         {
             return rating[(int)pos];
         }
+        public double REC(ePos pos)
+        {
+            return rec[(int)pos];
+        }
 
         public float GetRating(string pos)
         {
@@ -627,8 +631,6 @@ namespace NTR_Db
 
             rf.SettingsFilename = fileName;
             rf.Load();
-
-            rf.SettingInitialize();
 
             return rf;
         }

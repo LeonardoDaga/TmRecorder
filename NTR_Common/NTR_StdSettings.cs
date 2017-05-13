@@ -76,8 +76,9 @@ namespace NTR_Common
             if ((fi == null) || (!fi.Exists)) return;
 
             StreamReader sr = File.OpenText(fi.FullName);
-
             string s = sr.ReadToEnd();
+            sr.Close();
+
             string[] lines = s.Split('\n');
 
             string line = "";
@@ -120,7 +121,6 @@ namespace NTR_Common
                 line = "";
             }
 
-            sr.Close();
         }
 
         public void Def(string key, object o)

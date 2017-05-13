@@ -183,6 +183,7 @@ namespace TMRecorder
             sb.Def("HomeNation", "it");
             sb.Def("PlayersPagesFolder", appDataFolder);
             sb.Def("ShowTGI", false);
+            sb.Def("ShowREC", false);
             sb.Def("Setting", "");
             sb.Def("UseTMRBrowser", false);
             sb.Def("MatchesFileName", "MatchesHistory.3.xml");
@@ -461,6 +462,11 @@ namespace TMRecorder
         {
             get { return (bool)sb["ShowTGI"]; }
             set { sb["ShowTGI"] = (bool)value; }
+        }
+        public bool ShowREC
+        {
+            get { return (bool)sb["ShowREC"]; }
+            set { sb["ShowREC"] = (bool)value; }
         }
         public string ReportAnalysisFile
         {

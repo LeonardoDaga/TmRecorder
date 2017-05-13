@@ -175,6 +175,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\RatingR3.user.js" />
+    <None Include="Resources\RatingR4.user.js" />
     <None Include="Resources\TwoArrows.png" />
     <None Include="Resources\Lens.png" />
     <None Include="Resources\Lens2.png" />

@@ -56,11 +56,11 @@ namespace NTR_Db
         public int SPn { get; private set; }
         public double SkillSum { get; private set; }
 
-        public static PlayerDataSkills From(ExtTMDataSet.PlayerHistoryRow pr)
+        public static PlayerDataSkills From(ExtTMDataSet.PlayerHistoryRow pr, int FPn)
         {
             PlayerDataSkills pDS = new PlayerDataSkills();
 
-            for (int i = 0; i < 14; i++)
+            for (int i = 0; i < ((FPn == 0)?11:14); i++)
             {
                 pDS.Skills[i] = (double)(decimal)pr.ItemArray[i + 1];
                 pDS.SkillSum += pDS.Skills[i];
@@ -68,7 +68,7 @@ namespace NTR_Db
 
             pDS.Rou = 0;
             pDS.ASI = pr.ASI;
-            pDS.FPn = 10;
+            pDS.FPn = FPn;
             pDS.Ada = 0;
 
 

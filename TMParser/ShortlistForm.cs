@@ -309,6 +309,12 @@ namespace TMRecorder
             if (tabControl.SelectedTab == tabPlayers) dgv = dgPlayers;
             if (tabControl.SelectedTab == tabGK) dgv = dgPlayersGK;
 
+            if (dgv == null)
+            {
+                MessageBox.Show("You can call this operation only when a players tab is selected");
+                return;
+            }
+
             if (dgv.SelectedRows.Count > 0)
             {
                 string names = "";

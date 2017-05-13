@@ -53,10 +53,10 @@ namespace TMRecorder
         {
             set { playerData.Wage = value; }
         }
-        
+
         public decimal BloomAgeView
         {
-            set {playerData.BloomAge = value; }
+            set { playerData.BloomAge = value; }
         }
 
         public PlayerForm(ExtTMDataSet.GiocatoriNSkillDataTable gdt,
@@ -86,7 +86,7 @@ namespace TMRecorder
                 }
             }
 
-            Initialize();            
+            Initialize();
 
             chkNormalized_CheckedChanged(null, EventArgs.Empty);
 
@@ -114,6 +114,7 @@ namespace TMRecorder
             FormatPerfList();
 
             chkShowTGI.Checked = Program.Setts.ShowTGI;
+            chkShowRec.Checked = Program.Setts.ShowREC;
 
             ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
 
@@ -359,7 +360,7 @@ namespace TMRecorder
                 return;
             int cnt = reportParser.Dict[report].Count;
             tagsBar.Min = min;
-            
+
             if (max == -1M)
                 tagsBar.Max = cnt;
             else
@@ -369,7 +370,7 @@ namespace TMRecorder
             {
                 tagsBar.Tags.Add(key.Value);
             }
-            tagsBar.Invalidate();       
+            tagsBar.Invalidate();
         }
 
         private void FillTrainingTable_Gk(int playerID)
@@ -742,7 +743,7 @@ namespace TMRecorder
                     else if (type > 10) type = 1;
                     else if (type == 5) type = 0;
 
-                    string newDateVote = TmWeek.DateTimeToSWD(ppr.MatchRow.Date).ToString() + 
+                    string newDateVote = TmWeek.DateTimeToSWD(ppr.MatchRow.Date).ToString() +
                         "|" + ppr.Position +
                         "|" + ppr.Vote.ToString("N1", CommGlobal.ci) +
                         "|" + ppr.Vote.ToString("N1", CommGlobal.ci);
@@ -767,7 +768,7 @@ namespace TMRecorder
                 // Fill the axis background with a color gradient
                 pane.Chart.Fill = new Fill(Color.FromArgb(255, 255, 245), Color.FromArgb(255, 255, 190), 90F);
 
-                Color[] colors = {Color.Red, Color.Blue, Color.Green, Color.Violet, 
+                Color[] colors = {Color.Red, Color.Blue, Color.Green, Color.Violet,
                 Color.Turquoise, Color.Cyan};
 
                 for (int mt = 0; mt < numOfMatchTypes; mt++)
@@ -959,7 +960,7 @@ namespace TMRecorder
             {
                 if (col.GetType() == typeof(DataGridViewCustomColumns.TMR_ReportColumn))
                 {
-                    DataGridViewCustomColumns.TMR_ReportColumn repCol = 
+                    DataGridViewCustomColumns.TMR_ReportColumn repCol =
                         (DataGridViewCustomColumns.TMR_ReportColumn)col;
 
                     repCol.reportParser = History.reportParser;
@@ -974,7 +975,7 @@ namespace TMRecorder
                 gameTable = gRow.GameTable;
             gameTableDS.LoadSeasonsStrings(gameTable);
 
-            if (gRow.wBloomStart != -1) 
+            if (gRow.wBloomStart != -1)
                 BloomAgeView = (gRow.wBloomStart - gRow.wBorn) / 12;
             else
                 BloomAgeView = -1M;
@@ -996,7 +997,7 @@ namespace TMRecorder
             pane.Title.Text = "ASI History";
             pane.YAxis.Title.Text = "ASI";
             pane.Y2Axis.Title.Text = "Delta ASI";
-            pane.XAxis.Title.Text = "Weeks";
+            pane.XAxis.Title.Text = "Age";
 
             // Enter some random data values
             PointPairList dataASI = new PointPairList();
@@ -1016,12 +1017,14 @@ namespace TMRecorder
             int lastASI = 0;
             double lastXdate = 0.0;
 
+            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
+
             for (int i = 0; i < table.Rows.Count; i++)
             {
                 ExtTMDataSet.PlayerHistoryRow pr = (ExtTMDataSet.PlayerHistoryRow)table.Rows[i];
 
                 dDataASI = pr.ASI;
-                xdate = (double)new XDate(pr.Date);
+                xdate = (double)new XDate(pr.Date - TimeSpan.FromDays((playerDatarow.wBorn + 12) * 7));
 
                 if (i == 0)
                 {
@@ -1046,7 +1049,7 @@ namespace TMRecorder
             {
                 ExtTMDataSet.PlayerHistoryRow pr = (ExtTMDataSet.PlayerHistoryRow)table.Rows[i];
 
-                xdate = (double)new XDate(pr.Date);
+                xdate = (double)new XDate(pr.Date - TimeSpan.FromDays((playerDatarow.wBorn + 12) * 7));
 
                 if (i == 0)
                 {
@@ -1152,7 +1155,7 @@ namespace TMRecorder
                 pane.Title.Text = "TI History";
                 pane.YAxis.Title.Text = "TI";
             }
-            pane.XAxis.Title.Text = "Weeks";
+            pane.XAxis.Title.Text = "Age";
 
             // Enter some random data values
             PointPairList dataTI = new PointPairList();
@@ -1175,9 +1178,10 @@ namespace TMRecorder
                 else
                     dDataTI = (double)(decimal)(whTI[i]);
 
-                xdate = (double)new XDate(firstTI + TimeSpan.FromDays(7.0 * i));
+                xdate = (double)new XDate(firstTI + TimeSpan.FromDays(7.0 * i) - TimeSpan.FromDays((playerDatarow.wBorn + 12) * 7));
                 dataTI.Add(xdate, dDataTI);
 
+                dMin2 = Math.Min(dMin2, dDataTI);
                 dMax = Math.Max(dMax, dDataTI);
             }
 
@@ -1188,7 +1192,7 @@ namespace TMRecorder
                 for (int i = 0; i < table.Rows.Count; i++)
                 {
                     ExtTMDataSet.PlayerHistoryRow pr = (ExtTMDataSet.PlayerHistoryRow)table.Rows[i];
-                    xdate = (double)new XDate(pr.Date);
+                    xdate = (double)new XDate(pr.Date - TimeSpan.FromDays((playerDatarow.wBorn + 12) * 7));
 
                     if (i == 0)
                     {
@@ -1374,6 +1378,8 @@ namespace TMRecorder
             double[] dDataLan = new double[table.Rows.Count];
             double[] xdate = new double[table.Rows.Count];
 
+            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
+
             for (int i = 0; i < table.Rows.Count; i++)
             {
                 ExtTMDataSet.PlayerHistoryRow pr = (ExtTMDataSet.PlayerHistoryRow)table.Rows[i];
@@ -1389,7 +1395,7 @@ namespace TMRecorder
                 dDataCom[i] = (double)pr.Com;
                 dDataTir[i] = (double)pr.Tir;
                 dDataLan[i] = (double)pr.Lan;
-                xdate[i] = (double)new XDate(pr.Date);
+                xdate[i] = (double)new XDate(pr.Date - TimeSpan.FromDays((playerDatarow.wBorn + 12) * 7));
             }
 
             LineItem myCurve;
@@ -1617,6 +1623,8 @@ namespace TMRecorder
             double[] dDataWor = new double[table.Rows.Count];
             double[] xdate = new double[table.Rows.Count];
 
+            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
+
             for (int i = 0; i < table.Rows.Count; i++)
             {
                 ExtTMDataSet.PlayerHistoryRow pr = (ExtTMDataSet.PlayerHistoryRow)table.Rows[i];
@@ -1639,7 +1647,7 @@ namespace TMRecorder
                 dDataTec[i] = (double)pr.Tec_Tir;
                 dDataVel[i] = (double)pr.Vel;
                 dDataWor[i] = (double)pr.Wor_Rif;
-                xdate[i] = (double)new XDate(pr.Date);
+                xdate[i] = (double)new XDate(pr.Date - TimeSpan.FromDays((playerDatarow.wBorn + 12) * 7));
             }
 
             LineItem myCurve;
@@ -1650,7 +1658,7 @@ namespace TMRecorder
 
                 pane.Title.Text = "Physic Skills";
                 pane.YAxis.Title.Text = "Skill Value";
-                pane.XAxis.Title.Text = "Weeks";
+                pane.XAxis.Title.Text = "Age";
                 pane.XAxis.Type = AxisType.Date;
                 pane.XAxis.Scale.MajorStep = 7;
                 pane.XAxis.Scale.MinorStep = 7;
@@ -1697,7 +1705,7 @@ namespace TMRecorder
 
                 pane.Title.Text = "Defensive Skills";
                 pane.YAxis.Title.Text = "Skill Value";
-                pane.XAxis.Title.Text = "Weeks";
+                pane.XAxis.Title.Text = "Age";
                 pane.XAxis.Type = AxisType.Date;
                 pane.XAxis.Scale.MajorStep = 7;
                 pane.XAxis.Scale.MinorStep = 7;
@@ -1751,7 +1759,7 @@ namespace TMRecorder
 
                 pane.Title.Text = "Midfielder Skills";
                 pane.YAxis.Title.Text = "Skill Value";
-                pane.XAxis.Title.Text = "Weeks";
+                pane.XAxis.Title.Text = "Age";
                 pane.XAxis.Type = AxisType.Date;
                 pane.XAxis.Scale.MajorStep = 7;
                 pane.XAxis.Scale.MinorStep = 7;
@@ -1805,7 +1813,7 @@ namespace TMRecorder
 
                 pane.Title.Text = "Attack Skills";
                 pane.YAxis.Title.Text = "Skill Value";
-                pane.XAxis.Title.Text = "Weeks";
+                pane.XAxis.Title.Text = "Age";
                 pane.XAxis.Type = AxisType.Date;
                 pane.XAxis.Scale.MajorStep = 7;
                 pane.XAxis.Scale.MinorStep = 7;
@@ -1900,22 +1908,42 @@ namespace TMRecorder
             {
                 ExtTMDataSet.PlayerHistoryRow pr = (ExtTMDataSet.PlayerHistoryRow)table.Rows[i];
 
-                Rating rat = RF.ComputeRating(PlayerDataSkills.From(pr));
+                Rating rat = RF.ComputeRating(PlayerDataSkills.From(pr, playerDatarow.FPn));
 
-                dDC[i] = rat.R(ePos.DC);
-                dDL[i] = rat.R(ePos.DL);
-                dDR[i] = rat.R(ePos.DR);
-                dDMC[i] = rat.R(ePos.DMC);
-                dDML[i] = rat.R(ePos.DML);
-                dDMR[i] = rat.R(ePos.DMR);
-                dMC[i] = rat.R(ePos.MC);
-                dML[i] = rat.R(ePos.ML);
-                dMR[i] = rat.R(ePos.MR);
-                dOMC[i] = rat.R(ePos.OMC);
-                dOML[i] = rat.R(ePos.OML);
-                dOMR[i] = rat.R(ePos.OMR);
-                dFC[i] = rat.R(ePos.FC);
-                xdate[i] = (double)new XDate(pr.Date);
+                if (chkShowRec.Checked)
+                {
+                    dDC[i] = rat.REC(ePos.DC);
+                    dDL[i] = rat.REC(ePos.DL);
+                    dDR[i] = rat.REC(ePos.DR);
+                    dDMC[i] = rat.REC(ePos.DMC);
+                    dDML[i] = rat.REC(ePos.DML);
+                    dDMR[i] = rat.REC(ePos.DMR);
+                    dMC[i] = rat.REC(ePos.MC);
+                    dML[i] = rat.REC(ePos.ML);
+                    dMR[i] = rat.REC(ePos.MR);
+                    dOMC[i] = rat.REC(ePos.OMC);
+                    dOML[i] = rat.REC(ePos.OML);
+                    dOMR[i] = rat.REC(ePos.OMR);
+                    dFC[i] = rat.REC(ePos.FC);
+                }
+                else
+                {
+                    dDC[i] = rat.R(ePos.DC);
+                    dDL[i] = rat.R(ePos.DL);
+                    dDR[i] = rat.R(ePos.DR);
+                    dDMC[i] = rat.R(ePos.DMC);
+                    dDML[i] = rat.R(ePos.DML);
+                    dDMR[i] = rat.R(ePos.DMR);
+                    dMC[i] = rat.R(ePos.MC);
+                    dML[i] = rat.R(ePos.ML);
+                    dMR[i] = rat.R(ePos.MR);
+                    dOMC[i] = rat.R(ePos.OMC);
+                    dOML[i] = rat.R(ePos.OML);
+                    dOMR[i] = rat.R(ePos.OMR);
+                    dFC[i] = rat.R(ePos.FC);
+                }
+
+                xdate[i] = (double)new XDate(pr.Date - TimeSpan.FromDays((playerDatarow.wBorn + 12) * 7));
             }
 
             LineItem myCurve;
@@ -1926,7 +1954,7 @@ namespace TMRecorder
 
                 pane.Title.Text = "Defensive Specs";
                 pane.YAxis.Title.Text = "Specs Value";
-                pane.XAxis.Title.Text = "Weeks";
+                pane.XAxis.Title.Text = "Age";
                 pane.XAxis.Type = AxisType.Date;
                 pane.XAxis.Scale.MajorStep = 7;
                 pane.XAxis.Scale.MinorStep = 7;
@@ -1959,10 +1987,16 @@ namespace TMRecorder
                 myCurve.Symbol.Fill = new Fill(Color.White);
 
                 // Manually set the x axis range
-                //pane.YAxis.Scale.Min = 0;
-                //pane.YAxis.Scale.Max = 100;
-                pane.YAxis.Scale.MajorStep = 5;
-                pane.YAxis.Scale.MinorStep = 1;
+                if (chkShowRec.Checked)
+                    pane.YAxis.Scale.MinorStep = 0.5;
+                else
+                {
+                    pane.YAxis.Scale.MajorStep = 5;
+                    pane.YAxis.Scale.MinorStep = 1;
+                }
+
+                pane.YAxis.MajorGrid.IsVisible = true;
+                pane.YAxis.MinorGrid.IsVisible = true;
 
                 master.Add(pane);
             }
@@ -1973,7 +2007,7 @@ namespace TMRecorder
 
                 pane.Title.Text = "Defence/Midfield Specs";
                 pane.YAxis.Title.Text = "Specs Value";
-                pane.XAxis.Title.Text = "Weeks";
+                pane.XAxis.Title.Text = "Age";
                 pane.XAxis.Type = AxisType.Date;
                 pane.XAxis.Scale.MajorStep = 7;
                 pane.XAxis.Scale.MinorStep = 7;
@@ -2006,10 +2040,17 @@ namespace TMRecorder
                 myCurve.Symbol.Fill = new Fill(Color.White);
 
                 // Manually set the x axis range
-                //pane.YAxis.Scale.Min = 0;
-                //pane.YAxis.Scale.Max = 100;
-                pane.YAxis.Scale.MajorStep = 5;
-                pane.YAxis.Scale.MinorStep = 1;
+                if (chkShowRec.Checked)
+                    pane.YAxis.Scale.MinorStep = 0.5;
+                else
+                {
+                    pane.YAxis.Scale.MajorStep = 5;
+                    pane.YAxis.Scale.MinorStep = 1;
+                }
+
+                pane.YAxis.MajorGrid.IsVisible = true;
+                pane.YAxis.MinorGrid.IsVisible = true;
+
 
                 master.Add(pane);
             }
@@ -2020,7 +2061,7 @@ namespace TMRecorder
 
                 pane.Title.Text = "Midfielder Skills";
                 pane.YAxis.Title.Text = "Skill Value";
-                pane.XAxis.Title.Text = "Weeks";
+                pane.XAxis.Title.Text = "Age";
                 pane.XAxis.Type = AxisType.Date;
                 pane.XAxis.Scale.MajorStep = 7;
                 pane.XAxis.Scale.MinorStep = 7;
@@ -2053,10 +2094,16 @@ namespace TMRecorder
                 myCurve.Symbol.Fill = new Fill(Color.White);
 
                 // Manually set the x axis range
-                //pane.YAxis.Scale.Min = 0;
-                //pane.YAxis.Scale.Max = 100;
-                pane.YAxis.Scale.MajorStep = 5;
-                pane.YAxis.Scale.MinorStep = 1;
+                if (chkShowRec.Checked)
+                    pane.YAxis.Scale.MinorStep = 0.5;
+                else
+                {
+                    pane.YAxis.Scale.MajorStep = 5;
+                    pane.YAxis.Scale.MinorStep = 1;
+                }
+
+                pane.YAxis.MajorGrid.IsVisible = true;
+                pane.YAxis.MinorGrid.IsVisible = true;
 
                 master.Add(pane);
             }
@@ -2067,7 +2114,7 @@ namespace TMRecorder
 
                 pane.Title.Text = "Attack Skills";
                 pane.YAxis.Title.Text = "Skill Value";
-                pane.XAxis.Title.Text = "Weeks";
+                pane.XAxis.Title.Text = "Age";
                 pane.XAxis.Type = AxisType.Date;
                 pane.XAxis.Scale.MajorStep = 7;
                 pane.XAxis.Scale.MinorStep = 7;
@@ -2107,10 +2154,16 @@ namespace TMRecorder
                 myCurve.Symbol.Fill = new Fill(Color.White);
 
                 // Manually set the x axis range
-                //pane.YAxis.Scale.Min = 0;
-                //pane.YAxis.Scale.Max = 100;
-                pane.YAxis.Scale.MajorStep = 5;
-                pane.YAxis.Scale.MinorStep = 1;
+                if (chkShowRec.Checked)
+                    pane.YAxis.Scale.MinorStep = 0.5;
+                else
+                {
+                    pane.YAxis.Scale.MajorStep = 5;
+                    pane.YAxis.Scale.MinorStep = 1;
+                }
+
+                pane.YAxis.MajorGrid.IsVisible = true;
+                pane.YAxis.MinorGrid.IsVisible = true;
 
                 master.Add(pane);
             }
@@ -2144,12 +2197,24 @@ namespace TMRecorder
             double[] dGK = new double[table.Rows.Count];
             double[] xdate = new double[table.Rows.Count];
 
+            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
+
             for (int i = 0; i < table.Rows.Count; i++)
             {
                 ExtTMDataSet.PlayerHistoryRow pr = (ExtTMDataSet.PlayerHistoryRow)table.Rows[i];
 
-                dGK[i] = pr.DC_GK;
-                xdate[i] = (double)new XDate(pr.Date);
+                Rating rat = RF.ComputeRating(PlayerDataSkills.From(pr, 0 /*GK*/));
+
+                if (chkShowRec.Checked)
+                {
+                    dGK[i] = rat.REC(ePos.GK);
+                }
+                else
+                {
+                    dGK[i] = rat.R(ePos.GK);
+                }
+
+                xdate[i] = (double)new XDate(pr.Date - TimeSpan.FromDays((playerDatarow.wBorn + 12) * 7));
             }
 
             LineItem myCurve;
@@ -2160,7 +2225,7 @@ namespace TMRecorder
 
                 pane.Title.Text = "GK Speciality";
                 pane.YAxis.Title.Text = "Specs Value";
-                pane.XAxis.Title.Text = "Weeks";
+                pane.XAxis.Title.Text = "Age";
                 pane.XAxis.Type = AxisType.Date;
                 pane.XAxis.Scale.MajorStep = 7;
                 pane.XAxis.Scale.MinorStep = 7;
@@ -2178,8 +2243,15 @@ namespace TMRecorder
                 myCurve.Symbol.Fill = new Fill(Color.White);
 
                 // Manually set the x axis range
-                pane.YAxis.Scale.MajorStep = 5;
-                pane.YAxis.Scale.MinorStep = 1;
+                if (chkShowRec.Checked)
+                    pane.YAxis.Scale.MinorStep = 0.5;
+                else
+                {
+                    pane.YAxis.Scale.MajorStep = 5;
+                    pane.YAxis.Scale.MinorStep = 1;
+                }
+                pane.YAxis.MajorGrid.IsVisible = true;
+                pane.YAxis.MinorGrid.IsVisible = true;
 
                 master.Add(pane);
             }
@@ -2461,7 +2533,7 @@ namespace TMRecorder
 
             //if (tabControl1.SelectedTab == tabPlayerBrowser)
             //{
-                tsbLoadPlayerPage_Click(sender, e);
+            tsbLoadPlayerPage_Click(sender, e);
             //}
             //else
             //{
@@ -2623,10 +2695,10 @@ namespace TMRecorder
         private void PlayerForm_SizeChanged(object sender, EventArgs e)
         {
             tagsBarPhy.Left = 0;
-            tagsBarTac.Left = tabPlayerScouting.Width/6;
-            tagsBarTec.Left = 2*tabPlayerScouting.Width / 6;
+            tagsBarTac.Left = tabPlayerScouting.Width / 6;
+            tagsBarTec.Left = 2 * tabPlayerScouting.Width / 6;
             tagsBarLea.Left = 3 * tabPlayerScouting.Width / 6;
-            tagsBarAgg.Left = 4* tabPlayerScouting.Width / 6;
+            tagsBarAgg.Left = 4 * tabPlayerScouting.Width / 6;
             tagsBarPro.Left = 5 * tabPlayerScouting.Width / 6;
 
             tagsBarPhy.Width = tabPlayerScouting.Width / 6;
@@ -2716,6 +2788,27 @@ namespace TMRecorder
                 srn.Technical = sr.Technical;
                 History.PlayersDS.Scouts.AddScoutsRow(srn);
             }
+        }
+
+        private void chkShowRec_CheckedChanged(object sender, EventArgs e)
+        {
+            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
+
+            ExtTMDataSet.PlayerHistoryDataTable table = History.GetPlayerHistory(playerDatarow.PlayerID);
+
+            if (playerDatarow.FPn == 0)
+            {
+                FillSpecsGraph_Gk(table);
+            }
+            else
+            {
+                FillSpecsGraph_Pl(table);
+            }
+
+            Program.Setts.ShowREC = chkShowRec.Checked;
+            Program.Setts.Save();
+
+            this.Refresh();
         }
     }
 }

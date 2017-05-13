@@ -82,6 +82,7 @@ namespace Common
             this.imageList.Images.SetKeyName(27, "Termini Imerese.5.png");
             this.imageList.Images.SetKeyName(28, "Beauty.25.png");
             this.imageList.Images.SetKeyName(29, "FC Sagami.50.png");
+            this.imageList.Images.SetKeyName(30, "Bilbao Lions FC.30.png");
             // 
             // pictureBox2
             // 

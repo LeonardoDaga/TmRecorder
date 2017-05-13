@@ -66,7 +66,8 @@ namespace NTR_WebBrowser
 
             set
             {
-                _startnavigationAddress = value;
+                _startnavigationAddress = value.Replace("https:", "http:"); ;
+
                 tbTxtAddress.Text = _startnavigationAddress;
 
                 if (_startnavigationAddress.Contains(TM_Pages.Players))
@@ -1179,7 +1180,7 @@ namespace NTR_WebBrowser
         {
             if (ActualPlayerID > 0)
             {
-                AppendScriptAndExecute(Resources.RatingR2_user, "ApplyRatingR2");
+                AppendScriptAndExecute(Resources.RatingR4_user, "ApplyRatingR4");
                 tsbPlayersNavigationType.Visible = true;
             }
             else
@@ -1203,9 +1204,9 @@ namespace NTR_WebBrowser
 
         private void WebBrowser_Navigating(object sender, WebBrowserNavigatingEventArgs e)
         {
-            string address = e.Url.AbsoluteUri;
+            string address = e.Url.AbsoluteUri.Replace("https:", "http:");
 
-            if (!address.Contains(TM_Pages.Home) || (address.Contains("http://trophymanager.com/banners")))
+            if (!(address.Contains(TM_Pages.Home) || address.Contains(TM_Pages.Homes)) || (address.Contains("http://trophymanager.com/banners")))
                 return;
 
             if ((address.Contains(TM_Pages.Players)) && (address != StartnavigationAddress))

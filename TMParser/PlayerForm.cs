@@ -202,15 +202,25 @@ namespace TMRecorder
                 return;
 
             int season = -1;
+
+            if (cmbPerfDetailsSeason.SelectedItem == null)
+                return;
+
             season = (int)(cmbPerfDetailsSeason.SelectedItem);
 
             var playerPerfList = allSeasons.GetPlayerPerfList(playerDatarow.PlayerID, season);
+
+            if (playerPerfList == null)
+                return;
 
             List<PlayerMatchPerfData> matchPerfDataList = new List<PlayerMatchPerfData>();
 
             foreach (Common.NTR_SquadDb.PlayerPerfRow ppr in playerPerfList)
             {
                 var matchRow = ppr.MatchRow;
+
+                if (matchRow == null)
+                    continue;
 
                 // Remove cases in which the owner team is indicated as opposite team
                 matchRow.CleanAmbiguities();

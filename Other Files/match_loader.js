@@ -96,6 +96,8 @@ function get_match_info()
 		strout += ";captain_away=" + match_info["captain"]["away"];
 		strout += ";possession_home=" + match_info["possession"]["home"];
 		strout += ";possession_away=" + match_info["possession"]["away"];
+        strout += ";home_focus_side=" + match_info["focus_side"]["home"];
+        strout += ";away_focus_side=" + match_info["focus_side"]["away"];
 	
 		strout += ";stadium=" + match_data["club"]["home"]["stadium"];
 		strout += ";capacity=" + match_info["venue"]["capacity"];

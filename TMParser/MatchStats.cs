@@ -72,6 +72,8 @@ namespace TMRecorder
                 lblAttackStyle2.Text = matchData.OAttk;
                 lblMentality1.Text = matchData.YMent;
                 lblMentality2.Text = matchData.OMent;
+                lblFocusSide1.Text = matchData.YFocus;
+                lblFocusSide2.Text = matchData.OFocus;
 
                 lblSprinklers.Text = (pitch[0] == "0") ? "No" : "Yes";
                 lblDraining.Text = (pitch[1] == "0") ? "No" : "Yes";

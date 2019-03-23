@@ -180,8 +180,10 @@ namespace TMRecorder
                 History.TF = TacticsFunction.Load(Program.Setts.TacticsFunctionPath);
                 if (History.TF == null)
                 {
-                    TacticsFunction.CreateDefaultFunctions(Program.Setts.TacticsFunctionPath);
+                    TacticsFunction tf = TacticsFunction.CreateDefaultFunctions(Program.Setts.TacticsFunctionPath);
+                    Program.Setts.TacticsFunctionPath = tf.SettingsFilename;
                     History.TF = TacticsFunction.Load(Program.Setts.TacticsFunctionPath);
+                    Program.Setts.Save();
                 }
 
                 dP[0] = 2;

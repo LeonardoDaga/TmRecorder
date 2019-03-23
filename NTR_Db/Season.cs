@@ -722,6 +722,7 @@ namespace NTR_Db
                         nmr.Stats = omr.YourStats + ";" + omr.OppsStats;
                         nmr.Mentalities = omr.YourMentality + ";" + omr.OppsMentality;
                         nmr.AttackStyles = omr.YourAttackingStyle + ";" + omr.OppsAttackingStyle;
+                        nmr.FocusSides = omr.YourFocusSide + ";" + omr.OppsFocusSide;
                     }
                     if (!omr.IsCardsNull())
                         nmr.Cards = omr.Cards;
@@ -1000,7 +1001,8 @@ namespace NTR_Db
 
             var matchDataSelection = (from c in seasonsDB.Match
                                       where (!c.IsDateNull()) && (c.Date > actualSeason.Start) && (c.Date < dtYesterday)
-                                              && (c.Report == false) && ((c.OTeamID == teamID) || (c.YTeamID == teamID))
+                                              && (c.Report == false) && (!c.IsOTeamIDNull())
+                                              && (!c.IsYTeamIDNull()) && ((c.OTeamID == teamID) || (c.YTeamID == teamID))
                                       select new MatchData(c));
 
             return matchDataSelection.Count();
@@ -1230,6 +1232,7 @@ namespace NTR_Db
 
             string[] att_styles = { "Bal", "Bal", "Count", "Wing", "Short", "Long", "Filt" };
             string[] mentality = { "Norm", "VeDef", "Def", "SlDef", "Norm", "SlOff", "Off", "VrOff" };
+            string[] focus = { "-", "Balanced", "Left", "Center", "Right"};
 
             string matchIdStr = HTML_Parser.GetNumberAfter(page, "http://trophymanager.com/matches/");
             int matchId = int.Parse(matchIdStr);
@@ -1301,15 +1304,21 @@ namespace NTR_Db
                     match_info["home_attstyle"] = "0";
                 if (match_info["away_attstyle"] == "null")
                     match_info["away_attstyle"] = "0";
+                if (match_info["home_focus_side"] == "null")
+                    match_info["home_focus_side"] = "0";
+                if (match_info["away_focus_side"] == "null")
+                    match_info["away_focus_side"] = "0";
                 if (matchRow.isHome)
                 {
                     matchRow.Mentalities = mentality[int.Parse(match_info["home_mentality"])] + ";" + mentality[int.Parse(match_info["away_mentality"])];
                     matchRow.AttackStyles = att_styles[int.Parse(match_info["home_attstyle"])] + ";" + att_styles[int.Parse(match_info["away_attstyle"])];
+                    matchRow.FocusSides = focus[int.Parse(match_info["home_focus_side"])] + ";" + focus[int.Parse(match_info["away_focus_side"])];
                 }
                 else
                 {
                     matchRow.Mentalities = mentality[int.Parse(match_info["away_mentality"])] + ";" + mentality[int.Parse(match_info["home_mentality"])];
                     matchRow.AttackStyles = att_styles[int.Parse(match_info["away_attstyle"])] + ";" + att_styles[int.Parse(match_info["home_attstyle"])];
+                    matchRow.FocusSides = focus[int.Parse(match_info["away_focus_side"])] + ";" + focus[int.Parse(match_info["home_focus_side"])];
                 }
 
                 // Getting pitch and weather data

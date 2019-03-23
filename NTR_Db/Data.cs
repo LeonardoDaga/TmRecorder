@@ -380,6 +380,7 @@ namespace NTR_Db
                         nmr.Stats = omr.YourStats + ";" + omr.OppsStats;
                         nmr.Mentalities = omr.YourMentality + ";" + omr.OppsMentality;
                         nmr.AttackStyles = omr.YourAttackingStyle + ";" + omr.OppsAttackingStyle;
+                        nmr.FocusSides = omr.YourFocusSide + ";" + omr.OppsFocusSide;
                     }
                     if (!omr.IsCardsNull())
                         nmr.Cards = omr.Cards;
@@ -2570,6 +2571,12 @@ namespace NTR_Db
                     YActions = mr.YActions;
                 if (!mr.IsOActionsNull())
                     OActions = mr.OActions;
+                if (!mr.IsFocusSidesNull())
+                {
+                    string[] FocusSides = mr.FocusSides.Split(';');
+                    YFocus = FocusSides[0];
+                    OFocus = FocusSides[1];
+                }
                 if (!mr.IsAttackStylesNull())
                 {
                     string[] AttackStyles = mr.AttackStyles.Split(';');
@@ -2688,6 +2695,8 @@ namespace NTR_Db
         public byte MatchType { get; set; }
         public string YMent { get; set; }
         public string OMent { get; set; }
+        public string YFocus { get; set; }
+        public string OFocus { get; set; }
         public int OTeamID { get; set; }
         public string Pitch { get; set; }
         public bool Report { get; set; }

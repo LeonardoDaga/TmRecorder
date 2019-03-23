@@ -92,10 +92,13 @@ function get_match_info()
 		strout += ";away_color=" + match_data["club"]["away"]["colors"]["club_color1"];
 	
 		strout += ";attendance=" + match_info["attendance"];
-		strout += ";captain_home=" + match_info["captain"]["home"];
-		strout += ";captain_away=" + match_info["captain"]["away"];
+        strout += ";captain_home=" + match_info["captain"]["home"];
+        strout += ";captain_away=" + match_info["captain"]["away"];
+        strout += ";captain_away=" + match_info["captain"]["away"];
 		strout += ";possession_home=" + match_info["possession"]["home"];
 		strout += ";possession_away=" + match_info["possession"]["away"];
+        strout += ";home_focus_side=" + match_info["focus_side"]["home"];
+        strout += ";away_focus_side=" + match_info["focus_side"]["away"];
 	
 		strout += ";stadium=" + match_data["club"]["home"]["stadium"];
 		strout += ";capacity=" + match_info["venue"]["capacity"];

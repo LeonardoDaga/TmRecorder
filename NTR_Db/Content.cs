@@ -181,6 +181,7 @@ namespace NTR_Db
 
             string[] att_styles = { "Bal", "Bal", "Count", "Wing", "Short", "Long", "Filt" };
             string[] mentality = { "Norm", "VeDef", "Def", "SlDef", "Norm", "SlOff", "Off", "VrOff" };
+            string[] focus = { "-", "Balanced", "Left", "Center", "Right" };
 
             string matchIdStr = HTML_Parser.GetNumberAfter(page, "http://trophymanager.com/matches/");
             int matchId = int.Parse(matchIdStr);
@@ -239,11 +240,13 @@ namespace NTR_Db
                 {
                     matchRow.Mentalities = mentality[int.Parse(match_info["home_mentality"])] + ";" + mentality[int.Parse(match_info["away_mentality"])];
                     matchRow.AttackStyles = att_styles[int.Parse(match_info["home_attstyle"])] + ";" + att_styles[int.Parse(match_info["away_attstyle"])];
+                    matchRow.FocusSides = focus[int.Parse(match_info["home_focus_side"])] + ";" + focus[int.Parse(match_info["away_focus_side"])];
                 }
                 else
                 {
                     matchRow.Mentalities = mentality[int.Parse(match_info["away_mentality"])] + ";" + mentality[int.Parse(match_info["home_mentality"])];
                     matchRow.AttackStyles = att_styles[int.Parse(match_info["away_attstyle"])] + ";" + att_styles[int.Parse(match_info["home_attstyle"])];
+                    matchRow.FocusSides = focus[int.Parse(match_info["away_focus_side"])] + ";" + focus[int.Parse(match_info["home_focus_side"])];
                 }
 
                 // Getting pitch and weather data

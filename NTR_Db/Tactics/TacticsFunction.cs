@@ -603,7 +603,7 @@ namespace NTR_Db
         }
 
 
-        public static void CreateDefaultFunctions(string tacticsFunctionPath)
+        public static TacticsFunction CreateDefaultFunctions(string tacticsFunctionPath)
         {
             string tacticsFunctionDir = Path.GetDirectoryName(tacticsFunctionPath);
 
@@ -614,6 +614,8 @@ namespace NTR_Db
 
             tf.SettingsFilename = tacticsFunctionFile;
             tf.Save();
+
+            return tf;
         }
     }
 }

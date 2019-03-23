@@ -85,6 +85,9 @@ namespace TMRecorder
             this.lblWeather = new System.Windows.Forms.Label();
             this.actionsStats = new NTR_Controls.ActionsStats();
             this.weatherImgList = new System.Windows.Forms.ImageList(this.components);
+            this.label17 = new System.Windows.Forms.Label();
+            this.lblFocusSide1 = new System.Windows.Forms.Label();
+            this.lblFocusSide2 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -101,6 +104,7 @@ namespace TMRecorder
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.lblFocusSide1, 0, 9);
             this.tableLayoutPanel1.Controls.Add(this.txtLineUp1, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label4, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.label5, 1, 1);
@@ -126,6 +130,8 @@ namespace TMRecorder
             this.tableLayoutPanel1.Controls.Add(this.lblMentality1, 0, 8);
             this.tableLayoutPanel1.Controls.Add(this.lblAttackStyle2, 2, 7);
             this.tableLayoutPanel1.Controls.Add(this.lblMentality2, 2, 8);
+            this.tableLayoutPanel1.Controls.Add(this.lblFocusSide2, 2, 9);
+            this.tableLayoutPanel1.Controls.Add(this.label17, 1, 9);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -140,7 +146,7 @@ namespace TMRecorder
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(194, 164);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(194, 186);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // txtLineUp1
@@ -469,7 +475,7 @@ namespace TMRecorder
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(658, 338);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(658, 353);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // panel1
@@ -478,7 +484,7 @@ namespace TMRecorder
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(288, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(64, 332);
+            this.panel1.Size = new System.Drawing.Size(64, 347);
             this.panel1.TabIndex = 2;
             // 
             // oppsTeamLineup
@@ -529,9 +535,9 @@ namespace TMRecorder
             this.tableLayoutPanel4.Location = new System.Drawing.Point(88, 3);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 2;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 170F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 192F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(194, 332);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(194, 347);
             this.tableLayoutPanel4.TabIndex = 5;
             // 
             // tableLayoutPanel3
@@ -553,7 +559,7 @@ namespace TMRecorder
             this.tableLayoutPanel3.Controls.Add(this.lblPitchCover, 1, 5);
             this.tableLayoutPanel3.Controls.Add(this.panel3, 1, 6);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 173);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 195);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 8;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18F));
@@ -564,7 +570,7 @@ namespace TMRecorder
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(194, 156);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(194, 149);
             this.tableLayoutPanel3.TabIndex = 4;
             // 
             // label1
@@ -803,7 +809,7 @@ namespace TMRecorder
             this.actionsStats.RowsTitleFont = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Bold);
             this.actionsStats.RowsTitlePosition = 4;
             this.actionsStats.RowsTitleWidth = 90F;
-            this.actionsStats.Size = new System.Drawing.Size(264, 332);
+            this.actionsStats.Size = new System.Drawing.Size(264, 347);
             this.actionsStats.TabIndex = 6;
             this.actionsStats.Title = "Actions Analysis";
             this.actionsStats.TitleAlignment = System.Drawing.StringAlignment.Center;
@@ -830,13 +836,50 @@ namespace TMRecorder
             this.weatherImgList.Images.SetKeyName(13, "sunny4.png");
             this.weatherImgList.Images.SetKeyName(14, "sunny5.png");
             // 
+            // label17
+            // 
+            this.label17.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
+            this.label17.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.label17.Location = new System.Drawing.Point(50, 162);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(94, 18);
+            this.label17.TabIndex = 8;
+            this.label17.Text = "Focus Side";
+            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblFocusSide1
+            // 
+            this.lblFocusSide1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblFocusSide1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.lblFocusSide1.ForeColor = System.Drawing.Color.DarkBlue;
+            this.lblFocusSide1.Location = new System.Drawing.Point(3, 162);
+            this.lblFocusSide1.Name = "lblFocusSide1";
+            this.lblFocusSide1.Size = new System.Drawing.Size(41, 18);
+            this.lblFocusSide1.TabIndex = 9;
+            this.lblFocusSide1.Text = "0";
+            this.lblFocusSide1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblFocusSide2
+            // 
+            this.lblFocusSide2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblFocusSide2.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.lblFocusSide2.ForeColor = System.Drawing.Color.DarkBlue;
+            this.lblFocusSide2.Location = new System.Drawing.Point(150, 162);
+            this.lblFocusSide2.Name = "lblFocusSide2";
+            this.lblFocusSide2.Size = new System.Drawing.Size(41, 18);
+            this.lblFocusSide2.TabIndex = 10;
+            this.lblFocusSide2.Text = "0";
+            this.lblFocusSide2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // MatchStats
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel2);
             this.Name = "MatchStats";
-            this.Size = new System.Drawing.Size(658, 338);
+            this.Size = new System.Drawing.Size(658, 353);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -901,5 +944,8 @@ namespace TMRecorder
         private System.Windows.Forms.Label lblMentality1;
         private System.Windows.Forms.Label lblAttackStyle2;
         private System.Windows.Forms.Label lblMentality2;
+        private System.Windows.Forms.Label lblFocusSide1;
+        private System.Windows.Forms.Label lblFocusSide2;
+        private System.Windows.Forms.Label label17;
     }
 }

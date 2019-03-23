@@ -111,6 +111,8 @@ function get_match_info()
 		strout += ";away_attstyle=" + match_info["attacking_style"]["away"];
 		strout += ";home_mentality=" + match_info["mentality"]["home"];
 		strout += ";away_mentality=" + match_info["mentality"]["away"];
+        strout += ";home_focus_side=" + match_info["focus_side"]["home"];
+        strout += ";away_focus_side=" + match_info["focus_side"]["away"];
 		
 		strout += ";attendance=" + match_info["attendance"];
 		strout += ";captain_home=" + match_info["captain"]["home"];

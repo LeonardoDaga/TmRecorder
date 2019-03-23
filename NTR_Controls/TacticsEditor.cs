@@ -48,6 +48,11 @@ namespace NTR_Controls
         {
             FormatTacPlGrid();
             FormatTacGkGrid();
+            FormatTacticsToActionGrid();
+            FormatPossessionGrid();
+            FormatActionConstructionGrid();
+            FormatActionFinalizationGrid();
+            FormatDefenseGrid();
 
             LoadTables();
         }
@@ -56,9 +61,110 @@ namespace NTR_Controls
         {
             dgPlTactics.DataCollection = tacPlWeights;
             dgGkTactics.DataCollection = tacGkWeights;
+            dgTacticsToAction.DataCollection = tacTac2ActWeights;
+            dgPossession.DataCollection = tacPossessionWeights;
+            dgActionConstruction.DataCollection = tacActionConstructionWeights;
+            dgActionFinalization.DataCollection = tacActionFinalizationWeights;
+            dgDefense.DataCollection = tacDefenseWeights;
 
             this.Text = "Tactics Editor - " + fileName;
         }
+
+        private void FormatDefenseGrid()
+        {
+            dgDefense.AutoGenerateColumns = false;
+
+            dgDefense.Columns.Clear();
+
+            dgDefense.AddColumn("Tactics", "Tactics", 60, AG_Style.FormatString | AG_Style.ReadOnly);
+            dgDefense.AddColumn("Str", "Str", 42, AG_Style.Numeric | AG_Style.N3);
+            dgDefense.AddColumn("Sta", "Sta", 42, AG_Style.Numeric | AG_Style.N3);
+            dgDefense.AddColumn("Pac", "Pac", 42, AG_Style.Numeric | AG_Style.N3);
+            dgDefense.AddColumn("Mar", "Mar", 42, AG_Style.Numeric | AG_Style.N3);
+            dgDefense.AddColumn("Tac", "Tac", 42, AG_Style.Numeric | AG_Style.N3);
+            dgDefense.AddColumn("Wor", "Wor", 42, AG_Style.Numeric | AG_Style.N3);
+            dgDefense.AddColumn("Pos", "Pos", 42, AG_Style.Numeric | AG_Style.N3);
+            dgDefense.AddColumn("Pas", "Pas", 42, AG_Style.Numeric | AG_Style.N3);
+            dgDefense.AddColumn("Cro", "Cro", 42, AG_Style.Numeric | AG_Style.N3);
+            dgDefense.AddColumn("Tec", "Tec", 42, AG_Style.Numeric | AG_Style.N3);
+            dgDefense.AddColumn("Hea", "Hea", 42, AG_Style.Numeric | AG_Style.N3);
+            dgDefense.AddColumn("Fin", "Fin", 42, AG_Style.Numeric | AG_Style.N3);
+            dgDefense.AddColumn("Lon", "Lon", 42, AG_Style.Numeric | AG_Style.N3);
+            dgDefense.AddColumn("Set", "Set", 42, AG_Style.Numeric | AG_Style.N3);
+            dgDefense.AddColumn("FPos", "FPos", 300, AG_Style.FormatString);
+        }
+
+        private void FormatActionFinalizationGrid()
+        {
+            dgActionFinalization.AutoGenerateColumns = false;
+
+            dgActionFinalization.Columns.Clear();
+
+            dgActionFinalization.AddColumn("Tactics", "Tactics", 60, AG_Style.FormatString | AG_Style.ReadOnly);
+            dgActionFinalization.AddColumn("Str", "Str", 42, AG_Style.Numeric | AG_Style.N3);
+            dgActionFinalization.AddColumn("Sta", "Sta", 42, AG_Style.Numeric | AG_Style.N3);
+            dgActionFinalization.AddColumn("Pac", "Pac", 42, AG_Style.Numeric | AG_Style.N3);
+            dgActionFinalization.AddColumn("Mar", "Mar", 42, AG_Style.Numeric | AG_Style.N3);
+            dgActionFinalization.AddColumn("Tac", "Tac", 42, AG_Style.Numeric | AG_Style.N3);
+            dgActionFinalization.AddColumn("Wor", "Wor", 42, AG_Style.Numeric | AG_Style.N3);
+            dgActionFinalization.AddColumn("Pos", "Pos", 42, AG_Style.Numeric | AG_Style.N3);
+            dgActionFinalization.AddColumn("Pas", "Pas", 42, AG_Style.Numeric | AG_Style.N3);
+            dgActionFinalization.AddColumn("Cro", "Cro", 42, AG_Style.Numeric | AG_Style.N3);
+            dgActionFinalization.AddColumn("Tec", "Tec", 42, AG_Style.Numeric | AG_Style.N3);
+            dgActionFinalization.AddColumn("Hea", "Hea", 42, AG_Style.Numeric | AG_Style.N3);
+            dgActionFinalization.AddColumn("Fin", "Fin", 42, AG_Style.Numeric | AG_Style.N3);
+            dgActionFinalization.AddColumn("Lon", "Lon", 42, AG_Style.Numeric | AG_Style.N3);
+            dgActionFinalization.AddColumn("Set", "Set", 42, AG_Style.Numeric | AG_Style.N3);
+            dgActionFinalization.AddColumn("FPos", "FPos", 300, AG_Style.FormatString);
+        }
+
+        private void FormatActionConstructionGrid()
+        {
+            dgActionConstruction.AutoGenerateColumns = false;
+
+            dgActionConstruction.Columns.Clear();
+
+            dgActionConstruction.AddColumn("Tactics", "Tactics", 60, AG_Style.FormatString | AG_Style.ReadOnly);
+            dgActionConstruction.AddColumn("Str", "Str", 42, AG_Style.Numeric | AG_Style.N3);
+            dgActionConstruction.AddColumn("Sta", "Sta", 42, AG_Style.Numeric | AG_Style.N3);
+            dgActionConstruction.AddColumn("Pac", "Pac", 42, AG_Style.Numeric | AG_Style.N3);
+            dgActionConstruction.AddColumn("Mar", "Mar", 42, AG_Style.Numeric | AG_Style.N3);
+            dgActionConstruction.AddColumn("Tac", "Tac", 42, AG_Style.Numeric | AG_Style.N3);
+            dgActionConstruction.AddColumn("Wor", "Wor", 42, AG_Style.Numeric | AG_Style.N3);
+            dgActionConstruction.AddColumn("Pos", "Pos", 42, AG_Style.Numeric | AG_Style.N3);
+            dgActionConstruction.AddColumn("Pas", "Pas", 42, AG_Style.Numeric | AG_Style.N3);
+            dgActionConstruction.AddColumn("Cro", "Cro", 42, AG_Style.Numeric | AG_Style.N3);
+            dgActionConstruction.AddColumn("Tec", "Tec", 42, AG_Style.Numeric | AG_Style.N3);
+            dgActionConstruction.AddColumn("Hea", "Hea", 42, AG_Style.Numeric | AG_Style.N3);
+            dgActionConstruction.AddColumn("Fin", "Fin", 42, AG_Style.Numeric | AG_Style.N3);
+            dgActionConstruction.AddColumn("Lon", "Lon", 42, AG_Style.Numeric | AG_Style.N3);
+            dgActionConstruction.AddColumn("Set", "Set", 42, AG_Style.Numeric | AG_Style.N3);
+            dgActionConstruction.AddColumn("FPos", "FPos", 300, AG_Style.FormatString);
+        }
+
+        private void FormatPossessionGrid()
+        {
+            dgPossession.AutoGenerateColumns = false;
+
+            dgPossession.Columns.Clear();
+
+            dgPossession.AddColumn("Mode", "Mode", 60, AG_Style.FormatString | AG_Style.ReadOnly);
+            dgPossession.AddColumn("Str", "Str", 42, AG_Style.Numeric | AG_Style.N3);
+            dgPossession.AddColumn("Sta", "Sta", 42, AG_Style.Numeric | AG_Style.N3);
+            dgPossession.AddColumn("Pac", "Pac", 42, AG_Style.Numeric | AG_Style.N3);
+            dgPossession.AddColumn("Mar", "Mar", 42, AG_Style.Numeric | AG_Style.N3);
+            dgPossession.AddColumn("Tac", "Tac", 42, AG_Style.Numeric | AG_Style.N3);
+            dgPossession.AddColumn("Wor", "Wor", 42, AG_Style.Numeric | AG_Style.N3);
+            dgPossession.AddColumn("Pos", "Pos", 42, AG_Style.Numeric | AG_Style.N3);
+            dgPossession.AddColumn("Pas", "Pas", 42, AG_Style.Numeric | AG_Style.N3);
+            dgPossession.AddColumn("Cro", "Cro", 42, AG_Style.Numeric | AG_Style.N3);
+            dgPossession.AddColumn("Tec", "Tec", 42, AG_Style.Numeric | AG_Style.N3);
+            dgPossession.AddColumn("Hea", "Hea", 42, AG_Style.Numeric | AG_Style.N3);
+            dgPossession.AddColumn("Fin", "Fin", 42, AG_Style.Numeric | AG_Style.N3);
+            dgPossession.AddColumn("Lon", "Lon", 42, AG_Style.Numeric | AG_Style.N3);
+            dgPossession.AddColumn("Set", "Set", 42, AG_Style.Numeric | AG_Style.N3);
+        }
+
 
         private void FormatTacPlGrid()
         {
@@ -105,6 +211,24 @@ namespace NTR_Controls
             dgGkTactics.AddColumn("Kic", "Kic", 42, AG_Style.Numeric | AG_Style.N3);
             dgGkTactics.AddColumn("Thr", "Thr", 42, AG_Style.Numeric | AG_Style.N3);
         }
+
+        private void FormatTacticsToActionGrid()
+        {
+            dgTacticsToAction.AutoGenerateColumns = false;
+
+            dgTacticsToAction.Columns.Clear();
+
+            dgTacticsToAction.AddColumn("Tactics", "Tactics", 60, AG_Style.FormatString | AG_Style.ReadOnly);
+            dgTacticsToAction.AddColumn("Cor", "Cor", 42, AG_Style.Numeric | AG_Style.N3);
+            dgTacticsToAction.AddColumn("Cro", "Cro", 42, AG_Style.Numeric | AG_Style.N3);
+            dgTacticsToAction.AddColumn("Dir", "Dir", 42, AG_Style.Numeric | AG_Style.N3);
+            dgTacticsToAction.AddColumn("Fil", "Fil", 42, AG_Style.Numeric | AG_Style.N3);
+            dgTacticsToAction.AddColumn("Fre", "Fre", 42, AG_Style.Numeric | AG_Style.N3);
+            dgTacticsToAction.AddColumn("Lon", "Lon", 42, AG_Style.Numeric | AG_Style.N3);
+            dgTacticsToAction.AddColumn("Pen", "Pen", 42, AG_Style.Numeric | AG_Style.N3);
+            dgTacticsToAction.AddColumn("Sho", "Sho", 42, AG_Style.Numeric | AG_Style.N3);
+        }
+
 
         private void tbOpenFile_Click(object sender, EventArgs e)
         {

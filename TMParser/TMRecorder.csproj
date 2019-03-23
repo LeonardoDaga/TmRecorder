@@ -38,9 +38,8 @@
     <RootNamespace>TMRecorder</RootNamespace>
     <AssemblyName>TMRecorder</AssemblyName>
     <StartupObject>TMRecorder.Program</StartupObject>
-    <ManifestCertificateThumbprint>4DF3AC0224C1A33E5C2BFA9BFA9BA0DFE7817BE8</ManifestCertificateThumbprint>
-    <ManifestKeyFile>
-    </ManifestKeyFile>
+    <ManifestCertificateThumbprint>847BAC138D6C6C175B73B4D339D573E661977256</ManifestCertificateThumbprint>
+    <ManifestKeyFile>TMRecorder_TemporaryKey.pfx</ManifestKeyFile>
     <GenerateManifests>true</GenerateManifests>
     <TargetZone>LocalIntranet</TargetZone>
     <SignManifests>true</SignManifests>
@@ -76,8 +75,8 @@
     <ProductName>TM Recorder</ProductName>
     <PublisherName>INSYDE</PublisherName>
     <DisallowUrlActivation>true</DisallowUrlActivation>
-    <ApplicationRevision>1</ApplicationRevision>
-    <ApplicationVersion>2.16.3.1</ApplicationVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>2.17.1.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -179,6 +178,10 @@
   <PropertyGroup />
   <PropertyGroup>
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestTimestampUrl>
+    </ManifestTimestampUrl>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.mshtml, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -633,6 +636,7 @@
     <Content Include="Datafiles\RUSCheratte.tmgain.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="TMRecorder_TemporaryKey.pfx" />
     <None Include="Trading.xsc">
       <DependentUpon>Trading.xsd</DependentUpon>
     </None>

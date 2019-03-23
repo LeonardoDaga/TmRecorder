@@ -647,6 +647,7 @@ namespace Common
             string[] att_styles = { "Bal", "Bal", "Count", "Wing", "Short", "Long", "Filt" };
             // { "Norm", "VeDef", "Def", "SlDef", "Norm", "SlOff", "Off", "VrOff"};
             string[] mentality = { "Norm", "VeDef", "Def", "SlDef", "Norm", "SlOff", "Off", "VrOff" };
+            string[] focus_side = { "-", "Balanced", "Left", "Central", "Right" };
 
             try
             {
@@ -687,6 +688,8 @@ namespace Common
                     matchRow.OppsAttackingStyle = att_styles[int.Parse(match_info["away_attstyle"])];
                     matchRow.YourMentality = mentality[int.Parse(match_info["home_mentality"])];
                     matchRow.OppsMentality = mentality[int.Parse(match_info["away_mentality"])];
+                    matchRow.YourFocusSide = focus_side[int.Parse(match_info["home_focus_side"])];
+                    matchRow.OppsFocusSide = focus_side[int.Parse(match_info["away_focus_side"])];
                 }
                 else
                 {
@@ -694,6 +697,8 @@ namespace Common
                     matchRow.OppsAttackingStyle = att_styles[int.Parse(match_info["home_attstyle"])];
                     matchRow.YourMentality = mentality[int.Parse(match_info["away_mentality"])];
                     matchRow.OppsMentality = mentality[int.Parse(match_info["home_mentality"])];
+                    matchRow.YourFocusSide = focus_side[int.Parse(match_info["away_focus_side"])];
+                    matchRow.OppsFocusSide = focus_side[int.Parse(match_info["home_focus_side"])];
                 }
 
                 // Getting pitch and weather data

@@ -1,123 +1,12 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DF7D6401-1959-405F-8F35-65FD8AD320B7}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NTR_Db</RootNamespace>
-    <AssemblyName>NTR_Db</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-    <LangVersion>7</LangVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
+    <TargetFramework>net472</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
+    <ProjectReference Include="..\Common\Common.csproj" />
+    <ProjectReference Include="..\NTR_Common\NTR_Common.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
-    </Reference>
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="ActionDecoder.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ActionDecoder.Designer.cs">
-      <DependentUpon>ActionDecoder.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ActionsList.cs" />
-    <Compile Include="Content.cs" />
-    <Compile Include="Data.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Data.Designer.cs">
-      <DependentUpon>Data.cs</DependentUpon>
-    </Compile>
-    <Compile Include="NTR_Formation.cs" />
-    <Compile Include="NTR_PlayerData.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="NTR_PlayerData.Designer.cs">
-      <DependentUpon>NTR_PlayerData.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Rating\PlayerDataSkills.cs" />
-    <Compile Include="Rating\RatingFunction.cs" />
-    <Compile Include="Rating\RatingAC.cs" />
-    <Compile Include="Rating\RatingR3.cs" />
-    <Compile Include="Rating\RatingR2.cs" />
-    <Compile Include="Rating\RatingL2.cs" />
-    <Compile Include="Rating\RatingRC.cs" />
-    <Compile Include="Season.cs" />
-    <Compile Include="Tactics\TacticsFunction.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="ActionDecoder.resx">
-      <DependentUpon>ActionDecoder.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Data.resx">
-      <DependentUpon>Data.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="NTR_PlayerData.resx">
-      <DependentUpon>NTR_PlayerData.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Common\Common.csproj">
-      <Project>{dfee4c9b-f9fc-4186-945f-27518e4fceb7}</Project>
-      <Name>Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Multilanguage\Languages.csproj">
-      <Project>{e0e469c1-bfb5-4ec0-93f1-f019c9101110}</Project>
-      <Name>Languages</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\NTR_Common\NTR_Common.csproj">
-      <Project>{d32f5344-d291-42fc-8b6e-4183864e2d77}</Project>
-      <Name>NTR_Common</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

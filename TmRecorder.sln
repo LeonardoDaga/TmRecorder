@@ -78,7 +78,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATmRecorderCleaner", "ATmRe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NTR_WebBrowser", "NTR_Browser\NTR_WebBrowser.csproj", "{483D9C7D-108E-4AEC-9DA2-20E57ABE217F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMRecorder", "TMParser\TMRecorder.csproj", "{5388053E-2E8F-4201-A96C-77861EC058C1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMRecorder", "TMRecorder\TMRecorder.csproj", "{5388053E-2E8F-4201-A96C-77861EC058C1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

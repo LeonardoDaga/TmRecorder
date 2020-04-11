@@ -117,65 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="players_loader" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\players_loader.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  <data name="Target" xml:space="preserve">
+    <value>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</value>
   </data>
-  <data name="get_players_training_loader" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\get_players_training_loader.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="ImportIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ImportIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Folder" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Folder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="training_loader" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\training_loader.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="Lens" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Lens.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Lens2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Lens2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="player_info_loader" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\player_info_loader.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="fixture_loader" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\fixture_loader.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="RatingR2_user" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\RatingR2.user.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="assistant_manager" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\assistant_manager.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="Update" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Update.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="transfer_loader" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\transfer_loader.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="match_loader" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\match_loader.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="shortlist_loader" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\shortlist_loader.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="TwoArrows" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\TwoArrows.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="get_player_history" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\get_player_history.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="RatingR3_user" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\ratingr3.user.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="RatingR4_user" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\RatingR4.user.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="RatingR5_user" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\RatingR5.user.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  <data name="DefaultSchema" xml:space="preserve">
+    <value>dbo</value>
   </data>
 </root>

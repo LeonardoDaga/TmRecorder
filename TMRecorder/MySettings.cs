@@ -514,6 +514,12 @@ namespace TMRecorder
             get { return (bool)sb["ShortlistUploadOnlyListedPlayers"]; }
             set { sb["ShortlistUploadOnlyListedPlayers"] = value; }
         }
+        public string DbPath
+        {
+            get { 
+                return Application.StartupPath + "\\DB\\TMR.mdf"; 
+            }
+        }
 
         public void SetDisk(string disk)
         {

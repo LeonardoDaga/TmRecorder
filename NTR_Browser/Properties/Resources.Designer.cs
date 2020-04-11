@@ -19,7 +19,7 @@ namespace NTR_WebBrowser.Properties {
     // tramite uno strumento quale ResGen o Visual Studio.
     // Per aggiungere o rimuovere un membro, modificare il file con estensione ResX ed eseguire nuovamente ResGen
     // con l'opzione /str oppure ricompilare il progetto VS.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -310,7 +310,7 @@ namespace NTR_WebBrowser.Properties {
         ///    var wage_rate = 19.76
         ///
         ///    // Array to setup the weights of particular skills for each player&apos;s actual ability
-        ///    // This is the dire [stringa troncata]&quot;;.
+        ///    // This  [stringa troncata]&quot;;.
         /// </summary>
         public static string RatingR3_user {
             get {
@@ -319,24 +319,43 @@ namespace NTR_WebBrowser.Properties {
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a 
-        ///// ==UserScript==
-        ///// @name           RatingR4 beta season 50
-        ///// @version        1.2
-        ///// @description    REREC(+b), Season TI, RatingR4(beta) JP/EN
-        ///// @include			http://trophymanager.com/players/*
-        ///// @include			https://trophymanager.com/players/*
-        ///// @include			https://fb.trophymanager.com/players/*
-        ///// @exclude			http://trophymanager.com/players/compare/*
-        ///// @exclude			https://trophymanager.com/players/compare/*
-        ///// @exclude			https://fb.trophymanager.com/players/compare/*
-        ///// ==/UserScript==
+        ///   Cerca una stringa localizzata simile a function ApplyRatingR4() {
         ///
-        ///var  [stringa troncata]&quot;;.
+        ///
+        ///    // ==UserScript==
+        ///    // @name           RatingR4 beta season 50
+        ///    // @version        1.2
+        ///    // @description    REREC(+b), Season TI, RatingR4(beta) JP/EN
+        ///    // @include			http://trophymanager.com/players/*
+        ///    // @include			https://trophymanager.com/players/*
+        ///    // @include			https://fb.trophymanager.com/players/*
+        ///    // @exclude			http://trophymanager.com/players/compare/*
+        ///    // @exclude			https://trophymanager.com/players/compare/*
+        ///    // @exclude			http [stringa troncata]&quot;;.
         /// </summary>
         public static string RatingR4_user {
             get {
                 return ResourceManager.GetString("RatingR4_user", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a function ApplyRatingR5() {
+        ///
+        ///	// ==UserScript==
+        ///	// @name           	RatingR5 ver5.3 for Season62
+        ///	// @version        	5.3
+        ///	// @description    	RatingR5, R5REC, R5 VALUE, REREC(+b), Season TI, RVA&apos;s Captaincy
+        ///	// @author			CHU-CHI(club ID:3415957)
+        ///	// @namespace		https://tmchuchi.web.fc2.com/
+        ///	// @include			https://trophymanager.com/players/*
+        ///	// @include			https://fb.trophymanager.com/players/*
+        ///	// @exclude			https://trophymanager.com/players/
+        ///	// @exclude			https://fb.trophymanager.com/players/        /// [stringa troncata]&quot;;.
+        /// </summary>
+        public static string RatingR5_user {
+            get {
+                return ResourceManager.GetString("RatingR5_user", resourceCulture);
             }
         }
         

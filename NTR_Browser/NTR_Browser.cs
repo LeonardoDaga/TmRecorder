@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 using NTR_WebBrowser.Properties;
@@ -927,6 +927,9 @@ namespace NTR_WebBrowser
             try
             {
                 pl_data = (string)webBrowser.Document.InvokeScript(command);
+
+                if ((pl_data != "") && (pl_data != null))
+                    pl_data = "Message: " + pl_data;
             }
             catch (Exception)
             {
@@ -1180,7 +1183,8 @@ namespace NTR_WebBrowser
         {
             if (ActualPlayerID > 0)
             {
-                AppendScriptAndExecute(Resources.RatingR4_user, "ApplyRatingR4");
+                string script = Resources.RatingR4_user;
+                AppendScriptAndExecute(script, "ApplyRatingR4");
                 tsbPlayersNavigationType.Visible = true;
             }
             else

@@ -38,7 +38,7 @@
     <Reference Include="Microsoft.mshtml, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>C:\Program Files (x86)\Microsoft.NET\Primary Interop Assemblies\Microsoft.mshtml.dll</HintPath>
+      <HintPath>C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\PublicAssemblies\Microsoft.mshtml.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -179,6 +179,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\RatingR3.user.js" />
+    <Content Include="Resources\RatingR5.user.js" />
     <None Include="Resources\RatingR4.user.js" />
     <None Include="Resources\TwoArrows.png" />
     <None Include="Resources\Lens.png" />

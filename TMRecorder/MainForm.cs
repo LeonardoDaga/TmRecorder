@@ -12,6 +12,7 @@ using Languages;
 using NTR_Db;
 using NTR_Controls;
 using System.Linq;
+using TMRecorder.DB;
 
 namespace TMRecorder
 {
@@ -34,6 +35,7 @@ namespace TMRecorder
         bool thisIsExtraTeam = false;
         public Seasons AllSeasons = new Seasons();
         List<MatchData> SeasonMatchList = null;
+        ModelContext DB = null;
 
         public enum e_GridTab : int
         {
@@ -125,6 +127,8 @@ namespace TMRecorder
         private void Form1_Load(object sender, EventArgs e)
         {
             bool settingsChanged = false;
+
+            DB = ModelContext.Create(Program.Setts);
 
             try
             {
@@ -941,7 +945,7 @@ namespace TMRecorder
 
         private bool LoadHistory()
         {
-            bool res = History.Load(Program.Setts.DefaultDirectory, ref sf);
+            bool res = History.Load(Program.Setts.DefaultDirectory, ref sf, ref DB);
 
             History.teamDS.Load(Program.Setts.DefaultDirectory, "Shortlist.3.xml");
 

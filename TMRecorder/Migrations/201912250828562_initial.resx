@@ -117,65 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="players_loader" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\players_loader.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  <data name="Target" xml:space="preserve">
+    <value>H4sIAAAAAAAEAM1Y227jNhB9L9B/EPScFWMHQdNA3kVix0XQdWJE2X2npbEjlBeVpIL42/ahn9Rf6FD3i+1YblD0zaJmzlzIOTzy3z/+8r+8cea8gtKxFBN35J27DohQRrHYTNzUrD9duV8+//yTfxfxN+d7aXdh7dBT6In7YkxyTYgOX4BT7fE4VFLLtfFCyQmNJBmfn/9KRiMCCOEiluP4T6kwMYfsAR+nUoSQmJSyhYyA6WId3wQZqvNAOeiEhjBxnxdPEEoVgfJmt65zw2KKSQTA1q5DhZCGGkzx+puGwCgpNkGCC5Q9bxNAuzVlGorUr2vzY6s4H9sqSO1YQoWpNpIPBBxdFG0hXfeTmutWbcPG3WGDzdZWnTVv4i4Z3YJynW6o6ylT1qzTWS+3P3Pq1bNq/8fe6BcPz8qZM02ZSRVMBKRGUXbmLNMVi8PfYfss/wAxESljzbwwM3zXWsClpZIJKLN9gnWR7f3MdUjbj3QdK7eGT17JvTAXY9d5wOB0xaDa9kbVgZEKfgMBihqIltQYULhrD1JAL3InzkPKQcky1u3WwI5Q70BkSVCGW1Ti4GnFmXOdBX37CmJjXiYuljCP3yAqnwvobyLGAUUXo9IjInE4FOLy8gOCzJcHQlx9QICbiP67fktzqAuXo+Gt9kk9Yv3BQ0YzNMbTVSSQ8ZpdhDezYwaRrYox1EWsdjk5aACmNczadeoccg70yjHflWqVVM2vJCfYkojJHib2FzRJsGsNZi5WnCCn5emnYDhp8RyDhHoHd1XZVpFwZOkGOm8xNGY6j5U2M2roitp9m0a8Z9bagj3tLUO1u9ylq7rppb39nfvsItEuQN29ORbEQZisNqjSqNi655hdiZRRtYP7ppKlXOzjz0PeJaM1Ecq1AShNUmtBNV8MwbPU1QbivVE/hGB5qelvn4/3zkin6Z4tDMg/I51W/tlKH8EnnfPQPXGkd+Q6d2P3BB+a/q5JFb1igc60+8XkvS/OeqOYm7gOtuY1juwYBlttgHvWwAv+ZFMWY721wYKKeA3a5PLBRZE07oi8/4/gIlpH7CjV9Z8roNj2dOgl2dI1Jhbbk1D60ka8UhW+UNUVNzXyUCWzG9FqmWGYtXDZiXg1FK+hU07uX0Oq7EwqEyuH0hqmTPq35zHS44DyyEd+4kYre5byJCu9cqIs6ROQT5rfkP4MdLypIewXpYDQnsQatLS5F2tZNh3ramZUmnT2ZAGGRtieG2XiNQ0Nvg5B60xGfqcsRZM7voLoXjymJknNjdbAV6x12/nkcPxMe7Vz9h8T+6Q/ogRMM8YS4FHcpjGLqrzn/TO5D8KelOKLCbNCGY1wm22F1P902gdUtG8GCYgI2f8ZeMIQTD+KgL7CKbmhgP4KGxpuy3tkP8j7G9Fuuz+L6UZRrguM2t/+L0LsHyOf/wEdxeMTShEAAA==</value>
   </data>
-  <data name="get_players_training_loader" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\get_players_training_loader.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="ImportIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ImportIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Folder" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Folder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="training_loader" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\training_loader.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="Lens" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Lens.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Lens2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Lens2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="player_info_loader" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\player_info_loader.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="fixture_loader" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\fixture_loader.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="RatingR2_user" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\RatingR2.user.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="assistant_manager" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\assistant_manager.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="Update" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Update.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="transfer_loader" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\transfer_loader.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="match_loader" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\match_loader.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="shortlist_loader" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\shortlist_loader.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="TwoArrows" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\TwoArrows.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="get_player_history" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\get_player_history.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="RatingR3_user" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\ratingr3.user.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="RatingR4_user" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\RatingR4.user.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="RatingR5_user" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\RatingR5.user.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  <data name="DefaultSchema" xml:space="preserve">
+    <value>dbo</value>
   </data>
 </root>

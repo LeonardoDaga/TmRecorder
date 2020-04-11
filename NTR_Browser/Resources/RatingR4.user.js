@@ -100,7 +100,11 @@
 /* BG */["Защитник Централен", "Защитник Ляв", "Защитник Десен", "Дефанзивен Халф Централен", "Дефанзивен Халф Ляв", "Дефанзивен Халф Десен", "Халф Централен", "Халф Ляв", "Халф Десен", "Атакуващ Халф Централен", "Атакуващ Халф Ляв", "Атакуващ Халф Десен", "Нападател"],
     ];
 
+    var result = "Script started";
+
     try {
+        result += "\nTry In";
+
         if (location.href.indexOf("/players/") != -1) {
 
             document.findPositionIndex = function (position) {
@@ -150,6 +154,9 @@
             }
 
             function computeRating(table, skills) {
+
+                result += "\ncomputeRating";
+
                 var REREC = [[], [], []];
                 var REREC2 = [];
                 var FP = [];
@@ -356,6 +363,8 @@
             }
 
             document.calculateREREC = function (positionIndex, skills, SI, rou) {
+                result += "\ncalculateREREC";
+
                 if (positionIndex == 13) var weight = 48717927500;
                 else var weight = 263533760000;
                 var rec = [];			// RERECb
@@ -408,6 +417,8 @@
             };
 
             document.calculateREREC2 = function (positionIndex, skills, SI) {
+                result += "\ncalculateREREC2";
+
                 if (positionIndex == 13) {
                     var skillWeightSum = Math.pow(SI, 0.143) / 0.02979;			// GK Skillsum
                     var weight = 48717927500;
@@ -517,10 +528,9 @@
             })();
         }
     }
-    catch (err)
-    {
-
+    catch (err) {
+        result += "\nError catched: " + err;
     }
 
-    return "";
+    return result;
 }

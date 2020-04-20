@@ -1,4 +1,4 @@
-﻿namespace NTR_WebBrowser
+﻿namespace NTR_Browser
 {
     partial class NTR_Browser
     {
@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NTR_Browser));
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.tsToolBar = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.tsbPrev = new System.Windows.Forms.ToolStripButton();
             this.tsbNext = new System.Windows.Forms.ToolStripButton();
@@ -48,20 +49,20 @@
             this.navigateReportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsbShortList = new System.Windows.Forms.ToolStripButton();
             this.tsbTransferPage = new System.Windows.Forms.ToolStripButton();
-            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.tsAddressBar = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.tbTxtAddress = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.tsbProgressBar = new System.Windows.Forms.ToolStripProgressBar();
-            this.tsbProgressText = new System.Windows.Forms.ToolStripLabel();
-            this.toolStrip1.SuspendLayout();
-            this.toolStrip2.SuspendLayout();
+            this.timerProgress = new System.Windows.Forms.Timer(this.components);
+            this.tsToolBar.SuspendLayout();
+            this.tsAddressBar.SuspendLayout();
             this.SuspendLayout();
             // 
-            // toolStrip1
+            // tsToolBar
             // 
-            this.toolStrip1.AutoSize = false;
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsToolBar.AutoSize = false;
+            this.tsToolBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripLabel1,
             this.tsbPrev,
             this.tsbNext,
@@ -73,11 +74,11 @@
             this.tsbPlayersNavigationType,
             this.tsbShortList,
             this.tsbTransferPage});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(874, 36);
-            this.toolStrip1.TabIndex = 3;
-            this.toolStrip1.Text = "toolStrip1";
+            this.tsToolBar.Location = new System.Drawing.Point(0, 0);
+            this.tsToolBar.Name = "tsToolBar";
+            this.tsToolBar.Size = new System.Drawing.Size(874, 36);
+            this.tsToolBar.TabIndex = 3;
+            this.tsToolBar.Text = "toolStrip1";
             // 
             // toolStripLabel1
             // 
@@ -101,14 +102,14 @@
             this.tsbNext.Image = ((System.Drawing.Image)(resources.GetObject("tsbNext.Image")));
             this.tsbNext.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbNext.Name = "tsbNext";
-            this.tsbNext.Size = new System.Drawing.Size(35, 33);
+            this.tsbNext.Size = new System.Drawing.Size(36, 33);
             this.tsbNext.Text = "Next";
             this.tsbNext.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.tsbNext.Click += new System.EventHandler(this.tsbNext_Click);
             // 
             // tsbUpdate
             // 
-            this.tsbUpdate.Image = global::NTR_WebBrowser.Properties.Resources.Update;
+            this.tsbUpdate.Image = global::NTR_Browser.Properties.Resources.Update;
             this.tsbUpdate.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbUpdate.Name = "tsbUpdate";
             this.tsbUpdate.Size = new System.Drawing.Size(49, 33);
@@ -118,7 +119,7 @@
             // 
             // tsbImport
             // 
-            this.tsbImport.Image = global::NTR_WebBrowser.Properties.Resources.ImportIcon;
+            this.tsbImport.Image = global::NTR_Browser.Properties.Resources.ImportIcon;
             this.tsbImport.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbImport.Name = "tsbImport";
             this.tsbImport.Size = new System.Drawing.Size(47, 33);
@@ -147,7 +148,7 @@
             this.tsbGotoAdobePage,
             this.toolStripSeparator17,
             this.tsbSendThisPageForDebug});
-            this.tsmFile.Image = global::NTR_WebBrowser.Properties.Resources.Folder;
+            this.tsmFile.Image = global::NTR_Browser.Properties.Resources.Folder;
             this.tsmFile.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsmFile.Name = "tsmFile";
             this.tsmFile.Size = new System.Drawing.Size(38, 33);
@@ -219,7 +220,7 @@
             // 
             // tsbShortList
             // 
-            this.tsbShortList.Image = global::NTR_WebBrowser.Properties.Resources.Lens2;
+            this.tsbShortList.Image = global::NTR_Browser.Properties.Resources.Lens2;
             this.tsbShortList.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbShortList.Name = "tsbShortList";
             this.tsbShortList.Size = new System.Drawing.Size(57, 33);
@@ -230,28 +231,27 @@
             // 
             // tsbTransferPage
             // 
-            this.tsbTransferPage.Image = global::NTR_WebBrowser.Properties.Resources.TwoArrows;
+            this.tsbTransferPage.Image = global::NTR_Browser.Properties.Resources.TwoArrows;
             this.tsbTransferPage.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbTransferPage.Name = "tsbTransferPage";
-            this.tsbTransferPage.Size = new System.Drawing.Size(82, 33);
+            this.tsbTransferPage.Size = new System.Drawing.Size(81, 33);
             this.tsbTransferPage.Text = "Transfer Page";
             this.tsbTransferPage.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.tsbTransferPage.Click += new System.EventHandler(this.tsbTransferPage_Click);
             // 
-            // toolStrip2
+            // tsAddressBar
             // 
-            this.toolStrip2.AutoSize = false;
-            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsAddressBar.AutoSize = false;
+            this.tsAddressBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripLabel2,
             this.tbTxtAddress,
             this.toolStripLabel3,
-            this.tsbProgressBar,
-            this.tsbProgressText});
-            this.toolStrip2.Location = new System.Drawing.Point(0, 36);
-            this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(874, 18);
-            this.toolStrip2.TabIndex = 4;
-            this.toolStrip2.Text = "toolStrip2";
+            this.tsbProgressBar});
+            this.tsAddressBar.Location = new System.Drawing.Point(0, 36);
+            this.tsAddressBar.Name = "tsAddressBar";
+            this.tsAddressBar.Size = new System.Drawing.Size(874, 18);
+            this.tsAddressBar.TabIndex = 4;
+            this.tsAddressBar.Text = "toolStrip2";
             // 
             // toolStripLabel2
             // 
@@ -267,6 +267,7 @@
             this.tbTxtAddress.AutoSize = false;
             this.tbTxtAddress.BackColor = System.Drawing.SystemColors.ControlLight;
             this.tbTxtAddress.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbTxtAddress.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.tbTxtAddress.Name = "tbTxtAddress";
             this.tbTxtAddress.Size = new System.Drawing.Size(350, 18);
             this.tbTxtAddress.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbTxtAddress_KeyDown);
@@ -276,42 +277,43 @@
             this.toolStripLabel3.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripLabel3.ForeColor = System.Drawing.SystemColors.Desktop;
             this.toolStripLabel3.Name = "toolStripLabel3";
-            this.toolStripLabel3.Size = new System.Drawing.Size(87, 15);
-            this.toolStripLabel3.Text = "Load progress";
+            this.toolStripLabel3.Size = new System.Drawing.Size(51, 15);
+            this.toolStripLabel3.Text = "Loading";
             // 
             // tsbProgressBar
             // 
             this.tsbProgressBar.AutoSize = false;
+            this.tsbProgressBar.ForeColor = System.Drawing.Color.LimeGreen;
             this.tsbProgressBar.Name = "tsbProgressBar";
             this.tsbProgressBar.Size = new System.Drawing.Size(70, 20);
             this.tsbProgressBar.Step = 5;
+            this.tsbProgressBar.Value = 20;
             // 
-            // tsbProgressText
+            // timerProgress
             // 
-            this.tsbProgressText.Name = "tsbProgressText";
-            this.tsbProgressText.Size = new System.Drawing.Size(17, 15);
-            this.tsbProgressText.Text = "%";
+            this.timerProgress.Interval = 200;
+            this.timerProgress.Tick += new System.EventHandler(this.timerProgress_Tick);
             // 
             // NTR_Browser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.toolStrip2);
-            this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.tsAddressBar);
+            this.Controls.Add(this.tsToolBar);
             this.Name = "NTR_Browser";
             this.Size = new System.Drawing.Size(874, 406);
             this.Load += new System.EventHandler(this.NTR_Browser_Load);
             this.Resize += new System.EventHandler(this.NTR_Browser_Resize);
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
-            this.toolStrip2.ResumeLayout(false);
-            this.toolStrip2.PerformLayout();
+            this.tsToolBar.ResumeLayout(false);
+            this.tsToolBar.PerformLayout();
+            this.tsAddressBar.ResumeLayout(false);
+            this.tsAddressBar.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStrip tsToolBar;
         private System.Windows.Forms.ToolStripButton tsbNext;
         private System.Windows.Forms.ToolStripButton tsbPrev;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
@@ -328,13 +330,13 @@
         private System.Windows.Forms.ToolStripDropDownButton tsbPlayersNavigationType;
         private System.Windows.Forms.ToolStripMenuItem navigateProfilesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem navigateReportsToolStripMenuItem;
-        private System.Windows.Forms.ToolStrip toolStrip2;
+        private System.Windows.Forms.ToolStrip tsAddressBar;
         private System.Windows.Forms.ToolStripLabel toolStripLabel2;
         private System.Windows.Forms.ToolStripTextBox tbTxtAddress;
         private System.Windows.Forms.ToolStripLabel toolStripLabel3;
         private System.Windows.Forms.ToolStripProgressBar tsbProgressBar;
-        private System.Windows.Forms.ToolStripLabel tsbProgressText;
         private System.Windows.Forms.ToolStripButton tsbShortList;
         private System.Windows.Forms.ToolStripButton tsbTransferPage;
+        private System.Windows.Forms.Timer timerProgress;
     }
 }

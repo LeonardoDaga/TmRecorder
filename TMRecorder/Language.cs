@@ -190,7 +190,6 @@ namespace TMRecorder
             this.button2.Text = "OK";
             this.tabGenerali.Text = Current.Language.Generics;
             this.label5.Text = Current.Language.ActionsAnalysisFile;
-            this.chkUseTMBrowser.Text = Current.Language.UseTMRBrowserInsteadOfTheDefaultBrowser;
             this.label6.Text = Current.Language.InstallationDirectory;
             this.label2.Text = Current.Language.DefaultPlayerNation;
             this.label1.Text = Current.Language.SquadDataDirectory;

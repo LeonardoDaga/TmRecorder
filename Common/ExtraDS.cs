@@ -786,38 +786,38 @@ namespace Common
 
                     if (dict.ContainsKey("Tec"))
                     {
-                        Tec += float.Parse(dict["Tec"]) * (float)sr.Technical;
-                        f_Tec += (float)sr.Technical;
+                        Tec += float.Parse(dict["Tec"]) * (float)(sr.Technical* sr.Technical);
+                        f_Tec += (float)(sr.Technical * sr.Technical);
                     }
                     if (dict.ContainsKey("Pot"))
                     {
-                        Pot += float.Parse(dict["Pot"]) * (float)sr.Development;
-                        f_Pot += (float)sr.Development;
+                        Pot += float.Parse(dict["Pot"]) * (float)(sr.Development * sr.Development);
+                        f_Pot += (float)(sr.Development * sr.Development);
                     }
                     if (dict.ContainsKey("Tac"))
                     {
-                        Tac += float.Parse(dict["Tac"]) * (float)sr.Tactical;
-                        f_Tac += (float)sr.Tactical;
+                        Tac += float.Parse(dict["Tac"]) * (float)(sr.Tactical * sr.Tactical);
+                        f_Tac += (float)(sr.Tactical * sr.Tactical);
                     }
                     if (dict.ContainsKey("Pro"))
                     {
-                        Pro += float.Parse(dict["Pro"]) * (float)sr.Psychology;
-                        f_Pro += (float)sr.Psychology;
+                        Pro += float.Parse(dict["Pro"]) * (float)(sr.Psychology * sr.Psychology);
+                        f_Pro += (float)(sr.Psychology * sr.Psychology);
                     }
                     if (dict.ContainsKey("Lea"))
                     {
-                        Lea += float.Parse(dict["Lea"]) * (float)sr.Psychology;
-                        f_Lea += (float)sr.Psychology;
+                        Lea += float.Parse(dict["Lea"]) * (float)(sr.Psychology * sr.Psychology);
+                        f_Lea += (float)(sr.Psychology * sr.Psychology);
                     }
                     if (dict.ContainsKey("Agg"))
                     {
-                        Agg += float.Parse(dict["Agg"]) * (float)sr.Psychology;
-                        f_Agg += (float)sr.Psychology;
+                        Agg += float.Parse(dict["Agg"]) * (float)(sr.Psychology * sr.Psychology);
+                        f_Agg += (float)(sr.Psychology * sr.Psychology);
                     }
                     if (dict.ContainsKey("Phy"))
                     {
-                        Phy += float.Parse(dict["Phy"]) * (float)sr.Physical;
-                        f_Phy += (float)sr.Physical;
+                        Phy += float.Parse(dict["Phy"]) * (float)(sr.Physical * sr.Physical);
+                        f_Phy += (float)(sr.Physical * sr.Physical);
                     }
                     if (dict.ContainsKey("Spe"))
                     {
@@ -2001,6 +2001,16 @@ namespace Common
             gRow.Nome = dictValues["PlayerName"];
             gRow.FP = dictValues["PlayerFp"].ToUpper();
             gRow.FPn = int.Parse(dictValues["FPn"]);
+
+            if (dictValues.ContainsKey("Routine"))
+            {
+                gRow.Routine = decimal.Parse(dictValues["Routine"], Common.CommGlobal.ciUs);
+            }
+
+            if (dictValues.ContainsKey("Wage"))
+            {
+                gRow.Wage = int.Parse(dictValues["Wage"]);
+            }
 
             if (dictValues.ContainsKey("Aggressivity"))
             {

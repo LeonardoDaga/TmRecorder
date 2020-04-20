@@ -897,7 +897,12 @@ namespace NTR_Db
 
                 fis = di.GetFiles("Actions-Season*.5.xml");
                 cntfis = fis.Length;
-                for (int i = 0; i < cntfis; i++)
+
+                var orderedFis = fis.OrderByDescending(f => f.Name)
+                    .ToArray();
+
+                // Load only the two latest seasons
+                for (int i = 0; (i < cntfis) && (i < 2); i++)
                 {
                     fi = fis[i];
 
@@ -906,7 +911,10 @@ namespace NTR_Db
 
                     NTR_SquadDb.ActionsDataTable tempActionsDataDataTable = new NTR_SquadDb.ActionsDataTable();
                     tempActionsDataDataTable.ReadXml(fi.FullName);
+
                     seasonsDB.Actions.Merge(tempActionsDataDataTable);
+
+                    tempActionsDataDataTable.Dispose();
                 }
 
                 sf.UpdateStatusMessage(95, string.Format("Loading Action Decoder Datafile..."));
@@ -2041,6 +2049,7 @@ namespace NTR_Db
             var lastMatch = (from c in seasonsDB.Match
                                       where (!c.IsDateNull()) && (c.Date > actualSeason.Start) && (c.Date <= DateTime.Today)
                                               && ((c.OTeamID == teamID) || (c.YTeamID == teamID))
+                                              && (c.Crowd != 0)
                                       select c).OrderBy(c => c.Date).LastOrDefault();
 
             if (lastMatch == null)

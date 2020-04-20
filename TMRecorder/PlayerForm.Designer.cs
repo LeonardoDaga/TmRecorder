@@ -147,7 +147,7 @@ namespace TMRecorder
             this.trainingBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.playerTraining = new Common.PlayerTraining();
             this.tabPlayerBrowser = new System.Windows.Forms.TabPage();
-            this.webBrowser = new NTR_WebBrowser.NTR_Browser();
+            this.webBrowser = new NTR_Browser.NTR_Browser();
             this.scoutsDataTableBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.label5 = new System.Windows.Forms.Label();
             this.txtNotes = new System.Windows.Forms.TextBox();
@@ -2147,14 +2147,14 @@ namespace TMRecorder
             this.webBrowser.MainTeamId = 0;
             this.webBrowser.Name = "webBrowser";
             this.webBrowser.NavigationAddress = "";
-            this.webBrowser.NavigationMode = NTR_WebBrowser.NTR_Browser.eNavigationMode.Main;
+            this.webBrowser.NavigationMode = NTR_Browser.NTR_Browser.eNavigationMode.Main;
             this.webBrowser.SelectedReportParser = null;
             this.webBrowser.ShowShortlist = false;
             this.webBrowser.ShowTransfer = false;
             this.webBrowser.Size = new System.Drawing.Size(692, 516);
             this.webBrowser.StartnavigationAddress = "";
             this.webBrowser.TabIndex = 1;
-            this.webBrowser.ImportedContent += new NTR_WebBrowser.ImportedContentHandler(this.webBrowser_ImportedContent);
+            this.webBrowser.ImportedContent += new NTR_Browser.ImportedContentHandler(this.webBrowser_ImportedContent);
             // 
             // scoutsDataTableBindingSource1
             // 
@@ -3513,7 +3513,7 @@ namespace TMRecorder
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn19;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn20;
         private NTR_Common.TeamDS teamDS;
-        private NTR_WebBrowser.NTR_Browser webBrowser;
+        private NTR_Browser.NTR_Browser webBrowser;
         private PlayerTraining playerTraining;
         private System.Windows.Forms.DataGridViewTextBoxColumn trainingTypeColumn;
         private System.Windows.Forms.ToolStripMenuItem gkGoalkeepersToolStripMenuItem;

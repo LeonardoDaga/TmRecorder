@@ -574,7 +574,7 @@ namespace TMRecorder
 
 
 
-        internal bool Load(string dataDirectory, ref Common.SplashForm sf, ref DB.ModelContext db)
+        internal bool Load(string dataDirectory, ref Common.SplashForm sf)
         {
             bool trace = (Program.Setts.Trace > 0);
 
@@ -618,25 +618,6 @@ namespace TMRecorder
                         sf.UpdateStatusMessage(icnt, "Loading Players DB...");
                     }
                     AddPlyrDataFromXML(fi);
-
-                    //foreach (var playerDS in this.PlayersDS.Giocatori)
-                    //{
-                    //    DB.Player player = db.Players.SingleOrDefault(p => p.ID == playerDS.PlayerID);
-
-                    //    if (player == null)
-                    //    {
-                    //        player = new DB.Player
-                    //        {
-                    //            ID = playerDS.PlayerID
-                    //        };
-
-                    //        db.Players.Add(player);
-                        
-                    //        player.CopyData(playerDS);
-                    //    }
-                    //};
-
-                    //db.SaveChanges();
 
                     if (trace) tracer.WriteLine("Added player data from " + fi.Name);
                 }

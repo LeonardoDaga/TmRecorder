@@ -172,10 +172,25 @@ namespace TMRecorder
             set { _matchAnalysisFile = value; }
         }
 
-        public bool UseTMRBrowser
+        public eRatingVersion RatingVersion
         {
-            get { return chkUseTMBrowser.Checked; }
-            set { chkUseTMBrowser.Checked = value; }
+            get {
+                var value = cmbRatingVersion.SelectedItem.ToString().Split('=')[1];
+                int.TryParse(value, out int selValue);
+
+                return (eRatingVersion)selValue;
+            }
+            set
+            {
+                foreach (string item in cmbRatingVersion.Items)
+                {
+                    if (item.Split('=')[1] == ((int)value).ToString())
+                    {
+                        cmbRatingVersion.SelectedItem = item;
+                        return;
+                    }
+                }
+            }
         }
 
         public bool UseStartupDisk
@@ -397,25 +412,8 @@ namespace TMRecorder
 
         }
 
-        private void FillCmbIEVersions()
-        {
-            int x;
-            int y;
-            BrowserEmulationVersion currentEmulationVersion;
-
-            currentEmulationVersion = InternetExplorerBrowserEmulation.GetBrowserEmulationVersion();
-
-            foreach (BrowserEmulationVersion version in Enum.GetValues(typeof(BrowserEmulationVersion)))
-            {
-                cmbIEVersions.Items.Add(version);
-            }
-
-            cmbIEVersions.SelectedItem = currentEmulationVersion;
-        }
-
         private void OptionsForm_Load(object sender, EventArgs e)
         {
-            FillCmbIEVersions();
         }
 
         private void btnSaveMatchAnalysisFile_Click(object sender, EventArgs e)
@@ -454,22 +452,6 @@ namespace TMRecorder
 
         private void cmbIEVersions_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BrowserEmulationVersion version;
-
-            version = (BrowserEmulationVersion)cmbIEVersions.SelectedItem;
-
-            if (InternetExplorerBrowserEmulation.GetBrowserEmulationVersion() != version)
-            {
-                if (MessageBox.Show("The IE version used will change only after the restart of TmRecorder. Continue?", "TmRecorder: Change internal Browser version", MessageBoxButtons.YesNo) == DialogResult.No)
-                    return;
-
-                // apply the new emulation version
-                if (!InternetExplorerBrowserEmulation.SetBrowserEmulationVersion(version))
-                {
-                    MessageBox.Show("Failed to update browser emulation version.", "TmRecorder: Change internal Browser version", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-            }
-
         }
 
         private void btnResetWindows_Click(object sender, EventArgs e)

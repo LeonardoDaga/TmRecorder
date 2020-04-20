@@ -133,12 +133,19 @@ namespace DataGridViewCustomColumns
                 decimal quality = -1;
                 CellColorStyle cellStyle;
 
+
                 TMR_NumDecColumn dgc = (TMR_NumDecColumn)(this.OwningColumn);
                 
                 if ((this.OwningColumn.DataPropertyName == "ASI") || (this.OwningColumn.DataPropertyName == "TI"))
                     filterASIvalue = true;
 
-                if (value.GetType() == typeof(int))
+
+                if (value == null)
+                {
+                    dec = decimal.MaxValue;
+                    cellStyle = dgc.CellColorStyles.GetColorStyle(-1);
+                }
+                else if (value.GetType() == typeof(int))
                 {
                     dec = Convert.ToDecimal(value);
                     quality = -1;
@@ -228,7 +235,9 @@ namespace DataGridViewCustomColumns
                 string str;
 
                 if ((dgc.CellColorStyles != null) && (dgc.CellColorStyles.Type == CellColorStyleList.ListType.DefaultFp))
-                    str = (dec < 100)?dec.ToString("N1"): dec.ToString("N0");
+                    str = (dec < 100) ? dec.ToString("N1") : dec.ToString("N0");
+                else if (dec == decimal.MaxValue)
+                    str = "-";
                 else
                     str = ((int)dec).ToString();
 
@@ -312,7 +321,7 @@ namespace DataGridViewCustomColumns
                         graphics.DrawImage(dgc.iconList2.Images[2], pt2);
                 }
 
-                if (value.GetType() == typeof(decvar))
+                if ((value != null) && (value.GetType() == typeof(decvar)))
                 {
                     decimal decpart = (dec - decimal.Floor(dec));
 

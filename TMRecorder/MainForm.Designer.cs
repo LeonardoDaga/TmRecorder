@@ -220,7 +220,7 @@ namespace TMRecorder
             this.tsbChangeToConfiguredExtraTeam = new System.Windows.Forms.ToolStripMenuItem();
             this.addExtraTeamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
-            this.webBrowser = new NTR_WebBrowser.NTR_Browser();
+            this.webBrowser = new NTR_Browser.NTR_Browser();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.miReloadFixturesAndMatches = new System.Windows.Forms.ToolStripMenuItem();
@@ -235,6 +235,7 @@ namespace TMRecorder
             this.evidenceSkillsForGainsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tacticsEditorToolStripMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.ratingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.transferManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importPlayersDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -314,7 +315,7 @@ namespace TMRecorder
             this.marDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Age = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tacticsEditorToolStripMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkForUpdateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStripGK.SuspendLayout();
             this.contextMenuPlInfo.SuspendLayout();
@@ -847,7 +848,7 @@ namespace TMRecorder
             // toolStripLabel3
             // 
             this.toolStripLabel3.Name = "toolStripLabel3";
-            this.toolStripLabel3.Size = new System.Drawing.Size(112, 22);
+            this.toolStripLabel3.Size = new System.Drawing.Size(111, 22);
             this.toolStripLabel3.Text = "TM Pages Shortcuts";
             // 
             // toolStripButton6
@@ -1225,37 +1226,37 @@ namespace TMRecorder
             this.toolStripSeparator16,
             this.toolStripMenuItem34});
             this.contextMenuTactics.Name = "contextMenuPlInfo";
-            this.contextMenuTactics.Size = new System.Drawing.Size(366, 104);
+            this.contextMenuTactics.Size = new System.Drawing.Size(365, 104);
             this.contextMenuTactics.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip2_Opening);
             // 
             // toolStripMenuItem31
             // 
             this.toolStripMenuItem31.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripMenuItem31.Name = "toolStripMenuItem31";
-            this.toolStripMenuItem31.Size = new System.Drawing.Size(365, 22);
+            this.toolStripMenuItem31.Size = new System.Drawing.Size(364, 22);
             this.toolStripMenuItem31.Text = "Open Player Info page (Dbl-Click)";
             // 
             // toolStripSeparator15
             // 
             this.toolStripSeparator15.Name = "toolStripSeparator15";
-            this.toolStripSeparator15.Size = new System.Drawing.Size(362, 6);
+            this.toolStripSeparator15.Size = new System.Drawing.Size(361, 6);
             // 
             // toolStripMenuItem32
             // 
             this.toolStripMenuItem32.Name = "toolStripMenuItem32";
-            this.toolStripMenuItem32.Size = new System.Drawing.Size(365, 22);
+            this.toolStripMenuItem32.Size = new System.Drawing.Size(364, 22);
             this.toolStripMenuItem32.Text = "Open Player Page in the internal browser";
             // 
             // toolStripMenuItem33
             // 
             this.toolStripMenuItem33.Name = "toolStripMenuItem33";
-            this.toolStripMenuItem33.Size = new System.Drawing.Size(365, 22);
+            this.toolStripMenuItem33.Size = new System.Drawing.Size(364, 22);
             this.toolStripMenuItem33.Text = "Open Player Page in an external browser";
             // 
             // toolStripSeparator16
             // 
             this.toolStripSeparator16.Name = "toolStripSeparator16";
-            this.toolStripSeparator16.Size = new System.Drawing.Size(362, 6);
+            this.toolStripSeparator16.Size = new System.Drawing.Size(361, 6);
             // 
             // toolStripMenuItem34
             // 
@@ -1274,7 +1275,7 @@ namespace TMRecorder
             this.oMRToolStripMenuItem,
             this.fCToolStripMenuItem});
             this.toolStripMenuItem34.Name = "toolStripMenuItem34";
-            this.toolStripMenuItem34.Size = new System.Drawing.Size(365, 22);
+            this.toolStripMenuItem34.Size = new System.Drawing.Size(364, 22);
             this.toolStripMenuItem34.Text = "Set Player\'s Selected Position (SP) for Tactics Evaluation";
             // 
             // dCToolStripMenuItem
@@ -2156,21 +2157,21 @@ namespace TMRecorder
             // tsbChangeToConfiguredExtraTeam
             // 
             this.tsbChangeToConfiguredExtraTeam.Name = "tsbChangeToConfiguredExtraTeam";
-            this.tsbChangeToConfiguredExtraTeam.Size = new System.Drawing.Size(263, 22);
+            this.tsbChangeToConfiguredExtraTeam.Size = new System.Drawing.Size(262, 22);
             this.tsbChangeToConfiguredExtraTeam.Text = "Change Browser to the Actual Team";
             this.tsbChangeToConfiguredExtraTeam.Click += new System.EventHandler(this.tsbChangeToConfiguredExtraTeam_Click);
             // 
             // addExtraTeamToolStripMenuItem
             // 
             this.addExtraTeamToolStripMenuItem.Name = "addExtraTeamToolStripMenuItem";
-            this.addExtraTeamToolStripMenuItem.Size = new System.Drawing.Size(263, 22);
+            this.addExtraTeamToolStripMenuItem.Size = new System.Drawing.Size(262, 22);
             this.addExtraTeamToolStripMenuItem.Text = "Add Extra Team";
             this.addExtraTeamToolStripMenuItem.Click += new System.EventHandler(this.addExtraTeamToolStripMenuItem_Click_1);
             // 
             // toolStripSeparator14
             // 
             this.toolStripSeparator14.Name = "toolStripSeparator14";
-            this.toolStripSeparator14.Size = new System.Drawing.Size(260, 6);
+            this.toolStripSeparator14.Size = new System.Drawing.Size(259, 6);
             // 
             // webBrowser
             // 
@@ -2182,14 +2183,15 @@ namespace TMRecorder
             this.webBrowser.MainTeamId = 0;
             this.webBrowser.Name = "webBrowser";
             this.webBrowser.NavigationAddress = "";
-            this.webBrowser.NavigationMode = NTR_WebBrowser.NTR_Browser.eNavigationMode.Main;
+            this.webBrowser.NavigationMode = NTR_Browser.NTR_Browser.eNavigationMode.Main;
+            this.webBrowser.RatingVersion = Common.eRatingVersion.None;
             this.webBrowser.SelectedReportParser = null;
             this.webBrowser.ShowShortlist = false;
             this.webBrowser.ShowTransfer = false;
             this.webBrowser.Size = new System.Drawing.Size(1027, 510);
             this.webBrowser.StartnavigationAddress = "";
             this.webBrowser.TabIndex = 0;
-            this.webBrowser.ImportedContent += new NTR_WebBrowser.ImportedContentHandler(this.webBrowser_ImportedContent);
+            this.webBrowser.ImportedContent += new NTR_Browser.ImportedContentHandler(this.webBrowser_ImportedContent);
             // 
             // toolStrip1
             // 
@@ -2239,33 +2241,33 @@ namespace TMRecorder
             // miReloadFixturesAndMatches
             // 
             this.miReloadFixturesAndMatches.Name = "miReloadFixturesAndMatches";
-            this.miReloadFixturesAndMatches.Size = new System.Drawing.Size(310, 22);
+            this.miReloadFixturesAndMatches.Size = new System.Drawing.Size(311, 22);
             this.miReloadFixturesAndMatches.Text = "Reload imported Fixtures and Matches pages";
             this.miReloadFixturesAndMatches.Click += new System.EventHandler(this.reloadAllTheImportedFixturesAndMatchesPagesToolStripMenuItem_Click);
             // 
             // reloadAllTheImportedPagesToolStripMenuItem
             // 
             this.reloadAllTheImportedPagesToolStripMenuItem.Name = "reloadAllTheImportedPagesToolStripMenuItem";
-            this.reloadAllTheImportedPagesToolStripMenuItem.Size = new System.Drawing.Size(310, 22);
+            this.reloadAllTheImportedPagesToolStripMenuItem.Size = new System.Drawing.Size(311, 22);
             this.reloadAllTheImportedPagesToolStripMenuItem.Text = "Reload imported Players pages";
             this.reloadAllTheImportedPagesToolStripMenuItem.Click += new System.EventHandler(this.reloadAllTheImportedPlayerPagesToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(310, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(311, 22);
             this.toolStripMenuItem2.Text = "Save Team Data";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.SalvaTeamData_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(307, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(308, 6);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(310, 22);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(311, 22);
             this.toolStripMenuItem4.Text = "Exit";
             this.toolStripMenuItem4.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -2287,7 +2289,7 @@ namespace TMRecorder
             // 
             this.toolStripMenuItem11.Name = "toolStripMenuItem11";
             this.toolStripMenuItem11.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.toolStripMenuItem11.Size = new System.Drawing.Size(311, 22);
+            this.toolStripMenuItem11.Size = new System.Drawing.Size(309, 22);
             this.toolStripMenuItem11.Text = "Paste Squad Page from Clipboard";
             this.toolStripMenuItem11.Visible = false;
             // 
@@ -2295,14 +2297,14 @@ namespace TMRecorder
             // 
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
             this.toolStripMenuItem7.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(311, 22);
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(309, 22);
             this.toolStripMenuItem7.Text = "Paste Training Page from Clipboard";
             this.toolStripMenuItem7.Visible = false;
             // 
             // toolStripMenuItem9
             // 
             this.toolStripMenuItem9.Name = "toolStripMenuItem9";
-            this.toolStripMenuItem9.Size = new System.Drawing.Size(311, 22);
+            this.toolStripMenuItem9.Size = new System.Drawing.Size(309, 22);
             this.toolStripMenuItem9.Text = "Load Team File from XML";
             this.toolStripMenuItem9.Visible = false;
             this.toolStripMenuItem9.Click += new System.EventHandler(this.CaricaFileSquadraDaXMLToolStripMenuItem_Click);
@@ -2310,7 +2312,7 @@ namespace TMRecorder
             // evidenceSkillsForGainsToolStripMenuItem
             // 
             this.evidenceSkillsForGainsToolStripMenuItem.Name = "evidenceSkillsForGainsToolStripMenuItem";
-            this.evidenceSkillsForGainsToolStripMenuItem.Size = new System.Drawing.Size(311, 22);
+            this.evidenceSkillsForGainsToolStripMenuItem.Size = new System.Drawing.Size(309, 22);
             this.evidenceSkillsForGainsToolStripMenuItem.Text = "Evidence Skills for Gains";
             this.evidenceSkillsForGainsToolStripMenuItem.Click += new System.EventHandler(this.evidenceSkillsForGainsToolStripMenuItem_Click);
             // 
@@ -2333,7 +2335,7 @@ namespace TMRecorder
             this.toolStripDropDownButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton2.Image")));
             this.toolStripDropDownButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton2.Name = "toolStripDropDownButton2";
-            this.toolStripDropDownButton2.Size = new System.Drawing.Size(48, 24);
+            this.toolStripDropDownButton2.Size = new System.Drawing.Size(47, 24);
             this.toolStripDropDownButton2.Text = "Tools";
             this.toolStripDropDownButton2.Click += new System.EventHandler(this.toolStripDropDownButton2_Click);
             // 
@@ -2343,6 +2345,14 @@ namespace TMRecorder
             this.toolStripMenuItem6.Size = new System.Drawing.Size(220, 26);
             this.toolStripMenuItem6.Text = "Options";
             this.toolStripMenuItem6.Click += new System.EventHandler(this.OpzioniToolStripMenuItem1_Click);
+            // 
+            // tacticsEditorToolStripMenu
+            // 
+            this.tacticsEditorToolStripMenu.Image = ((System.Drawing.Image)(resources.GetObject("tacticsEditorToolStripMenu.Image")));
+            this.tacticsEditorToolStripMenu.Name = "tacticsEditorToolStripMenu";
+            this.tacticsEditorToolStripMenu.Size = new System.Drawing.Size(220, 26);
+            this.tacticsEditorToolStripMenu.Text = "Tactics Editor";
+            this.tacticsEditorToolStripMenu.Click += new System.EventHandler(this.tacticsEditorToolStripMenu_Click);
             // 
             // ratingToolStripMenuItem
             // 
@@ -2481,7 +2491,7 @@ namespace TMRecorder
             this.toolStripDropDownButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton5.Image")));
             this.toolStripDropDownButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton5.Name = "toolStripDropDownButton5";
-            this.toolStripDropDownButton5.Size = new System.Drawing.Size(94, 24);
+            this.toolStripDropDownButton5.Size = new System.Drawing.Size(95, 24);
             this.toolStripDropDownButton5.Text = "Import/Export";
             // 
             // clearDecimalsToolStripMenuItem
@@ -2549,27 +2559,27 @@ namespace TMRecorder
             // toolStripMenuItem12
             // 
             this.toolStripMenuItem12.Name = "toolStripMenuItem12";
-            this.toolStripMenuItem12.Size = new System.Drawing.Size(209, 26);
+            this.toolStripMenuItem12.Size = new System.Drawing.Size(208, 26);
             this.toolStripMenuItem12.Text = "Team Graphical Statistics";
             this.toolStripMenuItem12.Click += new System.EventHandler(this.teamStatistiToolStripMenuItem_Click);
             // 
             // playersStatisticsToolStripMenuItem
             // 
             this.playersStatisticsToolStripMenuItem.Name = "playersStatisticsToolStripMenuItem";
-            this.playersStatisticsToolStripMenuItem.Size = new System.Drawing.Size(209, 26);
+            this.playersStatisticsToolStripMenuItem.Size = new System.Drawing.Size(208, 26);
             this.playersStatisticsToolStripMenuItem.Text = "Players Statistics";
             this.playersStatisticsToolStripMenuItem.Click += new System.EventHandler(this.playersStatisticsToolStripMenuItem_Click);
             // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(206, 6);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(205, 6);
             // 
             // tradToolStripMenuItem
             // 
             this.tradToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("tradToolStripMenuItem.Image")));
             this.tradToolStripMenuItem.Name = "tradToolStripMenuItem";
-            this.tradToolStripMenuItem.Size = new System.Drawing.Size(209, 26);
+            this.tradToolStripMenuItem.Size = new System.Drawing.Size(208, 26);
             this.tradToolStripMenuItem.Text = "Trading Info";
             this.tradToolStripMenuItem.Click += new System.EventHandler(this.tradToolStripMenuItem_Click);
             // 
@@ -2606,7 +2616,8 @@ namespace TMRecorder
             this.gotoTheTmRecorderWebsiteToolStripMenuItem,
             this.gotoTheTmRecorderFederationInTrophyManagerToolStripMenuItem,
             this.frequentlyAskedQuestionsToolStripMenuItem,
-            this.iTDomandeFrequentiToolStripMenuItem});
+            this.iTDomandeFrequentiToolStripMenuItem,
+            this.checkForUpdateToolStripMenuItem});
             this.toolStripDropDownButton7.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton7.Image")));
             this.toolStripDropDownButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton7.Name = "toolStripDropDownButton7";
@@ -2616,28 +2627,28 @@ namespace TMRecorder
             // gotoTheTmRecorderWebsiteToolStripMenuItem
             // 
             this.gotoTheTmRecorderWebsiteToolStripMenuItem.Name = "gotoTheTmRecorderWebsiteToolStripMenuItem";
-            this.gotoTheTmRecorderWebsiteToolStripMenuItem.Size = new System.Drawing.Size(346, 22);
+            this.gotoTheTmRecorderWebsiteToolStripMenuItem.Size = new System.Drawing.Size(344, 22);
             this.gotoTheTmRecorderWebsiteToolStripMenuItem.Text = "Goto the TmRecorder Facebook Page";
             this.gotoTheTmRecorderWebsiteToolStripMenuItem.Click += new System.EventHandler(this.gotoTheTmRecorderWebsiteToolStripMenuItem_Click);
             // 
             // gotoTheTmRecorderFederationInTrophyManagerToolStripMenuItem
             // 
             this.gotoTheTmRecorderFederationInTrophyManagerToolStripMenuItem.Name = "gotoTheTmRecorderFederationInTrophyManagerToolStripMenuItem";
-            this.gotoTheTmRecorderFederationInTrophyManagerToolStripMenuItem.Size = new System.Drawing.Size(346, 22);
+            this.gotoTheTmRecorderFederationInTrophyManagerToolStripMenuItem.Size = new System.Drawing.Size(344, 22);
             this.gotoTheTmRecorderFederationInTrophyManagerToolStripMenuItem.Text = "Goto the TmRecorder Federation in TrophyManager";
             this.gotoTheTmRecorderFederationInTrophyManagerToolStripMenuItem.Click += new System.EventHandler(this.gotoTheTmRecorderFederationInTrophyManagerToolStripMenuItem_Click);
             // 
             // frequentlyAskedQuestionsToolStripMenuItem
             // 
             this.frequentlyAskedQuestionsToolStripMenuItem.Name = "frequentlyAskedQuestionsToolStripMenuItem";
-            this.frequentlyAskedQuestionsToolStripMenuItem.Size = new System.Drawing.Size(346, 22);
+            this.frequentlyAskedQuestionsToolStripMenuItem.Size = new System.Drawing.Size(344, 22);
             this.frequentlyAskedQuestionsToolStripMenuItem.Text = "[EN] Frequently asked questions";
             this.frequentlyAskedQuestionsToolStripMenuItem.Click += new System.EventHandler(this.frequentlyAskedQuestionsToolStripMenuItem_Click);
             // 
             // iTDomandeFrequentiToolStripMenuItem
             // 
             this.iTDomandeFrequentiToolStripMenuItem.Name = "iTDomandeFrequentiToolStripMenuItem";
-            this.iTDomandeFrequentiToolStripMenuItem.Size = new System.Drawing.Size(346, 22);
+            this.iTDomandeFrequentiToolStripMenuItem.Size = new System.Drawing.Size(344, 22);
             this.iTDomandeFrequentiToolStripMenuItem.Text = "[IT] Domande frequenti";
             this.iTDomandeFrequentiToolStripMenuItem.Click += new System.EventHandler(this.iTDomandeFrequentiToolStripMenuItem_Click);
             // 
@@ -3047,13 +3058,12 @@ namespace TMRecorder
             this.dataGridViewTextBoxColumn6.HeaderText = "ASI";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             // 
-            // tacticsEditorToolStripMenu
+            // checkForUpdateToolStripMenuItem
             // 
-            this.tacticsEditorToolStripMenu.Image = ((System.Drawing.Image)(resources.GetObject("tacticsEditorToolStripMenu.Image")));
-            this.tacticsEditorToolStripMenu.Name = "tacticsEditorToolStripMenu";
-            this.tacticsEditorToolStripMenu.Size = new System.Drawing.Size(220, 26);
-            this.tacticsEditorToolStripMenu.Text = "Tactics Editor";
-            this.tacticsEditorToolStripMenu.Click += new System.EventHandler(this.tacticsEditorToolStripMenu_Click);
+            this.checkForUpdateToolStripMenuItem.Name = "checkForUpdateToolStripMenuItem";
+            this.checkForUpdateToolStripMenuItem.Size = new System.Drawing.Size(344, 22);
+            this.checkForUpdateToolStripMenuItem.Text = "Check for Update";
+            this.checkForUpdateToolStripMenuItem.Click += new System.EventHandler(this.checkForUpdateToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -3346,7 +3356,7 @@ namespace TMRecorder
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem29;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem30;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator13;
-        private NTR_WebBrowser.NTR_Browser webBrowser;
+        private NTR_Browser.NTR_Browser webBrowser;
         private System.Windows.Forms.ToolStrip tsBrowserImport;
         private System.Windows.Forms.ToolStripLabel toolStripLabel13;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
@@ -3394,5 +3404,6 @@ namespace TMRecorder
         private System.Windows.Forms.ToolStripMenuItem rescanMatchesForPlayersActionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ratingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tacticsEditorToolStripMenu;
+        private System.Windows.Forms.ToolStripMenuItem checkForUpdateToolStripMenuItem;
     }
 }

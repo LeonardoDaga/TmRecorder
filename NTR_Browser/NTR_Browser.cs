@@ -1,26 +1,23 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
-using NTR_WebBrowser.Properties;
+using NTR_Browser.Properties;
 using Common;
 using System.IO;
 using System.Collections.Generic;
-using mshtml;
 using System.Diagnostics;
-using System.Runtime.InteropServices;
+using CefSharp.WinForms;
+using CefSharp;
+using System.Threading.Tasks;
 
-namespace NTR_WebBrowser
+namespace NTR_Browser
 {
     public delegate void ImportedContentHandler(string content, string address);
     public delegate void NavigationCompleteHandler();
 
     public partial class NTR_Browser : UserControl
     {
-        [DllImport("KERNEL32.DLL", EntryPoint = "SetProcessWorkingSetSize", SetLastError = true, CallingConvention = CallingConvention.StdCall)]
-        internal static extern bool SetProcessWorkingSetSize(IntPtr pProcess, int dwMinimumWorkingSetSize, int dwMaximumWorkingSetSize);
-
-        [DllImport("KERNEL32.DLL", EntryPoint = "GetCurrentProcess", SetLastError = true, CallingConvention = CallingConvention.StdCall)]
-        internal static extern IntPtr GetCurrentProcess();
+        List<TimedScript> executeListOnLoad = new List<TimedScript>();
 
         public enum eNavigationMode
         {
@@ -68,7 +65,7 @@ namespace NTR_WebBrowser
             {
                 _startnavigationAddress = value.Replace("https:", "http:"); ;
 
-                tbTxtAddress.Text = _startnavigationAddress;
+                tbTxtAddressSet(_startnavigationAddress);
 
                 if (_startnavigationAddress.Contains(TM_Pages.Players))
                 {
@@ -129,8 +126,9 @@ namespace NTR_WebBrowser
         public int ActualPlayerID { get; private set; }
         public ReportParser SelectedReportParser { get; set; }
         public int MainTeamId { get; set; }
+        public eRatingVersion RatingVersion { get; set; }
 
-        private WebBrowser webBrowser;
+        private ChromiumWebBrowser webBrowser;
 
         public event ImportedContentHandler ImportedContent;
         public event NavigationCompleteHandler NavigationComplete;
@@ -141,6 +139,14 @@ namespace NTR_WebBrowser
 
             if (!IsInDesignMode())
                 CreateAndAttachBrowser();
+
+            this.Disposed += NTR_Browser_Disposed;
+        }
+
+        private void NTR_Browser_Disposed(object sender, EventArgs e)
+        {
+            timerProgress.Enabled = false;
+            timerProgress.Stop();
         }
 
         private void CreateAndAttachBrowser()
@@ -154,7 +160,16 @@ namespace NTR_WebBrowser
                 webBrowser = null;
             }
 
-            webBrowser = new WebBrowser();
+            CefSettings cefSettings = new CefSettings
+            {
+                PersistSessionCookies = true,
+                CachePath = "cache1"
+            };
+
+            if (!Cef.IsInitialized)
+                Cef.Initialize(cefSettings);
+            
+            webBrowser = new ChromiumWebBrowser("http://tmr.insyde.it/");
             webBrowser.Location = new System.Drawing.Point(3, 54);
             webBrowser.Width = this.Width - 6;
             webBrowser.Height = this.Height - 44;
@@ -162,15 +177,104 @@ namespace NTR_WebBrowser
                 | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this.webBrowser.Name = "webBrowser";
-            this.webBrowser.DocumentCompleted += webBrowser_DocumentCompleted;
-            this.webBrowser.ProgressChanged += webBrowser_ProgressChanged;
-            this.webBrowser.Navigating += WebBrowser_Navigating;
-            //this.webBrowser.Lo += WebBrowser_Navigating;
-            this.webBrowser.Visible = true;
-            this.webBrowser.ScriptErrorsSuppressed = true;
-            this.Controls.Add(webBrowser);
+
+            webBrowser.LoadingStateChanged += WebBrowser_LoadingStateChanged;
+            webBrowser.AddressChanged += WebBrowser_AddressChanged;
+
+            //webBrowser.DocumentCompleted += webBrowser_DocumentCompleted;
+            //webBrowser.Navigating += WebBrowser_Navigating;
+            //webBrowser.ScriptErrorsSuppressed = true;
+            webBrowser.Visible = true;
+            Controls.Add(webBrowser);
         }
 
+        private void WebBrowser_AddressChanged(object sender, CefSharp.AddressChangedEventArgs e)
+        {
+            string address = e.Address;
+
+            if (!(address.Contains(TM_Pages.Home) || address.Contains(TM_Pages.Homes)) || (address.Contains("http://trophymanager.com/banners")))
+                return;
+
+            if ((address.Contains(TM_Pages.Players)) && (address != StartnavigationAddress))
+            {
+                //int playerID = 0;
+                //string number = HTML_Parser.GetNumberAfter(address, TM_Pages.Players);
+                //if (int.TryParse(number, out playerID))
+                //{
+                //    if (playerID != ActualPlayerID)
+                //    {
+                //        webBrowser.Stop();
+                //        GotoPlayer(playerID, this.navigationType);
+                //    }
+                //}
+            }
+
+            NavigationAddress = address;
+            StartnavigationAddress = address;
+        }
+
+        string DocumentText;
+        int lastRatingR4Id = 0;
+
+        private async void WebBrowser_LoadingStateChanged(object sender, CefSharp.LoadingStateChangedEventArgs e)
+        {
+            if (e.IsLoading)
+            {
+                timerProgress.Enabled = true;
+                progress = 0;
+            }
+            else
+            {
+                timerProgress.Enabled = false;
+                tsbProgressBarSet(100, Color.Green);
+            }
+
+            if (e.IsLoading == false)
+            {
+                var frame = webBrowser.GetMainFrame();
+
+                foreach (var itemToExec in executeListOnLoad)
+                {
+                    var result = await webBrowser.GetMainFrame().EvaluateScriptAsync(itemToExec.Script)
+                        .ContinueWith(t =>
+                        {
+                            var res = t.Result;
+                            return (string)res.ToString();
+                        });
+                }
+
+                executeListOnLoad.Clear();
+            }
+
+            if (e.IsLoading == false)
+            {
+                if (ActualPlayerID > 0)
+                {
+                    if (true) // (lastRatingR4Id != ActualPlayerID)
+                    {
+                        string script = "";
+                        if (RatingVersion == eRatingVersion.RatingR4)
+                            script = Resources.RatingR4_user;
+                        else if (RatingVersion == eRatingVersion.RatingR5)
+                            script = Resources.RatingR5_user;
+                        else
+                            script = Resources.RatingNone;
+
+                        string res = await AppendScriptAndExecute(script, "");
+                        tsbPlayersNavigationType.Visible = true;
+                        lastRatingR4Id = ActualPlayerID;
+                    }
+                }
+                else
+                {
+                    tsbPlayersNavigationType.Visible = false;
+                }
+            }
+
+            DocumentText = await webBrowser.GetSourceAsync();
+
+            CheckMainId(DocumentText);
+        }
 
         public static bool IsInDesignMode()
         {
@@ -189,9 +293,9 @@ namespace NTR_WebBrowser
         #region Navigation
         public bool Goto(string address)
         {
-            if (webBrowser.IsBusy)
+            if (webBrowser.IsLoading)
             {
-                webBrowser.Stop();
+                Stop();
                 return false;
             }
 
@@ -199,13 +303,13 @@ namespace NTR_WebBrowser
             Debug.WriteLine(string.Format("Navigating to :{0}", NavigationAddress));
             try
             {
-                webBrowser.Navigate(NavigationAddress);
+                webBrowser.Load(NavigationAddress);
                 StartnavigationAddress = NavigationAddress;
                 return true;
             }
             catch (Exception ex)
             {
-                webBrowser.Stop();
+                Stop();
                 Debug.WriteLine(string.Format("Navigation failed with exception {0}", ex.Message));
                 return false;
             }
@@ -251,12 +355,14 @@ namespace NTR_WebBrowser
 
         internal void GoForward()
         {
-            webBrowser.GoForward();
+            if (webBrowser.CanGoForward)
+                webBrowser.Forward();
         }
 
         internal void GoBack()
         {
-            webBrowser.GoBack();
+            if (webBrowser.CanGoBack)
+                webBrowser.Back();
         }
         #endregion
 
@@ -288,9 +394,9 @@ namespace NTR_WebBrowser
             Import(showImportedText);
         }
 
-        private void Import(bool showImportedText)
+        private async Task Import(bool showImportedText)
         {
-            string importedPage = GetHiddenBrowserContent();
+            string importedPage = await GetHiddenBrowserContent();
 
             if (showImportedText)
             {
@@ -301,22 +407,82 @@ namespace NTR_WebBrowser
                 fimb.ShowDialog();
             }
 
+            NavigationAddress = NavigationAddress.Replace("https", "http");
+
             ImportedContent?.Invoke(importedPage, NavigationAddress);
         }
 
         private void tsbUpdate_Click(object sender, EventArgs e)
         {
-            webBrowser.Refresh();
+            webBrowser.Reload();
         }
 
+        #region Safe Invoke to UI
+
+        private delegate void SafeCallDelegate(string text);
+        private delegate void ProgressBarSetDelegate(int value, Color color);
+
+        private void tbTxtAddressSet(string text)
+        {
+            if (!timerProgress.Enabled)
+                return;
+
+            if (tsAddressBar.InvokeRequired)
+            {
+                var d = new SafeCallDelegate(tbTxtAddressSet);
+                if (tsAddressBar.IsDisposed) return;
+                try
+                {
+                    tsAddressBar.Invoke(d, new object[] { text });
+                }
+                catch (ObjectDisposedException)
+                {
+                    return;
+                }
+            }
+            else
+            {
+                if (tsAddressBar.IsDisposed) return;
+                tbTxtAddress.Text = text;
+            }
+        }
+
+        private void tsbProgressBarSet(int value, Color color)
+        {
+            if (!timerProgress.Enabled)
+                return;
+
+            if (tsAddressBar.InvokeRequired)
+            {
+                if (tsAddressBar.IsDisposed) return;
+                var d = new ProgressBarSetDelegate(tsbProgressBarSet);
+                try
+                {
+                    tsAddressBar.Invoke(d, new object[] { value, color });
+                }
+                catch (ObjectDisposedException)
+                {
+                    return;
+                }
+            }
+            else
+            {
+                if (tsAddressBar.IsDisposed) return;
+                tsbProgressBar.Value = value;
+                tsbProgressBar.ForeColor = color;
+            }
+        }
+
+        #endregion
+
         #region Getting Browser Content functions
-        public string GetHiddenBrowserContent()
+        public async Task<string> GetHiddenBrowserContent()
         {
             string doctext;
 
             if (StartnavigationAddress.Contains("/matches/"))
             {
-                doctext = Import_Matches_Adv();
+                doctext = await Import_Matches_Adv();
                 if (string.IsNullOrEmpty(doctext))
                 {
                     doctext = doctext == null ? "GBC error: failed importing players  (text is null)" : "GBC error: failed importing players  (text is empty)";
@@ -328,7 +494,7 @@ namespace NTR_WebBrowser
             }
             else if (StartnavigationAddress.Contains("/fixtures/club/"))
             {
-                doctext = Import_Fixtures_Adv();
+                doctext = await Import_Fixtures_Adv();
                 if (string.IsNullOrEmpty(doctext))
                 {
                     doctext = doctext == null ?
@@ -343,15 +509,15 @@ namespace NTR_WebBrowser
             }
             else if (StartnavigationAddress.Contains("/club/"))
             {
-                doctext = ImportClubDocumentContent();
+                doctext = await ImportClubDocumentContent();
             }
             else if ((StartnavigationAddress.Contains(TM_Pages.Players)) && (ActualPlayerID > 0))
             {
-                doctext = Import_Player_Document_Content();
+                doctext = await Import_Player_Document_Content();
             }
             else if (StartnavigationAddress.Contains("/players/#") || StartnavigationAddress.EndsWith("/players/"))
             {
-                doctext = Import_Players_Adv();
+                doctext = await Import_Players_Adv();
                 if (string.IsNullOrEmpty(doctext))
                 {
                     doctext = doctext == null ? "GBC error: failed importing players  (text is null)" : "GBC error: failed importing players  (text is empty)";
@@ -361,7 +527,7 @@ namespace NTR_WebBrowser
                     doctext += "\n";
                 }
 
-                string trainingDoctext = Import_Players_Training_Adv();
+                string trainingDoctext = await Import_Players_Training_Adv();
                 if (string.IsNullOrEmpty(trainingDoctext))
                 {
                     trainingDoctext = trainingDoctext == null ? "GBC error: failed importing players training  (text is null)" : "GBC error: failed importing players training  (text is empty)";
@@ -375,7 +541,7 @@ namespace NTR_WebBrowser
             }
             else if (StartnavigationAddress.Contains("/training/"))
             {
-                doctext = Import_Training();
+                doctext = await Import_Training();
                 if (string.IsNullOrEmpty(doctext))
                 {
                     doctext = doctext == null ?
@@ -390,7 +556,7 @@ namespace NTR_WebBrowser
             }
             else if (StartnavigationAddress.Contains("/shortlist/"))
             {
-                doctext = Import_Shortlist_Adv();
+                doctext = await Import_Shortlist_Adv();
                 if (string.IsNullOrEmpty(doctext))
                 {
                     doctext = doctext == null ?
@@ -404,7 +570,7 @@ namespace NTR_WebBrowser
             }
             else if (StartnavigationAddress.Contains("/transfer/"))
             {
-                doctext = Import_Transfer_Adv();
+                doctext = await Import_Transfer_Adv();
                 if (string.IsNullOrEmpty(doctext))
                 {
                     doctext = doctext == null ?
@@ -423,84 +589,77 @@ namespace NTR_WebBrowser
             }
             else
             {
-                doctext = "Doc Text: \n" + webBrowser.DocumentText;
+                doctext = "Doc Text: \n" + DocumentText;
             }
 
             return doctext;
         }
 
-        private string ImportClubDocumentContent()
+        private async Task<string> ImportClubDocumentContent()
         {
-            return ParseClubPage(webBrowser.Document);
+            string club_info = "cash = " + await AppendScriptAndExecute("$('.coin').html()", ""); 
+            
+            club_info += "\n" + await AppendScriptAndExecute("$('#club_info > div')[0].outerText", "");                        
+
+            return ParseClubPage(club_info);
         }
 
-        private string ParseClubPage(HtmlDocument htmlDocument)
+        private string ParseClubPage(string club_info)
         {
-            HtmlElement hidden = htmlDocument.GetElementById("club_info");
-            if (hidden == null) return "";
-            var textItems = hidden.OuterText.Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+            var textItems = club_info.Split('\n');
 
             string result = "";
 
             // Getting clubId
             result += ";ClubId=" + HTML_Parser.GetFirstNumberInString(textItems[1]);
             result += ";Fans=" + HTML_Parser.GetFirstNumberInString(textItems[9].Replace(",", "").Replace(".", ""));
-            if (textItems.Length >= 12)
+            if (textItems.Length > 12)
                 result += ";BTeamClubId=" + HTML_Parser.GetFirstNumberInString(textItems[12]);
 
-            result += ";Cash=" + HTML_Parser.GetNumberAfter(webBrowser.DocumentText, "SESSION[\"cash\"] = ");
+            result += ";Cash=" + HTML_Parser.GetFirstNumberInString(textItems[0].Replace(",", "").Replace(".", ""));
 
             return result;
         }
 
-        public void ReleaseResources()
+        private async Task<string> Import_Player_Document_Content()
         {
-            IntPtr pHandle = GetCurrentProcess();
-            SetProcessWorkingSetSize(pHandle, -1, -1);
-
-            CreateAndAttachBrowser();
-        }
-
-        private string Import_Player_Document_Content()
-        {
-            string resultBase = ParsePlayerPage(webBrowser.Document);
-            string resultExtra = ParsePlayerPage_Extras(webBrowser.Document);
+            var playerPage = await RetrievePlayerPage();
+            string resultBase = ParsePlayerPage(playerPage);
+            string resultExtra = ParsePlayerPage_Extras(playerPage);
 
             return resultBase + resultExtra;
         }
 
-        public string ParsePlayerPage_Extras(HtmlDocument htmlDocument)
+        public async Task<Dictionary<string, string>> RetrievePlayerPage()
         {
-            HtmlElement hidden = htmlDocument.GetElementById("hidden_skill_table");
-            if (hidden == null) return "";
-            var element = hidden.GetElementsByTagName("td");
+            Dictionary<string, string> playerPage = new Dictionary<string, string>();
 
+            playerPage["data"] = await AppendScriptAndExecute(Resources.player_data, "get_player_data");
+            playerPage["scout"] = await AppendScriptAndExecute("get_scout_info();", "");
+            playerPage["history"] = await AppendScriptAndExecute("get_player_history();", "");
+            playerPage["extras"] = await AppendScriptAndExecute("get_extra_info();", "");
+
+            return playerPage;
+        }
+
+        public string ParsePlayerPage_Extras(Dictionary<string, string> playerPage)
+        {
             string result = "";
 
-            for (var i = 0; i < 4; i++)
-            {
-                string tooltip = element[i].GetAttribute("tooltip");
+            string extras = playerPage["extras"];
 
-                if ((tooltip == null) || (tooltip == ""))
-                    return "";
+            if (extras == "na")
+                return "";
 
-                string field = HTML_Parser.GetField(tooltip, "<strong>", "/");
-
-                int val = int.Parse(field);
-
-                switch (i)
-                {
-                    case 0: result += ";InjPron=" + val; break;
-                    case 1: result += ";Aggressivity=" + val; break;
-                    case 2: result += ";Professionalism=" + val; break;
-                    case 3: result += ";Ada=" + val; break;
-                }
-            }
+            result += ";InjPron=" + HTML_Parser.GetField(extras, "inj:", "/"); 
+            result += ";Aggressivity=" + HTML_Parser.GetField(extras, "agg:", "/"); 
+            result += ";Professionalism=" + HTML_Parser.GetField(extras, "pro:", "/"); 
+            result += ";Ada=" + HTML_Parser.GetField(extras, "ada:", "/"); 
 
             return result;
         }
 
-        public string ParsePlayerPage(HtmlDocument htmlDocument)
+        public string ParsePlayerPage(Dictionary<string, string> playerPage)
         {
             if (this.TopLevelControl.Name == "MainForm")
             {
@@ -509,10 +668,8 @@ namespace NTR_WebBrowser
             }
 
             string result = "";
-            string page = webBrowser.DocumentText;
 
-            // Import only the report to analyze it
-            string report = HTML_Parser.CutBefore(page, "player_scout_new");
+            string page = playerPage["data"];
 
             if (SelectedReportParser == null)
             {
@@ -520,255 +677,142 @@ namespace NTR_WebBrowser
                 return "";
             }
 
-            result += "PlayerID=" + HTML_Parser.GetNumberAfter(page, "var player_id = ");
-            result += ";PlayerName=" + HTML_Parser.GetField(page, "var player_name = '", "';");
-            string playerFp = HTML_Parser.GetField(page, "var player_fp = '", "';").ToUpper().Replace(",", "/");
+            result += "PlayerID=" + HTML_Parser.GetNumberAfter(page, "player_id=");
+            result += ";PlayerName=" + HTML_Parser.GetField(page, "player_name=", ";");
+            string playerFp = HTML_Parser.GetField(page, "player_fp=", ";").ToUpper().Replace(",", "/");
             result += ";PlayerFp=" + playerFp;
-            result += ";IsUsersPlayer=" + (page.Contains("is_users_player = true")?"Yes":"No");
+            result += ";IsUsersPlayer=" + (page.Contains("is_users_player=true")?"Yes":"No");
 
-            int FPn = Tm_Utility.FPToNumber(playerFp);                
+            int FPn = Tm_Utility.FPToNumber(playerFp);
 
-            int i = 0;
-            if (page.Contains("info_table"))
+            if (playerPage.ContainsKey("data"))
             {
-                var elements = htmlDocument.All;
-                foreach (var element in elements)
-                {
-                    HtmlElement htmlElement = (HtmlElement)element;
-                    if (htmlElement.InnerHtml == null) continue;
-                    if (htmlElement.InnerHtml.Contains("info_table") && (htmlElement.TagName == "DIV"))
-                    {
-                        if (htmlElement.Children.Count == 0) continue;
-                        if (htmlElement.Children[0].Children.Count == 0) continue;
-                        if (htmlElement.Children[0].Children[0].Children.Count == 9)
-                        {
-                            // Parse Age
-                            var childAge = htmlElement.Children[0].Children[0].Children[2];
+                string strYear = HTML_Parser.GetNumberAfter(page, "agey=");
+                string strMonth = HTML_Parser.GetNumberAfter(page, "agem=");
+                int year = int.Parse(strYear);
+                int month = int.Parse(strMonth);
+                result += ";BornWeek=" + TmWeek.GetBornWeekFromAge(DateTime.Now, month, year).ToString();
 
-                            string yearsStr = childAge.InnerText;
-                            string strYear = HTML_Parser.GetFirstNumberInString(yearsStr);
-                            int pos = yearsStr.IndexOf(strYear) + strYear.Length;
-                            string monthsStr = yearsStr.Substring(pos);
-                            string strMonth = HTML_Parser.GetFirstNumberInString(monthsStr);
-                            int year = int.Parse(strYear);
-                            int month = int.Parse(strMonth);
-                            result += ";BornWeek=" + TmWeek.GetBornWeekFromAge(DateTime.Now, month, year).ToString();
-
-                            string wageStr = htmlElement.Children[0].Children[0].Children[4].InnerText;
-                            wageStr = wageStr.Replace(",", "");
-                            string strWage = HTML_Parser.GetFirstNumberInString(wageStr);
-                            int wage = int.Parse(strWage);
-                            result += ";Wage=" + wage.ToString();
-
-                            string siStr = htmlElement.Children[0].Children[0].Children[6].InnerText;
-                            siStr = siStr.Replace(",", "");
-                            string strSI = HTML_Parser.GetFirstNumberInString(siStr);
-                            int ASI = int.Parse(strSI);
-                            result += ";ASI=" + ASI.ToString();
-
-                            string rouStr = htmlElement.Children[0].Children[0].Children[8].InnerText;
-                            rouStr = rouStr.Replace(",", "").Replace(",", "").Replace("RatingR2\r\n", "");
-                            string strRou = HTML_Parser.GetFirstFloatInString(rouStr);
-                            decimal Routine = decimal.Parse(strRou);
-                            result += ";Routine=" + Routine.ToString();
-                        }
-                    }
-                    else if (htmlElement.InnerHtml.Contains("skill_table") && (htmlElement.TagName == "DIV"))
-                    {
-                        List<string> tdTags = HTML_Parser.GetTags(htmlElement.InnerHtml, "td");
-                        for (int ix=0; ix<tdTags.Count; ix++)
-                        {
-                            if (tdTags[ix].Contains("star_silver"))
-                                tdTags[ix] = "19";
-                            else if (tdTags[ix].Contains("star.png"))
-                                tdTags[ix] = "20";
-                            else if (tdTags[ix].Contains("span"))
-                                tdTags[ix] = HTML_Parser.CleanTags(tdTags[ix]);
-                        }
-
-                        string[] strArray = tdTags.ToArray();
-                        result += ";Str=" + strArray[0];
-                        result += ";Pas=" + strArray[1];
-                        result += ";Sta=" + strArray[2];
-                        result += ";Cro=" + strArray[3];
-                        result += ";Vel=" + strArray[4];
-                        result += ";Tec=" + strArray[5];
-                        result += ";Mar=" + strArray[6];
-                        result += ";Hea=" + strArray[7];
-                        result += ";Tak=" + strArray[8];
-                        result += ";Fin=" + strArray[9];
-                        result += ";Wor=" + strArray[10];
-                        result += ";Lon=" + strArray[11];
-                        result += ";Pos=" + strArray[12];
-                        result += ";Set=" + strArray[13];
-                    }
-                }
+                result += ";Wage=" + HTML_Parser.GetNumberAfter(page, "wage=");
+                result += ";ASI=" + HTML_Parser.GetNumberAfter(page, "SI=");
+                result += ";Routine=" + HTML_Parser.GetNumberAfter(page, "rou=");
             }
 
-            if (page.Contains("id=\"tabplayer_scout_new"))
+            if (playerPage.ContainsKey("scout"))
             {
-                HtmlElement element = htmlDocument.GetElementById("player_scout_new");
-
                 string ScoutName = "";
                 string ScoutDate = "";
                 string ScoutVoto = "";
                 string ScoutGiudizio = "";
-                string ScoutInfo = "";
 
-                if (element != null)
+                string scoutPage = playerPage["scout"];
+
+                string ScoutInfo = HTML_Parser.GetField(scoutPage, "ScoutInfo=", "\n");
+
+                var Reviews = HTML_Parser.GetFields(scoutPage, "Review:", "\n\n");
+
+                foreach(var review in Reviews)
                 {
-                    foreach (var child in element.Children)
+                    string[] lines = review.Split('\n');
+                    ScoutName += lines[0].Split(':')[1] + '|';
+
+                    string date = lines[1].TrimStart('(').TrimEnd(')');
+                    DateTime dt = DateTime.Parse(date);
+                    ScoutDate += TmWeek.ToSWDString(dt) + "|";
+
+                    string age = HTML_Parser.GetFirstNumberInString(lines[2]);
+
+                    string giudizio = "";
+                    giudizio += "Age:" + age + ",";
+
+                    int blooming_status = 0;
+                    int blooming = 0;
+                    int dev_status = 0;
+                    int speciality = 0;
+                    int physique = 0;
+                    int technics = 0;
+                    int tactics = 0;
+                    int professionalism = 0;
+                    int leadership = 0;
+                    int aggressivity = 0;
+
+                    string field;
+                    
+                    // It's the potential
+                    string potential_string = HTML_Parser.GetFirstNumberInString(lines[3]);
+                    giudizio += "Pot:" + potential_string + ",";
+
+                    ScoutVoto += potential_string + "|";
+
+                    if (lines.Length > 5)
                     {
-                        if (((HtmlElement)child).InnerHtml == null)
-                            continue;
-                        if (((HtmlElement)child).InnerHtml.Contains("<tbody>"))
+                        field = lines[4];
+                        if (field.Contains(SelectedReportParser.Dict["Keys"][(int)ReportParser.Keys.BloomStatus]))
                         {
-                            var rows = ((HtmlElement)child).GetElementsByTagName("tr");
-                            foreach (var row in rows)
+                            // It's the bloom status
+                            string[] blooms = field.Split(":-".ToCharArray());
+                            if (blooms.Length == 2)
                             {
-                                var cols = ((HtmlElement)row).GetElementsByTagName("td");
-
-                                if ((cols == null) || (cols.Count < 8))
-                                    continue;
-
-                                string name = ((HtmlElement)(cols[0])).InnerHtml;
-                                string sen = ((HtmlElement)(cols[1])).InnerHtml;
-                                string yth = ((HtmlElement)(cols[2])).InnerHtml;
-                                string phy = ((HtmlElement)(cols[3])).InnerHtml;
-                                string tac = ((HtmlElement)(cols[4])).InnerHtml;
-                                string tec = ((HtmlElement)(cols[5])).InnerHtml;
-                                string dev = ((HtmlElement)(cols[6])).InnerHtml;
-                                string psy = ((HtmlElement)(cols[7])).InnerHtml;
-
-                                ScoutInfo += "Name:" + name;
-                                ScoutInfo += ",Sen:" + sen;
-                                ScoutInfo += ",Yth:" + yth;
-                                ScoutInfo += ",Phy:" + phy;
-                                ScoutInfo += ",Tac:" + tac;
-                                ScoutInfo += ",Tec:" + tec;
-                                ScoutInfo += ",Dev:" + dev;
-                                ScoutInfo += ",Psy:" + psy + "|";
+                                blooming_status = SelectedReportParser.find("Blooming_Status", blooms[1]);
                             }
-
-                            ScoutInfo = ScoutInfo.TrimEnd('|');
-                        }
-                        else if (((HtmlElement)child).InnerHtml.Contains("report_header"))
-                        {
-                            var div = ((HtmlElement)child).GetElementsByTagName("div");
-
-                            ScoutName += HTML_Parser.GetTag(((HtmlElement)(div[0])).InnerHtml, "strong") + "|";
-
-                            string date = HTML_Parser.GetTag(((HtmlElement)(div[0])).InnerHtml, "span").TrimStart('(').TrimEnd(')');
-                            DateTime dt = DateTime.Parse(date);
-                            ScoutDate += TmWeek.ToSWDString(dt) + "|";
-
-                            string age = HTML_Parser.GetFirstNumberInString(((HtmlElement)(div[2])).InnerHtml);
-
-                            string giudizio = "";
-                            giudizio += "Age:" + age + ",";
-
-                            int blooming_status = 0;
-                            int blooming = 0;
-                            int dev_status = 0;
-                            int speciality = 0;
-                            int physique = 0;
-                            int technics = 0;
-                            int tactics = 0;
-                            int professionalism = 0;
-                            int leadership = 0;
-                            int aggressivity = 0;
-                            int potential = 0;
-
-                            string field = ((HtmlElement)(div[3])).InnerHtml;
-                            if (field.Contains(this.SelectedReportParser.Dict["Keys"][(int)ReportParser.Keys.Potential]))
+                            else if (blooms.Length == 3)
                             {
-                                // It's the potential
-                                string potential_string = HTML_Parser.GetFirstNumberInString(field);
-                                giudizio += "Pot:" + potential_string + ",";
+                                blooming_status = SelectedReportParser.find("Blooming_Status", blooms[1]);
+                                blooming = SelectedReportParser.find("Blooming", blooms[2]);
+                            }
+                        }
 
-                                ScoutVoto += potential_string + "|";
+                        field = lines[5];
+                        if (field.Contains(SelectedReportParser.Dict["Keys"][(int)ReportParser.Keys.DevStatus]))
+                        {
+                            // It's the DevStatus
+                            string[] devstats = field.Split(':');
+                            dev_status = SelectedReportParser.find("Development", devstats[1]);
+                        }
+
+                        field = lines[6];
+                        if (field.Contains(SelectedReportParser.Dict["Keys"][(int)ReportParser.Keys.Speciality]))
+                        {
+                            // It's the Speciality
+                            string[] spectats = field.Split(':');
+                            if (FPn == 0) // GK
+                            {
+                                speciality = SelectedReportParser.find("GK_Skill", spectats[1]);
                             }
                             else
                             {
-                                string message = string.Format("Cannot translate Scout reports: check if your language is properly configured in the options. Language used: {0}",
-                                    SelectedReportParser.ConfiguredLanguage);
-                                MessageBox.Show(message);
-                                return "";
+                                speciality = SelectedReportParser.find("Player_Skill", spectats[1]);
                             }
-
-                            if (div.Count > 5)
-                            {
-                                field = ((HtmlElement)(div[4])).InnerHtml;
-                                if (field.Contains(SelectedReportParser.Dict["Keys"][(int)ReportParser.Keys.BloomStatus]))
-                                {
-                                    // It's the bloom status
-                                    string[] blooms = field.Split(":-".ToCharArray());
-                                    if (blooms.Length == 2)
-                                    {
-                                        blooming_status = SelectedReportParser.find("Blooming_Status", blooms[1]);
-                                    }
-                                    else if (blooms.Length == 3)
-                                    {
-                                        blooming_status = SelectedReportParser.find("Blooming_Status", blooms[1]);
-                                        blooming = SelectedReportParser.find("Blooming", blooms[2]);
-                                    }
-                                }
-
-                                field = ((HtmlElement)(div[5])).InnerHtml;
-                                if (field.Contains(SelectedReportParser.Dict["Keys"][(int)ReportParser.Keys.DevStatus]))
-                                {
-                                    // It's the DevStatus
-                                    string[] devstats = field.Split(':');
-                                    dev_status = SelectedReportParser.find("Development", devstats[1]);
-                                }
-
-                                field = ((HtmlElement)(div[6])).InnerHtml;
-                                if (field.Contains(SelectedReportParser.Dict["Keys"][(int)ReportParser.Keys.Speciality]))
-                                {
-                                    // It's the Speciality
-                                    string[] spectats = field.Split(':');
-                                    if (FPn == 0) // GK
-                                    {
-                                        speciality = SelectedReportParser.find("GK_Skill", spectats[1]);
-                                    }
-                                    else
-                                    {
-                                        speciality = SelectedReportParser.find("Player_Skill", spectats[1]);
-                                    }
-                                }
-
-                                field = ((HtmlElement)child).InnerHtml;
-                                try
-                                {
-                                    physique = SelectedReportParser.find("Physique", field, physique);
-                                    technics = SelectedReportParser.find("Technics", field, technics);
-                                    tactics = SelectedReportParser.find("Tactics", field, tactics);
-                                    aggressivity = SelectedReportParser.find("Aggressivity", field, aggressivity);
-                                    leadership = SelectedReportParser.find("Charisma", field, leadership);
-                                    professionalism = SelectedReportParser.find("Professionalism", field, professionalism);
-                                }
-                                catch (Exception)
-                                { }
-
-                                if (physique != 0) giudizio += "Phy:" + physique + ",";
-                                if (technics != 0) giudizio += "Tec:" + technics + ",";
-                                if (tactics != 0) giudizio += "Tac:" + tactics + ",";
-                                if (leadership != 0) giudizio += "Lea:" + leadership + ",";
-                                if (blooming_status != 0) giudizio += "BlS:" + blooming_status + ",";
-                                if (blooming != 0) giudizio += "Blo:" + blooming + ",";
-                                if (dev_status != 0) giudizio += "Dev:" + dev_status + ",";
-                                if (speciality != 0) giudizio += "Spe:" + speciality + ",";
-                                if (aggressivity != 0) giudizio += "Agg:" + aggressivity + ",";
-                                if (professionalism != 0) giudizio += "Pro:" + professionalism + ",";
-                            }
-
-                            if (ScoutGiudizio != "")
-                                ScoutGiudizio = ScoutGiudizio + "|" + giudizio.TrimEnd(',');
-                            else
-                                ScoutGiudizio = giudizio.TrimEnd(',');
-
                         }
+
+                        try
+                        {
+                            physique = SelectedReportParser.find("Physique", lines[8], physique);
+                            technics = SelectedReportParser.find("Technics", lines[10], technics);
+                            tactics = SelectedReportParser.find("Tactics", lines[9], tactics);
+                            aggressivity = SelectedReportParser.find("Aggressivity", lines[13], aggressivity);
+                            leadership = SelectedReportParser.find("Charisma", lines[11], leadership);
+                            professionalism = SelectedReportParser.find("Professionalism", lines[12], professionalism);
+                        }
+                        catch (Exception)
+                        { }
+
+                        if (physique != 0) giudizio += "Phy:" + physique + ",";
+                        if (technics != 0) giudizio += "Tec:" + technics + ",";
+                        if (tactics != 0) giudizio += "Tac:" + tactics + ",";
+                        if (leadership != 0) giudizio += "Lea:" + leadership + ",";
+                        if (blooming_status != 0) giudizio += "BlS:" + blooming_status + ",";
+                        if (blooming != 0) giudizio += "Blo:" + blooming + ",";
+                        if (dev_status != 0) giudizio += "Dev:" + dev_status + ",";
+                        if (speciality != 0) giudizio += "Spe:" + speciality + ",";
+                        if (aggressivity != 0) giudizio += "Agg:" + aggressivity + ",";
+                        if (professionalism != 0) giudizio += "Pro:" + professionalism + ",";
                     }
+
+                    if (ScoutGiudizio != "")
+                        ScoutGiudizio = ScoutGiudizio + "|" + giudizio.TrimEnd(',');
+                    else
+                        ScoutGiudizio = giudizio.TrimEnd(',');
                 }
 
                 ScoutName = ScoutName.TrimEnd('|');
@@ -783,10 +827,10 @@ namespace NTR_WebBrowser
                 result += ";FPn=" + FPn;
             }
 
-            var divHistory = htmlDocument.GetElementById("tabplayer_history_new");
-            if (divHistory.OuterHtml.Contains("class=\"active_tab"))
+
+            if (playerPage["history"] != "")
             {
-                string history = Import_Player_History();
+                string history = playerPage["history"];
 
                 GameTable gameTable = new GameTable();
 
@@ -850,16 +894,17 @@ namespace NTR_WebBrowser
                 result = "GameTable|" + gameTable.ToString();
             }
 
-            return result;
+
+                return result;
         }
 
-        private string Import_Players_Training_Adv()
+        private async Task<string> Import_Players_Training_Adv()
         {
             string pl_data = "";
 
             try
             {
-                pl_data = AppendScriptAndExecute(Resources.get_players_training_loader,
+                pl_data = await AppendScriptAndExecute(Resources.get_players_training_loader,
                                                 "get_players_training");
             }
             catch (Exception ex)
@@ -870,13 +915,13 @@ namespace NTR_WebBrowser
             return pl_data;
         }
 
-        private string Import_Shortlist_Adv()
+        private async Task<string> Import_Shortlist_Adv()
         {
             string pl_data = "";
 
             try
             {
-                pl_data = AppendScriptAndExecute(Resources.shortlist_loader,
+                pl_data = await AppendScriptAndExecute(Resources.shortlist_loader,
                                                 "get_shortlist");
             }
             catch (Exception ex)
@@ -887,13 +932,13 @@ namespace NTR_WebBrowser
             return pl_data;
         }
 
-        private string Import_Transfer_Adv()
+        private async Task<string> Import_Transfer_Adv()
         {
             string pl_data = "";
 
             try
             {
-                pl_data = AppendScriptAndExecute(Resources.transfer_loader,
+                pl_data = await AppendScriptAndExecute(Resources.transfer_loader,
                                                 "get_transfer");
             }
             catch (Exception ex)
@@ -904,49 +949,61 @@ namespace NTR_WebBrowser
             return pl_data;
         }
 
-        private string AppendScriptAndExecute(string script, string command)
+        private async Task<string> AppendScriptAndExecute(string script, string command)
         {
-            AppendScript(script);
+            string scriptAndCommand = script;
+            if (command != "")
+                scriptAndCommand += "\r\n" + command + "()";
 
-            return ExecuteScript(command);
+            var result = await webBrowser.GetMainFrame().EvaluateScriptAsync(scriptAndCommand)
+                .ContinueWith(t =>
+                {
+                    var res = t.Result;
+                    if (res.Result == null)
+                        return "";
+                    else
+                        return (string)res.Result.ToString();
+                });
+
+            return result;
         }
 
-        private void AppendScript(string script)
+        private async Task<string> AppendScriptAndExecute(string script, List<string> commands)
         {
-            HtmlElement head = webBrowser.Document.GetElementsByTagName("head")[0];
-            HtmlElement scriptEl = webBrowser.Document.CreateElement("script");
-            IHTMLScriptElement element = (IHTMLScriptElement)scriptEl.DomElement;
-            element.text = script;
-            HtmlElement res = head.AppendChild(scriptEl);
-        }
-
-        private string ExecuteScript(string command)
-        {
-            string pl_data;
-
-            try
+            string scriptAndCommand = script + "\r\n";
+            //if (commands.Count > 0)
+            //    scriptAndCommand += "return";
+            foreach (var command in commands)
             {
-                pl_data = (string)webBrowser.Document.InvokeScript(command);
-
-                if ((pl_data != "") && (pl_data != null))
-                    pl_data = "Message: " + pl_data;
+                if (command != "")
+                    scriptAndCommand += " '<TABLE>' + " + command + "() + '</TABLE>' +";
             }
-            catch (Exception)
+            if (commands.Count > 0)
             {
-                pl_data = "";
+                scriptAndCommand = scriptAndCommand.TrimEnd('+');
+                scriptAndCommand += ";\r\n";
             }
 
-            return pl_data;
+            var result = await webBrowser.GetMainFrame().EvaluateScriptAsync(scriptAndCommand)
+                .ContinueWith(t =>
+                {
+                    var res = t.Result;
+                    if (res.Result == null)
+                        return "";
+                    else
+                        return (string)res.Result.ToString();
+                });
+
+            return result;
         }
 
-
-        private string Import_Players_Adv()
+        private async Task<string> Import_Players_Adv()
         {
             string pl_data = "";
 
             try
             {
-                pl_data = AppendScriptAndExecute(Resources.players_loader,
+                pl_data = await AppendScriptAndExecute(Resources.players_loader,
                                                 "get_players");
             }
             catch (Exception ex)
@@ -957,13 +1014,13 @@ namespace NTR_WebBrowser
             return pl_data;
         }
 
-        private string Import_Player_Adv()
+        private async Task<string> Import_Player_Adv()
         {
             string pl_data = "";
 
             try
             {
-                pl_data = AppendScriptAndExecute(Resources.player_info_loader,
+                pl_data = await AppendScriptAndExecute(Resources.player_info_loader,
                                                 "get_player_info");
             }
             catch (Exception ex)
@@ -974,46 +1031,14 @@ namespace NTR_WebBrowser
             return pl_data;
         }
 
-        private string Import_Player_History()
-        {
-            string history_data = "";
-
-            try
-            {
-                AppendScript(Resources.get_player_history);
-
-                string history = ExecuteScript("get_history");
-
-                history_data = history;
-
-                if (history_data.Contains("Javascript error"))
-                {
-                    //MessageBox.Show("Error executing java scripts");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-            return history_data;
-        }
-
-        private string Import_Matches_Adv()
+        private async Task<string> Import_Matches_Adv()
         {
             string matches_data = "";
 
             try
             {
-                AppendScript(Resources.match_loader);
-
-                string lineup = ExecuteScript("get_lineup");
-                string match_info = ExecuteScript("get_match_info");
-                string report = ExecuteScript("get_report");
-
-                matches_data = "<TABLE>" + lineup + "</TABLE>" +
-                    "<TABLE>" + match_info + "</TABLE>" +
-                    "<TABLE>" + report + "</TABLE>";
+                matches_data = await AppendScriptAndExecute(Resources.match_loader,
+                    new List<string> { "get_lineup", "get_match_info", "get_report" });
 
                 if (matches_data.Contains("Javascript error"))
                 {
@@ -1028,13 +1053,13 @@ namespace NTR_WebBrowser
             return matches_data;
         }
 
-        private string Import_Fixtures_Adv()
+        private async Task<string> Import_Fixtures_Adv()
         {
             string fix_data = "";
 
             try
             {
-                fix_data = AppendScriptAndExecute(Resources.fixture_loader,
+                fix_data = await AppendScriptAndExecute(Resources.fixture_loader,
                                                 "get_fixture");
             }
             catch (Exception ex)
@@ -1045,13 +1070,13 @@ namespace NTR_WebBrowser
             return fix_data;
         }
 
-        private string Import_Training()
+        private async Task<string> Import_Training()
         {
             string fix_data = "";
 
             try
             {
-                fix_data = AppendScriptAndExecute(Resources.training_loader,
+                fix_data = await AppendScriptAndExecute(Resources.training_loader,
                                                 "get_training");
             }
             catch (Exception ex)
@@ -1181,18 +1206,18 @@ namespace NTR_WebBrowser
 
         private void webBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
-            if (ActualPlayerID > 0)
-            {
-                string script = Resources.RatingR4_user;
-                AppendScriptAndExecute(script, "ApplyRatingR4");
-                tsbPlayersNavigationType.Visible = true;
-            }
-            else
-            {
-                tsbPlayersNavigationType.Visible = false;
-            }
+            //if (ActualPlayerID > 0)
+            //{
+            //    string script = Resources.RatingR4_user;
+            //    AppendScriptAndExecute(script, "ApplyRatingR4");
+            //    tsbPlayersNavigationType.Visible = true;
+            //}
+            //else
+            //{
+            //    tsbPlayersNavigationType.Visible = false;
+            //}
 
-            CheckMainId(webBrowser.DocumentText);
+            //CheckMainId(webBrowser.DocumentText);
         }
 
         private void CheckMainId(string documentText)
@@ -1206,54 +1231,30 @@ namespace NTR_WebBrowser
                 SwitchToMainTeam();
         }
 
-        private void WebBrowser_Navigating(object sender, WebBrowserNavigatingEventArgs e)
-        {
-            string address = e.Url.AbsoluteUri.Replace("https:", "http:");
+        //private void WebBrowser_Navigating(object sender, WebBrowserNavigatingEventArgs e)
+        //{
+        //    string address = e.Url.AbsoluteUri.Replace("https:", "http:");
 
-            if (!(address.Contains(TM_Pages.Home) || address.Contains(TM_Pages.Homes)) || (address.Contains("http://trophymanager.com/banners")))
-                return;
+        //    if (!(address.Contains(TM_Pages.Home) || address.Contains(TM_Pages.Homes)) || (address.Contains("http://trophymanager.com/banners")))
+        //        return;
 
-            if ((address.Contains(TM_Pages.Players)) && (address != StartnavigationAddress))
-            {
-                int playerID = 0;
-                string number = HTML_Parser.GetNumberAfter(address, TM_Pages.Players);
-                if (int.TryParse(number, out playerID))
-                {
-                    if (playerID != ActualPlayerID)
-                    {
-                        webBrowser.Stop();
-                        GotoPlayer(playerID, this.navigationType);
-                    }
-                }
-            }
+        //    if ((address.Contains(TM_Pages.Players)) && (address != StartnavigationAddress))
+        //    {
+        //        int playerID = 0;
+        //        string number = HTML_Parser.GetNumberAfter(address, TM_Pages.Players);
+        //        if (int.TryParse(number, out playerID))
+        //        {
+        //            if (playerID != ActualPlayerID)
+        //            {
+        //                webBrowser.Stop();
+        //                GotoPlayer(playerID, this.navigationType);
+        //            }
+        //        }
+        //    }
 
-            NavigationAddress = address;
-            StartnavigationAddress = address;
-        }
-
-        private void webBrowser_ProgressChanged(object sender, WebBrowserProgressChangedEventArgs e)
-        {
-            if (e.CurrentProgress <= 0)
-            {
-                //if (theBrowser.ReadyState == WebBrowserReadyState.Complete)
-                //{
-                //    tsbProgressText.Text = "100%";
-                //    tsbProgressBar.ForeColor = Color.Green;
-                //    tsbProgressBar.Value = 100;
-                //}
-                return;
-            }
-
-            long maxProgress = e.MaximumProgress;
-            if (maxProgress == 0)
-                maxProgress = 1;
-            int perc = (int)((e.CurrentProgress * 100) / maxProgress);
-            if (perc > 100) perc = 100;
-            if (perc < 0) perc = 0;
-            tsbProgressBar.Value = perc;
-            tsbProgressText.Text = perc + "%";
-            tsbProgressBar.ForeColor = Color.Blue;
-        }
+        //    NavigationAddress = address;
+        //    StartnavigationAddress = address;
+        //}
 
         private void Login(string username, string password)
         {
@@ -1348,7 +1349,7 @@ namespace NTR_WebBrowser
 
         public void GotoPlayer(int playerID, PlayerNavigationType playerNavigationType)
         {
-            webBrowser.Stop();
+            Stop();
             ActualPlayerID = playerID;
 
             if (playerNavigationType == PlayerNavigationType.NavigateProfiles)
@@ -1370,7 +1371,7 @@ namespace NTR_WebBrowser
             }
 
             StartnavigationAddress = NavigationAddress;
-            webBrowser.Navigate(NavigationAddress);
+            webBrowser.Load(NavigationAddress);
         }
         #endregion
 
@@ -1397,7 +1398,25 @@ namespace NTR_WebBrowser
 
         public void Stop()
         {
-            webBrowser.Stop();
+            timerProgress.Enabled = false;
+            timerProgress.Stop();
+
+            if (webBrowser.IsBrowserInitialized)
+                webBrowser.Stop();
         }
+
+        public int progress = 0;
+        private void timerProgress_Tick(object sender, EventArgs e)
+        {
+            progress = (progress + 5) % 100;
+            tsbProgressBarSet(progress, Color.Blue);
+        }
+    }
+
+    public class TimedScript
+    {
+        public string Command { get; set; }
+        public string Script { get; set; }
+        public IFrame Frame { get; set; }
     }
 }

@@ -230,22 +230,22 @@ namespace NTR_Db
                     }
 
                     if (!pr.IsProNull())
-                        lblProfessionalism.Text = pr.Pro.ToString() + "/20";
+                        lblProfessionalism.Text = pr.Pro.ToString("N1") + "/20";
                     else
                         lblProfessionalism.Text = "-";
 
                     if (!pr.IsAggNull())
-                        lblAggression.Text = pr.Agg.ToString() + "/20";
+                        lblAggression.Text = pr.Agg.ToString("N1") + "/20";
                     else
                         lblAggression.Text = "-";
 
                     if (!pr.IsLeaNull())
-                        lblLea.Text = pr.Lea.ToString() + "/20";
+                        lblLea.Text = pr.Lea.ToString("N1") + "/20";
                     else
                         lblLea.Text = "-";
 
                     if (!pr.IsPotNull())
-                        lblPot.Text = pr.Pot.ToString();
+                        lblPot.Text = pr.Pot.ToString("N1") + "/20";
                     else
                         lblPot.Text = "-";
 

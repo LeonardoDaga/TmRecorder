@@ -13,8 +13,7 @@ using System.IO;
 using Languages;
 using SendFileTo;
 using NTR_Common;
-using mshtml;
-using NTR_WebBrowser;
+using NTR_Browser;
 using NTR_Db;
 using System.Linq;
 using NTR_Controls;
@@ -93,7 +92,7 @@ namespace TMRecorder
 
             webBrowser.SelectedReportParser = this.reportParser;
 
-            webBrowser.GotoPlayer(selectedPlayerID, NTR_Browser.PlayerNavigationType.NavigateReports);
+            webBrowser.GotoPlayer(selectedPlayerID, NTR_Browser.NTR_Browser.PlayerNavigationType.NavigateReports);
         }
 
         public void GetPlayerHistory()
@@ -418,7 +417,7 @@ namespace TMRecorder
 
             InitializeByCount(selectedPlayerCnt);
 
-            webBrowser.GotoPlayer(selectedPlayerID, NTR_Browser.PlayerNavigationType.NavigateReports);
+            webBrowser.GotoPlayer(selectedPlayerID, NTR_Browser.NTR_Browser.PlayerNavigationType.NavigateReports);
         }
 
         private void btnPrev_Click(object sender, EventArgs e)
@@ -432,7 +431,7 @@ namespace TMRecorder
 
             InitializeByCount(selectedPlayerCnt);
 
-            webBrowser.GotoPlayer(selectedPlayerID, NTR_Browser.PlayerNavigationType.NavigateReports);
+            webBrowser.GotoPlayer(selectedPlayerID, NTR_Browser.NTR_Browser.PlayerNavigationType.NavigateReports);
         }
 
         private void txtNotes_TextChanged(object sender, EventArgs e)
@@ -498,7 +497,7 @@ namespace TMRecorder
         string startnavigationAddress = "";
         private void tsbLoadPlayerPage_Click(object sender, EventArgs e)
         {
-            webBrowser.GotoPlayer(selectedPlayerID, NTR_Browser.PlayerNavigationType.NavigateReports);
+            webBrowser.GotoPlayer(selectedPlayerID, NTR_Browser.NTR_Browser.PlayerNavigationType.NavigateReports);
         }
 
         #region Player Profiles Navigation

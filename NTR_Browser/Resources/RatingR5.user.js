@@ -1,4 +1,4 @@
-﻿function ApplyRatingR5() {
+﻿function RatingFunction() {
 
 	// ==UserScript==
 	// @name           	RatingR5 ver5.3 for Season62
@@ -13,6 +13,9 @@
 	// @exclude			https://trophymanager.com/players/compare/*
 	// @exclude			https://fb.trophymanager.com/players/compare/*
 	// ==/UserScript==
+
+	var player_info = {};
+	var strout = "";
 
 	var version = "ver5.3 for Season62";
 
@@ -383,36 +386,22 @@
 	var positionNames2 = ["DC", "DL/R", "DMC", "DML/R", "MC", "ML/R", "OMC", "OML/R", "F"];
 	var positionNames3 = ["DL", "DC", "DR", "DML", "DMC", "DMR", "ML", "MC", "MR", "OML", "OMC", "OMR", "F", "GK"];
 	var positionFullNames = [
-	/* EN */["Defender Center", "Defender Left", "Defender Right", "Defensive Midfielder Center", "Defensive Midfielder Left", "Defensive Midfielder Right", "Midfielder Center", "Midfielder Left", "Midfielder Right", "Offensive Midfielder Center", "Offensive Midfielder Left", "Offensive Midfielder Right", "Forward", "Goalkeeper"],
-	/* JP */["ディフェンダー 中央", "ディフェンダー 左", "ディフェンダー 右", "守備的ミッドフィルダー 中央", "守備的ミッドフィルダー 左", "守備的ミッドフィルダー 右", "ミッドフィルダー 中央", "ミッドフィルダー 左", "ミッドフィルダー 右", "攻撃的ミッドフィルダー 中央", "攻撃的ミッドフィルダー 左", "攻撃的ミッドフィルダー 右", "フォワード", "ゴールキーパー"],
-	/* P  */["Obrońca środkowy", "Obrońca lewy", "Obrońca prawy", "Defensywny pomocnik środkowy", "Defensywny pomocnik lewy", "Defensywny pomocnik prawy", "Pomocnik środkowy", "Pomocnik lewy", "Pomocnik prawy", "Ofensywny pomocnik środkowy", "Ofensywny pomocnik lewy", "Ofensywny pomocnik prawy", "Napastnik", "Bramkarz"],
-	/* D  */["Forsvar Centralt", "Forsvar Venstre", "Forsvar Højre", "Defensiv Midtbane Centralt", "Defensiv Midtbane Venstre", "Defensiv Midtbane Højre", "Midtbane Centralt", "Midtbane Venstre", "Midtbane Højre", "Offensiv Midtbane Centralt", "Offensiv Midtbane Venstre", "Offensiv Midtbane Højre", "Angriber", "Målmand"],
-	/* I  */["Difensore Centrale", "Difensore Sinistro", "Difensore Destro", "Centrocampista Difensivo Centrale", "Centrocampista Difensivo Sinistro", "Centrocampista Difensivo Destro", "Centrocampista Centrale", "Centrocampista Sinistro", "Centrocampista Destro", "Centrocampista Offensivo Centrale", "Centrocampista Offensivo Sinistro", "Centrocampista Offensivo Destro", "Attaccante", "Portiere"],
-	/* H  */["Defensa Central", "Defensa Izquierdo", "Defensa Derecho", "Mediocampista Defensivo Central", "Mediocampista Defensivo Izquierdo", "Mediocampista Defensivo Derecho", "Mediocampista Central", "Mediocampista Izquierdo", "Mediocampista Derecho", "Mediocampista Ofensivo Central", "Mediocampista Ofensivo Izquierdo", "Mediocampista Ofensivo Derecho", "Delantero", "Portero"],
-	/* F  */["Défenseur Central", "Défenseur Gauche", "Défenseur Droit", "Milieu défensif Central", "Milieu défensif Gauche", "Milieu défensif Droit", "Milieu Central", "Milieu Gauche", "Milieu Droit", "Milieu offensif Central", "Milieu offensif Gauche", "Milieu offensif Droit", "Attaquant", "Gardien de but"],
-	/* A  */["Defender Center", "Defender Left", "Defender Right", "Defensive Midfielder Center", "Defensive Midfielder Left", "Defensive Midfielder Right", "Midfielder Center", "Midfielder Left", "Midfielder Right", "Offensive Midfielder Center", "Offensive Midfielder Left", "Offensive Midfielder Right", "Forward", "Goalkeeper"],
-	/* C  */["Obrambeni Sredina", "Obrambeni Lijevo", "Obrambeni Desno", "Defenzivni vezni Sredina", "Defenzivni vezni Lijevo", "Defenzivni vezni Desno", "Vezni Sredina", "Vezni Lijevo", "Vezni Desno", "Ofenzivni vezni Sredina", "Ofenzivni vezni Lijevo", "Ofenzivni vezni Desno", "Napadač", "Golman"],
-	/* G  */["Verteidiger Zentral", "Verteidiger Links", "Verteidiger Rechts", "Defensiver Mittelfeldspieler Zentral", "Defensiver Mittelfeldspieler Links", "Defensiver Mittelfeldspieler Rechts", "Mittelfeldspieler Zentral", "Mittelfeldspieler Links", "Mittelfeldspieler Rechts", "Offensiver Mittelfeldspieler Zentral", "Offensiver Mittelfeldspieler Links", "Offensiver Mittelfeldspieler Rechts", "Stürmer", "Torhüter"],
-	/* PO */["Defesa Centro", "Defesa Esquerdo", "Defesa Direito", "Médio Defensivo Centro", "Médio Defensivo Esquerdo", "Médio Defensivo Direito", "Medio Centro", "Medio Esquerdo", "Medio Direito", "Medio Ofensivo Centro", "Medio Ofensivo Esquerdo", "Medio Ofensivo Direito", "Avançado", "Guarda-Redes"],
-	/* R  */["Fundas Central", "Fundas Stânga", "Fundas Dreapta", "Mijlocas Defensiv Central", "Mijlocas Defensiv Stânga", "Mijlocas Defensiv Dreapta", "Mijlocas Central", "Mijlocas Stânga", "Mijlocas Dreapta", "Mijlocas Ofensiv Central", "Mijlocas Ofensiv Stânga", "Mijlocas Ofensiv Dreapta", "Atacant", "Portar"],
-	/* T  */["Defans Orta", "Defans Sol", "Defans Sağ", "Defansif Ortasaha Orta", "Defansif Ortasaha Sol", "Defansif Ortasaha Sağ", "Ortasaha Orta", "Ortasaha Sol", "Ortasaha Sağ", "Ofansif Ortasaha Orta", "Ofansif Ortasaha Sol", "Ofansif Ortasaha Sağ", "Forvet", "Kaleci"],
-	/* RU */["Defender Center", "Defender Left", "Defender Right", "Defensive Midfielder Center", "Defensive Midfielder Left", "Defensive Midfielder Right", "Midfielder Center", "Midfielder Left", "Midfielder Right", "Offensive Midfielder Center", "Offensive Midfielder Left", "Offensive Midfielder Right", "Forward", "Goalkeeper"],
-	/* CE */["Obránce Střední", "Obránce Levý", "Obránce Pravý", "Defenzivní Záložník Střední", "Defenzivní Záložník Levý", "Defenzivní Záložník Pravý", "Záložník Střední", "Záložník Levý", "Záložník Pravý", "Ofenzivní záložník Střední", "Ofenzivní záložník Levý", "Ofenzivní záložník Pravý", "Útočník", "Gólman"],
-	/* HU */["Védő , középső", "Védő , bal oldali", "Védő , jobb oldali", "Védekező Középpályás , középső", "Védekező Középpályás , bal oldali", "Védekező Középpályás , jobb oldali", "Középpályás , középső", "Középpályás , bal oldali", "Középpályás , jobb oldali", "Támadó középpályás , középső", "Támadó középpályás , bal oldali", "Támadó középpályás , jobb oldali", "Csatár", "Kapus"],
-	/* GE */["მცველი ცენტრალური", "მცველი მარცხენა", "მცველი მარჯვენა", "საყრდენი ნახევარმცველი ცენტრალური", "საყრდენი ნახევარმცველი მარცხენა", "საყრდენი ნახევარმცველი მარჯვენა", "ნახევარმცველი ცენტრალური", "ნახევარმცველი მარცხენა", "ნახევარმცველი მარჯვენა", "შემტევი ნახევარმცველი ცენტრალური", "შემტევი ნახევარმცველი მარცხენა", "შემტევი ნახევარმცველი მარჯვენა", "თავდამსხმელი", "მეკარე"],
-	/* FI */["Puolustaja Keski", "Puolustaja Vasen", "Puolustaja Oikea", "Puolustava Keskikenttä Keski", "Puolustava Keskikenttä Vasen", "Puolustava Keskikenttä Oikea", "Keskikenttä Keski", "Keskikenttä Vasen", "Keskikenttä Oikea", "Hyökkäävä Keskikenttä Keski", "Hyökkäävä Keskikenttä Vasen", "Hyökkäävä Keskikenttä Oikea", "Hyökkääjä", "Maalivahti"],
-	/* SV */["Försvarare Central", "Försvarare Vänster", "Försvarare Höger", "Defensiv Mittfältare Central", "Defensiv Mittfältare Vänster", "Defensiv Mittfältare Höger", "Mittfältare Central", "Mittfältare Vänster", "Mittfältare Höger", "Offensiv Mittfältare Central", "Offensiv Mittfältare Vänster", "Offensiv Mittfältare Höger", "Anfallare", "Målvakt"],
-	/* NO */["Forsvar Sentralt", "Forsvar Venstre", "Forsvar Høyre", "Defensiv Midtbane Sentralt", "Defensiv Midtbane Venstre", "Defensiv Midtbane Høyre", "Midtbane Sentralt", "Midtbane Venstre", "Midtbane Høyre", "Offensiv Midtbane Sentralt", "Offensiv Midtbane Venstre", "Offensiv Midtbane Høyre", "Angrep", "Keeper"],
-	/* SC */["Defender Centre", "Defender Left", "Defender Richt", "Defensive Midfielder Centre", "Defensive Midfielder Left", "Defensive Midfielder Richt", "Midfielder Centre", "Midfielder Left", "Midfielder Richt", "Offensive Midfielder Centre", "Offensive Midfielder Left", "Offensive Midfielder Richt", "Forward", "Goalkeeper"],
-	/* VL */["Verdediger Centraal", "Verdediger Links", "Verdediger Rechts", "Verdedigende Middenvelder Centraal", "Verdedigende Middenvelder Links", "Verdedigende Middenvelder Rechts", "Middenvelder Centraal", "Middenvelder Links", "Middenvelder Rechts", "Aanvallende Middenvelder Centraal", "Aanvallende Middenvelder Links", "Aanvallende Middenvelder Rechts", "Aanvaller", "Doelman"],
-	/* BR */["Zagueiro Central", "Zagueiro Esquerdo", "Zagueiro Direito", "Volante Central", "Volante Esquerdo", "Volante Direito", "Meio-Campista Central", "Meio-Campista Esquerdo", "Meio-Campista Direito", "Meia Ofensivo Central", "Meia Ofensivo Esquerdo", "Meia Ofensivo Direito", "Atacante", "Goleiro"],
-	/* GR */["Αμυντικός Κεντρικός", "Αμυντικός Αριστερός", "Αμυντικός Δεξιός", "Αμυντικός Μέσος Κεντρικός", "Αμυντικός Μέσος Αριστερός", "Αμυντικός Μέσος Δεξιός", "Μέσος Κεντρικός", "Μέσος Αριστερός", "Μέσος Δεξιός", "Επιθετικός μέσος Κεντρικός", "Επιθετικός μέσος Αριστερός", "Επιθετικός μέσος Δεξιός", "Επιθετικός", "Τερματοφύλακας"],
-	/* BG */["Защитник Централен", "Защитник Ляв", "Защитник Десен", "Дефанзивен Халф Централен", "Дефанзивен Халф Ляв", "Дефанзивен Халф Десен", "Халф Централен", "Халф Ляв", "Халф Десен", "Атакуващ Халф Централен", "Атакуващ Халф Ляв", "Атакуващ Халф Десен", "Нападател"],
-	/* ID */["Bek Tengah", "Bek Kiri", "Bek Kanan", "Gelandang Bertahan Tengah", "Gelandang Bertahan Kiri", "Gelandang Bertahan Kanan", "Gelandang Tengah", "Gelandang Kiri", "Gelandang Kanan", "Gelandang Serang Tengah", "Gelandang Serang Kiri", "Gelandang Serang Kanan", "Penyerang", "Penjaga Gawang"],
-	/* CL */["Defensa Centre", "Defensa Esquerra", "Defensa Dreta", "Migcampista Defensiu Centre", "Migcampista Defensiu Esquerra", "Migcampista Defensiu Dreta", "Migcampista Centre", "Migcampista Esquerra", "Migcampista Dreta", "Migcampista Ofensiu Centre", "Migcampista Ofensiu Esquerra", "Migcampista Ofensiu Dreta", "Davanter", "Porter"],
-	/* CQ */["後衛 中", "後衛 左", "後衛 右", "防守中場 中", "防守中場 左", "防守中場 右", "中場 中", "中場 左", "中場 右", "進攻中場 中", "進攻中場 左", "進攻中場 右", "前鋒", "龍門"],
-	/* EE */["Kaitsja Kesk", "Kaitsja Vasak", "Kaitsja Parem", "Kaitsev Kesmängija Kesk", "Kaitsev Kesmängija Vasak", "Kaitsev Kesmängija Parem", "Keskmängija Kesk", "Keskmängija Vasak", "Keskmängija Parem", "Ründav Keskmängija Kesk", "Ründav Keskmängija Vasak", "Ründav Keskmängija Parem", "Ründaja", "Väravavaht"],
-	/* UA */["Захисник Центральний", "Захисник Лівий", "Захисник Правий", "Опорний півзахисник Центральний", "Опорний півзахисник Лівий", "Опорний півзахисник Правий", "Півзахисник Центральний", "Півзахисник Лівий", "Півзахисник Правий", "Атакувальний півзахисник Центральний", "Атакувальний півзахисник Лівий", "Атакувальний півзахисник Правий", "Нападник", "Воротар"],
+/* EN */["Defender Center", "Defender Left", "Defender Right", "Defensive Midfielder Center", "Defensive Midfielder Left", "Defensive Midfielder Right", "Midfielder Center", "Midfielder Left", "Midfielder Right", "Offensive Midfielder Center", "Offensive Midfielder Left", "Offensive Midfielder Right", "Forward", "Goalkeeper"],
+/* JP */["ディフェンダー 中央", "ディフェンダー 左", "ディフェンダー 右", "守備的ミッドフィルダー 中央", "守備的ミッドフィルダー 左", "守備的ミッドフィルダー 右", "ミッドフィルダー 中央", "ミッドフィルダー 左", "ミッドフィルダー 右", "攻撃的ミッドフィルダー 中央", "攻撃的ミッドフィルダー 左", "攻撃的ミッドフィルダー 右", "フォワード", "ゴールキーパー"],
+/* P  */["Obrońca środkowy", "Obrońca lewy", "Obrońca prawy", "Defensywny pomocnik środkowy", "Defensywny pomocnik lewy", "Defensywny pomocnik prawy", "Pomocnik środkowy", "Pomocnik lewy", "Pomocnik prawy", "Ofensywny pomocnik środkowy", "Ofensywny pomocnik lewy", "Ofensywny pomocnik prawy", "Napastnik", "Bramkarz"],
+/* D  */["Forsvar Centralt", "Forsvar Venstre", "Forsvar Højre", "Defensiv Midtbane Centralt", "Defensiv Midtbane Venstre", "Defensiv Midtbane Højre", "Midtbane Centralt", "Midtbane Venstre", "Midtbane Højre", "Offensiv Midtbane Centralt", "Offensiv Midtbane Venstre", "Offensiv Midtbane Højre", "Angriber", "Målmand"],
+/* I  */["Difensore Centrale", "Difensore Sinistro", "Difensore Destro", "Centrocampista Difensivo Centrale", "Centrocampista Difensivo Sinistro", "Centrocampista Difensivo Destro", "Centrocampista Centrale", "Centrocampista Sinistro", "Centrocampista Destro", "Centrocampista Offensivo Centrale", "Centrocampista Offensivo Sinistro", "Centrocampista Offensivo Destro", "Attaccante", "Portiere"],
+/* H  */["Defensa Central", "Defensa Izquierdo", "Defensa Derecho", "Mediocampista Defensivo Central", "Mediocampista Defensivo Izquierdo", "Mediocampista Defensivo Derecho", "Mediocampista Central", "Mediocampista Izquierdo", "Mediocampista Derecho", "Mediocampista Ofensivo Central", "Mediocampista Ofensivo Izquierdo", "Mediocampista Ofensivo Derecho", "Delantero", "Portero"],
+/* F  */["Défenseur Central", "Défenseur Gauche", "Défenseur Droit", "Milieu défensif Central", "Milieu défensif Gauche", "Milieu défensif Droit", "Milieu Central", "Milieu Gauche", "Milieu Droit", "Milieu offensif Central", "Milieu offensif Gauche", "Milieu offensif Droit", "Attaquant", "Gardien de but"],
+/* A  */["Defender Center", "Defender Left", "Defender Right", "Defensive Midfielder Center", "Defensive Midfielder Left", "Defensive Midfielder Right", "Midfielder Center", "Midfielder Left", "Midfielder Right", "Offensive Midfielder Center", "Offensive Midfielder Left", "Offensive Midfielder Right", "Forward", "Goalkeeper"],
+/* C  */["Obrambeni Sredina", "Obrambeni Lijevo", "Obrambeni Desno", "Defenzivni vezni Sredina", "Defenzivni vezni Lijevo", "Defenzivni vezni Desno", "Vezni Sredina", "Vezni Lijevo", "Vezni Desno", "Ofenzivni vezni Sredina", "Ofenzivni vezni Lijevo", "Ofenzivni vezni Desno", "Napadač", "Golman"],
+/* G  */["Verteidiger Zentral", "Verteidiger Links", "Verteidiger Rechts", "Defensiver Mittelfeldspieler Zentral", "Defensiver Mittelfeldspieler Links", "Defensiver Mittelfeldspieler Rechts", "Mittelfeldspieler Zentral", "Mittelfeldspieler Links", "Mittelfeldspieler Rechts", "Offensiver Mittelfeldspieler Zentral", "Offensiver Mittelfeldspieler Links", "Offensiver Mittelfeldspieler Rechts", "Stürmer", "Torhüter"],
+/* PO */["Defesa Centro", "Defesa Esquerdo", "Defesa Direito", "Médio Defensivo Centro", "Médio Defensivo Esquerdo", "Médio Defensivo Direito", "Medio Centro", "Medio Esquerdo", "Medio Direito", "Medio Ofensivo Centro", "Medio Ofensivo Esquerdo", "Medio Ofensivo Direito", "Avançado", "Guarda-Redes"],
+/* R  */["Fundas Central", "Fundas Stânga", "Fundas Dreapta", "Mijlocas Defensiv Central", "Mijlocas Defensiv Stânga", "Mijlocas Defensiv Dreapta", "Mijlocas Central", "Mijlocas Stânga", "Mijlocas Dreapta", "Mijlocas Ofensiv Central", "Mijlocas Ofensiv Stânga", "Mijlocas Ofensiv Dreapta", "Atacant", "Portar"],
+/* T  */["Defans Orta", "Defans Sol", "Defans Sağ", "Defansif Ortasaha Orta", "Defansif Ortasaha Sol", "Defansif Ortasaha Sağ", "Ortasaha Orta", "Ortasaha Sol", "Ortasaha Sağ", "Ofansif Ortasaha Orta", "Ofansif Ortasaha Sol", "Ofansif Ortasaha Sağ", "Forvet", "Kaleci"],
+/* RU */["Defender Center", "Defender Left", "Defender Right", "Defensive Midfielder Center", "Defensive Midfielder Left", "Defensive Midfielder Right", "Midfielder Center", "Midfielder Left", "Midfielder Right", "Offensive Midfielder Center", "Offensive Midfielder Left", "Offensive Midfielder Right", "Forward", "Goalkeeper"],
+/* CE */["Obránce Střední", "Obránce Levý", "Obránce Pravý", "Defenzivní Záložník Střední", "Defenzivní Záložník Levý", "Defenzivní Záložník Pravý", "Záložník Střední", "Záložník Levý", "Záložník Pravý", "Ofenzivní záložník Střední", "Ofenzivní záložník Levý", "Ofenzivní záložník Pravý", "Útočník", "Gólman"],
+/* HU */["Védő , középső", "Védő , bal oldali", "Védő , jobb oldali", "Védekező Középpályás , középső", "Védekező Középpályás , bal oldali", "Védekező Középpályás , jobb oldali", "Középpályás , középső", "Középpályás , bal oldali", "Középpályás , jobb oldali", "Támadó középpályás , középső", "Támadó középpályás , bal oldali", "Támadó középpályás , jobb oldali", "Csatár", "Kapus"],
 	];
 
 	var skilltable = $("div.main_center div.column2_a table.skill_table");
@@ -422,6 +411,7 @@
 	var ML = Math.log;
 
 	var result = "Script started";
+	var errInfo = "";
 
 	try {
 
@@ -439,10 +429,14 @@
 			};
 
 			document.getSkills = function (table) {
+
+				errInfo = "getSkills.1";
+
 				var skillArray = [];
 				var tableData = table.getElementsByTagName("td");
 				if (tableData.length > 1) {
 					for (var i = 0; i < 2; i++) {
+						errInfo = "getSkills";
 						for (var j = i; j < tableData.length; j += 2) {
 							if (tableData[j].innerHTML.indexOf("star.png") > 0) {
 								skillArray.push(20);
@@ -482,7 +476,6 @@
 					rankArray();
 				});
 			});
-
 			var nation_rank = [];
 			function rankArray() {
 				var tr = $("table.zebra.hover tr:gt(0)");
@@ -528,9 +521,15 @@
 					while (positionIndex2[i] > 13) positionIndex2[i] -= 14;
 				}
 
+				errInfo = "computeRating";
+
 				var gettr = document.getElementsByTagName("tr");
 				var SI = new String(gettr[6].getElementsByTagName("td")[0].innerHTML).replace(/,/g, "");
 				var rou = gettr[8].getElementsByTagName("td")[0].innerHTML;
+
+				player_info.SI = SI;
+				player_info.rou = rou;
+
 				var rou2 = (3 / 100) * (100 - (100) * MP(Math.E, -rou * 0.035));
 				var rou3 = rou;
 				rou = MP(5 / 3, Math.LOG2E * ML(rou * 10));
@@ -546,10 +545,10 @@
 					}
 				}
 
-				result += "\nConst def";
+				errInfo = "computeRating.2";
 
-				var retire = gettr[7].getElementsByTagName("td")[0].innerHTML.indexOf("retire.gif") > 0 ? true : false;
-				var notGK = positionIndex != 13 ? true : false;
+				const retire = gettr[7].getElementsByTagName("td")[0].innerHTML.indexOf("retire.gif") > 0 ? true : false;
+				const notGK = positionIndex != 13 ? true : false;
 
 				if (notGK) {
 					var phySum = skills[0] * 1 + skills[1] * 1 + skills[2] * 1 + skills[10] * 1;
@@ -588,71 +587,23 @@
 					else skillsB_rou[i] = skillsB[i] * 1 + rou2;
 				}
 
+				var { ageMonths, month, year } = calc_age();
 				var res = calc_age();
-				var ageMonths = res.ageMonths;
-				var month = res.month;
-				var year = res.year;
+				var { staPrice, maxPrice } = calc_SellToAgent();
+				var { weight, session, newPlayer, TI, session2, wage } = calc_TI();
+				var { R5FP0, R5FP1, posGain, posKeep, headerBonus, ckBonus, fkBonus, pkBonus, allBonus } = calc_R5bonus();
+				var { bep, futureSTA } = bep();
+				var { shotregular, shotlong, shothead } = finish_type();
+				var { R5FP, minR } = calc_stamina_effect();
+				var { peak, R5RECstar } = calc_R5REC();
+				var { i, hidden, R5all, adap, aggr, prof, minR5Value, maxR5Value, minR5Value2, maxR5Value2, R5Value, R5Value2, nation } = calc_VALUE();
+				var { cap, cap2, cap3, weightDefault } = calc_captaincy();
 
-				res = calc_SellToAgent();
-				var staPrice = res.staPrice;
-				var maxPrice = res.maxPrice;
+				player_info.years = year;
+				player_info.months = month;
+				player_info.wage = wage;
 
-				res = calc_TI();
-				var weight = res.weight;
-				var session = res.session;
-				var newPlayer = res.newPlayer;
-				var TI = res.TI;
-				var session2 = res.session2;
-				var wage = res.wage;
-
-				res = calc_R5bonus();
-				var R5FP0 = res.R5FP0;
-				var R5FP1 = res.R5FP1;
-				var posGain = res.posGain;
-				var posKeep = res.posKeep;
-				var headerBonus = res.headerBonus;
-				var ckBonus = res.ckBonus;
-				var fkBonus = res.fkBonus;
-				var pkBonus = res.pkBonus;
-				var allBonus = res.allBonus;
-
-				res = bep();
-				var bep = res.bep;
-				var futureSTA = res.futureSTA;
-
-				res = finish_type();
-				var shotregular = res.shotregular;
-				var shotlong = res.shotlong;
-				var shothead = res.shothead;
-
-				res = calc_stamina_effect();
-				var R5FP = res.R5FP;
-				var minR = res.minR;
-
-				res = calc_R5REC();
-				var peak = res.peak;
-				var R5RECstar = res.R5RECstar;
-
-				res = calc_VALUE();
-				i = res.i;
-				var hidden = res.hidden;
-				var R5all = res.R5all;
-				var adap = res.adap;
-				var aggr = res.aggr;
-				var prof = res.prof;
-				var minR5Value = res.minR5Value;
-				var maxR5Value = res.maxR5Value;
-				var minR5Value2 = res.minR5Value2;
-				var maxR5Value2 = res.maxR5Value2;
-				var R5Value = res.R5Value;
-				var R5Value2 = res.R5Value2;
-				var nation = res.nation;
-
-				res = calc_captaincy();
-				var cap = res.cap;
-				var cap2 = res.cap2;
-				var cap3 = res.cap3;
-				var weightDefault = res.weightDefault;
+				errInfo = "computeRating.3";
 
 				var skilltable = document.getElementsByClassName("skill_table zebra")[0];
 				var skillth = skilltable.getElementsByTagName("th");
@@ -681,7 +632,7 @@
 					}
 				}
 
-				// ### infotable #################################################################################
+				//	### infotable #################################################################################
 
 				if (FP[0] != FP[1]) {
 					var RERECb = "<tr id=\"tr_RERECb\" style=\"color:gold;\"><th><b>RERECb</b></th><td>" + REREC[0][FP[0]] + "/" + REREC[0][FP[1]] + "</td></tr>";
@@ -721,6 +672,9 @@
 					"</table>" +
 					"</div>" +
 					"</div>";
+
+				errInfo = "computeRating.4";
+
 				if (hidden[0].innerHTML != "") $("#hidden_skill_table").after(R5table);
 				else $("div.hidden_skills_text.align_center").after(R5table);
 				var R5tbody0 = $("#R5table0 > tbody");
@@ -1087,6 +1041,8 @@
 					var RERECall = [REREC[0][1], REREC[0][0], REREC[0][1], REREC[0][3], REREC[0][2], REREC[0][3], REREC[0][5], REREC[0][4], REREC[0][5], REREC[0][7], REREC[0][6], REREC[0][7], REREC[0][8]];
 					var RERECadapt = [];
 
+					errInfo = "computeRating.5";
+
 					if (hidden[0].innerHTML != "") {
 						for (i = 0; i < 13; i++) {
 							if (positionsAll[FP2[0]][i] > positionsAll[FP2[1]][i]) positionsAll[FP2[0]][i] = positionsAll[FP2[1]][i];
@@ -1176,25 +1132,22 @@
 							flg_table3b[i] = "hide";
 						}
 						var table3b_functions = [];
-						for (var posi = 0; posi < 13; posi++) {
+						for (let i = 0; i < 13; i++) {
 							(function () {
-								$("#cell_" + posi)
-									.attr('posi', posi)
-									.click(function () {
-										var posi = this.attributes["posi"].value;
-										if (flg_table3b[posi] == "hide") {
-											flg_table3b[posi] = "show";
+								$("#cell_" + i).click(function () {
+									if (flg_table3b[i] == "hide") {
+										flg_table3b[i] = "show";
 										$(this).attr("style", "color: yellow; text-shadow: 0px 0px 2px black");
 									}
 									else {
-											flg_table3b[posi] = "hide";
+										flg_table3b[i] = "hide";
 										$(this).removeAttr("style");
 									}
-										$("#R5table3b_" + posi).slideToggle();
+									$("#R5table3b_" + i).slideToggle();
 								});
 								table3b_functions.push(function () { });
 							})();
-							table3b_functions[posi]();
+							table3b_functions[i]();
 						}
 					}
 					else {
@@ -1225,28 +1178,27 @@
 							flg_R5AS[i] = "hide";
 						}
 						var R5ASbtn_functions = [];
-						for (var posi = 0; posi < positionArray.length; posi++) {
+						for (let i = 0; i < positionArray.length; i++) {
 							(function () {
-								$("#R5ASdetail_btn" + posi)
-									.attr('posi', posi)
-									.click(function () {
-										var posi = this.attributes["posi"].value;
-										if (flg_R5AS[posi] == "hide") {
-											flg_R5AS[posi] = "show";
-											$("#R5ASbtn_text" + posi).text("Hide Detail");
-										}
-										else {
-											flg_R5AS[posi] = "hide";
-											$("#R5ASbtn_text" + posi).text("Show Detail");
-										}
-										$(".R5AS" + posi).slideToggle();
-									});
+								$("#R5ASdetail_btn" + i).click(function () {
+									if (flg_R5AS[i] == "hide") {
+										flg_R5AS[i] = "show";
+										$("#R5ASbtn_text" + i).text("Hide Detail");
+									}
+									else {
+										flg_R5AS[i] = "hide";
+										$("#R5ASbtn_text" + i).text("Show Detail");
+									}
+									$(".R5AS" + i).slideToggle();
+								});
 								R5ASbtn_functions.push(function () { });
 							})();
-							R5ASbtn_functions[posi]();
+							R5ASbtn_functions[i]();
 						}
 					}
 				}
+
+				errInfo = "computeRating.6";
 
 				// R5table3 ###############################################################################
 				if (hidden[0].innerHTML != "") {
@@ -1365,12 +1317,7 @@
 								R5data = {};
 								skillsdata = {};
 							}
-							return {
-								"SIdata": SIdata,
-								"RERECdata": RERECdata,
-								"R5data": R5data,
-								"skillsdata": skillsdata,
-							};
+							return { SIdata, RERECdata, R5data, skillsdata };
 
 						}
 
@@ -1378,13 +1325,9 @@
 							SIdata[year + "." + month] = SI;
 							RERECdata[year + "." + month] = RERECnow;
 							R5data[year + "." + month] = R5now;
+							if (skills == undefined) { console.log("here"); }
 							skillsdata[year + "." + month] = skills;
-							return {
-								"SIdata": SIdata,
-								"RERECdata": RERECdata,
-								"R5data": R5data,
-								"skillsdata": skillsdata,
-							};
+							return { SIdata, RERECdata, R5data, skillsdata };
 						}
 
 						loadJSON();
@@ -1508,15 +1451,9 @@
 									if (yearTI == 0) yearTIaverage = 0;
 									else yearTIaverage = yearTI / (month - yearSI.indexOf(yearSIfirst));
 								}
-								return {
-									"yearSIlen": yearSIlen,
-									"yearTIaverage": yearTIaverage
-								};
+								return { yearSIlen, yearTIaverage };
 							}
-
-							res = calc_yearTI();
-							var yearSIlen = res.yearSIlen;
-							var yearTIaverage = res.yearTIaverage;
+							var { yearSIlen, yearTIaverage } = calc_yearTI();
 
 							const TI_flag = (yearSIlen > 1 || SIdata[year - 1 + ".11"] > 0) ? true : false;
 							var yearTIave = "<tr id=\"tr_seasonTI\"><th><b>Year TI average</b></th><td id=\"td_yearTI\">" + funFix1(yearTIaverage) + "</td></tr>";
@@ -1541,217 +1478,224 @@
 					setJSON();
 				});
 
-		//		//	### transfer info #############################################################################
-		//		var R5Value_num = 0;
-		//		var R5Value2_num = 0;
-		//		var maxPrice_num = 0;
-		//		var staPrice_num = 0;
-		//		if (((newPlayer == 0 && year <= 24) && session <= month) || session > month) {
-		//			if (minR5Value != maxR5Value) {
-		//				R5Value_num = en.format(minR5Value) + " - " + "<span class=\"coin\">" + en.format(maxR5Value) + "</span>";
-		//				R5Value2_num = en.format(minR5Value2) + " - " + "<span class=\"coin\">" + en.format(maxR5Value2) + "</span>";
-		//			}
-		//			else {
-		//				R5Value_num = "<span class=\"coin\">" + en.format(maxR5Value) + "</span>";
-		//				R5Value2_num = "<span class=\"coin\">" + en.format(maxR5Value2) + "</span>";
-		//			}
-		//		}
-		//		else {
-		//			R5Value_num = "<span class=\"coin\">" + en.format(R5Value) + "</span>";
-		//			R5Value2_num = "<span class=\"coin\">" + en.format(R5Value2) + "</span>";
-		//		}
-		//		if (retire) {
-		//			maxPrice_num = "Transfer not possible";
-		//			staPrice_num = "Transfer not possible";
-		//		}
-		//		else if (year < 18) {
-		//			maxPrice_num = "<span class=\"coin\" style=\"color:silver;\">" + en.format(maxPrice) + "</span>";
-		//			staPrice_num = "<span class=\"coin\" style=\"color:silver;\">" + en.format(staPrice) + "</span>";
-		//		}
-		//		else {
-		//			maxPrice_num = "<span class=\"coin\">" + en.format(maxPrice) + "</span>";
-		//			staPrice_num = "<span class=\"coin\">" + en.format(staPrice) + "</span>";
-		//		}
-		//		var pricetable = "<div><table id=\"pricetable\" style=\"margin-right:25px; margin-top:5px; margin-bottom:5px\"><tbody></tbody></table></div>";
-		//		var R5Value_row = "<tr><td align=\"left\">R5 VALUE</td><td align=\"right\">" + R5Value_num + "</td></tr>";
-		//		var R5Value2_row = "<tr><td align=\"left\">R5 VALUE+</td><td align=\"right\">" + R5Value2_num + "</td></tr>";
-		//		var maxPrice_row = "<tr><td align=\"left\">Max Sell Price</td><td align=\"right\">" + maxPrice_num + "</td></tr>";
-		//		var staPrice_row = "<tr><td align=\"left\">Sell-To-Agent</td><td align=\"right\">" + staPrice_num + "</td></tr>";
-		//		var countryforum = "<br><a href = \"https://trophymanager.com/forum/" + nation + "/general/\" target = \"_blank\"><span class=\"button\" style=\"width:170px; text-align:left;\"><span class=\"button_border\" style=\"width:168px; padding: 0;\">&nbsp;<ib class=\"flag-img-" + nation + " \"></ib>&nbsp;Home Country Forum</span></span></a>";
-		//		var transferforum = "<br><a href = \"https://trophymanager.com/forum/int/transfer/\" target = \"_blank\"><span class=\"button\" style=\"width:170px; text-align:left;\"><span class=\"button_border\" style=\"width:168px; padding: 0;\">&nbsp;<img src=\"/pics/flags/gradient/int.png\">&nbsp;Transfer Forum</span></span></a>";
-		//		if (notGK) {
-		//			var transferPosArray = ["de/", "de/", "dm/", "dm/", "mf/", "mf/", "om/", "om/", "fw/"];
-		//			var transferSideArray = ["ce/", "le/ri/", "ce/", "le/ri/", "ce/", "le/ri/", "ce/", "le/ri/", "ce/"];
-		//			var pos1 = transferPosArray[FP[0]];
-		//			var pos2 = "";
-		//			var side1 = transferSideArray[FP[0]];
-		//			var side2 = "";
-		//			if (FP[0] != FP[1]) {
-		//				pos2 = transferPosArray[FP[1]];
-		//				side2 = transferSideArray[FP[1]];
-		//				if (pos1 == pos2) pos2 = "";
-		//				if (side1 == side2) side2 = "";
-		//			}
-		//			var transferPos = pos1 + pos2;
-		//			var transferSide = side1 + side2;
-		//		}
-		//		var amin = Math.max(year * 1 - 2, 18);
-		//		var amax = Math.min(year * 1 + 1, 37);
-		//		var skillsC = [];
-		//		for (i = 0; i < skills.length; i++) {
-		//			skillsC[i] = Math.floor(skills[i] * 1 - 2);
-		//			if (skillsC[i] < 1) skillsC[i] = 1;
-		//		}
-		//		if (notGK) {
-		//			if (R5FP0 < R5FP1) var skillselect = FP[1];
-		//			else var skillselect = FP[0];
-		//			var t_skills = ["/str/" + skillsC[0] + "/pac/" + skillsC[2] + "/mar/" + skillsC[3] + "/tac/" + skillsC[4] + "/wor/" + skillsC[5] + "/pos/" + skillsC[6] + "/pas/" + skillsC[7] + "/hea/" + skillsC[10],
-		//			"/str/" + skillsC[0] + "/pac/" + skillsC[2] + "/mar/" + skillsC[3] + "/tac/" + skillsC[4] + "/wor/" + skillsC[5] + "/pos/" + skillsC[6] + "/cro/" + skillsC[8] + "/hea/" + skillsC[10],
-		//			"/str/" + skillsC[0] + "/pac/" + skillsC[2] + "/mar/" + skillsC[3] + "/tac/" + skillsC[4] + "/wor/" + skillsC[5] + "/pos/" + skillsC[6] + "/pas/" + skillsC[7] + "/tec/" + skillsC[9] + "/hea/" + skillsC[10],
-		//			"/pac/" + skillsC[2] + "/mar/" + skillsC[3] + "/tac/" + skillsC[4] + "/wor/" + skillsC[5] + "/pos/" + skillsC[6] + "/pas/" + skillsC[7] + "/cro/" + skillsC[8] + "/tec/" + skillsC[9] + "/hea/" + skillsC[10],
-		//			"/pac/" + skillsC[2] + "/wor/" + skillsC[5] + "/pos/" + skillsC[6] + "/pas/" + skillsC[7] + "/tec/" + skillsC[9] + "/hea/" + skillsC[10] + "/fin/" + skillsC[11] + "/lon/" + skillsC[12],
-		//			"/pac/" + skillsC[2] + "/wor/" + skillsC[5] + "/pos/" + skillsC[6] + "/pas/" + skillsC[7] + "/cro/" + skillsC[8] + "/tec/" + skillsC[9] + "/hea/" + skillsC[10] + "/fin/" + skillsC[11] + "/lon/" + skillsC[12],
-		//			"/pac/" + skillsC[2] + "/wor/" + skillsC[5] + "/pos/" + skillsC[6] + "/pas/" + skillsC[7] + "/tec/" + skillsC[9] + "/hea/" + skillsC[10] + "/fin/" + skillsC[11] + "/lon/" + skillsC[12],
-		//			"/pac/" + skillsC[2] + "/wor/" + skillsC[5] + "/pos/" + skillsC[6] + "/pas/" + skillsC[7] + "/cro/" + skillsC[8] + "/tec/" + skillsC[9] + "/hea/" + skillsC[10] + "/fin/" + skillsC[11],
-		//			"/str/" + skillsC[0] + "/pac/" + skillsC[2] + "/wor/" + skillsC[5] + "/pos/" + skillsC[6] + "/pas/" + skillsC[7] + "/tec/" + skillsC[9] + "/hea/" + skillsC[10] + "/fin/" + skillsC[11] + "/lon/" + skillsC[12]];
-		//			var similarplayer = "<br><a href=\"https://trophymanager.com/transfer/#/" + transferPos + transferSide + "for/amin/" + amin + "/amax/" + amax + t_skills[skillselect] + "/\" target = \"_blank\"><span class=\"button\" style=\"width:170px; text-align:left;\"><span class=\"button_border\" style=\"width:168px; padding: 0;\">&nbsp;<img src=\"/pics/binoc.png\">&nbsp;&nbsp;Similar Player</span></span></a>";
-		//		}
-		//		else {
-		//			var similarplayer = "<br><a href=\"https://trophymanager.com/transfer/#/gk/for/amin/" + amin + "/amax/" + amax + "/str/" + skillsC[0] + "/pac/" + skillsC[2] + "/han/" + skillsC[3] + "/one/" + skillsC[4] + "/ref/" + skillsC[5] + "/ari/" + skillsC[6] + "/jum/" + skillsC[7] + "/\" target = \"_blank\"><span class=\"button\" style=\"width:170px; text-align:left;\"><span class=\"button_border\" style=\"width:168px; padding: 0;\">&nbsp;<img src=\"/pics/binoc.png\">&nbsp;&nbsp;Similar Player</span></span></a>";
-		//		}
+				//	### transfer info #############################################################################
+				var R5Value_num = 0;
+				var R5Value2_num = 0;
+				var maxPrice_num = 0;
+				var staPrice_num = 0;
+				if (((newPlayer == 0 && year <= 24) && session <= month) || session > month) {
+					if (minR5Value != maxR5Value) {
+						R5Value_num = en.format(minR5Value) + " - " + "<span class=\"coin\">" + en.format(maxR5Value) + "</span>";
+						R5Value2_num = en.format(minR5Value2) + " - " + "<span class=\"coin\">" + en.format(maxR5Value2) + "</span>";
+					}
+					else {
+						R5Value_num = "<span class=\"coin\">" + en.format(maxR5Value) + "</span>";
+						R5Value2_num = "<span class=\"coin\">" + en.format(maxR5Value2) + "</span>";
+					}
+				}
+				else {
+					R5Value_num = "<span class=\"coin\">" + en.format(R5Value) + "</span>";
+					R5Value2_num = "<span class=\"coin\">" + en.format(R5Value2) + "</span>";
+				}
+				if (retire) {
+					maxPrice_num = "Transfer not possible";
+					staPrice_num = "Transfer not possible";
+				}
+				else if (year < 18) {
+					maxPrice_num = "<span class=\"coin\" style=\"color:silver;\">" + en.format(maxPrice) + "</span>";
+					staPrice_num = "<span class=\"coin\" style=\"color:silver;\">" + en.format(staPrice) + "</span>";
+				}
+				else {
+					maxPrice_num = "<span class=\"coin\">" + en.format(maxPrice) + "</span>";
+					staPrice_num = "<span class=\"coin\">" + en.format(staPrice) + "</span>";
+				}
+				var pricetable = "<div><table id=\"pricetable\" style=\"margin-right:25px; margin-top:5px; margin-bottom:5px\"><tbody></tbody></table></div>";
+				var R5Value_row = "<tr><td align=\"left\">R5 VALUE</td><td align=\"right\">" + R5Value_num + "</td></tr>";
+				var R5Value2_row = "<tr><td align=\"left\">R5 VALUE+</td><td align=\"right\">" + R5Value2_num + "</td></tr>";
+				var maxPrice_row = "<tr><td align=\"left\">Max Sell Price</td><td align=\"right\">" + maxPrice_num + "</td></tr>";
+				var staPrice_row = "<tr><td align=\"left\">Sell-To-Agent</td><td align=\"right\">" + staPrice_num + "</td></tr>";
+				var countryforum = "<br><a href = \"https://trophymanager.com/forum/" + nation + "/general/\" target = \"_blank\"><span class=\"button\" style=\"width:170px; text-align:left;\"><span class=\"button_border\" style=\"width:168px; padding: 0;\">&nbsp;<ib class=\"flag-img-" + nation + " \"></ib>&nbsp;Home Country Forum</span></span></a>";
+				var transferforum = "<br><a href = \"https://trophymanager.com/forum/int/transfer/\" target = \"_blank\"><span class=\"button\" style=\"width:170px; text-align:left;\"><span class=\"button_border\" style=\"width:168px; padding: 0;\">&nbsp;<img src=\"/pics/flags/gradient/int.png\">&nbsp;Transfer Forum</span></span></a>";
+				if (notGK) {
+					var transferPosArray = ["de/", "de/", "dm/", "dm/", "mf/", "mf/", "om/", "om/", "fw/"];
+					var transferSideArray = ["ce/", "le/ri/", "ce/", "le/ri/", "ce/", "le/ri/", "ce/", "le/ri/", "ce/"];
+					var pos1 = transferPosArray[FP[0]];
+					var pos2 = "";
+					var side1 = transferSideArray[FP[0]];
+					var side2 = "";
+					if (FP[0] != FP[1]) {
+						pos2 = transferPosArray[FP[1]];
+						side2 = transferSideArray[FP[1]];
+						if (pos1 == pos2) pos2 = "";
+						if (side1 == side2) side2 = "";
+					}
+					var transferPos = pos1 + pos2;
+					var transferSide = side1 + side2;
+				}
+				var amin = Math.max(year * 1 - 2, 18);
+				var amax = Math.min(year * 1 + 1, 37);
+				var skillsC = [];
 
-		//		$("div.std.align_center.transfer_box").attr("id", "transferbox");
-		//		$("#transferbox").append("<div id=\"t_link\"></div>");
-		//		$("#t_link").append(countryforum, transferforum, similarplayer, pricetable);
-		//		$("#pricetable").append(R5Value_row);
-		//		if (hidden[0].innerHTML != "") $("#pricetable").append(R5Value2_row);
-		//		$("#pricetable").append(maxPrice_row, staPrice_row);
-		//		if (testmode == 99) {
-		//			var bep_row = "<tr><td align=\"left\">BEP</td><td align=\"right\">" + bep + "</td></tr>";
-		//			var fstaPrice_row = "<tr><td align=\"left\">FutureSTA</td><td align=\"right\">" + en.format(futureSTA) + "</td></tr>";
-		//			$("#pricetable").append(bep_row, fstaPrice_row);
-		//		}
-		//		$("#pricetable").find("tr:odd").addClass("odd");
+				if (skills == undefined) { console.log("here"); }
 
-		//		//	### R5 column #################################################################################
-		//		var R5column =
-		//			"<div class=\"box\">" +
-		//			"<div class=\"box_head\">" +
-		//			"<h2 class=\"std\">Rating R5</h2>" +
-		//			"</div>" +
-		//			"<div class=\"box_body\">" +
-		//			"<div class=\"box_shadow\"></div>" +
-		//			"<div id=\"R5column_content\" class=\"content_menu\"></div>" +
-		//			"</div>" +
-		//			"<div class=\"box_footer\">" +
-		//			"<div></div>" +
-		//			"</div>" +
-		//			"</div>";
-		//		$(".column1").append(R5column);
+				for (i = 0; i < skills.length; i++) {
+					skillsC[i] = Math.floor(skills[i] * 1 - 2);
+					if (skillsC[i] < 1) skillsC[i] = 1;
+				}
+				if (notGK) {
+					if (R5FP0 < R5FP1) var skillselect = FP[1];
+					else var skillselect = FP[0];
+					var t_skills = ["/str/" + skillsC[0] + "/pac/" + skillsC[2] + "/mar/" + skillsC[3] + "/tac/" + skillsC[4] + "/wor/" + skillsC[5] + "/pos/" + skillsC[6] + "/pas/" + skillsC[7] + "/hea/" + skillsC[10],
+					"/str/" + skillsC[0] + "/pac/" + skillsC[2] + "/mar/" + skillsC[3] + "/tac/" + skillsC[4] + "/wor/" + skillsC[5] + "/pos/" + skillsC[6] + "/cro/" + skillsC[8] + "/hea/" + skillsC[10],
+					"/str/" + skillsC[0] + "/pac/" + skillsC[2] + "/mar/" + skillsC[3] + "/tac/" + skillsC[4] + "/wor/" + skillsC[5] + "/pos/" + skillsC[6] + "/pas/" + skillsC[7] + "/tec/" + skillsC[9] + "/hea/" + skillsC[10],
+					"/pac/" + skillsC[2] + "/mar/" + skillsC[3] + "/tac/" + skillsC[4] + "/wor/" + skillsC[5] + "/pos/" + skillsC[6] + "/pas/" + skillsC[7] + "/cro/" + skillsC[8] + "/tec/" + skillsC[9] + "/hea/" + skillsC[10],
+					"/pac/" + skillsC[2] + "/wor/" + skillsC[5] + "/pos/" + skillsC[6] + "/pas/" + skillsC[7] + "/tec/" + skillsC[9] + "/hea/" + skillsC[10] + "/fin/" + skillsC[11] + "/lon/" + skillsC[12],
+					"/pac/" + skillsC[2] + "/wor/" + skillsC[5] + "/pos/" + skillsC[6] + "/pas/" + skillsC[7] + "/cro/" + skillsC[8] + "/tec/" + skillsC[9] + "/hea/" + skillsC[10] + "/fin/" + skillsC[11] + "/lon/" + skillsC[12],
+					"/pac/" + skillsC[2] + "/wor/" + skillsC[5] + "/pos/" + skillsC[6] + "/pas/" + skillsC[7] + "/tec/" + skillsC[9] + "/hea/" + skillsC[10] + "/fin/" + skillsC[11] + "/lon/" + skillsC[12],
+					"/pac/" + skillsC[2] + "/wor/" + skillsC[5] + "/pos/" + skillsC[6] + "/pas/" + skillsC[7] + "/cro/" + skillsC[8] + "/tec/" + skillsC[9] + "/hea/" + skillsC[10] + "/fin/" + skillsC[11],
+					"/str/" + skillsC[0] + "/pac/" + skillsC[2] + "/wor/" + skillsC[5] + "/pos/" + skillsC[6] + "/pas/" + skillsC[7] + "/tec/" + skillsC[9] + "/hea/" + skillsC[10] + "/fin/" + skillsC[11] + "/lon/" + skillsC[12]];
+					var similarplayer = "<br><a href=\"https://trophymanager.com/transfer/#/" + transferPos + transferSide + "for/amin/" + amin + "/amax/" + amax + t_skills[skillselect] + "/\" target = \"_blank\"><span class=\"button\" style=\"width:170px; text-align:left;\"><span class=\"button_border\" style=\"width:168px; padding: 0;\">&nbsp;<img src=\"/pics/binoc.png\">&nbsp;&nbsp;Similar Player</span></span></a>";
+				}
+				else {
+					var similarplayer = "<br><a href=\"https://trophymanager.com/transfer/#/gk/for/amin/" + amin + "/amax/" + amax + "/str/" + skillsC[0] + "/pac/" + skillsC[2] + "/han/" + skillsC[3] + "/one/" + skillsC[4] + "/ref/" + skillsC[5] + "/ari/" + skillsC[6] + "/jum/" + skillsC[7] + "/\" target = \"_blank\"><span class=\"button\" style=\"width:170px; text-align:left;\"><span class=\"button_border\" style=\"width:168px; padding: 0;\">&nbsp;<img src=\"/pics/binoc.png\">&nbsp;&nbsp;Similar Player</span></span></a>";
+				}
 
-		//		if (notGK) {
-		//			var goldstar = 0;
-		//			for (j = 0; j < 2; j++) {
-		//				for (i = 0; i < 14; i++) {
-		//					if (j == 0 && skills[i] == 20) goldstar++;
-		//					if (j == 1 && skills[i] != 20) skills[i] = skills[i] * 1 + remainder / (14 - goldstar);
-		//				}
-		//			}
-		//			var CK = funFix2(skills[8] + skills[13] + skills[9] / 2 + rou2 * 2.5);
-		//			var FK = funFix2(skills[12] + skills[13] + skills[9] / 2 + rou2 * 2.5);
-		//			var PK = funFix2(skills[11] + skills[13] + skills[9] / 2 + rou2 * 2.5);
+				errInfo = "computeRating.7";
 
-		//			var content1 = "<table><tr><td>PhySum: </td><td>" + phySum + " (" + MR(phySum / peak[0] * 5) + "%)</td></tr><tr><td>TacSum: </td><td>" + tacSum + " (" + MR(tacSum / peak[1] * 5) + "%)</td></tr><tr><td>TecSum: </td><td>" + tecSum + " (" + MR(tecSum / peak[2] * 5) + "%)</td></tr><tr><td>AllSum: </td><td>" + allSum + " + " + remainder + " </td></tr><tr><td></td><td>&nbsp;</td></tr><tr><td>Finish Type</td><td></td></tr><tr><td>Regular: </td><td>" + shotregular + "</td></tr><tr><td>Long: </td><td>" + shotlong + "</td></tr><tr><td>Header: </td><td>" + shothead + "</td></tr></tr><tr><td>&nbsp;</td></tr><tr><td>Set Pieces</td><td></td></tr><tr><td>Corner: </td><td>" + CK + "</td></tr><tr><td>Freekick: </td><td>" + FK + "</td></tr><tr><td>Penalty: </td><td>" + PK + "</td></tr></table>";
-		//			var content2 = "<br><table><tr><td>Physique</td><td>" + R5RECstar[0] + "</td></tr><tr><td>Tactical</td><td>" + R5RECstar[1] + "</td></tr><tr><td>Technical</td><td>" + R5RECstar[2] + "</td></tr><tr><td>Assist</td><td>" + R5RECstar[3] + "</td></tr><tr><td>Defence</td><td>" + R5RECstar[4] + "</td></tr><tr><td>Shooting</td><td>" + R5RECstar[5] + "</td></tr>";
-		//		}
-		//		else {
-		//			var content1 = "<table><tr><td>PhySum: </td><td>" + phySum + " (" + MR(phySum / peak[0] * 5) + "%)</td></tr><tr><td>TacSum: </td><td>" + tacSum + " (" + MR(tacSum / peak[1] * 5) + "%)</td></tr><tr><td>TecSum: </td><td>" + tecSum + " (" + MR(tecSum / peak[2] * 5) + "%)</td></tr><tr><td>AllSum: </td><td>" + allSum + " + " + remainder + " </td></tr></table>";
-		//			var content2 = "<br><table><tr><td>Physique</td><td>" + R5RECstar[0] + "</td></tr><tr><td>Tactical</td><td>" + R5RECstar[1] + "</td></tr><tr><td>Technical</td><td>" + R5RECstar[2] + "</td></tr><tr><td>Saving</td><td>" + R5RECstar[6] + "</td></tr><tr><td>Counter</td><td>" + R5RECstar[7] + "</td></tr></table>";
-		//		}
-		//		$("#R5column_content").append(content1, content2);
+				$("div.std.align_center.transfer_box").attr("id", "transferbox");
+				$("#transferbox").append("<div id=\"t_link\"></div>");
+				$("#t_link").append(countryforum, transferforum, similarplayer, pricetable);
+				$("#pricetable").append(R5Value_row);
+				if (hidden[0].innerHTML != "") $("#pricetable").append(R5Value2_row);
+				$("#pricetable").append(maxPrice_row, staPrice_row);
+				if (testmode == 99) {
+					var bep_row = "<tr><td align=\"left\">BEP</td><td align=\"right\">" + bep + "</td></tr>";
+					var fstaPrice_row = "<tr><td align=\"left\">FutureSTA</td><td align=\"right\">" + en.format(futureSTA) + "</td></tr>";
+					$("#pricetable").append(bep_row, fstaPrice_row);
+				}
+				$("#pricetable").find("tr:odd").addClass("odd");
 
-		//		//	### about R5 #################################################################################
+				//	### R5 column #################################################################################
+				var R5column =
+					"<div class=\"box\">" +
+					"<div class=\"box_head\">" +
+					"<h2 class=\"std\">Rating R5</h2>" +
+					"</div>" +
+					"<div class=\"box_body\">" +
+					"<div class=\"box_shadow\"></div>" +
+					"<div id=\"R5column_content\" class=\"content_menu\"></div>" +
+					"</div>" +
+					"<div class=\"box_footer\">" +
+					"<div></div>" +
+					"</div>" +
+					"</div>";
+				$(".column1").append(R5column);
 
-		//		var aboutR5 =
-		//			"<div class=\"link_area\">" +
-		//			"<ul>" +
-		//			"<li class=\"header\">RatingR5</li>" +
-		//			"<li><a href=\"https://tmchuchi.web.fc2.com/R5.html\" target=\"_blank\">About RatingR5</a></li>" +
-		//			"<li><a href=\"https://tmchuchi.web.fc2.com/R5faq.html\" target=\"_blank\">FAQ</a></li>" +
-		//			"<li><a href=\"https://trophymanager.com/forum/jp/general/400533/last\" target=\"_blank\">Forum</a></li>" +
-		//			"</ul>" +
-		//			"</div>";
+				if (notGK) {
+					var goldstar = 0;
+					if (skills == undefined) { console.log("here"); }
 
-		//		var R5config =
-		//			"<div id=\"R5confg\" class=\"link_area\">" +
-		//			"<ul>" +
-		//			"<li class=\"header\">R5 configuration</li>" +
-		//			"<li><input type=\"checkbox\" name=\"checkbox\" id=\"config0\" value=\"FP Detail\"> FP detail</li>" +
-		//			"<li><input type=\"checkbox\" name=\"checkbox\" id=\"config1\" value=\"All Position Rating\"> All Position Rating</li>" +
-		//			"<li><input type=\"checkbox\" name=\"checkbox\" id=\"config2\" value=\"R5 by Attacking Style\"> R5 by Attacking Style</li>" +
-		//			"<li><input type=\"checkbox\" name=\"checkbox\" id=\"config3\" value=\"Captaincy\"> Captaincy</li>" +
-		//			"<li><input type=\"checkbox\" name=\"checkbox\" id=\"config4\" value=\"Growth Record\"> Growth Record</li><br>" +
-		//			"<li id=\"reload\"><span class=\"button config\" style=\"width:80px; line-height:19px;\" onclick=\"window.location.reload()\"><span class=\"button_border\" style=\"width:78px; line-height:19px; padding: 0;\">Reload</span></span></li>" +
-		//			"</ul>" +
-		//			"</div>";
-		//		$(".column1").append(aboutR5, R5config);
-		//		$("input[name='checkbox']").attr("style", "opacity:0.7");
-		//		$("#reload").hide();
+					for (j = 0; j < 2; j++) {
+						for (i = 0; i < 14; i++) {
+							if (j == 0 && skills[i] == 20) goldstar++;
+							if (j == 1 && skills[i] != 20) skills[i] = skills[i] * 1 + remainder / (14 - goldstar);
+						}
+					}
+					var CK = funFix2(skills[8] + skills[13] + skills[9] / 2 + rou2 * 2.5);
+					var FK = funFix2(skills[12] + skills[13] + skills[9] / 2 + rou2 * 2.5);
+					var PK = funFix2(skills[11] + skills[13] + skills[9] / 2 + rou2 * 2.5);
 
-		//		$(function () {
-		//			for (i = 0; i < 5; i++) {
-		//				if ($.cookie("config" + i) == undefined) $.cookie("config" + i, true, { expires: 3650, path: "/players/" });
-		//			}
-		//			$("input[name='checkbox']").each(function () {
-		//				var name = $(this).attr("id");
-		//				$(this).change(function () {
-		//					$.cookie(name, $(this).prop("checked"), { expires: 3650, path: "/players/" });
-		//					$("#reload").show();
-		//				})
-		//			})
-		//		});
+					var content1 = "<table><tr><td>PhySum: </td><td>" + phySum + " (" + MR(phySum / peak[0] * 5) + "%)</td></tr><tr><td>TacSum: </td><td>" + tacSum + " (" + MR(tacSum / peak[1] * 5) + "%)</td></tr><tr><td>TecSum: </td><td>" + tecSum + " (" + MR(tecSum / peak[2] * 5) + "%)</td></tr><tr><td>AllSum: </td><td>" + allSum + " + " + remainder + " </td></tr><tr><td></td><td>&nbsp;</td></tr><tr><td>Finish Type</td><td></td></tr><tr><td>Regular: </td><td>" + shotregular + "</td></tr><tr><td>Long: </td><td>" + shotlong + "</td></tr><tr><td>Header: </td><td>" + shothead + "</td></tr></tr><tr><td>&nbsp;</td></tr><tr><td>Set Pieces</td><td></td></tr><tr><td>Corner: </td><td>" + CK + "</td></tr><tr><td>Freekick: </td><td>" + FK + "</td></tr><tr><td>Penalty: </td><td>" + PK + "</td></tr></table>";
+					var content2 = "<br><table><tr><td>Physique</td><td>" + R5RECstar[0] + "</td></tr><tr><td>Tactical</td><td>" + R5RECstar[1] + "</td></tr><tr><td>Technical</td><td>" + R5RECstar[2] + "</td></tr><tr><td>Assist</td><td>" + R5RECstar[3] + "</td></tr><tr><td>Defence</td><td>" + R5RECstar[4] + "</td></tr><tr><td>Shooting</td><td>" + R5RECstar[5] + "</td></tr>";
+				}
+				else {
+					var content1 = "<table><tr><td>PhySum: </td><td>" + phySum + " (" + MR(phySum / peak[0] * 5) + "%)</td></tr><tr><td>TacSum: </td><td>" + tacSum + " (" + MR(tacSum / peak[1] * 5) + "%)</td></tr><tr><td>TecSum: </td><td>" + tecSum + " (" + MR(tecSum / peak[2] * 5) + "%)</td></tr><tr><td>AllSum: </td><td>" + allSum + " + " + remainder + " </td></tr></table>";
+					var content2 = "<br><table><tr><td>Physique</td><td>" + R5RECstar[0] + "</td></tr><tr><td>Tactical</td><td>" + R5RECstar[1] + "</td></tr><tr><td>Technical</td><td>" + R5RECstar[2] + "</td></tr><tr><td>Saving</td><td>" + R5RECstar[6] + "</td></tr><tr><td>Counter</td><td>" + R5RECstar[7] + "</td></tr></table>";
+				}
+				$("#R5column_content").append(content1, content2);
 
-		//		for (i = 0; i < 5; i++) {
-		//			if ($.cookie("config" + i) == "true") {
-		//				$("#config" + i).prop("checked", true);
-		//				$("#R5table" + i + "_div").show();
-		//			}
-		//			else {
-		//				$("#config" + i).prop("checked", false);
-		//				$("#R5table" + i + "_div").hide();
-		//			}
-		//		}
+				//	### about R5 #################################################################################
+
+				var aboutR5 =
+					"<div class=\"link_area\">" +
+					"<ul>" +
+					"<li class=\"header\">RatingR5</li>" +
+					"<li><a href=\"https://tmchuchi.web.fc2.com/R5.html\" target=\"_blank\">About RatingR5</a></li>" +
+					"<li><a href=\"https://tmchuchi.web.fc2.com/R5faq.html\" target=\"_blank\">FAQ</a></li>" +
+					"<li><a href=\"https://trophymanager.com/forum/jp/general/400533/last\" target=\"_blank\">Forum</a></li>" +
+					"</ul>" +
+					"</div>";
+
+				var R5config =
+					"<div id=\"R5confg\" class=\"link_area\">" +
+					"<ul>" +
+					"<li class=\"header\">R5 configuration</li>" +
+					"<li><input type=\"checkbox\" name=\"checkbox\" id=\"config0\" value=\"FP Detail\"> FP detail</li>" +
+					"<li><input type=\"checkbox\" name=\"checkbox\" id=\"config1\" value=\"All Position Rating\"> All Position Rating</li>" +
+					"<li><input type=\"checkbox\" name=\"checkbox\" id=\"config2\" value=\"R5 by Attacking Style\"> R5 by Attacking Style</li>" +
+					"<li><input type=\"checkbox\" name=\"checkbox\" id=\"config3\" value=\"Captaincy\"> Captaincy</li>" +
+					"<li><input type=\"checkbox\" name=\"checkbox\" id=\"config4\" value=\"Growth Record\"> Growth Record</li><br>" +
+					"<li id=\"reload\"><span class=\"button config\" style=\"width:80px; line-height:19px;\" onclick=\"window.location.reload()\"><span class=\"button_border\" style=\"width:78px; line-height:19px; padding: 0;\">Reload</span></span></li>" +
+					"</ul>" +
+					"</div>";
+				$(".column1").append(aboutR5, R5config);
+				$("input[name='checkbox']").attr("style", "opacity:0.7");
+				$("#reload").hide();
+
+				$(function () {
+					for (i = 0; i < 5; i++) {
+						if ($.cookie("config" + i) == undefined) $.cookie("config" + i, true, { expires: 3650, path: "/players/" });
+					}
+					$("input[name='checkbox']").each(function () {
+						var name = $(this).attr("id");
+						$(this).change(function () {
+							$.cookie(name, $(this).prop("checked"), { expires: 3650, path: "/players/" });
+							$("#reload").show();
+						})
+					})
+				});
+
+				for (i = 0; i < 5; i++) {
+					if ($.cookie("config" + i) == "true") {
+						$("#config" + i).prop("checked", true);
+						$("#R5table" + i + "_div").show();
+					}
+					else {
+						$("#config" + i).prop("checked", false);
+						$("#R5table" + i + "_div").hide();
+					}
+				}
 
 
 
-		//		// ### Award ######################################################################################
-		//		var award = $("html body div.main_center div.column3_a div.box div.box_body div.std ul.clean.underlined");
-		//		var medal_a = award.find("img[src$='/pics/player_award_year.png']").length;
-		//		var medal_b = award.find("img[src$='/pics/player_award_goal.png']").length;
-		//		var medal_u21a = award.find("img[src$='/pics/player_award_year_u21.png']").length;
-		//		var medal_u21b = award.find("img[src$='/pics/player_award_goal_u21.png']").length;
-		//		var medals = medal_a + medal_b + medal_u21a + medal_u21b;
-		//		var medals_icon = "";
-		//		var award_table = "";
-		//		var medals_a_row = "";
-		//		var medals_b_row = "";
-		//		var medals_u21a_row = "";
-		//		var medals_u21b_row = "";
-		//		if (medal_a) medals_a_row = "<tr><td style=\"font-size:small; color:gold; padding-left:30px\" align=\"left\">Player of the Year * " + medal_a + "</td></tr>";
-		//		if (medal_b) medals_b_row = "<tr><td style=\"font-size:small; color:gold; padding-left:30px\" align=\"left\">Top Goalscorer * " + medal_b + "</td></tr>";
-		//		if (medal_u21a) medals_u21a_row = "<tr><td style=\"font-size:small; font-weight:normal; padding-left:30px\" align=\"left\">U-21 Player of the Year * " + medal_u21a + "</td></tr>";
-		//		if (medal_u21b) medals_u21b_row = "<tr><td style=\"font-size:small; font-weight:normal; padding-left:30px\" align=\"left\">U-21 Top Goalscorer * " + medal_u21b + "</td></tr>";
-		//		if (medals) {
-		//			for (i = 0; i < medals; i++) {
-		//				medals_icon += "<img src=\"/pics/icons/mini_medal.png\">&nbsp;";
-		//			};
-		//			award_table = "<div class=\"std\"><table id=\"award\" style=\"border-top:solid 1px;\"><tbody><tr><td align=\"center\">" + medals_icon + "</td></tr>" + medals_a_row + medals_b_row + medals_u21a_row + medals_u21b_row + "</tbody></table></div<div>";
-		//		};
+				// ### Award ######################################################################################
+				var award = $("html body div.main_center div.column3_a div.box div.box_body div.std ul.clean.underlined");
+				var medal_a = award.find("img[src$='/pics/player_award_year.png']").length;
+				var medal_b = award.find("img[src$='/pics/player_award_goal.png']").length;
+				var medal_u21a = award.find("img[src$='/pics/player_award_year_u21.png']").length;
+				var medal_u21b = award.find("img[src$='/pics/player_award_goal_u21.png']").length;
+				var medals = medal_a + medal_b + medal_u21a + medal_u21b;
+				var medals_icon = "";
+				var award_table = "";
+				var medals_a_row = "";
+				var medals_b_row = "";
+				var medals_u21a_row = "";
+				var medals_u21b_row = "";
+				if (medal_a) medals_a_row = "<tr><td style=\"font-size:small; color:gold; padding-left:30px\" align=\"left\">Player of the Year * " + medal_a + "</td></tr>";
+				if (medal_b) medals_b_row = "<tr><td style=\"font-size:small; color:gold; padding-left:30px\" align=\"left\">Top Goalscorer * " + medal_b + "</td></tr>";
+				if (medal_u21a) medals_u21a_row = "<tr><td style=\"font-size:small; font-weight:normal; padding-left:30px\" align=\"left\">U-21 Player of the Year * " + medal_u21a + "</td></tr>";
+				if (medal_u21b) medals_u21b_row = "<tr><td style=\"font-size:small; font-weight:normal; padding-left:30px\" align=\"left\">U-21 Top Goalscorer * " + medal_u21b + "</td></tr>";
+				if (medals) {
+					for (i = 0; i < medals; i++) {
+						medals_icon += "<img src=\"/pics/icons/mini_medal.png\">&nbsp;";
+					};
+					award_table = "<div class=\"std\"><table id=\"award\" style=\"border-top:solid 1px;\"><tbody><tr><td align=\"center\">" + medals_icon + "</td></tr>" + medals_a_row + medals_b_row + medals_u21a_row + medals_u21b_row + "</tbody></table></div<div>";
+				};
 
-		//		var column3_a_box = $("html body div.main_center div.column3_a div.box div.box_head").length;
-		//		$("html body div.main_center div.column3_a div.box div.box_head").eq(column3_a_box - 1).append(award_table);
+				var column3_a_box = $("html body div.main_center div.column3_a div.box div.box_head").length;
+				$("html body div.main_center div.column3_a div.box div.box_head").eq(column3_a_box - 1).append(award_table);
 
-		//		// ### functions ##################################################################################
+				// ### functions ##################################################################################
 
 				function calc_captaincy() {
 					// WEIGHT(RVA's)
@@ -1781,14 +1725,7 @@
 						else
 							cap3[i] = funFix2((i * 4 + prof * 1 - aggr * 1) / 39 * rou3);
 					}
-
-					return {
-						"cap": cap,
-						"cap3": cap3,
-						"weightDefault": weightDefault,
-						"cap2": cap2
-					};
-
+					return { cap, cap3, weightDefault, cap2 };
 				}
 
 				function calc_R5REC() {
@@ -1799,6 +1736,8 @@
 					var phyREC = funFix2((phySum / peak[0] + rou2) * 5 / 20);
 					var tacREC = funFix2((tacSum / peak[1] + rou2) * 5 / 20);
 					var tecREC = funFix2((tecSum / peak[2] + rou2) * 5 / 20);
+					if (skills == undefined) { console.log("here"); }
+
 					var assistREC = funFix2((skills[0] * 0.01 + skills[1] * 0.1 + skills[2] * 0.2 + skills[5] * 0.09 + skills[6] * 0.07 + skills[7] * 0.22 + skills[8] * 0.13 + skills[9] * 0.18 + rou2) / 4);
 					var defenceREC = funFix2((skills[0] * 0.121481481 + skills[1] * 0.040740741 + skills[2] * 0.111111111 + skills[3] * 0.202962963 + skills[4] * 0.2 + skills[5] * 0.071111111 + skills[6] * 0.071111111 + skills[10] * 0.181481481 + rou2) / 4);
 					var shootingREC = funFix2((skills[0] * 0.082813522 + skills[2] * 0.038541421 + skills[5] * 0.087757535 + skills[6] * 0.126339391 + skills[9] * 0.104203341 + skills[10] * 0.104949572 + skills[11] * 0.301067794 + skills[12] * 0.154327424 + rou2) / 4);
@@ -1836,17 +1775,16 @@
 							star3[i] = "";
 						R5RECstar[i] = star1[i] + star2[i] + star3[i];
 					}
-
-					return {
-						"peak": peak,
-						"R5RECstar": R5RECstar
-					};
+					return { peak, R5RECstar };
 				}
 
 				function calc_stamina_effect() {
 					var minR = [];
 					var minR0 = [];
 					var minR1 = [];
+
+					if (skills == undefined) { console.log("here"); }
+
 					if (FP[0] != FP[1]) {
 						for (i = 1; i < 7; i++) {
 							minR0[i] = funFix2(R5FP0 * (1 - (20 - skills[1]) * i / 200));
@@ -1872,22 +1810,14 @@
 						else
 							minR[i] = [minR1[0], minR1[1], minR1[2], minR1[4], minR1[6]];
 					}
-
-					return {
-						"R5FP": R5FP,
-						"minR": minR
-					};
+					return { R5FP, minR };
 				}
 
 				function finish_type() {
 					var shotregular = funFix2(skillsB[11] * 0.5 + (skillsB[9] + skillsB[6] + skillsB[2]) / 3 * 0.4 + (skillsB[0] + skillsB[5]) / 2 * 0.1 + rou2);
 					var shotlong = funFix2(skillsB[12] * 0.5 + (skillsB[9] + skillsB[11] + skillsB[6]) / 3 * 0.4 + (skillsB[0] + skillsB[5]) / 2 * 0.1 + rou2);
 					var shothead = funFix2(skillsB[10] * 0.5 + (skillsB[0] * 2 + skillsB[6]) / 3 * 0.4 + (skillsB[2] + skillsB[5]) / 2 * 0.1 + rou2);
-					return {
-						"shotregular": shotregular,
-						"shotlong": shotlong,
-						"shothead": shothead
-					};
+					return { shotregular, shotlong, shothead };
 				}
 
 				function bep() {
@@ -1911,10 +1841,7 @@
 						if (session <= month) bep = en.format(bep);
 						else bep = "(" + en.format(bep) + ")";
 					}
-					return {
-						"bep": bep,
-						"futureSTA": futureSTA
-					};
+					return { bep, futureSTA };
 				}
 
 				function calc_VALUE() {
@@ -2152,6 +2079,9 @@
 						maxR5Value = Math.max(maxR5Value, staPrice);
 						minR5Value = Math.max(minR5Value, staPrice);
 					}
+
+					errInfo = "calcValue.1";
+
 					var hidden = hidden_skill_table.getElementsByTagName("td");
 					if (hidden[0].innerHTML != "") {
 						var x;
@@ -2222,34 +2152,22 @@
 							minR5Value2 = Math.max(minR5Value2, staPrice);
 						}
 					}
-
-					return {
-						"i": i,
-						"hidden": hidden,
-						"R5all": R5all,
-						"adap": adap,
-						"aggr": aggr,
-						"prof": prof,
-						"minR5Value": minR5Value,
-						"maxR5Value": maxR5Value,
-						"minR5Value2": minR5Value2,
-						"maxR5Value2": maxR5Value2,
-						"R5Value": R5Value,
-						"R5Value2": R5Value2,
-						"nation": nation
-					};
+					return { i, hidden, R5all, adap, aggr, prof, minR5Value, maxR5Value, minR5Value2, maxR5Value2, R5Value, R5Value2, nation };
 				}
 
 				function calc_R5bonus() {
-					var headerBonus = skillsB_rou[10] > 12 ? funFix2((MP(Math.E, MP(skillsB_rou[10] - 10, 3) / 1584.77) - 1) * 0.8 + MP(Math.E, (skillsB_rou[0] * skillsB_rou[0] * 0.007) / 8.73021) * 0.15 + MP(Math.E, (skillsB_rou[6] * skillsB_rou[6] * 0.007) / 8.73021) * 0.05) : 0;
+					var headerBonus = skillsB_rou[10] > 12 ? funFix2((MP(Math.E, (skillsB_rou[10] - 10) ** 3 / 1584.77) - 1) * 0.8 + MP(Math.E, (skillsB_rou[0] * skillsB_rou[0] * 0.007) / 8.73021) * 0.15 + MP(Math.E, (skillsB_rou[6] * skillsB_rou[6] * 0.007) / 8.73021) * 0.05) : 0;
 					var fkBonus = funFix2(MP(Math.E, MP(skillsB_rou[13] + skillsB_rou[12] + skillsB_rou[9] * 0.5, 2) * 0.002) / 327.92526);
 					var ckBonus = funFix2(MP(Math.E, MP(skillsB_rou[13] + skillsB_rou[8] + skillsB_rou[9] * 0.5, 2) * 0.002) / 983.65770);
 					var pkBonus = funFix2(MP(Math.E, MP(skillsB_rou[13] + skillsB_rou[11] + skillsB_rou[9] * 0.5, 2) * 0.002) / 1967.31409);
-					var gainBase = funFix2((MP(skillsB_rou[0], 2) + MP(skillsB_rou[1], 2) * 0.5 + MP(skillsB_rou[2], 2) * 0.5 + MP(skillsB_rou[3], 2) + MP(skillsB_rou[4], 2) + MP(skillsB_rou[5], 2) + MP(skillsB_rou[6], 2)) / 6 / (22.9 * 22.9));
-					var keepBase = funFix2((MP(skillsB_rou[0], 2) * 0.5 + MP(skillsB_rou[1], 2) * 0.5 + MP(skillsB_rou[2], 2) + MP(skillsB_rou[3], 2) + MP(skillsB_rou[4], 2) + MP(skillsB_rou[5], 2) + MP(skillsB_rou[6], 2)) / 6 / (22.9 * 22.9));
+					var gainBase = funFix2((skillsB_rou[0] ** 2 + skillsB_rou[1] ** 2 * 0.5 + skillsB_rou[2] ** 2 * 0.5 + skillsB_rou[3] ** 2 + skillsB_rou[4] ** 2 + skillsB_rou[5] ** 2 + skillsB_rou[6] ** 2) / 6 / 22.9 ** 2);
+					var keepBase = funFix2((skillsB_rou[0] ** 2 * 0.5 + skillsB_rou[1] ** 2 * 0.5 + skillsB_rou[2] ** 2 + skillsB_rou[3] ** 2 + skillsB_rou[4] ** 2 + skillsB_rou[5] ** 2 + skillsB_rou[6] ** 2) / 6 / 22.9 ** 2);
 					//	0:DC			1:DL/R			2:DMC			3:DML/R			4:MC			5:ML/R			6:OMC			7:OML/R			8:F
 					var posGain = [gainBase * 0.3, gainBase * 0.3, gainBase * 0.9, gainBase * 0.6, gainBase * 1.5, gainBase * 0.9, gainBase * 0.9, gainBase * 0.6, gainBase * 0.3];
 					var posKeep = [keepBase * 0.3, keepBase * 0.3, keepBase * 0.9, keepBase * 0.6, keepBase * 1.5, keepBase * 0.9, keepBase * 0.9, keepBase * 0.6, keepBase * 0.3];
+
+					if (skills == undefined) { console.log("here"); }
+
 					var allBonus = skills.length == 11 ? 0 : headerBonus * 1 + fkBonus * 1 + ckBonus * 1 + pkBonus * 1;
 					if (skills.length == 11) {
 						var R5FP0 = funFix2(REREC[2][FP[0]] * 1 + allBonus * 1);
@@ -2259,21 +2177,12 @@
 						var R5FP0 = funFix2(REREC[2][FP[0]] * 1 + allBonus * 1 + posGain[FP[0]] * 1 + posKeep[FP[0]] * 1);
 						var R5FP1 = funFix2(REREC[2][FP[1]] * 1 + allBonus * 1 + posGain[FP[1]] * 1 + posKeep[FP[1]] * 1);
 					}
-
-					return {
-						"R5FP0": R5FP0, 
-						"R5FP1": R5FP1, 
-						"posGain": posGain, 
-						"posKeep": posKeep,
-						"headerBonus": headerBonus,
-						"ckBonus": ckBonus,
-						"fkBonus": fkBonus, 
-						"pkBonus": pkBonus,
-						"allBonus": allBonus
-					};
+					return { R5FP0, R5FP1, posGain, posKeep, headerBonus, ckBonus, fkBonus, pkBonus, allBonus };
 				}
 
 				function calc_TI() {
+					errInfo = "calc_TI.1";
+
 					var wage = new String(gettr[4].getElementsByTagName("span")[0].innerHTML).replace(/,/g, "");
 					var today = new Date();
 					var day = (today.getTime() - training1.getTime()) / 1000 / 3600 / 24;
@@ -2306,15 +2215,7 @@
 					var TI = MP(2, ML(weight * SI) / ML(MP(2, 7))) - MP(2, ML(weight * wage / (wage_rate)) / ML(MP(2, 7)));
 					TI = MR(TI * 10);
 					const session2 = session == 0 ? 12 : session;
-
-					return {
-						"weight": weight,
-						"session": session,
-						"newPlayer": newPlayer,
-						"TI": TI,
-						"session2": session2,
-						"wage": wage
-					};
+					return { weight, session, newPlayer, TI, session2, wage };
 				}
 
 				function calc_SellToAgent() {
@@ -2325,31 +2226,27 @@
 					var maxPrice = parseInt(SI * (192400 / (ageMonths / 12) - 5200));
 					if (maxPrice < staPrice)
 						maxPrice = staPrice;
-					return {
-						"staPrice": staPrice,
-						"maxPrice": maxPrice
-					};
+					return { staPrice, maxPrice };
 				}
 
 				function calc_age() {
+					errInfo = "calc_age.1";
+
 					var age = gettr[2].getElementsByTagName("td")[0].innerHTML;
 					var yearidx = age.search(/\d\d/);
 					var year = age.substr(yearidx, 2);
 					age = age.slice(yearidx + 2);
 					var month = Number(age.replace(/\D+/g, ""));
 					var ageMonths = year * 12 + month * 1;
-
-					return {
-						"ageMonths": ageMonths,
-						"month": month,
-						"year": year
-					}
+					return { ageMonths, month, year };
 				}
 			}
 
 			document.calculateREREC = function (positionIndex, skills, SI, rou) {
 
 				result += "\ncalculateREREC";
+
+				if (skills == undefined) { console.log("here"); }
 
 				if (positionIndex == 13) var weight = 48717927500;
 				else var weight = 263533760000;
@@ -2445,39 +2342,53 @@
 				return rec;
 			};
 
-		//	if (testmode == 99) {
-		//		var prevID = player_id * 1 - 1;
-		//		var prev10ID = player_id * 1 - 10;
-		//		var prev100ID = player_id * 1 - 100;
-		//		var prev1000ID = player_id * 1 - 1000;
-		//		var prev10000ID = player_id * 1 - 10000;
-		//		var nextID = player_id * 1 + 1;
-		//		var next10ID = player_id * 1 + 10;
-		//		var next100ID = player_id * 1 + 100;
-		//		var next1000ID = player_id * 1 + 1000;
+			if (testmode == 99) {
+				var prevID = player_id * 1 - 1;
+				var prev10ID = player_id * 1 - 10;
+				var prev100ID = player_id * 1 - 100;
+				var prev1000ID = player_id * 1 - 1000;
+				var prev10000ID = player_id * 1 - 10000;
+				var nextID = player_id * 1 + 1;
+				var next10ID = player_id * 1 + 10;
+				var next100ID = player_id * 1 + 100;
+				var next1000ID = player_id * 1 + 1000;
 
-		//		var id_select = "<div><a href=\"https://trophymanager.com/players/" + prev10000ID + "/\"><<10000</a>&nbsp;&nbsp;<a href=\"https://trophymanager.com/players/" + prev1000ID + "/\"><<1000</a>&nbsp;&nbsp;<a href=\"https://trophymanager.com/players/" + prev100ID + "/\"><<100</a>&nbsp;&nbsp;<a href=\"https://trophymanager.com/players/" + prev10ID + "/\"><<10</a>&nbsp;&nbsp;<a href=\"https://trophymanager.com/players/" + prevID + "/\"><<1</a>&nbsp;&nbsp;<a href=\"https://trophymanager.com/players/" + nextID + "/\">1>></a>&nbsp;&nbsp;<a href=\"https://trophymanager.com/players/" + next10ID + "/\">10>></a>&nbsp;&nbsp;<a href=\"https://trophymanager.com/players/" + next100ID + "/\">100>></a>&nbsp;&nbsp;<a href=\"https://trophymanager.com/players/" + next1000ID + "/\">1000>></a></div>";
-		//		$("#top_menu_sub").append(id_select);
-		//	}
+				var id_select = "<div><a href=\"https://trophymanager.com/players/" + prev10000ID + "/\"><<10000</a>&nbsp;&nbsp;<a href=\"https://trophymanager.com/players/" + prev1000ID + "/\"><<1000</a>&nbsp;&nbsp;<a href=\"https://trophymanager.com/players/" + prev100ID + "/\"><<100</a>&nbsp;&nbsp;<a href=\"https://trophymanager.com/players/" + prev10ID + "/\"><<10</a>&nbsp;&nbsp;<a href=\"https://trophymanager.com/players/" + prevID + "/\"><<1</a>&nbsp;&nbsp;<a href=\"https://trophymanager.com/players/" + nextID + "/\">1>></a>&nbsp;&nbsp;<a href=\"https://trophymanager.com/players/" + next10ID + "/\">10>></a>&nbsp;&nbsp;<a href=\"https://trophymanager.com/players/" + next100ID + "/\">100>></a>&nbsp;&nbsp;<a href=\"https://trophymanager.com/players/" + next1000ID + "/\">1000>></a></div>";
+				$("#top_menu_sub").append(id_select);
+			}
 
-		//	var aboutR5 =
-		//		"<div class=\"aboutR5\">" +
-		//		"RatingR5 " + version + "&nbsp;&nbsp;&nbsp;&nbsp;RatingR5 is developed by <a href=\"/club/3415957/\">CHU-CHI</a>.&nbsp;&nbsp;&nbsp;&nbsp;official site: <a href =\"https://tmchuchi.web.fc2.com/\">https://tmchuchi.web.fc2.com/</a>" +
-		//		"</div>";
-		//	$(".body_end").append(aboutR5);
+			var aboutR5 =
+				"<div class=\"aboutR5\">" +
+				"RatingR5 " + version + "&nbsp;&nbsp;&nbsp;&nbsp;RatingR5 is developed by <a href=\"/club/3415957/\">CHU-CHI</a>.&nbsp;&nbsp;&nbsp;&nbsp;official site: <a href =\"https://tmchuchi.web.fc2.com/\">https://tmchuchi.web.fc2.com/</a>" +
+				"</div>";
+			$(".body_end").append(aboutR5);
+
 
 
 			(function () {
 				var playerTable = document.getElementsByClassName("skill_table zebra")[0];
 				var skillArray = document.getSkills(playerTable);
+
+				if (skillArray == undefined) { console.log("here"); }
+
 				computeRating(playerTable, skillArray);
 			})();
 		}
+
+		strout += "agey=" + player_info.years + ";\n";
+		strout += "agem=" + player_info.months + ";\n";
+		strout += "wage=" + player_info.wage + ";\n";
+		strout += "SI=" + player_info.SI + ";\n";
+		strout += "rou=" + player_info.rou + ";\n";
+
+		player_info_str = strout;
+
 	}
 	catch (err) {
-		result += "\nError catched: " + err;
+		// alert("Error catched (" + errInfo + "): "+ err);
 	}
 
-
-    return result;
+	return strout + result;
 }
+
+RatingFunction();

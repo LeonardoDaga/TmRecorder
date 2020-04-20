@@ -200,3 +200,4 @@ Setup Files/*
 /packages/System.ValueTuple.4.5.0/version.txt
 /.vs/TmRecorder2017/v16/Server/sqlite3/db.lock
 /.vs/
+/packages/cef*

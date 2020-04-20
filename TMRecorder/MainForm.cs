@@ -12,7 +12,6 @@ using Languages;
 using NTR_Db;
 using NTR_Controls;
 using System.Linq;
-using TMRecorder.DB;
 
 namespace TMRecorder
 {
@@ -35,7 +34,6 @@ namespace TMRecorder
         bool thisIsExtraTeam = false;
         public Seasons AllSeasons = new Seasons();
         List<MatchData> SeasonMatchList = null;
-        ModelContext DB = null;
 
         public enum e_GridTab : int
         {
@@ -62,10 +60,10 @@ namespace TMRecorder
 
             Program.Setts.Initialize(args);
 
-            BrowserEmulationVersion currentEmulationVersion = InternetExplorerBrowserEmulation.GetBrowserEmulationVersion();
-            if (currentEmulationVersion == BrowserEmulationVersion.Default)
-                currentEmulationVersion = BrowserEmulationVersion.Version8;
-            InternetExplorerBrowserEmulation.SetBrowserEmulationVersion(currentEmulationVersion);
+            //BrowserEmulationVersion currentEmulationVersion = InternetExplorerBrowserEmulation.GetBrowserEmulationVersion();
+            //if (currentEmulationVersion == BrowserEmulationVersion.Default)
+            //    currentEmulationVersion = BrowserEmulationVersion.Version8;
+            //InternetExplorerBrowserEmulation.SetBrowserEmulationVersion(currentEmulationVersion);
 
             InitializeComponent();
 
@@ -98,6 +96,7 @@ namespace TMRecorder
         private void InitializeBrowser()
         {
             webBrowser.MainTeamId = Program.Setts.MainSquadID;
+            webBrowser.RatingVersion = (eRatingVersion)Program.Setts.RatingVersion;
 
             if (!webBrowser.CheckXulInitialization())
                 Close();
@@ -127,8 +126,6 @@ namespace TMRecorder
         private void Form1_Load(object sender, EventArgs e)
         {
             bool settingsChanged = false;
-
-            DB = ModelContext.Create(Program.Setts);
 
             try
             {
@@ -640,13 +637,13 @@ namespace TMRecorder
             SaveTrainers();
         }
 
-        private void SalvaConNomeComeXMLToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            saveFileDialog.FileName = "TM_" + DateTime.Now.Year.ToString() +
-                DateTime.Now.DayOfYear.ToString() + ".xml";
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
-                db_TrophyDataSet.WriteXml(saveFileDialog.FileName);
-        }
+        //private void SalvaConNomeComeXMLToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    saveFileDialog.FileName = "TM_" + DateTime.Now.Year.ToString() +
+        //        DateTime.Now.DayOfYear.ToString() + ".xml";
+        //    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+        //        db_TrophyDataSet.WriteXml(saveFileDialog.FileName);
+        //}
 
         private void CaricaFileSquadraDaXMLToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -732,7 +729,6 @@ namespace TMRecorder
 
             dP[1]++;
             of.optionsReportAnalysis.CopyReportAnalysis(this.reportAnalysis);
-            of.UseTMRBrowser = Program.Setts.UseTMRBrowser;
             of.MainSquadName = Program.Setts.MainSquadName;
             of.MainSquadID = Program.Setts.MainSquadID;
             of.ReserveSquadName = Program.Setts.ReserveSquadName;
@@ -743,6 +739,7 @@ namespace TMRecorder
             of.UseStartupDisk = Program.Setts.UsingStartingPathDisk;
             of.UseOldHTMLImportStyle = Program.Setts.UseOldHTMLImportStyle;
             of.UsedLanguage = Program.Setts.Language;
+            of.RatingVersion = (eRatingVersion)Program.Setts.RatingVersion;
             of.ShowMatchOptions = Program.Setts.TeamMatchesShowMatches;
             of.MatchAnalysisFile = Program.Setts.MatchAnalysisFile;
 
@@ -814,7 +811,6 @@ namespace TMRecorder
 
                 dP[2]++;
                 Program.Setts.HomeNation = of.DefaultNation;
-                Program.Setts.UseTMRBrowser = of.UseTMRBrowser;
                 Program.Setts.MainSquadName = of.MainSquadName;
                 Program.Setts.MainSquadID = of.MainSquadID;
                 Program.Setts.ReserveSquadName = of.ReserveSquadName;
@@ -845,6 +841,9 @@ namespace TMRecorder
                     LoadLanguage();
                     MessageBox.Show("You must restart TmRecorder to change the language");
                 }
+
+                Program.Setts.RatingVersion = (int)of.RatingVersion;
+                webBrowser.RatingVersion = (eRatingVersion)Program.Setts.RatingVersion;
 
                 dP[2]++;
 
@@ -945,7 +944,7 @@ namespace TMRecorder
 
         private bool LoadHistory()
         {
-            bool res = History.Load(Program.Setts.DefaultDirectory, ref sf, ref DB);
+            bool res = History.Load(Program.Setts.DefaultDirectory, ref sf);
 
             History.teamDS.Load(Program.Setts.DefaultDirectory, "Shortlist.3.xml");
 
@@ -1352,6 +1351,7 @@ namespace TMRecorder
                 PlayerForm pf = new PlayerForm(History.actualDts.GiocatoriNSkill, 
                     History, playerID, AllSeasons);
 
+                pf.RatingVersion = (eRatingVersion)Program.Setts.RatingVersion;
                 pf.ShowDialog();
 
                 if (pf.isDirty) isDirty = true;
@@ -1362,6 +1362,7 @@ namespace TMRecorder
             {
                 PlayerForm pf = new PlayerForm(History.actualDts.GiocatoriNSkill, History, playerID, AllSeasons);
 
+                pf.RatingVersion = (eRatingVersion)Program.Setts.RatingVersion;
                 pf.ShowDialog();
 
                 if (pf.isDirty) isDirty = true;
@@ -3472,6 +3473,11 @@ namespace TMRecorder
 
                 FormatGrids();
             }
+        }
+
+        private void checkForUpdateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start(Application.StartupPath + "/Update.exe");
         }
     }
 }

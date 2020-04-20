@@ -609,3 +609,5 @@ function ApplyRatingR3() {
 
     return "";
 }
+
+ApplyRatingR3();

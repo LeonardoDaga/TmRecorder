@@ -13,8 +13,6 @@ using System.IO;
 using Languages;
 using SendFileTo;
 using NTR_Common;
-using mshtml;
-using NTR_WebBrowser;
 using NTR_Db;
 using NTR_Controls;
 
@@ -59,6 +57,13 @@ namespace TMRecorder
             set { playerData.BloomAge = value; }
         }
 
+        public eRatingVersion RatingVersion 
+        { 
+            set {
+                webBrowser.RatingVersion = value;
+            }
+        }
+
         public PlayerForm(ExtTMDataSet.GiocatoriNSkillDataTable gdt,
                          TeamHistory hist,
                          int ID,
@@ -91,7 +96,7 @@ namespace TMRecorder
             chkNormalized_CheckedChanged(null, EventArgs.Empty);
 
             webBrowser.SelectedReportParser = History.reportParser;
-            webBrowser.GotoPlayer(ID, NTR_Browser.PlayerNavigationType.NavigateReports);
+            webBrowser.GotoPlayer(ID, NTR_Browser.NTR_Browser.PlayerNavigationType.NavigateReports);
         }
 
         public void Initialize(int playerID)
@@ -1354,6 +1359,12 @@ namespace TMRecorder
             else
                 Wage = playerDatarow.Wage;
 
+            if (!gRow.IsRoutineNull())
+            {
+                playerDatarow.Rou = gRow.Routine;
+                BloomAgeView = (gRow.wBloomStart - gRow.wBorn) / 12;
+            }
+
             playerData.PlayerRow = teamDS.GiocatoriNSkill.FromExtraDSGiocatoriRow(playerDatarow, gRow);
         }
 
@@ -2286,7 +2297,7 @@ namespace TMRecorder
             Initialize();
 
             if (tabControlPlayerHistory.SelectedTab == tabPlayerBrowser)
-                webBrowser.GotoPlayer(actPlayerID, NTR_Browser.PlayerNavigationType.NavigateReports);
+                webBrowser.GotoPlayer(actPlayerID, NTR_Browser.NTR_Browser.PlayerNavigationType.NavigateReports);
         }
 
         private void btnPrev_Click(object sender, EventArgs e)
@@ -2301,7 +2312,7 @@ namespace TMRecorder
             Initialize();
 
             if (tabControlPlayerHistory.SelectedTab == tabPlayerBrowser)
-                webBrowser.GotoPlayer(actPlayerID, NTR_Browser.PlayerNavigationType.NavigateReports);
+                webBrowser.GotoPlayer(actPlayerID, NTR_Browser.NTR_Browser.PlayerNavigationType.NavigateReports);
         }
 
         private void txtNotes_TextChanged(object sender, EventArgs e)
@@ -2522,7 +2533,7 @@ namespace TMRecorder
         string startnavigationAddress = "";
         private void tsbLoadPlayerPage_Click(object sender, EventArgs e)
         {
-            webBrowser.GotoPlayer(actPlayerID, NTR_Browser.PlayerNavigationType.NavigateReports);
+            webBrowser.GotoPlayer(actPlayerID, NTR_Browser.NTR_Browser.PlayerNavigationType.NavigateReports);
         }
 
         #region Player Profiles Navigation
@@ -2686,15 +2697,15 @@ namespace TMRecorder
 
         private void PlayerForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            webBrowser.Stop();
             Rectangle pos = new Rectangle(DesktopBounds.X, DesktopBounds.Y, DesktopBounds.Width, DesktopBounds.Height);
             Program.Setts.PlayerFormPosition = pos;
             Program.Setts.Save();
-            this.SuspendLayout();
-            this.Controls.Remove(this.webBrowser);
-            this.ResumeLayout(false);
-            webBrowser.Stop();
-            webBrowser.Dispose();
-            webBrowser = null;
+            //this.SuspendLayout();
+            //this.Controls.Remove(this.webBrowser);
+            //this.ResumeLayout(false);
+            //webBrowser.Dispose();
+            //webBrowser = null;
         }
 
         private void reviewDataTableBindingSource_CurrentChanged(object sender, EventArgs e)

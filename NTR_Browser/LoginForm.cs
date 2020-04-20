@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace NTR_WebBrowser
+namespace NTR_Browser
 {
     partial class LoginForm : Form
     {

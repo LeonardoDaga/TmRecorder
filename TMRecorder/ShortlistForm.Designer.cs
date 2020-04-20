@@ -51,7 +51,7 @@ namespace TMRecorder
             this.tabGK = new System.Windows.Forms.TabPage();
             this.dgPlayersGK = new NTR_Controls.AeroDataGrid();
             this.tabBrowser = new System.Windows.Forms.TabPage();
-            this.webBrowser = new NTR_WebBrowser.NTR_Browser();
+            this.webBrowser = new NTR_Browser.NTR_Browser();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsbFile = new System.Windows.Forms.ToolStripDropDownButton();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -272,14 +272,14 @@ namespace TMRecorder
             this.webBrowser.MainTeamId = 0;
             this.webBrowser.Name = "webBrowser";
             this.webBrowser.NavigationAddress = "";
-            this.webBrowser.NavigationMode = NTR_WebBrowser.NTR_Browser.eNavigationMode.Main;
+            this.webBrowser.NavigationMode = NTR_Browser.NTR_Browser.eNavigationMode.Main;
             this.webBrowser.SelectedReportParser = null;
             this.webBrowser.ShowShortlist = true;
             this.webBrowser.ShowTransfer = true;
             this.webBrowser.Size = new System.Drawing.Size(861, 318);
             this.webBrowser.StartnavigationAddress = "";
             this.webBrowser.TabIndex = 0;
-            this.webBrowser.ImportedContent += new NTR_WebBrowser.ImportedContentHandler(this.webBrowser_ImportedContent);
+            this.webBrowser.ImportedContent += new NTR_Browser.ImportedContentHandler(this.webBrowser_ImportedContent);
             // 
             // toolStrip1
             // 
@@ -436,7 +436,7 @@ namespace TMRecorder
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openPlayersTeamPageInTrophyBrowserToolStripMenuItem;
         private System.Windows.Forms.TabPage tabBrowser;
-        private NTR_WebBrowser.NTR_Browser webBrowser;
+        private NTR_Browser.NTR_Browser webBrowser;
         private System.Windows.Forms.ToolStripMenuItem deleteSelectedPlayersFromVisualizationAndDatabaseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem updateOnlyListedPlayersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clearShortlistToolStripMenuItem;

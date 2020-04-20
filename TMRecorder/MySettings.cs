@@ -215,6 +215,7 @@ namespace TMRecorder
             sb.Def("PlayerFormPosition", "0,0,500,400");
             sb.Def("ComputeStructureSettings", "");
             sb.Def("TeamMatchesShowMatches", 0);
+            sb.Def("RatingVersion", 2);
             sb.Def("MatchAnalysisFileSave", false);
             sb.Def("ExtraTeams", "");
             sb.Def("TeamDataFolder", appDataFolder);
@@ -277,6 +278,11 @@ namespace TMRecorder
             set { sb["LicenseCode"] = (UInt64)value; }
         }
 
+        public int RatingVersion
+        {
+            get { return (int)sb["RatingVersion"]; }
+            set { sb["RatingVersion"] = (int)value; }
+        }
         public string TeamDataFolder
         {
             get { return (string)sb["TeamDataFolder"]; }

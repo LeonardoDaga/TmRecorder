@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NTR_WebBrowser.Properties {
+namespace NTR_Browser.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace NTR_WebBrowser.Properties {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("NTR_WebBrowser.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("NTR_Browser.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -243,6 +243,40 @@ namespace NTR_WebBrowser.Properties {
         }
         
         /// <summary>
+        ///   Cerca una stringa localizzata simile a function get_player_data()
+        ///{
+        ///	strout = &quot;&quot;;
+        ///
+        ///	try
+        ///	{
+        ///		strout = &quot;player_id=&quot; + player_id + &quot;;\n&quot;;
+        ///		strout += &quot;player_fp=&quot; + player_fp + &quot;;\n&quot;;
+        ///		strout += &quot;player_name=&quot; + player_name + &quot;;\n&quot;;
+        ///		strout += &quot;is_users_player=&quot; + is_users_player + &quot;;\n&quot;;
+        ///
+        ///		strout += player_info_str;
+        ///	}
+        ///	catch (err)
+        ///	{
+        ///		strout += &quot;;error = &quot; + err;
+        ///	}
+        ///	return strout;
+        ///}
+        ///
+        ///function get_scout_info() {
+        ///	strout = &quot;&quot;;
+        ///
+        ///	try {
+        ///		if ($(&apos;#player_scout_new&apos;)[0].children.length &gt; 0) {
+        ///			numScout = $(&apos;#player_scou [stringa troncata]&quot;;.
+        /// </summary>
+        public static string player_data {
+            get {
+                return ResourceManager.GetString("player_data", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Cerca una stringa localizzata simile a function get_player_info()
         ///{
         ///	strout = &quot;no data&quot;;
@@ -274,6 +308,25 @@ namespace NTR_WebBrowser.Properties {
         public static string players_loader {
             get {
                 return ResourceManager.GetString("players_loader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a function RatingFunction () {
+        ///    // ==UserScript==
+        ///    // @name           RatingR4 beta season 50
+        ///    // @version        1.2
+        ///    // @description    REREC(+b), Season TI, RatingR4(beta) JP/EN
+        ///    // @include			http://trophymanager.com/players/*
+        ///    // @include			https://trophymanager.com/players/*
+        ///    // @include			https://fb.trophymanager.com/players/*
+        ///    // @exclude			http://trophymanager.com/players/compare/*
+        ///    // @exclude			https://trophymanager.com/players/compare/*
+        ///    // @exclude			https: [stringa troncata]&quot;;.
+        /// </summary>
+        public static string RatingNone {
+            get {
+                return ResourceManager.GetString("RatingNone", resourceCulture);
             }
         }
         
@@ -319,9 +372,7 @@ namespace NTR_WebBrowser.Properties {
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a function ApplyRatingR4() {
-        ///
-        ///
+        ///   Cerca una stringa localizzata simile a function RatingFunction () {
         ///    // ==UserScript==
         ///    // @name           RatingR4 beta season 50
         ///    // @version        1.2
@@ -331,7 +382,7 @@ namespace NTR_WebBrowser.Properties {
         ///    // @include			https://fb.trophymanager.com/players/*
         ///    // @exclude			http://trophymanager.com/players/compare/*
         ///    // @exclude			https://trophymanager.com/players/compare/*
-        ///    // @exclude			http [stringa troncata]&quot;;.
+        ///    // @exclude			https: [stringa troncata]&quot;;.
         /// </summary>
         public static string RatingR4_user {
             get {
@@ -340,7 +391,7 @@ namespace NTR_WebBrowser.Properties {
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a function ApplyRatingR5() {
+        ///   Cerca una stringa localizzata simile a function RatingFunction() {
         ///
         ///	// ==UserScript==
         ///	// @name           	RatingR5 ver5.3 for Season62
@@ -351,7 +402,7 @@ namespace NTR_WebBrowser.Properties {
         ///	// @include			https://trophymanager.com/players/*
         ///	// @include			https://fb.trophymanager.com/players/*
         ///	// @exclude			https://trophymanager.com/players/
-        ///	// @exclude			https://fb.trophymanager.com/players/        /// [stringa troncata]&quot;;.
+        ///	// @exclude			https://fb.trophymanager.com/players/ [stringa troncata]&quot;;.
         /// </summary>
         public static string RatingR5_user {
             get {

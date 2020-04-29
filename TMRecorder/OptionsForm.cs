@@ -9,6 +9,9 @@ using System.IO;
 using TMRecorder.Properties;
 using Common;
 using System.Diagnostics;
+using NTR_Common;
+using System.Data.SqlTypes;
+using System.Globalization;
 
 namespace TMRecorder
 {
@@ -121,10 +124,39 @@ namespace TMRecorder
             set { txtInstallationDirectory.Text = value; }
         }
 
+        private double _ratingFunctionAdaptability;
+        public double RatingFunctionAdaptability
+        {
+            get
+            {
+                if (double.TryParse(txtAda.Text, NumberStyles.Any, Common.CommGlobal.ciUs, out double newRatingFunctionAdaptability) && 
+                    (newRatingFunctionAdaptability <= 20) && (newRatingFunctionAdaptability >= 0))
+                {
+                    _ratingFunctionAdaptability = newRatingFunctionAdaptability; 
+                }
+                else
+                {
+                    MessageBox.Show("Adaptability value (" + txtAda.Text + ") is not valid");
+                }
+                return _ratingFunctionAdaptability;
+            }
+            set 
+            { 
+                txtAda.Text = value.ToString("N2", Common.CommGlobal.ciUs);
+                _ratingFunctionAdaptability = value;
+            }
+        }
+
         public bool EvidenceGains
         {
             get { return chkEvidenceGains.Checked; }
             set { chkEvidenceGains.Checked = value; }
+        }
+
+        public bool ShowRecOnGrids
+        {
+            get { return chkShowRec.Checked; }
+            set { chkShowRec.Checked = value; }
         }
 
         DirectoryInfo diReportFile = null;
@@ -174,7 +206,8 @@ namespace TMRecorder
 
         public eRatingVersion RatingVersion
         {
-            get {
+            get
+            {
                 var value = cmbRatingVersion.SelectedItem.ToString().Split('=')[1];
                 int.TryParse(value, out int selValue);
 
@@ -187,6 +220,28 @@ namespace TMRecorder
                     if (item.Split('=')[1] == ((int)value).ToString())
                     {
                         cmbRatingVersion.SelectedItem = item;
+                        return;
+                    }
+                }
+            }
+        }
+
+        public eRatingFunctionType TmRating
+        {
+            get
+            {
+                var value = cmbTmRating.SelectedItem.ToString().Split('=')[1];
+                int.TryParse(value, out int selValue);
+
+                return (eRatingFunctionType)selValue;
+            }
+            set
+            {
+                foreach (string item in cmbTmRating.Items)
+                {
+                    if (item.Split('=')[1] == ((int)value).ToString())
+                    {
+                        cmbTmRating.SelectedItem = item;
                         return;
                     }
                 }
@@ -232,6 +287,17 @@ namespace TMRecorder
         public OptionsForm()
         {
             InitializeComponent();
+
+            eRatingFunctionType[] ratingFunctionTypes = (eRatingFunctionType[])Enum.GetValues(typeof(eRatingFunctionType));
+
+            string[] ratingFunctions = new string[ratingFunctionTypes.Length];
+
+            foreach (eRatingFunctionType functionType in ratingFunctionTypes)
+            {
+                ratingFunctions[(int)functionType] = functionType.ToString() + "=" + (int)functionType;
+            }
+
+            cmbTmRating.Items.AddRange(ratingFunctions);
 
             SetLanguage();
 
@@ -414,6 +480,7 @@ namespace TMRecorder
 
         private void OptionsForm_Load(object sender, EventArgs e)
         {
+            lblRatingVersion.Visible = false;
         }
 
         private void btnSaveMatchAnalysisFile_Click(object sender, EventArgs e)
@@ -462,6 +529,11 @@ namespace TMRecorder
         private void button2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void cmbTmRating_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lblRatingVersion.Visible = true;
         }
     }
 }

@@ -12,6 +12,8 @@ using Languages;
 using NTR_Db;
 using NTR_Controls;
 using System.Linq;
+using NTR_Common;
+using System.Security.Cryptography;
 
 namespace TMRecorder
 {
@@ -96,7 +98,7 @@ namespace TMRecorder
         private void InitializeBrowser()
         {
             webBrowser.MainTeamId = Program.Setts.MainSquadID;
-            webBrowser.RatingVersion = (eRatingVersion)Program.Setts.RatingVersion;
+            webBrowser.RatingVersion = (eRatingVersion)Program.Setts.BrowserRatingVersion;
 
             if (!webBrowser.CheckXulInitialization())
                 Close();
@@ -177,6 +179,7 @@ namespace TMRecorder
                     RatingFunction.CreateDefaultFunctions(Program.Setts.RatingFunctionPath);
                     History.RF = RatingFunction.Load(Program.Setts.RatingFunctionPath);
                 }
+                History.RF.RatingFunctionAdaptability = Program.Setts.RatingFunctionAdaptability;
 
                 History.TF = TacticsFunction.Load(Program.Setts.TacticsFunctionPath);
                 if (History.TF == null)
@@ -736,12 +739,15 @@ namespace TMRecorder
             of.PlayerType = Program.Setts.PlayerType;
             of.ActionAnalysisFile = Program.Setts.ActionAnalysisFile;
             of.EvidenceGains = Program.Setts.EvidenceGain;
+            of.ShowRecOnGrids = Program.Setts.ShowRecOnGrids;
             of.UseStartupDisk = Program.Setts.UsingStartingPathDisk;
             of.UseOldHTMLImportStyle = Program.Setts.UseOldHTMLImportStyle;
             of.UsedLanguage = Program.Setts.Language;
-            of.RatingVersion = (eRatingVersion)Program.Setts.RatingVersion;
+            of.RatingVersion = (eRatingVersion)Program.Setts.BrowserRatingVersion;
+            of.TmRating = History.RF.RatingFunctionType;
             of.ShowMatchOptions = Program.Setts.TeamMatchesShowMatches;
             of.MatchAnalysisFile = Program.Setts.MatchAnalysisFile;
+            of.RatingFunctionAdaptability = Program.Setts.RatingFunctionAdaptability;
 
             dP[1]++;
             dP[2] = 0;
@@ -817,6 +823,14 @@ namespace TMRecorder
                 Program.Setts.ReserveSquadID = of.ReserveSquadID;
                 Program.Setts.PlayerType = of.PlayerType;
                 Program.Setts.EvidenceGain = of.EvidenceGains;
+
+                if (Program.Setts.ShowRecOnGrids != of.ShowRecOnGrids)
+                {
+                    Program.Setts.ShowRecOnGrids = of.ShowRecOnGrids;
+                    InvalidateGrids();
+                    LoadTeamOnGrids(DateTime.Now);
+                }
+
                 Program.Setts.TeamMatchesShowMatches = of.ShowMatchOptions;
                 evidenceSkillsForGainsToolStripMenuItem.Checked = Program.Setts.EvidenceGain;
                 evidenceSkillsForGainsMenuItem2.Checked = Program.Setts.EvidenceGain;
@@ -827,6 +841,9 @@ namespace TMRecorder
                 Program.Setts.UsingStartingPathDisk = of.UseStartupDisk;
                 Program.Setts.UseOldHTMLImportStyle = of.UseOldHTMLImportStyle;
                 Program.Setts.MatchAnalysisFile = of.MatchAnalysisFile;
+
+                Program.Setts.RatingFunctionAdaptability = of.RatingFunctionAdaptability;
+                History.RF.RatingFunctionAdaptability = Program.Setts.RatingFunctionAdaptability;
 
                 FileInfo fi = new FileInfo(Program.Setts.MatchAnalysisFile);
                 if (fi.Exists)
@@ -842,8 +859,14 @@ namespace TMRecorder
                     MessageBox.Show("You must restart TmRecorder to change the language");
                 }
 
-                Program.Setts.RatingVersion = (int)of.RatingVersion;
-                webBrowser.RatingVersion = (eRatingVersion)Program.Setts.RatingVersion;
+                if (History.RF.RatingFunctionType != of.TmRating)
+                {
+                    Program.Setts.RatingFunctionPath = Path.Combine(Program.Setts.RatingFunctionsPath, of.TmRating + @".rating");
+                    History.RF = RatingFunction.Load(Program.Setts.RatingFunctionPath);
+                }
+
+                Program.Setts.BrowserRatingVersion = (int)of.RatingVersion;
+                webBrowser.RatingVersion = (eRatingVersion)Program.Setts.BrowserRatingVersion;
 
                 dP[2]++;
 
@@ -1351,7 +1374,7 @@ namespace TMRecorder
                 PlayerForm pf = new PlayerForm(History.actualDts.GiocatoriNSkill, 
                     History, playerID, AllSeasons);
 
-                pf.RatingVersion = (eRatingVersion)Program.Setts.RatingVersion;
+                pf.RatingVersion = (eRatingVersion)Program.Setts.BrowserRatingVersion;
                 pf.ShowDialog();
 
                 if (pf.isDirty) isDirty = true;
@@ -1362,7 +1385,7 @@ namespace TMRecorder
             {
                 PlayerForm pf = new PlayerForm(History.actualDts.GiocatoriNSkill, History, playerID, AllSeasons);
 
-                pf.RatingVersion = (eRatingVersion)Program.Setts.RatingVersion;
+                pf.RatingVersion = (eRatingVersion)Program.Setts.BrowserRatingVersion;
                 pf.ShowDialog();
 
                 if (pf.isDirty) isDirty = true;
@@ -1512,7 +1535,8 @@ namespace TMRecorder
                                                         last2Weeks, 
                                                         History.RF, History.TF, 
                                                         History.PlayersDS.FindByPlayerID(c.PlayerID),
-                                                        playersPerf));
+                                                        playersPerf,
+                                                        Program.Setts.ShowRecOnGrids));
 
             var teamAPlayers = (from c in players
                                 where c.TeamSq == "A" && c.FPn > 0
@@ -2130,6 +2154,12 @@ namespace TMRecorder
             evidenceSkillsForGainsToolStripMenuItem.Checked = Program.Setts.EvidenceGain;
             evidenceSkillsForGainsMenuItem2.Checked = Program.Setts.EvidenceGain;
             evidenceSkillsForGainsMenuItemGK.Checked = Program.Setts.EvidenceGain;
+
+            dataGridGiocatori.SetSkEvidenceGain(Program.Setts.EvidenceGain);
+            dataGridGiocatoriB.SetSkEvidenceGain(Program.Setts.EvidenceGain);
+            dataGridPortieri.SetSkEvidenceGain(Program.Setts.EvidenceGain);
+            InvalidateGrids();
+            LoadTeamOnGrids(DateTime.Now);
         }
 
         private void gotoTheTmRecorderWebsiteToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2980,7 +3010,7 @@ namespace TMRecorder
                 dgOppsTeamPerf.DataCollection = null;
             }
 
-            matchStats.SetMatchData(md);
+            matchStats.SetMatchData(md, IsHome);
         }
 
         private void dgMatches_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -3255,7 +3285,24 @@ namespace TMRecorder
 
             if (navigationAddress == TM_Pages.Club)
             {
-                AllSeasons.LoadClubData(page);
+                var parsedItems = AllSeasons.LoadClubData(page);
+                if (parsedItems.ContainsKey("ClubName"))
+                {
+                    Program.Setts.ClubNickname = parsedItems["ClubName"];
+                    Program.Setts.MainSquadID = int.Parse(parsedItems["ClubId"]);
+                }
+                if (parsedItems.ContainsKey("BTeamClubName"))
+                {
+                    Program.Setts.ReserveSquadName = parsedItems["BTeamClubName"];
+                    Program.Setts.ReserveSquadID = int.Parse(parsedItems["BTeamClubId"]);
+                }
+
+                ExtTMDataSet eds = History.LastTeam(); ;
+                if (eds == null)
+                {
+                    MessageBox.Show("Please, import also players to complete first club import");
+                }
+
                 AllSeasons.IsDirty = true;
             }
 
@@ -3425,29 +3472,29 @@ namespace TMRecorder
             sf = null;
         }
 
-        private void ratingToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            RatingEditor reDlg = new RatingEditor(History.RF);
+        //private void ratingToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    RatingEditor reDlg = new RatingEditor(History.RF);
 
-            if (reDlg.ShowDialog() == DialogResult.Yes)
-            {
-                History.RF = RatingFunction.Create(reDlg.FunType,
-                    reDlg.recWeights,
-                    reDlg.ratWeights,
-                    reDlg.recLfWeights,
-                    reDlg.adaWeights,
-                    reDlg.RouFactor,
-                    reDlg.FileName);
+        //    if (reDlg.ShowDialog() == DialogResult.Yes)
+        //    {
+        //        History.RF = RatingFunction.Create(reDlg.FunType,
+        //            reDlg.recWeights,
+        //            reDlg.ratWeights,
+        //            reDlg.recLfWeights,
+        //            reDlg.adaWeights,
+        //            reDlg.RouFactor,
+        //            reDlg.FileName);
 
-                History.Clear();
-                LoadData();
+        //        History.Clear();
+        //        LoadData();
 
-                Program.Setts.RatingFunctionPath = reDlg.FileName;
-                Program.Setts.Save();
+        //        Program.Setts.RatingFunctionPath = reDlg.FileName;
+        //        Program.Setts.Save();
 
-                FormatGrids();
-            }
-        }
+        //        FormatGrids();
+        //    }
+        //}
 
         private void tacticsEditorToolStripMenu_Click(object sender, EventArgs e)
         {
@@ -3473,11 +3520,6 @@ namespace TMRecorder
 
                 FormatGrids();
             }
-        }
-
-        private void checkForUpdateToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Process.Start(Application.StartupPath + "/Update.exe");
         }
     }
 }

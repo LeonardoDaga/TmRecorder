@@ -283,11 +283,13 @@
             // tsbProgressBar
             // 
             this.tsbProgressBar.AutoSize = false;
-            this.tsbProgressBar.ForeColor = System.Drawing.Color.LimeGreen;
+            this.tsbProgressBar.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.tsbProgressBar.ForeColor = System.Drawing.Color.Lime;
+            this.tsbProgressBar.MarqueeAnimationSpeed = 0;
             this.tsbProgressBar.Name = "tsbProgressBar";
             this.tsbProgressBar.Size = new System.Drawing.Size(70, 20);
             this.tsbProgressBar.Step = 5;
-            this.tsbProgressBar.Value = 20;
+            this.tsbProgressBar.Value = 30;
             // 
             // timerProgress
             // 

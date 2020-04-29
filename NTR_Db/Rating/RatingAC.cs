@@ -154,32 +154,60 @@ namespace NTR_Db
             return Rmax;
         }
 
-        internal static RatingFunction Create(List<REC_Weights> recWeights, List<REC_Weights> ratWeights,
-            List<PROP_Weights> recLfWeights, List<ADA_Weights> adaWeights, double rouFactor, string fileName)
-        {
-            return new RatingAC(
-                Rating.TableToWeightsMatrix(recWeights),
-                Rating.TableToWeightsMatrix(ratWeights),
-                Rating.PropTableToWeightsMatrix(recLfWeights),
-                Rating.AdaTableToWeightsMatrix(adaWeights),
-                rouFactor, fileName);
-        }
+        //internal static RatingFunction Create(List<REC_Weights> recWeights, List<REC_Weights> ratWeights,
+        //    List<PROP_Weights> recLfWeights, List<ADA_Weights> adaWeights, double rouFactor, string fileName)
+        //{
+        //    return new RatingAC(
+        //        Rating.TableToWeightsMatrix(recWeights),
+        //        Rating.TableToWeightsMatrix(ratWeights),
+        //        Rating.PropTableToWeightsMatrix(recLfWeights),
+        //        Rating.AdaTableToWeightsMatrix(adaWeights),
+        //        rouFactor, fileName);
+        //}
 
-        public RatingAC(WeightMatrix recMatrix, WeightMatrix ratMatrix, WeightMatrix recLfMatrix, WeightMatrix adaMatrix, double rouFactor, string fileName)
-        {
-            this._weightREC = recMatrix;
-            this._weightRat = ratMatrix;
-            this._WeightREClf = recLfMatrix;
-            this._adaFact = adaMatrix;
-            this._routineFactor = rouFactor;
-            this.SettingsFilename = fileName;
-            SettingInitialize();
-        }
+        //public RatingAC(WeightMatrix recMatrix, WeightMatrix ratMatrix, WeightMatrix recLfMatrix, WeightMatrix adaMatrix, double rouFactor, string fileName)
+        //{
+        //    this._weightREC = recMatrix;
+        //    this._weightRat = ratMatrix;
+        //    this._WeightREClf = recLfMatrix;
+        //    this._adaFact = adaMatrix;
+        //    this._routineFactor = rouFactor;
+        //    this.SettingsFilename = fileName;
+        //    SettingInitialize();
+        //}
 
         public RatingAC()
         {
             SettingInitialize();
         }
+
+        public WeightMatrix WeightREClf
+        {
+            get => (WeightMatrix)this["WeightREClf"];
+            set => this["WeightREClf"] = value;
+        }
+
+        public WeightMatrix WeightREC
+        {
+            get => (WeightMatrix)this["WeightREC"];
+            set => this["WeightREC"] = value;
+        }
+        public override WeightMatrix WeightRat
+        {
+            get => (WeightMatrix)this["WeightRat"];
+            set
+            {
+                this["WeightRat"] = value;
+                OrderedWeightRat = SortRowsByCols(value);
+            }
+        }
+
+        public WeightMatrix Adaptability
+        {
+            get => (WeightMatrix)this["Adaptability"];
+            set => this["Adaptability"] = value;
+        }
+
 
         /// <summary>
         /// This function initialize settings for the object

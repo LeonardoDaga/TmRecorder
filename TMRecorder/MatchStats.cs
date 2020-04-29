@@ -18,62 +18,63 @@ namespace TMRecorder
             InitializeComponent();
         }
 
-        internal void SetMatchData(MatchData matchData)
+        internal void SetMatchData(MatchData matchData, bool isHome)
         {
             if ((matchData != null) && (matchData.LineUps != null))
             {
+                bool inv = (isHome == matchData.IsHome);
+
                 string[] lineUps = matchData.LineUps.Split(';');
 
-                txtLineUp1.Text = lineUps[0];
-                txtLineUp2.Text = lineUps[1];
+                txtLineUp1.Text = lineUps[inv?0:1];
+                txtLineUp2.Text = lineUps[inv ? 1:0];
 
                 string[] Stats = matchData.Stats.Split(';');
 
-                txtPossession1.Text = Stats[0];
-                txtPossession2.Text = Stats[6];
+                txtPossession1.Text = Stats[inv ? 0 : 6];
+                txtPossession2.Text = Stats[inv ? 6 : 0];
 
-                txtShots1.Text = Stats[1];
-                txtShots2.Text = Stats[7];
+                txtShots1.Text = Stats[inv ? 1 : 7];
+                txtShots2.Text = Stats[inv ? 7 : 1];
 
-                txtOnTarget1.Text = Stats[2];
-                txtOnTarget2.Text = Stats[8];
+                txtOnTarget1.Text = Stats[inv ? 2 : 8];
+                txtOnTarget2.Text = Stats[inv ? 8 : 2];
 
                 NTR_Formation yf = new NTR_Formation(eFormationTypes.Type_Empty);
                 foreach (NTR_SquadDb.PlayerPerfRow row in matchData.YourPlayerPerf)
                 {
-                    Player pl = yf.SetYourPlayer(row);
+                    yf.SetYourPlayer(row);
                 }
-
-                yourTeamLineup.SetFormation(yf);
 
                 NTR_Formation of = new NTR_Formation(eFormationTypes.Type_Empty);
                 foreach (NTR_SquadDb.PlayerPerfRow row in matchData.OppsPlayerPerf)
                 {
-                    Player pl = of.SetOppsPlayer(row);
+                    of.SetOppsPlayer(row);
                 }
 
-                oppsTeamLineup.SetFormation(of);
+                yourTeamLineup.SetFormation(inv ? yf : of);
+                oppsTeamLineup.SetFormation(inv ? of : yf);
 
                 // Evaluating avg experience and avg rec
-                ActionsList tempActionsList = ActionsList.Parse(matchData.OActions);
-                ItemDictionary itemDictionary = ActionsList.ParseAsItemDictionary(matchData.OActions);
+                // ActionsList tempActionsList = ActionsList.Parse(matchData.OActions);
+                //ItemDictionary itemDictionary = ActionsList.ParseAsItemDictionary(matchData.OActions);
 
                 string[] pitch = matchData.Pitch.Split(';');
 
-                var yourAvgStats = ComputeStatistics(matchData.YourPlayerPerf, matchData.LastMin);
-                var oppsAvgStats = ComputeStatistics(matchData.OppsPlayerPerf, matchData.LastMin);
+                var avgStatsL = ComputeStatistics(inv ? matchData.YourPlayerPerf: matchData.OppsPlayerPerf, matchData.LastMin);
+                var avgStatsR = ComputeStatistics(inv ? matchData.OppsPlayerPerf : matchData.YourPlayerPerf, matchData.LastMin);
 
-                lblRecAvg1.Text = (yourAvgStats.RecSum / matchData.LastMin / 11).ToString("N2");
-                lblRecAvg2.Text = (oppsAvgStats.RecSum / matchData.LastMin / 11).ToString("N2");
-                lblRouAvg1.Text = (yourAvgStats.RouSum / matchData.LastMin / 11).ToString("N2");
-                lblRouAvg2.Text = (oppsAvgStats.RouSum / matchData.LastMin / 11).ToString("N2");
+                lblRecAvg1.Text = (avgStatsL.RecSum / matchData.LastMin / 11).ToString("N2");
+                lblRecAvg2.Text = (avgStatsR.RecSum / matchData.LastMin / 11).ToString("N2");
+                lblRouAvg1.Text = (avgStatsL.RouSum / matchData.LastMin / 11).ToString("N2");
+                lblRouAvg2.Text = (avgStatsR.RouSum / matchData.LastMin / 11).ToString("N2");
 
-                lblAttackStyle1.Text = matchData.YAttk;
-                lblAttackStyle2.Text = matchData.OAttk;
-                lblMentality1.Text = matchData.YMent;
-                lblMentality2.Text = matchData.OMent;
-                lblFocusSide1.Text = matchData.YFocus;
-                lblFocusSide2.Text = matchData.OFocus;
+                lblAttackStyle1.Text = inv ? matchData.YAttk: matchData.OAttk;
+                lblAttackStyle2.Text = inv ? matchData.OAttk : matchData.YAttk;
+                lblMentality1.Text = inv ? matchData.YMent : matchData.OMent;
+                lblMentality2.Text = inv ? matchData.OMent : matchData.YMent;
+                lblFocusSide1.Text = inv ? matchData.YFocus : matchData.OFocus;
+                lblFocusSide2.Text = inv ? matchData.OFocus : matchData.YFocus;
 
                 lblSprinklers.Text = (pitch[0] == "0") ? "No" : "Yes";
                 lblDraining.Text = (pitch[1] == "0") ? "No" : "Yes";
@@ -111,7 +112,8 @@ namespace TMRecorder
                 else
                     lblWeather.Text = "Strong";
 
-                actionsStats.ActionsToRows(matchData.YActions, matchData.OActions);
+                actionsStats.ActionsToRows(inv ? matchData.YActions: matchData.OActions,
+                    inv ? matchData.OActions : matchData.YActions);
             }
             else
             {

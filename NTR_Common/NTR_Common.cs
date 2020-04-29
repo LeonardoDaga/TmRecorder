@@ -14,6 +14,7 @@ namespace NTR_Common
         RatingAtleticoCassina,
         RUSCheratte,
         RatingL2,
+        RatingR4,
     }
 
     public class FormattedString : IComparable<FormattedString>

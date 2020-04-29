@@ -35,6 +35,11 @@ namespace TMRecorder
             Initialize(args);
         }
 
+        public string RatingFunctionsPath
+        {
+            get { return _ratingFunctionsPath; }
+        }
+
         public void Initialize(string[] args)
         {
             int op = 0;
@@ -204,6 +209,7 @@ namespace TMRecorder
             sb.Def("ActionAnalysisFile", "ActionAnalysis.xml");
             sb.Def("ShowActions", 0);
             sb.Def("EvidenceGain", false);
+            sb.Def("ShowRecOnGrids", false);
             sb.Def("UsingStartingPathDisk", false);
             sb.Def("Language", "en");
             sb.Def("Trace", 0);
@@ -215,7 +221,8 @@ namespace TMRecorder
             sb.Def("PlayerFormPosition", "0,0,500,400");
             sb.Def("ComputeStructureSettings", "");
             sb.Def("TeamMatchesShowMatches", 0);
-            sb.Def("RatingVersion", 2);
+            sb.Def("BrowserRatingVersion", 2);
+            sb.Def("RatingFunctionAdaptability", (double)10);
             sb.Def("MatchAnalysisFileSave", false);
             sb.Def("ExtraTeams", "");
             sb.Def("TeamDataFolder", appDataFolder);
@@ -278,10 +285,16 @@ namespace TMRecorder
             set { sb["LicenseCode"] = (UInt64)value; }
         }
 
-        public int RatingVersion
+        public double RatingFunctionAdaptability
         {
-            get { return (int)sb["RatingVersion"]; }
-            set { sb["RatingVersion"] = (int)value; }
+            get { return (double)sb["RatingFunctionAdaptability"]; }
+            set { sb["RatingFunctionAdaptability"] = (double)value; }
+        }
+
+        public int BrowserRatingVersion
+        {
+            get { return (int)sb["BrowserRatingVersion"]; }
+            set { sb["BrowserRatingVersion"] = (int)value; }
         }
         public string TeamDataFolder
         {
@@ -388,6 +401,11 @@ namespace TMRecorder
         {
             get { return (bool)sb["EvidenceGain"]; }
             set { sb["EvidenceGain"] = (bool)value; }
+        }
+        public bool ShowRecOnGrids
+        {
+            get { return (bool)sb["ShowRecOnGrids"]; }
+            set { sb["ShowRecOnGrids"] = (bool)value; }
         }
         public int ShowActions
         {

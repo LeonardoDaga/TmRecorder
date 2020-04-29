@@ -112,14 +112,14 @@ namespace NTR_Db
                     int weightLength = (playerData.FPn == 0) ? 11 : 14;
                     for (var i = 0; i < weightLength; i++)
                     {
-                        R.rec[j] += 0.06 * playerData.Skills[i] * _weightREC[j, i];
-                        R.rating[j] += playerData.Skills[i] * _weightRat[j, i];
+                        R.rec[j] += 0.06 * playerData.Skills[i] * WeightREC[j, i];
+                        R.rating[j] += playerData.Skills[i] * WeightRat[j, i];
                     }
 
                     if (positionIndex[n] == 13)
                         R.rec[j] *= 1.27;					//GK
 
-                    R.rec[j] = (R.rec[j] - _WeightREClf[j, 0]) / _WeightREClf[j, 1];
+                    R.rec[j] = (R.rec[j] - WeightREClf[j, 0]) / WeightREClf[j, 1];
 
                     R.ratingR[j] = R.rating[j] * (1 + rou * RoutineFactor);
                     R.rating[j] = R.rating[j];
@@ -154,31 +154,58 @@ namespace NTR_Db
             return Rmax;
         }
 
-        internal static RatingFunction Create(List<REC_Weights> recWeights, List<REC_Weights> ratWeights,
-            List<PROP_Weights> recLfWeights, List<ADA_Weights> adaWeights, double rouFactor, string fileName)
-        {
-            return new RatingRC(
-                Rating.TableToWeightsMatrix(recWeights),
-                Rating.TableToWeightsMatrix(ratWeights),
-                Rating.PropTableToWeightsMatrix(recLfWeights),
-                Rating.AdaTableToWeightsMatrix(adaWeights),
-                rouFactor, fileName);
-        }
+        //internal static RatingFunction Create(List<REC_Weights> recWeights, List<REC_Weights> ratWeights,
+        //    List<PROP_Weights> recLfWeights, List<ADA_Weights> adaWeights, double rouFactor, string fileName)
+        //{
+        //    return new RatingRC(
+        //        Rating.TableToWeightsMatrix(recWeights),
+        //        Rating.TableToWeightsMatrix(ratWeights),
+        //        Rating.PropTableToWeightsMatrix(recLfWeights),
+        //        Rating.AdaTableToWeightsMatrix(adaWeights),
+        //        rouFactor, fileName);
+        //}
 
-        public RatingRC(WeightMatrix recMatrix, WeightMatrix ratMatrix, WeightMatrix recLfMatrix, WeightMatrix adaMatrix, double rouFactor, string fileName)
-        {
-            this._weightREC = recMatrix;
-            this._weightRat = ratMatrix;
-            this._WeightREClf = recLfMatrix;
-            this._adaFact = adaMatrix;
-            this._routineFactor = rouFactor;
-            this.SettingsFilename = fileName;
-            SettingInitialize();
-        }
+        //public RatingRC(WeightMatrix recMatrix, WeightMatrix ratMatrix, WeightMatrix recLfMatrix, WeightMatrix adaMatrix, double rouFactor, string fileName)
+        //{
+        //    this._weightREC = recMatrix;
+        //    this._weightRat = ratMatrix;
+        //    this._WeightREClf = recLfMatrix;
+        //    this._adaFact = adaMatrix;
+        //    this._routineFactor = rouFactor;
+        //    this.SettingsFilename = fileName;
+        //    SettingInitialize();
+        //}
 
         public RatingRC()
         {
             SettingInitialize();
+        }
+
+        public WeightMatrix WeightREClf
+        {
+            get => (WeightMatrix)this["WeightREClf"];
+            set => this["WeightREClf"] = value;
+        }
+
+        public WeightMatrix WeightREC
+        {
+            get => (WeightMatrix)this["WeightREC"];
+            set => this["WeightREC"] = value;
+        }
+        public override WeightMatrix WeightRat
+        {
+            get => (WeightMatrix)this["WeightRat"];
+            set
+            {
+                this["WeightRat"] = value;
+                OrderedWeightRat = SortRowsByCols(value);
+            }
+        }
+
+        public WeightMatrix Adaptability
+        {
+            get => (WeightMatrix)this["Adaptability"];
+            set => this["Adaptability"] = value;
         }
 
         /// <summary>

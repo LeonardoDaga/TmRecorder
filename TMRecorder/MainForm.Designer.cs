@@ -236,7 +236,6 @@ namespace TMRecorder
             this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
             this.tacticsEditorToolStripMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.ratingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.transferManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importPlayersDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.structuresEconomyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -315,7 +314,6 @@ namespace TMRecorder
             this.marDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Age = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.checkForUpdateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStripGK.SuspendLayout();
             this.contextMenuPlInfo.SuspendLayout();
@@ -2322,7 +2320,6 @@ namespace TMRecorder
             this.toolStripDropDownButton2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem6,
             this.tacticsEditorToolStripMenu,
-            this.ratingToolStripMenuItem,
             this.transferManagerToolStripMenuItem,
             this.importPlayersDataToolStripMenuItem,
             this.structuresEconomyToolStripMenuItem,
@@ -2353,14 +2350,6 @@ namespace TMRecorder
             this.tacticsEditorToolStripMenu.Size = new System.Drawing.Size(220, 26);
             this.tacticsEditorToolStripMenu.Text = "Tactics Editor";
             this.tacticsEditorToolStripMenu.Click += new System.EventHandler(this.tacticsEditorToolStripMenu_Click);
-            // 
-            // ratingToolStripMenuItem
-            // 
-            this.ratingToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("ratingToolStripMenuItem.Image")));
-            this.ratingToolStripMenuItem.Name = "ratingToolStripMenuItem";
-            this.ratingToolStripMenuItem.Size = new System.Drawing.Size(220, 26);
-            this.ratingToolStripMenuItem.Text = "Rating Editor";
-            this.ratingToolStripMenuItem.Click += new System.EventHandler(this.ratingToolStripMenuItem_Click);
             // 
             // transferManagerToolStripMenuItem
             // 
@@ -2616,8 +2605,7 @@ namespace TMRecorder
             this.gotoTheTmRecorderWebsiteToolStripMenuItem,
             this.gotoTheTmRecorderFederationInTrophyManagerToolStripMenuItem,
             this.frequentlyAskedQuestionsToolStripMenuItem,
-            this.iTDomandeFrequentiToolStripMenuItem,
-            this.checkForUpdateToolStripMenuItem});
+            this.iTDomandeFrequentiToolStripMenuItem});
             this.toolStripDropDownButton7.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton7.Image")));
             this.toolStripDropDownButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton7.Name = "toolStripDropDownButton7";
@@ -3058,13 +3046,6 @@ namespace TMRecorder
             this.dataGridViewTextBoxColumn6.HeaderText = "ASI";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             // 
-            // checkForUpdateToolStripMenuItem
-            // 
-            this.checkForUpdateToolStripMenuItem.Name = "checkForUpdateToolStripMenuItem";
-            this.checkForUpdateToolStripMenuItem.Size = new System.Drawing.Size(344, 22);
-            this.checkForUpdateToolStripMenuItem.Text = "Check for Update";
-            this.checkForUpdateToolStripMenuItem.Click += new System.EventHandler(this.checkForUpdateToolStripMenuItem_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -3402,8 +3383,6 @@ namespace TMRecorder
         private System.Windows.Forms.ToolStripMenuItem fCToolStripMenuItem;
         private TMR_CostumControls.TMR_ToolStripButton tsbImportClub;
         private System.Windows.Forms.ToolStripMenuItem rescanMatchesForPlayersActionsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ratingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tacticsEditorToolStripMenu;
-        private System.Windows.Forms.ToolStripMenuItem checkForUpdateToolStripMenuItem;
     }
 }

@@ -1929,7 +1929,9 @@ namespace TMRecorder
             {
                 ExtTMDataSet.PlayerHistoryRow pr = (ExtTMDataSet.PlayerHistoryRow)table.Rows[i];
 
-                Rating rat = RF.ComputeRating(PlayerDataSkills.From(pr, playerDatarow.FPn));
+                Rating rat = RF.ComputeRating(PlayerDataSkills.From(pr, playerDatarow.FPn,
+                    (double)playerDatarow.Rou,
+                    playerDatarow.Wage));
 
                 if (chkShowRec.Checked)
                 {
@@ -2224,7 +2226,9 @@ namespace TMRecorder
             {
                 ExtTMDataSet.PlayerHistoryRow pr = (ExtTMDataSet.PlayerHistoryRow)table.Rows[i];
 
-                Rating rat = RF.ComputeRating(PlayerDataSkills.From(pr, 0 /*GK*/));
+                Rating rat = RF.ComputeRating(PlayerDataSkills.From(pr, 0  /*GK*/, 
+                    (double)playerDatarow.Rou,
+                    playerDatarow.Wage));
 
                 if (chkShowRec.Checked)
                 {
@@ -2789,6 +2793,8 @@ namespace TMRecorder
             scoutsNReviews.FillTables(gRow, History.reportParser);
 
             FillTagsBars(gRow);
+
+            Initialize();
 
             gRow.isDirty = true;
         }

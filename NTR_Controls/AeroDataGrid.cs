@@ -108,6 +108,8 @@ namespace NTR_Controls
             dgvc.CellColorStyles = CellColorStyleList.DefaultFpColorStyle();
         }
 
+        List<TMR_NumDecColumn> skColsList = new List<TMR_NumDecColumn>();
+
         public void AddSkColumn(string skill, bool evidenceGain, int size = 25)
         {
             TMR_NumDecColumn dgvc = (TMR_NumDecColumn)this.AddColumn(skill, skill, size, AG_Style.NumDec);
@@ -115,6 +117,19 @@ namespace NTR_Controls
                 dgvc.CellColorStyles = CellColorStyleList.DefaultGainColorStyle();
             else
                 dgvc.CellColorStyles = CellColorStyleList.NoGainColorStyle();
+
+            skColsList.Add(dgvc);
+        }
+
+        public void SetSkEvidenceGain(bool evidenceGain)
+        {
+            foreach(var dgvc in skColsList)
+            {
+                if (evidenceGain)
+                    dgvc.CellColorStyles = CellColorStyleList.DefaultGainColorStyle();
+                else
+                    dgvc.CellColorStyles = CellColorStyleList.NoGainColorStyle();
+            }
         }
 
         public DataGridViewColumn AddColumn(string Title, string Property, int width, AG_Style styles, string description = "")

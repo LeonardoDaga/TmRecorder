@@ -53,6 +53,8 @@ function get_scout_info() {
 
 			var scout_reviews = $('#player_scout_new > div').length - 1;
 			for (var k = 2; k < scout_reviews + 3; k++) {
+				if ($("#player_scout_new > div:nth-child(" + k + ")")[0] === undefined)
+					continue;
 				strout += "\nReview:" + $("#player_scout_new > div:nth-child(" + k + ")")[0].outerText;
 			}
 
@@ -69,6 +71,9 @@ function get_player_history() {
 	strout = "no data";
 
 	if (player_history_data == null) return "Javascript error: data doesn't exists";
+
+	if (player_history_data.table === undefined)
+		return strout;
 
 	total_history = player_history_data.table.total;
 

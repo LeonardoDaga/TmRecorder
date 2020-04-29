@@ -97,6 +97,7 @@ namespace NTR_Db
             this.lblR2Rat2 = new System.Windows.Forms.Label();
             this.lblR2Rat = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.lblReRec2 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
@@ -110,7 +111,6 @@ namespace NTR_Db
             this.lblInjDays = new System.Windows.Forms.Label();
             this.pctBan = new System.Windows.Forms.PictureBox();
             this.lblBanDays = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
             this.lblLea = new System.Windows.Forms.Label();
             this.pctRetiring = new System.Windows.Forms.PictureBox();
             this.banImgList = new System.Windows.Forms.ImageList(this.components);
@@ -904,9 +904,9 @@ namespace NTR_Db
             this.lblReRec1.BackColor = System.Drawing.Color.Lavender;
             this.lblReRec1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblReRec1.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblReRec1.Location = new System.Drawing.Point(171, 244);
+            this.lblReRec1.Location = new System.Drawing.Point(157, 244);
             this.lblReRec1.Name = "lblReRec1";
-            this.lblReRec1.Size = new System.Drawing.Size(36, 17);
+            this.lblReRec1.Size = new System.Drawing.Size(43, 17);
             this.lblReRec1.TabIndex = 42;
             this.lblReRec1.Text = "0";
             this.lblReRec1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -966,9 +966,9 @@ namespace NTR_Db
             this.lblRouEff1.BackColor = System.Drawing.Color.Lavender;
             this.lblRouEff1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblRouEff1.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRouEff1.Location = new System.Drawing.Point(171, 295);
+            this.lblRouEff1.Location = new System.Drawing.Point(157, 295);
             this.lblRouEff1.Name = "lblRouEff1";
-            this.lblRouEff1.Size = new System.Drawing.Size(36, 17);
+            this.lblRouEff1.Size = new System.Drawing.Size(43, 17);
             this.lblRouEff1.TabIndex = 51;
             this.lblRouEff1.Text = "0";
             this.lblRouEff1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -979,9 +979,9 @@ namespace NTR_Db
             this.lblRouEff2.BackColor = System.Drawing.Color.Lavender;
             this.lblRouEff2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblRouEff2.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRouEff2.Location = new System.Drawing.Point(209, 295);
+            this.lblRouEff2.Location = new System.Drawing.Point(202, 295);
             this.lblRouEff2.Name = "lblRouEff2";
-            this.lblRouEff2.Size = new System.Drawing.Size(36, 17);
+            this.lblRouEff2.Size = new System.Drawing.Size(43, 17);
             this.lblRouEff2.TabIndex = 51;
             this.lblRouEff2.Text = "0";
             this.lblRouEff2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -992,9 +992,9 @@ namespace NTR_Db
             this.lblR2Rat2.BackColor = System.Drawing.Color.Lavender;
             this.lblR2Rat2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblR2Rat2.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblR2Rat2.Location = new System.Drawing.Point(209, 261);
+            this.lblR2Rat2.Location = new System.Drawing.Point(202, 261);
             this.lblR2Rat2.Name = "lblR2Rat2";
-            this.lblR2Rat2.Size = new System.Drawing.Size(36, 17);
+            this.lblR2Rat2.Size = new System.Drawing.Size(43, 17);
             this.lblR2Rat2.TabIndex = 61;
             this.lblR2Rat2.Text = "0";
             this.lblR2Rat2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1005,9 +1005,9 @@ namespace NTR_Db
             this.lblR2Rat.BackColor = System.Drawing.Color.Lavender;
             this.lblR2Rat.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblR2Rat.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblR2Rat.Location = new System.Drawing.Point(171, 261);
+            this.lblR2Rat.Location = new System.Drawing.Point(157, 261);
             this.lblR2Rat.Name = "lblR2Rat";
-            this.lblR2Rat.Size = new System.Drawing.Size(36, 17);
+            this.lblR2Rat.Size = new System.Drawing.Size(43, 17);
             this.lblR2Rat.TabIndex = 60;
             this.lblR2Rat.Text = "0";
             this.lblR2Rat.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1019,11 +1019,23 @@ namespace NTR_Db
             this.label15.ForeColor = System.Drawing.Color.Black;
             this.label15.Location = new System.Drawing.Point(106, 262);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(64, 16);
+            this.label15.Size = new System.Drawing.Size(53, 16);
             this.label15.TabIndex = 59;
             this.label15.Text = "Rating";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.toolTip1.SetToolTip(this.label15, "Rating pure, without routine");
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Trebuchet MS", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(164)))), ((int)(((byte)(50)))), ((int)(((byte)(0)))));
+            this.label16.Location = new System.Drawing.Point(173, 180);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(26, 16);
+            this.label16.TabIndex = 33;
+            this.label16.Text = "Lea";
+            this.toolTip1.SetToolTip(this.label16, "Leadership");
             // 
             // label23
             // 
@@ -1031,7 +1043,7 @@ namespace NTR_Db
             this.label23.ForeColor = System.Drawing.Color.Black;
             this.label23.Location = new System.Drawing.Point(106, 296);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(64, 16);
+            this.label23.Size = new System.Drawing.Size(53, 16);
             this.label23.TabIndex = 47;
             this.label23.Text = "Rou.Eff";
             this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1041,9 +1053,9 @@ namespace NTR_Db
             this.lblReRec2.BackColor = System.Drawing.Color.Lavender;
             this.lblReRec2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblReRec2.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblReRec2.Location = new System.Drawing.Point(209, 244);
+            this.lblReRec2.Location = new System.Drawing.Point(202, 244);
             this.lblReRec2.Name = "lblReRec2";
-            this.lblReRec2.Size = new System.Drawing.Size(36, 17);
+            this.lblReRec2.Size = new System.Drawing.Size(43, 17);
             this.lblReRec2.TabIndex = 42;
             this.lblReRec2.Text = "0";
             this.lblReRec2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1054,7 +1066,7 @@ namespace NTR_Db
             this.label27.ForeColor = System.Drawing.Color.Black;
             this.label27.Location = new System.Drawing.Point(106, 278);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(64, 17);
+            this.label27.Size = new System.Drawing.Size(54, 17);
             this.label27.TabIndex = 47;
             this.label27.Text = "RatingR";
             this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1064,9 +1076,9 @@ namespace NTR_Db
             this.lblR2RatR.BackColor = System.Drawing.Color.Lavender;
             this.lblR2RatR.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblR2RatR.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblR2RatR.Location = new System.Drawing.Point(171, 278);
+            this.lblR2RatR.Location = new System.Drawing.Point(157, 278);
             this.lblR2RatR.Name = "lblR2RatR";
-            this.lblR2RatR.Size = new System.Drawing.Size(36, 17);
+            this.lblR2RatR.Size = new System.Drawing.Size(43, 17);
             this.lblR2RatR.TabIndex = 42;
             this.lblR2RatR.Text = "0";
             this.lblR2RatR.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1076,9 +1088,9 @@ namespace NTR_Db
             this.lblR2RatR2.BackColor = System.Drawing.Color.Lavender;
             this.lblR2RatR2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblR2RatR2.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblR2RatR2.Location = new System.Drawing.Point(209, 278);
+            this.lblR2RatR2.Location = new System.Drawing.Point(202, 278);
             this.lblR2RatR2.Name = "lblR2RatR2";
-            this.lblR2RatR2.Size = new System.Drawing.Size(36, 17);
+            this.lblR2RatR2.Size = new System.Drawing.Size(43, 17);
             this.lblR2RatR2.TabIndex = 51;
             this.lblR2RatR2.Text = "0";
             this.lblR2RatR2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1088,9 +1100,9 @@ namespace NTR_Db
             this.lblRsSk1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblRsSk1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRsSk1.ForeColor = System.Drawing.Color.Black;
-            this.lblRsSk1.Location = new System.Drawing.Point(171, 229);
+            this.lblRsSk1.Location = new System.Drawing.Point(157, 229);
             this.lblRsSk1.Name = "lblRsSk1";
-            this.lblRsSk1.Size = new System.Drawing.Size(36, 16);
+            this.lblRsSk1.Size = new System.Drawing.Size(43, 16);
             this.lblRsSk1.TabIndex = 31;
             this.lblRsSk1.Text = "OML";
             this.lblRsSk1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1100,9 +1112,9 @@ namespace NTR_Db
             this.lblRsSk2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblRsSk2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRsSk2.ForeColor = System.Drawing.Color.Black;
-            this.lblRsSk2.Location = new System.Drawing.Point(209, 229);
+            this.lblRsSk2.Location = new System.Drawing.Point(202, 229);
             this.lblRsSk2.Name = "lblRsSk2";
-            this.lblRsSk2.Size = new System.Drawing.Size(36, 16);
+            this.lblRsSk2.Size = new System.Drawing.Size(43, 16);
             this.lblRsSk2.TabIndex = 31;
             this.lblRsSk2.Text = "OML";
             this.lblRsSk2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1172,18 +1184,6 @@ namespace NTR_Db
             this.lblBanDays.TabIndex = 53;
             this.lblBanDays.Text = "2";
             this.lblBanDays.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Trebuchet MS", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(164)))), ((int)(((byte)(50)))), ((int)(((byte)(0)))));
-            this.label16.Location = new System.Drawing.Point(173, 180);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(26, 16);
-            this.label16.TabIndex = 33;
-            this.label16.Text = "Lea";
-            this.toolTip1.SetToolTip(this.label16, "Leadership");
             // 
             // lblLea
             // 
@@ -1282,7 +1282,7 @@ namespace NTR_Db
             this.lblRatingName.ForeColor = System.Drawing.Color.Black;
             this.lblRatingName.Location = new System.Drawing.Point(106, 245);
             this.lblRatingName.Name = "lblRatingName";
-            this.lblRatingName.Size = new System.Drawing.Size(64, 16);
+            this.lblRatingName.Size = new System.Drawing.Size(51, 16);
             this.lblRatingName.TabIndex = 58;
             this.lblRatingName.Text = "R3";
             this.lblRatingName.TextAlign = System.Drawing.ContentAlignment.MiddleRight;

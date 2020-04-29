@@ -877,6 +877,11 @@ namespace NTR_Db
         RatingFunction RF = null;
         TacticsFunction TF = null;
 
+        /// <summary>
+        /// Set to TRUE to show REC instead of Ratings on the TmR main panel grids
+        /// </summary>
+        public bool UseRec { get; }
+
         private bool isAttsComputed = false;
         private bool isSumComputed = false;
         private bool isDirty = false;
@@ -1027,20 +1032,20 @@ namespace NTR_Db
             GK = (int)0,
         }
 
-        public double GK { get { return Rating.rating[(int)ePos.GK]; } }
-        public double DC { get { return Rating.rating[(int)ePos.DC]; } }
-        public double DR { get { return Rating.rating[(int)ePos.DR]; } }
-        public double DL { get { return Rating.rating[(int)ePos.DL]; } }
-        public double DMC { get { return Rating.rating[(int)ePos.DMC]; } }
-        public double DMR { get { return Rating.rating[(int)ePos.DMR]; } }
-        public double DML { get { return Rating.rating[(int)ePos.DML]; } }
-        public double MC { get { return Rating.rating[(int)ePos.MC]; } }
-        public double MR { get { return Rating.rating[(int)ePos.MR]; } }
-        public double ML { get { return Rating.rating[(int)ePos.ML]; } }
-        public double OMC { get { return Rating.rating[(int)ePos.OMC]; } }
-        public double OMR { get { return Rating.rating[(int)ePos.OMR]; } }
-        public double OML { get { return Rating.rating[(int)ePos.OML]; } }
-        public double FC { get { return Rating.rating[(int)ePos.FC]; } }
+        public double GK { get { return UseRec ?  Rating.rec[(int)ePos.GK] : Rating.ratingR[(int)ePos.GK]; } }
+        public double DC { get { return  UseRec ? Rating.rec[(int)ePos.DC] : Rating.ratingR[(int)ePos.DC]; } }
+        public double DR { get { return  UseRec ? Rating.rec[(int)ePos.DR] : Rating.ratingR[(int)ePos.DR]; } }
+        public double DL { get { return  UseRec ? Rating.rec[(int)ePos.DL] : Rating.ratingR[(int)ePos.DL]; } }
+        public double DMC { get { return UseRec ? Rating.rec[(int)ePos.DMC] : Rating.ratingR[(int)ePos.DMC]; } }
+        public double DMR { get { return UseRec ? Rating.rec[(int)ePos.DMR] : Rating.ratingR[(int)ePos.DMR]; } }
+        public double DML { get { return UseRec ? Rating.rec[(int)ePos.DML] : Rating.ratingR[(int)ePos.DML]; } }
+        public double MC { get { return  UseRec ? Rating.rec[(int)ePos.MC] : Rating.ratingR[(int)ePos.MC]; } }
+        public double MR { get { return  UseRec ? Rating.rec[(int)ePos.MR] : Rating.ratingR[(int)ePos.MR]; } }
+        public double ML { get { return  UseRec ? Rating.rec[(int)ePos.ML] : Rating.ratingR[(int)ePos.ML]; } }
+        public double OMC { get { return UseRec ? Rating.rec[(int)ePos.OMC] : Rating.ratingR[(int)ePos.OMC]; } }
+        public double OMR { get { return UseRec ? Rating.rec[(int)ePos.OMR] : Rating.ratingR[(int)ePos.OMR]; } }
+        public double OML { get { return UseRec ? Rating.rec[(int)ePos.OML] : Rating.ratingR[(int)ePos.OML]; } }
+        public double FC { get { return UseRec ?  Rating.rec[(int)ePos.FC] : Rating.ratingR[(int)ePos.FC]; } }
 
         #region Tactics
         public decimal _tacABal = -1;
@@ -1411,10 +1416,12 @@ namespace NTR_Db
                           ExtTMDataSet[] lastTwoWeeks,
                           RatingFunction rf, TacticsFunction tf,
                           ExtraDS.GiocatoriRow gr,
-                          List<NTR_SquadDb.PlayerPerfRow> pprList)
+                          List<NTR_SquadDb.PlayerPerfRow> pprList,
+                          bool useRECinGrids)
         {
             RF = rf;
             TF = tf;
+            UseRec = useRECinGrids;
 
             Name = thisWeek.Nome;
             Week = TmWeek.thisWeek().absweek;
@@ -1486,7 +1493,7 @@ namespace NTR_Db
             else
             {
                 AvRat = new FormattedString("-");
-                AvRat.ToolTip = "No matches played";
+                AvRat.ToolTip = "No played matches";
                 AvRat.backColor = deadGreen;
             }
             #endregion
@@ -2528,8 +2535,9 @@ namespace NTR_Db
 
     public class MatchData
     {
-        public MatchData(NTR_SquadDb.MatchRow mr)
+        public MatchData(NTR_SquadDb.MatchRow mr, int? OwnerId = null)
         {
+
             Date = mr.Date.Date;
 
             if (!mr.IsCrowdNull()) 
@@ -2549,10 +2557,21 @@ namespace NTR_Db
             NTR_SquadDb.TeamRow HomeRow = mr.isHome ? mr.TeamRowByTeam_YTeam : mr.TeamRowByTeam_OTeam;
             NTR_SquadDb.TeamRow AwayRow = mr.isHome ? mr.TeamRowByTeam_OTeam : mr.TeamRowByTeam_YTeam;
 
-            if (!HomeRow.IsOwnerNull() && (HomeRow.Owner))
-                IsHome = true;
-            else if (!AwayRow.IsOwnerNull() && (AwayRow.Owner))
-                IsHome = false;
+
+            if (OwnerId == null)
+            {
+                if (!HomeRow.IsOwnerNull() && (HomeRow.Owner))
+                    IsHome = true;
+                else if (!AwayRow.IsOwnerNull() && (OwnerId == null) && (AwayRow.Owner))
+                    IsHome = false;
+            }
+            else if (OwnerId != null)
+            {
+                if (HomeRow.TeamID == OwnerId)
+                    IsHome = true;
+                else
+                    IsHome = false;
+            }
             else if (!HomeRow.IsImportedNull() && (HomeRow.Imported))
                 IsHome = true;
             else
@@ -2579,14 +2598,25 @@ namespace NTR_Db
                 }
                 if (!mr.IsAttackStylesNull())
                 {
-                    string[] AttackStyles = mr.AttackStyles.Split(';');
-                    YAttk = AttackStyles[0];
-                    OAttk = AttackStyles[1];
                     LineUps = mr.Lineups;
                     Pitch = mr.Pitch;
+                    string[] AttackStyles = mr.AttackStyles.Split(';');
                     string[] Mentalities = mr.Mentalities.Split(';');
-                    YMent = Mentalities[0];
-                    OMent = Mentalities[1];
+
+                    if (IsHome != mr.isHome)
+                    {
+                        YAttk = AttackStyles[1];
+                        OAttk = AttackStyles[0];
+                        YMent = Mentalities[1];
+                        OMent = Mentalities[0];
+                    }
+                    else
+                    {
+                        YAttk = AttackStyles[0];
+                        OAttk = AttackStyles[1];
+                        YMent = Mentalities[0];
+                        OMent = Mentalities[1];
+                    }
                 }
                 else
                 {

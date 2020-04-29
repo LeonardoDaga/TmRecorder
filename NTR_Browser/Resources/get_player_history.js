@@ -5,6 +5,9 @@
 
     total_history = player_history_data.table.total;
 
+    if (player_history_data.table === undefined)
+        return strout;
+
     strout = "";
 
     for (var j in total_history) {

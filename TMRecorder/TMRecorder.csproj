@@ -67,7 +67,7 @@
     <PublisherName>INSYDE</PublisherName>
     <DisallowUrlActivation>true</DisallowUrlActivation>
     <ApplicationRevision>2</ApplicationRevision>
-    <ApplicationVersion>2.20.0.2</ApplicationVersion>
+    <ApplicationVersion>2.20.3.2</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -536,13 +536,6 @@
     </Content>
     <Content Include="Datafiles\transfer_loader.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="DB\TMR.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="DB\TMR_log.ldf">
-      <DependentUpon>TMR.mdf</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\TraderForm.ico" />
     <Content Include="Datafiles\ReportAnalysisFileIT.xml">

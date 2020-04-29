@@ -279,10 +279,10 @@ namespace NTR_Db
 
                     lblRatingName.Text = RF.ShortName + " REC";
 
-                    lblR2Rat.Text = Rating.rating[FPv[0]].ToString("N1");
-                    lblR2RatR.Text = Rating.ratingR[FPv[0]].ToString("N1");
+                    lblR2Rat.Text = Rating.rating[FPv[0]].ToString("N2");
+                    lblR2RatR.Text = Rating.ratingR[FPv[0]].ToString("N2");
                     lblReRec1.Text = Rating.rec[FPv[0]].ToString("N2");
-                    lblRouEff1.Text = (Rating.ratingR[FPv[0]] - Rating.rating[FPv[0]]).ToString("N1");
+                    lblRouEff1.Text = (Rating.ratingR[FPv[0]] - Rating.rating[FPv[0]]).ToString("N2");
                     lblRsSk1.Text = FPs[0];
                     SetLabelBack(lblRsSk1, FPs[0]);
 
@@ -294,10 +294,10 @@ namespace NTR_Db
 
                     if (FPv[1] != -1)
                     {
-                        lblR2Rat2.Text = Rating.rating[FPv[1]].ToString("N1");
-                        lblR2RatR2.Text = Rating.ratingR[FPv[1]].ToString("N1");
+                        lblR2Rat2.Text = Rating.rating[FPv[1]].ToString("N2");
+                        lblR2RatR2.Text = Rating.ratingR[FPv[1]].ToString("N2");
                         lblReRec2.Text = Rating.rec[FPv[1]].ToString("N2");
-                        lblRouEff2.Text = (Rating.ratingR[FPv[1]] - Rating.rating[FPv[1]]).ToString("N1");
+                        lblRouEff2.Text = (Rating.ratingR[FPv[1]] - Rating.rating[FPv[1]]).ToString("N2");
                         lblRsSk2.Text = FPs[1];
                         SetLabelBack(lblRsSk2, FPs[1]);
                     }

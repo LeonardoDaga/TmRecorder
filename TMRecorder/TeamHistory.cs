@@ -95,7 +95,9 @@ namespace TMRecorder
         public ExtTMDataSet actualDts = null;
         public TeamDS teamDS = new TeamDS();
         public ReportParser reportParser = null;
-        public RatingFunction RF = null;
+
+        public RatingFunction RF { get; set; }
+
         public TacticsFunction TF = null;
 
         public TeamHistory()

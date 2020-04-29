@@ -55,8 +55,12 @@ namespace NTR_Db
         public int FPn { get; private set; }
         public int SPn { get; private set; }
         public double SkillSum { get; private set; }
+        public double Wage { get; private set; }
 
-        public static PlayerDataSkills From(ExtTMDataSet.PlayerHistoryRow pr, int FPn)
+        public static PlayerDataSkills From(ExtTMDataSet.PlayerHistoryRow pr, 
+            int FPn,
+            double Rou = 0,
+            int? Wage = null)
         {
             PlayerDataSkills pDS = new PlayerDataSkills();
 
@@ -66,11 +70,11 @@ namespace NTR_Db
                 pDS.SkillSum += pDS.Skills[i];
             }
 
-            pDS.Rou = 0;
+            pDS.Rou = Rou;
             pDS.ASI = pr.ASI;
             pDS.FPn = FPn;
             pDS.Ada = 0;
-
+            pDS.Wage = (double)((Wage == null)?0:Wage); 
 
             return pDS;
         }

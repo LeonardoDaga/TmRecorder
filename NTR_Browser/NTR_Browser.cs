@@ -17,8 +17,6 @@ namespace NTR_Browser
 
     public partial class NTR_Browser : UserControl
     {
-        List<TimedScript> executeListOnLoad = new List<TimedScript>();
-
         public enum eNavigationMode
         {
             Main,
@@ -229,22 +227,6 @@ namespace NTR_Browser
                 tsbProgressBarSet(100, Color.Green);
             }
 
-            if (e.IsLoading == false)
-            {
-                var frame = webBrowser.GetMainFrame();
-
-                foreach (var itemToExec in executeListOnLoad)
-                {
-                    var result = await webBrowser.GetMainFrame().EvaluateScriptAsync(itemToExec.Script)
-                        .ContinueWith(t =>
-                        {
-                            var res = t.Result;
-                            return (string)res.ToString();
-                        });
-                }
-
-                executeListOnLoad.Clear();
-            }
 
             if (e.IsLoading == false)
             {
@@ -449,8 +431,8 @@ namespace NTR_Browser
 
         private void tsbProgressBarSet(int value, Color color)
         {
-            if (!timerProgress.Enabled)
-                return;
+            //if (!timerProgress.Enabled)
+            //    return;
 
             if (tsAddressBar.InvokeRequired)
             {
@@ -612,9 +594,13 @@ namespace NTR_Browser
 
             // Getting clubId
             result += ";ClubId=" + HTML_Parser.GetFirstNumberInString(textItems[1]);
+            result += ";ClubName=" + HTML_Parser.CutBefore(textItems[6], ":").TrimStart(" :".ToCharArray());
             result += ";Fans=" + HTML_Parser.GetFirstNumberInString(textItems[9].Replace(",", "").Replace(".", ""));
             if (textItems.Length > 12)
+            {
                 result += ";BTeamClubId=" + HTML_Parser.GetFirstNumberInString(textItems[12]);
+                result += ";BTeamClubName=" + HTML_Parser.GetField(textItems[11], ":", "-").Trim(' ');
+            }
 
             result += ";Cash=" + HTML_Parser.GetFirstNumberInString(textItems[0].Replace(",", "").Replace(".", ""));
 
@@ -713,14 +699,14 @@ namespace NTR_Browser
 
                 foreach(var review in Reviews)
                 {
-                    string[] lines = review.Split('\n');
-                    ScoutName += lines[0].Split(':')[1] + '|';
+                    string[] lines = review.Split("\n".ToCharArray());
+                    ScoutName += HTML_Parser.GetField(lines[0], "Review:", "(").Trim() + '|';
 
-                    string date = lines[1].TrimStart('(').TrimEnd(')');
+                    string date = HTML_Parser.GetField(lines[0], "(", ")");
                     DateTime dt = DateTime.Parse(date);
                     ScoutDate += TmWeek.ToSWDString(dt) + "|";
 
-                    string age = HTML_Parser.GetFirstNumberInString(lines[2]);
+                    string age = HTML_Parser.GetFirstNumberInString(lines[1]);
 
                     string giudizio = "";
                     giudizio += "Age:" + age + ",";
@@ -739,14 +725,14 @@ namespace NTR_Browser
                     string field;
                     
                     // It's the potential
-                    string potential_string = HTML_Parser.GetFirstNumberInString(lines[3]);
+                    string potential_string = HTML_Parser.GetFirstNumberInString(lines[2]);
                     giudizio += "Pot:" + potential_string + ",";
 
                     ScoutVoto += potential_string + "|";
 
                     if (lines.Length > 5)
                     {
-                        field = lines[4];
+                        field = lines[3];
                         if (field.Contains(SelectedReportParser.Dict["Keys"][(int)ReportParser.Keys.BloomStatus]))
                         {
                             // It's the bloom status
@@ -762,7 +748,7 @@ namespace NTR_Browser
                             }
                         }
 
-                        field = lines[5];
+                        field = lines[4];
                         if (field.Contains(SelectedReportParser.Dict["Keys"][(int)ReportParser.Keys.DevStatus]))
                         {
                             // It's the DevStatus
@@ -770,7 +756,7 @@ namespace NTR_Browser
                             dev_status = SelectedReportParser.find("Development", devstats[1]);
                         }
 
-                        field = lines[6];
+                        field = lines[5];
                         if (field.Contains(SelectedReportParser.Dict["Keys"][(int)ReportParser.Keys.Speciality]))
                         {
                             // It's the Speciality
@@ -787,12 +773,12 @@ namespace NTR_Browser
 
                         try
                         {
-                            physique = SelectedReportParser.find("Physique", lines[8], physique);
-                            technics = SelectedReportParser.find("Technics", lines[10], technics);
-                            tactics = SelectedReportParser.find("Tactics", lines[9], tactics);
-                            aggressivity = SelectedReportParser.find("Aggressivity", lines[13], aggressivity);
-                            leadership = SelectedReportParser.find("Charisma", lines[11], leadership);
-                            professionalism = SelectedReportParser.find("Professionalism", lines[12], professionalism);
+                            physique = SelectedReportParser.find("Physique", lines[7], physique);
+                            technics = SelectedReportParser.find("Technics", lines[9], technics);
+                            tactics = SelectedReportParser.find("Tactics", lines[8], tactics);
+                            aggressivity = SelectedReportParser.find("Aggressivity", lines[12], aggressivity);
+                            leadership = SelectedReportParser.find("Charisma", lines[10], leadership);
+                            professionalism = SelectedReportParser.find("Professionalism", lines[11], professionalism);
                         }
                         catch (Exception)
                         { }
@@ -828,7 +814,7 @@ namespace NTR_Browser
             }
 
 
-            if (playerPage["history"] != "")
+            if (playerPage["history"] != "no data")
             {
                 string history = playerPage["history"];
 
@@ -891,11 +877,10 @@ namespace NTR_Browser
                         gameTable.Performances.AddPerformancesRow(pr);
                 }
 
-                result = "GameTable|" + gameTable.ToString();
+                result += ";GameTable|" + gameTable.ToString();
             }
-
-
-                return result;
+            
+            return result;
         }
 
         private async Task<string> Import_Players_Training_Adv()
@@ -1204,21 +1189,21 @@ namespace NTR_Browser
         //}
 
 
-        private void webBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
-        {
-            //if (ActualPlayerID > 0)
-            //{
-            //    string script = Resources.RatingR4_user;
-            //    AppendScriptAndExecute(script, "ApplyRatingR4");
-            //    tsbPlayersNavigationType.Visible = true;
-            //}
-            //else
-            //{
-            //    tsbPlayersNavigationType.Visible = false;
-            //}
+        //private void webBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        //{
+        //    //if (ActualPlayerID > 0)
+        //    //{
+        //    //    string script = Resources.RatingR4_user;
+        //    //    AppendScriptAndExecute(script, "ApplyRatingR4");
+        //    //    tsbPlayersNavigationType.Visible = true;
+        //    //}
+        //    //else
+        //    //{
+        //    //    tsbPlayersNavigationType.Visible = false;
+        //    //}
 
-            //CheckMainId(webBrowser.DocumentText);
-        }
+        //    //CheckMainId(webBrowser.DocumentText);
+        //}
 
         private void CheckMainId(string documentText)
         {
@@ -1398,6 +1383,7 @@ namespace NTR_Browser
 
         public void Stop()
         {
+            tsbProgressBarSet(100, Color.Blue);
             timerProgress.Enabled = false;
             timerProgress.Stop();
 

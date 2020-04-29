@@ -209,14 +209,14 @@ namespace NTR_Db
                 matchDataSelection = (from c in seasonsDB.Match
                                       where (!c.IsDateNull()) && (c.Date > dtStart) && (c.Date < dtEnd) &&
                                              (!c.IsYTeamIDNull()) && ((c.OTeamID == teamID) || (c.YTeamID == teamID))
-                                      select new MatchData(c));
+                                      select new MatchData(c, teamID));
             }
             else
             {
                 matchDataSelection = (from c in seasonsDB.Match
                                       where (!c.IsDateNull()) && (!c.IsOTeamIDNull()) && (!c.IsYTeamIDNull()) && 
                                             ((c.OTeamID == teamID) || (c.YTeamID == teamID))
-                                      select new MatchData(c));
+                                      select new MatchData(c, teamID));
             }
 
             if (playedOnly)
@@ -2013,7 +2013,7 @@ namespace NTR_Db
             public int player;
         }
 
-        public void LoadClubData(string page)
+        public Dictionary<string, string> LoadClubData(string page)
         {
             var TeamData = this.seasonsDB.TeamData;
 
@@ -2025,7 +2025,7 @@ namespace NTR_Db
             if (club_info["Fans"] == "")
             {
                 MessageBox.Show("You can't read supporters number now. Try later");
-                return;
+                return null;
             }
 
             var teamDataRow = TeamData.FindByTeamIDDate(teamID, dtToday);
@@ -2040,6 +2040,8 @@ namespace NTR_Db
             teamDataRow.NumSupporters = int.Parse(club_info["Fans"]);
 
             teamDataRow.Cash = Int64.Parse(club_info["Cash"]);
+
+            return club_info;
         }
 
         public DateTime GetLastMatch(int teamID)
@@ -2049,8 +2051,8 @@ namespace NTR_Db
             var lastMatch = (from c in seasonsDB.Match
                                       where (!c.IsDateNull()) && (c.Date > actualSeason.Start) && (c.Date <= DateTime.Today)
                                               && ((c.OTeamID == teamID) || (c.YTeamID == teamID))
-                                              && (c.Crowd != 0)
-                                      select c).OrderBy(c => c.Date).LastOrDefault();
+                                              && (!c.IsCrowdNull()) && (c.Crowd != 0)
+                             select c).OrderBy(c => c.Date).LastOrDefault();
 
             if (lastMatch == null)
                 return DateTime.MinValue;

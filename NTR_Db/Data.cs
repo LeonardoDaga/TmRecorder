@@ -923,8 +923,8 @@ namespace NTR_Db
         public enum eSkill
         {
             Str = (int)0,
-            Pac = (int)1,
-            Sta = (int)2,
+            Sta = (int)1,
+            Pac = (int)2,
 
             Mar = (int)3,
             Tac = (int)4,
@@ -940,8 +940,8 @@ namespace NTR_Db
         }
 
         public decvar Str { get { return Skills[(int)eSkill.Str]; } set { Skills[(int)eSkill.Str] = value; dirt(); } }
-        public decvar Pac { get { return Skills[1]; } set { Skills[1] = value; dirt(); } }
-        public decvar Sta { get { return Skills[2]; } set { Skills[2] = value; dirt(); } }
+        public decvar Sta { get { return Skills[1]; } set { Skills[1] = value; dirt(); } }
+        public decvar Pac { get { return Skills[2]; } set { Skills[2] = value; dirt(); } }
 
         public decvar Mar { get { return Skills[3]; } set { Skills[3] = value; dirt(); } }
         public decvar Tac { get { return Skills[4]; } set { Skills[4] = value; dirt(); } }
@@ -1305,8 +1305,8 @@ namespace NTR_Db
                     TI = new intvar(0, 0);
                 }
                 Str = new decvar(thisWeek.For, prevWeek.For, rel[(int)eSkill.Str]);
-                Pac = new decvar(thisWeek.Vel, prevWeek.Vel, rel[(int)eSkill.Pac]);
                 Sta = new decvar(thisWeek.Res, prevWeek.Res, rel[(int)eSkill.Sta]);
+                Pac = new decvar(thisWeek.Vel, prevWeek.Vel, rel[(int)eSkill.Pac]);
 
                 Mar = new decvar(thisWeek.Mar, prevWeek.Mar, rel[(int)eSkill.Mar]);
                 Tac = new decvar(thisWeek.Con, prevWeek.Con, rel[(int)eSkill.Tac]);
@@ -1337,8 +1337,8 @@ namespace NTR_Db
                     TI = new intvar(0, 0);
                 }
                 Str = new decvar(thisWeek.For, decimal.MinValue, rel[(int)eSkill.Str]);
-                Pac = new decvar(thisWeek.Vel, decimal.MinValue, rel[(int)eSkill.Pac]);
                 Sta = new decvar(thisWeek.Res, decimal.MinValue, rel[(int)eSkill.Sta]);
+                Pac = new decvar(thisWeek.Vel, decimal.MinValue, rel[(int)eSkill.Pac]);
 
                 Mar = new decvar(thisWeek.Mar, decimal.MinValue, rel[(int)eSkill.Mar]);
                 Tac = new decvar(thisWeek.Con, decimal.MinValue, rel[(int)eSkill.Tac]);
@@ -1526,8 +1526,8 @@ namespace NTR_Db
                 }
 
                 Str = new decvar(thisWeek.For, prevWeek.For, rel[(int)eSkill.Str]);
-                Pac = new decvar(thisWeek.Vel, prevWeek.Vel, rel[(int)eSkill.Pac]);
                 Sta = new decvar(thisWeek.Res, prevWeek.Res, rel[(int)eSkill.Sta]);
+                Pac = new decvar(thisWeek.Vel, prevWeek.Vel, rel[(int)eSkill.Pac]);
 
                 Mar = new decvar(thisWeek.Mar, prevWeek.Mar, rel[(int)eSkill.Mar]);
                 Tac = new decvar(thisWeek.Con, prevWeek.Con, rel[(int)eSkill.Tac]);
@@ -1554,8 +1554,8 @@ namespace NTR_Db
                     TI = new intvar(0, 0);
 
                 Str = new decvar(thisWeek.For, decimal.MinValue, rel[(int)eSkill.Str]);
-                Pac = new decvar(thisWeek.Vel, decimal.MinValue, rel[(int)eSkill.Pac]);
                 Sta = new decvar(thisWeek.Res, decimal.MinValue, rel[(int)eSkill.Sta]);
+                Pac = new decvar(thisWeek.Vel, decimal.MinValue, rel[(int)eSkill.Pac]);
 
                 Mar = new decvar(thisWeek.Mar, decimal.MinValue, rel[(int)eSkill.Mar]);
                 Tac = new decvar(thisWeek.Con, decimal.MinValue, rel[(int)eSkill.Tac]);
@@ -1573,8 +1573,14 @@ namespace NTR_Db
                 }
             }
 
-            if ((FPn != 0) || (!gr.IsAdaNull()))
+            if ((FPn != 0) && (!gr.IsAdaNull()))
                 Ada = gr.Ada;
+            if ((FPn != 0) && (!gr.IsProfessionalismNull()))
+                Professionalism = gr.Professionalism;
+            if ((FPn != 0) && (!gr.IsInjPronNull()))
+                InjPron = gr.InjPron;
+            if ((FPn != 0) && (!gr.IsAggressivityNull()))
+                Aggressivity = gr.Aggressivity;
 
             Rec = thisWeek.Rec;
 
@@ -1668,8 +1674,8 @@ namespace NTR_Db
                 }
 
                 Str = new decvar(thisWeek.For, prevWeek.For, rel[(int)eSkill.Str]);
-                Pac = new decvar(thisWeek.Vel, prevWeek.Vel, rel[(int)eSkill.Pac]);
                 Sta = new decvar(thisWeek.Res, prevWeek.Res, rel[(int)eSkill.Sta]);
+                Pac = new decvar(thisWeek.Vel, prevWeek.Vel, rel[(int)eSkill.Pac]);
 
                 Mar = new decvar(thisWeek.Mar, prevWeek.Mar, rel[(int)eSkill.Mar]);
                 Tac = new decvar(thisWeek.Con, prevWeek.Con, rel[(int)eSkill.Tac]);
@@ -1696,8 +1702,8 @@ namespace NTR_Db
                     TI = new intvar(0, 0);
 
                 Str = new decvar(thisWeek.For, decimal.MinValue, rel[(int)eSkill.Str]);
-                Pac = new decvar(thisWeek.Vel, decimal.MinValue, rel[(int)eSkill.Pac]);
                 Sta = new decvar(thisWeek.Res, decimal.MinValue, rel[(int)eSkill.Sta]);
+                Pac = new decvar(thisWeek.Vel, decimal.MinValue, rel[(int)eSkill.Pac]);
 
                 Mar = new decvar(thisWeek.Mar, decimal.MinValue, rel[(int)eSkill.Mar]);
                 Tac = new decvar(thisWeek.Con, decimal.MinValue, rel[(int)eSkill.Tac]);

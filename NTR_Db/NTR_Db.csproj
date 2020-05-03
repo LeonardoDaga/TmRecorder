@@ -99,6 +99,7 @@
     <Compile Include="Rating\PlayerDataSkills.cs" />
     <Compile Include="Rating\RatingFunction.cs" />
     <Compile Include="Rating\RatingAC.cs" />
+    <Compile Include="Rating\RatingR5.cs" />
     <Compile Include="Rating\RatingR4.cs" />
     <Compile Include="Rating\RatingR3.cs" />
     <Compile Include="Rating\RatingR2.cs" />

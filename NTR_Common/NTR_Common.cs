@@ -15,6 +15,7 @@ namespace NTR_Common
         RUSCheratte,
         RatingL2,
         RatingR4,
+        RatingR5,
     }
 
     public class FormattedString : IComparable<FormattedString>

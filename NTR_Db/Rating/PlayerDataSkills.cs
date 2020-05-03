@@ -23,6 +23,15 @@ namespace NTR_Db
             pDS.ASI = playerData.ASI.actual;
             pDS.Rou = (double)playerData.Rou;
             pDS.Ada = (double)playerData.Ada;
+            pDS.wBorn = playerData.wBorn;
+
+            pDS.Hidden = new Hidden
+            {
+                Ada = (double)playerData.Ada,
+                Inj = (double)playerData.InjPron,
+                Pro = (playerData.Professionalism != null?(float)playerData.Professionalism:0.0),
+                Agg = (playerData.Aggressivity != null ? (float)playerData.Aggressivity : 0.0),
+            };
 
             return pDS;
         }
@@ -40,9 +49,23 @@ namespace NTR_Db
                 pDS.Skills[i] = (double)gnsRow.Skills[i];
                 pDS.SkillSum += pDS.Skills[i];
             }
+
             pDS.ASI = gnsRow.ASI;
             pDS.Rou = (double)gnsRow.Rou;
+
+            if (!gnsRow.IsAdaNull())
+            {
+                pDS.Hidden = new Hidden
+                {
+                    Ada = (double)gnsRow.Ada,
+                    Inj = (double)(gnsRow.IsInjPronNull()?0:gnsRow.InjPron),
+                    Pro = (double)(gnsRow.IsProNull() ? 0 : gnsRow.Pro),
+                    Agg = (double)(gnsRow.IsAggNull() ? 0 : gnsRow.Agg)
+                };
+            }
+
             pDS.Ada = (double)gnsRow.Ada;
+            pDS.wBorn = gnsRow.wBorn;
 
             return pDS;
         }
@@ -56,6 +79,8 @@ namespace NTR_Db
         public int SPn { get; private set; }
         public double SkillSum { get; private set; }
         public double Wage { get; private set; }
+
+        public Hidden Hidden { get; private set; }
 
         public static PlayerDataSkills From(ExtTMDataSet.PlayerHistoryRow pr, 
             int FPn,
@@ -132,5 +157,13 @@ namespace NTR_Db
         public int Num { get; private set; }
         public int ID { get; private set; }
         public int wBorn { get; private set; }
+    }
+
+    public class Hidden
+    {
+        public double Pro { get; set; }
+        public double Agg { get; set; }
+        public double Inj { get; set; }
+        public double Ada { get; set; }
     }
 }

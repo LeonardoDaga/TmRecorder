@@ -2701,7 +2701,7 @@ namespace TMRecorder
 
         private void PlayerForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            webBrowser.Stop();
+            webBrowser.Close();
             Rectangle pos = new Rectangle(DesktopBounds.X, DesktopBounds.Y, DesktopBounds.Width, DesktopBounds.Height);
             Program.Setts.PlayerFormPosition = pos;
             Program.Setts.Save();

@@ -631,6 +631,8 @@ namespace NTR_Db
                     return new RatingRC();
                 case eRatingFunctionType.RatingL2:
                     return new RatingL2();
+                case eRatingFunctionType.RatingR5:
+                    return new RatingR5();
             }
 
             return null;

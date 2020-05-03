@@ -1008,8 +1008,8 @@ namespace TMRecorder
             bool evidenceGain = Program.Setts.EvidenceGain;
 
             dgPlayers.AddSkColumn("Str", evidenceGain);
-            dgPlayers.AddSkColumn("Pac", evidenceGain);
             dgPlayers.AddSkColumn("Sta", evidenceGain);
+            dgPlayers.AddSkColumn("Pac", evidenceGain);
 
             dgPlayers.AddSkColumn("Mar", evidenceGain);
             dgPlayers.AddSkColumn("Tac", evidenceGain);
@@ -1070,8 +1070,8 @@ namespace TMRecorder
             bool evidenceGain = Program.Setts.EvidenceGain;
 
             dataGridPortieri.AddSkColumn("Str", evidenceGain, 26);
-            dataGridPortieri.AddSkColumn("Pac", evidenceGain, 26);
             dataGridPortieri.AddSkColumn("Sta", evidenceGain, 26);
+            dataGridPortieri.AddSkColumn("Pac", evidenceGain, 26);
 
             dataGridPortieri.AddSkColumn("Han", evidenceGain, 26);
             dataGridPortieri.AddSkColumn("One", evidenceGain, 26);
@@ -1174,8 +1174,8 @@ namespace TMRecorder
             bool evidenceGain = Program.Setts.EvidenceGain;
 
             dgTactics.AddSkColumn("Str", evidenceGain);
-            dgTactics.AddSkColumn("Pac", evidenceGain);
             dgTactics.AddSkColumn("Sta", evidenceGain);
+            dgTactics.AddSkColumn("Pac", evidenceGain);
 
             dgTactics.AddSkColumn("Mar", evidenceGain);
             dgTactics.AddSkColumn("Tac", evidenceGain);

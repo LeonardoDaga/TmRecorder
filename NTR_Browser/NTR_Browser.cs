@@ -62,7 +62,7 @@ namespace NTR_Browser
             set
             {
                 _startnavigationAddress = value.Replace("https:", "http:"); ;
-
+                if (_startnavigationAddress == "") return;
                 tbTxtAddressSet(_startnavigationAddress);
 
                 if (_startnavigationAddress.Contains(TM_Pages.Players))
@@ -131,6 +131,8 @@ namespace NTR_Browser
         public event ImportedContentHandler ImportedContent;
         public event NavigationCompleteHandler NavigationComplete;
 
+        public bool ReloadedTmRPage = true;
+
         public NTR_Browser()
         {
             InitializeComponent();
@@ -189,6 +191,12 @@ namespace NTR_Browser
         private void WebBrowser_AddressChanged(object sender, CefSharp.AddressChangedEventArgs e)
         {
             string address = e.Address;
+
+            if (!ReloadedTmRPage && address.Contains(TM_Pages.TmrWebSite))
+            {
+                ReloadedTmRPage = true;
+                webBrowser.Reload();
+            }
 
             if (!(address.Contains(TM_Pages.Home) || address.Contains(TM_Pages.Homes)) || (address.Contains("http://trophymanager.com/banners")))
                 return;
@@ -302,39 +310,6 @@ namespace NTR_Browser
             return true;
         }
 
-        private bool CheckXulDir(string xulDir)
-        {
-            bool xulFound = false;
-
-            try
-            {
-                DirectoryInfo di = new DirectoryInfo(xulDir);
-                if (di.Exists)
-                {
-                    FileInfo[] fis = di.GetFiles("xul.dll");
-                    if (fis.Length == 0)
-                    {
-                        string message = string.Format("The folder {0} does not contain the xul DLL. Press OK to select another folder, otherwise press CANCEL to close the application.", xulDir)
-                            + string.Format("\nIf you want to download XUL, see instructions in {0}", TM_Pages.TmrWebSiteXul);
-                        if (MessageBox.Show(message, "XP and Linux versions need XUL!", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
-                            xulFound = false;
-                    }
-                    else
-                        xulFound = true;
-                }
-                else
-                {
-                    xulFound = false;
-                }
-            }
-            catch (Exception)
-            {
-                xulFound = false;
-            }
-
-            return xulFound;
-        }
-
         internal void GoForward()
         {
             if (webBrowser.CanGoForward)
@@ -440,6 +415,8 @@ namespace NTR_Browser
                 var d = new ProgressBarSetDelegate(tsbProgressBarSet);
                 try
                 {
+                    if (((NTR_Browser)d.Target).IsDisposed) return;
+                    if (((NTR_Browser)d.Target).Disposing) return;
                     tsAddressBar.Invoke(d, new object[] { value, color });
                 }
                 catch (ObjectDisposedException)
@@ -1383,12 +1360,19 @@ namespace NTR_Browser
 
         public void Stop()
         {
-            tsbProgressBarSet(100, Color.Blue);
             timerProgress.Enabled = false;
             timerProgress.Stop();
+            tsbProgressBarSet(100, Color.Blue);
 
             if (webBrowser.IsBrowserInitialized)
                 webBrowser.Stop();
+        }
+        public void Close()
+        {
+            if (webBrowser.IsBrowserInitialized)
+                webBrowser.Stop();
+            timerProgress.Enabled = false;
+            timerProgress.Stop();
         }
 
         public int progress = 0;

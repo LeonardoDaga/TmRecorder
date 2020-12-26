@@ -934,7 +934,10 @@ namespace NTR_Db
             DateTime dtEnd = tmSeason.End;
 
             var playerPerf = (from c in seasonsDB.PlayerPerf
-                              where (!c.PlayerRow.TeamRow.IsOwnerNull()) && (c.PlayerRow.TeamRow.Owner) && (c.MatchRow.Date > dtStart)
+                              where (!c.PlayerRow.TeamRow.IsOwnerNull()) 
+                              && (c.PlayerRow.TeamRow.Owner) 
+                              && (c.MatchRow != null)
+                              && (c.MatchRow.Date > dtStart)
                               && (c.MatchRow.Date < dtEnd)
                               select c).OrderBy(p => p.MatchRow.Date);
 
@@ -962,7 +965,9 @@ namespace NTR_Db
             }
 
             var playerPerf = (from c in seasonsDB.PlayerPerf
-                              where (c.PlayerID == actualPlayerID) && (c.MatchRow.Date > dtStart)
+                              where (c.PlayerID == actualPlayerID) 
+                              && (c.MatchRow != null)
+                              && (c.MatchRow.Date > dtStart)
                               && (c.MatchRow.Date < dtEnd)
                               select c).OrderBy(p => p.MatchRow.Date).ToList();
 

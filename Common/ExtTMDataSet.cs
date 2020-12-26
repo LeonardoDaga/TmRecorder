@@ -741,7 +741,7 @@ namespace Common
                     edsRow.FP = tdsRow.FP;
                     edsRow.FPn = Tm_Utility.FPToNumber(tdsRow.FP);
 
-                    if ((plyDB != null) && (plyDB.IsSPnNull()))
+                    if ((plyDB != null) && (!plyDB.IsSPnNull()))
                         edsRow.SPn = plyDB.SPn;
                     else
                         edsRow.SPn = Tm_Utility.FPnToSPn(edsRow.FPn);

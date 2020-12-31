@@ -94,9 +94,19 @@ namespace TMRecorder
             Initialize();
 
             chkNormalized_CheckedChanged(null, EventArgs.Empty);
+        }
+
+        private void PlayerForm_Load(object sender, EventArgs e)
+        {
+            Rectangle pos = Program.Setts.PlayerFormPosition;
+
+            if (pos.Height + pos.Width > 0)
+                this.SetDesktopBounds(pos.X, pos.Y, pos.Width, pos.Height);
+
+            PlayerForm_SizeChanged(this, EventArgs.Empty);
 
             webBrowser.SelectedReportParser = History.reportParser;
-            webBrowser.GotoPlayer(ID, NTR_Browser.NTR_Browser.PlayerNavigationType.NavigateReports);
+            webBrowser.GotoPlayer(actPlayerID, NTR_Browser.NTR_Browser.PlayerNavigationType.NavigateReports);
         }
 
         public void Initialize(int playerID)
@@ -114,7 +124,7 @@ namespace TMRecorder
             Initialize();
         }
 
-        public void Initialize()
+        public async void Initialize()
         {
             FormatPerfList();
 
@@ -2327,13 +2337,13 @@ namespace TMRecorder
         private void playersMainPageToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
-            Clipboard.SetText("http://trophymanager.com/players/" + playerDatarow.PlayerID.ToString());
+            Clipboard.SetText(TM_Pages.Players + playerDatarow.PlayerID.ToString());
         }
 
         private void playersScoutPageToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
-            Clipboard.SetText("http://trophymanager.com/players/" + playerDatarow.PlayerID.ToString() + "/#/page/scout/");
+            Clipboard.SetText(TM_Pages.Players + playerDatarow.PlayerID.ToString() + "/#/page/scout/");
         }
 
         private void openPlayerPageToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2689,27 +2699,17 @@ namespace TMRecorder
             return found;
         }
 
-        private void PlayerForm_Load(object sender, EventArgs e)
-        {
-            Rectangle pos = Program.Setts.PlayerFormPosition;
-
-            if (pos.Height + pos.Width > 0)
-                this.SetDesktopBounds(pos.X, pos.Y, pos.Width, pos.Height);
-
-            PlayerForm_SizeChanged(this, EventArgs.Empty);
-        }
-
         private void PlayerForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             webBrowser.Close();
             Rectangle pos = new Rectangle(DesktopBounds.X, DesktopBounds.Y, DesktopBounds.Width, DesktopBounds.Height);
             Program.Setts.PlayerFormPosition = pos;
             Program.Setts.Save();
-            //this.SuspendLayout();
-            //this.Controls.Remove(this.webBrowser);
-            //this.ResumeLayout(false);
-            //webBrowser.Dispose();
-            //webBrowser = null;
+        }
+
+        private void PlayerForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            webBrowser.Dispose();
         }
 
         private void reviewDataTableBindingSource_CurrentChanged(object sender, EventArgs e)

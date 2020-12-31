@@ -20,6 +20,7 @@ namespace NTR_Db
             get
             {
                 List<DateTime> matchDates = (from c in seasonsDB.Match
+                                             where !c.IsDateNull()
                                              select c.Date).ToList();
 
                 _seasonsWithData = new List<int>();
@@ -1167,7 +1168,7 @@ namespace NTR_Db
         {
             string match_info_str = HTML_Parser.GetTag(page, "MATCH_INFO");
 
-            string matchIdStr = HTML_Parser.GetNumberAfter(page, "http://trophymanager.com/matches/");
+            string matchIdStr = HTML_Parser.GetNumberAfter(page, TM_Pages.Matches);
             int matchId = int.Parse(matchIdStr);
 
             NTR_SquadDb.MatchRow matchRow = seasonsDB.Match.FindByMatchID(matchId);
@@ -1247,7 +1248,7 @@ namespace NTR_Db
             string[] mentality = { "Norm", "VeDef", "Def", "SlDef", "Norm", "SlOff", "Off", "VrOff" };
             string[] focus = { "-", "Balanced", "Left", "Center", "Right"};
 
-            string matchIdStr = HTML_Parser.GetNumberAfter(page, "http://trophymanager.com/matches/");
+            string matchIdStr = HTML_Parser.GetNumberAfter(page, TM_Pages.Matches);
             int matchId = int.Parse(matchIdStr);
 
             NTR_SquadDb.MatchRow matchRow = seasonsDB.Match.FindByMatchID(matchId);

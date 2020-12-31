@@ -183,7 +183,7 @@ namespace NTR_Db
             string[] mentality = { "Norm", "VeDef", "Def", "SlDef", "Norm", "SlOff", "Off", "VrOff" };
             string[] focus = { "-", "Balanced", "Left", "Center", "Right" };
 
-            string matchIdStr = HTML_Parser.GetNumberAfter(page, "http://trophymanager.com/matches/");
+            string matchIdStr = HTML_Parser.GetNumberAfter(page, TM_Pages.Matches);
             int matchId = int.Parse(matchIdStr);
 
             if (squadDB == null)

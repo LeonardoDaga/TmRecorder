@@ -551,7 +551,7 @@ namespace Common
         {
             public void CleanAmbiguities()
             {
-                if (this.TeamRowByTeam_YTeam.Owner == false)
+                if ((this.TeamRowByTeam_YTeam.IsOwnerNull()) || (this.TeamRowByTeam_YTeam.Owner == false))
                 {
                     var myTeam = OTeamID;
                     OTeamID = YTeamID;

@@ -196,6 +196,28 @@ namespace TMRecorder
             this.dataGridViewTextBoxColumn20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.playerDataCnt = new NTR_Db.NTR_PlayerData();
             this.teamDS = new NTR_Common.TeamDS();
+            this.ageDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.absWeekDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.forDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.resDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.velDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.marDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.conDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.worDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.posDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pasDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.croDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tecDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.finDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tirDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.calDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tIDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.trainerIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.trainerMotDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.trainerNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.programDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.percentageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControlPlayerHistory.SuspendLayout();
             this.tabPlayerTraining.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgTraining)).BeginInit();
@@ -259,6 +281,29 @@ namespace TMRecorder
             this.dgTraining.AllowUserToResizeColumns = false;
             this.dgTraining.AutoGenerateColumns = false;
             this.dgTraining.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgTraining.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ageDataGridViewTextBoxColumn1,
+            this.absWeekDataGridViewTextBoxColumn,
+            this.forDataGridViewTextBoxColumn,
+            this.resDataGridViewTextBoxColumn,
+            this.velDataGridViewTextBoxColumn,
+            this.marDataGridViewTextBoxColumn,
+            this.conDataGridViewTextBoxColumn,
+            this.worDataGridViewTextBoxColumn,
+            this.posDataGridViewTextBoxColumn,
+            this.pasDataGridViewTextBoxColumn,
+            this.croDataGridViewTextBoxColumn,
+            this.tecDataGridViewTextBoxColumn,
+            this.tesDataGridViewTextBoxColumn,
+            this.finDataGridViewTextBoxColumn,
+            this.tirDataGridViewTextBoxColumn,
+            this.calDataGridViewTextBoxColumn,
+            this.tIDataGridViewTextBoxColumn,
+            this.trainerIDDataGridViewTextBoxColumn,
+            this.trainerMotDataGridViewTextBoxColumn,
+            this.trainerNameDataGridViewTextBoxColumn,
+            this.programDataGridViewTextBoxColumn,
+            this.percentageDataGridViewTextBoxColumn});
             this.dgTraining.DataCollection = null;
             this.dgTraining.DataSource = this.trainingBindingSource;
             this.dgTraining.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -815,9 +860,11 @@ namespace TMRecorder
             this.webBrowser.DefaultDirectory = "";
             this.webBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
             this.webBrowser.Location = new System.Drawing.Point(3, 3);
+            this.webBrowser.MainTeamId = 0;
             this.webBrowser.Name = "webBrowser";
             this.webBrowser.NavigationAddress = "";
             this.webBrowser.NavigationMode = NTR_Browser.NTR_Browser.eNavigationMode.Main;
+            this.webBrowser.RatingVersion = Common.eRatingVersion.None;
             this.webBrowser.SelectedReportParser = null;
             this.webBrowser.ShowShortlist = false;
             this.webBrowser.ShowTransfer = false;
@@ -1040,7 +1087,7 @@ namespace TMRecorder
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(86, 22);
+            this.toolStripButton2.Size = new System.Drawing.Size(87, 22);
             this.toolStripButton2.Text = "Next Player";
             this.toolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.toolStripButton2.Click += new System.EventHandler(this.btnNext_Click);
@@ -1121,7 +1168,7 @@ namespace TMRecorder
             this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
             this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(100, 22);
+            this.toolStripButton4.Size = new System.Drawing.Size(101, 22);
             this.toolStripButton4.Text = "Explore Player";
             this.toolStripButton4.Click += new System.EventHandler(this.openPlayerPageToolStripMenuItem_Click);
             // 
@@ -1877,6 +1924,160 @@ namespace TMRecorder
             this.teamDS.last_week_loaded = -1;
             this.teamDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
+            // ageDataGridViewTextBoxColumn1
+            // 
+            this.ageDataGridViewTextBoxColumn1.DataPropertyName = "Age";
+            this.ageDataGridViewTextBoxColumn1.HeaderText = "Age";
+            this.ageDataGridViewTextBoxColumn1.Name = "ageDataGridViewTextBoxColumn1";
+            this.ageDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // absWeekDataGridViewTextBoxColumn
+            // 
+            this.absWeekDataGridViewTextBoxColumn.DataPropertyName = "absWeek";
+            this.absWeekDataGridViewTextBoxColumn.HeaderText = "absWeek";
+            this.absWeekDataGridViewTextBoxColumn.Name = "absWeekDataGridViewTextBoxColumn";
+            this.absWeekDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // forDataGridViewTextBoxColumn
+            // 
+            this.forDataGridViewTextBoxColumn.DataPropertyName = "For";
+            this.forDataGridViewTextBoxColumn.HeaderText = "For";
+            this.forDataGridViewTextBoxColumn.Name = "forDataGridViewTextBoxColumn";
+            this.forDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // resDataGridViewTextBoxColumn
+            // 
+            this.resDataGridViewTextBoxColumn.DataPropertyName = "Res";
+            this.resDataGridViewTextBoxColumn.HeaderText = "Res";
+            this.resDataGridViewTextBoxColumn.Name = "resDataGridViewTextBoxColumn";
+            this.resDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // velDataGridViewTextBoxColumn
+            // 
+            this.velDataGridViewTextBoxColumn.DataPropertyName = "Vel";
+            this.velDataGridViewTextBoxColumn.HeaderText = "Vel";
+            this.velDataGridViewTextBoxColumn.Name = "velDataGridViewTextBoxColumn";
+            this.velDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // marDataGridViewTextBoxColumn
+            // 
+            this.marDataGridViewTextBoxColumn.DataPropertyName = "Mar";
+            this.marDataGridViewTextBoxColumn.HeaderText = "Mar";
+            this.marDataGridViewTextBoxColumn.Name = "marDataGridViewTextBoxColumn";
+            this.marDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // conDataGridViewTextBoxColumn
+            // 
+            this.conDataGridViewTextBoxColumn.DataPropertyName = "Con";
+            this.conDataGridViewTextBoxColumn.HeaderText = "Con";
+            this.conDataGridViewTextBoxColumn.Name = "conDataGridViewTextBoxColumn";
+            this.conDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // worDataGridViewTextBoxColumn
+            // 
+            this.worDataGridViewTextBoxColumn.DataPropertyName = "Wor";
+            this.worDataGridViewTextBoxColumn.HeaderText = "Wor";
+            this.worDataGridViewTextBoxColumn.Name = "worDataGridViewTextBoxColumn";
+            this.worDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // posDataGridViewTextBoxColumn
+            // 
+            this.posDataGridViewTextBoxColumn.DataPropertyName = "Pos";
+            this.posDataGridViewTextBoxColumn.HeaderText = "Pos";
+            this.posDataGridViewTextBoxColumn.Name = "posDataGridViewTextBoxColumn";
+            this.posDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // pasDataGridViewTextBoxColumn
+            // 
+            this.pasDataGridViewTextBoxColumn.DataPropertyName = "Pas";
+            this.pasDataGridViewTextBoxColumn.HeaderText = "Pas";
+            this.pasDataGridViewTextBoxColumn.Name = "pasDataGridViewTextBoxColumn";
+            this.pasDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // croDataGridViewTextBoxColumn
+            // 
+            this.croDataGridViewTextBoxColumn.DataPropertyName = "Cro";
+            this.croDataGridViewTextBoxColumn.HeaderText = "Cro";
+            this.croDataGridViewTextBoxColumn.Name = "croDataGridViewTextBoxColumn";
+            this.croDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // tecDataGridViewTextBoxColumn
+            // 
+            this.tecDataGridViewTextBoxColumn.DataPropertyName = "Tec";
+            this.tecDataGridViewTextBoxColumn.HeaderText = "Tec";
+            this.tecDataGridViewTextBoxColumn.Name = "tecDataGridViewTextBoxColumn";
+            this.tecDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // tesDataGridViewTextBoxColumn
+            // 
+            this.tesDataGridViewTextBoxColumn.DataPropertyName = "Tes";
+            this.tesDataGridViewTextBoxColumn.HeaderText = "Tes";
+            this.tesDataGridViewTextBoxColumn.Name = "tesDataGridViewTextBoxColumn";
+            this.tesDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // finDataGridViewTextBoxColumn
+            // 
+            this.finDataGridViewTextBoxColumn.DataPropertyName = "Fin";
+            this.finDataGridViewTextBoxColumn.HeaderText = "Fin";
+            this.finDataGridViewTextBoxColumn.Name = "finDataGridViewTextBoxColumn";
+            this.finDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // tirDataGridViewTextBoxColumn
+            // 
+            this.tirDataGridViewTextBoxColumn.DataPropertyName = "Tir";
+            this.tirDataGridViewTextBoxColumn.HeaderText = "Tir";
+            this.tirDataGridViewTextBoxColumn.Name = "tirDataGridViewTextBoxColumn";
+            this.tirDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // calDataGridViewTextBoxColumn
+            // 
+            this.calDataGridViewTextBoxColumn.DataPropertyName = "Cal";
+            this.calDataGridViewTextBoxColumn.HeaderText = "Cal";
+            this.calDataGridViewTextBoxColumn.Name = "calDataGridViewTextBoxColumn";
+            this.calDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // tIDataGridViewTextBoxColumn
+            // 
+            this.tIDataGridViewTextBoxColumn.DataPropertyName = "TI";
+            this.tIDataGridViewTextBoxColumn.HeaderText = "TI";
+            this.tIDataGridViewTextBoxColumn.Name = "tIDataGridViewTextBoxColumn";
+            this.tIDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // trainerIDDataGridViewTextBoxColumn
+            // 
+            this.trainerIDDataGridViewTextBoxColumn.DataPropertyName = "TrainerID";
+            this.trainerIDDataGridViewTextBoxColumn.HeaderText = "TrainerID";
+            this.trainerIDDataGridViewTextBoxColumn.Name = "trainerIDDataGridViewTextBoxColumn";
+            this.trainerIDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // trainerMotDataGridViewTextBoxColumn
+            // 
+            this.trainerMotDataGridViewTextBoxColumn.DataPropertyName = "TrainerMot";
+            this.trainerMotDataGridViewTextBoxColumn.HeaderText = "TrainerMot";
+            this.trainerMotDataGridViewTextBoxColumn.Name = "trainerMotDataGridViewTextBoxColumn";
+            this.trainerMotDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // trainerNameDataGridViewTextBoxColumn
+            // 
+            this.trainerNameDataGridViewTextBoxColumn.DataPropertyName = "TrainerName";
+            this.trainerNameDataGridViewTextBoxColumn.HeaderText = "TrainerName";
+            this.trainerNameDataGridViewTextBoxColumn.Name = "trainerNameDataGridViewTextBoxColumn";
+            this.trainerNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // programDataGridViewTextBoxColumn
+            // 
+            this.programDataGridViewTextBoxColumn.DataPropertyName = "Program";
+            this.programDataGridViewTextBoxColumn.HeaderText = "Program";
+            this.programDataGridViewTextBoxColumn.Name = "programDataGridViewTextBoxColumn";
+            this.programDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // percentageDataGridViewTextBoxColumn
+            // 
+            this.percentageDataGridViewTextBoxColumn.DataPropertyName = "Percentage";
+            this.percentageDataGridViewTextBoxColumn.HeaderText = "Percentage";
+            this.percentageDataGridViewTextBoxColumn.Name = "percentageDataGridViewTextBoxColumn";
+            this.percentageDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // PlayerFormSL
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1891,6 +2092,7 @@ namespace TMRecorder
             this.Name = "PlayerFormSL";
             this.Text = "Player History";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PlayerForm_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PlayerFormSL_FormClosed);
             this.Load += new System.EventHandler(this.PlayerForm_Load);
             this.SizeChanged += new System.EventHandler(this.PlayerForm_SizeChanged);
             this.tabControlPlayerHistory.ResumeLayout(false);
@@ -2091,5 +2293,27 @@ namespace TMRecorder
         private PlayerTraining playerTraining;
         private System.Windows.Forms.DataGridViewTextBoxColumn trainingTypeColumn;
         private System.Windows.Forms.ToolStripMenuItem gkGoalkeepersToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ageDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn absWeekDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn forDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn resDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn velDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn marDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn conDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn worDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn posDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pasDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn croDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tecDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tesDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn finDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tirDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn calDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tIDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn trainerIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn trainerMotDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn trainerNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn programDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn percentageDataGridViewTextBoxColumn;
     }
 }

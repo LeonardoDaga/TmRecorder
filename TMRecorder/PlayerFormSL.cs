@@ -18,6 +18,7 @@ using NTR_Db;
 using System.Linq;
 using NTR_Controls;
 using DataGridViewCustomColumns;
+using System.Threading.Tasks;
 
 namespace TMRecorder
 {
@@ -89,10 +90,6 @@ namespace TMRecorder
             this.reportParser = reportParser;
 
             Initialize();
-
-            webBrowser.SelectedReportParser = this.reportParser;
-
-            webBrowser.GotoPlayer(selectedPlayerID, NTR_Browser.NTR_Browser.PlayerNavigationType.NavigateReports);
         }
 
         public void GetPlayerHistory()
@@ -655,19 +652,11 @@ namespace TMRecorder
                 this.SetDesktopBounds(pos.X, pos.Y, pos.Width, pos.Height);
 
             PlayerForm_SizeChanged(this, EventArgs.Empty);
+
+            webBrowser.SelectedReportParser = this.reportParser;
+            webBrowser.GotoPlayer(selectedPlayerID, NTR_Browser.NTR_Browser.PlayerNavigationType.NavigateReports);
         }
 
-        private void PlayerForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Rectangle pos = new Rectangle(DesktopBounds.X, DesktopBounds.Y, DesktopBounds.Width, DesktopBounds.Height);
-            Program.Setts.PlayerFormPosition = pos;
-            Program.Setts.Save();
-            this.SuspendLayout();
-            this.Controls.Remove(this.webBrowser);
-            this.ResumeLayout(false);
-            webBrowser.Dispose();
-            webBrowser = null;
-        }
 
         private void reviewDataTableBindingSource_CurrentChanged(object sender, EventArgs e)
         {
@@ -740,6 +729,18 @@ namespace TMRecorder
             //    srn.Technical = sr.Technical;
             //    History.PlayersDS.Scouts.AddScoutsRow(srn);
             //}
+        }
+
+        private void PlayerForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Rectangle pos = new Rectangle(DesktopBounds.X, DesktopBounds.Y, DesktopBounds.Width, DesktopBounds.Height);
+            Program.Setts.PlayerFormPosition = pos;
+            Program.Setts.Save();
+        }
+
+        private void PlayerFormSL_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            webBrowser.Dispose();
         }
     }
 

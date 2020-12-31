@@ -784,7 +784,7 @@ namespace NTR_Db
                 string dateString = str[2] + "-" + str[3] + "-" + str[4];
                 int importWeek = TmWeek.SWDtoTmWeek(dateString).absweek;
 
-                content.ParsePage(playersPage, "http://trophymanager.com/players/", importWeek);
+                content.ParsePage(playersPage, TM_Pages.Players, importWeek);
             }
 
             // Select first all the team files
@@ -810,7 +810,7 @@ namespace NTR_Db
 
                 string clubId = HTML_Parser.GetNumberAfter(fi.FullName, "NF-fixturesclub");
 
-                content.ParsePage(fixturesPage, "http://trophymanager.com/fixtures/club/" + clubId + "//", importWeek);
+                content.ParsePage(fixturesPage, TM_Pages.ClubFixtures + clubId + "//", importWeek);
             }
 
             // Select the matches files
@@ -836,7 +836,7 @@ namespace NTR_Db
 
                 string matchId = HTML_Parser.GetNumberAfter(fi.FullName, "NF-matches");
 
-                content.ParsePage(matchPage, "http://trophymanager.com/matches/" + matchId + "//", importWeek);
+                content.ParsePage(matchPage, TM_Pages.Matches + matchId + "//", importWeek);
             }
 
             Invalidate();
@@ -2584,7 +2584,11 @@ namespace NTR_Db
                 IsHome = false;
 
             MatchID = mr.MatchID;
-            MatchType = mr.MatchType;
+            if (mr.IsMatchTypeNull())
+                MatchType = 0;
+            else
+                MatchType = mr.MatchType;
+
             OTeamID = mr.OTeamID;
             Report = mr.Report;
             YTeamID = mr.YTeamID;

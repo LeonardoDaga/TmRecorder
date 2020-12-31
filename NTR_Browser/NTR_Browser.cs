@@ -6,9 +6,9 @@ using Common;
 using System.IO;
 using System.Collections.Generic;
 using System.Diagnostics;
-using CefSharp.WinForms;
-using CefSharp;
 using System.Threading.Tasks;
+using Microsoft.Web.WebView2.Core;
+using Microsoft.Web.WebView2.WinForms;
 
 namespace NTR_Browser
 {
@@ -61,7 +61,7 @@ namespace NTR_Browser
 
             set
             {
-                _startnavigationAddress = value.Replace("https:", "http:"); ;
+                _startnavigationAddress = value.Replace("http:", "https:"); ;
                 if (_startnavigationAddress == "") return;
                 tbTxtAddressSet(_startnavigationAddress);
 
@@ -126,71 +126,46 @@ namespace NTR_Browser
         public int MainTeamId { get; set; }
         public eRatingVersion RatingVersion { get; set; }
 
-        private ChromiumWebBrowser webBrowser;
-
         public event ImportedContentHandler ImportedContent;
         public event NavigationCompleteHandler NavigationComplete;
 
         public bool ReloadedTmRPage = true;
+        
+        private string InitialPage { get; set; }
 
         public NTR_Browser()
         {
             InitializeComponent();
-
-            if (!IsInDesignMode())
-                CreateAndAttachBrowser();
-
-            this.Disposed += NTR_Browser_Disposed;
         }
 
-        private void NTR_Browser_Disposed(object sender, EventArgs e)
+        private async void NTR_Browser_Load(object sender, EventArgs e)
         {
-            timerProgress.Enabled = false;
-            timerProgress.Stop();
+            NavigationMode = eNavigationMode.Main;
+
+            // Select a folder where to host the browser cache
+            var userDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\TmRecorder.2.21";
+
+            // Create the environment. The first argument is null to indicate to use To create WebView2 controls that use 
+            // the installed version of the WebView2 Runtime that exists on user machines 
+            var env = await CoreWebView2Environment.CreateAsync(null, userDataFolder);
+
+            // Pass the environment as argument
+            await webBrowser.EnsureCoreWebView2Async(env);
+
+            webBrowser.NavigationStarting += WebBrowser_NavigationStarting;
+            webBrowser.NavigationCompleted += WebBrowser_NavigationCompleted;
+
+            if (InitialPage != null)
+                this.Goto(InitialPage);
         }
 
-        private void CreateAndAttachBrowser()
+        private void WebBrowser_NavigationStarting(object sender, CoreWebView2NavigationStartingEventArgs e)
         {
-            if (webBrowser != null)
-            {
-                GC.Collect();
+            String address = e.Uri;
 
-                webBrowser.Dispose();
-
-                webBrowser = null;
-            }
-
-            CefSettings cefSettings = new CefSettings
-            {
-                PersistSessionCookies = true,
-                CachePath = "cache1"
-            };
-
-            if (!Cef.IsInitialized)
-                Cef.Initialize(cefSettings);
-            
-            webBrowser = new ChromiumWebBrowser("http://tmr.insyde.it/");
-            webBrowser.Location = new System.Drawing.Point(3, 54);
-            webBrowser.Width = this.Width - 6;
-            webBrowser.Height = this.Height - 44;
-            webBrowser.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                | System.Windows.Forms.AnchorStyles.Left)
-                | System.Windows.Forms.AnchorStyles.Right)));
-            this.webBrowser.Name = "webBrowser";
-
-            webBrowser.LoadingStateChanged += WebBrowser_LoadingStateChanged;
-            webBrowser.AddressChanged += WebBrowser_AddressChanged;
-
-            //webBrowser.DocumentCompleted += webBrowser_DocumentCompleted;
-            //webBrowser.Navigating += WebBrowser_Navigating;
-            //webBrowser.ScriptErrorsSuppressed = true;
-            webBrowser.Visible = true;
-            Controls.Add(webBrowser);
-        }
-
-        private void WebBrowser_AddressChanged(object sender, CefSharp.AddressChangedEventArgs e)
-        {
-            string address = e.Address;
+            tbTxtAddressSet(webBrowser.Source.AbsoluteUri);
+            timerProgress.Enabled = true;
+            progress = 0;
 
             if (!ReloadedTmRPage && address.Contains(TM_Pages.TmrWebSite))
             {
@@ -203,16 +178,17 @@ namespace NTR_Browser
 
             if ((address.Contains(TM_Pages.Players)) && (address != StartnavigationAddress))
             {
-                //int playerID = 0;
-                //string number = HTML_Parser.GetNumberAfter(address, TM_Pages.Players);
-                //if (int.TryParse(number, out playerID))
-                //{
-                //    if (playerID != ActualPlayerID)
-                //    {
-                //        webBrowser.Stop();
-                //        GotoPlayer(playerID, this.navigationType);
-                //    }
-                //}
+                int playerID = 0;
+                string number = HTML_Parser.GetNumberAfter(address, TM_Pages.Players);
+                if (int.TryParse(number, out playerID))
+                {
+                    if ((playerID != -1) && (playerID != ActualPlayerID))
+                    {
+                        webBrowser.Stop();
+                        GotoPlayer(playerID, this.navigationType);
+                        return;
+                    }
+                }
             }
 
             NavigationAddress = address;
@@ -220,50 +196,44 @@ namespace NTR_Browser
         }
 
         string DocumentText;
-        int lastRatingR4Id = 0;
 
-        private async void WebBrowser_LoadingStateChanged(object sender, CefSharp.LoadingStateChangedEventArgs e)
+        private async void WebBrowser_NavigationCompleted(object sender, CoreWebView2NavigationCompletedEventArgs e)
         {
-            if (e.IsLoading)
+            timerProgress.Enabled = false;
+            tsbProgressBarSet(100, Color.Green);
+
+
+            if (ActualPlayerID > 0)
             {
-                timerProgress.Enabled = true;
-                progress = 0;
+                if (true) // (lastRatingR4Id != ActualPlayerID)
+                {
+                    string script = "";
+                    if (RatingVersion == eRatingVersion.RatingR4)
+                        script = Resources.RatingR4_user;
+                    else if (RatingVersion == eRatingVersion.RatingR5)
+                        script = Resources.RatingR5_user;
+                    else
+                        script = Resources.RatingNone;
+
+                    string res = await AppendScriptAndExecute(script, "");
+                    tsbPlayersNavigationType.Visible = true;
+                }
             }
             else
             {
-                timerProgress.Enabled = false;
-                tsbProgressBarSet(100, Color.Green);
+                tsbPlayersNavigationType.Visible = false;
             }
 
-
-            if (e.IsLoading == false)
-            {
-                if (ActualPlayerID > 0)
-                {
-                    if (true) // (lastRatingR4Id != ActualPlayerID)
-                    {
-                        string script = "";
-                        if (RatingVersion == eRatingVersion.RatingR4)
-                            script = Resources.RatingR4_user;
-                        else if (RatingVersion == eRatingVersion.RatingR5)
-                            script = Resources.RatingR5_user;
-                        else
-                            script = Resources.RatingNone;
-
-                        string res = await AppendScriptAndExecute(script, "");
-                        tsbPlayersNavigationType.Visible = true;
-                        lastRatingR4Id = ActualPlayerID;
-                    }
-                }
-                else
-                {
-                    tsbPlayersNavigationType.Visible = false;
-                }
-            }
-
-            DocumentText = await webBrowser.GetSourceAsync();
+            DocumentText = await GetSource();
 
             CheckMainId(DocumentText);
+        }
+
+        public async Task<string> GetSource()
+        {
+            string html = await webBrowser.CoreWebView2.ExecuteScriptAsync("document.documentElement.outerHTML");
+            var htmldecoded = System.Web.Helpers.Json.Decode(html);
+            return htmldecoded;
         }
 
         public static bool IsInDesignMode()
@@ -275,27 +245,26 @@ namespace NTR_Browser
             return false;
         }
 
-        private void NTR_Browser_Load(object sender, EventArgs e)
-        {
-            NavigationMode = eNavigationMode.Main;
-        }
-
         #region Navigation
         public bool Goto(string address)
         {
-            if (webBrowser.IsLoading)
-            {
-                Stop();
-                return false;
-            }
-
             NavigationAddress = address;
             Debug.WriteLine(string.Format("Navigating to :{0}", NavigationAddress));
             try
             {
-                webBrowser.Load(NavigationAddress);
-                StartnavigationAddress = NavigationAddress;
-                return true;
+                if (webBrowser.CoreWebView2 == null)
+                {
+                    // The control is still not initialized. Store the address
+                    // where to navigate after the initialization
+                    InitialPage = NavigationAddress;
+                    return true;
+                }
+                else
+                {
+                    webBrowser.CoreWebView2.Navigate(NavigationAddress);
+                    StartnavigationAddress = NavigationAddress;
+                    return true;
+                }
             }
             catch (Exception ex)
             {
@@ -305,21 +274,16 @@ namespace NTR_Browser
             }
         }
 
-        public bool CheckXulInitialization()
-        {
-            return true;
-        }
-
         internal void GoForward()
         {
             if (webBrowser.CanGoForward)
-                webBrowser.Forward();
+                webBrowser.GoForward();
         }
 
         internal void GoBack()
         {
             if (webBrowser.CanGoBack)
-                webBrowser.Back();
+                webBrowser.GoBack();
         }
         #endregion
 
@@ -364,7 +328,7 @@ namespace NTR_Browser
                 fimb.ShowDialog();
             }
 
-            NavigationAddress = NavigationAddress.Replace("https", "http");
+            //NavigationAddress = NavigationAddress.Replace("https", "http");
 
             ImportedContent?.Invoke(importedPage, NavigationAddress);
         }
@@ -677,13 +641,13 @@ namespace NTR_Browser
                 foreach(var review in Reviews)
                 {
                     string[] lines = review.Split("\n".ToCharArray());
-                    ScoutName += HTML_Parser.GetField(lines[0], "Review:", "(").Trim() + '|';
+                    ScoutName += lines[0].Split(':')[1] + '|';
 
-                    string date = HTML_Parser.GetField(lines[0], "(", ")");
+                    string date = HTML_Parser.GetField(lines[1], "(", ")");
                     DateTime dt = DateTime.Parse(date);
                     ScoutDate += TmWeek.ToSWDString(dt) + "|";
 
-                    string age = HTML_Parser.GetFirstNumberInString(lines[1]);
+                    string age = HTML_Parser.GetFirstNumberInString(lines[2]);
 
                     string giudizio = "";
                     giudizio += "Age:" + age + ",";
@@ -702,14 +666,14 @@ namespace NTR_Browser
                     string field;
                     
                     // It's the potential
-                    string potential_string = HTML_Parser.GetFirstNumberInString(lines[2]);
+                    string potential_string = HTML_Parser.GetFirstNumberInString(lines[3]);
                     giudizio += "Pot:" + potential_string + ",";
 
                     ScoutVoto += potential_string + "|";
 
                     if (lines.Length > 5)
                     {
-                        field = lines[3];
+                        field = lines[4];
                         if (field.Contains(SelectedReportParser.Dict["Keys"][(int)ReportParser.Keys.BloomStatus]))
                         {
                             // It's the bloom status
@@ -725,7 +689,7 @@ namespace NTR_Browser
                             }
                         }
 
-                        field = lines[4];
+                        field = lines[5];
                         if (field.Contains(SelectedReportParser.Dict["Keys"][(int)ReportParser.Keys.DevStatus]))
                         {
                             // It's the DevStatus
@@ -733,7 +697,7 @@ namespace NTR_Browser
                             dev_status = SelectedReportParser.find("Development", devstats[1]);
                         }
 
-                        field = lines[5];
+                        field = lines[6];
                         if (field.Contains(SelectedReportParser.Dict["Keys"][(int)ReportParser.Keys.Speciality]))
                         {
                             // It's the Speciality
@@ -750,12 +714,12 @@ namespace NTR_Browser
 
                         try
                         {
-                            physique = SelectedReportParser.find("Physique", lines[7], physique);
-                            technics = SelectedReportParser.find("Technics", lines[9], technics);
-                            tactics = SelectedReportParser.find("Tactics", lines[8], tactics);
-                            aggressivity = SelectedReportParser.find("Aggressivity", lines[12], aggressivity);
-                            leadership = SelectedReportParser.find("Charisma", lines[10], leadership);
-                            professionalism = SelectedReportParser.find("Professionalism", lines[11], professionalism);
+                            physique = SelectedReportParser.find("Physique", lines[8], physique);
+                            technics = SelectedReportParser.find("Technics", lines[10], technics);
+                            tactics = SelectedReportParser.find("Tactics", lines[9], tactics);
+                            aggressivity = SelectedReportParser.find("Aggressivity", lines[13], aggressivity);
+                            leadership = SelectedReportParser.find("Charisma", lines[11], leadership);
+                            professionalism = SelectedReportParser.find("Professionalism", lines[12], professionalism);
                         }
                         catch (Exception)
                         { }
@@ -917,15 +881,22 @@ namespace NTR_Browser
             if (command != "")
                 scriptAndCommand += "\r\n" + command + "()";
 
-            var result = await webBrowser.GetMainFrame().EvaluateScriptAsync(scriptAndCommand)
-                .ContinueWith(t =>
-                {
-                    var res = t.Result;
-                    if (res.Result == null)
-                        return "";
-                    else
-                        return (string)res.Result.ToString();
-                });
+            var result = await webBrowser.CoreWebView2.ExecuteScriptAsync(scriptAndCommand);
+
+            result = result.Trim('"').Replace("\\n", "\n");
+            result = result.Replace("\\u003C", "\u003C");
+
+            if (result == null)
+                return "";
+
+            //.ContinueWith(t => 
+            //{
+            //    var res = t.Result;
+            //    if (res.Result == null)
+            //        return "";
+            //    else
+            //        return (string)res.Result.ToString();
+            //});
 
             return result;
         }
@@ -946,15 +917,22 @@ namespace NTR_Browser
                 scriptAndCommand += ";\r\n";
             }
 
-            var result = await webBrowser.GetMainFrame().EvaluateScriptAsync(scriptAndCommand)
-                .ContinueWith(t =>
-                {
-                    var res = t.Result;
-                    if (res.Result == null)
-                        return "";
-                    else
-                        return (string)res.Result.ToString();
-                });
+            var result = await webBrowser.CoreWebView2.ExecuteScriptAsync(scriptAndCommand);
+
+            result = result.Trim('"').Replace("\\n", "\n");
+            result = result.Replace("\\u003C", "\u003C");
+
+            if (result == null)
+                return "";
+
+            //.ContinueWith(t => 
+            //{
+            //    var res = t.Result;
+            //    if (res.Result == null)
+            //        return "";
+            //    else
+            //        return (string)res.Result.ToString();
+            //});
 
             return result;
         }
@@ -1189,7 +1167,7 @@ namespace NTR_Browser
 
             string main_id = HTML_Parser.GetNumberAfter(documentText, "SESSION[\"id\"] = ");
 
-            if (main_id != MainTeamId.ToString())
+            if ((MainTeamId != 0) && (main_id != MainTeamId.ToString()))
                 SwitchToMainTeam();
         }
 
@@ -1333,7 +1311,8 @@ namespace NTR_Browser
             }
 
             StartnavigationAddress = NavigationAddress;
-            webBrowser.Load(NavigationAddress);
+
+            this.Goto(NavigationAddress);
         }
         #endregion
 
@@ -1364,13 +1343,15 @@ namespace NTR_Browser
             timerProgress.Stop();
             tsbProgressBarSet(100, Color.Blue);
 
-            if (webBrowser.IsBrowserInitialized)
-                webBrowser.Stop();
+            //if (webBrowser.IsBrowserInitialized)
+            //    webBrowser.Stop();
         }
+
         public void Close()
         {
-            if (webBrowser.IsBrowserInitialized)
-                webBrowser.Stop();
+            webBrowser.Visible = false;
+            //if (webBrowser.IsBrowserInitialized)
+            //    webBrowser.Stop();
             timerProgress.Enabled = false;
             timerProgress.Stop();
         }
@@ -1387,6 +1368,6 @@ namespace NTR_Browser
     {
         public string Command { get; set; }
         public string Script { get; set; }
-        public IFrame Frame { get; set; }
+        // public IFrame Frame { get; set; }
     }
 }

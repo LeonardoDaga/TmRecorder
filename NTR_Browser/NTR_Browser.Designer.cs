@@ -55,8 +55,10 @@
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.tsbProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.timerProgress = new System.Windows.Forms.Timer(this.components);
+            this.webBrowser = new Microsoft.Web.WebView2.WinForms.WebView2();
             this.tsToolBar.SuspendLayout();
             this.tsAddressBar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.webBrowser)).BeginInit();
             this.SuspendLayout();
             // 
             // tsToolBar
@@ -296,10 +298,23 @@
             this.timerProgress.Interval = 200;
             this.timerProgress.Tick += new System.EventHandler(this.timerProgress_Tick);
             // 
+            // webBrowser
+            // 
+            this.webBrowser.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.webBrowser.CreationProperties = null;
+            this.webBrowser.Location = new System.Drawing.Point(3, 57);
+            this.webBrowser.Name = "webBrowser";
+            this.webBrowser.Size = new System.Drawing.Size(868, 346);
+            this.webBrowser.TabIndex = 5;
+            this.webBrowser.ZoomFactor = 1D;
+            // 
             // NTR_Browser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.webBrowser);
             this.Controls.Add(this.tsAddressBar);
             this.Controls.Add(this.tsToolBar);
             this.Name = "NTR_Browser";
@@ -310,6 +325,7 @@
             this.tsToolBar.PerformLayout();
             this.tsAddressBar.ResumeLayout(false);
             this.tsAddressBar.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.webBrowser)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -340,5 +356,6 @@
         private System.Windows.Forms.ToolStripButton tsbShortList;
         private System.Windows.Forms.ToolStripButton tsbTransferPage;
         private System.Windows.Forms.Timer timerProgress;
+        private Microsoft.Web.WebView2.WinForms.WebView2 webBrowser;
     }
 }

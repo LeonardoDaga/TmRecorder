@@ -48,8 +48,12 @@ namespace TMRecorder
             DB.WriteXml(fi.FullName);
         }
 
-        private void ShortlistForm_Load(object sender, EventArgs e)
+        private async void ShortlistForm_Load(object sender, EventArgs e)
         {
+            Rectangle pos = Program.Setts.ShortlistFormPosition;
+            if (pos.Height + pos.Width > 0)
+                this.SetDesktopBounds(pos.X, pos.Y, pos.Width, pos.Height);
+
             DB = new NTR_SquadDb();
 
             LoadShortlist();
@@ -63,6 +67,8 @@ namespace TMRecorder
 
             dgPlayers.ColumnHeaderMouseClick += dgPlayers_ColumnHeaderMouseClick;
             dgPlayersGK.ColumnHeaderMouseClick += dgPlayersGK_ColumnHeaderMouseClick;
+
+            webBrowser.Goto(TM_Pages.Shortlist);
         }
 
         private void LoadShortlist()
@@ -104,7 +110,7 @@ namespace TMRecorder
             NTR_Db.PlayerData playerData = (NTR_Db.PlayerData)row.DataBoundItem;
             int PlayerID = playerData.playerID;
 
-            string navigationAddress = "http://trophymanager.com/players/" + PlayerID.ToString() + "/";
+            string navigationAddress = TM_Pages.Players + PlayerID.ToString() + "/";
 
             webBrowser.Goto(navigationAddress);
             startnavigationAddress = navigationAddress;
@@ -128,7 +134,7 @@ namespace TMRecorder
             NTR_Db.PlayerData playerData = (NTR_Db.PlayerData)row.DataBoundItem;
             int PlayerID = playerData.playerID;
 
-            string navigationAddress = "http://trophymanager.com/players/" + PlayerID.ToString() + "/#/page/scout/";
+            string navigationAddress = TM_Pages.Players + PlayerID.ToString() + "/#/page/scout/";
 
             webBrowser.Goto(navigationAddress);
             startnavigationAddress = navigationAddress;
@@ -279,21 +285,6 @@ namespace TMRecorder
                 }
             }
             return found;
-        }
-
-        private void ShortlistForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (isDirty)
-            {
-                DialogResult dr = MessageBox.Show("Save the shortlist data before closing?", 
-                    "Close Shortlist form", MessageBoxButtons.YesNo);
-                if (dr == DialogResult.Yes)
-                {
-                    FileInfo fi = new FileInfo(Path.Combine(Program.Setts.DefaultDirectory, "Shortlist.5.xml"));
-
-                    DB.WriteXml(fi.FullName);
-                }
-            }
         }
 
         private void cutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -638,6 +629,32 @@ namespace TMRecorder
             ToolStripMenuItem ti = (ToolStripMenuItem)sender;
 
             webBrowser.Goto((string)ti.Tag);
+        }
+
+        private void ShortlistForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Rectangle pos = new Rectangle(DesktopBounds.X, DesktopBounds.Y, DesktopBounds.Width, DesktopBounds.Height);
+            Program.Setts.ShortlistFormPosition = pos;
+            Program.Setts.Save();
+
+            if (isDirty)
+            {
+                DialogResult dr = MessageBox.Show("Save the shortlist data before closing?",
+                    "Close Shortlist form", MessageBoxButtons.YesNo);
+                if (dr == DialogResult.Yes)
+                {
+                    FileInfo fi = new FileInfo(Path.Combine(Program.Setts.DefaultDirectory, "Shortlist.5.xml"));
+
+                    DB.WriteXml(fi.FullName);
+                }
+            }
+
+            webBrowser.Close();
+        }
+
+        private void ShortlistForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            webBrowser.Dispose();
         }
     }
 }

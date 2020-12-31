@@ -7,18 +7,20 @@ namespace Common
 {
     public class TM_Pages
     {
-        public const string TmrWebSite = "http://tmr.insyde.it/";
-        public const string TmrWebSiteXul = "http://tmr.insyde.it/xul/";
-        public const string Home = "http://trophymanager.com/";
+        public const string TmrWebSite = "https://tmr.insyde.it/";
+        public const string TmrWebSiteXul = "https://tmr.insyde.it/xul/";
+        public const string Home = "https://trophymanager.com/";
         public const string Homes = "https://trophymanager.com/";
-        public const string AdobeFlashplayer = "http://www.adobe.com/products/flashplayer/";
-        public const string Club = "http://trophymanager.com/club/";
-        public const string Trainers = "http://trophymanager.com/coaches/";
-        public const string Players = "http://trophymanager.com/players/";
-        public const string Scouts = "http://trophymanager.com/scouts/";
-        public const string Training = "http://trophymanager.com/training/";
-        public const string Shortlist = "http://trophymanager.com/shortlist/";
-        public const string Transfer = "http://trophymanager.com/transfer/";
+        public const string AdobeFlashplayer = "https://www.adobe.com/products/flashplayer/";
+        public const string Club = "https://trophymanager.com/club/";
+        public const string Trainers = "https://trophymanager.com/coaches/";
+        public const string Players = "https://trophymanager.com/players/";
+        public const string Scouts = "https://trophymanager.com/scouts/";
+        public const string Training = "https://trophymanager.com/training/";
+        public const string Shortlist = "https://trophymanager.com/shortlist/";
+        public const string Transfer = "https://trophymanager.com/transfer/";
+        public const string Matches = "https://trophymanager.com/matches/";
+        public const string ClubFixtures = "http://trophymanager.com/fixtures/club/";
     }
 
     public class WindowWrapper : System.Windows.Forms.IWin32Window

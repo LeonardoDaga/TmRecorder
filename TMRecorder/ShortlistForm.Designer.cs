@@ -55,13 +55,13 @@ namespace TMRecorder
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsbFile = new System.Windows.Forms.ToolStripDropDownButton();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveSearchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.cutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteSelectedPlayersFromVisualizationAndDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateOnlyListedPlayersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearShortlistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearShortlistDBforgetAllPastImportedDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveSearchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsSearches = new System.Windows.Forms.ToolStripDropDownButton();
             this.contextMenuStrip.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
@@ -84,33 +84,33 @@ namespace TMRecorder
             this.toolStripMenuItem4,
             this.openPlayersTeamPageInTrophyBrowserToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(329, 92);
+            this.contextMenuStrip.Size = new System.Drawing.Size(328, 92);
             // 
             // openPlayersPropertyPageToolStripMenuItem
             // 
             this.openPlayersPropertyPageToolStripMenuItem.Name = "openPlayersPropertyPageToolStripMenuItem";
-            this.openPlayersPropertyPageToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
+            this.openPlayersPropertyPageToolStripMenuItem.Size = new System.Drawing.Size(327, 22);
             this.openPlayersPropertyPageToolStripMenuItem.Text = "Open Player\'s property page [double click]";
             this.openPlayersPropertyPageToolStripMenuItem.Click += new System.EventHandler(this.openPlayersPropertyPageToolStripMenuItem_Click);
             // 
             // openPlayersPageInTheTrophyManagerWebsiteToolStripMenuItem
             // 
             this.openPlayersPageInTheTrophyManagerWebsiteToolStripMenuItem.Name = "openPlayersPageInTheTrophyManagerWebsiteToolStripMenuItem";
-            this.openPlayersPageInTheTrophyManagerWebsiteToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
+            this.openPlayersPageInTheTrophyManagerWebsiteToolStripMenuItem.Size = new System.Drawing.Size(327, 22);
             this.openPlayersPageInTheTrophyManagerWebsiteToolStripMenuItem.Text = "Open Players Profile Page in the Trophy Browser";
             this.openPlayersPageInTheTrophyManagerWebsiteToolStripMenuItem.Click += new System.EventHandler(this.openPlayersPageInTheTrophyManagerWebsiteToolStripMenuItem_Click);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(328, 22);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(327, 22);
             this.toolStripMenuItem4.Text = "Open Players Scouts Page in the Trophy Browser";
             this.toolStripMenuItem4.Click += new System.EventHandler(this.openPlayersScoutPageInTheTrophyManagerWebsiteToolStripMenuItem_Click);
             // 
             // openPlayersTeamPageInTrophyBrowserToolStripMenuItem
             // 
             this.openPlayersTeamPageInTrophyBrowserToolStripMenuItem.Name = "openPlayersTeamPageInTrophyBrowserToolStripMenuItem";
-            this.openPlayersTeamPageInTrophyBrowserToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
+            this.openPlayersTeamPageInTrophyBrowserToolStripMenuItem.Size = new System.Drawing.Size(327, 22);
             this.openPlayersTeamPageInTrophyBrowserToolStripMenuItem.Text = "Open Player\'s Team Page in Trophy Browser";
             this.openPlayersTeamPageInTrophyBrowserToolStripMenuItem.Click += new System.EventHandler(this.openPlayersTeamPageInTrophyBrowserToolStripMenuItem_Click);
             // 
@@ -273,9 +273,10 @@ namespace TMRecorder
             this.webBrowser.Name = "webBrowser";
             this.webBrowser.NavigationAddress = "";
             this.webBrowser.NavigationMode = NTR_Browser.NTR_Browser.eNavigationMode.Main;
+            this.webBrowser.RatingVersion = Common.eRatingVersion.None;
             this.webBrowser.SelectedReportParser = null;
-            this.webBrowser.ShowShortlist = true;
-            this.webBrowser.ShowTransfer = true;
+            this.webBrowser.ShowShortlist = false;
+            this.webBrowser.ShowTransfer = false;
             this.webBrowser.Size = new System.Drawing.Size(861, 318);
             this.webBrowser.StartnavigationAddress = "";
             this.webBrowser.TabIndex = 0;
@@ -310,9 +311,16 @@ namespace TMRecorder
             this.saveToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripMenuItem.Image")));
             this.saveToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+            // 
+            // saveSearchToolStripMenuItem
+            // 
+            this.saveSearchToolStripMenuItem.Name = "saveSearchToolStripMenuItem";
+            this.saveSearchToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.saveSearchToolStripMenuItem.Text = "Save Search";
+            this.saveSearchToolStripMenuItem.Click += new System.EventHandler(this.saveSearchToolStripMenuItem_Click);
             // 
             // toolStripDropDownButton1
             // 
@@ -368,13 +376,6 @@ namespace TMRecorder
             this.clearShortlistDBforgetAllPastImportedDataToolStripMenuItem.Text = "Clear Shortlist DB (forget all previously imported data)";
             this.clearShortlistDBforgetAllPastImportedDataToolStripMenuItem.Click += new System.EventHandler(this.clearShortlistDBforgetAllPastImportedDataToolStripMenuItem_Click);
             // 
-            // saveSearchToolStripMenuItem
-            // 
-            this.saveSearchToolStripMenuItem.Name = "saveSearchToolStripMenuItem";
-            this.saveSearchToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.saveSearchToolStripMenuItem.Text = "Save Search";
-            this.saveSearchToolStripMenuItem.Click += new System.EventHandler(this.saveSearchToolStripMenuItem_Click);
-            // 
             // tsSearches
             // 
             this.tsSearches.Image = ((System.Drawing.Image)(resources.GetObject("tsSearches.Image")));
@@ -393,6 +394,7 @@ namespace TMRecorder
             this.Name = "ShortlistForm";
             this.Text = "Players Shortlist";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ShortlistForm_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ShortlistForm_FormClosed);
             this.Load += new System.EventHandler(this.ShortlistForm_Load);
             this.contextMenuStrip.ResumeLayout(false);
             this.toolStripContainer1.ContentPanel.ResumeLayout(false);

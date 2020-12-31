@@ -129,6 +129,9 @@ namespace NTR_Browser.Properties {
         ///
         ///    total_history = player_history_data.table.total;
         ///
+        ///    if (player_history_data.table === undefined)
+        ///        return strout;
+        ///
         ///    strout = &quot;&quot;;
         ///
         ///    for (var j in total_history) {
@@ -137,9 +140,7 @@ namespace NTR_Browser.Properties {
         ///        if (seas_history.season == &quot;transfer&quot;)
         ///        {
         ///            strout += &quot;season=transfer&quot; + seas_history.season;
-        ///            strout += &quot;;transferamount=&quot; + seas_history.transferamount;
-        ///        }
-        ///     [stringa troncata]&quot;;.
+        ///             [stringa troncata]&quot;;.
         /// </summary>
         public static string get_player_history {
             get {

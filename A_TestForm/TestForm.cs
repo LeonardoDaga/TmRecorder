@@ -17,6 +17,19 @@ namespace A_TestForm
             InitializeComponent();
 
             RatingR3.TestRating();
+
+            this.Load += TestForm_Load;
+        }
+
+        private async void TestForm_Load(object sender, EventArgs e)
+        {
+            await ntR_Browser1.Initialize();
+        }
+
+        private void btnOpenDialog_Click(object sender, EventArgs e)
+        {
+            BrowserDialog dlgBrowser = new BrowserDialog();
+            dlgBrowser.ShowDialog();
         }
     }
 }

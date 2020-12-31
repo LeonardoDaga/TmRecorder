@@ -69,8 +69,6 @@ namespace TMRecorder
 
             InitializeComponent();
 
-            InitializeBrowser();
-
             InvalidateGrids();
 
             AllSeasons.AutoconvertActions = Program.Setts.AutoconvertActions;
@@ -78,6 +76,8 @@ namespace TMRecorder
             LoadLanguage();
 
             SetLanguage();
+
+            this.Load += MainForm_Load;
 
             #region Debugging Initialization
 
@@ -95,13 +95,12 @@ namespace TMRecorder
             #endregion
         }
 
-        private void InitializeBrowser()
+        private void MainForm_Load(object sender, EventArgs e)
         {
             webBrowser.MainTeamId = Program.Setts.MainSquadID;
             webBrowser.RatingVersion = (eRatingVersion)Program.Setts.BrowserRatingVersion;
 
-            if (!webBrowser.CheckXulInitialization())
-                Close();
+            webBrowser.Goto(TM_Pages.TmrWebSite);
         }
 
         private void LoadLanguage()
@@ -1378,8 +1377,6 @@ namespace TMRecorder
                 pf.ShowDialog();
 
                 if (pf.isDirty) isDirty = true;
-
-                pf.Dispose();
             }
             else
             {
@@ -1389,8 +1386,6 @@ namespace TMRecorder
                 pf.ShowDialog();
 
                 if (pf.isDirty) isDirty = true;
-
-                pf.Dispose();
             }
 
             History.UpdateDirtyPlayers();
@@ -1737,7 +1732,7 @@ namespace TMRecorder
 
         private void gotoCalendarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string arg = "http://trophymanager.com/fixtures/club/" + Program.Setts.MainSquadID + "/";
+            string arg = TM_Pages.ClubFixtures + Program.Setts.MainSquadID + "/";
             Utility.OpenPage(arg);
         }
 
@@ -1747,7 +1742,7 @@ namespace TMRecorder
 
             MatchData selMatch = (MatchData)dgMatches.SelectedRows[0].DataBoundItem;
 
-            string matchAddr = "http://trophymanager.com/matches/" + selMatch.MatchID + "/";
+            string matchAddr = TM_Pages.Matches + selMatch.MatchID + "/";
 
             webBrowser.Goto(matchAddr);
         }
@@ -1780,7 +1775,7 @@ namespace TMRecorder
         {
             MatchData selMatch = (MatchData)dgMatches.SelectedRows[0].DataBoundItem;
 
-            string matchAddr = "http://trophymanager.com/matches/" + selMatch.MatchID + "/";
+            string matchAddr = TM_Pages.Matches + selMatch.MatchID + "/";
 
             string matchname = selMatch.Home + " - " + selMatch.Away;
             if (MessageBox.Show(Current.Language.AreYouSureThatYouWantToRemoveTheMatch + matchname + "?", Current.Language.DeleteMatch,
@@ -2231,8 +2226,6 @@ namespace TMRecorder
                 tabControl1.SelectedTab = tabBrowser;
 
             }
-
-            webBrowser.Goto(TM_Pages.TmrWebSite);
         }
 
         private void lineupToolToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2537,7 +2530,7 @@ namespace TMRecorder
                 return;
             }
 
-            webBrowser.Goto("http://trophymanager.com/matches/" + matchToUpdate.MatchID + "/");
+            webBrowser.Goto(TM_Pages.Matches + matchToUpdate.MatchID + "/");
         }
 
         private void tsbMatchSquadB_Click(object sender, EventArgs e)
@@ -2550,17 +2543,17 @@ namespace TMRecorder
                 return;
             }
 
-            webBrowser.Goto("http://trophymanager.com/matches/" + matchToUpdate.MatchID + "/");
+            webBrowser.Goto(TM_Pages.Matches + matchToUpdate.MatchID + "/");
         }
 
         private void tsbMatchListA_Click(object sender, EventArgs e)
         {
-            webBrowser.Goto("http://trophymanager.com/fixtures/club/" + Program.Setts.MainSquadID + "/");
+            webBrowser.Goto(TM_Pages.ClubFixtures + Program.Setts.MainSquadID + "/");
         }
 
         private void tsbMatchListB_Click(object sender, EventArgs e)
         {
-            webBrowser.Goto("http://trophymanager.com/fixtures/club/" + Program.Setts.ReserveSquadID + "/");
+            webBrowser.Goto(TM_Pages.ClubFixtures + Program.Setts.ReserveSquadID + "/");
         }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
@@ -2839,7 +2832,7 @@ namespace TMRecorder
                 sf.UpdateStatusMessage(0, string.Format("Loading Players Data {0} of {1}", cnt, fisTot));
 
                 cnt++;
-                //content.ParsePage(playersPage, "http://trophymanager.com/players/", importWeek);
+                //content.ParsePage(playersPage, TM_Pages.Players, importWeek);
             }
 
             Invalidate();
@@ -2903,7 +2896,7 @@ namespace TMRecorder
                 sf.UpdateStatusMessage(0, string.Format("Loading Fixtures {0} of {1}", cnt, fisTot));
 
                 cnt++;
-                // content.ParsePage(fixturesPage, "http://trophymanager.com/fixtures/club/" + clubId + "//", importWeek);
+                // content.ParsePage(fixturesPage, TM_Pages.ClubFixtures + clubId + "//", importWeek);
             }
 
             // Select the matches files
@@ -2937,7 +2930,7 @@ namespace TMRecorder
                 sf.UpdateStatusMessage(0, string.Format("Loading Match {0} of {1}", cnt, fisTot));
 
                 cnt++;
-                // content.ParsePage(matchPage, "http://trophymanager.com/matches/" + matchId + "//", importWeek);
+                // content.ParsePage(matchPage, TM_Pages.Matches + matchId + "//", importWeek);
             }
 
             UpdateLackData();
@@ -3019,7 +3012,7 @@ namespace TMRecorder
 
             MatchData selMatch = (MatchData)dgMatches.Rows[e.RowIndex].DataBoundItem;
 
-            string matchAddr = "http://trophymanager.com/matches/" + selMatch.MatchID + "/";
+            string matchAddr = TM_Pages.Matches + selMatch.MatchID + "/";
 
             webBrowser.Goto(matchAddr);
         }
@@ -3060,7 +3053,7 @@ namespace TMRecorder
                 selPlayer = (PlayerPerfData)dgPerfPlayers.SelectedRows[0].DataBoundItem;
             }
 
-            return "http://trophymanager.com/players/" + selPlayer.PlayerID + "/";
+            return TM_Pages.Players + selPlayer.PlayerID + "/";
         }
 
         private void toolStripLabel6_DoubleClick(object sender, EventArgs e)
@@ -3105,7 +3098,7 @@ namespace TMRecorder
                 }
             }
 
-            string matchAddr = "http://trophymanager.com/players/" + playerID + "/";
+            string matchAddr = TM_Pages.Players + playerID + "/";
 
             webBrowser.Goto(matchAddr);
         }
@@ -3142,7 +3135,7 @@ namespace TMRecorder
                 }
             }
 
-            string matchAddr = "http://trophymanager.com/players/" + playerID + "/";
+            string matchAddr = TM_Pages.Players + playerID + "/";
 
             Process.Start(matchAddr);
         }

@@ -220,6 +220,8 @@ namespace TMRecorder
             sb.Def("GKFormPosition", "0,0,0,0");
             sb.Def("PlayerFormPosition", "0,0,500,400");
             sb.Def("ShortlistFormPosition", "0,0,500,400");
+            sb.Def("TeamStatsFormPosition", "0,0,500,400");
+            sb.Def("PlayersStatsFormPosition", "0,0,500,400");
             sb.Def("ComputeStructureSettings", "");
             sb.Def("TeamMatchesShowMatches", 0);
             sb.Def("BrowserRatingVersion", 2);
@@ -351,6 +353,16 @@ namespace TMRecorder
         {
             get { return Common.Utility.StringToRect((string)sb["ShortlistFormPosition"]); }
             set { sb["ShortlistFormPosition"] = Common.Utility.RectToString(value); }
+        }
+        public System.Drawing.Rectangle TeamStatsFormPosition
+        {
+            get { return Common.Utility.StringToRect((string)sb["TeamStatsFormPosition"]); }
+            set { sb["TeamStatsFormPosition"] = Common.Utility.RectToString(value); }
+        }
+        public System.Drawing.Rectangle PlayersStatsFormPosition
+        {
+            get { return Common.Utility.StringToRect((string)sb["PlayersStatsFormPosition"]); }
+            set { sb["PlayersStatsFormPosition"] = Common.Utility.RectToString(value); }
         }
         public string TacticsDBFilename
         {
@@ -590,6 +602,16 @@ namespace TMRecorder
             position.X = 0;
             position.Y = 0;
             ShortlistFormPosition = position;
+
+            position = TeamStatsFormPosition;
+            position.X = 0;
+            position.Y = 0;
+            TeamStatsFormPosition = position;
+
+            position = PlayersStatsFormPosition;
+            position.X = 0;
+            position.Y = 0;
+            PlayersStatsFormPosition = position;
 
             Save();
         }

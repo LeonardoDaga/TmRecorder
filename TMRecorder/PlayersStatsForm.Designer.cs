@@ -1,6 +1,6 @@
 namespace TMRecorder
 {
-    partial class PlayersStats
+    partial class PlayersStatsForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,21 +29,21 @@ namespace TMRecorder
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PlayersStats));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle41 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle42 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PlayersStatsForm));
             this.dgPlayersStats = new NTR_Controls.AeroDataGrid();
             this.nomeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PG = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -120,6 +120,7 @@ namespace TMRecorder
             this.GKd,
             this.YellowCards,
             this.RedCards});
+            this.dgPlayersStats.DataCollection = null;
             this.dgPlayersStats.DataSource = this.matchBindingSource;
             this.dgPlayersStats.Location = new System.Drawing.Point(2, 83);
             this.dgPlayersStats.Name = "dgPlayersStats";
@@ -127,6 +128,7 @@ namespace TMRecorder
             this.dgPlayersStats.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgPlayersStats.Size = new System.Drawing.Size(722, 348);
             this.dgPlayersStats.TabIndex = 11;
+            this.dgPlayersStats.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgPlayersStats_ColumnHeaderMouseClick);
             // 
             // nomeDataGridViewTextBoxColumn
             // 
@@ -146,8 +148,8 @@ namespace TMRecorder
             // goalsDataGridViewTextBoxColumn
             // 
             this.goalsDataGridViewTextBoxColumn.DataPropertyName = "Goals";
-            dataGridViewCellStyle1.NullValue = "-";
-            this.goalsDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle29.NullValue = "-";
+            this.goalsDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle29;
             this.goalsDataGridViewTextBoxColumn.HeaderText = "G";
             this.goalsDataGridViewTextBoxColumn.Name = "goalsDataGridViewTextBoxColumn";
             this.goalsDataGridViewTextBoxColumn.ToolTipText = "Goals";
@@ -164,9 +166,9 @@ namespace TMRecorder
             // valueDataGridViewTextBoxColumn
             // 
             this.valueDataGridViewTextBoxColumn.DataPropertyName = "Value";
-            dataGridViewCellStyle2.Format = "N2";
-            dataGridViewCellStyle2.NullValue = "-";
-            this.valueDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle30.Format = "N2";
+            dataGridViewCellStyle30.NullValue = "-";
+            this.valueDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle30;
             this.valueDataGridViewTextBoxColumn.HeaderText = "Value";
             this.valueDataGridViewTextBoxColumn.Name = "valueDataGridViewTextBoxColumn";
             this.valueDataGridViewTextBoxColumn.ToolTipText = "Performance value of the player in this match";
@@ -175,9 +177,9 @@ namespace TMRecorder
             // normValDataGridViewTextBoxColumn
             // 
             this.normValDataGridViewTextBoxColumn.DataPropertyName = "NormVal";
-            dataGridViewCellStyle3.Format = "N2";
-            dataGridViewCellStyle3.NullValue = "-";
-            this.normValDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle31.Format = "N2";
+            dataGridViewCellStyle31.NullValue = "-";
+            this.normValDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle31;
             this.normValDataGridViewTextBoxColumn.HeaderText = "NrmVal";
             this.normValDataGridViewTextBoxColumn.Name = "normValDataGridViewTextBoxColumn";
             this.normValDataGridViewTextBoxColumn.ToolTipText = "Normalized performance Value (to the whole team performance)";
@@ -249,8 +251,8 @@ namespace TMRecorder
             // YellowCards
             // 
             this.YellowCards.DataPropertyName = "YellowCards";
-            dataGridViewCellStyle4.NullValue = "-";
-            this.YellowCards.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle32.NullValue = "-";
+            this.YellowCards.DefaultCellStyle = dataGridViewCellStyle32;
             this.YellowCards.HeaderText = "YC";
             this.YellowCards.Name = "YellowCards";
             this.YellowCards.ToolTipText = "Yellow Cards";
@@ -260,8 +262,8 @@ namespace TMRecorder
             // RedCards
             // 
             this.RedCards.DataPropertyName = "RedCards";
-            dataGridViewCellStyle5.NullValue = "-";
-            this.RedCards.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle33.NullValue = "-";
+            this.RedCards.DefaultCellStyle = dataGridViewCellStyle33;
             this.RedCards.HeaderText = "RC";
             this.RedCards.Name = "RedCards";
             this.RedCards.ToolTipText = "Red Cards";
@@ -289,8 +291,8 @@ namespace TMRecorder
             // 
             this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.dataGridViewTextBoxColumn2.DataPropertyName = "RedCards";
-            dataGridViewCellStyle6.NullValue = "-";
-            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle34.NullValue = "-";
+            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle34;
             this.dataGridViewTextBoxColumn2.HeaderText = "RedCards";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ToolTipText = "Assists";
@@ -299,8 +301,8 @@ namespace TMRecorder
             // 
             this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.dataGridViewTextBoxColumn3.DataPropertyName = "YellowCards";
-            dataGridViewCellStyle7.NullValue = "-";
-            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle35.NullValue = "-";
+            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle35;
             this.dataGridViewTextBoxColumn3.HeaderText = "YellowCards";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.ToolTipText = "Goals";
@@ -317,9 +319,9 @@ namespace TMRecorder
             // 
             this.dataGridViewTextBoxColumn5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.dataGridViewTextBoxColumn5.DataPropertyName = "DefActs";
-            dataGridViewCellStyle8.Format = "N2";
-            dataGridViewCellStyle8.NullValue = "-";
-            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle36.Format = "N2";
+            dataGridViewCellStyle36.NullValue = "-";
+            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle36;
             this.dataGridViewTextBoxColumn5.HeaderText = "D";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             this.dataGridViewTextBoxColumn5.ToolTipText = "Offensive Actions";
@@ -328,9 +330,9 @@ namespace TMRecorder
             // 
             this.dataGridViewTextBoxColumn6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.dataGridViewTextBoxColumn6.DataPropertyName = "OffActs";
-            dataGridViewCellStyle9.Format = "N2";
-            dataGridViewCellStyle9.NullValue = "-";
-            this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle37.Format = "N2";
+            dataGridViewCellStyle37.NullValue = "-";
+            this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle37;
             this.dataGridViewTextBoxColumn6.HeaderText = "O";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             this.dataGridViewTextBoxColumn6.ToolTipText = "Errors";
@@ -355,8 +357,8 @@ namespace TMRecorder
             // 
             this.dataGridViewTextBoxColumn9.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.dataGridViewTextBoxColumn9.DataPropertyName = "Shots";
-            dataGridViewCellStyle10.NullValue = "-";
-            this.dataGridViewTextBoxColumn9.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle38.NullValue = "-";
+            this.dataGridViewTextBoxColumn9.DefaultCellStyle = dataGridViewCellStyle38;
             this.dataGridViewTextBoxColumn9.HeaderText = "T";
             this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
             this.dataGridViewTextBoxColumn9.ReadOnly = true;
@@ -366,8 +368,8 @@ namespace TMRecorder
             // 
             this.dataGridViewTextBoxColumn10.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.dataGridViewTextBoxColumn10.DataPropertyName = "InShots";
-            dataGridViewCellStyle11.NullValue = "-";
-            this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle39.NullValue = "-";
+            this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle39;
             this.dataGridViewTextBoxColumn10.HeaderText = "S";
             this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
             this.dataGridViewTextBoxColumn10.ToolTipText = "In Targets Shots";
@@ -375,8 +377,8 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn11
             // 
             this.dataGridViewTextBoxColumn11.DataPropertyName = "Shots";
-            dataGridViewCellStyle12.NullValue = "-";
-            this.dataGridViewTextBoxColumn11.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle40.NullValue = "-";
+            this.dataGridViewTextBoxColumn11.DefaultCellStyle = dataGridViewCellStyle40;
             this.dataGridViewTextBoxColumn11.HeaderText = "Sh";
             this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
             this.dataGridViewTextBoxColumn11.ToolTipText = "Shots";
@@ -402,8 +404,8 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn14
             // 
             this.dataGridViewTextBoxColumn14.DataPropertyName = "YellowCards";
-            dataGridViewCellStyle13.NullValue = "-";
-            this.dataGridViewTextBoxColumn14.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle41.NullValue = "-";
+            this.dataGridViewTextBoxColumn14.DefaultCellStyle = dataGridViewCellStyle41;
             this.dataGridViewTextBoxColumn14.HeaderText = "YC";
             this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
             this.dataGridViewTextBoxColumn14.ToolTipText = "Yellow Cards";
@@ -412,8 +414,8 @@ namespace TMRecorder
             // dataGridViewTextBoxColumn15
             // 
             this.dataGridViewTextBoxColumn15.DataPropertyName = "RedCards";
-            dataGridViewCellStyle14.NullValue = "-";
-            this.dataGridViewTextBoxColumn15.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle42.NullValue = "-";
+            this.dataGridViewTextBoxColumn15.DefaultCellStyle = dataGridViewCellStyle42;
             this.dataGridViewTextBoxColumn15.HeaderText = "RC";
             this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
             this.dataGridViewTextBoxColumn15.ToolTipText = "Red Cards";
@@ -595,6 +597,8 @@ namespace TMRecorder
             this.Controls.Add(this.dgPlayersStats);
             this.Name = "PlayersStats";
             this.Text = "PlayersStats";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PlayersStats_FormClosing);
+            this.Load += new System.EventHandler(this.PlayersStats_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgPlayersStats)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.matchBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.champDS)).EndInit();

@@ -15,17 +15,19 @@ using SendFileTo;
 using NTR_Common;
 using NTR_Db;
 using NTR_Controls;
+using System.Linq;
 
 namespace TMRecorder
 {
     public partial class PlayerForm : Form
     {
-        private TeamHistory History;
+        private TeamHistory TeamHistory;
         public ExtTMDataSet.GiocatoriNSkillDataTable GDT;
         private int actualPlayerCnt;
         private bool playerInfoChanged = false;
         public bool isDirty = false;
         public NTR_Db.Seasons allSeasons = null;
+        PlayerStats playerStats;
 
         private RatingFunction _RF;
         RatingFunction RF
@@ -65,19 +67,19 @@ namespace TMRecorder
         }
 
         public PlayerForm(ExtTMDataSet.GiocatoriNSkillDataTable gdt,
-                         TeamHistory hist,
+                         TeamHistory teamHistory,
                          int ID,
                          NTR_Db.Seasons allseasons)
         {
             InitializeComponent();
 
-            RF = hist.RF;
+            RF = teamHistory.RF;
 
             SetLanguage();
 
             this.allSeasons = allseasons;
 
-            History = hist;
+            TeamHistory = teamHistory;
 
             GDT = gdt;
 
@@ -105,7 +107,7 @@ namespace TMRecorder
 
             PlayerForm_SizeChanged(this, EventArgs.Empty);
 
-            webBrowser.SelectedReportParser = History.reportParser;
+            webBrowser.SelectedReportParser = TeamHistory.reportParser;
             webBrowser.GotoPlayer(actPlayerID, NTR_Browser.NTR_Browser.PlayerNavigationType.NavigateReports);
         }
 
@@ -133,7 +135,7 @@ namespace TMRecorder
 
             ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
 
-            ExtTMDataSet.PlayerHistoryDataTable table = History.GetPlayerHistory(playerDatarow.PlayerID);
+            ExtTMDataSet.PlayerHistoryDataTable table = TeamHistory.GetPlayerHistory(playerDatarow.PlayerID);
 
             FillBaseData(playerDatarow);
 
@@ -171,11 +173,14 @@ namespace TMRecorder
 
             FillMatchStatsGraph();
 
+            playerStats = new PlayerStats(TeamHistory, playerDatarow.PlayerID);
+            FillValueHistoryGraph(playerStats);
+
             FillPerfList(playerDatarow);
 
             playerInfoChanged = false;
 
-            SetupTagsBars(History.reportParser);
+            SetupTagsBars(TeamHistory.reportParser);
 
             FillPlayerBar(playerDatarow.PlayerID);
 
@@ -416,7 +421,7 @@ namespace TMRecorder
 
             playerTraining.Clear();
 
-            History.FillGKTrainingTable(playerTraining, playerID);
+            TeamHistory.FillGKTrainingTable(playerTraining, playerID);
 
             dgTraining.SetWhen(DateTime.Now);
         }
@@ -442,7 +447,7 @@ namespace TMRecorder
 
             playerTraining.Clear();
 
-            History.FillPLTrainingTable(playerTraining, playerID);
+            TeamHistory.FillPLTrainingTable(playerTraining, playerID);
 
             dgTraining.SetWhen(DateTime.Now);
         }
@@ -450,7 +455,7 @@ namespace TMRecorder
         private void SetTraining()
         {
             ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
-            ExtraDS.GiocatoriRow gr = History.PlayersDS.FindByPlayerID(playerDatarow.PlayerID);
+            ExtraDS.GiocatoriRow gr = TeamHistory.PlayersDS.FindByPlayerID(playerDatarow.PlayerID);
 
             FillTrainingPsychologyGraph(gr);
             FillTrainingPhysicsGraph(gr, playerDatarow);
@@ -957,10 +962,10 @@ namespace TMRecorder
         private void FillPlayerInfo(bool reset)
         {
             ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
-            ExtraDS.GiocatoriRow gRow = History.PlayersDS.Giocatori.FindByPlayerID(playerDatarow.PlayerID);
+            ExtraDS.GiocatoriRow gRow = TeamHistory.PlayersDS.Giocatori.FindByPlayerID(playerDatarow.PlayerID);
 
             scoutsNReviews.Scouts.Clear();
-            foreach (ExtraDS.ScoutsRow sr in History.PlayersDS.Scouts)
+            foreach (ExtraDS.ScoutsRow sr in TeamHistory.PlayersDS.Scouts)
             {
                 Common.ScoutsNReviews.ScoutsRow srn = scoutsNReviews.Scouts.NewScoutsRow();
                 srn.Name = sr.Name;
@@ -975,7 +980,7 @@ namespace TMRecorder
             }
 
             scoutsNReviews.Review.Clear();
-            scoutsNReviews.FillTables(gRow, History.reportParser);
+            scoutsNReviews.FillTables(gRow, TeamHistory.reportParser);
 
             reviewDataTableBindingSource.Filter = "PlayerID=" + gRow.PlayerID.ToString();
 
@@ -988,7 +993,7 @@ namespace TMRecorder
                     DataGridViewCustomColumns.TMR_ReportColumn repCol =
                         (DataGridViewCustomColumns.TMR_ReportColumn)col;
 
-                    repCol.reportParser = History.reportParser;
+                    repCol.reportParser = TeamHistory.reportParser;
                     repCol.FPn = gRow.FPn;
                 }
             }
@@ -1009,7 +1014,7 @@ namespace TMRecorder
         private void StorePlayerInfo()
         {
             ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
-            ExtraDS.GiocatoriRow gRow = History.PlayersDS.Giocatori.FindByPlayerID(playerDatarow.PlayerID);
+            ExtraDS.GiocatoriRow gRow = TeamHistory.PlayersDS.Giocatori.FindByPlayerID(playerDatarow.PlayerID);
             gRow.Note = txtNotes.Text;
         }
 
@@ -1155,7 +1160,7 @@ namespace TMRecorder
         private void FillTIGraph(ExtTMDataSet.PlayerHistoryDataTable table)
         {
             ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
-            ExtraDS.GiocatoriRow gRow = History.PlayersDS.Giocatori.FindByPlayerID(playerDatarow.PlayerID);
+            ExtraDS.GiocatoriRow gRow = TeamHistory.PlayersDS.Giocatori.FindByPlayerID(playerDatarow.PlayerID);
 
             if ((gRow.IsTSINull()) || (gRow.TSI == ""))
             {
@@ -1360,7 +1365,7 @@ namespace TMRecorder
 
         private void FillBaseData(ExtTMDataSet.GiocatoriNSkillRow playerDatarow)
         {
-            ExtraDS.GiocatoriRow gRow = History.PlayersDS.Giocatori.FindByPlayerID(playerDatarow.PlayerID);
+            ExtraDS.GiocatoriRow gRow = TeamHistory.PlayersDS.Giocatori.FindByPlayerID(playerDatarow.PlayerID);
 
             if (!gRow.IsWageNull())
                 Wage = gRow.Wage;
@@ -1900,6 +1905,168 @@ namespace TMRecorder
             }
         }
 
+        internal void FillValueHistoryGraph(PlayerStats playerStats)
+        {
+            MasterPane master = graphValueHistory.MasterPane;
+
+            var valueHistory = playerStats.ValueHistory;
+
+            // Remove the default pane that comes with the ZedGraphControl.MasterPane
+            master.PaneList.Clear();
+
+            // Set the master pane title
+            master.Title.Text = "Value History";
+            master.Title.IsVisible = true;
+
+            // Fill the axis background with a color gradient
+            master.Fill = new Fill(Color.FromArgb(240, 255, 240), Color.FromArgb(190, 255, 190), 90F);
+
+            // Set the margins and the space between panes to 10 points
+            master.Margin.All = 10;
+            master.InnerPaneGap = 10;
+
+            double[] playerValue = new double[valueHistory.Count];
+            double[] playerWage = new double[valueHistory.Count];
+            double[] valueChange = new double[valueHistory.Count];
+            double[] cumulatedWage = new double[valueHistory.Count];
+            double[] xdate = new double[valueHistory.Count];
+
+            ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
+
+            int i = 0;
+            foreach(var value in valueHistory.OrderBy(vh => vh.Date))
+            {
+                playerValue[i] = (double)value.TotalValue;
+                playerWage[i] = value.Wage;
+                valueChange[i] = value.ValueGrowth;
+                cumulatedWage[i] = value.CumulatedWage;
+
+                xdate[i] = (double)new XDate(value.Date - TimeSpan.FromDays((playerDatarow.wBorn + 12) * 7));
+
+                i++;
+            }
+
+            LineItem myCurve;
+
+            // 1o grafico
+            {
+                GraphPane pane = new GraphPane();
+
+                pane.Title.Text = "Selling To Agent Value and Cumulated Wage";
+                pane.YAxis.Title.Text = "StA Value / Cum. Wage";
+                pane.XAxis.Title.Text = "Player's Age";
+                pane.XAxis.Type = AxisType.Date;
+                pane.XAxis.Scale.MajorStep = 12;
+                pane.XAxis.Scale.MinorStep = 12;
+                pane.XAxis.Scale.MajorUnit = DateUnit.Day;
+                pane.XAxis.Scale.Format = "TW";
+
+                // Fill the axis background with a color gradient
+                pane.Chart.Fill = new Fill(Color.FromArgb(255, 255, 245), Color.FromArgb(255, 255, 190), 90F);
+                // pane.BaseDimension = 6.0F;
+
+                // Generate a red curve with "For" in the legend
+                myCurve = pane.AddCurve("Value", xdate, playerValue, Color.DarkGreen);
+
+                // Make the symbols opaque by filling them with white
+                myCurve.Symbol.Type = SymbolType.Circle;
+                myCurve.Symbol.Fill = new Fill(Color.White);
+
+                // Generate a red curve with "For" in the legend
+                myCurve = pane.AddCurve("Cumulated Wage", xdate, cumulatedWage, Color.DarkRed);
+
+                // Make the symbols opaque by filling them with white
+                myCurve.Symbol.Type = SymbolType.Triangle;
+                myCurve.Symbol.Fill = new Fill(Color.White);
+
+                // Manually set the x axis range
+                var min = Math.Min(playerValue.Min(), cumulatedWage.Min());
+                var max = Math.Max(playerValue.Max(), cumulatedWage.Max());
+                double range, step;
+
+                (range, min, max, step) = BestTicks(min, max);
+
+                pane.YAxis.Scale.MajorStep = step;
+                pane.YAxis.Scale.MinorStep = step / 5;
+                pane.YAxis.Scale.Min = min;
+                pane.YAxis.Scale.Max = max;
+
+                pane.YAxis.MajorGrid.IsVisible = true;
+                pane.YAxis.MinorGrid.IsVisible = true;
+
+                master.Add(pane);
+            }
+
+            // 2o Grafico
+            {
+                GraphPane pane = new GraphPane();
+
+                pane.Title.Text = "Player's Wage";
+                pane.YAxis.Title.Text = "Wage";
+                pane.XAxis.Title.Text = "Player's Age";
+                pane.XAxis.Type = AxisType.Date;
+                pane.XAxis.Scale.MajorStep = 12;
+                pane.XAxis.Scale.MinorStep = 12;
+                pane.XAxis.Scale.MajorUnit = DateUnit.Day;
+                pane.XAxis.Scale.Format = "TW";
+
+                // Fill the axis background with a color gradient
+                pane.Chart.Fill = new Fill(Color.FromArgb(255, 255, 245), Color.FromArgb(255, 255, 190), 90F);
+                // pane.BaseDimension = 6.0F;
+
+                // Generate a red curve with "For" in the legend
+                myCurve = pane.AddCurve("Wage", xdate, playerWage, Color.DarkGreen);
+
+                // Make the symbols opaque by filling them with white
+                myCurve.Symbol.Type = SymbolType.Circle;
+                myCurve.Symbol.Fill = new Fill(Color.White);
+
+                // Generate a red curve with "For" in the legend
+                myCurve = pane.AddCurve("Value Change", xdate, valueChange, Color.DarkRed);
+
+                // Make the symbols opaque by filling them with white
+                myCurve.Symbol.Type = SymbolType.Triangle;
+                myCurve.Symbol.Fill = new Fill(Color.White);
+
+                // Manually set the x axis range
+                var min = Math.Min(playerWage.Min(), valueChange.Min());
+                var max = Math.Max(playerWage.Max(), valueChange.Max());
+                double range, step;
+
+                (range, min, max, step) = BestTicks(min, max);
+
+                pane.YAxis.Scale.MajorStep = step;
+                pane.YAxis.Scale.MinorStep = step / 5;
+                pane.YAxis.Scale.Min = min;
+                pane.YAxis.Scale.Max = max;
+
+                pane.YAxis.MajorGrid.IsVisible = true;
+                pane.YAxis.MinorGrid.IsVisible = true;
+
+                master.Add(pane);
+            }
+
+            // Tell ZedGraph to auto layout all the panes
+            using (Graphics g = graphValueHistory.CreateGraphics())
+            {
+                master.SetLayout(g, PaneLayout.SquareColPreferred);
+                master.AxisChange(g);
+            }
+        }
+
+        public (double range, double min, double max, double step) BestTicks(double min, double max, int tickCount = 10)
+        {
+            double range = max - min;
+            double unroundedTickSize = range / tickCount;
+            double x = Math.Ceiling(Math.Log10(unroundedTickSize) - 1);
+            double pow10x = Math.Pow(10, x);
+            double roundedTickRange = Math.Ceiling(unroundedTickSize / pow10x) * pow10x;
+            double step = roundedTickRange;
+            double roundedMin = Math.Floor(min / step) * step;
+            double roundedMax = Math.Ceiling(max / step) * step;
+            return (roundedTickRange * tickCount, roundedMin, roundedMax, step);
+        }
+
         internal void FillSpecsGraph_Pl(ExtTMDataSet.PlayerHistoryDataTable table)
         {
             MasterPane master = graphSpecs.MasterPane;
@@ -2310,7 +2477,7 @@ namespace TMRecorder
 
             Initialize();
 
-            if (tabControlPlayerHistory.SelectedTab == tabPlayerBrowser)
+            // if (tabControlPlayerHistory.SelectedTab == tabPlayerBrowser)
                 webBrowser.GotoPlayer(actPlayerID, NTR_Browser.NTR_Browser.PlayerNavigationType.NavigateReports);
         }
 
@@ -2325,7 +2492,7 @@ namespace TMRecorder
 
             Initialize();
 
-            if (tabControlPlayerHistory.SelectedTab == tabPlayerBrowser)
+            // if (tabControlPlayerHistory.SelectedTab == tabPlayerBrowser)
                 webBrowser.GotoPlayer(actPlayerID, NTR_Browser.NTR_Browser.PlayerNavigationType.NavigateReports);
         }
 
@@ -2363,7 +2530,7 @@ namespace TMRecorder
         private void chkShowTGI_CheckedChanged(object sender, EventArgs e)
         {
             ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
-            ExtTMDataSet.PlayerHistoryDataTable table = History.GetPlayerHistory(playerDatarow.PlayerID);
+            ExtTMDataSet.PlayerHistoryDataTable table = TeamHistory.GetPlayerHistory(playerDatarow.PlayerID);
             FillTIGraph(table);
             Program.Setts.ShowTGI = chkShowTGI.Checked;
             Program.Setts.Save();
@@ -2372,8 +2539,8 @@ namespace TMRecorder
         private void exportInExcelFormat_Click(object sender, EventArgs e)
         {
             ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
-            ExtTMDataSet.PlayerHistoryDataTable table = History.GetPlayerHistory(playerDatarow.PlayerID);
-            ExtraDS.GiocatoriRow gRow = History.PlayersDS.Giocatori.FindByPlayerID(playerDatarow.PlayerID);
+            ExtTMDataSet.PlayerHistoryDataTable table = TeamHistory.GetPlayerHistory(playerDatarow.PlayerID);
+            ExtraDS.GiocatoriRow gRow = TeamHistory.PlayersDS.Giocatori.FindByPlayerID(playerDatarow.PlayerID);
             WeekHistorical whTI = new WeekHistorical(gRow.TSI);
             WeekHistorical whASI = new WeekHistorical(whTI.lastWeek);
 
@@ -2440,9 +2607,9 @@ namespace TMRecorder
         private void tsbComputeGrowth_Click(object sender, EventArgs e)
         {
             ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
-            ExtTMDataSet.PlayerHistoryDataTable table = History.GetPlayerHistory(playerDatarow.PlayerID);
+            ExtTMDataSet.PlayerHistoryDataTable table = TeamHistory.GetPlayerHistory(playerDatarow.PlayerID);
 
-            ExtraDS.GiocatoriRow gRow = History.PlayersDS.Giocatori.FindByPlayerID(playerDatarow.PlayerID);
+            ExtraDS.GiocatoriRow gRow = TeamHistory.PlayersDS.Giocatori.FindByPlayerID(playerDatarow.PlayerID);
 
 
             ComputeBloom cb = new ComputeBloom();
@@ -2508,7 +2675,7 @@ namespace TMRecorder
             if (fi.Exists)
                 ReportAnalysis.ReadXml(Program.Setts.ReportAnalysisFile);
 
-            History.PlayersDS.ParseScoutReviewForHiddenData(ReportAnalysis, playerDatarow.PlayerID);
+            TeamHistory.PlayersDS.ParseScoutReviewForHiddenData(ReportAnalysis, playerDatarow.PlayerID);
             SetTraining();
         }
 
@@ -2539,7 +2706,7 @@ namespace TMRecorder
             if (fi.Exists)
                 ReportAnalysis.ReadXml(Program.Setts.ReportAnalysisFile);
 
-            History.PlayersDS.ParseScoutReviewForHiddenData(ReportAnalysis, playerDatarow.PlayerID);
+            TeamHistory.PlayersDS.ParseScoutReviewForHiddenData(ReportAnalysis, playerDatarow.PlayerID);
             SetTraining();
         }
 
@@ -2751,7 +2918,7 @@ namespace TMRecorder
         private void webBrowser_ImportedContent(string content, string address)
         {
             ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
-            ExtraDS.GiocatoriRow gRow = History.PlayersDS.Giocatori.FindByPlayerID(playerDatarow.PlayerID);
+            ExtraDS.GiocatoriRow gRow = TeamHistory.PlayersDS.Giocatori.FindByPlayerID(playerDatarow.PlayerID);
             if (gRow == null)
                 return;
 
@@ -2778,10 +2945,10 @@ namespace TMRecorder
 
             isDirty = true;
 
-            ExtTMDataSet.PlayerHistoryDataTable table = History.GetPlayerHistory(playerDatarow.PlayerID);
+            ExtTMDataSet.PlayerHistoryDataTable table = TeamHistory.GetPlayerHistory(playerDatarow.PlayerID);
             // FillTIGraph(table);
 
-            gRow.ParseReviewsToSpecialities(scoutsNReviews, History.reportParser);
+            gRow.ParseReviewsToSpecialities(scoutsNReviews, TeamHistory.reportParser);
 
             gRow.ComputeBloomingFromGiudizio(scoutsNReviews);
 
@@ -2790,7 +2957,7 @@ namespace TMRecorder
             UpdateHistoryScouts();
 
             scoutsNReviews.Review.Clear();
-            scoutsNReviews.FillTables(gRow, History.reportParser);
+            scoutsNReviews.FillTables(gRow, TeamHistory.reportParser);
 
             FillTagsBars(gRow);
 
@@ -2801,10 +2968,10 @@ namespace TMRecorder
 
         private void UpdateHistoryScouts()
         {
-            History.PlayersDS.Scouts.Clear();
+            TeamHistory.PlayersDS.Scouts.Clear();
             foreach (var sr in scoutsNReviews.Scouts)
             {
-                var srn = History.PlayersDS.Scouts.NewScoutsRow();
+                var srn = TeamHistory.PlayersDS.Scouts.NewScoutsRow();
                 srn.Name = sr.Name;
                 srn.Physical = sr.Physical;
                 srn.Psychology = sr.Psychology;
@@ -2813,7 +2980,7 @@ namespace TMRecorder
                 srn.Youth = sr.Youth;
                 srn.Tactical = sr.Tactical;
                 srn.Technical = sr.Technical;
-                History.PlayersDS.Scouts.AddScoutsRow(srn);
+                TeamHistory.PlayersDS.Scouts.AddScoutsRow(srn);
             }
         }
 
@@ -2821,7 +2988,7 @@ namespace TMRecorder
         {
             ExtTMDataSet.GiocatoriNSkillRow playerDatarow = (ExtTMDataSet.GiocatoriNSkillRow)GDT.Rows[actualPlayerCnt];
 
-            ExtTMDataSet.PlayerHistoryDataTable table = History.GetPlayerHistory(playerDatarow.PlayerID);
+            ExtTMDataSet.PlayerHistoryDataTable table = TeamHistory.GetPlayerHistory(playerDatarow.PlayerID);
 
             if (playerDatarow.FPn == 0)
             {

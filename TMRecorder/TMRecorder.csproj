@@ -66,8 +66,8 @@
     <ProductName>TM Recorder</ProductName>
     <PublisherName>INSYDE</PublisherName>
     <DisallowUrlActivation>true</DisallowUrlActivation>
-    <ApplicationRevision>2</ApplicationRevision>
-    <ApplicationVersion>2.21.0.2</ApplicationVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>2.22.1.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -194,6 +194,8 @@
       <DependentUpon>StartInfoBox.cs</DependentUpon>
     </Compile>
     <Compile Include="TeamHistory.cs" />
+    <Compile Include="PlayerStats.cs" />
+    <Compile Include="TeamStats.cs" />
     <Compile Include="TraderEditInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -243,11 +245,11 @@
     <Compile Include="PlayerReview.Designer.cs">
       <DependentUpon>PlayerReview.cs</DependentUpon>
     </Compile>
-    <Compile Include="PlayersStats.cs">
+    <Compile Include="PlayersStatsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PlayersStats.Designer.cs">
-      <DependentUpon>PlayersStats.cs</DependentUpon>
+    <Compile Include="PlayersStatsForm.Designer.cs">
+      <DependentUpon>PlayersStatsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -266,14 +268,6 @@
     </Compile>
     <Compile Include="StatisticsBox.Designer.cs">
       <DependentUpon>StatisticsBox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TeamStats.cs">
-      <DependentUpon>TeamStats.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="TeamStats.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TeamStats.xsd</DependentUpon>
     </Compile>
     <Compile Include="TeamStatsForm.cs">
       <SubType>Form</SubType>
@@ -368,9 +362,9 @@
       <SubType>Designer</SubType>
       <DependentUpon>PlayerReview.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PlayersStats.resx">
+    <EmbeddedResource Include="PlayersStatsForm.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>PlayersStats.cs</DependentUpon>
+      <DependentUpon>PlayersStatsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AsyncProgressForm.resx">
       <DependentUpon>AsyncProgressForm.cs</DependentUpon>
@@ -436,17 +430,6 @@
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="TeamStats.xsc">
-      <DependentUpon>TeamStats.xsd</DependentUpon>
-    </None>
-    <None Include="TeamStats.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>TeamStats.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="TeamStats.xss">
-      <DependentUpon>TeamStats.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

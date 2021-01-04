@@ -9,6 +9,7 @@ using ZedGraph;
 using Common;
 using NTR_Db;
 using System.Linq;
+using static TMRecorder.TeamStats;
 
 namespace TMRecorder
 {
@@ -19,21 +20,47 @@ namespace TMRecorder
             InitializeComponent();
         }
 
-        public void FillSquadGraphs(ExtraDS extraDS)
+        public void FillSquadStatsGraphs(TeamStats teamStats)
         {
-            FillSquadAgeGraph(extraDS);
-            FillSquadPlayersASIxPosition(extraDS);
+            FillAgeStatsGraph(teamStats);
+            FillTotASIGraph(teamStats);
+            FillSkillCountGraph(teamStats);
+            FillSquadAgeGraph(teamStats.LastPlayers);
+            FillSquadPlayersASIxPosition(teamStats.LastPlayers);
+            FillSkillGrowth(teamStats);
+            FillTeamFansHistory(teamStats);
+            FillTeamValueGraph(teamStats);
         }
 
-        private void FillSquadPlayersASIxPosition(ExtraDS extraDS)
-        {
-            if (extraDS == null)
-                return;
 
-            int[] StatsPlyASILT300 = extraDS.GetStatsPlyASIxRule(0, 300);
-            int[] StatsPlyASILT1000 = extraDS.GetStatsPlyASIxRule(301, 1000);
-            int[] StatsPlyASIGT1000 = extraDS.GetStatsPlyASIxRule(1001, 10000);
-            int[] StatsPlyASIGT10000 = extraDS.GetStatsPlyASIxRule(10001, 100000);
+        public int[] GetStatsPlyASIxRule(List<ExtraDS.GiocatoriRow> gList, int minASI, int maxASI)
+        {
+            int[] SpecStats = new int[ExtraDS.specs.Length];
+
+            foreach (ExtraDS.GiocatoriRow gr in gList)
+            {
+                if (gr.IsASINull()) continue;
+                if ((gr.ASI < minASI) || (gr.ASI > maxASI)) continue;
+
+                for (int i = 0; i < ExtraDS.specs.Length; i++)
+                {
+                    if (gr.FP.Contains(ExtraDS.specs[i]))
+                        SpecStats[i]++;
+                }
+            }
+
+            return SpecStats;
+        }
+
+
+        private void FillSquadPlayersASIxPosition(List<ExtraDS.GiocatoriRow> lastPlayers)
+        {
+
+            int[] StatsPlyASILT300 = GetStatsPlyASIxRule(lastPlayers, 0, 300);
+            int[] StatsPlyASILT1000 = GetStatsPlyASIxRule(lastPlayers, 301, 1000);
+            int[] StatsPlyASIGT1000 = GetStatsPlyASIxRule(lastPlayers, 1001, 10000);
+            int[] StatsPlyASIGT10000 = GetStatsPlyASIxRule(lastPlayers, 10001, 100000);
+            int[] StatsPlyASIGT100000 = GetStatsPlyASIxRule(lastPlayers, 100001, 10000000);
 
             GraphPane pane = graphSquadASI.GraphPane;
             pane.CurveList.Clear();
@@ -45,39 +72,42 @@ namespace TMRecorder
             pane.XAxis.Title.Text = "Position";
 
             // Enter some random data values
-            double[] list1 = new double[extraDS.specs.Length];
-            double[] list2 = new double[extraDS.specs.Length];
-            double[] list3 = new double[extraDS.specs.Length];
-            double[] list4 = new double[extraDS.specs.Length];
+            double[] list1 = new double[ExtraDS.specs.Length];
+            double[] list2 = new double[ExtraDS.specs.Length];
+            double[] list3 = new double[ExtraDS.specs.Length];
+            double[] list4 = new double[ExtraDS.specs.Length];
+            double[] list5 = new double[ExtraDS.specs.Length];
 
             double count1 = 0;
             double count2 = 0;
             double count3 = 0;
             double count4 = 0;
+            double count5 = 0;
 
             double max = 0;
-            for (int i = 0; i < extraDS.specs.Length; i++)
+            for (int i = 0; i < ExtraDS.specs.Length; i++)
             {
                 count1 = (double)StatsPlyASILT300[i];
                 count2 = (double)StatsPlyASILT1000[i];
                 count3 = (double)StatsPlyASIGT1000[i];
                 count4 = (double)StatsPlyASIGT10000[i];
-                double sum = count1 + count2 + count3 + count4;
-                if (max < sum) max = sum;
-                if (max < sum) max = sum;
-                if (max < sum) max = sum;
+                count5 = (double)StatsPlyASIGT100000[i];
+
+                double sum = count1 + count2 + count3 + count4 + count5;
                 if (max < sum) max = sum;
 
                 list1[i] = count1;
                 list2[i] = count2;
                 list3[i] = count3;
                 list4[i] = count4;
+                list5[i] = count5;
             }
 
             BarItem myCurve1 = pane.AddBar("Ply x Position < 300 ASI", null, list1, Color.Yellow);
             BarItem myCurve2 = pane.AddBar("Ply x Position < 1000 ASI", null, list2, Color.LightGreen);
             BarItem myCurve3 = pane.AddBar("Ply x Position > 1000 ASI", null, list3, Color.Orange);
             BarItem myCurve4 = pane.AddBar("Ply x Position > 10000 ASI", null, list4, Color.OrangeRed);
+            BarItem myCurve5 = pane.AddBar("Ply x Position > 100000 ASI", null, list5, Color.Purple);
 
             // Fill the axis background with a color gradient
             pane.Chart.Fill = new Fill(Color.FromArgb(255, 255, 245), Color.FromArgb(255, 255, 190), 90F);
@@ -90,7 +120,7 @@ namespace TMRecorder
             pane.BarSettings.Type = BarType.Stack;
 
             // Set the YAxis labels
-            pane.XAxis.Scale.TextLabels = extraDS.specs;
+            pane.XAxis.Scale.TextLabels = ExtraDS.specs;
             // Set the YAxis to Text type
             pane.XAxis.Type = AxisType.Text;
 
@@ -156,15 +186,43 @@ namespace TMRecorder
             graphSquadASI.Refresh();
         }
 
-        private void FillSquadAgeGraph(ExtraDS extraDS)
+        public int[] GetStatsAge(List<ExtraDS.GiocatoriRow> gList, int minASI, int maxASI)
         {
-            if (extraDS == null)
-                return;
+            int minAge = 100;
+            int maxAge = 0;
 
-            int[] StatsAgeASILT300 = extraDS.GetStatsAge(0, 300);
-            int[] StatsAgeASILT1000 = extraDS.GetStatsAge(301, 1000);
-            int[] StatsAgeASIGT1000 = extraDS.GetStatsAge(1001, 10000);
-            int[] StatsAgeASIGT10000 = extraDS.GetStatsAge(10001, 10000000);
+            if (gList.Count == 0) return null;
+
+            foreach (ExtraDS.GiocatoriRow gr in gList)
+            {
+                if (gr.IsEtàNull()) continue;
+                if (minAge > gr.Età) minAge = gr.Età;
+                if (maxAge < gr.Età) maxAge = gr.Età;
+            }
+
+            int[] AgeStats = new int[maxAge - minAge + 3];
+            AgeStats[0] = minAge;
+            AgeStats[1] = maxAge;
+
+            foreach (ExtraDS.GiocatoriRow gr in gList)
+            {
+                if (gr.IsEtàNull()) continue;
+                if (gr.IsASINull()) continue;
+                if ((gr.ASI < minASI) || (gr.ASI > maxASI)) continue;
+
+                AgeStats[2 + gr.Età - minAge]++;
+            }
+
+            return AgeStats;
+        }
+
+        private void FillSquadAgeGraph(List<ExtraDS.GiocatoriRow> lastPlayers)
+        {
+            int[] StatsAgeASILT300 = GetStatsAge(lastPlayers, 0, 300);
+            int[] StatsAgeASILT1000 = GetStatsAge(lastPlayers, 301, 1000);
+            int[] StatsAgeASIGT1000 = GetStatsAge(lastPlayers, 1001, 10000);
+            int[] StatsAgeASIGT10000 = GetStatsAge(lastPlayers, 10001, 100000);
+            int[] StatsAgeASIGT100000 = GetStatsAge(lastPlayers, 100001, 10000000);
 
             if (StatsAgeASILT300 == null) return;
 
@@ -182,11 +240,13 @@ namespace TMRecorder
             PointPairList list2 = new PointPairList();
             PointPairList list3 = new PointPairList();
             PointPairList list4 = new PointPairList();
+            PointPairList list5 = new PointPairList();
 
             double count1 = 0;
             double count2 = 0;
             double count3 = 0;
             double count4 = 0;
+            double count5 = 0;
 
             double max = 0;
             for (int i = 0; i < StatsAgeASILT300.Length - 2; i++)
@@ -195,22 +255,26 @@ namespace TMRecorder
                 count2 = (double)StatsAgeASILT1000[i + 2];
                 count3 = (double)StatsAgeASIGT1000[i + 2];
                 count4 = (double)StatsAgeASIGT10000[i + 2];
+                count5 = (double)StatsAgeASIGT100000[i + 2];
 
                 if (max < count1) max = count1;
                 if (max < count2) max = count2;
                 if (max < count3) max = count3;
                 if (max < count4) max = count4;
+                if (max < count5) max = count5;
 
                 list1.Add((double)(StatsAgeASILT300[0] + i), count1);
                 list2.Add((double)(StatsAgeASILT300[0] + i), count2);
                 list3.Add((double)(StatsAgeASILT300[0] + i), count3);
                 list4.Add((double)(StatsAgeASILT300[0] + i), count4);
+                list5.Add((double)(StatsAgeASILT300[0] + i), count5);
             }
 
             BarItem myCurve1 = pane.AddBar("Players x Age < 300 ASI", list1, Color.Yellow);
-            BarItem myCurve2 = pane.AddBar("Players x Age < 1000 ASI", list2, Color.LightGreen);
-            BarItem myCurve3 = pane.AddBar("Players x Age > 1000 ASI", list3, Color.Orange);
-            BarItem myCurve4 = pane.AddBar("Players x Age > 10000 ASI", list4, Color.OrangeRed);
+            BarItem myCurve2 = pane.AddBar("Players x Age < 1.000 ASI", list2, Color.LightGreen);
+            BarItem myCurve3 = pane.AddBar("Players x Age > 1.000 ASI", list3, Color.Orange);
+            BarItem myCurve4 = pane.AddBar("Players x Age > 10.000 ASI", list4, Color.OrangeRed);
+            BarItem myCurve5 = pane.AddBar("Players x Age > 100.000 ASI", list5, Color.Purple);
 
             // Fill the axis background with a color gradient
             pane.Chart.Fill = new Fill(Color.FromArgb(255, 255, 245), Color.FromArgb(255, 255, 190), 90F);
@@ -227,6 +291,142 @@ namespace TMRecorder
             CreateBarLabels(pane, true, "N0");
 
             graphSquadAge.Refresh();
+        }
+
+        private void FillTeamValueGraph(TeamStats teamStats)
+        {
+            MasterPane master = graphTeamValueHistory.MasterPane;
+
+            // Remove the default pane that comes with the ZedGraphControl.MasterPane
+            master.PaneList.Clear();
+
+            // Set the master pane title
+            master.Title.Text = "Team Selling To Agent Value History";
+            master.Title.IsVisible = true;
+
+            // Fill the axis background with a color gradient
+            master.Fill = new Fill(Color.FromArgb(240, 255, 240), Color.FromArgb(190, 255, 190), 90F);
+
+            // Set the margins and the space between panes to 10 points
+            master.Margin.All = 10;
+            master.InnerPaneGap = 10;
+
+            ValueHistoryList valueHistoryList = teamStats.ValueHistory;
+            int count = valueHistoryList.Count;
+
+            if (count == 0) return;
+
+            double[] totValue = new double[count];
+            double[] valGrowth = new double[count];
+            double[] totWage = new double[count];
+            double[] cumulatedWage = new double[count];
+            double[] xdate = new double[count];
+            double dMin = 1000.0;
+            double dMax = -1.0;
+            int i = 0;
+
+            foreach (var row in valueHistoryList.OrderBy(gh => gh.Date))
+            {
+                totValue[i] = (double)(row.TotalValue);
+                valGrowth[i] = (double)(row.ValueGrowth);
+                totWage[i] = (double)(row.Wage);
+                cumulatedWage[i] = (double)(row.CumulatedWage);
+                xdate[i] = (double)new XDate(row.Date);
+                dMax = Math.Max(dMax, row.TotalValue);
+                dMin = Math.Min(dMin, row.TotalValue);
+                dMax = Math.Max(dMax, row.ValueGrowth);
+                dMin = Math.Min(dMin, row.ValueGrowth);
+                dMax = Math.Max(dMax, row.Wage);
+                dMin = Math.Min(dMin, row.Wage);
+                i++;
+            }
+
+            LineItem myCurve;
+
+            // 1o grafico
+            {
+                GraphPane pane = new GraphPane();
+                pane.CurveList.Clear();
+
+                // Set the title and axis labels
+                pane.Title.Text = "Team StA Value History";
+                pane.YAxis.Title.Text = "Value";
+                pane.XAxis.Title.Text = "Weeks";
+                pane.XAxis.Type = AxisType.Date;
+                pane.XAxis.Scale.MajorStep = 7;
+                pane.XAxis.Scale.MinorStep = 7;
+                pane.XAxis.Scale.MajorUnit = DateUnit.Day;
+                pane.XAxis.Scale.Format = "TW";
+
+                // Fill the axis background with a color gradient
+                pane.Chart.Fill = new Fill(Color.FromArgb(255, 255, 245), Color.FromArgb(255, 255, 190), 90F);
+
+                // Generate a red curve with legend
+                myCurve = pane.AddCurve("Team Value", xdate, totValue, Color.Blue);
+
+                // Make the symbols opaque by filling them with white
+                myCurve.Symbol.Type = SymbolType.Circle;
+                myCurve.Symbol.Fill = new Fill(Color.White);
+
+                //myCurve = pane.AddCurve("Cumulated Wage", xdate, cumulatedWage, Color.Green);
+
+                //// Make the symbols opaque by filling them with white
+                //myCurve.Symbol.Type = SymbolType.Triangle;
+                //myCurve.Symbol.Fill = new Fill(Color.White);
+
+                // Manually set the x axis range
+                pane.YAxis.Scale.MajorStep = 10000000;
+                pane.YAxis.Scale.MinorStep = 5000000;
+
+                pane.YAxis.MajorGrid.IsVisible = true;
+                pane.YAxis.MinorGrid.IsVisible = true;
+
+                master.Add(pane);
+            }
+
+            // 2o Grafico
+            {
+                GraphPane pane = new GraphPane();
+                pane.CurveList.Clear();
+
+                // Set the title and axis labels
+                pane.Title.Text = "Team Value and Wage Growth";
+                pane.YAxis.Title.Text = "Value";
+                pane.XAxis.Title.Text = "Weeks";
+                pane.XAxis.Type = AxisType.Date;
+                pane.XAxis.Scale.MajorStep = 7;
+                pane.XAxis.Scale.MinorStep = 7;
+                pane.XAxis.Scale.MajorUnit = DateUnit.Day;
+                pane.XAxis.Scale.Format = "TW";
+
+                myCurve = pane.AddCurve("Value Week Growth", xdate, valGrowth, Color.Red);
+
+                // Make the symbols opaque by filling them with white
+                myCurve.Symbol.Type = SymbolType.Circle;
+                myCurve.Symbol.Fill = new Fill(Color.White);
+
+                myCurve = pane.AddCurve("Team Wage", xdate, totWage, Color.Green);
+
+                // Make the symbols opaque by filling them with white
+                myCurve.Symbol.Type = SymbolType.Triangle;
+                myCurve.Symbol.Fill = new Fill(Color.White);
+
+                // Manually set the x axis range
+                pane.YAxis.Scale.MajorStep = 1000000;
+                pane.YAxis.Scale.MinorStep = 500000;
+
+                pane.YAxis.MajorGrid.IsVisible = true;
+                pane.YAxis.MinorGrid.IsVisible = true;
+
+                master.Add(pane);
+            }
+
+            // Tell ZedGraph to auto layout all the panes
+            using (Graphics g = graphTeamValueHistory.CreateGraphics())
+            {
+                master.SetLayout(g, PaneLayout.SquareColPreferred);
+                master.AxisChange(g);
+            }
         }
 
         /// <summary>
@@ -323,13 +523,6 @@ namespace TMRecorder
             }
         }
 
-        public void FillSquadStatsGraphs(TeamStats teamStats)
-        {
-            FillAgeStatsGraph(teamStats);
-            FillTotASIGraph(teamStats);
-            FillSkillCountGraph(teamStats);
-        }
-
         private void FillTotASIGraph(TeamStats teamStats)
         {
             GraphPane pane = graphTotASIHistory.GraphPane;
@@ -346,8 +539,8 @@ namespace TMRecorder
             pane.XAxis.Scale.MajorUnit = DateUnit.Day;
             pane.XAxis.Scale.Format = "TW";
 
-            TeamStats.GrowthHistoryDataTable table = teamStats.GrowthHistory;
-            int count = table.Rows.Count;
+            GrowthHistoryList growthHistoryList = teamStats.GrowthHistory;
+            int count = growthHistoryList.Count;
 
             if (count == 0) return;
 
@@ -355,15 +548,15 @@ namespace TMRecorder
             double[] xdate = new double[count];
             double dMin = 1000.0;
             double dMax = -1.0;
+            int i = 0;
 
-            for (int i = 0; i < count; i++)
+            foreach (var row in growthHistoryList.OrderBy(gh => gh.Date))
             {
-                TeamStats.GrowthHistoryRow row = (TeamStats.GrowthHistoryRow)table.Rows[i];
-
                 totASI[i] = (double)(row.TotASI / 1000);
                 xdate[i] = (double)new XDate(row.Date);
                 dMax = Math.Max(dMax, row.TotASI / 1000);
                 dMin = Math.Min(dMin, row.TotASI / 1000);
+                i++;
             }
 
             // Fill the axis background with a color gradient
@@ -400,8 +593,8 @@ namespace TMRecorder
             pane.XAxis.Scale.MajorUnit = DateUnit.Day;
             pane.XAxis.Scale.Format = "TW";
 
-            TeamStats.GrowthHistoryDataTable table = teamStats.GrowthHistory;
-            int count = table.Rows.Count;
+            GrowthHistoryList growthHistoryList = teamStats.GrowthHistory;
+            int count = growthHistoryList.Count;
 
             if (count == 0) return;
 
@@ -410,14 +603,14 @@ namespace TMRecorder
             double dMin = 10000000.0;
             double dMax = -1.0;
 
-            for (int i = 0; i < count; i++)
+            int i = 0;
+            foreach (var row in growthHistoryList.OrderBy(gh => gh.Date))
             {
-                TeamStats.GrowthHistoryRow row = (TeamStats.GrowthHistoryRow)table.Rows[i];
-
                 val[i] = (double)(row.SkillCount);
                 xdate[i] = (double)new XDate(row.Date);
                 dMax = Math.Max(dMax, (double)row.SkillCount);
                 dMin = Math.Min(dMin, (double)row.SkillCount);
+                i++;
             }
 
             // Fill the axis background with a color gradient
@@ -437,28 +630,6 @@ namespace TMRecorder
             pane.YAxis.Scale.MajorStep = 200;
         }
 
-        internal void FillFansHistory(Seasons allSeasons, int clubID)
-        {
-            TeamStats teamStats = new TMRecorder.TeamStats();
-
-            List<NTR_SquadDb.TeamDataRow> clubData = allSeasons.GetClubData(clubID);
-
-            foreach (var row in clubData)
-            {
-                TeamStats.TeamHistoryRow teamHistoryRow = teamStats.TeamHistory.FindByDate(row.Date);
-                if (teamHistoryRow == null)
-                {
-                    teamHistoryRow = teamStats.TeamHistory.NewTeamHistoryRow();
-                    teamHistoryRow.Date = row.Date;
-                    teamHistoryRow.Cash = row.Cash;
-                    teamHistoryRow.Fans = row.NumSupporters;
-                    teamStats.TeamHistory.AddTeamHistoryRow(teamHistoryRow);
-                }
-            }
-
-            FillTeamFansHistory(teamStats);
-        }
-
         private void FillTeamFansHistory(TeamStats teamStats)
         {
             GraphPane pane = graphTeamFans.GraphPane;
@@ -475,8 +646,8 @@ namespace TMRecorder
             pane.XAxis.Scale.MajorUnit = DateUnit.Day;
             pane.XAxis.Scale.Format = "TW";
 
-            TeamStats.TeamHistoryDataTable table = teamStats.TeamHistory;
-            int count = table.Count + 1;
+            var teamHistory = teamStats.TeamHistory;
+            int count = teamHistory.Count + 1;
 
             double[] valFans = new double[count];
             double[] ddate = new double[count];
@@ -484,7 +655,7 @@ namespace TMRecorder
             double dMin = 10000000.0;
             double dMax = -1.0;
 
-            var row = (from r in table select r).FirstOrDefault();
+            var row = (from r in teamHistory select r).FirstOrDefault();
 
             if (row == null) return;
 
@@ -493,7 +664,7 @@ namespace TMRecorder
             valFans[0] = (double)(row.Fans);
 
             int i = 1;
-            foreach(var histRow in table)
+            foreach(var histRow in teamHistory)
             {
                 valFans[i] = (double)(histRow.Fans);
 
@@ -541,15 +712,16 @@ namespace TMRecorder
             pane.XAxis.Scale.MajorUnit = DateUnit.Day;
             pane.XAxis.Scale.Format = "TW";
 
-            TeamStats.GrowthHistoryDataTable table = teamStats.GrowthHistory;
-            int count = table.Rows.Count;
+            GrowthHistoryList growthHistoryList = teamStats.GrowthHistory;
+            int count = growthHistoryList.Count;
 
             int nonZeroCount = 0;
-            for (int j = 0; j < count; j++)
+            int j = 0;
+            foreach (var row in growthHistoryList.OrderBy(gh => gh.Date))
             {
-                TeamStats.GrowthHistoryRow row = (TeamStats.GrowthHistoryRow)table.Rows[j];
                 if ((row.DeltaSkillPos == 0) && (row.DeltaSkillNeg == 0)) continue;
                 nonZeroCount++;
+                j++;
             }
 
             if (nonZeroCount == 0) return;
@@ -564,10 +736,8 @@ namespace TMRecorder
             double ddateMax = double.MinValue;
 
             int i = 0;
-            for (int j = 0; (j < count) && (i < nonZeroCount); j++)
+            foreach (var row in growthHistoryList.OrderBy(gh => gh.Date))
             {
-                TeamStats.GrowthHistoryRow row = (TeamStats.GrowthHistoryRow)table.Rows[j];
-
                 if ((row.DeltaSkillPos == 0) && (row.DeltaSkillNeg == 0)) continue;
 
                 valP[i] = (double)(row.DeltaSkillPos);
@@ -579,27 +749,11 @@ namespace TMRecorder
                 ddateMin = Math.Min(ddateMin, ddate[i]);
                 ddateMax = Math.Max(ddateMax, ddate[i]);
 
-                //if (i != 0)
-                //{
-                //    double nDays = ddate[i] - ddate[i - 1];
-
-                //    if (nDays > 7.0)
-                //    {
-                //        int daysToTuesdayP = xdate[i - 1].DateTime.DayOfWeek - DayOfWeek.Tuesday;
-                //        int daysToTuesdayN = xdate[i].DateTime.DayOfWeek - DayOfWeek.Tuesday;
-                //        if (daysToTuesdayP < 0) daysToTuesdayP = 7 + daysToTuesdayP;
-                //        if (daysToTuesdayN < 0) daysToTuesdayN = 7 + daysToTuesdayN;
-                //        int nWeek = ((int)nDays - daysToTuesdayN + daysToTuesdayP) / 7;
-                //        if (nWeek == 0) nWeek = 1;
-                //        valP[i] = valP[i] / nWeek;
-                //        valN[i] = valN[i] / nWeek;
-                //    }
-                //}
-
                 dMax = Math.Max(dMax, valP[i]);
                 dMin = Math.Min(dMin, valN[i]);
 
                 i++;
+                if (i == nonZeroCount) break;
             }
 
             // Fill the axis background with a color gradient
@@ -641,8 +795,8 @@ namespace TMRecorder
             pane.XAxis.Scale.MajorUnit = DateUnit.Day;
             pane.XAxis.Scale.Format = "TW";
 
-            TeamStats.AgeHistoryDataTable table = teamStats.AgeHistory;
-            int count = table.Rows.Count;
+            AgeHistoryList ageHistoryList = teamStats.AgeHistory;
+            int count = ageHistoryList.Count;
 
             if (count == 0) return;
 
@@ -655,10 +809,9 @@ namespace TMRecorder
             double dMin = 0.0;
             double dMax = -1.0;
 
-            for (int i = 0; i < count; i++)
+            int i = 0;
+            foreach (var row in ageHistoryList.OrderBy(gh => gh.Date))
             {
-                TeamStats.AgeHistoryRow row = (TeamStats.AgeHistoryRow)table.Rows[i];
-
                 u18[i] = (double)(row.U18);
                 u21[i] = (double)(row.U21 + row.U18);
                 u24[i] = (double)(row.U24 + row.U21 + row.U18);
@@ -666,6 +819,7 @@ namespace TMRecorder
                 o30[i] = (double)(row.O30 + row.U30 + row.U24 + row.U21 + row.U18);
                 xdate[i] = (double)new XDate(row.Date);
                 dMax = Math.Max(dMax, o30[i]);
+                i++;
             }
 
             // Fill the axis background with a color gradient
@@ -707,35 +861,18 @@ namespace TMRecorder
             pane.YAxis.Scale.MajorStep = 5;
         }
 
-        internal void FillTrainingHistory(ListTrainingDataSet2 trainingHist)
+        private void TeamStatsForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            TeamStats teamStats = new TeamStats();
+            Rectangle pos = new Rectangle(DesktopBounds.X, DesktopBounds.Y, DesktopBounds.Width, DesktopBounds.Height);
+            Program.Setts.TeamStatsFormPosition = pos;
+            Program.Setts.Save();
+        }
 
-            foreach(var training in trainingHist)
-            {
-                float deltaSkillPos = 0;
-                float deltaSkillNeg = 0;
-
-                foreach (var player in training.Giocatori)
-                {
-                    deltaSkillPos += player.DeltaSkillPos();
-                    deltaSkillNeg += player.DeltaSkillNeg();
-                }
-
-                foreach (var player in training.Portieri)
-                {
-                    deltaSkillPos += player.DeltaSkillPos();
-                    deltaSkillNeg += player.DeltaSkillNeg();
-                }
-
-                var growthRow = teamStats.GrowthHistory.NewGrowthHistoryRow();
-                growthRow.Date = training.Date;
-                growthRow.DeltaSkillPos = (decimal)deltaSkillPos;
-                growthRow.DeltaSkillNeg = (decimal)deltaSkillNeg;
-                teamStats.GrowthHistory.AddGrowthHistoryRow(growthRow);
-            }
-
-            FillSkillGrowth(teamStats);
+        private void TeamStatsForm_Load(object sender, EventArgs e)
+        {
+            Rectangle pos = Program.Setts.TeamStatsFormPosition;
+            if (pos.Height + pos.Width > 0)
+                this.SetDesktopBounds(pos.X, pos.Y, pos.Width, pos.Height);
         }
     }
 }

@@ -23,7 +23,6 @@ namespace TMRecorder
 
         TeamHistory History = null;
         ReportAnalysis reportAnalysis = new ReportAnalysis();
-        public TeamStats teamStats = new TeamStats();
         TrainersSkills dbTrainers = new TrainersSkills();
         // WebBrowser webBrowser = new WebBrowser();
         bool enableTracing = false;
@@ -972,10 +971,6 @@ namespace TMRecorder
 
             if (History.PlayersDS == null) return res;
 
-            History.FillTeamStats(ref teamStats);
-
-            History.ComputeStats();
-
             return res;
         }
 
@@ -1722,10 +1717,9 @@ namespace TMRecorder
         {
             TeamStatsForm tsf = new TeamStatsForm();
 
-            tsf.FillSquadGraphs(History.PlayersDS);
-            tsf.FillSquadStatsGraphs(teamStats);
-            tsf.FillTrainingHistory(History.TrainingHist);
-            tsf.FillFansHistory(AllSeasons, Program.Setts.MainSquadID);
+            TeamStats tsi = new TeamStats(History, AllSeasons, Program.Setts.MainSquadID);
+
+            tsf.FillSquadStatsGraphs(tsi);
 
             tsf.ShowDialog();
         }
@@ -1766,7 +1760,7 @@ namespace TMRecorder
 
         private void playersStatisticsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            PlayersStats psf = new PlayersStats(AllSeasons, History.PlayersDS);
+            PlayersStatsForm psf = new PlayersStatsForm(AllSeasons, History.PlayersDS);
 
             psf.ShowDialog();
         }
@@ -1837,7 +1831,7 @@ namespace TMRecorder
         {
             TraderForm tf = new TraderForm();
 
-            History.FillTradingList(tf.trading);
+            tf.trading.FillTradingList(History);
 
             tf.Show(this);
         }

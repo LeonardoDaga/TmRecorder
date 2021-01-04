@@ -9,16 +9,20 @@ using Common;
 using NTR_Db;
 using TMRecorder.Properties;
 using NTR_Controls;
+using System.Linq;
 
 namespace TMRecorder
 {
-    public partial class PlayersStats : Form
+    public partial class PlayersStatsForm : Form
     {
         private Seasons AllSeasons;
 
         public List<MatchData> SeasonMatchList { get; private set; }
 
-        public PlayersStats(Seasons allseasons, ExtraDS extraDS)
+        string ReorderColumn { get; set; }
+        bool ReverseColumn { get; set; }
+
+        public PlayersStatsForm(Seasons allseasons, ExtraDS extraDS)
         {
             InitializeComponent();
 
@@ -102,9 +106,68 @@ namespace TMRecorder
             // Initialize list with the actual season
             var statList = AllSeasons.GetPlayerStatsListByTeam(season, teamId, matchType);
 
+            if (ReorderColumn == null)
+            {
+                statList = statList.OrderByDescending(pl => pl.AvgVote).ToList();
+            }
+            else
+            {
+                switch (ReorderColumn)
+                {
+                    case "Name": statList = statList.OrderBy(pl => pl.Name).ToList(); break;
+                    case "FP": statList = statList.OrderBy(pl => pl.FPn).ToList(); break;
+                    case "GP": statList = statList.OrderByDescending(pl => pl.GamePlayed).ToList(); break;
+                    case "Goal": statList = statList.OrderByDescending(pl => pl.Scored).ToList(); break;
+                    case "Assist": statList = statList.OrderByDescending(pl => pl.Assist).ToList(); break;
+                    case "Vote": statList = statList.OrderByDescending(pl => pl.AvgVote).ToList(); break;
+                    case "Vote SD": statList = statList.OrderBy(pl => pl.SdVote).ToList(); break;
+                }
+                
+            }
+
+            if (ReverseColumn)
+                statList.Reverse();
+
             dgPlayersStats.DataCollection = statList;
         }
 
+        private void dgPlayersStats_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            string selectedCol = "";
+            switch (e.ColumnIndex)
+            {
+                case 0: selectedCol = "Name"; break;
+                case 1: selectedCol = "FP"; break;
+                case 2: selectedCol = "GP"; break;
+                case 3: selectedCol = "Goal"; break;
+                case 4: selectedCol = "Assist"; break;
+                case 5: selectedCol = "Vote"; break;
+                case 6: selectedCol = "Vote SD"; break;
+            }
 
+            if (selectedCol == ReorderColumn)
+                ReverseColumn = !ReverseColumn;
+            else
+            {
+                ReverseColumn = false;
+                ReorderColumn = selectedCol;
+            }
+
+            MatchListUpdateSeason();
+        }
+
+        private void PlayersStats_Load(object sender, EventArgs e)
+        {
+            Rectangle pos = Program.Setts.PlayersStatsFormPosition;
+            if (pos.Height + pos.Width > 0)
+                this.SetDesktopBounds(pos.X, pos.Y, pos.Width, pos.Height);
+        }
+
+        private void PlayersStats_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Rectangle pos = new Rectangle(DesktopBounds.X, DesktopBounds.Y, DesktopBounds.Width, DesktopBounds.Height);
+            Program.Setts.PlayersStatsFormPosition = pos;
+            Program.Setts.Save();
+        }
     }
 }

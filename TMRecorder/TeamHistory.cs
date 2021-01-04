@@ -123,7 +123,7 @@ namespace TMRecorder
                     {
                         TrainingHist.RemoveAt(ix);
                         TrainingHist.Insert(ix, trainingDataSet);
-                        DisplayStats(trainingDataSet, null, null);
+                        DisplayStats(trainingDataSet);
                         break;
                     }
                 }
@@ -141,7 +141,7 @@ namespace TMRecorder
 
                 // Found!
                 TrainingHist.Insert(ix, trainingDataSet);
-                DisplayStats(trainingDataSet, null, null);
+                DisplayStats(trainingDataSet);
             }
 
             for (ix = 0; ix < this.Count; ix++)
@@ -169,8 +169,9 @@ namespace TMRecorder
             }
         }
 
-        private void DisplayStats(TrainingDataSet tds, SkillVariation sv,
-                                   TeamStats.GrowthHistoryRow gsRow)
+        //private void DisplayStats(TrainingDataSet tds, SkillVariation sv,
+        //                           TeamStats.GrowthHistoryRow gsRow)
+        private void DisplayStats(TrainingDataSet tds)
         {
             int lg = 0, dg = 0, lr = 0, dr = 0;
             decimal tsiCount = 0.0M;
@@ -224,30 +225,30 @@ namespace TMRecorder
             {
                 stats = Current.Language.TrophyManagerReportStillNotAvailableForThisWeek;
 
-                ct = sv.totCount;
+                //ct = sv.totCount;
             }
 
 
-            if (sv != null)
-            {
-                dg = sv.posDeltaSk; lg = sv.posDeltaDec;
-                dr = sv.negDeltaSk; lr = sv.negDeltaDec;
-                stats += "\r\n" + Current.Language.TrophyManagerReportLightGreenArrows + lg.ToString() + "\r\n";
-                stats += Current.Language.DarkGreenArrows + dg.ToString() + "\r\n";
-                stats += Current.Language.LightRedArrows + lr.ToString() + "\r\n";
-                stats += Current.Language.DarkRedArrows + dr.ToString() + "\r\n";
-                stats += Current.Language.TMRecorderStatisticsDeltaSkills + dg.ToString() + "/-" + dr.ToString() + "\r\n";
-                stats += Current.Language.Mean + ((float)dg / (float)ct).ToString("N2") + "/-" + ((float)dr / (float)ct).ToString("N2") + "\r\n";
-                stats += Current.Language.DeltaDecimals + lg.ToString() + "/-" + lr.ToString() + "\r\n";
-                stats += Current.Language.TotalMean + (((float)dg + (float)lg / 10f) / (float)ct).ToString("N2") + "/-" + (((float)dr + (float)lr / 10f) / (float)ct).ToString("N2") + "\r\n";
-            }
+            //if (sv != null)
+            //{
+            //    dg = sv.posDeltaSk; lg = sv.posDeltaDec;
+            //    dr = sv.negDeltaSk; lr = sv.negDeltaDec;
+            //    stats += "\r\n" + Current.Language.TrophyManagerReportLightGreenArrows + lg.ToString() + "\r\n";
+            //    stats += Current.Language.DarkGreenArrows + dg.ToString() + "\r\n";
+            //    stats += Current.Language.LightRedArrows + lr.ToString() + "\r\n";
+            //    stats += Current.Language.DarkRedArrows + dr.ToString() + "\r\n";
+            //    stats += Current.Language.TMRecorderStatisticsDeltaSkills + dg.ToString() + "/-" + dr.ToString() + "\r\n";
+            //    stats += Current.Language.Mean + ((float)dg / (float)ct).ToString("N2") + "/-" + ((float)dr / (float)ct).ToString("N2") + "\r\n";
+            //    stats += Current.Language.DeltaDecimals + lg.ToString() + "/-" + lr.ToString() + "\r\n";
+            //    stats += Current.Language.TotalMean + (((float)dg + (float)lg / 10f) / (float)ct).ToString("N2") + "/-" + (((float)dr + (float)lr / 10f) / (float)ct).ToString("N2") + "\r\n";
+            //}
 
-            if (gsRow != null)
-            {
-                if (tds == null) stats += Current.Language.WarningTEMPORARY;
-                stats += Current.Language.RealDeltaSkills + gsRow.DeltaSkillPos.ToString() + "/" + gsRow.DeltaSkillNeg.ToString() + "\r\n";
-                stats += Current.Language.RealMean + (((float)gsRow.DeltaSkillPos) / (float)ct).ToString("N2") + "/" + (((float)gsRow.DeltaSkillNeg) / (float)ct).ToString("N2") + "\r\n";
-            }
+            //if (gsRow != null)
+            //{
+            //    if (tds == null) stats += Current.Language.WarningTEMPORARY;
+            //    stats += Current.Language.RealDeltaSkills + gsRow.DeltaSkillPos.ToString() + "/" + gsRow.DeltaSkillNeg.ToString() + "\r\n";
+            //    stats += Current.Language.RealMean + (((float)gsRow.DeltaSkillPos) / (float)ct).ToString("N2") + "/" + (((float)gsRow.DeltaSkillNeg) / (float)ct).ToString("N2") + "\r\n";
+            //}
 
             StatisticsBox sb = new StatisticsBox();
             sb.txtTextStatistics.Text = stats;
@@ -2274,58 +2275,6 @@ namespace TMRecorder
             AddData(db_TrophyDataSet, -1);
         }
 
-        internal void FillTeamStats(ref TeamStats teamStats)
-        {
-            teamStats.AgeHistory.Clear();
-            teamStats.GrowthHistory.Clear();
-
-            ExtTMDataSet lasttds = null;
-            foreach (ExtTMDataSet tds in this)
-            {
-                TeamStats.AgeHistoryRow arow = teamStats.AgeHistory.NewAgeHistoryRow();
-                arow.Date = tds.Date;
-
-                TeamStats.GrowthHistoryRow grow = teamStats.GrowthHistory.NewGrowthHistoryRow();
-                grow.Date = tds.Date;
-
-                grow.SkillCount = 0;
-                grow.DeltaSkillNeg = 0;
-                grow.DeltaSkillPos = 0;
-
-                foreach (ExtTMDataSet.GiocatoriNSkillRow row in tds.GiocatoriNSkill)
-                {
-                    if (row.Età <= 18) arow.U18++;
-                    else if (row.Età <= 21) arow.U21++;
-                    else if (row.Età <= 24) arow.U24++;
-                    else if (row.Età <= 30) arow.U30++;
-                    else arow.O30++;
-
-                    grow.SkillCount += row.SkillSum;
-
-                    grow.TotASI += row.ASI;
-
-                    if (lasttds != null)
-                    {
-                        ExtTMDataSet.GiocatoriNSkillRow lastrow = lasttds.GiocatoriNSkill.FindByPlayerID(row.PlayerID);
-
-                        if (lastrow != null)
-                        {
-                            decimal delta = row.SkillSum - lastrow.SkillSum;
-                            if (delta > 0)
-                                grow.DeltaSkillPos += delta;
-                            else
-                                grow.DeltaSkillNeg += delta;
-                        }
-                    }
-                }
-
-                lasttds = tds;
-
-                teamStats.AgeHistory.AddAgeHistoryRow(arow);
-                teamStats.GrowthHistory.AddGrowthHistoryRow(grow);
-            }
-        }
-
 
         internal void ReapplyTrainings()
         {
@@ -2468,27 +2417,27 @@ namespace TMRecorder
             AddData(tds);
         }
 
-        internal void DisplayTrainingStatsForThisWeek(DateTime dt, SkillVariation sv,
-                                                      TeamStats ts)
-        {
-            // Find this week training
-            int ix = 0;
-            for (; ix < TrainingHist.Count; ix++)
-            {
-                if (dt == TrainingHist[ix].Date)
-                    break;
-            }
+        //internal void DisplayTrainingStatsForThisWeek(DateTime dt, SkillVariation sv,
+        //                                              TeamStats ts)
+        //{
+        //    // Find this week training
+        //    int ix = 0;
+        //    for (; ix < TrainingHist.Count; ix++)
+        //    {
+        //        if (dt == TrainingHist[ix].Date)
+        //            break;
+        //    }
 
-            TrainingDataSet tds = null;
-            if (ix != TrainingHist.Count)
-            {
-                tds = TrainingHist[ix];
-            }
+        //    TrainingDataSet tds = null;
+        //    if (ix != TrainingHist.Count)
+        //    {
+        //        tds = TrainingHist[ix];
+        //    }
 
-            TeamStats.GrowthHistoryRow gsRow = ts.GrowthHistory.FindByDate(dt);
+        //    TeamStats.GrowthHistoryRow gsRow = ts.GrowthHistory.FindByDate(dt);
 
-            DisplayStats(tds, sv, gsRow);
-        }
+        //    DisplayStats(tds, sv, gsRow);
+        //}
 
         internal void ExportTeamInExcelFormat(DateTime dateTime)
         {
@@ -2513,11 +2462,6 @@ namespace TMRecorder
             Clipboard.SetText(strToClip);
         }
 
-        internal void UpdatePlayers()
-        {
-            //throw new Exception("The method or operation is not implemented.");
-        }
-
         internal ExtTMDataSet DS_BeforeDate(DateTime dt)
         {
             int ix = this.Count - 1;
@@ -2530,98 +2474,6 @@ namespace TMRecorder
             }
 
             return null;
-        }
-
-        internal void ComputeStats()
-        {
-            //throw new Exception("The method or operation is not implemented.");
-        }
-
-        internal void FillTradingList(Trading trading)
-        {
-            int count = 0;
-
-            int lastWeek = 0;
-            foreach (Trading.PlayersRow pr in trading.Players)
-            {
-                if (pr.IsDateSellNull()) continue;
-                if (lastWeek < pr.DateSell)
-                    lastWeek = pr.DateSell;
-            }
-
-            ProgressForm pform = new ProgressForm();
-            pform.progressBar.Maximum = this.Count;
-            pform.progressBar.Value = 0;
-            pform.Text = "Filling the trading list with your past players: Please wait";
-            pform.lblProgressDescription.Text = "Adding History: Adding weeks from a total of " + pform.progressBar.Maximum.ToString();
-            Form parent = Application.OpenForms[0];
-            pform.Show(parent);
-            parent.Refresh();
-            pform.Refresh();
-
-            int cntRefresh = 0;
-
-            foreach (ExtTMDataSet eds in this)
-            {
-                DateTime dtDS = eds.WeekNoData[0].Date;
-                int weekDS = TmWeek.GetTmAbsWk(dtDS);
-                TmWeek tmw = new TmWeek(dtDS);
-
-                count++;
-                pform.lblProgressDescription.Text = "Adding History: Adding week " + count.ToString() +
-                    " (" + tmw.ToString() + ") of " + this.Count.ToString();
-                pform.Value = count;
-
-                if (weekDS <= lastWeek) continue;
-
-                pform.Refresh();
-
-                if ((cntRefresh++ % 5) == 0) parent.Refresh();
-
-                foreach (ExtTMDataSet.GiocatoriNSkillRow gnr in eds.GiocatoriNSkill)
-                {
-                    Trading.PlayersRow pr = trading.Players.FindByPlayerID(gnr.PlayerID);
-
-                    if (pr == null)
-                    {
-                        pr = trading.Players.NewPlayersRow();
-
-                        pr.PlayerID = gnr.PlayerID;
-                        string[] strs = gnr.Nome.Split('|');
-                        pr.Name = strs[0];
-                        pr.Nation = gnr.Nationality;
-                        pr.DateAcquire = weekDS;
-                        pr.DateSell = weekDS;
-                        pr.ASIwhenSold = gnr.ASI;
-                        pr.ASIwhenBuyed = gnr.ASI;
-                        pr.WeekInTeam = 1;
-                        pr.Age = gnr.Età;
-
-                        trading.Players.AddPlayersRow(pr);
-                    }
-                    else
-                    {
-                        if (weekDS < pr.DateAcquire)
-                        {
-                            pr.DateAcquire = weekDS;
-                            pr.ASIwhenBuyed = gnr.ASI;
-                            pr.WeekInTeam = pr.DateSell - pr.DateAcquire;
-                        }
-                        if (weekDS > pr.DateSell)
-                        {
-                            pr.DateSell = weekDS;
-                            pr.ASIwhenSold = gnr.ASI;
-                            pr.WeekInTeam = pr.DateSell - pr.DateAcquire;
-                        }
-                        string[] strs = gnr.Nome.Split('|');
-                        pr.Name = strs[0];
-                        pr.Age = gnr.Età;
-                        pr.ManagCost = TraderForm.ManagementCost(pr);
-                    }
-                }
-            }
-
-            pform.CodeClose();
         }
 
         internal void FillPLTrainingTable(PlayerTraining playerTraining, int playerID)

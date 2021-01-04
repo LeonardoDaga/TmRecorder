@@ -15,6 +15,8 @@ namespace TMRecorder
 {
     public partial class TraderForm : Form
     {
+        bool firstUpdate = true;
+
         public TraderForm()
         {
             InitializeComponent();
@@ -25,15 +27,15 @@ namespace TMRecorder
             if (fi.Exists)
                 trading.ReadXml(listFilePath);
 
-            ComputeSum();
+            UpdateSum();
         }
 
-        private void ComputeSum()
+        private void UpdateSum()
         {
-            int sumAcqPrices = 0, sumSellPrices = 0, sumManagCosts = 0, totalGain = 0;
+            long sumAcqPrices = 0, sumSellPrices = 0, sumManagCosts = 0, totalGain = 0;
             foreach (Trading.PlayersRow pr in trading.Players)
             {
-                //SetGain(pr);
+                if (firstUpdate) pr.UpdateGain();
                 if (!pr.IsSellPriceNull()) sumSellPrices += pr.SellPrice;
                 if (!pr.IsAcquirePriceNull()) sumAcqPrices += pr.AcquirePrice;
                 if (!pr.IsManagCostNull()) sumManagCosts += pr.ManagCost;
@@ -44,6 +46,8 @@ namespace TMRecorder
             txtSumSellPrices.Text = sumSellPrices.ToString("N0");
             txtSumManagCosts.Text = sumManagCosts.ToString("N0");
             txtTotalGain.Text = totalGain.ToString("N0");
+
+            firstUpdate = false;
         }
 
         private void toolPasteTransferHistory_Click(object sender, EventArgs e)
@@ -57,13 +61,10 @@ namespace TMRecorder
                 {
                     page = (string)Clipboard.GetData(DataFormats.Html);
 
-                    if (page.Contains("SourceURL:http://trophymanager.com/transferhistory.php?mode=bought&showclub"))
-                        pageType = 2; // Bought players page
-                    else if (page.Contains("SourceURL:http://trophymanager.com/transferhistory.php"))
-                        pageType = 1; // Sold players page
-
-                    if (page.Contains("SourceURL:http://trophymanager.com/transferhistory.php"))
-                        page = page.Replace("SourceURL:http://trophymanager.com/transferhistory.php", "SourceURL:<TM - Transferhistory>");
+                    if (page.Contains("SourceURL:https://trophymanager.com/history/club/transfers"))
+                        page = page.Replace("SourceURL:https://trophymanager.com/history/club/transfers", "SourceURL:<TM - Transferhistory>");
+                    else if (page.Contains("SourceURL:http://trophymanager.com/history/club/transfers"))
+                        page = page.Replace("SourceURL:http://trophymanager.com/history/club/transfers", "SourceURL:<TM - Transferhistory>");
                     else
                         page = "";
                 }
@@ -83,19 +84,7 @@ namespace TMRecorder
                 page = page.Replace("'>", ">");
                 page = page.Replace("&#39;", "'");
 
-                if ((pageType == 0) && (MessageBox.Show("Specify the type of Transfer Page (Yes: Bought Players (Acquistati)," +
-                    "No: Sold Players (Venduti))", "Specify Page type", MessageBoxButtons.YesNo) == DialogResult.Yes))
-                {
-                    LoadBougthPlayersfile(page);
-                }
-                else if (pageType == 2)
-                {
-                    LoadBougthPlayersfile(page);
-                }
-                else
-                {
-                    LoadSoldPlayersfile(page);
-                }
+                LoadSoldPlayersfile(page);
             }
             catch (Exception ex)
             {
@@ -124,101 +113,103 @@ namespace TMRecorder
             }
         }
 
-        private void LoadBougthPlayersfile(string page)
-        {
-            List<string> tables = HTML_Parser.GetTags(page, "TABLE");
+        //private void LoadBougthPlayersfile(string page)
+        //{
+        //    List<string> tables = HTML_Parser.GetTags(page, "TABLE");
 
-            if (tables.Count == 0) return;
+        //    if (tables.Count == 0) return;
 
-            List<string> rows = HTML_Parser.GetTags(tables[1], "TR");
+        //    List<string> rows = HTML_Parser.GetTags(tables[1], "TR");
 
-            if (rows.Count == 0) return;
+        //    if (rows.Count == 0) return;
 
-            int lastBought = 0;
-            // Ricava la data più recente tra le date di vendita già memorizzate
-            foreach (Trading.PlayersRow tpr in trading.Players)
-            {
-                if (tpr.IsDateAcquireNull()) continue;
+        //    int lastBought = 0;
+        //    // Ricava la data più recente tra le date di vendita già memorizzate
+        //    foreach (Trading.PlayersRow tpr in trading.Players)
+        //    {
+        //        if (tpr.IsDateAcquireNull()) continue;
 
-                if ((!tpr.IsAcquirePriceNull()) &&
-                    (tpr.AcquirePrice != 0) &&
-                    (lastBought < tpr.DateAcquire))
-                    lastBought = tpr.DateAcquire;
-            }
+        //        if ((!tpr.IsAcquirePriceNull()) &&
+        //            (tpr.AcquirePrice != 0) &&
+        //            (lastBought < tpr.DateAcquire))
+        //            lastBought = tpr.DateAcquire;
+        //    }
 
-            foreach (string row in rows)
-            {
-                List<string> fd = HTML_Parser.GetTags(row, "TD");
+        //    foreach (string row in rows)
+        //    {
+        //        List<string> fd = HTML_Parser.GetTags(row, "TD");
 
-                if (fd.Count == 0) continue;
+        //        if (fd.Count == 0) continue;
 
-                // Get the player id
-                int id = 0;
+        //        // Get the player id
+        //        int id = 0;
 
-                Trading.PlayersRow tpr = null;
-                bool isNew = false;
-                DateTime dtAcquire;
+        //        Trading.PlayersRow tpr = null;
+        //        bool isNew = false;
+        //        DateTime dtAcquire;
 
-                if (!int.TryParse(HTML_Parser.GetField(fd[1], "playerid=", ">"), out id))
-                {
-                    // Si tratta di un giocatore sconosciuto, bisogna fare una gestione a parte
-                    tpr = trading.Players.NewPlayersRow();
-                    id = fd.GetHashCode();
+        //        if (!int.TryParse(HTML_Parser.GetField(fd[1], "playerid=", ">"), out id))
+        //        {
+        //            // Si tratta di un giocatore sconosciuto, bisogna fare una gestione a parte
+        //            tpr = trading.Players.NewPlayersRow();
+        //            id = fd.GetHashCode();
 
-                    if ((tpr = trading.Players.FindByPlayerID(id)) == null)
-                    {
-                        tpr = trading.Players.NewPlayersRow();
-                        isNew = true;
-                        tpr.PlayerID = id;
-                        tpr.Name = HTML_Parser.ConvertHTML(fd[1]).Replace("\r\n", "");
-                    }
+        //            if ((tpr = trading.Players.FindByPlayerID(id)) == null)
+        //            {
+        //                tpr = trading.Players.NewPlayersRow();
+        //                isNew = true;
+        //                tpr.PlayerID = id;
+        //                tpr.Name = HTML_Parser.ConvertHTML(fd[1]).Replace("\r\n", "");
+        //            }
 
-                    dtAcquire = DateTime.Parse(fd[0].Trim("\t\r\n".ToCharArray()));
-                    tpr.DateAcquire = TmWeek.GetTmAbsWk(dtAcquire);
+        //            dtAcquire = DateTime.Parse(fd[0].Trim("\t\r\n".ToCharArray()));
+        //            tpr.DateAcquire = TmWeek.GetTmAbsWk(dtAcquire);
 
-                    if (tpr.DateAcquire < lastBought)
-                        continue;
+        //            if (tpr.DateAcquire < lastBought)
+        //                continue;
 
-                    tpr.Nation = HTML_Parser.GetField(fd[2], "showcountry=", ">");
-                    tpr.ASIwhenBuyed = int.Parse(fd[3].Replace(",", "").Replace(".", ""));
-                    tpr.AcquirePrice = int.Parse(fd[4].Replace(",", "").Replace(".", ""));
+        //            tpr.Nation = HTML_Parser.GetField(fd[2], "showcountry=", ">");
+        //            tpr.ASIwhenBuyed = int.Parse(fd[3].Replace(",", "").Replace(".", ""));
+        //            tpr.AcquirePrice = int.Parse(fd[4].Replace(",", "").Replace(".", ""));
 
-                    trading.Players.AddPlayersRow(tpr);
-                    continue;
-                }
+        //            trading.Players.AddPlayersRow(tpr);
+        //            continue;
+        //        }
 
-                if ((tpr = trading.Players.FindByPlayerID(id)) == null)
-                {
-                    tpr = trading.Players.NewPlayersRow();
-                    isNew = true;
-                    tpr.PlayerID = id;
-                    tpr.Name = HTML_Parser.GetTag(fd[1], "span").Replace("  ", " ");
-                    tpr.Name = HTML_Parser.ConvertHTML(tpr.Name);
-                }
+        //        if ((tpr = trading.Players.FindByPlayerID(id)) == null)
+        //        {
+        //            tpr = trading.Players.NewPlayersRow();
+        //            isNew = true;
+        //            tpr.PlayerID = id;
+        //            tpr.Name = HTML_Parser.GetTag(fd[1], "span").Replace("  ", " ");
+        //            tpr.Name = HTML_Parser.ConvertHTML(tpr.Name);
+        //        }
 
-                dtAcquire = DateTime.Parse(fd[0].Trim("\t\r\n".ToCharArray()));
-                tpr.DateAcquire = TmWeek.GetTmAbsWk(dtAcquire);
+        //        dtAcquire = DateTime.Parse(fd[0].Trim("\t\r\n".ToCharArray()));
+        //        tpr.DateAcquire = TmWeek.GetTmAbsWk(dtAcquire);
 
-                if (tpr.DateAcquire < lastBought)
-                    continue;
+        //        if (tpr.DateAcquire < lastBought)
+        //            continue;
 
-                tpr.Nation = HTML_Parser.GetField(fd[2], "showcountry=", ">");
-                tpr.ASIwhenBuyed = int.Parse(fd[3].Replace(",", "").Replace(".", ""));
-                tpr.AcquirePrice = int.Parse(fd[4].Replace(",", "").Replace(".", ""));
+        //        tpr.Nation = HTML_Parser.GetField(fd[2], "showcountry=", ">");
+        //        tpr.ASIwhenBuyed = int.Parse(fd[3].Replace(",", "").Replace(".", ""));
+        //        tpr.AcquirePrice = int.Parse(fd[4].Replace(",", "").Replace(".", ""));
 
-                if (!tpr.IsASIwhenSoldNull())
-                {
-                    SetWeekInTeam(tpr);
-                    tpr.ManagCost = ManagementCost(tpr);
-                    SetGain(tpr);
-                }
+        //        if (!tpr.IsASIwhenSoldNull())
+        //        {
+        //            SetWeekInTeam(tpr);
+        //            tpr.ManagCost = ManagementCost(tpr);
+        //            tpr.UpdateGain();
+        //        }
 
-                if (isNew)
-                {
-                    trading.Players.AddPlayersRow(tpr);
-                }
-            }
-        }
+        //        if (isNew)
+        //        {
+        //            trading.Players.AddPlayersRow(tpr);
+        //        }
+        //    }
+
+        //    UpdateSum();
+        //}
 
         public static int ManagementCost(Trading.PlayersRow tpr)
         {
@@ -226,8 +217,10 @@ namespace TMRecorder
             int ASIend = tpr.ASIwhenSold;
             int week = tpr.WeekInTeam;
 
-            int wageStart = Tm_Utility.ASItoWage(ASIstart);
-            int wageEnd = Tm_Utility.ASItoWage(ASIend);
+            int? FPn = tpr.IsFPnNull() ? null : tpr.FPn;
+
+            int wageStart = Tm_Utility.ASItoWage(ASIstart, FPn);
+            int wageEnd = Tm_Utility.ASItoWage(ASIend, FPn);
 
             return ((wageStart + wageEnd) * week / 2);
         }
@@ -238,25 +231,26 @@ namespace TMRecorder
 
             if (tables.Count == 0) return;
 
-            List<string> rows = HTML_Parser.GetTags(tables[1], "TR");
+            // Parse Bought players
 
-            if (rows.Count == 0) return;
+            List<string> playersBoughtRows = HTML_Parser.GetTags(tables[0], "TR");
 
             int lastSell = 0;
-            // Ricava la data più recente tra le date di vendita già memorizzate
-            foreach (Trading.PlayersRow tpr in trading.Players)
-            {
-                if ((!tpr.IsSellPriceNull()) && 
-                    (tpr.SellPrice != 0) &&
-                    (lastSell < tpr.DateSell))
-                    lastSell = tpr.DateSell;
-            }
+            //// Ricava la data più recente tra le date di vendita già memorizzate
+            //foreach (Trading.PlayersRow tpr in trading.Players)
+            //{
+            //    if ((!tpr.IsSellPriceNull()) && 
+            //        (tpr.SellPrice != 0) &&
+            //        (lastSell < tpr.DateSell))
+            //        lastSell = tpr.DateSell;
+            //}
 
-            foreach (string row in rows)
+            foreach (string row in playersBoughtRows)
             {
                 List<string> fd = HTML_Parser.GetTags(row, "TD");
 
                 if (fd.Count == 0) continue;
+                if (fd.Count < 4) continue;
 
                 // Get the player id
                 int id = 0;
@@ -265,7 +259,7 @@ namespace TMRecorder
                 bool isNew = false;
                 DateTime dtSell;
 
-                if (!int.TryParse(HTML_Parser.GetField(fd[1], "playerid=", ">"), out id))
+                if (!int.TryParse(HTML_Parser.GetField(fd[0], "player_link='", "'"), out id))
                 {
                     // Si tratta di un giocatore sconosciuto, bisogna fare una gestione a parte
                     tpr = trading.Players.NewPlayersRow();
@@ -293,10 +287,11 @@ namespace TMRecorder
                     {
                         SetWeekInTeam(tpr);
                         tpr.ManagCost = ManagementCost(tpr);
-                        SetGain(tpr);
+                        tpr.UpdateGain();
                     }
 
-                    trading.Players.AddPlayersRow(tpr);
+                    if (isNew)
+                        trading.Players.AddPlayersRow(tpr);
                     continue;
                 }
 
@@ -305,25 +300,126 @@ namespace TMRecorder
                     tpr = trading.Players.NewPlayersRow();
                     isNew = true;
                     tpr.PlayerID = id;
-                    tpr.Name = HTML_Parser.GetTag(fd[1], "span").Replace("  ", " ");
+                    tpr.Name = HTML_Parser.GetTag(fd[0], "a").Replace("  ", " ");
                     tpr.Name = HTML_Parser.ConvertHTML(tpr.Name);
+
+                    tpr.Nation = HTML_Parser.GetField(fd[0], "national-teams/", "/");
+                    if (tpr.Nation == "")
+                        tpr.Nation = Program.Setts.HomeNation;
                 }
 
-                dtSell = DateTime.Parse(fd[0].Trim("\t\r\n".ToCharArray()));
-                tpr.DateSell = TmWeek.GetTmAbsWk(dtSell);
+                //dtSell = DateTime.Parse(fd[0].Trim("\t\r\n".ToCharArray()));
+                //tpr.DateSell = TmWeek.GetTmAbsWk(dtSell);
 
-                if (tpr.DateSell < lastSell)
-                    continue;
+                //if (tpr.DateSell < lastSell)
+                //    continue;
 
-                tpr.Nation = HTML_Parser.GetField(fd[2], "showcountry=", ">");
-                tpr.ASIwhenSold = int.Parse(fd[3].Replace(",", "").Replace(".", ""));
-                tpr.SellPrice = int.Parse(fd[4].Replace(",", "").Replace(".", ""));
+                //tpr.Nation = HTML_Parser.GetField(fd[2], "showcountry=", ">");
+                //tpr.ASIwhenSold = int.Parse(fd[3].Replace(",", "").Replace(".", ""));
+                tpr.AcquirePrice = (int)(double.Parse(fd[3].Replace(",", "")) * 1e6);
+
+                tpr.UpdateGain();
 
                 if (isNew)
                 {
                     trading.Players.AddPlayersRow(tpr);
                 }
             }
+
+            List<string> playersSoldRows = HTML_Parser.GetTags(tables[1], "TR");
+
+            lastSell = 0;
+            //// Ricava la data più recente tra le date di vendita già memorizzate
+            //foreach (Trading.PlayersRow tpr in trading.Players)
+            //{
+            //    if ((!tpr.IsSellPriceNull()) && 
+            //        (tpr.SellPrice != 0) &&
+            //        (lastSell < tpr.DateSell))
+            //        lastSell = tpr.DateSell;
+            //}
+
+            foreach (string row in playersSoldRows)
+            {
+                List<string> fd = HTML_Parser.GetTags(row, "TD");
+
+                if (fd.Count == 0) continue;
+                if (fd.Count < 4) continue;
+
+                // Get the player id
+                int id = 0;
+
+                Trading.PlayersRow tpr = null;
+                bool isNew = false;
+                DateTime dtSell;
+
+                if (!int.TryParse(HTML_Parser.GetField(fd[0], "player_link='", "'"), out id))
+                {
+                    //// Si tratta di un giocatore sconosciuto, bisogna fare una gestione a parte
+                    //tpr = trading.Players.NewPlayersRow();
+                    //id = fd.GetHashCode();
+
+                    //if ((tpr = trading.Players.FindByPlayerID(id)) == null)
+                    //{
+                    //    tpr = trading.Players.NewPlayersRow();
+                    //    isNew = true;
+                    //    tpr.PlayerID = id;
+                    //    tpr.Name = HTML_Parser.ConvertHTML(fd[1]).Replace("\r\n", "");
+                    //}
+
+                    //dtSell = DateTime.Parse(fd[0].Trim("\t\r\n".ToCharArray()));
+                    //tpr.DateSell = TmWeek.GetTmAbsWk(dtSell);
+
+                    //if (tpr.DateSell < lastSell)
+                    //    continue;
+
+                    //tpr.Nation = HTML_Parser.GetField(fd[2], "showcountry=", ">");
+                    //tpr.ASIwhenSold = int.Parse(fd[3].Replace(",", "").Replace(".", ""));
+                    //tpr.SellPrice = int.Parse(fd[4].Replace(",", "").Replace(".", ""));
+
+                    //if (!tpr.IsASIwhenBuyedNull())
+                    //{
+                    //    SetWeekInTeam(tpr);
+                    //    tpr.ManagCost = ManagementCost(tpr);
+                    //    SetGain(tpr);
+                    //}
+
+                    //if (isNew)
+                    //    trading.Players.AddPlayersRow(tpr);
+                    continue;
+                }
+
+                if ((tpr = trading.Players.FindByPlayerID(id)) == null)
+                {
+                    tpr = trading.Players.NewPlayersRow();
+                    isNew = true;
+                    tpr.PlayerID = id;
+                    tpr.Name = HTML_Parser.GetTag(fd[0], "a").Replace("  ", " ");
+                    tpr.Name = HTML_Parser.ConvertHTML(tpr.Name);
+
+                    tpr.Nation = HTML_Parser.GetField(fd[0], "national-teams/", "/");
+                    if (tpr.Nation == "")
+                        tpr.Nation = Program.Setts.HomeNation;
+                }
+
+                //dtSell = DateTime.Parse(fd[0].Trim("\t\r\n".ToCharArray()));
+                //tpr.DateSell = TmWeek.GetTmAbsWk(dtSell);
+
+                //if (tpr.DateSell < lastSell)
+                //    continue;
+
+                //tpr.Nation = HTML_Parser.GetField(fd[2], "showcountry=", ">");
+                //tpr.ASIwhenSold = int.Parse(fd[3].Replace(",", "").Replace(".", ""));
+                tpr.SellPrice = (int)(double.Parse(fd[3].Replace(",", "")) * 1e6);
+
+                tpr.UpdateGain();
+
+                if (isNew)
+                {
+                    trading.Players.AddPlayersRow(tpr);
+                }
+            }
+
+            UpdateSum();
         }
 
         private void SetWeekInTeam(Trading.PlayersRow tpr)
@@ -334,11 +430,7 @@ namespace TMRecorder
 
         private void SetGain(Trading.PlayersRow tpr)
         {
-            int gain = 0; bool set = false;
-            if (!tpr.IsSellPriceNull()) { gain += tpr.SellPrice; set = true; }
-            if (!tpr.IsAcquirePriceNull()) { gain -= tpr.AcquirePrice; set = true; }
-            if (!tpr.IsManagCostNull()) { gain -= tpr.ManagCost; set = true; }
-            if (set) tpr.Gain = gain;
+            tpr.UpdateGain();
         }
 
         private void TraderForm_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
@@ -359,7 +451,7 @@ namespace TMRecorder
                 tei.GetPlayer(ref pr);
                 SetWeekInTeam(pr);
                 pr.ManagCost = ManagementCost(pr);
-                SetGain(pr);
+                pr.UpdateGain();
             }
         }
 
@@ -372,6 +464,8 @@ namespace TMRecorder
             Trading.PlayersRow pr = (Trading.PlayersRow)drv.Row;
 
             trading.Players.RemovePlayersRow(pr);
+
+            UpdateSum();
         }
 
         private void tbNewPlayer_Click(object sender, EventArgs e)
@@ -391,8 +485,10 @@ namespace TMRecorder
                 trading.Players.AddPlayersRow(pr);
                 SetWeekInTeam(pr);
                 pr.ManagCost = ManagementCost(pr);
-                SetGain(pr);
+                pr.UpdateGain();
             }
+
+            UpdateSum();
         }
 
         private void tbEditPlayer_Click(object sender, EventArgs e)
@@ -412,10 +508,10 @@ namespace TMRecorder
                 tei.GetPlayer(ref pr);
                 SetWeekInTeam(pr);
                 pr.ManagCost = ManagementCost(pr);
-                SetGain(pr);
+                pr.UpdateGain();
             }
 
-            ComputeSum();
+            UpdateSum();
         }
 
         private void tbSaveList_Click(object sender, EventArgs e)
@@ -447,7 +543,7 @@ namespace TMRecorder
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("http://trophymanager.com/klubhus.php?showclub=599573");
+            System.Diagnostics.Process.Start("http://trophymanager.com/club/599573");
         }
     }
 }

@@ -18,7 +18,7 @@ namespace Common
         {
         }
 
-        public string[] specs = new string[] { "DC", "DR", "DL", "DMC", "DMR", "DML", "MC", "MR", "ML", "OMC", "OMR", "OML", "FC" };
+        public static string[] specs = new string[] { "DC", "DR", "DL", "DMC", "DMR", "DML", "MC", "MR", "ML", "OMC", "OMR", "OML", "FC" };
 
         public partial class ScoutsDataTable
         {
@@ -1617,25 +1617,6 @@ namespace Common
         public int[] GetStatsAge()
         {
             return GetStatsAge(0, 10000000);
-        }
-
-        public int[] GetStatsPlyASIxRule(int minASI, int maxASI)
-        {
-            int[] SpecStats = new int[specs.Length];
-
-            foreach (GiocatoriRow gr in this.Giocatori)
-            {
-                if (gr.IsASINull()) continue;
-                if ((gr.ASI < minASI) || (gr.ASI > maxASI)) continue;
-
-                for (int i = 0; i < specs.Length; i++)
-                {
-                    if (gr.FP.Contains(specs[i]))
-                        SpecStats[i]++;
-                }
-            }
-
-            return SpecStats;
         }
 
         public void SetSquad(int ID, string squad)

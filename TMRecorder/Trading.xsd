@@ -3,34 +3,39 @@
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
-        <Connections>
-        </Connections>
-        <Tables>
-        </Tables>
-        <Sources>
-        </Sources>
+        <Connections />
+        <Tables />
+        <Sources />
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="Trading" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="Trading" msprop:Generator_DataSetName="Trading">
+  <xs:element name="Trading" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="Trading" msprop:Generator_UserDSName="Trading">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Players" msprop:Generator_UserTableName="Players" msprop:Generator_RowDeletedName="PlayersRowDeleted" msprop:Generator_RowChangedName="PlayersRowChanged" msprop:Generator_RowClassName="PlayersRow" msprop:Generator_RowChangingName="PlayersRowChanging" msprop:Generator_RowEvArgName="PlayersRowChangeEvent" msprop:Generator_RowEvHandlerName="PlayersRowChangeEventHandler" msprop:Generator_TableClassName="PlayersDataTable" msprop:Generator_TableVarName="tablePlayers" msprop:Generator_RowDeletingName="PlayersRowDeleting" msprop:Generator_TablePropName="Players">
+        <xs:element name="Players" msprop:Generator_UserTableName="Players" msprop:Generator_RowEvArgName="PlayersRowChangeEvent" msprop:Generator_TableVarName="tablePlayers" msprop:Generator_TablePropName="Players" msprop:Generator_RowDeletingName="PlayersRowDeleting" msprop:Generator_RowChangingName="PlayersRowChanging" msprop:Generator_RowDeletedName="PlayersRowDeleted" msprop:Generator_RowEvHandlerName="PlayersRowChangeEventHandler" msprop:Generator_TableClassName="PlayersDataTable" msprop:Generator_RowChangedName="PlayersRowChanged" msprop:Generator_RowClassName="PlayersRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="PlayerID" msprop:Generator_UserColumnName="PlayerID" msprop:Generator_ColumnPropNameInRow="PlayerID" msprop:Generator_ColumnVarNameInTable="columnPlayerID" msprop:Generator_ColumnPropNameInTable="PlayerIDColumn" type="xs:int" />
-              <xs:element name="Name" msprop:Generator_UserColumnName="Name" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInTable="NameColumn" type="xs:string" minOccurs="0" />
-              <xs:element name="Nation" msprop:Generator_UserColumnName="Nation" msprop:Generator_ColumnPropNameInRow="Nation" msprop:Generator_ColumnVarNameInTable="columnNation" msprop:Generator_ColumnPropNameInTable="NationColumn" type="xs:string" minOccurs="0" />
-              <xs:element name="AcquirePrice" msprop:Generator_UserColumnName="AcquirePrice" msprop:Generator_ColumnPropNameInRow="AcquirePrice" msprop:Generator_ColumnVarNameInTable="columnAcquirePrice" msprop:Generator_ColumnPropNameInTable="AcquirePriceColumn" type="xs:int" minOccurs="0" />
-              <xs:element name="ASIwhenBuyed" msprop:Generator_UserColumnName="ASIwhenBuyed" msprop:Generator_ColumnPropNameInRow="ASIwhenBuyed" msprop:Generator_ColumnVarNameInTable="columnASIwhenBuyed" msprop:Generator_ColumnPropNameInTable="ASIwhenBuyedColumn" type="xs:int" minOccurs="0" />
-              <xs:element name="DateAcquire" msprop:Generator_UserColumnName="DateAcquire" msprop:Generator_ColumnPropNameInRow="DateAcquire" msprop:Generator_ColumnVarNameInTable="columnDateAcquire" msprop:Generator_ColumnPropNameInTable="DateAcquireColumn" type="xs:int" minOccurs="0" />
-              <xs:element name="ManagCost" msprop:Generator_UserColumnName="ManagCost" msprop:Generator_ColumnPropNameInRow="ManagCost" msprop:Generator_ColumnVarNameInTable="columnManagCost" msprop:Generator_ColumnPropNameInTable="ManagCostColumn" type="xs:int" minOccurs="0" />
-              <xs:element name="WeekInTeam" msprop:Generator_UserColumnName="WeekInTeam" msprop:Generator_ColumnPropNameInRow="WeekInTeam" msprop:Generator_ColumnVarNameInTable="columnWeekInTeam" msprop:Generator_ColumnPropNameInTable="WeekInTeamColumn" type="xs:int" minOccurs="0" />
-              <xs:element name="Gain" msprop:Generator_UserColumnName="Gain" msprop:Generator_ColumnPropNameInRow="Gain" msprop:Generator_ColumnVarNameInTable="columnGain" msprop:Generator_ColumnPropNameInTable="GainColumn" type="xs:int" minOccurs="0" />
-              <xs:element name="SellPrice" msprop:Generator_UserColumnName="SellPrice" msprop:Generator_ColumnPropNameInRow="SellPrice" msprop:Generator_ColumnVarNameInTable="columnSellPrice" msprop:Generator_ColumnPropNameInTable="SellPriceColumn" type="xs:int" minOccurs="0" />
-              <xs:element name="DateSell" msprop:Generator_UserColumnName="DateSell" msprop:Generator_ColumnPropNameInRow="DateSell" msprop:Generator_ColumnVarNameInTable="columnDateSell" msprop:Generator_ColumnPropNameInTable="DateSellColumn" type="xs:int" minOccurs="0" />
-              <xs:element name="ASIwhenSold" msprop:Generator_UserColumnName="ASIwhenSold" msprop:Generator_ColumnVarNameInTable="columnASIwhenSold" msprop:Generator_ColumnPropNameInRow="ASIwhenSold" msprop:Generator_ColumnPropNameInTable="ASIwhenSoldColumn" type="xs:int" minOccurs="0" />
-              <xs:element name="Age" msprop:Generator_UserColumnName="Age" msprop:Generator_ColumnPropNameInRow="Age" msprop:Generator_ColumnVarNameInTable="columnAge" msprop:Generator_ColumnPropNameInTable="AgeColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="PlayerID" msprop:Generator_ColumnVarNameInTable="columnPlayerID" msprop:Generator_ColumnPropNameInRow="PlayerID" msprop:Generator_ColumnPropNameInTable="PlayerIDColumn" msprop:Generator_UserColumnName="PlayerID" type="xs:int" />
+              <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" type="xs:string" minOccurs="0" />
+              <xs:element name="Nation" msprop:Generator_ColumnVarNameInTable="columnNation" msprop:Generator_ColumnPropNameInRow="Nation" msprop:Generator_ColumnPropNameInTable="NationColumn" msprop:Generator_UserColumnName="Nation" type="xs:string" minOccurs="0" />
+              <xs:element name="AcquirePrice" msprop:Generator_ColumnVarNameInTable="columnAcquirePrice" msprop:Generator_ColumnPropNameInRow="AcquirePrice" msprop:Generator_ColumnPropNameInTable="AcquirePriceColumn" msprop:Generator_UserColumnName="AcquirePrice" type="xs:int" minOccurs="0" />
+              <xs:element name="ASIwhenBuyed" msprop:Generator_ColumnVarNameInTable="columnASIwhenBuyed" msprop:Generator_ColumnPropNameInRow="ASIwhenBuyed" msprop:Generator_ColumnPropNameInTable="ASIwhenBuyedColumn" msprop:Generator_UserColumnName="ASIwhenBuyed" type="xs:int" minOccurs="0" />
+              <xs:element name="DateAcquire" msprop:Generator_ColumnVarNameInTable="columnDateAcquire" msprop:Generator_ColumnPropNameInRow="DateAcquire" msprop:Generator_ColumnPropNameInTable="DateAcquireColumn" msprop:Generator_UserColumnName="DateAcquire" type="xs:int" minOccurs="0" />
+              <xs:element name="ManagCost" msprop:Generator_ColumnVarNameInTable="columnManagCost" msprop:Generator_ColumnPropNameInRow="ManagCost" msprop:Generator_ColumnPropNameInTable="ManagCostColumn" msprop:Generator_UserColumnName="ManagCost" type="xs:int" minOccurs="0" />
+              <xs:element name="WeekInTeam" msprop:Generator_ColumnVarNameInTable="columnWeekInTeam" msprop:Generator_ColumnPropNameInRow="WeekInTeam" msprop:Generator_ColumnPropNameInTable="WeekInTeamColumn" msprop:Generator_UserColumnName="WeekInTeam" type="xs:int" minOccurs="0" />
+              <xs:element name="Gain" msprop:Generator_ColumnVarNameInTable="columnGain" msprop:Generator_ColumnPropNameInRow="Gain" msprop:Generator_ColumnPropNameInTable="GainColumn" msprop:Generator_UserColumnName="Gain" type="xs:int" minOccurs="0" />
+              <xs:element name="SellPrice" msprop:Generator_ColumnVarNameInTable="columnSellPrice" msprop:Generator_ColumnPropNameInRow="SellPrice" msprop:Generator_ColumnPropNameInTable="SellPriceColumn" msprop:Generator_UserColumnName="SellPrice" type="xs:int" minOccurs="0" />
+              <xs:element name="DateSell" msprop:Generator_ColumnVarNameInTable="columnDateSell" msprop:Generator_ColumnPropNameInRow="DateSell" msprop:Generator_ColumnPropNameInTable="DateSellColumn" msprop:Generator_UserColumnName="DateSell" type="xs:int" minOccurs="0" />
+              <xs:element name="ASIwhenSold" msprop:Generator_ColumnVarNameInTable="columnASIwhenSold" msprop:Generator_ColumnPropNameInRow="ASIwhenSold" msprop:Generator_ColumnPropNameInTable="ASIwhenSoldColumn" msprop:Generator_UserColumnName="ASIwhenSold" type="xs:int" minOccurs="0" />
+              <xs:element name="Age" msprop:Generator_ColumnVarNameInTable="columnAge" msprop:Generator_ColumnPropNameInRow="Age" msprop:Generator_ColumnPropNameInTable="AgeColumn" msprop:Generator_UserColumnName="Age" type="xs:int" minOccurs="0" />
+              <xs:element name="FPn" msprop:Generator_ColumnVarNameInTable="columnFPn" msprop:Generator_ColumnPropNameInRow="FPn" msprop:Generator_ColumnPropNameInTable="FPnColumn" msprop:Generator_UserColumnName="FPn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Info" msprop:Generator_TableClassName="InfoDataTable" msprop:Generator_TableVarName="tableInfo" msprop:Generator_TablePropName="Info" msprop:Generator_RowDeletingName="InfoRowDeleting" msprop:Generator_RowChangingName="InfoRowChanging" msprop:Generator_RowEvHandlerName="InfoRowChangeEventHandler" msprop:Generator_RowDeletedName="InfoRowDeleted" msprop:Generator_UserTableName="Info" msprop:Generator_RowChangedName="InfoRowChanged" msprop:Generator_RowEvArgName="InfoRowChangeEvent" msprop:Generator_RowClassName="InfoRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Version" msprop:Generator_ColumnVarNameInTable="columnVersion" msprop:Generator_ColumnPropNameInRow="Version" msprop:Generator_ColumnPropNameInTable="VersionColumn" msprop:Generator_UserColumnName="Version" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

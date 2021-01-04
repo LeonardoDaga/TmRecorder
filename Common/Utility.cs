@@ -58,6 +58,22 @@ namespace Common
             return dict;
         }
 
+        public static int SellToAgentPrice(int FPn, int SI, int ageMonths)
+        {
+            int staPrice;
+
+            if (FPn != 0)
+            {
+                staPrice = (int)(SI * 500 * Math.Pow(300.0 / ageMonths, 2.5));
+            }
+            else
+            {
+                staPrice = (int)(SI * 500 * Math.Pow(300.0 / ageMonths, 2.5) * 0.75);
+            }
+
+            return staPrice;
+        }
+
         public static float[] StringToFloatArray(string val)
         {
             string[] pars = val.Split(';');
@@ -345,10 +361,15 @@ namespace Common
 
     public class Tm_Utility
     {
+        public static double GkWageRate = 23.75;
+        public static double PlWageRate = 15.8079;
 
-        public static int ASItoWage(int ASI)
+        public static int ASItoWage(int ASI, int? FPn = null)
         {
-            return ((int)(ASI * 23.75) < 30000) ? 30000 : (int)(ASI * 23.75);
+            if ((FPn != null) && (FPn == 0))
+                return ((int)(ASI * 23.75) < 30000) ? 30000 : (int)(ASI * GkWageRate);
+            else
+                return ((int)(ASI * 23.75) < 30000) ? 30000 : (int)(ASI * PlWageRate);
         }
 
         public static decimal ASItoTI(decimal newASI, decimal oldASI, bool isGK)
@@ -1082,7 +1103,7 @@ namespace Common
             return tmDay0.AddDays(7 * absweek);
         }
 
-        public static object DateTimeToSWD(DateTime date)
+        public static TmSWD DateTimeToSWD(DateTime date)
         {
             return new TmSWD(date);
         }

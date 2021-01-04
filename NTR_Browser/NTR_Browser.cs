@@ -142,6 +142,8 @@ namespace NTR_Browser
         {
             NavigationMode = eNavigationMode.Main;
 
+            if (this.DesignMode) return;
+
             // Select a folder where to host the browser cache
             var userDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\TmRecorder.2.21";
 
@@ -161,6 +163,8 @@ namespace NTR_Browser
 
         private void WebBrowser_NavigationStarting(object sender, CoreWebView2NavigationStartingEventArgs e)
         {
+            if (this.DesignMode) return;
+
             String address = e.Uri;
 
             tbTxtAddressSet(webBrowser.Source.AbsoluteUri);
@@ -199,9 +203,10 @@ namespace NTR_Browser
 
         private async void WebBrowser_NavigationCompleted(object sender, CoreWebView2NavigationCompletedEventArgs e)
         {
+            if (this.DesignMode) return;
+
             timerProgress.Enabled = false;
             tsbProgressBarSet(100, Color.Green);
-
 
             if (ActualPlayerID > 0)
             {
@@ -248,6 +253,8 @@ namespace NTR_Browser
         #region Navigation
         public bool Goto(string address)
         {
+            if (this.DesignMode) return false;
+
             NavigationAddress = address;
             Debug.WriteLine(string.Format("Navigating to :{0}", NavigationAddress));
             try

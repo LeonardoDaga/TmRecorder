@@ -36,6 +36,8 @@ namespace TMRecorder
             this.graphTotASIHistory = new ZedGraph.ZedGraphControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.graphSkillGrowth = new ZedGraph.ZedGraphControl();
+            this.tabTeamValuePage = new System.Windows.Forms.TabPage();
+            this.graphTeamValueHistory = new ZedGraph.ZedGraphControl();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.graphSkillCount = new ZedGraph.ZedGraphControl();
             this.tabPage5 = new System.Windows.Forms.TabPage();
@@ -48,6 +50,7 @@ namespace TMRecorder
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.tabTeamValuePage.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.tabPage6.SuspendLayout();
@@ -59,6 +62,7 @@ namespace TMRecorder
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabTeamValuePage);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage6);
@@ -249,6 +253,65 @@ namespace TMRecorder
             this.graphSkillGrowth.ZoomModifierKeys = System.Windows.Forms.Keys.None;
             this.graphSkillGrowth.ZoomModifierKeys2 = System.Windows.Forms.Keys.None;
             this.graphSkillGrowth.ZoomStepFraction = 0.1D;
+            // 
+            // tabTeamValuePage
+            // 
+            this.tabTeamValuePage.Controls.Add(this.graphTeamValueHistory);
+            this.tabTeamValuePage.Location = new System.Drawing.Point(4, 22);
+            this.tabTeamValuePage.Name = "tabTeamValuePage";
+            this.tabTeamValuePage.Size = new System.Drawing.Size(760, 412);
+            this.tabTeamValuePage.TabIndex = 7;
+            this.tabTeamValuePage.Text = "Team Value History";
+            this.tabTeamValuePage.UseVisualStyleBackColor = true;
+            // 
+            // graphTeamValueHistory
+            // 
+            this.graphTeamValueHistory.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.graphTeamValueHistory.EditButtons = System.Windows.Forms.MouseButtons.Left;
+            this.graphTeamValueHistory.EditModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.None)));
+            this.graphTeamValueHistory.ForeColor = System.Drawing.Color.White;
+            this.graphTeamValueHistory.IsAutoScrollRange = false;
+            this.graphTeamValueHistory.IsEnableHEdit = false;
+            this.graphTeamValueHistory.IsEnableHPan = true;
+            this.graphTeamValueHistory.IsEnableHZoom = true;
+            this.graphTeamValueHistory.IsEnableVEdit = false;
+            this.graphTeamValueHistory.IsEnableVPan = true;
+            this.graphTeamValueHistory.IsEnableVZoom = true;
+            this.graphTeamValueHistory.IsPrintFillPage = true;
+            this.graphTeamValueHistory.IsPrintKeepAspectRatio = true;
+            this.graphTeamValueHistory.IsScrollY2 = false;
+            this.graphTeamValueHistory.IsShowContextMenu = true;
+            this.graphTeamValueHistory.IsShowCopyMessage = true;
+            this.graphTeamValueHistory.IsShowCursorValues = false;
+            this.graphTeamValueHistory.IsShowHScrollBar = false;
+            this.graphTeamValueHistory.IsShowPointValues = false;
+            this.graphTeamValueHistory.IsShowVScrollBar = false;
+            this.graphTeamValueHistory.IsSynchronizeXAxes = false;
+            this.graphTeamValueHistory.IsSynchronizeYAxes = false;
+            this.graphTeamValueHistory.IsZoomOnMouseCenter = false;
+            this.graphTeamValueHistory.LinkButtons = System.Windows.Forms.MouseButtons.Left;
+            this.graphTeamValueHistory.LinkModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.None)));
+            this.graphTeamValueHistory.Location = new System.Drawing.Point(0, 0);
+            this.graphTeamValueHistory.Name = "graphTeamValueHistory";
+            this.graphTeamValueHistory.PanButtons = System.Windows.Forms.MouseButtons.Left;
+            this.graphTeamValueHistory.PanButtons2 = System.Windows.Forms.MouseButtons.Middle;
+            this.graphTeamValueHistory.PanModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.None)));
+            this.graphTeamValueHistory.PanModifierKeys2 = System.Windows.Forms.Keys.None;
+            this.graphTeamValueHistory.PointDateFormat = "g";
+            this.graphTeamValueHistory.PointValueFormat = "G";
+            this.graphTeamValueHistory.ScrollMaxX = 0D;
+            this.graphTeamValueHistory.ScrollMaxY = 0D;
+            this.graphTeamValueHistory.ScrollMaxY2 = 0D;
+            this.graphTeamValueHistory.ScrollMinX = 0D;
+            this.graphTeamValueHistory.ScrollMinY = 0D;
+            this.graphTeamValueHistory.ScrollMinY2 = 0D;
+            this.graphTeamValueHistory.Size = new System.Drawing.Size(760, 412);
+            this.graphTeamValueHistory.TabIndex = 2;
+            this.graphTeamValueHistory.ZoomButtons = System.Windows.Forms.MouseButtons.Left;
+            this.graphTeamValueHistory.ZoomButtons2 = System.Windows.Forms.MouseButtons.None;
+            this.graphTeamValueHistory.ZoomModifierKeys = System.Windows.Forms.Keys.None;
+            this.graphTeamValueHistory.ZoomModifierKeys2 = System.Windows.Forms.Keys.None;
+            this.graphTeamValueHistory.ZoomStepFraction = 0.1D;
             // 
             // tabPage4
             // 
@@ -496,10 +559,13 @@ namespace TMRecorder
             this.Controls.Add(this.tabControl1);
             this.Name = "TeamStatsForm";
             this.Text = "Your Team Statistics";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TeamStatsForm_FormClosing);
+            this.Load += new System.EventHandler(this.TeamStatsForm_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
+            this.tabTeamValuePage.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
             this.tabPage6.ResumeLayout(false);
@@ -525,5 +591,7 @@ namespace TMRecorder
         private ZedGraph.ZedGraphControl graphSkillCount;
         private System.Windows.Forms.TabPage tabFansPage;
         private ZedGraph.ZedGraphControl graphTeamFans;
+        private System.Windows.Forms.TabPage tabTeamValuePage;
+        private ZedGraph.ZedGraphControl graphTeamValueHistory;
     }
 }

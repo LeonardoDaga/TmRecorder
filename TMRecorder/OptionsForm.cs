@@ -208,6 +208,9 @@ namespace TMRecorder
         {
             get
             {
+                if (cmbRatingVersion.SelectedItem == null)
+                    return eRatingVersion.None;
+
                 var value = cmbRatingVersion.SelectedItem.ToString().Split('=')[1];
                 int.TryParse(value, out int selValue);
 

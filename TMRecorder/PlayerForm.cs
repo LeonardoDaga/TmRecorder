@@ -1984,7 +1984,7 @@ namespace TMRecorder
                 var max = Math.Max(playerValue.Max(), cumulatedWage.Max());
                 double range, step;
 
-                (range, min, max, step) = BestTicks(min, max);
+                (range, min, max, step) = Common.Utility.BestTicks(min, max);
 
                 pane.YAxis.Scale.MajorStep = step;
                 pane.YAxis.Scale.MinorStep = step / 5;
@@ -2033,7 +2033,7 @@ namespace TMRecorder
                 var max = Math.Max(playerWage.Max(), valueChange.Max());
                 double range, step;
 
-                (range, min, max, step) = BestTicks(min, max);
+                (range, min, max, step) = Common.Utility.BestTicks(min, max);
 
                 pane.YAxis.Scale.MajorStep = step;
                 pane.YAxis.Scale.MinorStep = step / 5;
@@ -2052,19 +2052,6 @@ namespace TMRecorder
                 master.SetLayout(g, PaneLayout.SquareColPreferred);
                 master.AxisChange(g);
             }
-        }
-
-        public (double range, double min, double max, double step) BestTicks(double min, double max, int tickCount = 10)
-        {
-            double range = max - min;
-            double unroundedTickSize = range / tickCount;
-            double x = Math.Ceiling(Math.Log10(unroundedTickSize) - 1);
-            double pow10x = Math.Pow(10, x);
-            double roundedTickRange = Math.Ceiling(unroundedTickSize / pow10x) * pow10x;
-            double step = roundedTickRange;
-            double roundedMin = Math.Floor(min / step) * step;
-            double roundedMax = Math.Ceiling(max / step) * step;
-            return (roundedTickRange * tickCount, roundedMin, roundedMax, step);
         }
 
         internal void FillSpecsGraph_Pl(ExtTMDataSet.PlayerHistoryDataTable table)

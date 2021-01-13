@@ -77,7 +77,7 @@ namespace FieldFormationControl
                 lblName.Text = toks[0];
 
                 TmWeek tmw = TmWeek.GetAge(gnsr.wBorn, DateTime.Now);
-                lblAge.Text = tmw.ToAge(Current.Language);
+                lblAge.Text = tmw.ToAge();
                 lblASI.Text = gnsr.ASI.ToString();
                 lblFP.Text = gnsr.FP;
                 lblFP.ForeColor = Color.Blue;
@@ -145,7 +145,7 @@ namespace FieldFormationControl
                 string[] toks = nameNdata.Split('|');
                 lblName.Text = toks[0];
                 TmWeek tmw = TmWeek.GetAge(gnsr.wBorn, DateTime.Now);
-                lblAge.Text = tmw.ToAge(Current.Language);
+                lblAge.Text = tmw.ToAge();
                 lblASI.Text = gnsr.ASI.ToString();
                 lblFP.Text = "GK";
                 lblFP.ForeColor = Color.Blue;
@@ -185,7 +185,7 @@ namespace FieldFormationControl
                 lblName.Text = toks[0];
 
                 TmWeek tmw = TmWeek.GetAge(pds.wBorn, DateTime.Now);
-                lblAge.Text = tmw.ToAge(Current.Language);
+                lblAge.Text = tmw.ToAge();
                 lblASI.Text = pds.ASI.ToString();
                 lblFP.Text = Tm_Utility.FPnToFP(pds.FPn);
                 lblFP.ForeColor = Color.Blue;
@@ -247,7 +247,7 @@ namespace FieldFormationControl
                 string[] toks = nameNdata.Split('|');
                 lblName.Text = toks[0];
                 TmWeek tmw = TmWeek.GetAge(pds.wBorn, DateTime.Now);
-                lblAge.Text = tmw.ToAge(Current.Language);
+                lblAge.Text = tmw.ToAge();
                 lblASI.Text = pds.ASI.ToString();
                 lblFP.Text = "GK";
                 lblFP.ForeColor = Color.Blue;

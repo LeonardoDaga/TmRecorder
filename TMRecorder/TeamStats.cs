@@ -265,8 +265,8 @@ namespace TMRecorder
                 {
                     teamHistoryRow = new TeamHistoryItem();
                     teamHistoryRow.Date = row.Date;
-                    teamHistoryRow.Cash = row.Cash;
-                    teamHistoryRow.Fans = row.NumSupporters;
+                    teamHistoryRow.Cash = row.IsCashNull() ? 0 : row.Cash;
+                    teamHistoryRow.Fans = row.IsNumSupportersNull() ? 0 : row.NumSupporters;
                     TeamHistory.Add(teamHistoryRow);
                 }
             }

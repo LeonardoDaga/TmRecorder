@@ -299,6 +299,7 @@ namespace Common
                     DateTime endDate = startDate.AddDays(7 * 12);
 
                     var selectedSeasonActions = (from c in this
+                                                 where !c.MatchRow.IsDateNull()
                                                  where c.MatchRow.Date >= startDate && c.MatchRow.Date < endDate
                                                  select c);
 
@@ -377,6 +378,7 @@ namespace Common
                         _weeksWithData.Add((int)date.Key);
 
                     var matches = (from c in Match
+                                   where !c.IsDateNull()
                                    group c by TmWeek.GetTmAbsWk(c.Date) into g
                                    select g).OrderByDescending(p => p.Key);
 

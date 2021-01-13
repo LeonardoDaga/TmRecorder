@@ -23,6 +23,8 @@ namespace NTR_Browser
             Players,
         };
 
+        private string NavigationCompletedRes = "";
+
         private string _defaultDirectory = "";
         public string DefaultDirectory
         {
@@ -220,7 +222,7 @@ namespace NTR_Browser
                     else
                         script = Resources.RatingNone;
 
-                    string res = await AppendScriptAndExecute(script, "");
+                    NavigationCompletedRes = await AppendScriptAndExecute(script, "");
                     tsbPlayersNavigationType.Visible = true;
                 }
             }
@@ -568,7 +570,8 @@ namespace NTR_Browser
         {
             Dictionary<string, string> playerPage = new Dictionary<string, string>();
 
-            playerPage["data"] = await AppendScriptAndExecute(Resources.player_data, "get_player_data");
+            playerPage["data"] = await AppendScriptAndExecute(Resources.player_data, "get_player_data") + 
+                NavigationCompletedRes;
             playerPage["scout"] = await AppendScriptAndExecute("get_scout_info();", "");
             playerPage["history"] = await AppendScriptAndExecute("get_player_history();", "");
             playerPage["extras"] = await AppendScriptAndExecute("get_extra_info();", "");
@@ -603,7 +606,6 @@ namespace NTR_Browser
 
             string result = "";
 
-            string page = playerPage["data"];
 
             if (SelectedReportParser == null)
             {
@@ -611,6 +613,7 @@ namespace NTR_Browser
                 return "";
             }
 
+            string page = playerPage["data"];
             result += "PlayerID=" + HTML_Parser.GetNumberAfter(page, "player_id=");
             result += ";PlayerName=" + HTML_Parser.GetField(page, "player_name=", ";");
             string playerFp = HTML_Parser.GetField(page, "player_fp=", ";").ToUpper().Replace(",", "/");
@@ -619,7 +622,7 @@ namespace NTR_Browser
 
             int FPn = Tm_Utility.FPToNumber(playerFp);
 
-            if (playerPage.ContainsKey("data"))
+            if (page.Contains("agey"))
             {
                 string strYear = HTML_Parser.GetNumberAfter(page, "agey=");
                 string strMonth = HTML_Parser.GetNumberAfter(page, "agem=");

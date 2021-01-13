@@ -8,8 +8,6 @@ function get_player_data()
 		strout += "player_fp=" + player_fp + ";\n";
 		strout += "player_name=" + player_name + ";\n";
 		strout += "is_users_player=" + is_users_player + ";\n";
-
-		strout += player_info_str;
 	}
 	catch (err)
 	{

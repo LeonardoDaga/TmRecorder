@@ -350,7 +350,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Userdata.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Utility.cs" />
+    <Compile Include="UtilityPartial.cs" />
     <Compile Include="YouthDev.cs">
       <DependentUpon>YouthDev.xsd</DependentUpon>
     </Compile>
@@ -683,6 +683,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <Import Project="..\SharedCode\SharedCode.projitems" Label="Shared" />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

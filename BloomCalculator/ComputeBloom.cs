@@ -350,17 +350,28 @@ namespace BloomCalculator
             EndOfBloomSkillSum = skillsum;
 
             decimal TirthyYearsSkillSum = 0M;
-            PointPairList ah = new PointPairList();
-            PointPairList ati = new PointPairList();
+            PointPairList actualAsiPpl = new PointPairList();
+            PointPairList actualTiPpl = new PointPairList();
+            PointPairList actualStaPpl = new PointPairList();
+            PointPairList actualWagePpl = new PointPairList();
+            PointPairList actualCumWagePpl = new PointPairList();
 
             int wn = 0;
+            int ageMonths = age.absweek;
             DateTime firstWeek = TmWeek.thisWeek().ToDate();
             firstWeek = age.ToDate();
+            int staValue = Utility.SellToAgentPrice(this.isGK ? 0 : 1, ActualASI, ageMonths);
+            int wage = Tm_Utility.ASItoWage(ActualASI, this.isGK ? 0 : 1);
 
             XDate xdate = (double)new XDate(firstWeek + TimeSpan.FromDays(7.0 * wn));
             wn++;
-            ah.Add(xdate, (double)ActualASI);
-            ati.Add(xdate, (double)ActualTI);
+            actualAsiPpl.Add(xdate, (double)ActualASI);
+            actualTiPpl.Add(xdate, (double)ActualTI);
+            actualStaPpl.Add(xdate, (double)staValue);
+            actualWagePpl.Add(xdate, (double)wage);
+
+            double cumWage = wage;
+            actualCumWagePpl.Add(xdate, (double)cumWage);
 
             for (int week = age.absweek + 1; week < 32 * 12; week++, wn++)
             {
@@ -378,9 +389,18 @@ namespace BloomCalculator
 
                 skillsum += 0.1M * devTI[years];
 
-                ah.Add(xdate, (double)ActualASI + (double)Tm_Utility.SkSumToASI(skillsum, isGK) - (double)Tm_Utility.SkSumToASI(CurrentSkillSum, isGK));
+                double newASI = (double)ActualASI + (double)Tm_Utility.SkSumToASI(skillsum, isGK) - (double)Tm_Utility.SkSumToASI(CurrentSkillSum, isGK);
 
-                ati.Add(xdate, (double)devTI[years]);
+                actualAsiPpl.Add(xdate, newASI);
+                actualTiPpl.Add(xdate, (double)devTI[years]);
+
+                staValue = Utility.SellToAgentPrice(this.isGK ? 0 : 1, (int)newASI, week);
+                wage = Tm_Utility.ASItoWage((int)newASI, this.isGK ? 0 : 1);
+                cumWage += wage;
+
+                actualStaPpl.Add(xdate, (double)staValue);
+                actualWagePpl.Add(xdate, (double)wage);
+                actualCumWagePpl.Add(xdate, (double)cumWage);
             }
 
             decimal DeltaBloomASI = 0;
@@ -393,76 +413,214 @@ namespace BloomCalculator
             EndOfBloomASI = (decimal)ActualASI + DeltaBloomASI;
             TopASI = (decimal)ActualASI + Delta30sASI;
 
-            FillAsiGraph(ah, ati);
+            FillAsiGraph(actualAsiPpl, actualTiPpl, actualStaPpl, actualWagePpl, actualCumWagePpl);
         }
 
-        private void FillAsiGraph(PointPairList ah, PointPairList ati)
+        private void FillAsiGraph(PointPairList actualAsiPpl, PointPairList actualTiPpl
+            , PointPairList actualStaPpl, PointPairList actualWagePpl, PointPairList actualCumWagePpl)
         {
-            GraphPane pane = graphASI.GraphPane;
-            pane.CurveList.Clear();
+            MasterPane master = graphASI.MasterPane;
 
-            // Set the title and axis labels
-            pane.Title.Text = "ASI/TI Forecast";
-            pane.YAxis.Title.Text = "ASI";
-            pane.Y2Axis.Title.Text = "TI";
-            pane.XAxis.Title.Text = "Years / Months";
-            pane.XAxis.Type = AxisType.Date;
-            pane.XAxis.Scale.MajorStep = 7 * 12;
-            pane.XAxis.Scale.MinorStep = 1;
-            pane.XAxis.Scale.MajorUnit = DateUnit.Day;
-            pane.XAxis.Scale.Format = "TY";
-            pane.Y2Axis.IsVisible = true;
-            pane.Y2Axis.IsAxisSegmentVisible = true;
-            pane.YAxis.Color = Color.Blue;
-            pane.Y2Axis.Color = Color.Red;
-            pane.Y2Axis.Scale.FontSpec.FontColor = Color.Red;
-            pane.Y2Axis.Title.FontSpec.FontColor = Color.Red;
-            pane.YAxis.Scale.FontSpec.FontColor = Color.Blue;
-            pane.YAxis.Title.FontSpec.FontColor = Color.Blue;
+            // Remove the default pane that comes with the ZedGraphControl.MasterPane
+            master.PaneList.Clear();
 
-            double dMin1 = double.MaxValue;
-            double dMax1 = double.MinValue;
-            double dMin2 = double.MaxValue;
-            double dMax2 = double.MinValue;
-
-            for (int i = 0; i < ah.Count; i++)
-            {
-                dMin1 = Math.Min(dMin1, ah[i].Y);
-                dMax1 = Math.Max(dMax1, ah[i].Y);
-                dMin2 = Math.Min(dMin2, ati[i].Y);
-                dMax2 = Math.Max(dMax2, ati[i].Y);
-            }
+            // Set the master pane title
+            master.Title.Text = "Bloom Compuation";
+            master.Title.IsVisible = true;
 
             // Fill the axis background with a color gradient
-            pane.Chart.Fill = new Fill(Color.FromArgb(255, 255, 245), Color.FromArgb(255, 255, 190), 90F);
+            master.Fill = new Fill(Color.FromArgb(240, 255, 240), Color.FromArgb(190, 255, 190), 90F);
 
-            // Generate a red curve with "ASI" in the legend
-            LineItem myCurve1 = pane.AddCurve("ASI Forecast", ah, Color.Blue);
-            LineItem myCurve2 = pane.AddCurve("TI Forecast", ati, Color.Red);
+            // Set the margins and the space between panes to 10 points
+            master.Margin.All = 5;
+            master.InnerPaneGap = 5;
 
-            myCurve2.IsVisible = true;
-            myCurve2.IsY2Axis = true;
+            // 1o grafico
+            {
+                GraphPane pane = new GraphPane();
 
-            // Make the symbols opaque by filling them with white
-            myCurve1.Symbol.Fill = new Fill(Color.White);
-            myCurve2.Symbol.Fill = new Fill(Color.Yellow);
+                // Set the title and axis labels
+                pane.Title.Text = "ASI/TI Forecast";
+                pane.YAxis.Title.Text = "ASI";
+                pane.XAxis.Title.Text = "Years / Months";
+                pane.XAxis.Type = AxisType.Date;
+                pane.XAxis.Scale.MajorStep = 7 * 12;
+                pane.XAxis.Scale.MinorStep = 1;
+                pane.XAxis.Scale.MajorUnit = DateUnit.Day;
+                pane.XAxis.Scale.Format = "TY";
+                pane.YAxis.Color = Color.Blue;
+                pane.YAxis.Scale.FontSpec.FontColor = Color.Blue;
+                pane.YAxis.Title.FontSpec.FontColor = Color.Blue;
 
-            // Manually set the x axis range
-            pane.YAxis.Scale.Min = dMin1 - 1.0;
-            pane.YAxis.Scale.Max = dMax1 + 1.0;
-            pane.Y2Axis.Scale.Min = 0;
-            pane.Y2Axis.Scale.Max = dMax2 + 1.0;
-            pane.XAxis.Scale.Min = ah[0].X;
-            pane.XAxis.Scale.Max = ah[ah.Count - 1].X;
+                pane.Y2Axis.Title.Text = "TI";
+                pane.Y2Axis.IsVisible = true;
+                pane.Y2Axis.IsAxisSegmentVisible = true;
+                pane.Y2Axis.Color = Color.Red;
+                pane.Y2Axis.Scale.FontSpec.FontColor = Color.Red;
+                pane.Y2Axis.Title.FontSpec.FontColor = Color.Red;
 
-            pane.YAxis.Scale.MajorStep = (double)((int)((dMax1) / 10.0));
-            pane.YAxis.Scale.MinorStep = (double)((int)(dMax1 / 50.0));
-            pane.Y2Axis.Scale.MajorStep = (double)((int)((dMax2) / 10.0));
-            pane.Y2Axis.Scale.MinorStep = (double)((int)(dMax2 / 50.0));
-            if (pane.YAxis.Scale.MajorStep == 0) pane.YAxis.Scale.MajorStep = 1;
-            if (pane.YAxis.Scale.MinorStep == 0) pane.YAxis.Scale.MinorStep = 1;
-            if (pane.Y2Axis.Scale.MajorStep == 0) pane.Y2Axis.Scale.MajorStep = 1;
-            if (pane.Y2Axis.Scale.MinorStep == 0) pane.Y2Axis.Scale.MinorStep = 1;
+                double dMin1 = double.MaxValue;
+                double dMax1 = double.MinValue;
+                double dMin2 = double.MaxValue;
+                double dMax2 = double.MinValue;
+
+                for (int i = 0; i < actualAsiPpl.Count; i++)
+                {
+                    dMin1 = Math.Min(dMin1, actualAsiPpl[i].Y);
+                    dMax1 = Math.Max(dMax1, actualAsiPpl[i].Y);
+                    dMin2 = Math.Min(dMin2, actualTiPpl[i].Y);
+                    dMax2 = Math.Max(dMax2, actualTiPpl[i].Y);
+                }
+
+                double range1, step1, range2, step2;
+                (range1, dMin1, dMax1, step1) = Utility.BestTicks(dMin1, dMax1);
+                (range2, dMin2, dMax2, step2) = Utility.BestTicks(dMin2, dMax2);
+
+                // Fill the axis background with a color gradient
+                pane.Chart.Fill = new Fill(Color.FromArgb(255, 255, 245), Color.FromArgb(255, 255, 190), 90F);
+
+                // Generate a red curve with "ASI" in the legend
+                LineItem myCurve1 = pane.AddCurve("ASI Forecast", actualAsiPpl, Color.Blue);
+                LineItem myCurve2 = pane.AddCurve("TI Forecast", actualTiPpl, Color.Red);
+
+                myCurve2.IsVisible = true;
+                myCurve2.IsY2Axis = true;
+
+                // Make the symbols opaque by filling them with white
+                myCurve1.Symbol.Fill = new Fill(Color.White);
+                myCurve2.Symbol.Fill = new Fill(Color.Yellow);
+
+                // Manually set the x axis range
+                pane.YAxis.Scale.MajorStep = step1;
+                pane.YAxis.Scale.MinorStep = step1 / 5;
+                pane.YAxis.Scale.Min = dMin1;
+                pane.YAxis.Scale.Max = dMax1;
+                pane.Y2Axis.Scale.MajorStep = step2;
+                pane.Y2Axis.Scale.MinorStep = step2 / 5;
+                pane.Y2Axis.Scale.Min = dMin2;
+                pane.Y2Axis.Scale.Max = dMax2;
+
+                pane.YAxis.MajorGrid.IsVisible = true;
+                pane.YAxis.MinorGrid.IsVisible = true;
+                pane.Y2Axis.MajorGrid.IsVisible = true;
+                pane.Y2Axis.MinorGrid.IsVisible = true;
+
+                master.Add(pane);
+            }
+
+
+            // 2o grafico
+            {
+                GraphPane pane = new GraphPane();
+
+                // Set the title and axis labels
+                pane.Title.Text = "StA/Cumul. Wage Forecast";
+                pane.YAxis.Title.Text = "StA/Cum.Wage";
+                pane.XAxis.Title.Text = "Years / Months";
+                pane.XAxis.Type = AxisType.Date;
+                pane.XAxis.Scale.MajorStep = 7 * 12;
+                pane.XAxis.Scale.MinorStep = 1;
+                pane.XAxis.Scale.MajorUnit = DateUnit.Day;
+                pane.XAxis.Scale.Format = "TY";
+
+                pane.YAxis.Color = Color.Blue;
+                pane.YAxis.Scale.FontSpec.FontColor = Color.Blue;
+                pane.YAxis.Title.FontSpec.FontColor = Color.Blue;
+
+                double dMin1 = double.MaxValue;
+                double dMax1 = double.MinValue;
+
+                for (int i = 0; i < actualStaPpl.Count; i++)
+                {
+                    dMin1 = Math.Min(dMin1, actualStaPpl[i].Y);
+                    dMax1 = Math.Max(dMax1, actualStaPpl[i].Y);
+                    dMin1 = Math.Min(dMin1, actualCumWagePpl[i].Y);
+                    dMax1 = Math.Max(dMax1, actualCumWagePpl[i].Y);
+                }
+
+                double range1, step1, range2, step2;
+                (range1, dMin1, dMax1, step1) = Utility.BestTicks(dMin1, dMax1);
+
+                // Fill the axis background with a color gradient
+                pane.Chart.Fill = new Fill(Color.FromArgb(255, 255, 245), Color.FromArgb(255, 255, 190), 90F);
+
+                // Generate a red curve with "ASI" in the legend
+                LineItem myCurve1 = pane.AddCurve("Selling to Agent Forecast", actualStaPpl, Color.Blue);
+                LineItem myCurve3 = pane.AddCurve("Cum. Wage Forecast", actualCumWagePpl, Color.Red);
+
+                // Make the symbols opaque by filling them with white
+                myCurve1.Symbol.Fill = new Fill(Color.White);
+                myCurve3.Symbol.Fill = new Fill(Color.Orange);
+
+                // Manually set the x axis range
+                pane.YAxis.Scale.MajorStep = step1;
+                pane.YAxis.Scale.MinorStep = step1 / 5;
+                pane.YAxis.Scale.Min = dMin1;
+                pane.YAxis.Scale.Max = dMax1;
+
+                pane.YAxis.MajorGrid.IsVisible = true;
+                pane.YAxis.MinorGrid.IsVisible = true;
+
+                master.Add(pane);
+            }
+
+            // 3o grafico
+            {
+                GraphPane pane = new GraphPane();
+
+                // Set the title and axis labels
+                pane.Title.Text = "Wage Forecast";
+                pane.YAxis.Title.Text = "Wage";
+                pane.XAxis.Title.Text = "Years / Months";
+                pane.XAxis.Type = AxisType.Date;
+                pane.XAxis.Scale.MajorStep = 7 * 12;
+                pane.XAxis.Scale.MinorStep = 1;
+                pane.XAxis.Scale.MajorUnit = DateUnit.Day;
+                pane.XAxis.Scale.Format = "TY";
+
+                pane.YAxis.Color = Color.Blue;
+                pane.YAxis.Scale.FontSpec.FontColor = Color.Blue;
+                pane.YAxis.Title.FontSpec.FontColor = Color.Blue;
+
+                double dMin2 = double.MaxValue;
+                double dMax2 = double.MinValue;
+
+                for (int i = 0; i < actualWagePpl.Count; i++)
+                {
+                    dMin2 = Math.Min(dMin2, actualWagePpl[i].Y);
+                    dMax2 = Math.Max(dMax2, actualWagePpl[i].Y);
+                }
+
+                double range2, step2;
+                (range2, dMin2, dMax2, step2) = Utility.BestTicks(dMin2, dMax2);
+
+                // Fill the axis background with a color gradient
+                pane.Chart.Fill = new Fill(Color.FromArgb(255, 255, 245), Color.FromArgb(255, 255, 190), 90F);
+
+                // Generate a red curve with "ASI" in the legend
+                LineItem myCurve2 = pane.AddCurve("Wage Forecast", actualWagePpl, Color.Green);
+
+                // Make the symbols opaque by filling them with white
+                myCurve2.Symbol.Fill = new Fill(Color.Yellow);
+
+                // Manually set the x axis range
+                pane.YAxis.Scale.MajorStep = step2;
+                pane.YAxis.Scale.MinorStep = step2 / 5;
+                pane.YAxis.Scale.Min = dMin2;
+                pane.YAxis.Scale.Max = dMax2;
+
+                pane.YAxis.MajorGrid.IsVisible = true;
+                pane.YAxis.MinorGrid.IsVisible = true;
+
+                master.Add(pane);
+            }
+
+            // Tell ZedGraph to auto layout all the panes
+            using (Graphics g = graphASI.CreateGraphics())
+            {
+                master.SetLayout(g, PaneLayout.ExplicitCol12);
+                master.AxisChange(g);
+            }
 
             graphASI.AxisChange();
             graphASI.Refresh();

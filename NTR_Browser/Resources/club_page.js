@@ -50,8 +50,6 @@
         strout += "wage=" + player_info.wage + ";\n";
         strout += "SI=" + player_info.SI + ";\n";
         strout += "rou=" + player_info.rou + ";\n";
-
-        player_info_str = strout;
     }
     catch (err) {
         result += "\nError catched: " + err;

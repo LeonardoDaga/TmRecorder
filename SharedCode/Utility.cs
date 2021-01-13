@@ -23,20 +23,20 @@ namespace Common
         public const string ClubFixtures = "http://trophymanager.com/fixtures/club/";
     }
 
-    public class WindowWrapper : System.Windows.Forms.IWin32Window
-    {
-        public WindowWrapper(IntPtr handle)
-        {
-            _hwnd = handle;
-        }
+    //public class WindowWrapper : System.Windows.Forms.IWin32Window
+    //{
+    //    public WindowWrapper(IntPtr handle)
+    //    {
+    //        _hwnd = handle;
+    //    }
 
-        public IntPtr Handle
-        {
-            get { return _hwnd; }
-        }
+    //    public IntPtr Handle
+    //    {
+    //        get { return _hwnd; }
+    //    }
 
-        private IntPtr _hwnd;
-    }
+    //    private IntPtr _hwnd;
+    //}
 
     public class Utility
     {
@@ -191,9 +191,22 @@ namespace Common
             TimeSpan ts = dtTo - dtFrom;
             return (double)ts.Days / 7;
         }
+
+        public static (double range, double min, double max, double step) BestTicks(double min, double max, int tickCount = 10)
+        {
+            double range = max - min;
+            double unroundedTickSize = range / tickCount;
+            double x = Math.Ceiling(Math.Log10(unroundedTickSize) - 1);
+            double pow10x = Math.Pow(10, x);
+            double roundedTickRange = Math.Ceiling(unroundedTickSize / pow10x) * pow10x;
+            double step = roundedTickRange;
+            double roundedMin = Math.Floor(min / step) * step;
+            double roundedMax = Math.Ceiling(max / step) * step;
+            return (roundedTickRange * tickCount, roundedMin, roundedMax, step);
+        }
     }
 
-    public class Tm_Training
+    public partial class Tm_Training
     {
         public enum eTrainingType
         {
@@ -220,95 +233,6 @@ namespace Common
             Tir = 10,
             Lan = 11,
         }
-
-        public static UInt64 OldTdsGiocatoriToTrCode2(TrainingDataSet.GiocatoriRow gr)
-        {
-            UInt64 res = 0;
-
-            try
-            {
-                UInt64 fact = 1;
-                for (int i = 1; i <= 14; i++, fact <<= 3)
-                {
-                    decimal tr = (decimal)gr[i];
-                    UInt64 val = (UInt64)((int)tr + 2);
-                    res = res + val * fact;
-                }
-            }
-            catch (Exception)
-            {
-            }
-
-            return res;
-        }
-
-        public static int[] OldTdsGiocatoriToTrCode(TrainingDataSet.GiocatoriRow gr)
-        {
-            int[] res = new int[2];
-            res[0] = 0;
-            res[1] = 0;
-
-            try
-            {
-                int fact;
-                for (int i = 1; i <= 14; i++)
-                {
-                    fact = 1 << (2 * i - 2);
-                    if ((decimal)gr[i] == 1) res[0] += fact;
-                    if ((decimal)gr[i] == -1) res[1] += fact;
-                    fact = 1 << (2 * i - 1);
-                    if ((decimal)gr[i] == 2) res[0] += fact;
-                    if ((decimal)gr[i] == -2) res[1] += fact;
-                }
-            }
-            catch (Exception ex)
-            {
-            }
-
-            return res;
-        }
-
-        public static int[] OldTdsPortieriToTrCode(TrainingDataSet.PortieriRow pr)
-        {
-            int[] res = new int[2];
-            res[0] = 0;
-            res[1] = 0;
-
-            int fact;
-            for (int i = 1; i <= 11; i++)
-            {
-                fact = 1 << (2 * i - 2);
-                if ((decimal)pr[i] == 1) res[0] += fact;
-                if ((decimal)pr[i] == -1) res[1] += fact;
-                fact = 1 << (2 * i - 1);
-                if ((decimal)pr[i] == 2) res[0] += fact;
-                if ((decimal)pr[i] == -2) res[1] += fact;
-            }
-
-            return res;
-        }
-
-        public static UInt64 OldTdsPortieriToTrCode2(TrainingDataSet.PortieriRow gr)
-        {
-            UInt64 res = 0;
-
-            try
-            {
-                UInt64 fact = 1;
-                for (int i = 1; i <= 11; i++, fact <<= 3)
-                {
-                    decimal tr = (decimal)gr[i];
-                    UInt64 val = (UInt64)((int)tr + 2);
-                    res = res + val * fact;
-                }
-            }
-            catch (Exception)
-            {
-            }
-
-            return res;
-        }
-
 
         public static int TrCode2ToTrValue(UInt64 trCode, eTrainingType tType)
         {
@@ -1023,7 +947,7 @@ namespace Common
             return new TmWeek(valY + 1, valM + 1);
         }
 
-        public string ToAge(Languages.ILanguage iLanguage)
+        public string ToAge()
         {
             int nWeek = this.absweek;
             TmWeek tmYears = new TmWeek(nWeek);

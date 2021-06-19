@@ -164,7 +164,9 @@ function get_report()
 		    	    for (var n in report[i][j]["chance"]["text"])
 		    	    {
 		    	    	var chancet = report[i][j]["chance"]["text"][n];
-		    	    	var chancev = report[i][j]["chance"]["video"][n];
+						var chancev = null;
+						if (report[i][j]["chance"]["video"] != undefined)
+							chancev = report[i][j]["chance"]["video"];
 		    	    	strout += "(text=" + chancet + ")";
 		    	    	if (chancev != null)
 		    	    	{
